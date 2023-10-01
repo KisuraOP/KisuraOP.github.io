@@ -45,39 +45,5 @@
   
   
   
-  <entry>
-    <title>功能&amp;主题测试</title>
-    <link href="/2023/10/01/theme-test/"/>
-    <url>/2023/10/01/theme-test/</url>
-    
-    <content type="html"><![CDATA[<h1 id="标题测试">标题测试</h1><h1 id="h1">h1</h1><h2 id="h2">h2</h2><h3 id="h3">h3</h3><h4 id="h4">h4</h4><h5 id="h5">h5</h5><h6 id="h6">h6</h6><p>正文大小</p><h1 id="latex公式">Latex公式</h1><p><span class="math inline">\(A\in B\)</span></p><p><span class="math inline">\(\mathbf{Ax}\)</span></p><p><span class="math inline">\(\ge \le \neq=\)</span></p><p><span class="math display">\[\nabla_x f(\mathbf{x})={[\frac{\partial f(\mathbf{x})}{\partial x_{1}},\frac{\partial f(\mathbf{x})}{\partial x_{2}},\dots,\frac{\partial f(\mathbf{x})}{\partial x_{n}}]^\top}\]</span></p><p><span class="math inline">\(\mathbf{A} = \begin{bmatrix} a_{11} &amp; a_{12} &amp; \ldots &amp; a_{1n} \\ a_{21} &amp; a_{22} &amp; \ldots &amp; a_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ a_{m1} &amp; a_{m2} &amp; \ldots &amp; a_{mn} \end{bmatrix}\)</span></p><h1 id="便签">便签</h1><div class="note note-primary">            <p>文字 或者 <code>markdown</code> 均可</p>          </div><div class="note note-secondary">            <p>文字 或者 <code>markdown</code> 均可</p>          </div><div class="note note-success">            <p>文字 或者 <code>markdown</code> 均可</p>          </div><div class="note note-danger">            <p>文字 或者 <code>markdown</code> 均可</p>          </div><div class="note note-warning">            <p>文字 或者 <code>markdown</code> 均可</p>          </div><div class="note note-info">            <p>文字 或者 <code>markdown</code> 均可</p>          </div><div class="note note-light">            <p>文字 或者 <code>markdown</code> 均可</p>          </div><h1 id="行内标签">行内标签</h1><span class="label label-primary">111</span><span class="label label-secondary">text</span><span class="label label-secondary">222</span><span class="label label-success">text</span><span class="label label-success">333</span><span class="label label-danger">text</span><span class="label label-danger">444</span><span class="label label-warning">text</span><span class="label label-warning">text</span><span class="label label-info">text</span><span class="label label-info">text</span><span class="label label-light">text</span><span class="label label-light">text</span><span class="label label-primary">text</span><h1 id="按钮">按钮</h1><a class="btn" href="https://zh-v2.d2l.ai/chapter_preliminaries/calculus.html"  title="kisura" target="_blank">微积分</a><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>Hexo</tag>
-      
-      <tag>Fluid</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="/2023/09/30/hello-world/"/>
-    <url>/2023/09/30/hello-world/</url>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="quick-start">Quick Start</h2><h3 id="create-a-new-post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="run-server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="generate-static-files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="deploy-to-remote-sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
   
 </search>
