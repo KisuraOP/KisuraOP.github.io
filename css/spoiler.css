@@ -1,7 +1,7 @@
 .spoiler {
     margin: 5px 0;
     padding: 0 15px;
-    border: 1px solid #E5E5E5;
+    border: none;
     position: relative;
     clear: both;
     border-radius: 3px;
