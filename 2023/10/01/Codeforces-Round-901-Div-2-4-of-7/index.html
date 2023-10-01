@@ -335,7 +335,7 @@
 
     </div>
 </div>
-<p>也就是说，当 $ $ 不是 <span class="math inline">\(2\)</span> 的整数幂时无解，可以用 <span class="math inline">\(\text{std::}\)</span><span class="math inline">\(\underline{}\underline{}\text{builtin}\)</span><span class="math inline">\(\underline{}\text{popcount()}\)</span> 快速验证。</p>
+<p>也就是说，当 <span class="math inline">\(\frac{m}{gcd(n,m)}\)</span> 不是 <span class="math inline">\(2\)</span> 的整数幂时无解，可以用 <span class="math inline">\(\text{std::}\)</span><span class="math inline">\(\underline{}\underline{}\text{builtin}\)</span><span class="math inline">\(\underline{}\text{popcount()}\)</span> 快速验证。</p>
 <p>接着，若有解，那么每个人分到的苹果数量应该是实数 <span class="math inline">\(\frac{n}{m}\)</span> ，而具体的，每次一个人得到的苹果数量应该是 <span class="math inline">\(2\)</span> 的整数幂，即存在集合 <span class="math inline">\(S\)</span> 使 <span class="math inline">\(\frac{n}{m}=\sum_{i\in S} \frac{1}{2^i}\)</span> 。而 <span class="math inline">\(|S|\)</span> 即每个人得到的苹果数量，答案即为 <span class="math inline">\(m\times |S|-n\)</span> 。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
