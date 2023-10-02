@@ -16,12 +16,12 @@
   <meta name="author" content="KisuraOP">
   <meta name="keywords" content="">
   
-    <meta name="description" content="A. Judg. 题目链接              逐个判断即可。                          Code                   12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;bits&#x2F;stdc++.h&gt;usin">
+    <meta name="description" content="A. Judg. Problem              逐个判断即可。                          Code                   12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;bits&#x2F;stdc++.h&gt;u">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【LGR-161-Div.3】洛谷基础赛4">
 <meta property="og:url" content="https://kisuraop.github.io/2023/10/05/%E3%80%90LGR-161-Div-3%E3%80%91%E6%B4%9B%E8%B0%B7%E5%9F%BA%E7%A1%80%E8%B5%9B-4-4-of-4/index.html">
 <meta property="og:site_name" content="KisuraOP">
-<meta property="og:description" content="A. Judg. 题目链接              逐个判断即可。                          Code                   12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;bits&#x2F;stdc++.h&gt;usin">
+<meta property="og:description" content="A. Judg. Problem              逐个判断即可。                          Code                   12345678910111213141516171819202122232425262728293031323334353637383940414243444546#include &lt;bits&#x2F;stdc++.h&gt;u">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://kisuraop.github.io/image/academic/1.png">
 <meta property="article:published_time" content="2023-10-04T16:35:35.000Z">
@@ -282,7 +282,7 @@
               <div class="markdown-body">
                 
                 <h2 id="a.-judg.">A. Judg.</h2>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P9686?contestId=133572">题目链接</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P9686?contestId=133572">Problem</a></p>
 <div class="note note-success">
             <p>逐个判断即可。</p>
           </div>
@@ -296,7 +296,7 @@
     </div>
 </div>
 <h2 id="b.-maps.">B. Maps.</h2>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P9687?contestId=133572">题目链接</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P9687?contestId=133572">Problem</a></p>
 <div class="note note-success">
             <p>要让字典序最小，答案必然是一段前缀 <span class="math inline">\(0\)</span> <span class="math inline">\(+\)</span> 一段 <span class="math inline">\(01\)</span> 交替的序列。</p><p>满状态是 <span class="math inline">\(1010\dots0101\)</span> ，所以 <span class="math inline">\(2p+1&gt; n\)</span> 时无解。</p><p>后续直接从后往前模拟。</p>
           </div>
@@ -310,7 +310,7 @@
     </div>
 </div>
 <h2 id="c.-colo.">C. Colo.</h2>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P9688?contestId=133572">题目链接</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P9688?contestId=133572">Problem</a></p>
 <span class="label label-primary">好题</span>
 <div class="note note-info">
             <p>题意：给定个长度为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(a,b\)</span> 分别代表颜色和价值，你可以挑一些不同的颜色 <span class="math inline">\(a_i\)</span> 进集合 <span class="math inline">\(S\)</span> 中，获得 <span class="math inline">\(b_{a_i}\)</span> 价值，但需要使所有 <span class="math inline">\(x\in S\)</span> 从 <span class="math inline">\(a\)</span> 中按顺序取出后形成的序列单调不降。 求 <span class="math inline">\(|S|=k\)</span> 时能获得的最大价值。<span class="math inline">\(1\le n,k \le 500\)</span>，<span class="math inline">\(1\le a_i\le n\)</span>，<span class="math inline">\(1\le b_i\le10^9\)</span> 。</p>
@@ -331,7 +331,7 @@
             <p>这和一般的dp有点不一样，所以看起来很奇怪。</p><p>我们分析它的正确性是如何保证的：</p><ol type="1"><li>外层从小到大枚举颜色 <span class="math inline">\(i\)</span> ，保证不会从比它大的颜色转移过来，使序列单调不降。</li><li>用右端点 <span class="math inline">\(\text{end}_{i}\)</span> 代表该种颜色，只保留有用的部分，符合最优子结构性质。</li></ol><p>时间复杂度 <span class="math inline">\(O(n^2k)\)</span> .</p>
           </div>
 <h2 id="d.-bina.">D. Bina.</h2>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P9689?contestId=133572">题目链接</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P9689?contestId=133572">Problem</a></p>
 <span class="label label-danger">毒瘤</span>
 <div class="note note-info">
             <p>题意：给定正整数 <span class="math inline">\(n,m\)</span>，依照给定代码建一棵构建参数为 <span class="math inline">\(n\)</span> 二叉树。你可以从二叉树底部开始往上砍节点（或不砍），一次砍一层，至少砍 <span class="math inline">\(m\)</span> 个点。令美丽值 <span class="math inline">\(=\)</span> 所有节点编号之和 <span class="math inline">\(\div\)</span> 这棵树的深度（向下取整），求最大美丽值。</p>
