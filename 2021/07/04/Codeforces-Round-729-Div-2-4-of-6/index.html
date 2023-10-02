@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.3k 字
+          5k 字
         
       </span>
     
@@ -319,7 +319,19 @@
             <p>题意：求 <span class="math inline">\(\sum\limits_{i=1}^n f_i\)</span> ，<span class="math inline">\(f_i\)</span> 为满足 <span class="math inline">\(x\nmid i\)</span> 的最小正整数 <span class="math inline">\(x\)</span> 。<span class="math inline">\(1\le T\le 10^4\)</span>, <span class="math inline">\(1\le n\le 10^{16}\)</span> 。</p>
           </div>
 <div class="note note-success">
-            <p>没什么思路，打表得到 <span class="math inline">\(2,3,2,3,2,4,2,3,2,3,2,5,2,\dots\)</span> 。</p><p>令 <span class="math inline">\(p_i\)</span> 为第一次出现 <span class="math inline">\(i\)</span> 的位置，观察有 <span class="math inline">\(p_3=2,p_4=6,p_5=12\)</span> ，类比得 <span class="math inline">\(p_i=\text{lcm} (1\sim i-1)\)</span> 。</p><div class="spoiler collapsed"><pre><code class="hljs">&lt;div class=&#39;spoiler-title&#39;&gt;    Why?&lt;/div&gt;&lt;div class=&#39;spoiler-content&#39;&gt;    &lt;p&gt;因为对于 &lt;span class=&quot;math inline&quot;&gt;\(f_x\)&lt;/span&gt; ，&lt;span class=&quot;math inline&quot;&gt;\(1\sim (f_x-1)\)&lt;/span&gt; 必然是 &lt;span class=&quot;math inline&quot;&gt;\(p_{f_x}\)&lt;/span&gt; 的因子，故最优选择就是它们的最小公倍数。&lt;/p&gt;&lt;/div&gt;</code></pre></div><p>其中每个位置贡献至少为 <span class="math inline">\(2\)</span> ，故初始化 <span class="math inline">\(ans=2n\)</span> 。</p><p>又若 <span class="math inline">\(i\)</span> 在位置 <span class="math inline">\(pos\)</span> 有贡献，则在 <span class="math inline">\(pos\)</span> 的倍数处也必有贡献，且每次贡献为 <span class="math inline">\(1\)</span> 。</p><p>而每个 <span class="math inline">\(i\)</span> 在 <span class="math inline">\(1\sim n\)</span> 中出现 <span class="math inline">\(\left\lfloor\dfrac{n}{p_i}\right\rfloor\)</span> 次，故 <span class="math inline">\(ans=2n+\sum\limits_{i=3}^{p_i\le n}\left\lfloor\dfrac{n}{p_i}\right\rfloor\)</span> .</p>
+            <p>没什么思路，打表得到 <span class="math inline">\(2,3,2,3,2,4,2,3,2,3,2,5,2,\dots\)</span> 。</p><p>令 <span class="math inline">\(p_i\)</span> 为第一次出现 <span class="math inline">\(i\)</span> 的位置，观察有 <span class="math inline">\(p_3=2,p_4=6,p_5=12\)</span> ，类比得 <span class="math inline">\(p_i=\text{lcm} (1\sim i-1)\)</span> 。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Why?
+    </div>
+    <div class='spoiler-content'>
+        <p>因为对于 <span class="math inline">\(f_x\)</span> ，<span class="math inline">\(1\sim (f_x-1)\)</span> 必然是 <span class="math inline">\(p_{f_x}\)</span> 的因子，故最优选择就是它们的最小公倍数。</p>
+
+    </div>
+</div>
+<div class="note note-success">
+            <p>其中每个位置贡献至少为 <span class="math inline">\(2\)</span> ，故初始化 <span class="math inline">\(ans=2n\)</span> 。</p><p>又若 <span class="math inline">\(i\)</span> 在位置 <span class="math inline">\(pos\)</span> 有贡献，则在 <span class="math inline">\(pos\)</span> 的倍数处也必有贡献，且每次贡献为 <span class="math inline">\(1\)</span> 。</p><p>而每个 <span class="math inline">\(i\)</span> 在 <span class="math inline">\(1\sim n\)</span> 中出现 <span class="math inline">\(\left\lfloor\dfrac{n}{p_i}\right\rfloor\)</span> 次，故 <span class="math inline">\(ans=2n+\sum\limits_{i=3}^{p_i\le n}\left\lfloor\dfrac{n}{p_i}\right\rfloor\)</span> .</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
