@@ -24,7 +24,7 @@
 <meta property="og:description" content="A. 涂色游戏 题目链接              题意：\(n\times m\) 的网格，\(q\) 次询问，每次涂一行或一列，新颜色会覆盖旧颜色，输出最终形态。\(1\le \sum nm,\sum q\le 10^6\) .                         考虑倒序执行这 \(q\) 个操作。对每一行和每一列用 std::unordered_map 存当前还有哪一些方格未被">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-10-01T23:25:01.000Z">
-<meta property="article:modified_time" content="2023-10-02T00:43:46.654Z">
+<meta property="article:modified_time" content="2023-10-02T07:10:27.232Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ACM">
 <meta property="article:tag" content="OI">
@@ -279,7 +279,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年10月2日 早上
+                    本文最后更新于：2023年10月2日 下午
                   
                 
               </p>
@@ -331,7 +331,7 @@
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P9119">题目链接</a></p>
 <span class="label label-primary">好题</span>
 <div class="note note-info">
-            <p>题意：给定二维坐标系上 <span class="math inline">\(n\)</span> 个点构成的凸多边形，求从 <span class="math inline">\(y\)</span> 轴最高点出发的一条路径，要求经过 <span class="math inline">\(n\)</span> 个点且每个点仅能经过一次，依次输出编号。<span class="math inline">\(3\le n\le 1000,|x_i|,|y_i|\le 10^7\)</span> 。</p>
+            <p>题意：给定二维坐标系上 <span class="math inline">\(n\)</span> 个点构成的凸多边形，求从 <span class="math inline">\(y\)</span> 轴最高点出发的一条最短路径，要求经过 <span class="math inline">\(n\)</span> 个点且每个点仅能经过一次，依次输出编号。<span class="math inline">\(3\le n\le 1000,|x_i|,|y_i|\le 10^7\)</span> 。</p>
           </div>
 <div class="note note-success">
             <p>正解是区间dp，不是很会。</p><p>只会 <span class="math inline">\(3\le n\le18\)</span> ，不过加上两个特殊性质一共能拿到 80pts。</p><p>套路题，最短哈密顿路径，考虑状压dp。</p><p>令起点为 <span class="math inline">\(s\)</span> ，则 <span class="math inline">\(dp[i][j]\)</span> 代表从 <span class="math inline">\(s\)</span> 到 <span class="math inline">\(j\)</span> ，且经过 <span class="math inline">\(i\)</span> 的二进制为 <span class="math inline">\(1\)</span> 的位数对应编号的点的最短路径长度。</p><p>则 <span class="math inline">\(dp[i][j]=\mathop\min\limits_{k\in[1,n]}(dp[i\oplus2^j][k]+dis[k][j])\)</span> 。</p><p>答案为 <span class="math inline">\(\min\limits_{i\in[1,n]}(dp[2^n-1][i])\)</span> 。</p><p>接下来考虑如何记录路径。</p><p>令 <span class="math inline">\(pre[mask][j]=k\)</span> 表示状态为 <span class="math inline">\(mask\)</span> ，当前点 <span class="math inline">\(j\)</span> 从点 <span class="math inline">\(k\)</span> 转移过来最优。</p><p>状态转移时 <span class="math inline">\(pre\)</span> 与 <span class="math inline">\(dp\)</span> 同步。</p><p>统计答案时，<span class="math inline">\(mask\)</span> 对应为 <span class="math inline">\(1\)</span> 的位异或变成 <span class="math inline">\(0\)</span> ，即可回溯到上一状态。</p>
