@@ -288,10 +288,10 @@
                 
                 <p>以下只提及与 C++ 差异较大的定义和语法。</p>
 <p>持续更新。</p>
-<h3 id="语言特色">语言特色</h3>
+<h2 id="语言特色">语言特色</h2>
 <p>python 属于解释型语言：最大的特色莫过于使用 <code>exec()</code> 函数直接解释括号中的字符串并运行。</p>
 <p>python 有很多库：如 NumPy 用于数学运算，Pandas 用于数据处理，Matplotlib 用于画图等。python 不调库就好比 C++ 没有 STL (雾) 。</p>
-<h3 id="关键字">关键字</h3>
+<h2 id="关键字">关键字</h2>
 <p>相比 C++，以下字符也属于 python 的保留字。</p>
 <ul>
 <li><p><code>False</code> <code>True</code> <code>None</code>：表示布尔值，空值（注意是大写）。</p></li>
@@ -362,17 +362,17 @@
 <p>遇到 <code>yield</code> 时立即返回对应值。</p></li>
 </ul></li>
 </ul>
-<h3 id="注释">注释</h3>
+<h2 id="注释">注释</h2>
 <ul>
 <li><p>单行注释：</p>
 <p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 啊?OP?</span><br></code></pre></td></tr></table></figure></p></li>
 <li><p>多行注释：</p>
 <p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">原来你也玩原神?</span><br><span class="hljs-string">原神怎么你了?</span><br><span class="hljs-string">&#x27;&#x27;&#x27;</span><br></code></pre></td></tr></table></figure></p></li>
 </ul>
-<h3 id="多行语句">多行语句</h3>
+<h2 id="多行语句">多行语句</h2>
 <p>运用反斜杠 <code>\</code> 。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">a,b,c = <span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span><br>t = a + b + \<br>	+c<br><br><span class="hljs-built_in">print</span>(t) <span class="hljs-comment"># 输出3</span><br></code></pre></td></tr></table></figure>
-<h3 id="字符串">字符串</h3>
+<h2 id="字符串">字符串</h2>
 <ul>
 <li><p>不同于 C++ 中单引号括字符，双引号括字符串，python 中单引号与双引号用法完全相同。</p></li>
 <li><p>三引号指定多行字符串。</p>
@@ -416,7 +416,7 @@
 <li><p>字符串格式化</p>
 <p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">name = <span class="hljs-built_in">input</span>()<br>greeting = <span class="hljs-string">f&quot;Hello, <span class="hljs-subst">&#123;name&#125;</span>!&quot;</span><br><span class="hljs-built_in">print</span>(greeting)<br></code></pre></td></tr></table></figure></p></li>
 </ul>
-<h3 id="输入输出">输入输出</h3>
+<h2 id="输入输出">输入输出</h2>
 <ul>
 <li><p>使用 <code>input()</code> 输入</p>
 <ul>
@@ -444,7 +444,7 @@
 <p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> sys<br>sys.stderr.write(<span class="hljs-string">&quot;寄了,哈哈\n&quot;</span>)<br></code></pre></td></tr></table></figure></p></li>
 </ul></li>
 </ul>
-<h3 id="模块导入">模块导入</h3>
+<h2 id="模块导入">模块导入</h2>
 <ul>
 <li><p>只导入模块 <code>import somemodule</code></p>
 <ul>
@@ -474,7 +474,7 @@
 <li><p>利用 <code>locals()</code> 访问局部命名空间，<code>globals()</code> 访问全局命名空间。</p></li>
 <li><p>利用 <code>reload(somemodule)</code> 重新执行顶层导入代码。</p></li>
 </ul>
-<h3 id="数值对象">数值对象</h3>
+<h2 id="数值对象">数值对象</h2>
 <ul>
 <li><p>乘方用 <code>**</code> ，如 <code>2 ** 3 = 8</code></p></li>
 <li><p>数值除法包括：</p>
@@ -496,7 +496,7 @@
 <p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">op</span>:<br>	qiye_nana7 = <span class="hljs-number">1</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hasattr</span>(op,<span class="hljs-string">&#x27;qiye_nana7&#x27;</span>)) <span class="hljs-comment"># True</span><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">hasattr</span>(op,<span class="hljs-string">&#x27;KisuraOP&#x27;</span>)) <span class="hljs-comment"># False</span><br></code></pre></td></tr></table></figure></p></li>
 </ul></li>
 </ul>
-<h3 id="列表list">列表（List）</h3>
+<h2 id="列表list">列表（List）</h2>
 <ul>
 <li><p>类似数组，是有序对象集合。</p></li>
 <li><p>中括号定义：<code>list = [123, 1.0, 'str', 'nmsl']</code></p></li>
@@ -504,13 +504,13 @@
 <li><p>与字符串不同的是，列表中的元素可以改变：</p>
 <p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python">a = <span class="hljs-string">&#x27;cnm&#x27;</span><br><span class="hljs-comment"># a[0] = &#x27;a&#x27; # 会编译错误</span><br>a = [<span class="hljs-string">&#x27;原神&#x27;</span>,<span class="hljs-string">&#x27;牛批&#x27;</span>]<br><span class="hljs-built_in">print</span>(a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]+a[<span class="hljs-number">1</span>][<span class="hljs-number">1</span>])  <span class="hljs-comment"># 输出“原批”</span><br>a[<span class="hljs-number">0</span>] = <span class="hljs-string">&#x27;o&#x27;</span><br>a[<span class="hljs-number">1</span>] = <span class="hljs-string">&#x27;p&#x27;</span><br><span class="hljs-built_in">print</span>(a[<span class="hljs-number">0</span>]+a[<span class="hljs-number">1</span>])  <span class="hljs-comment"># 输出“op”</span><br></code></pre></td></tr></table></figure></p></li>
 </ul>
-<h3 id="元组tuple">元组（Tuple）</h3>
+<h2 id="元组tuple">元组（Tuple）</h2>
 <ul>
 <li>与列表类似，一样可以通过 <code>+</code> 连接，<code>*</code> 重复，不过其元素不能修改。</li>
 <li>小括号定义：<code>tup = (123, 1.0, 'str', 'nmsl')</code> 。</li>
 <li>只包含一个元素时，需添加逗号。 <code>tup2 = (114514,)</code></li>
 </ul>
-<h3 id="集合set">集合（Set）</h3>
+<h2 id="集合set">集合（Set）</h2>
 <ul>
 <li><p>特点：无序，可变，元素不会重复。</p></li>
 <li><p>大括号定义：<code>setA = &#123;'Codeforces', 'Atcoder', 'Luogu'&#125;</code></p></li>
@@ -518,11 +518,11 @@
 <li><p>集合运算：</p>
 <p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs python">A = &#123;<span class="hljs-string">&#x27;Codeforces&#x27;</span>, <span class="hljs-string">&#x27;Atcoder&#x27;</span>, <span class="hljs-string">&#x27;Luogu&#x27;</span>,<span class="hljs-string">&#x27;Lutece&#x27;</span>&#125;<br>B = &#123;<span class="hljs-string">&#x27;Lutece&#x27;</span>,<span class="hljs-string">&#x27;TopCoder&#x27;</span>&#125;<br><br><span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;Atcoder&#x27;</span> <span class="hljs-keyword">in</span> A :<br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Yes&quot;</span>)<br><span class="hljs-keyword">else</span> :<br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;No&quot;</span>)<br><span class="hljs-comment"># Yes</span><br><br><span class="hljs-built_in">print</span>(A - B) <span class="hljs-comment"># 差集 &#123;&#x27;Codeforces&#x27;, &#x27;Luogu&#x27;, &#x27;Atcoder&#x27;&#125;</span><br><span class="hljs-built_in">print</span>(B - A) <span class="hljs-comment"># 差集 &#123;&#x27;TopCoder&#x27;&#125;</span><br><span class="hljs-built_in">print</span>(A | B) <span class="hljs-comment"># 并集 &#123;&#x27;Atcoder&#x27;, &#x27;Lutece&#x27;, &#x27;Luogu&#x27;, &#x27;TopCoder&#x27;, &#x27;Codeforces&#x27;&#125;</span><br><span class="hljs-built_in">print</span>(A &amp; B) <span class="hljs-comment"># 交集 &#123;&#x27;Lutece&#x27;&#125;</span><br><span class="hljs-built_in">print</span>(A ^ B) <span class="hljs-comment"># 异或,不同时出现 &#123;&#x27;TopCoder&#x27;, &#x27;Atcoder&#x27;, &#x27;Luogu&#x27;, &#x27;Codeforces&#x27;&#125;&#x27;Lutece&#x27;&#125;</span><br></code></pre></td></tr></table></figure></p></li>
 </ul>
-<h3 id="字典dict">字典（Dict）</h3>
+<h2 id="字典dict">字典（Dict）</h2>
 <ul>
 <li><p>无序对象集合，键值对存储，键必须唯一。类似 STL 中的 <code>map</code> 。</p>
 <p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs python">a = &#123;<span class="hljs-string">&#x27;op&#x27;</span>:<span class="hljs-string">&#x27;我&#x27;</span>, <span class="hljs-number">55</span>:<span class="hljs-string">&#x27;芙宁娜大人&#x27;</span>, <span class="hljs-string">&#x27;啊&#x27;</span>:<span class="hljs-number">4</span>&#125; <br><br><span class="hljs-built_in">print</span>(a[<span class="hljs-string">&#x27;op&#x27;</span>]+<span class="hljs-built_in">str</span>(a[<span class="hljs-string">&#x27;啊&#x27;</span>])+a[<span class="hljs-number">55</span>]+<span class="hljs-string">&#x27;的狗&#x27;</span>) <span class="hljs-comment"># 我4芙宁娜大人的狗</span><br><span class="hljs-built_in">print</span>(a)          <span class="hljs-comment"># &#123;&#x27;op&#x27;: &#x27;我&#x27;, 55: &#x27;芙宁娜大人&#x27;, &#x27;啊&#x27;: 4&#125;</span><br><span class="hljs-built_in">print</span>(a.keys())   <span class="hljs-comment"># dict_keys([&#x27;op&#x27;, 55, &#x27;啊&#x27;])</span><br><span class="hljs-built_in">print</span>(a.values()) <span class="hljs-comment"># dict_values([&#x27;我&#x27;, &#x27;芙宁娜大人&#x27;, 4])</span><br><br>a[<span class="hljs-string">&#x27;op&#x27;</span>] = <span class="hljs-string">&#x27;芙宁娜&#x27;</span> <span class="hljs-comment"># 更改键值对</span><br>a[<span class="hljs-number">44</span>] = <span class="hljs-string">&#x27;我&#x27;</span>      <span class="hljs-comment"># 增添键值对 </span><br><span class="hljs-built_in">print</span>(a[<span class="hljs-string">&#x27;op&#x27;</span>]+<span class="hljs-built_in">str</span>(a[<span class="hljs-string">&#x27;啊&#x27;</span>])+a[<span class="hljs-number">44</span>]+<span class="hljs-string">&#x27;的狗&#x27;</span>) <span class="hljs-comment"># 芙宁娜4我的狗</span><br><br><span class="hljs-built_in">print</span>(a) <span class="hljs-comment"># &#123;&#x27;op&#x27;: &#x27;芙宁娜&#x27;, 55: &#x27;芙宁娜大人&#x27;, &#x27;啊&#x27;: 4, 44: &#x27;我&#x27;&#125;</span><br><br><span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> a :<br>	<span class="hljs-built_in">print</span>(i,end=<span class="hljs-string">&quot;&quot;</span>) <span class="hljs-comment"># op55啊44</span><br><br><span class="hljs-keyword">for</span> i,j <span class="hljs-keyword">in</span> a.items() :<br>	<span class="hljs-built_in">print</span>(i,j,end=<span class="hljs-string">&quot;&quot;</span>) <span class="hljs-comment"># op 芙宁娜55 芙宁娜大人啊 444 我</span><br><br><span class="hljs-built_in">print</span>(<span class="hljs-built_in">len</span>(a)) <span class="hljs-comment"># 4</span><br><br><span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;我&#x27;</span> <span class="hljs-keyword">in</span> a :<br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;oh yeah&quot;</span>)<br><span class="hljs-keyword">else</span> :<br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;No&quot;</span>) <br><span class="hljs-comment"># No</span><br><br><span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;op&#x27;</span> <span class="hljs-keyword">in</span> a :<br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;oh yeah&quot;</span>)<br><span class="hljs-keyword">else</span> :<br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;No&quot;</span>) <br><span class="hljs-comment"># oh yeah</span><br><br>a.clear()    <span class="hljs-comment"># 清空字典 </span><br><span class="hljs-built_in">print</span>(a)     <span class="hljs-comment"># &#123;&#125;</span><br><span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;op&#x27;</span> <span class="hljs-keyword">in</span> a:<br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;这河里吗&quot;</span>)<br><span class="hljs-keyword">else</span> :<br>	<span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;op似光辣&quot;</span>)<br><span class="hljs-comment"># op似光辣</span><br></code></pre></td></tr></table></figure></p>
-<h3 id="数据类型转换">数据类型转换</h3>
+<h2 id="数据类型转换">数据类型转换</h2>
 <ol type="1">
 <li><p><code>int(x[,base])</code> 将 <code>x</code> 作为 <code>base</code> 进制转换。</p>
 <ul>
@@ -544,14 +544,14 @@
 <p>和 <code>exec()</code> 的区别在于 <code>eval()</code> 只能执行表达式而不能执行代码块。</p></li>
 </ol></li>
 </ul>
-<h3 id="对象的可更改性">对象的可更改性</h3>
+<h2 id="对象的可更改性">对象的可更改性</h2>
 <ul>
 <li><p>可变：类似 C++ 引用传递，如列表，字典。</p></li>
 <li><p>不可变：类似 C++ 值传递，如数字，字符串，元组。</p></li>
 <li><p>区别：</p>
 <p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">change_num</span>(<span class="hljs-params">x</span>) :<br>	x = x + <span class="hljs-number">1</span><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">change_list</span>(<span class="hljs-params">x</span>) :<br>	x.append([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>])<br><br>A = <span class="hljs-number">3</span>;<br>change_num(A)<br><span class="hljs-built_in">print</span>(A)   <span class="hljs-comment"># 3</span><br><br>B = [<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>]<br>change_list(B)<br><span class="hljs-built_in">print</span>(B)   <span class="hljs-comment"># [1, 2, 3, 4, [1, 2]]</span><br></code></pre></td></tr></table></figure></p></li>
 </ul>
-<h3 id="python包">python包</h3>
+<h2 id="python包">python包</h2>
 <p>包是一个分层次文件目录结构，基础构成如下：</p>
 <figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs vim">test.<span class="hljs-keyword">py</span><br>packageA<br>|-- __init__.<span class="hljs-keyword">py</span><br>|-- A.<span class="hljs-keyword">py</span><br>|-- B.<span class="hljs-keyword">py</span><br>packageB<br>|-- __init__.<span class="hljs-keyword">py</span><br>|-- A.<span class="hljs-keyword">py</span><br>|-- B.<span class="hljs-keyword">py</span><br></code></pre></td></tr></table></figure>
 <p>可以通过以下方法调用模块：</p>
