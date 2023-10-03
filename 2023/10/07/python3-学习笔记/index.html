@@ -230,7 +230,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.6k 字
+          8.3k 字
         
       </span>
     
@@ -296,49 +296,72 @@
 <ul>
 <li><p><code>False</code> <code>True</code> <code>None</code>：表示布尔值，空值（注意是大写）。</p></li>
 <li><p><code>def</code> ：用于函数定义。</p>
+<p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">function_name</span>():<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Hrdg kawaii!&quot;</span>)<br></code></pre></td></tr></table></figure></p></li>
+<li><p><code>assert</code> ：检查条件真假。</p>
 <ul>
-<li><p>```python def function_name(): print("Hrdg kawaii!") <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><br>- `assert` ：检查条件真假。<br><br>  - ```python<br>    x = -<span class="hljs-number">1</span><br>    assert x &gt; <span class="hljs-number">0</span>, <span class="hljs-string">&quot;靠&quot;</span><br>    print(x)<br></code></pre></td></tr></table></figure></p>
-<p>运行时报错 <code>AssertionError: 靠</code> 而不会执行 <code>print</code> 。</p></li>
+<li><p>```python x = -1 assert x &gt; 0, "靠" print(x) <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><br><span class="hljs-title">    运行时报错 `AssertionError:</span> 靠` 而不会执行 `print` 。<br><br>- `del` ：用于删除变量或对象。<br><br>  - ```python<br>    x = <span class="hljs-number">1</span><br>    del x<br>    print(x)<br></code></pre></td></tr></table></figure></p>
+<p>运行时报错 <code>NameError: name 'x' is not defined</code> 。</p></li>
 </ul></li>
-<li><p><code>del</code> ：用于删除变量或对象。</p>
+<li><p><code>elif</code> ：等同于 C++ 的 <code>else if</code> 。</p>
 <ul>
-<li>```python x = 1 del x print(x) <figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs isbl"><br>    运行时报错 `<span class="hljs-variable">NameError</span>: <span class="hljs-variable">name</span> <span class="hljs-string">&#x27;x&#x27;</span> <span class="hljs-variable">is</span> <span class="hljs-variable"><span class="hljs-keyword">not</span></span> <span class="hljs-variable">defined</span>` 。<br><br>- `<span class="hljs-variable">elif</span>` ：等同于 <span class="hljs-variable">C</span>++ 的 `<span class="hljs-variable"><span class="hljs-keyword">else</span></span> <span class="hljs-variable"><span class="hljs-keyword">if</span></span>` 。<br><br>  - ```<span class="hljs-variable">python</span><br>    <span class="hljs-variable"><span class="hljs-keyword">if</span></span> <span class="hljs-variable">x</span> &lt; <span class="hljs-number">0</span>:<br>        <span class="hljs-function"><span class="hljs-title">print</span>(<span class="hljs-string">&quot;-1&quot;</span>)</span><br>    <span class="hljs-variable">elif</span> <span class="hljs-variable">x</span> == <span class="hljs-number">0</span>:<br>        <span class="hljs-function"><span class="hljs-title">print</span>(<span class="hljs-string">&quot;0&quot;</span>)</span><br>    <span class="hljs-variable"><span class="hljs-keyword">else</span></span>:<br>        <span class="hljs-function"><span class="hljs-title">print</span>(<span class="hljs-string">&quot;1&quot;</span>)</span><br></code></pre></td></tr></table></figure></li>
-</ul></li>
-<li><p><code>except</code> ：用于异常处理时捕获异常。</p></li>
-<li><p><code>finally</code> ：异常处理中必须执行。</p>
-<ul>
-<li>```python try: result = 10 / 0 except ZeroDivisionError: print("除以零错误") finally: print("无论如何都会执行这里的代码")<br />
-<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey">    其中 `ZeroDivisionError` 是一个内置异常。<br><br>&#123;% spoiler 其它内置异常 %&#125;<br><br><span class="hljs-number">1</span>. `SyntaxError`：语法错误，通常发生在代码编写时，如拼写错误、缺少冒号等。<br><br><span class="hljs-number">2</span>. `IndentationError`：缩进错误，通常发生在代码块的缩进不一致或不正确时。<br><br><span class="hljs-number">3</span>. `NameError`：名称错误，通常发生在尝试访问不存在的变量或名称时。<br><br><span class="hljs-number">4</span>. `TypeError`：类型错误，通常发生在操作不兼容的数据类型时，如将字符串和数字相加。<br><br><span class="hljs-number">5</span>. `ValueError`：值错误，通常发生在操作正确类型的对象，但值无效或不合法时，如尝试将无效的字符串转换为数字。<br><br><span class="hljs-number">6</span>. `ZeroDivisionError`：除以零错误，通常发生在除法操作中的除数为零时。<br><br><span class="hljs-number">7</span>. `IndexError`：索引错误，通常发生在尝试访问列表、元组或其他序列中不存在的索引时。<br><br><span class="hljs-number">8</span>. `KeyError`：键错误，通常发生在尝试访问字典中不存在的键时。<br><br><span class="hljs-number">9</span>. `FileNotFoundError`：文件未找到错误，通常发生在尝试打开不存在的文件时。<br><br><span class="hljs-number">10</span>. `IOError`：输入/输出错误，通常发生在文件操作失败或无法读取或写入文件时。<br><br><span class="hljs-number">11</span>. `ImportError`：导入错误，通常发生在尝试导入不存在的模块或无效的模块时。<br><br><span class="hljs-number">12</span>. `AttributeError`：属性错误，通常发生在尝试访问对象上不存在的属性时。<br><br><span class="hljs-number">13</span>. `TypeError`：类型错误，通常发生在函数或方法接收到不正确类型的参数时。<br><br><span class="hljs-number">14</span>. `AssertionError`：断言错误，通常发生在 `assert` 语句中的条件不满足时。<br><br><span class="hljs-number">15</span>. `ArithmeticError`：算术错误的基类，包括 `ZeroDivisionError` 和 `OverflowError` 等。<br><br><span class="hljs-number">16</span>. `EOFError`：文件末尾错误，通常发生在尝试从已经读取到文件末尾的文件读取更多数据时。<br><br>&#123;% endspoiler %&#125;<br><br>- `from` `import` ：从模块中导入函数，变量或类。<br><br>  - ```python<br>    from math import sqrt<br></code></pre></td></tr></table></figure></li>
-</ul></li>
-<li><p><code>global</code> ：声明全局变量。</p>
-<ul>
-<li><p>```python def func(): global x x = 10</p>
-<p>func() print(x) <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><br>- `in` ：检查一个值是否存在于一个容器中，如列表，元组，字典等。<br><br>  - ```python<br><span class="hljs-title">    if 5 in [1, 2, 3, 4, 5]:</span><br>        print(<span class="hljs-string">&quot;5 存在于列表中&quot;</span>)<br></code></pre></td></tr></table></figure></p></li>
-</ul></li>
-<li><p><code>is</code> ：比较两个对象是否是同一个对象。（比较的不是值而是内存地址）</p>
-<ul>
-<li>```python x = [1, 2, 3] y = x if x is y: print("x 和 y 是同一个对象") <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><br>- `lambda` ：创建匿名函数。<br><br>  - 语法：`lambda arguments: expression` ，依次是关键字，函数参数和表达式。<br><br>  - ```python<br>    <span class="hljs-built_in">add</span> = lambda x, y: x + y * 2<br>    <span class="hljs-built_in">print</span>(<span class="hljs-built_in">add</span>(2, 3))  # 输出 8<br></code></pre></td></tr></table></figure></li>
-</ul></li>
-<li><p><code>nonlocal</code> ：在嵌套函数中声明一个外部（封闭）函数的变量，而不是创建一个新的局部变量。</p>
-<ul>
-<li>```python def outer_function(): x = 10 def inner_function(): nonlocal x x = 20 inner_function() print(x) # 输出 20 <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><br>- `pass` ：占位符，表示一个空的代码块或函数体。<br><br>  - ```python<br><span class="hljs-title">    def func():</span><br>        pass<br></code></pre></td></tr></table></figure></li>
-</ul></li>
-<li><p><code>with</code> ：用于创建一个上下文管理器，通常用于管理资源，如文件或数据库连接。</p>
-<ul>
-<li><p>```python with open("example.txt", "r") as file: data = file.read() <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><br><br>- `yield` ：允许你编写一种特殊类型的函数，这种函数可以在迭代时逐个产生值，而不是一次性生成所有值。<br><br>  - 如以下程序会输出前<span class="hljs-number">10</span>个斐波那契数。<br><br>  - ```python<br>    def fib_generator(n):<br>        a, <span class="hljs-keyword">b </span>= <span class="hljs-number">0</span>, <span class="hljs-number">1</span><br>        <span class="hljs-built_in">count</span> = <span class="hljs-number">0</span><br>        while <span class="hljs-built_in">count</span> &lt; n:<br>            yield a<br>            a, <span class="hljs-keyword">b </span>= <span class="hljs-keyword">b, </span>a + <span class="hljs-keyword">b</span><br><span class="hljs-keyword"></span>            <span class="hljs-built_in">count</span> += <span class="hljs-number">1</span><br>    <br>    for value in fib_generator(<span class="hljs-number">10</span>):<br>        print(value,end=<span class="hljs-string">&quot; &quot;</span>) <span class="hljs-comment"># 输出 0 1 1 2 3 5 8 13 21 34</span><br></code></pre></td></tr></table></figure></p>
-<p>遇到 <code>yield</code> 时立即返回对应值。</p></li>
+<li>``<code>python   if x &lt; 0:       print("-1")   elif x == 0:       print("0")   else:       print("1")   <figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs isbl"><br>- `<span class="hljs-variable"><span class="hljs-keyword">except</span></span>` ：用于异常处理时捕获异常。<br><br>- `<span class="hljs-variable"><span class="hljs-keyword">finally</span></span>` ：异常处理中必须执行。<br><br>  - ```<span class="hljs-variable">python</span><br>    <span class="hljs-variable"><span class="hljs-keyword">try</span></span>:<br>        <span class="hljs-variable"><span class="hljs-class">result</span></span> = <span class="hljs-number">10</span> / <span class="hljs-number">0</span><br>    <span class="hljs-variable"><span class="hljs-keyword">except</span></span> <span class="hljs-variable">ZeroDivisionError</span>:<br>        <span class="hljs-function"><span class="hljs-title">print</span>(<span class="hljs-string">&quot;除以零错误&quot;</span>)</span><br>    <span class="hljs-variable"><span class="hljs-keyword">finally</span></span>:<br>        <span class="hljs-function"><span class="hljs-title">print</span>(<span class="hljs-string">&quot;无论如何都会执行这里的代码&quot;</span>)    </span><br></code></pre></td></tr></table></figure>   其中</code>ZeroDivisionError` 是一个内置异常。</li>
 </ul></li>
 </ul>
-<h3 id="注释">注释</h3>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        其它内置异常
+    </div>
+    <div class='spoiler-content'>
+        <ol type="1">
+<li><p><code>SyntaxError</code>：语法错误，通常发生在代码编写时，如拼写错误、缺少冒号等。</p></li>
+<li><p><code>IndentationError</code>：缩进错误，通常发生在代码块的缩进不一致或不正确时。</p></li>
+<li><p><code>NameError</code>：名称错误，通常发生在尝试访问不存在的变量或名称时。</p></li>
+<li><p><code>TypeError</code>：类型错误，通常发生在操作不兼容的数据类型时，如将字符串和数字相加。</p></li>
+<li><p><code>ValueError</code>：值错误，通常发生在操作正确类型的对象，但值无效或不合法时，如尝试将无效的字符串转换为数字。</p></li>
+<li><p><code>ZeroDivisionError</code>：除以零错误，通常发生在除法操作中的除数为零时。</p></li>
+<li><p><code>IndexError</code>：索引错误，通常发生在尝试访问列表、元组或其他序列中不存在的索引时。</p></li>
+<li><p><code>KeyError</code>：键错误，通常发生在尝试访问字典中不存在的键时。</p></li>
+<li><p><code>FileNotFoundError</code>：文件未找到错误，通常发生在尝试打开不存在的文件时。</p></li>
+<li><p><code>IOError</code>：输入/输出错误，通常发生在文件操作失败或无法读取或写入文件时。</p></li>
+<li><p><code>ImportError</code>：导入错误，通常发生在尝试导入不存在的模块或无效的模块时。</p></li>
+<li><p><code>AttributeError</code>：属性错误，通常发生在尝试访问对象上不存在的属性时。</p></li>
+<li><p><code>TypeError</code>：类型错误，通常发生在函数或方法接收到不正确类型的参数时。</p></li>
+<li><p><code>AssertionError</code>：断言错误，通常发生在 <code>assert</code> 语句中的条件不满足时。</p></li>
+<li><p><code>ArithmeticError</code>：算术错误的基类，包括 <code>ZeroDivisionError</code> 和 <code>OverflowError</code> 等。</p></li>
+<li><p><code>EOFError</code>：文件末尾错误，通常发生在尝试从已经读取到文件末尾的文件读取更多数据时。</p></li>
+</ol>
+
+    </div>
+</div>
 <ul>
-<li><p>单行注释：</p>
+<li><p><code>from</code> <code>import</code> ：从模块中导入函数，变量或类。</p>
 <ul>
-<li>```python # 啊?OP? <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs awk"><br>- 多行注释：<br><br>  - ```python<br>    <span class="hljs-string">&#x27;&#x27;&#x27;</span><br><span class="hljs-string">    原来你也玩原神?</span><br><span class="hljs-string">    原神怎么你了?</span><br><span class="hljs-string">    &#x27;&#x27;&#x27;</span><br></code></pre></td></tr></table></figure></li>
+<li>```python from math import sqrt <figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs autoit"><br>- `<span class="hljs-keyword">global</span>` ：声明全局变量。<br><br>  - ```python<br>    def <span class="hljs-keyword">func</span><span class="hljs-params">()</span>:<br>    	<span class="hljs-keyword">global</span> x<br>    	x = <span class="hljs-number">10</span><br>    <br>    <span class="hljs-keyword">func</span><span class="hljs-params">()</span><br>    print(x)<br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li><p><code>in</code> ：检查一个值是否存在于一个容器中，如列表，元组，字典等。</p>
+<ul>
+<li>```python if 5 in [1, 2, 3, 4, 5]: print("5 存在于列表中") <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><br>- `is` ：比较两个对象是否是同一个对象。（比较的不是值而是内存地址）<br><br>  - ```python<br>    x = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]<br>    y = x<br><span class="hljs-title">    if x is y:</span><br>        print(<span class="hljs-string">&quot;x 和 y 是同一个对象&quot;</span>)<br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li><p><code>lambda</code> ：创建匿名函数。</p>
+<ul>
+<li><p>语法：<code>lambda arguments: expression</code> ，依次是关键字，函数参数和表达式。</p></li>
+<li><p>```python add = lambda x, y: x + y * 2 print(add(2, 3)) # 输出 8 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs python"><br>- `<span class="hljs-keyword">nonlocal</span>` ：在嵌套函数中声明一个外部（封闭）函数的变量，而不是创建一个新的局部变量。<br><br>  - ```python<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">outer_function</span>():<br>        x = <span class="hljs-number">10</span><br>        <span class="hljs-keyword">def</span> <span class="hljs-title function_">inner_function</span>():<br>            <span class="hljs-keyword">nonlocal</span> x<br>            x = <span class="hljs-number">20</span><br>        inner_function()<br>        <span class="hljs-built_in">print</span>(x)  <span class="hljs-comment"># 输出 20</span><br></code></pre></td></tr></table></figure></p></li>
+</ul></li>
+<li><p><code>pass</code> ：占位符，表示一个空的代码块或函数体。</p>
+<ul>
+<li>```python def func(): pass <figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver"><br>- `<span class="hljs-keyword">with</span>` ：用于创建一个上下文管理器，通常用于管理资源，如文件或数据库连接。<br><br>  - ```python<br>    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;example.txt&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>) <span class="hljs-keyword">as</span> <span class="hljs-built_in">file</span>:<br>        data = <span class="hljs-built_in">file</span>.<span class="hljs-built_in">read</span>()<br></code></pre></td></tr></table></figure></li>
+</ul></li>
+<li><p><code>yield</code> ：允许你编写一种特殊类型的函数，这种函数可以在迭代时逐个产生值，而不是一次性生成所有值。</p>
+<ul>
+<li><p>如以下程序会输出前10个斐波那契数。</p></li>
+<li><p>```python def fib_generator(n): a, b = 0, 1 count = 0 while count &lt; n: yield a a, b = b, a + b count += 1</p>
+<p>for value in fib_generator(10): print(value,end=" ") # 输出 0 1 1 2 3 5 8 13 21 34 <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs autohotkey"><br>    遇到 `yield` 时立即返回对应值。<br><br>### 注释<br><br>- 单行注释：<br><br>  - ```python<br>    # 啊?OP?<br></code></pre></td></tr></table></figure></p></li>
+</ul></li>
+<li><p>多行注释：</p>
+<ul>
+<li>```python ''' 原来你也玩原神? 原神怎么你了? ''' <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs r"><br><span class="hljs-comment">### 多行语句</span><br><br>运用反斜杠 `\` 。<br><br>```python<br>a<span class="hljs-punctuation">,</span>b<span class="hljs-punctuation">,</span><span class="hljs-built_in">c</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span><span class="hljs-punctuation">,</span><span class="hljs-number">1</span><span class="hljs-punctuation">,</span><span class="hljs-number">2</span><br>t <span class="hljs-operator">=</span> a <span class="hljs-operator">+</span> b <span class="hljs-operator">+</span> <span class="hljs-punctuation">\</span><br>	<span class="hljs-operator">+</span><span class="hljs-built_in">c</span><br><br>print<span class="hljs-punctuation">(</span>t<span class="hljs-punctuation">)</span> <span class="hljs-comment"># 输出3</span><br></code></pre></td></tr></table></figure></li>
 </ul></li>
 </ul>
-<h3 id="多行语句">多行语句</h3>
-<p>运用反斜杠 <code>\</code> 。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python">a,b,c = <span class="hljs-number">0</span>,<span class="hljs-number">1</span>,<span class="hljs-number">2</span><br>t = a + b + \<br>	+c<br><br><span class="hljs-built_in">print</span>(t) <span class="hljs-comment"># 输出3</span><br></code></pre></td></tr></table></figure>
 <h3 id="字符串">字符串</h3>
 <ul>
 <li><p>不同于 C++ 中单引号括字符，双引号括字符串，python 中单引号与双引号用法完全相同。</p></li>
@@ -628,6 +651,12 @@
   
 
 
+  
+  
+
+
+
+
 
 
 
@@ -819,6 +848,49 @@
 
 
   <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
 
   <script  src="/js/local-search.js" ></script>
 
