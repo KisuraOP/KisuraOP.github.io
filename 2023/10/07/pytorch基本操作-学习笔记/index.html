@@ -27,9 +27,9 @@
 <meta property="article:published_time" content="2023-10-07T06:35:35.000Z">
 <meta property="article:modified_time" content="2023-10-07T06:35:35.000Z">
 <meta property="article:author" content="KisuraOP">
+<meta property="article:tag" content="note">
 <meta property="article:tag" content="ML">
 <meta property="article:tag" content="pytorch">
-<meta property="article:tag" content="note">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://moe.jitsu.top/img/?sort=pc">
   
@@ -366,9 +366,9 @@
 <p>这时候就体现非降维求和的优势了：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">x = torch.arange(<span class="hljs-number">12</span>).reshape((<span class="hljs-number">3</span>, <span class="hljs-number">4</span>))<br>x<br></code></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">tensor([[ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>],<br>        [ <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>],<br>        [ <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>]])<br></code></pre></td></tr></table></figure>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">sum_x = x.sum(<span class="hljs-attribute">axis</span>=1, <span class="hljs-attribute">keepdim</span>=<span class="hljs-literal">True</span>)<br>sum_x<br></code></pre></td></tr></table></figure>
-<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs lua">tensor(<span class="hljs-string">[[ 6],</span><br><span class="hljs-string">        [22],</span><br><span class="hljs-string">        [38]]</span>)<br></code></pre></td></tr></table></figure>
-<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs llvm"><span class="hljs-keyword">x</span> / sum_x<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python">sum_x = x.<span class="hljs-built_in">sum</span>(axis=<span class="hljs-number">1</span>, keepdim=<span class="hljs-literal">True</span>)<br>sum_x<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">tensor([[ <span class="hljs-number">6</span>],<br>        [<span class="hljs-number">22</span>],<br>        [<span class="hljs-number">38</span>]])<br></code></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs python">x / sum_x<br></code></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python">tensor([[<span class="hljs-number">0.0000</span>, <span class="hljs-number">0.1667</span>, <span class="hljs-number">0.3333</span>, <span class="hljs-number">0.5000</span>],<br>        [<span class="hljs-number">0.1818</span>, <span class="hljs-number">0.2273</span>, <span class="hljs-number">0.2727</span>, <span class="hljs-number">0.3182</span>],<br>        [<span class="hljs-number">0.2105</span>, <span class="hljs-number">0.2368</span>, <span class="hljs-number">0.2632</span>, <span class="hljs-number">0.2895</span>]])<br></code></pre></td></tr></table></figure>
 <p>可以看到对每一行/列求了平均，而不会因维度对不上而报错。</p>
 <p>与 python 字符串类似地进行索引。</p>
@@ -473,11 +473,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
+        <a href="/tags/note/" class="print-no-link">#note</a>
+      
         <a href="/tags/ML/" class="print-no-link">#ML</a>
       
         <a href="/tags/pytorch/" class="print-no-link">#pytorch</a>
-      
-        <a href="/tags/note/" class="print-no-link">#note</a>
       
     </div>
   
