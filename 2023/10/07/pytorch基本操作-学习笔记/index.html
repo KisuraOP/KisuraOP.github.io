@@ -27,9 +27,9 @@
 <meta property="article:published_time" content="2023-10-07T06:35:35.000Z">
 <meta property="article:modified_time" content="2023-10-08T17:39:35.000Z">
 <meta property="article:author" content="KisuraOP">
-<meta property="article:tag" content="note">
 <meta property="article:tag" content="ML">
 <meta property="article:tag" content="pytorch">
+<meta property="article:tag" content="note">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/25b2607ac836c086d79605134bb9a3f2.jpeg">
   
@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.4k 字
+          9.5k 字
         
       </span>
     
@@ -590,6 +590,103 @@
 <span class="hljs-meta">&gt;&gt;&gt; </span>y.backward(retain_graph=<span class="hljs-literal">True</span>)
 <span class="hljs-meta">&gt;&gt;&gt; </span>y.backward()</code></pre></div>
 <p>若第三行换成 <code>y.backward()</code> 则会报错。</p>
+<h2 id="神经网络操作">神经网络操作</h2>
+<p>模块导入</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> torch <span class="hljs-keyword">import</span> nn</code></pre></div>
+<p>用 <code>nn.Linear</code> 定义一个线性层：</p>
+<div class="code-wrapper"><pre><code class="hljs python">model = nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>) <span class="hljs-comment"># 输入特征数为2,输出特征数为1(标量)</span></code></pre></div>
+<div class="note note-info">
+            <p>参数列表：<code>torch.nn.Linear(in_features, out_features, bias=True)</code></p><p><code>in_features</code> ：输入神经元个数，即输入特征数。</p><p><code>out_features</code> ：输出神经元个数，即输出特征数。</p><p><code>bias</code> ：是否包含偏置。</p><p>本质是执行了一个线性变换： <span class="math display">\[\textbf{Y}_{n\times out} = \textbf{X}_{n\times in}\textbf{W}_{in\times out}+\textbf{b}\]</span> 其中 <span class="math inline">\(n\)</span> 是样本数量，或者说 <code>batch_size</code> 。<span class="math inline">\(in,out\)</span> 为输入和输出的特征维度，<span class="math inline">\(b\)</span> 为 <span class="math inline">\(out\)</span> 维的向量偏置。</p>
+          </div>
+<p>用 <code>nn.Sequential</code> 定义神经网络容器：</p>
+<div class="code-wrapper"><pre><code class="hljs python">net = nn.Sequential(model)</code></pre></div>
+<p>作用是按顺序组织一系列神经网络的层（layer），例如：</p>
+<div class="code-wrapper"><pre><code class="hljs python">model = nn.Sequential(
+    nn.Conv2d(<span class="hljs-number">1</span>, <span class="hljs-number">20</span>, <span class="hljs-number">5</span>),
+    nn.ReLU(),
+    nn.Conv2d(<span class="hljs-number">20</span>, <span class="hljs-number">64</span>, <span class="hljs-number">5</span>),
+    nn.ReLU()
+    )</code></pre></div>
+<p>我们可以通过下标访问元素，如：</p>
+<div class="code-wrapper"><pre><code class="hljs python">net = nn.Sequential(
+    nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>)
+    	<span class="hljs-comment"># other</span>
+)
+net[<span class="hljs-number">0</span>].weight.data.normal_(<span class="hljs-number">0</span>, <span class="hljs-number">0.01</span>)
+net[<span class="hljs-number">0</span>].bias.data.fill_(<span class="hljs-number">0</span>)</code></pre></div>
+<p>通过 <code>net[0]</code> 去访问了 <code>Linear</code> 类中的函数，使模型参数初始化。</p>
+<p>其中 <code>weight</code> 和 <code>bias</code> 指明要访问权值还是偏置数据，<code>normal_</code> 和 <code>fill_</code> 则是 pytorch 的两个张量方法。</p>
+<p><code>tensor.normal_(mean=0, std=1)</code> 指定随机抽样的正态分布均值和标准差。</p>
+<p><code>tensor.fill_(value)</code> 则直接填充 <code>value</code> 值。</p>
+<p>调用损失函数：</p>
+<div class="code-wrapper"><pre><code class="hljs python">nn.MSELoss() <span class="hljs-comment"># 均方误差，或称平方L2范数</span></code></pre></div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        常见损失函数
+    </div>
+    <div class='spoiler-content'>
+        <p><code>L1Loss()</code> ：L1 范数损失（MAE）</p>
+<p><code>MSELoss()</code> : 均方误差（MSE）</p>
+<p><code>SmoothL1Loss()</code> ：L1 平滑损失。</p>
+<p><code>CrossEntyopyLoss()</code> ：交叉熵损失</p>
+<p><code>NLLloss()</code> ：负对数似然损失。</p>
+<p><code>BCELoss()</code> ：二元交叉熵损失。</p>
+
+    </div>
+</div>
+<p>用 <code>torch.optim.SGD</code> 执行小批量随机梯度下降算法并更新：</p>
+<div class="code-wrapper"><pre><code class="hljs python">trainer = torch.optim.SGD(net.parameters(), lr=<span class="hljs-number">0.03</span>)
+trainer.step()</code></pre></div>
+<p><code>parameters()</code> 用于自动读取参数，<code>lr</code> 为学习率（LearningRate）。</p>
+<p>完整实例（《动手学深度学习》章节3.3）：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
+<span class="hljs-keyword">import</span> torch
+<span class="hljs-keyword">from</span> torch.utils <span class="hljs-keyword">import</span> data
+<span class="hljs-keyword">from</span> d2l <span class="hljs-keyword">import</span> torch <span class="hljs-keyword">as</span> d2l
+<span class="hljs-keyword">from</span> torch <span class="hljs-keyword">import</span> nn
+
+true_w = torch.tensor([<span class="hljs-number">2</span>, -<span class="hljs-number">3.4</span>])
+true_b = <span class="hljs-number">4.2</span>
+
+<span class="hljs-comment"># 生成多个噪声数据</span>
+features, labels = d2l.synthetic_data(true_w, true_b, <span class="hljs-number">1000</span>)
+
+<span class="hljs-comment"># 构建PyTorch数据迭代器</span>
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">load_array</span>(<span class="hljs-params">data_arrays, batch_size, is_train=<span class="hljs-literal">True</span></span>):  <span class="hljs-comment">#@save</span>
+    dataset = data.TensorDataset(*data_arrays)
+    <span class="hljs-keyword">return</span> data.DataLoader(dataset, batch_size, shuffle=is_train)
+
+batch_size = <span class="hljs-number">10</span>
+data_iter = load_array((features, labels), batch_size)
+
+<span class="hljs-built_in">next</span>(<span class="hljs-built_in">iter</span>(data_iter))
+
+<span class="hljs-comment"># 创建神经网络</span>
+net = nn.Sequential(nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>))
+
+<span class="hljs-comment"># 初始化参数</span>
+net[<span class="hljs-number">0</span>].weight.data.normal_(<span class="hljs-number">0</span>, <span class="hljs-number">0.01</span>)
+net[<span class="hljs-number">0</span>].bias.data.fill_(<span class="hljs-number">0</span>)
+
+loss = nn.MSELoss()
+
+trainer = torch.optim.SGD(net.parameters(), lr=<span class="hljs-number">0.03</span>)
+
+num_epochs = <span class="hljs-number">3</span>
+<span class="hljs-keyword">for</span> epoch <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(num_epochs):
+    <span class="hljs-keyword">for</span> X, y <span class="hljs-keyword">in</span> data_iter:
+        l = loss(net(X) ,y)
+        trainer.zero_grad()
+        l.backward()
+        trainer.step()
+    l = loss(net(features), labels)
+    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;epoch <span class="hljs-subst">&#123;epoch + <span class="hljs-number">1</span>&#125;</span>, loss <span class="hljs-subst">&#123;l:f&#125;</span>&#x27;</span>)
+
+
+w = net[<span class="hljs-number">0</span>].weight.data
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;w的估计误差：&#x27;</span>, true_w - w.reshape(true_w.shape))
+b = net[<span class="hljs-number">0</span>].bias.data
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;b的估计误差：&#x27;</span>, true_b - b)</code></pre></div>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
@@ -630,11 +727,11 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/note/" class="print-no-link">#note</a>
-      
         <a href="/tags/ML/" class="print-no-link">#ML</a>
       
         <a href="/tags/pytorch/" class="print-no-link">#pytorch</a>
+      
+        <a href="/tags/note/" class="print-no-link">#note</a>
       
     </div>
   
