@@ -16,27 +16,27 @@
   <meta name="author" content="KisuraOP">
   <meta name="keywords" content="">
   
-    <meta name="description" content="CN Round 真是太难力，div2.E 至今尚未搞懂。">
+    <meta name="description" content="很不错的题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Codeforces Round 901 (Div.2) 4 of 7">
-<meta property="og:url" content="https://kisuraop.github.io/2023/10/01/Codeforces-Round-901-Div-2-4-of-7/index.html">
+<meta property="og:title" content="AtCoder Regular Contest 124 (4 of 6)">
+<meta property="og:url" content="https://kisuraop.github.io/2021/08/24/AtCoder-Regular-Contest-124-4-of-6/index.html">
 <meta property="og:site_name" content="KisuraOP">
-<meta property="og:description" content="CN Round 真是太难力，div2.E 至今尚未搞懂。">
+<meta property="og:description" content="很不错的题。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/6e5ac2c85fa97a27f62c8a631ae0f2c3.jpeg">
-<meta property="article:published_time" content="2023-10-01T11:37:43.000Z">
-<meta property="article:modified_time" content="2023-10-01T11:37:43.000Z">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/24c386c82eda542347623e2aef3468d4.jpeg">
+<meta property="article:published_time" content="2021-08-24T12:22:32.000Z">
+<meta property="article:modified_time" content="2021-08-24T12:22:32.000Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ACM">
-<meta property="article:tag" content="Codeforces">
+<meta property="article:tag" content="Atcoder">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/6e5ac2c85fa97a27f62c8a631ae0f2c3.jpeg">
+<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/24c386c82eda542347623e2aef3468d4.jpeg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Codeforces Round 901 (Div.2) 4 of 7 - KisuraOP</title>
+  <title>AtCoder Regular Contest 124 (4 of 6) - KisuraOP</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -206,7 +206,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Codeforces Round 901 (Div.2) 4 of 7"></span>
+            <span id="subtitle" data-typed-text="AtCoder Regular Contest 124 (4 of 6)"></span>
           
         </div>
 
@@ -222,8 +222,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-10-01 19:37" pubdate>
-          2023年10月1日 晚上
+        <time datetime="2021-08-24 20:22" pubdate>
+          2021年8月24日 晚上
         </time>
       </span>
     
@@ -285,78 +285,18 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Codeforces Round 901 (Div.2) 4 of 7</h1>
+            <h1 id="seo-header">AtCoder Regular Contest 124 (4 of 6)</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="a.-jellyfish-and-undertale">A. Jellyfish and Undertale</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1875/problem/A">Problem</a></p>
-<div class="note note-success">
-            <p>显然每当倒计时仅剩 <span class="math inline">\(1\)</span> 时依次使用工具会最优。</p><p>则第 <span class="math inline">\(i\)</span> 个工具对时间的贡献就是 <span class="math inline">\(min(a-1,x_i)\)</span> 。</p>
-          </div>
-<div class='spoiler collapsed'>
-    <div class='spoiler-title'>
-        Code
-    </div>
-    <div class='spoiler-content'>
-        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>,<span class="hljs-string">&quot;r&quot;</span>,stdin);freopen(#x<span class="hljs-string">&quot;.out&quot;</span>,<span class="hljs-string">&quot;w&quot;</span>,stdout)</span>
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> PI acos(-1)</span>
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
-<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
-	<span class="hljs-type">int</span> x=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();
-	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch))&#123;<span class="hljs-keyword">if</span>(ch==<span class="hljs-string">&#x27;-&#x27;</span>)f=<span class="hljs-number">-1</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
-	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch))&#123;x=x*<span class="hljs-number">10</span>+ch<span class="hljs-number">-48</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
-	<span class="hljs-keyword">return</span> f==<span class="hljs-number">1</span>?x:-x;
-&#125;
-<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>
-<span class="hljs-function"></span>&#123;
-    <span class="hljs-keyword">if</span>(x&lt;<span class="hljs-number">0</span>) <span class="hljs-built_in">putchar</span>(<span class="hljs-string">&#x27;-&#x27;</span>),x=-x;
-    <span class="hljs-keyword">if</span>(x&gt;<span class="hljs-number">9</span>) <span class="hljs-built_in">write</span>(x/<span class="hljs-number">10</span>);
-    <span class="hljs-built_in">putchar</span>(x%<span class="hljs-number">10</span>+<span class="hljs-string">&#x27;0&#x27;</span>);
-&#125;
-<span class="hljs-type">const</span> <span class="hljs-type">int</span> modp = <span class="hljs-number">998244353</span>;
-
-
-<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
-	<span class="hljs-type">int</span> a=<span class="hljs-built_in">read</span>(),b=<span class="hljs-built_in">read</span>(),n=<span class="hljs-built_in">read</span>();
-	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">x</span><span class="hljs-params">(n+<span class="hljs-number">1</span>)</span></span>;
-	<span class="hljs-type">int</span> sum=<span class="hljs-number">0</span>;
-	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
-		x[i]=<span class="hljs-built_in">read</span>();
-		sum+=<span class="hljs-built_in">min</span>(x[i],a<span class="hljs-number">-1</span>);
-	&#125;
-	<span class="hljs-type">int</span> res=b+sum;
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,res);
-&#125;
-
-
-<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
-	<span class="hljs-built_in">fre</span>(test);
-	<span class="hljs-type">int</span> T=<span class="hljs-built_in">read</span>();
-	<span class="hljs-keyword">while</span>(T--) &#123;
-		<span class="hljs-built_in">solve</span>();
-		<span class="hljs-comment">// fflush(stdout);</span>
-	&#125;
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;</code></pre></div>
-
-    </div>
-</div>
-<h2 id="b.-jellyfish-and-game">B. Jellyfish and Game</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1874/problem/A">Problem</a></p>
+                <h2 id="a.-lr-constraints">A. LR Constraints</h2>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc124/tasks/arc124_a">Problem</a></p>
 <div class="note note-info">
-            <p>题意：<span class="math inline">\(A\)</span> 有 <span class="math inline">\(n\)</span> 个物品，<span class="math inline">\(B\)</span> 有 <span class="math inline">\(m\)</span> 个，每个物品有价值。游戏进行 <span class="math inline">\(k\)</span> 轮，奇数轮 <span class="math inline">\(A\)</span> 可以选择与 <span class="math inline">\(B\)</span> 的一个物品交换(或不交换)，偶数轮 <span class="math inline">\(B\)</span> 可以选择与 <span class="math inline">\(A\)</span> 的一个物品交换(或不交换)，问最终 <span class="math inline">\(A\)</span> 拥有物品的总价值。<span class="math inline">\(1\le n,m\le 50,1\le k \le 10^9\)</span> .</p>
+            <p>题意：从左到右 <span class="math inline">\(n\)</span> 个空卡片，需要在每个卡片上写一个 <span class="math inline">\(x\in[1,k]\)</span> ，使得满足 <span class="math inline">\(k\)</span> 个限制条件。第 <span class="math inline">\(i\)</span> 个条件限定第 <span class="math inline">\(k_i\)</span> 个卡片必须是最左/最右边的写有 <span class="math inline">\(i\)</span> 的卡片。问填写方案数。<span class="math inline">\(1\le n,k \le 1000\)</span> 。</p>
           </div>
 <div class="note note-success">
-            <p>一开始，<span class="math inline">\(A\)</span> 显然会拿自己的最小价值的和 <span class="math inline">\(B\)</span> 的最大价值进行交换，而 <span class="math inline">\(B\)</span> 的回合会拿 <span class="math inline">\(min(自己原本的最小价值,A 给的物品价值)\)</span> 和 <span class="math inline">\(max(A 原本最大价值,A 从 B 这拿走的物品价值)\)</span> 进行交换。一个直觉是当游戏进行两轮以上后，双方的决策(即拿的物品的价值)都达到最优，因此游戏最终结果仅和 <span class="math inline">\(k\)</span> 的奇偶性相关。我们只需要暴力模拟 <span class="math inline">\(k=1,2\)</span> 时的结果。</p>
+            <p>直接模拟。开一个桶 <span class="math inline">\(a\)</span> 统计每个卡片能填的数字数量，初始化全为 <span class="math inline">\(a_i=k\)</span> 。</p><p>对于一个限制条件，若限制第 <span class="math inline">\(k_i\)</span> 个卡片是最左边的写有 <span class="math inline">\(i\)</span> 的卡片，则 <span class="math inline">\(a_{j\in[1,k_i-1]}--\)</span> 。</p><p>若限制第 <span class="math inline">\(k_i\)</span> 个卡片是最右边的写有 <span class="math inline">\(i\)</span> 的卡片，则 <span class="math inline">\(a_{j\in[k_i+1,n]}--\)</span> 。</p><p>最后 <span class="math inline">\(ans = \prod a_i\)</span> 。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -388,132 +328,44 @@
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>
 <span class="hljs-function"></span>&#123;
-	<span class="hljs-type">int</span> n=<span class="hljs-built_in">read</span>(),m=<span class="hljs-built_in">read</span>(),k=<span class="hljs-built_in">read</span>();
-	vector&lt;<span class="hljs-type">int</span>&gt; a,b;
-	<span class="hljs-type">int</span> sum=<span class="hljs-number">0</span>;
+	<span class="hljs-type">int</span> n=<span class="hljs-built_in">read</span>(),k=<span class="hljs-built_in">read</span>();
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n+<span class="hljs-number">1</span>)</span></span>;
 	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
-		<span class="hljs-type">int</span> x=<span class="hljs-built_in">read</span>();
-		a.<span class="hljs-built_in">push_back</span>(x);
-		sum+=x;
+		a[i]=k;
 	&#125;
-	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=m;++i) &#123;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=k;++i) &#123;
+		<span class="hljs-type">char</span> opt[<span class="hljs-number">3</span>];
+		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;opt);
 		<span class="hljs-type">int</span> x=<span class="hljs-built_in">read</span>();
-		b.<span class="hljs-built_in">push_back</span>(x);
-	&#125;
-	<span class="hljs-type">int</span> res=sum;
-	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=(k&amp;<span class="hljs-number">1</span>?<span class="hljs-number">1</span>:<span class="hljs-number">2</span>);++i) &#123;
-		<span class="hljs-keyword">if</span>(i&amp;<span class="hljs-number">1</span>) &#123;
-			<span class="hljs-keyword">auto</span> posa=<span class="hljs-built_in">min_element</span>(a.<span class="hljs-built_in">begin</span>(),a.<span class="hljs-built_in">end</span>());
-			<span class="hljs-keyword">auto</span> posb=<span class="hljs-built_in">max_element</span>(b.<span class="hljs-built_in">begin</span>(),b.<span class="hljs-built_in">end</span>());
-			<span class="hljs-type">int</span> mina=a[posa-a.<span class="hljs-built_in">begin</span>()];
-			<span class="hljs-type">int</span> maxb=b[posb-b.<span class="hljs-built_in">begin</span>()];
-			<span class="hljs-keyword">if</span>(mina&gt;maxb) &#123;
-				<span class="hljs-keyword">continue</span>;
+		<span class="hljs-keyword">if</span>(opt[<span class="hljs-number">0</span>]==<span class="hljs-string">&#x27;L&#x27;</span>) &#123;
+			<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;x;++j) &#123;
+				<span class="hljs-keyword">if</span>(a[j]!=<span class="hljs-number">1</span>) &#123;
+					a[j]--;
+				&#125;
 			&#125;
-			res-=mina;
-			res+=maxb;
-			a.<span class="hljs-built_in">erase</span>(posa);
-			b.<span class="hljs-built_in">erase</span>(posb);
-			a.<span class="hljs-built_in">push_back</span>(maxb);
-			b.<span class="hljs-built_in">push_back</span>(mina);
+			a[x]=<span class="hljs-number">1</span>;
 		&#125; <span class="hljs-keyword">else</span> &#123;
-			<span class="hljs-keyword">auto</span> posa=<span class="hljs-built_in">max_element</span>(a.<span class="hljs-built_in">begin</span>(),a.<span class="hljs-built_in">end</span>());
-			<span class="hljs-keyword">auto</span> posb=<span class="hljs-built_in">min_element</span>(b.<span class="hljs-built_in">begin</span>(),b.<span class="hljs-built_in">end</span>());
-			<span class="hljs-type">int</span> maxa=a[posa-a.<span class="hljs-built_in">begin</span>()];
-			<span class="hljs-type">int</span> minb=b[posb-b.<span class="hljs-built_in">begin</span>()];
-			<span class="hljs-keyword">if</span>(maxa&lt;minb) &#123;
-				<span class="hljs-keyword">continue</span>;
+			<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=x+<span class="hljs-number">1</span>;j&lt;=n;++j) &#123;
+				<span class="hljs-keyword">if</span>(a[j]!=<span class="hljs-number">1</span>) &#123;
+					a[j]--;
+				&#125;
 			&#125;
-			res-=maxa;
-			res+=minb;
-			a.<span class="hljs-built_in">erase</span>(posa);
-			b.<span class="hljs-built_in">erase</span>(posb);
-			a.<span class="hljs-built_in">push_back</span>(minb);
-			b.<span class="hljs-built_in">push_back</span>(maxa);
+			a[x]=<span class="hljs-number">1</span>;
 		&#125;
 	&#125;
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,res);
+	<span class="hljs-type">int</span> ans=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
+		ans*=a[i];
+		ans%=modp;
+	&#125;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans);
 &#125;
 
 
 <span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
 <span class="hljs-function"></span>&#123;
 	<span class="hljs-built_in">fre</span>(test);
-	<span class="hljs-type">int</span> T=<span class="hljs-built_in">read</span>();
-	<span class="hljs-keyword">while</span>(T--) &#123;
-		<span class="hljs-built_in">solve</span>();
-		<span class="hljs-comment">// fflush(stdout);</span>
-	&#125;
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;</code></pre></div>
-
-    </div>
-</div>
-<h2 id="c.-jellyfish-and-green-apple">C. Jellyfish and Green Apple</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1875/problem/C">Problem</a></p>
-<span class="label label-primary">好题</span>
-<div class="note note-info">
-            <p>题意：<span class="math inline">\(n\)</span> 个苹果分给 <span class="math inline">\(m\)</span> 个人，每个苹果 <span class="math inline">\(1kg\)</span> ,每切一刀会均分成重量相同的两瓣，问最少切几刀能使每个人分到的苹果重量都相等，若无法均分输出 <span class="math inline">\(-1\)</span> 。<span class="math inline">\(1\le n,m\le 10^9\)</span> .</p>
-          </div>
-<div class="note note-success">
-            <p>当 <span class="math inline">\(n\ge m\)</span> 时，可以把 <span class="math inline">\(n\)</span> 个中的若干个 <span class="math inline">\(m\)</span> 分出去，剩下 <span class="math inline">\(n\%m\)</span> 个。而剩下不足 <span class="math inline">\(m\)</span> 个的为了能均分必然选择每个切一刀进行加倍，因此可以用递归进行模拟。</p>
-          </div>
-<div class='spoiler collapsed'>
-    <div class='spoiler-title'>
-        Code
-    </div>
-    <div class='spoiler-content'>
-        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>,<span class="hljs-string">&quot;r&quot;</span>,stdin);freopen(#x<span class="hljs-string">&quot;.out&quot;</span>,<span class="hljs-string">&quot;w&quot;</span>,stdout)</span>
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> PI acos(-1)</span>
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
-<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
-	<span class="hljs-type">int</span> x=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();
-	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch))&#123;<span class="hljs-keyword">if</span>(ch==<span class="hljs-string">&#x27;-&#x27;</span>)f=<span class="hljs-number">-1</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
-	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch))&#123;x=x*<span class="hljs-number">10</span>+ch<span class="hljs-number">-48</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
-	<span class="hljs-keyword">return</span> f==<span class="hljs-number">1</span>?x:-x;
-&#125;
-<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>
-<span class="hljs-function"></span>&#123;
-    <span class="hljs-keyword">if</span>(x&lt;<span class="hljs-number">0</span>) <span class="hljs-built_in">putchar</span>(<span class="hljs-string">&#x27;-&#x27;</span>),x=-x;
-    <span class="hljs-keyword">if</span>(x&gt;<span class="hljs-number">9</span>) <span class="hljs-built_in">write</span>(x/<span class="hljs-number">10</span>);
-    <span class="hljs-built_in">putchar</span>(x%<span class="hljs-number">10</span>+<span class="hljs-string">&#x27;0&#x27;</span>);
-&#125;
-<span class="hljs-type">const</span> <span class="hljs-type">int</span> modp = <span class="hljs-number">998244353</span>;
-
-<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">divide</span><span class="hljs-params">(<span class="hljs-type">int</span> n,<span class="hljs-type">int</span> m,<span class="hljs-type">int</span> &amp;res,<span class="hljs-type">int</span> times)</span> </span>&#123;
-	<span class="hljs-keyword">if</span>(times&gt;<span class="hljs-number">1000</span>) &#123;
-		res=<span class="hljs-number">-1</span>;
-		<span class="hljs-keyword">return</span> ;
-	&#125;
-	<span class="hljs-keyword">while</span>(n&lt;m) &#123;
-		res+=n;
-		n*=<span class="hljs-number">2</span>;
-	&#125;
-	<span class="hljs-type">int</span> div=n%m;
-	<span class="hljs-keyword">if</span>(!div) &#123;
-		<span class="hljs-keyword">return</span> ;
-	&#125;
-	<span class="hljs-built_in">divide</span>(div,m,res,times+<span class="hljs-number">1</span>);
-&#125;
-
-<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
-	<span class="hljs-type">int</span> n=<span class="hljs-built_in">read</span>(),m=<span class="hljs-built_in">read</span>();
-	<span class="hljs-type">int</span> res=<span class="hljs-number">0</span>;
-	<span class="hljs-built_in">divide</span>(n,m,res,<span class="hljs-number">0</span>);
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,res);
-&#125;
-
-
-<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
-	<span class="hljs-built_in">fre</span>(test);
-	<span class="hljs-type">int</span> T=<span class="hljs-built_in">read</span>();
+	<span class="hljs-type">int</span> T=<span class="hljs-number">1</span>;
 	<span class="hljs-keyword">while</span>(T--) &#123;
 		<span class="hljs-built_in">solve</span>();
 		<span class="hljs-comment">//fflush(stdout);</span>
@@ -523,70 +375,13 @@
 
     </div>
 </div>
-<div class="note note-success">
-            <p>但这样无解条件并不明显，借用官方题解进行形式化的思考。由于苹果 <span class="math inline">\(1kg\)</span> ，以下用数量指代重量，完全等价。</p><p>若能均分，那么必有 <span class="math inline">\(n\times 2^k\equiv0\pmod{m}\)</span> ，因为只考虑什么时候无解时"先分再加倍"和"先加倍再分"是等价的。接着推出 <span class="math inline">\(n\times 2^k\equiv0\pmod{m} \rightarrow 2^k\equiv 0 \pmod{\frac{m}{gcd(n,m)}}\)</span> .</p>
-          </div>
-<div class='spoiler collapsed'>
-    <div class='spoiler-title'>
-        Why?
-    </div>
-    <div class='spoiler-content'>
-        <p>定理：若 <span class="math inline">\(ac\equiv bc\pmod{m},c\neq 0\)</span> ，则 <span class="math inline">\(a\equiv b \pmod{\frac{m}{gcd(c,m)}}\)</span></p>
-<p>证明：</p>
-<ul>
-<li><p>当 <span class="math inline">\(gcd(c,m)=1\)</span> 时：</p>
-<p>​ 由定理 "整数 <span class="math inline">\(a,b\)</span> 对模 <span class="math inline">\(m\)</span> 同余的充要条件是 <span class="math inline">\(m\mid (a-b)\)</span>" (比较显然，证明略)</p>
-<p>​ <span class="math inline">\(\begin{align}\textbf{那么}&amp;\text{ }ac\equiv bc\pmod{m}\\&amp;\rightarrow m\mid(ac-bc)\\&amp;\rightarrow m\mid (a-b)c \\&amp;\rightarrow m\mid (a-b) \\&amp;\rightarrow a\equiv b\pmod{m}\end{align}\)</span></p>
-<p>​ 又此时 <span class="math inline">\(gcd(c,m)=1\)</span> ，故相当于 <span class="math inline">\(a\equiv b\pmod{\frac{m}{gcd(c,m)}}\)</span> .</p></li>
-<li><p>当 <span class="math inline">\(gcd(c,m)\neq 1\)</span> 时：</p>
-<p>​ 设 <span class="math inline">\(gcd(c,m)=d &gt; 1\)</span> ，令 <span class="math inline">\(c=c&#39;d\)</span> 和 <span class="math inline">\(m=m&#39;d\)</span> ，则 <span class="math inline">\(gcd(c&#39;,m&#39;)=1\)</span> .</p>
-<p>​ <span class="math inline">\(\begin{align}\textbf{那么}&amp;\text{ }ac\equiv bc \pmod{m} \\&amp;\rightarrow ac&#39;\equiv bc&#39; \pmod{m&#39;} \\&amp;\rightarrow a\equiv b \pmod{m&#39;}(由上文另一点的证明)\\&amp;\rightarrow a\equiv b \pmod{\frac{m}{d}}\\&amp;\rightarrow a\equiv b\pmod{\frac{m}{gcd(c,m)}}\end{align}\)</span></p></li>
-</ul>
-
-    </div>
-</div>
-<div class="note note-success">
-            <p>也就是说，当 <span class="math inline">\(\frac{m}{gcd(n,m)}\)</span> 不是 <span class="math inline">\(2\)</span> 的整数幂时无解，可以用 <span class="math inline">\(\text{std::}\)</span><span class="math inline">\(\underline{}\underline{}\text{builtin}\)</span><span class="math inline">\(\underline{}\text{popcount()}\)</span> 快速验证。</p><p>接着，若有解，那么每个人分到的苹果数量应该是实数 <span class="math inline">\(\frac{n}{m}\)</span> ，而具体的，每次一个人得到的苹果数量应该是 <span class="math inline">\(2\)</span> 的整数幂，即存在集合 <span class="math inline">\(S\)</span> 使 <span class="math inline">\(\frac{n}{m}=\sum_{i\in S} \frac{1}{2^i}\)</span> 。而 <span class="math inline">\(|S|\)</span> 即每个人得到的苹果数量，答案即为 <span class="math inline">\(m\times |S|-n\)</span> 。</p><p>减去 <span class="math inline">\(n\)</span> 是因为苹果总数量 <span class="math inline">\(-\)</span> 原有数量 <span class="math inline">\(=\)</span> 切的刀数。</p>
-          </div>
-<div class='spoiler collapsed'>
-    <div class='spoiler-title'>
-        Code
-    </div>
-    <div class='spoiler-content'>
-        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
-
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
-
-<span class="hljs-type">int</span> n = <span class="hljs-number">0</span>, m = <span class="hljs-number">0</span>;
-
-<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>&#123;
-	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d %d&quot;</span>, &amp;n, &amp;m); n %= m;
-	<span class="hljs-type">int</span> a = n / __gcd(n, m), b = m / __gcd(n, m);
-	<span class="hljs-keyword">if</span>(__builtin_popcount(b) &gt; <span class="hljs-number">1</span>) <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;-1\n&quot;</span>);
-	<span class="hljs-keyword">else</span> <span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>, <span class="hljs-number">1ll</span> * __builtin_popcount(a) * m - n);
-&#125;
-
-<span class="hljs-type">int</span> T = <span class="hljs-number">0</span>;
-
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
-	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d&quot;</span>, &amp;T);
-	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span> ; i &lt; T ; i ++) <span class="hljs-built_in">solve</span>();
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;</code></pre></div>
-
-    </div>
-</div>
-<h2 id="d.-jellyfish-and-mex">D. Jellyfish and Mex</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1875/problem/D">Problem</a></p>
-<span class="label label-primary">好题</span>
+<h2 id="b.-xor-matching-2">B. XOR Matching 2</h2>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc124/tasks/arc124_b">Problem</a></p>
 <div class="note note-info">
-            <p>题意：一个有 <span class="math inline">\(n\)</span> 个数的非负数组，<span class="math inline">\(n\)</span> 次操作每次选一个数删掉后计算 <span class="math inline">\(\text{MEX}\)</span> 并累加，问能达到的最小价值。<span class="math inline">\(1\le n \le 5000,1\le a_i\le10^9\)</span> .</p>
+            <p>题意：给定两个长为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(a,b\)</span> 。找到所有的 <span class="math inline">\(x\)</span> 使得能使 <span class="math inline">\(b\)</span> 按一定顺序重排后对于所有 <span class="math inline">\(1\le i\le n\)</span> 都有 <span class="math inline">\(a_i\oplus b_i = x\)</span> 。</p><p><span class="math inline">\(1\le n\le 2000\)</span>，<span class="math inline">\(0\le a_i,b_i\le 2^{30}\)</span> 。</p>
           </div>
 <div class="note note-success">
-            <p>根据样例就能看明白，让总价值最小就是以最小的价值让 <span class="math inline">\(\text{MEX}\)</span> 变为 <span class="math inline">\(0\)</span> ，并且我们只关心小于一开始 <span class="math inline">\(\text{MEX}\)</span> 的数的出现次数。</p><p>一开始我想假了，认为最优解一定是从小于 <span class="math inline">\(\text{MEX}\)</span> 的某个数开始删一路删到 <span class="math inline">\(0\)</span> ，喜提 2WA.</p><p>耽误了很多时间，直到拍到一组样例：</p><div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">9</span>
-<span class="hljs-attribute">1</span> <span class="hljs-number">1</span> <span class="hljs-number">0</span> <span class="hljs-number">3</span> <span class="hljs-number">3</span> <span class="hljs-number">0</span> <span class="hljs-number">2</span> <span class="hljs-number">4</span> <span class="hljs-number">0</span>
-<span class="hljs-attribute">Wrong</span> Answer: <span class="hljs-number">8</span>
-<span class="hljs-attribute">Correct</span> Answer: <span class="hljs-number">6</span></code></pre></div><p>删法是先删掉 <span class="math inline">\(2\)</span> ，然后删 <span class="math inline">\(0\)</span> ，答案并不连续，所以考虑dp。</p><p><span class="math inline">\(dp[i]\)</span> 表示目前从 <span class="math inline">\(\text{MEX}\)</span> 开始删到 <span class="math inline">\(i\)</span> 的最小价值，则 <span class="math inline">\(dp[i]=\mathop\min\limits_{j\in[i+1,\text{MEX}]}(dp[i],dp[j]+cnt[i]\times j)\)</span> .</p><p>因为一开始有一个数是没有贡献的，所以答案是 <span class="math inline">\(dp[0]-\text{MEX}\)</span> 。</p>
+            <p>略加思考，如果要对所有 <span class="math inline">\(i\)</span> 都满足 <span class="math inline">\(a_i \oplus b_i=x\)</span> ，那么 <span class="math inline">\(x\)</span> 的可能值最多就 <span class="math inline">\(n\)</span> 个，且一定是 <span class="math inline">\(a_1\oplus b_1,a_1\oplus b_2,\dots ,a_1\oplus b_n\)</span> 中的若干。逐个去试即可。</p><p>最方便的方法是对 <span class="math inline">\(b\)</span> 排序，用 <span class="math inline">\(a\)</span> 的每一项去异或可能的 <span class="math inline">\(x\)</span> 得到 <span class="math inline">\(c\)</span> ，再将 <span class="math inline">\(c\)</span> 排序后和 <span class="math inline">\(b\)</span> 比较。</p><p>一个坑点是答案需要去重。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -619,35 +414,232 @@
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>
 <span class="hljs-function"></span>&#123;
 	<span class="hljs-type">int</span> n=<span class="hljs-built_in">read</span>();
-	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n+<span class="hljs-number">1</span>)</span>,<span class="hljs-title">cnt</span><span class="hljs-params">(n+<span class="hljs-number">1</span>)</span></span>;
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n+<span class="hljs-number">1</span>)</span>,<span class="hljs-title">b</span><span class="hljs-params">(n+<span class="hljs-number">1</span>)</span>,<span class="hljs-title">c</span><span class="hljs-params">(n+<span class="hljs-number">1</span>)</span></span>;
 	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
 		a[i]=<span class="hljs-built_in">read</span>();
-		<span class="hljs-keyword">if</span>(a[i]&lt;=n) &#123;
-			cnt[a[i]]++;
+	&#125;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
+		b[i]=<span class="hljs-built_in">read</span>();
+	&#125;
+	<span class="hljs-built_in">sort</span>(b.<span class="hljs-built_in">begin</span>()+<span class="hljs-number">1</span>,b.<span class="hljs-built_in">end</span>());
+	vector&lt;<span class="hljs-type">int</span>&gt; ans;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
+		<span class="hljs-type">int</span> x=a[<span class="hljs-number">1</span>]^b[i];
+		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=n;++j) &#123;
+			c[j]=a[j]^x;
+		&#125;
+		<span class="hljs-built_in">sort</span>(c.<span class="hljs-built_in">begin</span>()+<span class="hljs-number">1</span>,c.<span class="hljs-built_in">end</span>());
+		<span class="hljs-keyword">if</span>(c==b) &#123;
+			ans.<span class="hljs-built_in">push_back</span>(x);
 		&#125;
 	&#125;
-	<span class="hljs-type">int</span> mex=<span class="hljs-number">0</span>;
-	<span class="hljs-keyword">while</span>(cnt[mex]) &#123;
-		mex++;
+	ans.<span class="hljs-built_in">erase</span>(<span class="hljs-built_in">unique</span>(ans.<span class="hljs-built_in">begin</span>(),ans.<span class="hljs-built_in">end</span>()),ans.<span class="hljs-built_in">end</span>());
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans.<span class="hljs-built_in">size</span>());
+	<span class="hljs-built_in">sort</span>(ans.<span class="hljs-built_in">begin</span>(),ans.<span class="hljs-built_in">end</span>());
+	<span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> i:ans) &#123;
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,i);
 	&#125;
-	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(n+<span class="hljs-number">1</span>,inf)</span></span>;
-	dp[mex]=<span class="hljs-number">0</span>;
-	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=mex;i&gt;=<span class="hljs-number">0</span>;--i) &#123;
-		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=i+<span class="hljs-number">1</span>;j&lt;=mex;++j) &#123;
-			dp[i]=<span class="hljs-built_in">min</span>(dp[i],dp[j]+cnt[i]*j);
-		&#125;
-	&#125;
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,dp[<span class="hljs-number">0</span>]-mex);
 &#125;
 
 
 <span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
 <span class="hljs-function"></span>&#123;
 	<span class="hljs-built_in">fre</span>(test);
-	<span class="hljs-type">int</span> T=<span class="hljs-built_in">read</span>();
+	<span class="hljs-type">int</span> T=<span class="hljs-number">1</span>;
 	<span class="hljs-keyword">while</span>(T--) &#123;
 		<span class="hljs-built_in">solve</span>();
-		<span class="hljs-comment">// fflush(stdout);</span>
+		<span class="hljs-comment">//fflush(stdout);</span>
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<div class="note note-warning">
+            <p><code>std::vector</code> 去重方法：</p><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-built_in">sort</span>(res.<span class="hljs-built_in">begin</span>(),res.<span class="hljs-built_in">end</span>());
+<span class="hljs-built_in">erase</span>(<span class="hljs-built_in">unique</span>(res.<span class="hljs-built_in">begin</span>(),res.<span class="hljs-built_in">end</span>()),res.<span class="hljs-built_in">end</span>());</code></pre></div>
+          </div>
+<h2 id="c.-lcm-of-gcds">C. LCM of GCDs</h2>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc124/tasks/arc124_c">Problem</a></p>
+<span class="label label-primary">好题</span>
+<div class="note note-info">
+            <p>题意：给定 <span class="math inline">\(n\le 50\)</span> 对数。对于每一对数，选一个放入集合 <span class="math inline">\(A\)</span> ，另一个则放入集合 <span class="math inline">\(B\)</span> ，最后对两个集合里所有数求 <span class="math inline">\(\gcd\)</span> 得到 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> ，求最大的 <span class="math inline">\(\text{lcm}(a,b)\)</span> 。</p>
+          </div>
+<div class="note note-success">
+            <p>经典 trick 。</p><p>如果直接暴力搜索，复杂度将会是 <span class="math inline">\(O(2^n)\)</span> 。</p><p>但这里最后是拿两个集合的 <span class="math inline">\(\gcd\)</span> 做 <span class="math inline">\(\text{lcm}\)</span> ，而实际上这 <span class="math inline">\(50\)</span> 对数的 <span class="math inline">\(\gcd\)</span> 个数并没有那么多。</p><p>所以暴搜索，用一个 <code>std::set</code> 记录选到当前位置的集合里是否有与当前相同的 <span class="math inline">\(\gcd\)</span> ，有就跳过，否则把当前两个集合里的 <span class="math inline">\(\gcd\)</span> 用一个 <code>std::pair</code> 记录到 <code>std::set</code> 里。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>,<span class="hljs-string">&quot;r&quot;</span>,stdin);freopen(#x<span class="hljs-string">&quot;.out&quot;</span>,<span class="hljs-string">&quot;w&quot;</span>,stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> PI acos(-1)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-type">int</span> x=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();
+	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch))&#123;<span class="hljs-keyword">if</span>(ch==<span class="hljs-string">&#x27;-&#x27;</span>)f=<span class="hljs-number">-1</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
+	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch))&#123;x=x*<span class="hljs-number">10</span>+ch<span class="hljs-number">-48</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
+	<span class="hljs-keyword">return</span> f==<span class="hljs-number">1</span>?x:-x;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">if</span>(x&lt;<span class="hljs-number">0</span>) <span class="hljs-built_in">putchar</span>(<span class="hljs-string">&#x27;-&#x27;</span>),x=-x;
+    <span class="hljs-keyword">if</span>(x&gt;<span class="hljs-number">9</span>) <span class="hljs-built_in">write</span>(x/<span class="hljs-number">10</span>);
+    <span class="hljs-built_in">putchar</span>(x%<span class="hljs-number">10</span>+<span class="hljs-string">&#x27;0&#x27;</span>);
+&#125;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> modp = <span class="hljs-number">998244353</span>;
+
+set&lt;pair&lt;<span class="hljs-type">int</span>,<span class="hljs-type">int</span>&gt;&gt; q[<span class="hljs-number">55</span>];
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-type">int</span> n=<span class="hljs-built_in">read</span>();
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n+<span class="hljs-number">1</span>)</span>,<span class="hljs-title">b</span><span class="hljs-params">(n+<span class="hljs-number">1</span>)</span></span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
+		a[i]=<span class="hljs-built_in">read</span>();
+		b[i]=<span class="hljs-built_in">read</span>();
+	&#125;
+	<span class="hljs-type">int</span> res=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">auto</span> dfs = [&amp;](<span class="hljs-keyword">auto</span> self,<span class="hljs-type">int</span> p,<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> y) &#123;
+		<span class="hljs-keyword">if</span>(p==n+<span class="hljs-number">1</span>) &#123;
+			res=<span class="hljs-built_in">max</span>(res,x/__gcd(x,y)*y);
+			<span class="hljs-keyword">return</span> ;
+		&#125;
+		<span class="hljs-keyword">if</span>(q[p].<span class="hljs-built_in">count</span>(&#123;x,y&#125;)) &#123;
+			<span class="hljs-keyword">return</span> ;
+		&#125;
+		q[p].<span class="hljs-built_in">insert</span>(&#123;x,y&#125;);
+		<span class="hljs-built_in">self</span>(self,p+<span class="hljs-number">1</span>,__gcd(x,a[p]),__gcd(y,b[p]));
+		<span class="hljs-built_in">self</span>(self,p+<span class="hljs-number">1</span>,__gcd(x,b[p]),__gcd(y,a[p]));
+	&#125;;
+	<span class="hljs-built_in">dfs</span>(dfs,<span class="hljs-number">1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>);
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,res);
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-built_in">fre</span>(test);
+	<span class="hljs-type">int</span> T=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span>(T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+		<span class="hljs-comment">//fflush(stdout);</span>
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<h2 id="d.-yet-another-sorting-problem">D. Yet Another Sorting Problem</h2>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc124/tasks/arc124_d">Problem</a></p>
+<span class="label label-primary">好题</span>
+<div class="note note-info">
+            <p>题意：给定一个长 <span class="math inline">\(n+m\)</span> 的 <span class="math inline">\(1\sim n+m\)</span> 的排列，每次可以从左边 <span class="math inline">\(n\)</span> 个数和右边 <span class="math inline">\(m\)</span> 个数里挑一个出来交换，问至少交换多少次能使整个序列呈升序。<span class="math inline">\(1\le n,m\le 10^5\)</span> 。</p>
+          </div>
+<div class="note note-success">
+            <p>挺新颖的思路。先考虑如果没有左边 <span class="math inline">\(n\)</span> 个和右边 <span class="math inline">\(m\)</span> 个的限制，从整个序列里挑两个数交换的最少方案数。</p><p>我们将每个数和它对应的下标连边，那么最终升序的状态是每个点和自己连边，即一共 <span class="math inline">\(n+m\)</span> 个连通块。我们再考虑交换两个数会发生什么。</p><ol type="1"><li><p>如果 <span class="math inline">\(i,a_i\)</span> 和 <span class="math inline">\(j,a_j\)</span> 位于两个连通块，那么交换会让它们合并成一个连通块。</p></li><li><p>如果 <span class="math inline">\(i,a_i\)</span> 和 <span class="math inline">\(j,a_j\)</span> 位于同一连通块，交换之后仍为一个连通块。</p></li><li><p>如果 <span class="math inline">\(i,j,a_i,a_j\)</span> 中有两个数相等，那这四个数一定位于一个连通块，交换之后会把相等的那个数移出该连通块，连通块数 <span class="math inline">\(+1\)</span> 。比如 <span class="math inline">\(i=a_j\)</span> ，则连边情况为 <span class="math inline">\(a_i -a_j/i-j\)</span> ，交换后 <span class="math inline">\(a_i\)</span> 和 <span class="math inline">\(i\)</span> 连边，<span class="math inline">\(a_j\)</span> 和 <span class="math inline">\(j\)</span> 连边，变成两个连通块。</p></li><li><p>如果 <span class="math inline">\(i=a_j,j=a_i\)</span> ，交换后分离，变成两个连通块，连通块数目 <span class="math inline">\(+1\)</span> 。</p></li></ol><p>因为最终目标是 <span class="math inline">\(n+m\)</span> 个连通块，所以只需要用后两个操作不断增加连通块即可。</p><p>再考虑有限制怎么做 ：因为我们只能对前 <span class="math inline">\(n\)</span> 个数和后 <span class="math inline">\(m\)</span> 个数成对操作，所以将前 <span class="math inline">\(n\)</span> 个点染成红色，后 <span class="math inline">\(m\)</span> 个点染成蓝色，每次只能对红色点和蓝色点执行交换操作。</p><p>那么对于只有红色或蓝色的纯色且大小大于 <span class="math inline">\(1\)</span> 的连通块，只能执行操作 <span class="math inline">\(1\)</span> 合并在一起变成杂色连通块，再用后两个操作分开。</p><p>假设大小大于1的纯红色连通块有 <span class="math inline">\(a\)</span> 个，纯蓝色连通块有 <span class="math inline">\(b\)</span> 个，总连通块个数为 <span class="math inline">\(cnt\)</span> , 那么 ：</p><p><span class="math display">\[ans=n+m-cnt+2\times max(a,b)\]</span></p><p>假设 <span class="math inline">\(a&lt;b\)</span> , 因为把红色连通块与蓝色连通块合并的需要 <span class="math inline">\(a\)</span> 步，把剩下的蓝色连通块合并到杂色连通块要 <span class="math inline">\(b-a\)</span> 步，一共少了 <span class="math inline">\(a+(b-a)=b\)</span> 个连通块，所以还需要 <span class="math inline">\(b\)</span> 次分离操作，那么现在一共 <span class="math inline">\(2\times b\)</span> 次操作。 <span class="math inline">\(a&gt;b\)</span> 同理。</p><p>前面的 <span class="math inline">\(n+m-cnt\)</span> 即本来需要分离的连通块数量。</p><p>整个过程都可以用并查集维护。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>,<span class="hljs-string">&quot;r&quot;</span>,stdin);freopen(#x<span class="hljs-string">&quot;.out&quot;</span>,<span class="hljs-string">&quot;w&quot;</span>,stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> PI acos(-1)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-type">int</span> x=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();
+	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch))&#123;<span class="hljs-keyword">if</span>(ch==<span class="hljs-string">&#x27;-&#x27;</span>)f=<span class="hljs-number">-1</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
+	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch))&#123;x=x*<span class="hljs-number">10</span>+ch<span class="hljs-number">-48</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
+	<span class="hljs-keyword">return</span> f==<span class="hljs-number">1</span>?x:-x;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">if</span>(x&lt;<span class="hljs-number">0</span>) <span class="hljs-built_in">putchar</span>(<span class="hljs-string">&#x27;-&#x27;</span>),x=-x;
+    <span class="hljs-keyword">if</span>(x&gt;<span class="hljs-number">9</span>) <span class="hljs-built_in">write</span>(x/<span class="hljs-number">10</span>);
+    <span class="hljs-built_in">putchar</span>(x%<span class="hljs-number">10</span>+<span class="hljs-string">&#x27;0&#x27;</span>);
+&#125;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> modp = <span class="hljs-number">998244353</span>;
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">DSU</span> &#123;
+	vector&lt;<span class="hljs-type">int</span>&gt; f,siza,sizb;
+	<span class="hljs-built_in">DSU</span>() &#123;&#125;
+	<span class="hljs-built_in">DSU</span>(<span class="hljs-type">int</span> n) &#123;<span class="hljs-built_in">init</span>(n);&#125;
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span></span>&#123;
+		f.<span class="hljs-built_in">resize</span>(n+<span class="hljs-number">2</span>);
+		siza.<span class="hljs-built_in">resize</span>(n+<span class="hljs-number">2</span>);
+		sizb.<span class="hljs-built_in">resize</span>(n+<span class="hljs-number">2</span>);
+		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;=n+<span class="hljs-number">1</span>;++i)
+			f[i]=i,siza[i]=sizb[i]=<span class="hljs-number">0</span>;
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;
+		<span class="hljs-keyword">if</span>(x==f[x]) <span class="hljs-keyword">return</span> x;
+		<span class="hljs-keyword">return</span> f[x]=<span class="hljs-built_in">find</span>(f[x]);
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">same</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> y)</span></span>&#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-built_in">find</span>(x)==<span class="hljs-built_in">find</span>(y);
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> y)</span></span>&#123;
+		x=<span class="hljs-built_in">find</span>(x);
+		y=<span class="hljs-built_in">find</span>(y);
+		<span class="hljs-keyword">if</span>(x==y) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+		siza[x]+=siza[y];
+		sizb[x]+=sizb[y];
+		f[y]=x;
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sizea</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;
+		<span class="hljs-keyword">return</span> siza[<span class="hljs-built_in">find</span>(x)];
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sizeb</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>&#123;
+		<span class="hljs-keyword">return</span> sizb[<span class="hljs-built_in">find</span>(x)];
+	&#125;
+&#125;;
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-type">int</span> n=<span class="hljs-built_in">read</span>(),m=<span class="hljs-built_in">read</span>();
+	<span class="hljs-function">DSU <span class="hljs-title">dsu</span><span class="hljs-params">(n+m)</span></span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n+m;++i) &#123;
+		i&lt;=n ? dsu.siza[i]++ : dsu.sizb[i]++;
+	&#125;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n+m;++i) &#123;
+		<span class="hljs-type">int</span> x=<span class="hljs-built_in">read</span>();
+		dsu.<span class="hljs-built_in">merge</span>(x,i);
+	&#125;
+	<span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">vis</span><span class="hljs-params">(n+m+<span class="hljs-number">1</span>)</span></span>;
+	<span class="hljs-type">int</span> cnt=<span class="hljs-number">0</span>,cnta=<span class="hljs-number">0</span>,cntb=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n+m;++i) &#123;
+		<span class="hljs-type">int</span> x = dsu.<span class="hljs-built_in">find</span>(i);
+		<span class="hljs-keyword">if</span>(!vis[x]) &#123;
+			vis[x]=<span class="hljs-literal">true</span>;
+			cnt++;
+			cnta+=(dsu.<span class="hljs-built_in">sizea</span>(x)&gt;=<span class="hljs-number">2</span> &amp;&amp; !dsu.<span class="hljs-built_in">sizeb</span>(x));
+			cntb+=(dsu.<span class="hljs-built_in">sizeb</span>(x)&gt;=<span class="hljs-number">2</span> &amp;&amp; !dsu.<span class="hljs-built_in">sizea</span>(x));
+		&#125;
+	&#125; 
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,n+m-cnt+<span class="hljs-number">2</span>*<span class="hljs-built_in">max</span>(cnta,cntb));
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-built_in">fre</span>(test);
+	<span class="hljs-type">int</span> T=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span>(T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+		<span class="hljs-comment">//fflush(stdout);</span>
 	&#125;
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre></div>
@@ -677,7 +669,7 @@
   
     <span>></span>
     
-  <a href="/categories/Competitive-Programming/Codeforces/" class="category-chain-item">Codeforces</a>
+  <a href="/categories/Competitive-Programming/Atcoder/" class="category-chain-item">Atcoder</a>
   
   
 
@@ -696,7 +688,7 @@
       
         <a href="/tags/ACM/" class="print-no-link">#ACM</a>
       
-        <a href="/tags/Codeforces/" class="print-no-link">#Codeforces</a>
+        <a href="/tags/Atcoder/" class="print-no-link">#Atcoder</a>
       
     </div>
   
@@ -708,8 +700,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Codeforces Round 901 (Div.2) 4 of 7</div>
-      <div>https://kisuraop.github.io/2023/10/01/Codeforces-Round-901-Div-2-4-of-7/</div>
+      <div>AtCoder Regular Contest 124 (4 of 6)</div>
+      <div>https://kisuraop.github.io/2021/08/24/AtCoder-Regular-Contest-124-4-of-6/</div>
     </div>
     <div class="license-meta">
       
@@ -721,7 +713,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年10月1日</div>
+          <div>2021年8月24日</div>
         </div>
       
       
@@ -765,9 +757,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/10/02/2023-NOI-%E6%98%A5%E5%AD%A3%E6%B5%8B%E8%AF%95-3-of-4/" title="2023 NOI 春季测试 3 of 4">
+                      <a href="/2021/11/15/%E8%83%8C%E5%8C%85%E5%8D%81%E8%AE%B2%E7%AC%94%E8%AE%B0/" title="[学习笔记] 背包问题">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">2023 NOI 春季测试 3 of 4</span>
+                        <span class="hidden-mobile">[学习笔记] 背包问题</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -775,8 +767,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/11/15/%E8%83%8C%E5%8C%85%E5%8D%81%E8%AE%B2%E7%AC%94%E8%AE%B0/" title="[学习笔记] 背包问题">
-                        <span class="hidden-mobile">[学习笔记] 背包问题</span>
+                      <a href="/2021/07/04/Codeforces-Round-729-Div-2-4-of-6/" title="Codeforces Round 729 (Div.2) 4 of 6">
+                        <span class="hidden-mobile">Codeforces Round 729 (Div.2) 4 of 6</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
