@@ -596,7 +596,7 @@
 <p>用 <code>nn.Linear</code> 定义一个线性层：</p>
 <div class="code-wrapper"><pre><code class="hljs python">model = nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>) <span class="hljs-comment"># 输入特征数为2,输出特征数为1(标量)</span></code></pre></div>
 <div class="note note-info">
-            <p>参数列表：<code>torch.nn.Linear(in_features, out_features, bias=True)</code></p><p><code>in_features</code> ：输入神经元个数，即输入特征数。</p><p><code>out_features</code> ：输出神经元个数，即输出特征数。</p><p><code>bias</code> ：是否包含偏置。</p><p>本质是执行了一个线性变换： <span class="math display">\[\textbf{Y}_{n\times out} = \textbf{X}_{n\times in}\textbf{W}_{in\times out}+\textbf{b}\]</span> 其中 <span class="math inline">\(n\)</span> 是样本数量，或者说 <code>batch_size</code> 。<span class="math inline">\(in,out\)</span> 为输入和输出的特征维度，<span class="math inline">\(b\)</span> 为 <span class="math inline">\(out\)</span> 维的向量偏置。</p>
+            <p>参数列表：<code>torch.nn.Linear(in_features, out_features, bias=True)</code></p><p><code>in_features</code> ：输入神经元个数，即输入特征数。</p><p><code>out_features</code> ：输出神经元个数，即输出特征数。</p><p><code>bias</code> ：是否包含偏置。</p><p>本质是执行了一个线性变换： <span class="math display">\[\textbf{Y}_{n\times out} = \textbf{X}_{n\times in}\textbf{W}_{in\times out}+\textbf{b}\]</span> 其中 <span class="math inline">\(n\)</span> 是样本数量，或者说 <code>batch_size</code> 。<span class="math inline">\(in,out\)</span> 为输入和输出的特征维度，<span class="math inline">\(\textbf{b}\)</span> 为 <span class="math inline">\(out\)</span> 维的向量偏置，使用了广播机制。</p>
           </div>
 <p>用 <code>nn.Sequential</code> 定义神经网络容器：</p>
 <div class="code-wrapper"><pre><code class="hljs python">net = nn.Sequential(model)</code></pre></div>
