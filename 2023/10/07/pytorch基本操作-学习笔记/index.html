@@ -25,11 +25,11 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/25b2607ac836c086d79605134bb9a3f2.jpeg">
 <meta property="article:published_time" content="2023-10-07T06:35:35.000Z">
-<meta property="article:modified_time" content="2023-10-09T15:39:35.000Z">
+<meta property="article:modified_time" content="2023-10-10T07:39:35.000Z">
 <meta property="article:author" content="KisuraOP">
-<meta property="article:tag" content="note">
 <meta property="article:tag" content="ML">
 <meta property="article:tag" content="pytorch">
+<meta property="article:tag" content="note">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/25b2607ac836c086d79605134bb9a3f2.jpeg">
   
@@ -291,7 +291,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年10月9日 晚上
+                    本文最后更新于：2023年10月10日 下午
                   
                 
               </p>
@@ -316,6 +316,9 @@
         [[ <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>],
          [ <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>],
          [<span class="hljs-number">10</span>, <span class="hljs-number">11</span>]]])</code></pre></div>
+<div class="note note-info">
+            <p>注：可以用 <span class="math inline">\(-1\)</span> 表示自动填充某一个轴的大小。</p><p>如 <code>x = torch.arange(12).reshape((-1, 3, 2))</code> 就和以上语句等价。</p>
+          </div>
 <p>用 <code>shape</code> 获取沿所有轴的元素个数：</p>
 <div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>x.shape</code></pre></div>
 <div class="code-wrapper"><pre><code class="hljs python">torch.Size([<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>])</code></pre></div>
@@ -740,11 +743,11 @@ b的梯度： tensor([<span class="hljs-number">0.0073</span>])</code></pre></di
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/note/" class="print-no-link">#note</a>
-      
         <a href="/tags/ML/" class="print-no-link">#ML</a>
       
         <a href="/tags/pytorch/" class="print-no-link">#pytorch</a>
+      
+        <a href="/tags/note/" class="print-no-link">#note</a>
       
     </div>
   
