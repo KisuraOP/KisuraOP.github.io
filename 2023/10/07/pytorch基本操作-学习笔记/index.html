@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.5k 字
+          9.8k 字
         
       </span>
     
@@ -686,7 +686,20 @@ num_epochs = <span class="hljs-number">3</span>
 w = net[<span class="hljs-number">0</span>].weight.data
 <span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;w的估计误差：&#x27;</span>, true_w - w.reshape(true_w.shape))
 b = net[<span class="hljs-number">0</span>].bias.data
-<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;b的估计误差：&#x27;</span>, true_b - b)</code></pre></div>
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;b的估计误差：&#x27;</span>, true_b - b)
+
+<span class="hljs-comment"># 访问线性回归的梯度</span>
+w_grad = net[<span class="hljs-number">0</span>].weight.grad
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;w的梯度：&#x27;</span>, w_grad)
+b_grad = net[<span class="hljs-number">0</span>].bias.grad
+<span class="hljs-built_in">print</span>(<span class="hljs-string">&#x27;b的梯度：&#x27;</span>, b_grad)</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs python">epoch <span class="hljs-number">1</span>, loss <span class="hljs-number">0.000232</span>
+epoch <span class="hljs-number">2</span>, loss <span class="hljs-number">0.000101</span>
+epoch <span class="hljs-number">3</span>, loss <span class="hljs-number">0.000100</span>
+w的估计误差： tensor([ <span class="hljs-number">0.0002</span>, -<span class="hljs-number">0.0003</span>])
+b的估计误差： tensor([-<span class="hljs-number">0.0003</span>])
+w的梯度： tensor([[-<span class="hljs-number">0.0041</span>, -<span class="hljs-number">0.0147</span>]])
+b的梯度： tensor([<span class="hljs-number">0.0073</span>])</code></pre></div>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
