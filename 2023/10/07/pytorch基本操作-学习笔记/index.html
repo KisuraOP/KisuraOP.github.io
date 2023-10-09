@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.8k 字
+          10k 字
         
       </span>
     
@@ -481,6 +481,15 @@
 <div class="code-wrapper"><pre><code class="hljs python">tensor([[ <span class="hljs-number">0.</span>,  <span class="hljs-number">1.</span>,  <span class="hljs-number">2.</span>,  <span class="hljs-number">3.</span>],
         [ <span class="hljs-number">4.</span>,  <span class="hljs-number">6.</span>,  <span class="hljs-number">8.</span>, <span class="hljs-number">10.</span>],
         [<span class="hljs-number">12.</span>, <span class="hljs-number">15.</span>, <span class="hljs-number">18.</span>, <span class="hljs-number">21.</span>]])</code></pre></div>
+<p>用 <code>torch.unsqueeze()</code> 增加数据维度：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>x = torch.arange(<span class="hljs-number">4</span>)  <span class="hljs-comment"># tensor([0, 1, 2, 3])</span>
+<span class="hljs-meta">&gt;&gt;&gt; </span>x = torch.unequeeze(x, <span class="hljs-number">0</span>)
+<span class="hljs-meta">&gt;&gt;&gt; </span>x</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs python">tensor([[<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]])</code></pre></div>
+<p>可以看到最外层增加了一维。</p>
+<div class="note note-info">
+            <p>参数列表：<code>new_tensor = torch.unsqueeze(input, dim)</code></p><p><code>input</code>：需要操作的张量。</p><p><code>dim</code>：要在哪个维度上增加一个维度。</p><p>返回值是一个新的张量。</p>
+          </div>
 <h2 id="线性代数操作">线性代数操作</h2>
 <p>矩阵转置：</p>
 <div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>A = torch.arange(<span class="hljs-number">20</span>, dtype=torch.float32).reshape(<span class="hljs-number">4</span>, <span class="hljs-number">5</span>)
@@ -597,32 +606,32 @@
 <p>模块导入</p>
 <div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">from</span> torch <span class="hljs-keyword">import</span> nn</code></pre></div>
 <p>用 <code>nn.Linear</code> 定义一个线性层：</p>
-<div class="code-wrapper"><pre><code class="hljs python">model = nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>) <span class="hljs-comment"># 输入特征数为2,输出特征数为1(标量)</span></code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>model = nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>) <span class="hljs-comment"># 输入特征数为2,输出特征数为1(标量)</span></code></pre></div>
 <div class="note note-info">
             <p>参数列表：<code>torch.nn.Linear(in_features, out_features, bias=True)</code></p><p><code>in_features</code> ：输入神经元个数，即输入特征数。</p><p><code>out_features</code> ：输出神经元个数，即输出特征数。</p><p><code>bias</code> ：是否包含偏置。</p><p>本质是执行了一个线性变换： <span class="math display">\[\textbf{Y}_{n\times out} = \textbf{X}_{n\times in}\textbf{W}_{in\times out}+\textbf{b}\]</span> 其中 <span class="math inline">\(n\)</span> 是样本数量，或者说 <code>batch_size</code> 。<span class="math inline">\(in,out\)</span> 为输入和输出的特征维度，<span class="math inline">\(\textbf{b}\)</span> 为 <span class="math inline">\(out\)</span> 维的向量偏置，使用了广播机制。</p>
           </div>
 <p>用 <code>nn.Sequential</code> 定义神经网络容器：</p>
-<div class="code-wrapper"><pre><code class="hljs python">net = nn.Sequential(model)</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>net = nn.Sequential(model)</code></pre></div>
 <p>作用是按顺序组织一系列神经网络的层（layer），例如：</p>
-<div class="code-wrapper"><pre><code class="hljs python">model = nn.Sequential(
-    nn.Conv2d(<span class="hljs-number">1</span>, <span class="hljs-number">20</span>, <span class="hljs-number">5</span>),
-    nn.ReLU(),
-    nn.Conv2d(<span class="hljs-number">20</span>, <span class="hljs-number">64</span>, <span class="hljs-number">5</span>),
-    nn.ReLU()
-    )</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>model = nn.Sequential(
+        nn.Conv2d(<span class="hljs-number">1</span>, <span class="hljs-number">20</span>, <span class="hljs-number">5</span>),
+        nn.ReLU(),
+        nn.Conv2d(<span class="hljs-number">20</span>, <span class="hljs-number">64</span>, <span class="hljs-number">5</span>),
+        nn.ReLU()
+        )</code></pre></div>
 <p>我们可以通过下标访问元素，如：</p>
-<div class="code-wrapper"><pre><code class="hljs python">net = nn.Sequential(
-    nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>)
-    	<span class="hljs-comment"># other</span>
-)
-net[<span class="hljs-number">0</span>].weight.data.normal_(<span class="hljs-number">0</span>, <span class="hljs-number">0.01</span>)
-net[<span class="hljs-number">0</span>].bias.data.fill_(<span class="hljs-number">0</span>)</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>net = nn.Sequential(
+        nn.Linear(<span class="hljs-number">2</span>, <span class="hljs-number">1</span>)
+        	<span class="hljs-comment"># other</span>
+    )
+<span class="hljs-meta">&gt;&gt;&gt; </span>net[<span class="hljs-number">0</span>].weight.data.normal_(<span class="hljs-number">0</span>, <span class="hljs-number">0.01</span>)
+<span class="hljs-meta">&gt;&gt;&gt; </span>net[<span class="hljs-number">0</span>].bias.data.fill_(<span class="hljs-number">0</span>)</code></pre></div>
 <p>通过 <code>net[0]</code> 去访问了 <code>Linear</code> 类中的函数，使模型参数初始化。</p>
 <p>其中 <code>weight</code> 和 <code>bias</code> 指明要访问权值还是偏置数据，<code>normal_</code> 和 <code>fill_</code> 则是 pytorch 的两个张量方法。</p>
 <p><code>tensor.normal_(mean=0, std=1)</code> 指定随机抽样的正态分布均值和标准差。</p>
 <p><code>tensor.fill_(value)</code> 则直接填充 <code>value</code> 值。</p>
 <p>调用损失函数：</p>
-<div class="code-wrapper"><pre><code class="hljs python">nn.MSELoss() <span class="hljs-comment"># 均方误差，或称平方L2范数</span></code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>nn.MSELoss() <span class="hljs-comment"># 均方误差，或称平方L2范数</span></code></pre></div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
         常见损失函数
@@ -638,8 +647,8 @@ net[<span class="hljs-number">0</span>].bias.data.fill_(<span class="hljs-number
     </div>
 </div>
 <p>用 <code>torch.optim.SGD</code> 执行小批量随机梯度下降算法并更新：</p>
-<div class="code-wrapper"><pre><code class="hljs python">trainer = torch.optim.SGD(net.parameters(), lr=<span class="hljs-number">0.03</span>)
-trainer.step()</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>trainer = torch.optim.SGD(net.parameters(), lr=<span class="hljs-number">0.03</span>)
+<span class="hljs-meta">&gt;&gt;&gt; </span>trainer.step()</code></pre></div>
 <p><code>parameters()</code> 用于自动读取参数，<code>lr</code> 为学习率（LearningRate）。</p>
 <p>完整实例（《动手学深度学习》章节3.3）：</p>
 <div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np
