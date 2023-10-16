@@ -27,9 +27,9 @@
 <meta property="article:published_time" content="2023-10-07T06:35:35.000Z">
 <meta property="article:modified_time" content="2023-10-10T07:39:35.000Z">
 <meta property="article:author" content="KisuraOP">
+<meta property="article:tag" content="note">
 <meta property="article:tag" content="ML">
 <meta property="article:tag" content="pytorch">
-<meta property="article:tag" content="note">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/25b2607ac836c086d79605134bb9a3f2.jpeg">
   
@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          12k 字
+          11k 字
         
       </span>
     
@@ -730,17 +730,11 @@ b的梯度： tensor([<span class="hljs-number">0.0073</span>])</code></pre></di
           <span class="hljs-number">1.0000</span>,  <span class="hljs-number">1.5000</span>,  <span class="hljs-number">2.0000</span>,  <span class="hljs-number">2.5000</span>], requires_grad=<span class="hljs-literal">True</span>),
  tensor([<span class="hljs-number">0.0000</span>, <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.5000</span>, <span class="hljs-number">1.0000</span>,
          <span class="hljs-number">1.5000</span>, <span class="hljs-number">2.0000</span>, <span class="hljs-number">2.5000</span>], grad_fn=&lt;ReluBackward0&gt;))</code></pre></div>
-<figure>
-<img src="https://zh-v2.d2l.ai/_images/output_mlp_76f463_21_0.svg" srcset="/img/loading.gif" lazyload alt="../_images/output_mlp_76f463_21_0.svg" /><figcaption aria-hidden="true">../_images/output_mlp_76f463_21_0.svg</figcaption>
-</figure>
+<p><img src="https://zh-v2.d2l.ai/_images/output_mlp_76f463_21_0.svg" srcset="/img/loading.gif" lazyload /></p>
 <p>一个显著的性质是对 <span class="math inline">\(\text{ReLU}(x)\)</span> 求导后非 <span class="math inline">\(0\)</span> 即 <span class="math inline">\(1\)</span> ，即要么让参数消失，要么让参数通过。</p>
-<figure>
-<img src="https://zh-v2.d2l.ai/_images/output_mlp_76f463_36_0.svg" srcset="/img/loading.gif" lazyload alt="../_images/output_mlp_76f463_36_0.svg" /><figcaption aria-hidden="true">../_images/output_mlp_76f463_36_0.svg</figcaption>
-</figure>
+<p><img src="https://zh-v2.d2l.ai/_images/output_mlp_76f463_36_0.svg" srcset="/img/loading.gif" lazyload /></p>
 <p>用许多个 <span class="math inline">\(\text{ReLU}(x)\)</span> 函数构成连续的分段线性函数：</p>
-<figure>
-<img src="https://datawhalechina.github.io/d2l-ai-solutions-manual/ch04/ch4-4-1-2-relu.png" srcset="/img/loading.gif" lazyload alt="relu" /><figcaption aria-hidden="true">relu</figcaption>
-</figure>
+<p><img src="https://datawhalechina.github.io/d2l-ai-solutions-manual/ch04/ch4-4-1-2-relu.png" srcset="/img/loading.gif" lazyload /></p>
 <p>变体：（即使参数是负的，某些信息仍然可以通过） <span class="math display">\[
 \text{pReLU}(x)=\max(0,x) + \alpha\min(0,x)
 \]</span></p>
@@ -753,12 +747,10 @@ b的梯度： tensor([<span class="hljs-number">0.0073</span>])</code></pre></di
 <div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>y = torch.sigmoid(x)
 <span class="hljs-meta">&gt;&gt;&gt; </span>x.grad.zero_()
 <span class="hljs-meta">&gt;&gt;&gt; </span>y.backward(torch.ones_like(x), retain_graph=<span class="hljs-literal">True</span>)</code></pre></div>
-<figure>
-<img src="https://zh-v2.d2l.ai/_images/output_mlp_76f463_51_0.svg" srcset="/img/loading.gif" lazyload alt="../_images/output_mlp_76f463_51_0.svg" /><figcaption aria-hidden="true">../_images/output_mlp_76f463_51_0.svg</figcaption>
-</figure>
+<p><img src="https://zh-v2.d2l.ai/_images/output_mlp_76f463_51_0.svg" srcset="/img/loading.gif" lazyload /></p>
 <p><span class="math display">\[
 \dfrac{d}{dx}\text{sigmoid}(x)=\dfrac{e^{-x}}{(1+e^{-x})^2}=\text{sigmoid}(x)(1-\text{sigmoid}(x))
-\]</span> <img src="https://zh-v2.d2l.ai/_images/output_mlp_76f463_66_0.svg" srcset="/img/loading.gif" lazyload alt="../_images/output_mlp_76f463_66_0.svg" /></p>
+\]</span> <img src="https://zh-v2.d2l.ai/_images/output_mlp_76f463_66_0.svg" srcset="/img/loading.gif" lazyload /></p>
 <p>易知 <span class="math inline">\(x=0\)</span> 时有导数最大值 <span class="math inline">\(\dfrac{1}{4}\)</span> 。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
@@ -800,11 +792,11 @@ b的梯度： tensor([<span class="hljs-number">0.0073</span>])</code></pre></di
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
+        <a href="/tags/note/" class="print-no-link">#note</a>
+      
         <a href="/tags/ML/" class="print-no-link">#ML</a>
       
         <a href="/tags/pytorch/" class="print-no-link">#pytorch</a>
-      
-        <a href="/tags/note/" class="print-no-link">#note</a>
       
     </div>
   
