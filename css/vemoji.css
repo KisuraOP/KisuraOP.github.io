@@ -1,8 +1,8 @@
 .v[data-class=v] .vemoji, .v[data-class=v] .emoji {
-    width: 80px;
-    height: 80px;
-    overflow: hidden;
-    vertical-align: middle;
-    margin: 0 1px;
-    display: inline-block;
+    width: 80px !important;
+    height: 80px !important;
+    overflow: hidden !important;
+    vertical-align: middle !important;
+    margin: 0 1px !important;
+    display: inline-block !important;
 }<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
