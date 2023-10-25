@@ -1,1 +1,0 @@
-hexo.extend.injector.register('head_begin', '<script src="https://kisuraop.github.io/js/mouseclick.js"></script>', 'default');<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
