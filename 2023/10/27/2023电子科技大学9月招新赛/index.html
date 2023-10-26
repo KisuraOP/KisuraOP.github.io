@@ -532,14 +532,8 @@
 <div class="note note-info">
             <p>题意：有 <span class="math inline">\(n\)</span> 个人查验题目，第 <span class="math inline">\(i\)</span> 个人在第 <span class="math inline">\(j\)</span> 秒会查验编号为 <span class="math inline">\(a_i+j-1\)</span> 的题。<span class="math inline">\(q\)</span> 次询问，每次问第 <span class="math inline">\(t\)</span> 秒时有多少道题目已经被查验。</p><p><span class="math inline">\(1\le n,q\le 5\times 10^5\)</span> ，<span class="math inline">\(1\le a_1 \le a_2 \le \dots \le a_n \le 10^{18}\)</span>，<span class="math inline">\(0\le t \le 10^{18}\)</span> 。</p>
           </div>
-<p>相当于数轴上 <span class="math inline">\(n\)</span> 个点，每个点每次向右扩张一个单位。</p>
-<p>那么当一个点触到离它右边的一个点时，往后它就没有贡献了。</p>
-<p>并且当一个点没有贡献时，间隔比它小对应的点也都没有了贡献，符合单调性。</p>
-<p>因此我们把每个点间的间隔距离 <span class="math inline">\(a_i-a_{i-1}\)</span> 记录下来，排序，记录前缀和，再在上面二分。</p>
-<p>每次查询总是前缀和 <span class="math inline">\(+\)</span> 没有扩张完的剩下段。</p>
-<p>时间复杂度 <span class="math inline">\(O((n+q)\log n)\)</span> 。</p>
 <div class="note note-success">
-            
+            <p>相当于数轴上 <span class="math inline">\(n\)</span> 个点，每个点每次向右扩张一个单位。</p><p>那么当一个点触到离它右边的一个点时，往后它就没有贡献了。</p><p>并且当一个点没有贡献时，间隔比它小对应的点也都没有了贡献，符合单调性。</p><p>因此我们把每个点间的间隔距离 <span class="math inline">\(a_i-a_{i-1}\)</span> 记录下来，排序，记录前缀和，再在上面二分。</p><p>每次查询总是前缀和 <span class="math inline">\(+\)</span> 没有扩张完的剩下段。</p><p>时间复杂度 <span class="math inline">\(O((n+q)\log n)\)</span> 。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -877,7 +871,10 @@
         Why?
     </div>
     <div class='spoiler-content'>
-        <p>高中数学学过插板法，如果每个盒子至少有一个球，那么我们可以用 <span class="math inline">\(m-1\)</span> 个板去插 <span class="math inline">\(n-1\)</span> 个空，方案数是 <span class="math inline">\(C_{n-1}^{m-1}\)</span> 。如果允许空盒，那么要做一个转化，转化为 <span class="math inline">\(n\)</span> 个无区别球和 <span class="math inline">\(m-1\)</span> 个无区别板的一个自由排列，再把这 <span class="math inline">\(m-1\)</span> 个板选出来，也就是 <span class="math inline">\(C_{n+m-1}^{m-1}=C_{n+m-1}^{n}\)</span> 。</p>
+        <p>高中数学学过插板法。</p>
+<p>如果每个盒子至少有一个球，那么我们可以用 <span class="math inline">\(m-1\)</span> 个板去插 <span class="math inline">\(n-1\)</span> 个空，方案数是 <span class="math inline">\(C_{n-1}^{m-1}\)</span> 。</p>
+<p>如果允许空盒，那么要做一个转化：</p>
+<p>转化为 <span class="math inline">\(n\)</span> 个无区别球和 <span class="math inline">\(m-1\)</span> 个无区别板的一个自由排列，再把这 <span class="math inline">\(m-1\)</span> 个板选出来，也就是 <span class="math inline">\(C_{n+m-1}^{m-1}=C_{n+m-1}^{n}\)</span> 。</p>
 
     </div>
 </div>
