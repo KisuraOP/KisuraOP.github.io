@@ -695,7 +695,7 @@
             <p>题意：给定长度为 <span class="math inline">\(n\)</span> 的正整数序列 <span class="math inline">\(a\)</span> ，求满足子段和为 <span class="math inline">\(k\)</span> 的倍数的子段数量。</p><p><span class="math inline">\(1\le n \le 10^5\)</span> ，<span class="math inline">\(1\le k,a_i \le 10^9\)</span> 。</p>
           </div>
 <div class="note note-success">
-            <p>令 <span class="math inline">\(sum\)</span> 为前缀和，即求满足 $sum[l,r] k $ 的区间和个数。</p><p>即： <span class="math display">\[sum[l,r] \bmod k =(sum[r]-sum[l-1])\bmod k = 0\]</span> 也就是： <span class="math display">\[sum[l-1]\equiv sum[r] \bmod k\]</span> 于是题目变成了对每个位置 <span class="math inline">\(i\)</span> 求小于 <span class="math inline">\(i\)</span> 的所有前缀和中有多少模 <span class="math inline">\(k\)</span> 值相同，用 <code>std::map</code> 维护即可。</p><p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span> 。</p>
+            <p>令 <span class="math inline">\(sum\)</span> 为前缀和，即求满足 <span class="math inline">\(sum[l,r]\equiv 0 \bmod k\)</span> 的区间和个数。</p><p>即： <span class="math display">\[sum[l,r] \bmod k =(sum[r]-sum[l-1])\bmod k = 0\]</span> 也就是： <span class="math display">\[sum[l-1]\equiv sum[r] \bmod k\]</span> 于是题目变成了对每个位置 <span class="math inline">\(i\)</span> 求小于 <span class="math inline">\(i\)</span> 的所有前缀和中有多少模 <span class="math inline">\(k\)</span> 值相同，用 <code>std::map</code> 维护即可。</p><p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span> 。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
