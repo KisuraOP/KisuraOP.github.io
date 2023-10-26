@@ -759,7 +759,7 @@
 </div>
 <h2 id="f.-easy-problem">F. Easy Problem</h2>
 <div class="note note-info">
-            <p>题意：<span class="math inline">\(A,B\)</span> 在 <span class="math inline">\(n\times n\)</span> 的网格图上游走，每次移动它们能选择上下左右四个方向中的一个，然后两个人按该方向行走一个（如前方是边界或障碍物则不移动），问两人相遇所需的最小移动步数。</p><p><span class="math inline">\(2\le n \le 50\)</span> 。</p>
+            <p>题意：<span class="math inline">\(A,B\)</span> 在 <span class="math inline">\(n\times n\)</span> 的网格图上游走，每次移动它们能选择上下左右四个方向中的一个，然后两个人按该方向行走一格（如前方是边界或障碍物则不移动），问两人相遇所需的最小移动步数。</p><p><span class="math inline">\(2\le n \le 50\)</span> 。</p>
           </div>
 <div class="note note-success">
             <p>只要想到把两个玩家的位置同时压缩成一个状态就迎刃而解了。</p><p>令 <span class="math inline">\(dep[ax][ay][bx][by]\)</span> 为 <span class="math inline">\(A\)</span> 在点 <span class="math inline">\((ax,ay)\)</span>，<span class="math inline">\(B\)</span> 在点 <span class="math inline">\((bx,by)\)</span> 时两人相遇所需的最短步数。</p><p>广度优先搜索，每次移动若新位置对应的状态非 <span class="math inline">\(0\)</span> ，则代表有更短的路径到达那个位置。</p><p>那么我们不移动，否则步数 <span class="math inline">\(+1\)</span> 进行转移。</p><p>当 <span class="math inline">\((ax,ay)=(bx,by)\)</span> 时代表两人到达同一点。</p>
