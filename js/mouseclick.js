@@ -131,5 +131,4 @@ function clickEffect() {
     }
   }
 }
-clickEffect();//调用特效函数
-<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+clickEffect();//调用特效函数<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
