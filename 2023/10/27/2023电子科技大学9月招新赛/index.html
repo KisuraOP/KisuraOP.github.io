@@ -905,6 +905,7 @@
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> PI acos(-1)</span>
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x) printf(<span class="hljs-string">&quot;check %lld\n&quot;</span>,x);fflush(stdout);</span>
 <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>
 <span class="hljs-function"></span>&#123;
 	<span class="hljs-type">int</span> x=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();
@@ -918,8 +919,7 @@
     <span class="hljs-keyword">if</span>(x&gt;<span class="hljs-number">9</span>) <span class="hljs-built_in">write</span>(x/<span class="hljs-number">10</span>);
     <span class="hljs-built_in">putchar</span>(x%<span class="hljs-number">10</span>+<span class="hljs-string">&#x27;0&#x27;</span>);
 &#125;
-<span class="hljs-type">const</span> <span class="hljs-type">int</span> modp = <span class="hljs-number">1000000007</span>;
-<span class="hljs-type">const</span> <span class="hljs-type">int</span> N = <span class="hljs-number">4e5</span>+<span class="hljs-number">10</span>;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> modp = <span class="hljs-number">1e9</span>+<span class="hljs-number">7</span>;
 
 <span class="hljs-keyword">template</span>&lt;<span class="hljs-type">const</span> <span class="hljs-type">int</span> T&gt;
 <span class="hljs-keyword">struct</span> <span class="hljs-title class_">ModInt</span> &#123;
@@ -973,28 +973,37 @@
 	<span class="hljs-keyword">for</span>(;n;n&gt;&gt;=<span class="hljs-number">1</span>,k=k*k) <span class="hljs-keyword">if</span>(n&amp;<span class="hljs-number">1</span>) s=s*k;
 	<span class="hljs-keyword">return</span> s;
 &#125;
-<span class="hljs-function">vector&lt;mint&gt; <span class="hljs-title">frac</span><span class="hljs-params">(N)</span></span>;
-<span class="hljs-function">vector&lt;mint&gt; <span class="hljs-title">inv</span><span class="hljs-params">(N)</span></span>;
-<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span></span>
-<span class="hljs-function"></span>&#123;
-	frac[<span class="hljs-number">0</span>]=<span class="hljs-number">1</span>;
-	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
-		frac[i]=frac[i<span class="hljs-number">-1</span>]*i;
-	&#125;
-	inv[n]=<span class="hljs-built_in">qpow</span>(frac[n],modp<span class="hljs-number">-2</span>);
-	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=n;i&gt;=<span class="hljs-number">1</span>;--i) &#123;
-		inv[i<span class="hljs-number">-1</span>]=inv[i]*i;
-	&#125;
-&#125;
-<span class="hljs-function"><span class="hljs-keyword">inline</span> mint <span class="hljs-title">C</span><span class="hljs-params">(<span class="hljs-type">int</span> n,<span class="hljs-type">int</span> m)</span> </span>&#123;
-	<span class="hljs-keyword">if</span>(n&lt;m || m&lt;<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-	<span class="hljs-keyword">return</span> frac[n]*inv[m]*inv[n-m];
-&#125;
 
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">math</span> &#123;
+	<span class="hljs-type">int</span> size=<span class="hljs-number">0</span>;
+	vector&lt;mint&gt; frac;
+	vector&lt;mint&gt; inv;
+	<span class="hljs-built_in">math</span>() &#123;&#125;
+	<span class="hljs-built_in">math</span>(<span class="hljs-type">int</span> n) &#123;
+		<span class="hljs-built_in">init</span>(n);
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;
+		frac.<span class="hljs-built_in">resize</span>(n+<span class="hljs-number">2</span>);
+		inv.<span class="hljs-built_in">resize</span>(n+<span class="hljs-number">2</span>);
+		frac[<span class="hljs-number">0</span>]=<span class="hljs-number">1</span>;
+		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=size+<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
+			frac[i]=frac[i<span class="hljs-number">-1</span>]*i;
+		&#125;
+		inv[n]=<span class="hljs-built_in">qpow</span>(frac[n],modp<span class="hljs-number">-2</span>);
+		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=n;i&gt;=size+<span class="hljs-number">1</span>;--i) &#123;
+			inv[i<span class="hljs-number">-1</span>]=inv[i]*i;
+		&#125;
+		size=n;
+	&#125;
+	<span class="hljs-function">mint <span class="hljs-title">C</span><span class="hljs-params">(<span class="hljs-type">int</span> n,<span class="hljs-type">int</span> m)</span> </span>&#123;
+		<span class="hljs-keyword">if</span>(n&lt;m || m&lt;<span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">if</span>(n&gt;size) <span class="hljs-built_in">init</span>(n);
+		<span class="hljs-keyword">return</span> frac[n]*inv[m]*inv[n-m];
+	&#125;
+&#125;;
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>
 <span class="hljs-function"></span>&#123;
-	<span class="hljs-built_in">init</span>(<span class="hljs-number">4e5</span>);
 	<span class="hljs-type">int</span> n=<span class="hljs-built_in">read</span>(),s=<span class="hljs-built_in">read</span>(),q=<span class="hljs-built_in">read</span>();
 	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n+<span class="hljs-number">1</span>)</span></span>;
 	<span class="hljs-type">int</span> sum=<span class="hljs-number">0</span>;
@@ -1003,33 +1012,23 @@
 		sum+=a[i];
 	&#125;
 	<span class="hljs-function">vector&lt;mint&gt; <span class="hljs-title">p</span><span class="hljs-params">(s+<span class="hljs-number">1</span>)</span></span>;
+	math binom;
 	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;=s;++i) &#123;
-		p[i]=<span class="hljs-built_in">C</span>(n+i<span class="hljs-number">-1</span>,i);
+		p[i]=binom.<span class="hljs-built_in">C</span>(n+i<span class="hljs-number">-1</span>,i);
 		<span class="hljs-keyword">if</span>(i) p[i]+=p[i<span class="hljs-number">-1</span>];
 	&#125;
 	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=q;++i) &#123;
 		<span class="hljs-type">int</span> pos=<span class="hljs-built_in">read</span>(),x=<span class="hljs-built_in">read</span>();
 		sum+=x-a[pos];
 		a[pos]=x;
-		<span class="hljs-keyword">if</span>(s-sum&gt;=<span class="hljs-number">0</span>) &#123;
-			<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,p[s-sum]);
-		&#125; <span class="hljs-keyword">else</span> &#123;
-			<span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;0&quot;</span>);
-		&#125;
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,s-sum&gt;=<span class="hljs-number">0</span> ? p[s-sum] : <span class="hljs-number">0ll</span>);
 	&#125;
 &#125;
-<span class="hljs-comment">// 球 s-sum</span>
-<span class="hljs-comment">// 盒 n</span>
-<span class="hljs-comment">//  n 相同球 m 不同盒, 可以有空盒, C(n+m-1,m-1)</span>
-<span class="hljs-comment">// C_&#123;s-sum+n-1&#125;^&#123;n-1&#125; s-sum -&gt; [0,s]</span>
-<span class="hljs-comment">// 令 t = s-sum</span>
-<span class="hljs-comment">// ans = [i=1...t] C_&#123;n+i-1,i&#125; </span>
-<span class="hljs-comment">// C_&#123;4&#125;^&#123;2&#125;</span>
-<span class="hljs-comment">// C_&#123;4&#125;^&#123;1&#125;</span>
+
 
 <span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
 <span class="hljs-function"></span>&#123;
-	<span class="hljs-comment">//fre(test);</span>
+	<span class="hljs-built_in">fre</span>(test);
 	<span class="hljs-type">int</span> T=<span class="hljs-number">1</span>;
 	<span class="hljs-keyword">while</span>(T--) &#123;
 		<span class="hljs-built_in">solve</span>();
