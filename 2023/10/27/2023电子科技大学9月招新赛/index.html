@@ -1016,7 +1016,6 @@
 		sum+=a[i];
 	&#125;
 	<span class="hljs-function">vector&lt;mint&gt; <span class="hljs-title">p</span><span class="hljs-params">(s+<span class="hljs-number">1</span>)</span></span>;
-	math binom;
 	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;=s;++i) &#123;
 		p[i]=<span class="hljs-built_in">C</span>(n+i<span class="hljs-number">-1</span>,i);
 		<span class="hljs-keyword">if</span>(i) p[i]+=p[i<span class="hljs-number">-1</span>];
