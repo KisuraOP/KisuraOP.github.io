@@ -1000,7 +1000,11 @@
 		<span class="hljs-keyword">if</span>(n&gt;size) <span class="hljs-built_in">init</span>(n);
 		<span class="hljs-keyword">return</span> frac[n]*inv[m]*inv[n-m];
 	&#125;
-&#125;;
+&#125;binom;
+
+<span class="hljs-function">mint <span class="hljs-title">C</span><span class="hljs-params">(<span class="hljs-type">int</span> n,<span class="hljs-type">int</span> m)</span> </span>&#123;
+	<span class="hljs-keyword">return</span> binom.<span class="hljs-built_in">C</span>(n,m); 
+&#125;
 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>
 <span class="hljs-function"></span>&#123;
@@ -1014,7 +1018,7 @@
 	<span class="hljs-function">vector&lt;mint&gt; <span class="hljs-title">p</span><span class="hljs-params">(s+<span class="hljs-number">1</span>)</span></span>;
 	math binom;
 	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;=s;++i) &#123;
-		p[i]=binom.<span class="hljs-built_in">C</span>(n+i<span class="hljs-number">-1</span>,i);
+		p[i]=<span class="hljs-built_in">C</span>(n+i<span class="hljs-number">-1</span>,i);
 		<span class="hljs-keyword">if</span>(i) p[i]+=p[i<span class="hljs-number">-1</span>];
 	&#125;
 	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=q;++i) &#123;
