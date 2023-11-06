@@ -171,8 +171,20 @@
           
           
             <li class="nav-item">
+              <a class="nav-link" href="/site/">
+                <i class="iconfont icon-bookmark-fill"></i>
+                <span>收藏夹</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
               <a class="nav-link" href="/waiting/">
-                <i class="iconfont icon-stack-overflow-fill"></i>
+                <i class="iconfont icon-plan"></i>
                 <span>待办</span>
               </a>
             </li>
@@ -259,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.1k 字
+          6.2k 字
         
       </span>
     
@@ -398,7 +410,7 @@
             <p>题意：给定多项式 <span class="math inline">\(f(x)=\sum_{i=1}^ma_ix^{b_i}\)</span> 。定义 <span class="math inline">\(f_1(x)=f(x)\)</span>，<span class="math inline">\(f_n(x)=f(f_{n-1}(x))\)</span> 。</p><p>给定模数 <span class="math inline">\(p\)</span>。有 <span class="math inline">\(q\)</span> 次询问，每次给出 <span class="math inline">\(x,y\)</span>，查询 <span class="math inline">\(f_y(x)\bmod p\)</span> 的值。</p><p><span class="math inline">\(1\le m\le 20\)</span>，<span class="math inline">\(0\le a_i,b_i\le 10^5\)</span>，<span class="math inline">\(2\le p\le 10^5\)</span>，<span class="math inline">\(1\le q\le 3\times 10^5\)</span>，<span class="math inline">\(1\le x,y\le 10^7\)</span> 。</p>
           </div>
 <div class="note note-success">
-            <p>诈骗题。</p><p>注意到模数 <span class="math inline">\(p\)</span> 十分小，意味着每次经过函数 <span class="math inline">\(f(x)\)</span> 运算后得出的结果只能是 <span class="math inline">\([0,p)\)</span> 。</p><p>那么只需要对每个 <span class="math inline">\(i\in[0,p)\)</span> 代进函数预处理出 <span class="math inline">\(f(i)\)</span> ，那么进行一次询问的复杂度降到 <span class="math inline">\(O(y)\)</span> 。</p><p>总复杂度 <span class="math inline">\(O(qy)\)</span> ，仍然不能满足要求。</p><p>考虑倍增，令 <span class="math inline">\(f_{i,j}\)</span> 为数 <span class="math inline">\(i\)</span> 经过 <span class="math inline">\(2^j\)</span> 次迭代后得到的结果。</p><p>询问时对 <span class="math inline">\(y\)</span> 的二进制下的每一位考虑即可。</p><p>时间复杂度 <span class="math inline">\(O(mp+q\log y)\)</span> 。</p>
+            <p>诈骗题。</p><p>注意到模数 <span class="math inline">\(p\)</span> 十分小，而每次经过 <span class="math inline">\(f(x)\)</span> 运算后得出的结果只能是 <span class="math inline">\([0,p)\)</span> 。</p><p>那么只需要对每个 <span class="math inline">\(i\in[0,p)\)</span> 代进函数预处理出 <span class="math inline">\(f(i)\)</span> ，那么进行一次询问的复杂度降到 <span class="math inline">\(O(y)\)</span> 。</p><p>总复杂度 <span class="math inline">\(O(qy)\)</span> ，继续优化。</p><p>倍增，令 <span class="math inline">\(f_{i,j}\)</span> 为数 <span class="math inline">\(i\)</span> 经过 <span class="math inline">\(2^j\)</span> 次迭代后得到的结果。</p><p>询问时对 <span class="math inline">\(y\)</span> 的二进制下的每一位考虑即可。</p><p>时间复杂度 <span class="math inline">\(O(mp+q\log y)\)</span> 。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -488,13 +500,20 @@
 
     </div>
 </div>
+<div class="note note-warning">
+            <p>倍增的写法：</p><div class="code-wrapper"><pre><code class="hljs abnf">for(int j<span class="hljs-operator">=</span><span class="hljs-number">1</span><span class="hljs-comment">;j&lt;=25;++j) &#123;</span>
+	for(int i<span class="hljs-operator">=</span><span class="hljs-number">0</span><span class="hljs-comment">;i&lt;n;++i) &#123;</span>
+		f[i][j]<span class="hljs-operator">=</span>f[f[i][j-<span class="hljs-number">1</span>]][j-<span class="hljs-number">1</span>]<span class="hljs-comment">;</span>
+	&#125;
+&#125;</code></pre></div><p>选从 <span class="math inline">\(i\)</span> 开始的第 <span class="math inline">\(2^j\)</span> 个相当于选从 <span class="math inline">\(i\)</span> 往后 <span class="math inline">\(2^{j-1}\)</span> 处开始的第 <span class="math inline">\(2^{j-1}\)</span> 个。</p>
+          </div>
 <h2 id="c.-imxcsld">C. ImxcslD</h2>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P9817?contestId=141486">Problem</a></p>
 <div class="note note-info">
             <p>题意：定义长度为 <span class="math inline">\(m\)</span> 的非空序列 <span class="math inline">\(p_1,p_2,...,p_m\)</span> 是<strong>乱</strong>的当且仅当满足以下条件。</p><ul><li><span class="math inline">\(\sum_{i=1}^m p_i\le n\)</span> 。</li><li><span class="math inline">\(\forall\text{ } i\in[1,m]\)</span> ，<span class="math inline">\(p_i=1\)</span> 或 <span class="math inline">\(p_i\)</span> 为质数。</li></ul><p>定义一个<strong>乱</strong>的序列 <span class="math inline">\(p_1,p_2,...,p_m\)</span> 的<strong>乱斗值</strong>为 <span class="math inline">\(\sum_{i=1}^m (p_i-k)^2\)</span> 。</p><p>特别的，定义一个<strong>不乱</strong>的序列的乱斗值为 <span class="math inline">\(0\)</span> 。</p><p>现在给定正整数 <span class="math inline">\(n,k\)</span>，问所有序列中<strong>乱斗值</strong>最大的序列的<strong>乱斗值</strong>是多少。</p><p><span class="math inline">\(1\le T\le 10^3\)</span>，<span class="math inline">\(1\le n\le 10^9\)</span>，<span class="math inline">\(1\le k\le 5\times 10^4\)</span> 。</p>
           </div>
 <div class="note note-success">
-            <p>有难度的贪心。</p><p>考虑什么时候结果是最优的：我们要让 <span class="math inline">\((p_i-k)^2\)</span> 尽可能的大，也就是 <span class="math inline">\(p_i\)</span> 和 <span class="math inline">\(k\)</span> 的差值大，分为两种情况：</p><ul><li>当 <span class="math inline">\(p_i&lt;k\)</span> 时，要离 <span class="math inline">\(k\)</span> 越远，肯定是全为 <span class="math inline">\(1\)</span> 最优。</li><li>当 <span class="math inline">\(p_i&gt;k\)</span> 时，考虑写上一个 <span class="math inline">\(p_i\)</span> 对答案的影响。<ul><li>一开始构造序列全为 <span class="math inline">\(1\)</span> ，答案是 <span class="math inline">\(m(1-k)^2\)</span> 。</li><li>写出一个 <span class="math inline">\(p_i\)</span> 时，相当于划掉了 <span class="math inline">\(p_i\)</span> 个 <span class="math inline">\(1\)</span> ，答案增加了 <span class="math inline">\((p_i-k)^2-p_i(1-k)^2\)</span> 。</li><li>发现每次变更总是可以选择大的 <span class="math inline">\(p_i\)</span> ，而答案也只和当时 <span class="math inline">\(1\)</span> 的个数相关。</li><li>所以可以递归，每次选择小于等于 <span class="math inline">\(n\)</span> 的最大的质数 <span class="math inline">\(P\)</span> ，看看最大值能不能更新，然后将问题递归到 <span class="math inline">\((n-P,k)\)</span> 。</li></ul></li></ul><p>这其实并不严谨，需要有点感性理解。</p><p>复杂度不会分析，只能说感觉能接受？</p><p>预处理出质数表能 <span class="math inline">\(O(\frac{\sqrt{n}}{\ln n})\)</span> 查找质数，但事实 <span class="math inline">\(O(\sqrt{n})\)</span> 也完全卡不满。</p>
+            <p>有难度的贪心。</p><p>考虑什么时候结果是最优的：我们要让 <span class="math inline">\((p_i-k)^2\)</span> 尽可能的大，也就是 <span class="math inline">\(p_i\)</span> 和 <span class="math inline">\(k\)</span> 的差值大，分为两种情况：</p><ul><li>当 <span class="math inline">\(p_i&lt;k\)</span> 时，要离 <span class="math inline">\(k\)</span> 越远，肯定是全为 <span class="math inline">\(1\)</span> 最优。</li><li>当 <span class="math inline">\(p_i&gt;k\)</span> 时，考虑写上一个 <span class="math inline">\(p_i\)</span> 对答案的影响。<ul><li>一开始构造序列全为 <span class="math inline">\(1\)</span> ，答案是 <span class="math inline">\(m(1-k)^2\)</span> 。</li><li>写出一个 <span class="math inline">\(p_i\)</span> 时，相当于划掉了 <span class="math inline">\(p_i\)</span> 个 <span class="math inline">\(1\)</span> ，答案增加了 <span class="math inline">\((p_i-k)^2-p_i(1-k)^2\)</span> 。</li><li>发现每次变更总是可以选择大的 <span class="math inline">\(p_i\)</span> ，而答案也只和当时 <span class="math inline">\(1\)</span> 的个数相关。</li><li>所以可以递归，每次选择小于等于 <span class="math inline">\(n\)</span> 的最大的质数 <span class="math inline">\(P\)</span> ，看看最大值能不能更新，然后将问题递归到 <span class="math inline">\((n-P,k)\)</span> 。</li></ul></li></ul><p>这并不严谨，需要感性理解。</p><p>复杂度不会分析，只能说感觉能接受？</p><p>预处理出质数表能 <span class="math inline">\(O(\frac{\sqrt{n}}{\ln n})\)</span> 查找质数，但事实 <span class="math inline">\(O(\sqrt{n})\)</span> 也完全卡不满。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -702,6 +721,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/11/06/Codeforces-Round-907-Div-2/" title="Codeforces Round 907 (Div.2)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Codeforces Round 907 (Div.2)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">

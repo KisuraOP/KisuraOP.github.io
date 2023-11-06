@@ -16,27 +16,27 @@
   <meta name="author" content="KisuraOP">
   <meta name="keywords" content="">
   
-    <meta name="description" content="哈哈，两年前不会DP，现在也不会。">
+    <meta name="description" content="思维+implementation场，除了F考了一个欧拉序的trick之外。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Codeforces Round 729 (Div.2) 4 of 6">
-<meta property="og:url" content="https://kisuraop.github.io/2021/07/04/Codeforces-Round-729-Div-2-4-of-6/index.html">
+<meta property="og:title" content="Codeforces Round 907 (Div.2)">
+<meta property="og:url" content="https://kisuraop.github.io/2023/11/06/Codeforces-Round-907-Div-2/index.html">
 <meta property="og:site_name" content="KisuraOP">
-<meta property="og:description" content="哈哈，两年前不会DP，现在也不会。">
+<meta property="og:description" content="思维+implementation场，除了F考了一个欧拉序的trick之外。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c17e18190fb6dea6e843b32fb19de3c0.jpeg">
-<meta property="article:published_time" content="2021-07-04T11:48:50.000Z">
-<meta property="article:modified_time" content="2021-07-04T11:48:50.000Z">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/b047f92175d23602b56d5690679c53f1.jpeg">
+<meta property="article:published_time" content="2023-11-05T16:35:35.000Z">
+<meta property="article:modified_time" content="2023-11-05T16:35:35.000Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ACM">
 <meta property="article:tag" content="Codeforces">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/c17e18190fb6dea6e843b32fb19de3c0.jpeg">
+<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/b047f92175d23602b56d5690679c53f1.jpeg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Codeforces Round 729 (Div.2) 4 of 6 - KisuraOP</title>
+  <title>Codeforces Round 907 (Div.2) - KisuraOP</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -243,7 +243,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Codeforces Round 729 (Div.2) 4 of 6"></span>
+            <span id="subtitle" data-typed-text="Codeforces Round 907 (Div.2)"></span>
           
         </div>
 
@@ -259,8 +259,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-07-04 19:48" pubdate>
-          2021年7月4日 晚上
+        <time datetime="2023-11-06 00:35" pubdate>
+          2023年11月6日 凌晨
         </time>
       </span>
     
@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.7k 字
+          2.6k 字
         
       </span>
     
@@ -322,253 +322,175 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">Codeforces Round 729 (Div.2) 4 of 6</h1>
+            <h1 id="seo-header">Codeforces Round 907 (Div.2)</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="a.-odd-set">A. Odd Set</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1542/problem/A">Problem</a></p>
-<div class="note note-info">
-            <p>题意：给出长为 <span class="math inline">\(2n\)</span> 的数组，问是否能分成 <span class="math inline">\(n\)</span> 个长度为 <span class="math inline">\(2\)</span> 的组使每组内两数之和均为奇数。</p>
-          </div>
+                <h2 id="a.-sorting-with-twos">A. Sorting with Twos</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1891/problem/A">Problem</a></p>
 <div class="note note-success">
-            <p>若和为奇数，则两数一奇一偶，即判断原数列中奇数个数是否等于偶数个数。</p>
+            <p>按题意模拟。</p><p>每个 <span class="math inline">\([2^i,2^{i+1}]\)</span> 区间内若有递减，一定不能满足要求。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
         Code
     </div>
     <div class='spoiler-content'>
-        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
 <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> re register int</span>
-<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
-	<span class="hljs-type">int</span> x=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();
-	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch))&#123;<span class="hljs-keyword">if</span>(ch==<span class="hljs-string">&#x27;-&#x27;</span>)f=<span class="hljs-number">-1</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
-	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch))&#123;x=(x&lt;&lt;<span class="hljs-number">3</span>)+(x&lt;&lt;<span class="hljs-number">1</span>)+(ch^<span class="hljs-number">48</span>);ch=<span class="hljs-built_in">getchar</span>();&#125;
-	<span class="hljs-keyword">return</span> f==<span class="hljs-number">1</span>?x:-x;
-&#125;
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
-	<span class="hljs-type">int</span> T=<span class="hljs-built_in">read</span>();
-	<span class="hljs-keyword">while</span>(T--) 
-    &#123;
-		<span class="hljs-type">int</span> n=<span class="hljs-built_in">read</span>();
-		<span class="hljs-type">int</span> cnt=<span class="hljs-number">0</span>;
-		<span class="hljs-keyword">for</span>(re i=<span class="hljs-number">1</span>;i&lt;=n*<span class="hljs-number">2</span>;++i) &#123;
-			<span class="hljs-type">int</span> x=<span class="hljs-built_in">read</span>();
-			cnt+=(x%<span class="hljs-number">2</span>);
-		&#125;
-		<span class="hljs-keyword">if</span>(cnt==n) &#123;
-			<span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Yes&quot;</span>);
-		&#125; <span class="hljs-keyword">else</span> &#123;
-			<span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;No&quot;</span>);
-		&#125;
-	&#125;
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;</code></pre></div>
-
-    </div>
-</div>
-<h2 id="b.-plus-and-multiply">B. Plus and Multiply</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1542/problem/B">Problem</a></p>
-<span class="label label-primary">好题</span>
-<div class="note note-info">
-            <p>题意：<span class="math inline">\(T\le 10^5\)</span> 组数据，给定正整数 <span class="math inline">\(n,a,b\)</span> ，每次能将一个数 <span class="math inline">\(\times a\)</span> 或 <span class="math inline">\(+b\)</span> ，问是否能将 <span class="math inline">\(1\)</span> 经过若干次操作得到 <span class="math inline">\(n\)</span> 。<span class="math inline">\(1\le n,a,b\le 10^9\)</span>。</p>
-          </div>
-<div class="note note-success">
-            <p>若得到了某个数 <span class="math inline">\(x\)</span> 满足 <span class="math inline">\((n-x)\% b=0\)</span> 那么显然符合要求。</p><p>对于 <span class="math inline">\(+b\)</span> 操作，<span class="math inline">\(\%b\)</span> 后余数不变。</p><p>意味着只有 <span class="math inline">\(\times a\)</span> 操作会使 <span class="math inline">\(\%b\)</span> 的余数改变。</p><p>枚举不超过 <span class="math inline">\(n\)</span> 的 <span class="math inline">\(a\)</span> 的次方数 <span class="math inline">\(x\)</span> 判断是否满足 <span class="math inline">\((n-x)\%b=0\)</span> 即可。</p><p>特判 <span class="math inline">\(a=1\)</span> 的情况。</p>
-          </div>
-<div class='spoiler collapsed'>
-    <div class='spoiler-title'>
-        Code
-    </div>
-    <div class='spoiler-content'>
-        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> re register int</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>,<span class="hljs-string">&quot;r&quot;</span>,stdin);freopen(#x<span class="hljs-string">&quot;.out&quot;</span>,<span class="hljs-string">&quot;w&quot;</span>,stdout)</span>
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> PI acos(-1)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
 <span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>
 <span class="hljs-function"></span>&#123;
 	<span class="hljs-type">int</span> x=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();
 	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch))&#123;<span class="hljs-keyword">if</span>(ch==<span class="hljs-string">&#x27;-&#x27;</span>)f=<span class="hljs-number">-1</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
-	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch))&#123;x=(x&lt;&lt;<span class="hljs-number">3</span>)+(x&lt;&lt;<span class="hljs-number">1</span>)+(ch^<span class="hljs-number">48</span>);ch=<span class="hljs-built_in">getchar</span>();&#125;
+	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch))&#123;x=x*<span class="hljs-number">10</span>+ch<span class="hljs-number">-48</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
 	<span class="hljs-keyword">return</span> f==<span class="hljs-number">1</span>?x:-x;
 &#125;
-<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>
 <span class="hljs-function"></span>&#123;
-	<span class="hljs-type">int</span> T=<span class="hljs-built_in">read</span>();
-	<span class="hljs-keyword">while</span>(T--)
-	&#123;
-		<span class="hljs-type">int</span> x=<span class="hljs-built_in">read</span>(),a=<span class="hljs-built_in">read</span>(),b=<span class="hljs-built_in">read</span>();
-		<span class="hljs-type">int</span> tmp=a,flag=<span class="hljs-number">0</span>;
-		<span class="hljs-keyword">if</span>(a==<span class="hljs-number">1</span>) &#123;
-			<span class="hljs-keyword">if</span>((x<span class="hljs-number">-1</span>)%b==<span class="hljs-number">0</span>) &#123;
-                <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Yes&quot;</span>);
-            &#125; <span class="hljs-keyword">else</span> &#123;
-                <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;No&quot;</span>);
-            &#125;
-			<span class="hljs-keyword">continue</span>;
-		&#125;
-		<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) &#123;
-			<span class="hljs-keyword">if</span>(tmp&gt;x) &#123;
-                <span class="hljs-keyword">break</span>;
-            &#125;
-			<span class="hljs-keyword">if</span>((x-tmp)%b==<span class="hljs-number">0</span>) &#123;
-				flag=<span class="hljs-number">1</span>;
-				<span class="hljs-keyword">break</span>;
-			&#125;
-			tmp*=a;
-		&#125;
-		<span class="hljs-keyword">if</span>(flag || (x<span class="hljs-number">-1</span>)%b==<span class="hljs-number">0</span>) &#123;
-            <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Yes&quot;</span>);
-        &#125; <span class="hljs-keyword">else</span> &#123; 
-            <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;No&quot;</span>);
-        &#125;
-	&#125;
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;</code></pre></div>
-
-    </div>
-</div>
-<h2 id="c.-strange-function">C. Strange Function</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1542/problem/C">Problem</a></p>
-<div class="note note-info">
-            <p>题意：求 <span class="math inline">\(\sum\limits_{i=1}^n f_i\)</span> ，<span class="math inline">\(f_i\)</span> 为满足 <span class="math inline">\(x\nmid i\)</span> 的最小正整数 <span class="math inline">\(x\)</span> 。<span class="math inline">\(1\le T\le 10^4\)</span>, <span class="math inline">\(1\le n\le 10^{16}\)</span> 。</p>
-          </div>
-<div class="note note-success">
-            <p>没什么思路，打表得到 <span class="math inline">\(2,3,2,3,2,4,2,3,2,3,2,5,2,\dots\)</span> 。</p><p>令 <span class="math inline">\(p_i\)</span> 为第一次出现 <span class="math inline">\(i\)</span> 的位置，观察有 <span class="math inline">\(p_3=2,p_4=6,p_5=12\)</span> ，类比得 <span class="math inline">\(p_i=\text{lcm} (1\sim i-1)\)</span> 。</p>
-          </div>
-<div class='spoiler collapsed'>
-    <div class='spoiler-title'>
-        Why?
-    </div>
-    <div class='spoiler-content'>
-        <p>因为对于 <span class="math inline">\(f_x\)</span> ，<span class="math inline">\(1\sim (f_x-1)\)</span> 必然是 <span class="math inline">\(p_{f_x}\)</span> 的因子，故最优选择就是它们的最小公倍数。</p>
-
-    </div>
-</div>
-<div class="note note-success">
-            <p>其中每个位置贡献至少为 <span class="math inline">\(2\)</span> ，故初始化 <span class="math inline">\(ans=2n\)</span> 。</p><p>又若 <span class="math inline">\(i\)</span> 在位置 <span class="math inline">\(pos\)</span> 有贡献，则在 <span class="math inline">\(pos\)</span> 的倍数处也必有贡献，且每次贡献为 <span class="math inline">\(1\)</span> 。</p><p>而每个 <span class="math inline">\(i\)</span> 在 <span class="math inline">\(1\sim n\)</span> 中出现 <span class="math inline">\(\left\lfloor\dfrac{n}{p_i}\right\rfloor\)</span> 次，故 <span class="math inline">\(ans=2n+\sum\limits_{i=3}^{p_i\le n}\left\lfloor\dfrac{n}{p_i}\right\rfloor\)</span> .</p>
-          </div>
-<div class='spoiler collapsed'>
-    <div class='spoiler-title'>
-        Code
-    </div>
-    <div class='spoiler-content'>
-        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> re register int</span>
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
-<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
-	<span class="hljs-type">int</span> x=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();
-	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch))&#123;<span class="hljs-keyword">if</span>(ch==<span class="hljs-string">&#x27;-&#x27;</span>)f=<span class="hljs-number">-1</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
-	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch))&#123;x=(x&lt;&lt;<span class="hljs-number">3</span>)+(x&lt;&lt;<span class="hljs-number">1</span>)+(ch^<span class="hljs-number">48</span>);ch=<span class="hljs-built_in">getchar</span>();&#125;
-	<span class="hljs-keyword">return</span> f==<span class="hljs-number">1</span>?x:-x;
+    <span class="hljs-keyword">if</span>(x&lt;<span class="hljs-number">0</span>) <span class="hljs-built_in">putchar</span>(<span class="hljs-string">&#x27;-&#x27;</span>),x=-x;
+    <span class="hljs-keyword">if</span>(x&gt;<span class="hljs-number">9</span>) <span class="hljs-built_in">write</span>(x/<span class="hljs-number">10</span>);
+    <span class="hljs-built_in">putchar</span>(x%<span class="hljs-number">10</span>+<span class="hljs-string">&#x27;0&#x27;</span>);
 &#125;
-<span class="hljs-type">const</span> <span class="hljs-type">int</span> maxn=<span class="hljs-number">1e16</span>+<span class="hljs-number">10</span>,modp=<span class="hljs-number">1e9</span>+<span class="hljs-number">7</span>;
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">gcd</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> y)</span></span>
-<span class="hljs-function"></span>&#123;
-	<span class="hljs-keyword">return</span> !y?x:<span class="hljs-built_in">gcd</span>(y,x%y);
-&#125;
-<span class="hljs-type">int</span> Lcm[<span class="hljs-number">50</span>];<span class="hljs-comment">//lcm[i]表示1~i-1的最小公倍数 </span>
-<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
-	<span class="hljs-type">int</span> tmp=<span class="hljs-number">1</span>,x=<span class="hljs-number">1</span>;
-	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)
-	&#123;
-		Lcm[tmp]=x;
-		x=x*tmp/<span class="hljs-built_in">gcd</span>(x,tmp);
-		<span class="hljs-keyword">if</span>(x&gt;maxn)<span class="hljs-keyword">break</span>;
-		tmp++;
-    &#125;
-	<span class="hljs-type">int</span> T=<span class="hljs-built_in">read</span>();
-	<span class="hljs-keyword">while</span>(T--)
-	&#123;
-		<span class="hljs-type">int</span> n=<span class="hljs-built_in">read</span>(),ans=<span class="hljs-number">2</span>*n%modp;
-		<span class="hljs-keyword">for</span>(re i=<span class="hljs-number">3</span>;i&lt;=tmp;++i)
-			ans=(ans+n/Lcm[i])%modp;
-		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans);
-	&#125;
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;</code></pre></div>
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> modp = <span class="hljs-number">998244353</span>;
 
-    </div>
-</div>
-<h2 id="d.-priority-queue">D. Priority Queue</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1542/problem/D">Problem</a></p>
-<div class="note note-info">
-            <p>题意：给定长为 <span class="math inline">\(n\)</span> 的操作序列 <span class="math inline">\(A\)</span> ，定义操作序列 <span class="math inline">\(B\)</span> 是 <span class="math inline">\(A\)</span> 的一个子序列，并维护一个可重集 <span class="math inline">\(T\)</span> 。若操作形如 <code>+ x</code> 则将 <span class="math inline">\(x\)</span> 插入 <span class="math inline">\(T\)</span> ，若操作形如 <code>-</code> 则将 <span class="math inline">\(T\)</span> 中最小元素删去(若为空则忽略)。令 <span class="math inline">\(f(B)\)</span> 为经过 <span class="math inline">\(B\)</span> 的操作后 <span class="math inline">\(T\)</span> 中剩余元素的和，求 <span class="math inline">\(\sum f(B)\)</span> 。<span class="math inline">\(1\le n \le 500\)</span> 。</p>
-          </div>
-<div class="note note-success">
-            <p>类计数dp，因为我们对于每一个<code>+ x</code> 操作只关心数 <span class="math inline">\(x\)</span> 最终出现在多少个 <span class="math inline">\(B\)</span> 中。因为最多有 <span class="math inline">\(n\)</span> 个 <code>+ x</code>，所以可以最多进行 <span class="math inline">\(n\)</span> 次 dp 得到结果，每次 <span class="math inline">\(O(n^2)\)</span>，一共 <span class="math inline">\(O(n^3)\)</span> 。</p><p>令 <span class="math inline">\(f_{i,j}\)</span> 为前 <span class="math inline">\(i\)</span> 个数中有 <span class="math inline">\(j\)</span> 个数比 <span class="math inline">\(x\)</span> 小的方案数，设当前第 <span class="math inline">\(i\)</span> 位读到 <code>-</code>，比 <span class="math inline">\(x\)</span> 大的数和比 <span class="math inline">\(x\)</span> 小的数，由该位选或不选分类讨论写出转移方程。若 <span class="math inline">\(A[k]=x\)</span> :</p><p><span class="math display">\[f_{i,j}=\begin{cases}f_{i-1,j}+f_{i-1,j+1}&amp;,A[i]= \text{&#39;-&#39;}\\f_{i-1,j}+f_{i-1,j}&amp;,A[i]&gt;x \text{   or }A[i]=x,i&gt;k \\f_{i-1,j}+f_{i-1,j-1}&amp;,A[i]&lt;x,j\neq0 \text{ or }A[i]=x,i&lt;k\\f_{i-1,j}&amp;,A[i]&lt;x,j=0 \text{ or }A[i]=x,i&lt;k\end{cases}\]</span></p><p>特别注意第一种情况当 <span class="math inline">\(i&lt;k\)</span> 且 <span class="math inline">\(j=0\)</span> 时需要加上 <span class="math inline">\(f_{i-1,0}\)</span>，因为此时选上 <code>-</code> 不会使 <span class="math inline">\(j\)</span> 变小。</p>
-          </div>
-<div class='spoiler collapsed'>
-    <div class='spoiler-title'>
-        Code
-    </div>
-    <div class='spoiler-content'>
-        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> re register int</span>
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
-<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>
-<span class="hljs-function"></span>&#123;
-	<span class="hljs-type">int</span> x=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();
-	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch))&#123;<span class="hljs-keyword">if</span>(ch==<span class="hljs-string">&#x27;-&#x27;</span>)f=<span class="hljs-number">-1</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
-	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch))&#123;x=(x&lt;&lt;<span class="hljs-number">3</span>)+(x&lt;&lt;<span class="hljs-number">1</span>)+(ch^<span class="hljs-number">48</span>);ch=<span class="hljs-built_in">getchar</span>();&#125;
-	<span class="hljs-keyword">return</span> f==<span class="hljs-number">1</span>?x:-x;
-&#125;
-<span class="hljs-type">const</span> <span class="hljs-type">int</span> modp=<span class="hljs-number">998244353</span>; 
-<span class="hljs-type">int</span> A[<span class="hljs-number">500</span>+<span class="hljs-number">10</span>],f[<span class="hljs-number">500</span>+<span class="hljs-number">10</span>][<span class="hljs-number">500</span>+<span class="hljs-number">10</span>];
-<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>
 <span class="hljs-function"></span>&#123;
 	<span class="hljs-type">int</span> n=<span class="hljs-built_in">read</span>();
-	<span class="hljs-keyword">for</span>(re i=<span class="hljs-number">1</span>;i&lt;=n;++i)
-	&#123;
-		<span class="hljs-type">char</span> x[<span class="hljs-number">3</span>];<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;x);
-		<span class="hljs-keyword">if</span>(x[<span class="hljs-number">0</span>]==<span class="hljs-string">&#x27;+&#x27;</span>) A[i]=<span class="hljs-built_in">read</span>();
-		<span class="hljs-keyword">else</span> A[i]=<span class="hljs-number">-1</span>;
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n+<span class="hljs-number">1</span>)</span></span>;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
+		a[i]=<span class="hljs-built_in">read</span>();
 	&#125;
-	<span class="hljs-type">int</span> ans=<span class="hljs-number">0</span>;
-	<span class="hljs-keyword">for</span>(re k=<span class="hljs-number">1</span>;k&lt;=n;++k)
-	&#123;
-		<span class="hljs-keyword">if</span>(A[k]==<span class="hljs-number">-1</span>) <span class="hljs-keyword">continue</span>;
-		<span class="hljs-built_in">memset</span>(f,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span> f);
-		f[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]=<span class="hljs-number">1</span>;
-		<span class="hljs-keyword">for</span>(re i=<span class="hljs-number">1</span>;i&lt;=n;++i)
-		&#123;
-			<span class="hljs-keyword">if</span>(i==k)
-			&#123;
-				<span class="hljs-built_in">memcpy</span>(f[i],f[i<span class="hljs-number">-1</span>],<span class="hljs-keyword">sizeof</span> f[i]);
-				<span class="hljs-keyword">continue</span>;
+	<span class="hljs-type">int</span> l=<span class="hljs-number">1</span>,r=<span class="hljs-number">2</span>;
+	<span class="hljs-keyword">while</span>(r&lt;n) &#123;
+		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=l+<span class="hljs-number">2</span>;i&lt;=r;++i) &#123;
+			<span class="hljs-keyword">if</span>(a[i]&lt;a[i<span class="hljs-number">-1</span>]) &#123;
+				<span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;No&quot;</span>);
+				<span class="hljs-keyword">return</span> ;
 			&#125;
-			<span class="hljs-keyword">for</span>(re j=<span class="hljs-number">0</span>;j&lt;=n;++j)
-			&#123;
-				<span class="hljs-keyword">if</span>(A[i]==<span class="hljs-number">-1</span>)
-				&#123;
-					f[i][j]=(f[i<span class="hljs-number">-1</span>][j]+f[i<span class="hljs-number">-1</span>][j+<span class="hljs-number">1</span>])%modp;
-					<span class="hljs-keyword">if</span>(j==<span class="hljs-number">0</span> &amp;&amp; i&lt;k) f[i][j]=(f[i][j]+f[i<span class="hljs-number">-1</span>][j])%modp;
-				&#125;
-				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(A[i]&lt;A[k] || (A[i]==A[k] &amp;&amp; i&lt;k))
-				&#123;
-					<span class="hljs-keyword">if</span>(j==<span class="hljs-number">0</span>)f[i][j]=f[i<span class="hljs-number">-1</span>][j];
-					<span class="hljs-keyword">else</span> f[i][j]=(f[i<span class="hljs-number">-1</span>][j]+f[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>])%modp;
-				&#125;
-				<span class="hljs-keyword">else</span> f[i][j]=(f[i<span class="hljs-number">-1</span>][j]+f[i<span class="hljs-number">-1</span>][j])%modp;
-			&#125;	
 		&#125;
-		<span class="hljs-type">int</span> sum=<span class="hljs-number">0</span>;
-		<span class="hljs-keyword">for</span>(re j=<span class="hljs-number">0</span>;j&lt;=n;++j)
-			sum=(sum+f[n][j])%modp;
-		ans=(ans+sum*A[k]%modp)%modp;
+		l*=<span class="hljs-number">2</span>;
+		r*=<span class="hljs-number">2</span>;
 	&#125;
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans);
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=l+<span class="hljs-number">2</span>;i&lt;=<span class="hljs-built_in">min</span>(r,n);++i) &#123;
+		<span class="hljs-keyword">if</span>(a[i]&lt;a[i<span class="hljs-number">-1</span>]) &#123;
+			<span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;No&quot;</span>);
+			<span class="hljs-keyword">return</span> ;
+		&#125;
+	&#125;
+	<span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Yes&quot;</span>);
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-comment">//fre(test);</span>
+	<span class="hljs-type">int</span> T=<span class="hljs-built_in">read</span>();
+	<span class="hljs-keyword">while</span>(T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+		<span class="hljs-comment">//fflush(stdout);</span>
+	&#125;
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre></div>
+
+    </div>
+</div>
+<h2 id="b.-deja-vu">B. Deja Vu</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1891/problem/B">Problem</a></p>
+<div class="note note-info">
+            <p>题意：给定长为 <span class="math inline">\(n\)</span> 的正整数数列 <span class="math inline">\(a\)</span> 和长为 <span class="math inline">\(q\)</span> 的正整数数列 <span class="math inline">\(x\)</span> 。有 <span class="math inline">\(q\)</span> 次操作。第 <span class="math inline">\(i\in[1,q]\)</span> 次操作，对每个 <span class="math inline">\(j\in[1,n]\)</span>，若 <span class="math inline">\(2^{x_i} \mid a_j\)</span>，则 <span class="math inline">\(a_j \leftarrow a_j+2^{x_i-1}\)</span> 。输出最终数列。</p><p><span class="math inline">\(1\le n,q \le 2\times 10^5\)</span>，<span class="math inline">\(1\le a_i \le 10^{9}\)</span>，<span class="math inline">\(1\le x_i \le 30\)</span>。</p>
+          </div>
+<div class="note note-success">
+            
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>,<span class="hljs-string">&quot;r&quot;</span>,stdin);freopen(#x<span class="hljs-string">&quot;.out&quot;</span>,<span class="hljs-string">&quot;w&quot;</span>,stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> PI acos(-1)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-type">int</span> x=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();
+	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch))&#123;<span class="hljs-keyword">if</span>(ch==<span class="hljs-string">&#x27;-&#x27;</span>)f=<span class="hljs-number">-1</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
+	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch))&#123;x=x*<span class="hljs-number">10</span>+ch<span class="hljs-number">-48</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
+	<span class="hljs-keyword">return</span> f==<span class="hljs-number">1</span>?x:-x;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">void</span> <span class="hljs-title">write</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>
+<span class="hljs-function"></span>&#123;
+    <span class="hljs-keyword">if</span>(x&lt;<span class="hljs-number">0</span>) <span class="hljs-built_in">putchar</span>(<span class="hljs-string">&#x27;-&#x27;</span>),x=-x;
+    <span class="hljs-keyword">if</span>(x&gt;<span class="hljs-number">9</span>) <span class="hljs-built_in">write</span>(x/<span class="hljs-number">10</span>);
+    <span class="hljs-built_in">putchar</span>(x%<span class="hljs-number">10</span>+<span class="hljs-string">&#x27;0&#x27;</span>);
+&#125;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> modp = <span class="hljs-number">998244353</span>;
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-type">int</span> n=<span class="hljs-built_in">read</span>(),q=<span class="hljs-built_in">read</span>();
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n+<span class="hljs-number">1</span>)</span></span>;
+	vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">pos</span>(<span class="hljs-number">31</span>);
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
+		a[i]=<span class="hljs-built_in">read</span>();
+		pos[__lg(a[i] &amp; -a[i])].<span class="hljs-built_in">push_back</span>(i);
+	&#125;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> _=<span class="hljs-number">1</span>;_&lt;=q;++_) &#123;
+		<span class="hljs-type">int</span> x=<span class="hljs-built_in">read</span>();
+		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=x;i&lt;=<span class="hljs-number">30</span>;++i) &#123;
+			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> k:pos[i]) &#123;
+				a[k] += <span class="hljs-number">1</span>&lt;&lt;(x<span class="hljs-number">-1</span>);
+				pos[x<span class="hljs-number">-1</span>].<span class="hljs-built_in">push_back</span>(k);
+			&#125;
+			pos[i].<span class="hljs-built_in">clear</span>();
+		&#125;
+	&#125;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld &quot;</span>,a[i]);
+	&#125;
+	<span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;&quot;</span>);
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-comment">//fre(test);</span>
+	<span class="hljs-type">int</span> T=<span class="hljs-built_in">read</span>();
+	<span class="hljs-keyword">while</span>(T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+		<span class="hljs-comment">//fflush(stdout);</span>
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<div class="note note-warning">
+            <p>一个数二进制最低位的 <span class="math inline">\(1\)</span> 在第 <span class="math inline">\(m\)</span> 位，那么其 <span class="math inline">\(\text{lowbit}\)</span> 值为 <span class="math inline">\(2^{m}\)</span>。</p><p>故数 <span class="math inline">\(x\)</span> 的最低位 <span class="math inline">\(1\)</span> 所在位置为：<code>__lg(x &amp; -x)</code> 。</p>
+          </div>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1891/problem/A">Problem</a></p>
+<div class="note note-info">
+            
+          </div>
+<div class="note note-success">
+            
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        
 
     </div>
 </div>
@@ -626,8 +548,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Codeforces Round 729 (Div.2) 4 of 6</div>
-      <div>https://kisuraop.github.io/2021/07/04/Codeforces-Round-729-Div-2-4-of-6/</div>
+      <div>Codeforces Round 907 (Div.2)</div>
+      <div>https://kisuraop.github.io/2023/11/06/Codeforces-Round-907-Div-2/</div>
     </div>
     <div class="license-meta">
       
@@ -639,7 +561,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2021年7月4日</div>
+          <div>2023年11月6日</div>
         </div>
       
       
@@ -683,18 +605,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/08/24/AtCoder-Regular-Contest-124-4-of-6/" title="AtCoder Regular Contest 124 (4 of 6)">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">AtCoder Regular Contest 124 (4 of 6)</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/12/22/%E7%AD%89%E5%B7%AE%E6%95%B0%E5%88%97%E4%B8%8E%E4%BA%8C%E9%98%B6%E5%89%8D%E7%BC%80%E5%92%8C/" title="等差数列与二阶前缀和">
-                        <span class="hidden-mobile">等差数列与二阶前缀和</span>
+                      <a href="/2023/10/31/GenshinOI-Round-3-A-C/" title="GenshinOI Round 3 A~C">
+                        <span class="hidden-mobile">GenshinOI Round 3 A~C</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
