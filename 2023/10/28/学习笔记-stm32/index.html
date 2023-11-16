@@ -24,8 +24,10 @@
 <meta property="og:description" content="单片机（Single-Chip Microcomputer）：  一种集成电路芯片，采用超大规模集成电路技术。 一个小而完善的微型计算机系统。 具有中央处理器CPU、随机存储器RAM、只读存储器ROM、多种I&#x2F;O口和中断系统、定时器&#x2F;计数器等功能（可能还包括显示驱动电路、脉宽调制电路、模拟多路转换器、A&#x2F;D转换器等电路）  STM32：  ST 公司基于 ARM Cortex-M 内核开发的 3">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="c:\Users\Kisura\AppData\Roaming\Typora\typora-user-images\image-20231101221531031.png">
+<meta property="og:image" content="c:\Users\Kisura\AppData\Roaming\Typora\typora-user-images\image-20231114105200238.png">
+<meta property="og:image" content="d:\STM32%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B%E8%B5%84%E6%96%99\STM32Project\USART.png">
 <meta property="article:published_time" content="2023-10-28T11:07:45.000Z">
-<meta property="article:modified_time" content="2023-11-03T02:06:17.242Z">
+<meta property="article:modified_time" content="2023-11-16T00:52:53.621Z">
 <meta property="article:author" content="KisuraOP">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="c:\Users\Kisura\AppData\Roaming\Typora\typora-user-images\image-20231101221531031.png">
@@ -269,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          555 字
+          3.4k 字
         
       </span>
     
@@ -325,7 +327,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2023年11月3日 上午
+                    本文最后更新于：2023年11月16日 早上
                   
                 
               </p>
@@ -443,6 +445,108 @@
 </table></li>
 </ul>
 <h2 id="新建工程">新建工程</h2>
+<p>开发方式：基于寄存器方式（最底层，最直接），基于标准库方式（间接配置寄存器），基于HAL库方式（图形化快速配置）。</p>
+<h2 id="gpio">GPIO</h2>
+<ul>
+<li><p>GPIO（General Purpose Input Output）通用输入输出口</p></li>
+<li><p>可配置为8种输入输出模式</p></li>
+<li><p>引脚电平：0V~3.3V，部分引脚可容忍5V（引脚定义带 FT 的）</p></li>
+<li><p>输出模式下可控制端口输出高低电平，用以驱动LED、控制蜂鸣器、模拟通信协议输出时序等</p></li>
+<li><p>输入模式下可读取端口的高低电平或电压，用于读取按键输入、外接模块电平信号输入、ADC电压采集、模拟通信协议接收数据等</p></li>
+</ul>
+<figure>
+<img src="C:\Users\Kisura\AppData\Roaming\Typora\typora-user-images\image-20231114105200238.png" srcset="/img/loading.gif" lazyload alt="image-20231114105200238" /><figcaption aria-hidden="true">image-20231114105200238</figcaption>
+</figure>
+<ul>
+<li>都接在 APB2 总线上，命名为 GPIOA，GPIOB 等。</li>
+<li>1 对应高电平，0 对应低电平。</li>
+<li>上拉（<span class="math inline">\(V_{DD}\)</span>）默认为高电平，下拉（<span class="math inline">\(V_{SS}\)</span>）默认为低电平。</li>
+<li>施密特触发器：
+<ul>
+<li>如果电压大于某一阈值，输出瞬间升为高电平；</li>
+<li>若小于某一阈值，瞬间变成低电平。</li>
+</ul></li>
+<li>MOS 是开关，P-MOS 对应高电平，N-MOS 对应低电平。
+<ul>
+<li>推挽：P-MOS，N-MOS 均生效；</li>
+<li>开漏：只有 N-MOS 生效；</li>
+<li>关闭：均无效，端口电平由外部控制。</li>
+</ul></li>
+</ul>
+<h2 id="流水灯">流水灯</h2>
+<div class="code-wrapper"><pre><code class="hljs c++">
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">RCC_AHBPeriphClockCmd</span><span class="hljs-params">(<span class="hljs-type">uint32_t</span> RCC_AHBPeriph, FunctionalState NewState)</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">RCC_APB2PeriphClockCmd</span><span class="hljs-params">(<span class="hljs-type">uint32_t</span> RCC_APB2Periph, FunctionalState NewState)</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">RCC_APB1PeriphClockCmd</span><span class="hljs-params">(<span class="hljs-type">uint32_t</span> RCC_APB1Periph, FunctionalState NewState)</span></span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">GPIO_DeInit</span><span class="hljs-params">(GPIO_TypeDef* GPIOx)</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">GPIO_AFIODeInit</span><span class="hljs-params">(<span class="hljs-type">void</span>)</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">GPIO_Init</span><span class="hljs-params">(GPIO_TypeDef* GPIOx, GPIO_InitTypeDef* GPIO_InitStruct)</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">GPIO_StructInit</span><span class="hljs-params">(GPIO_InitTypeDef* GPIO_InitStruct)</span></span>;
+
+<span class="hljs-function"><span class="hljs-type">uint8_t</span> <span class="hljs-title">GPIO_ReadInputDataBit</span><span class="hljs-params">(GPIO_TypeDef* GPIOx, <span class="hljs-type">uint16_t</span> GPIO_Pin)</span></span>;
+<span class="hljs-function"><span class="hljs-type">uint16_t</span> <span class="hljs-title">GPIO_ReadInputData</span><span class="hljs-params">(GPIO_TypeDef* GPIOx)</span></span>;
+<span class="hljs-function"><span class="hljs-type">uint8_t</span> <span class="hljs-title">GPIO_ReadOutputDataBit</span><span class="hljs-params">(GPIO_TypeDef* GPIOx, <span class="hljs-type">uint16_t</span> GPIO_Pin)</span></span>;
+<span class="hljs-function"><span class="hljs-type">uint16_t</span> <span class="hljs-title">GPIO_ReadOutputData</span><span class="hljs-params">(GPIO_TypeDef* GPIOx)</span></span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">GPIO_SetBits</span><span class="hljs-params">(GPIO_TypeDef* GPIOx, <span class="hljs-type">uint16_t</span> GPIO_Pin)</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">GPIO_ResetBits</span><span class="hljs-params">(GPIO_TypeDef* GPIOx, <span class="hljs-type">uint16_t</span> GPIO_Pin)</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">GPIO_WriteBit</span><span class="hljs-params">(GPIO_TypeDef* GPIOx, <span class="hljs-type">uint16_t</span> GPIO_Pin, BitAction BitVal)</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">GPIO_Write</span><span class="hljs-params">(GPIO_TypeDef* GPIOx, <span class="hljs-type">uint16_t</span> PortVal)</span></span>;
+</code></pre></div>
+<p>GPIO 八种工作模式：</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">enum</span>
+&#123; GPIO_Mode_AIN = <span class="hljs-number">0x0</span>,          <span class="hljs-comment">// 模拟输入(Analog IN)</span>
+  GPIO_Mode_IN_FLOATING = <span class="hljs-number">0x04</span>, <span class="hljs-comment">// 浮空输入</span>
+  GPIO_Mode_IPD = <span class="hljs-number">0x28</span>,         <span class="hljs-comment">// 下拉输入(In Pull Down)</span>
+  GPIO_Mode_IPU = <span class="hljs-number">0x48</span>,         <span class="hljs-comment">// 上拉输入(In Pull Up)</span>
+  GPIO_Mode_Out_OD = <span class="hljs-number">0x14</span>,      <span class="hljs-comment">// 开漏输出(Out Open Drain)</span>
+  GPIO_Mode_Out_PP = <span class="hljs-number">0x10</span>,      <span class="hljs-comment">// 推挽输出(Out Push Pull)</span>
+  GPIO_Mode_AF_OD = <span class="hljs-number">0x1C</span>,       <span class="hljs-comment">// 复用开漏(Atl Open Drain)</span>
+  GPIO_Mode_AF_PP = <span class="hljs-number">0x18</span>        <span class="hljs-comment">// 复用推挽(Atl Push Pull)</span>
+&#125;GPIOMode_TypeDef;</code></pre></div>
+<p>keil 中不能使用 <code>#include "time.h"</code></p>
+<h2 id="oled-调试工具">OLED 调试工具</h2>
+<h2 id="usart-串口">USART 串口</h2>
+<ul>
+<li>TX：数据发送脚（Transmit Exchange）</li>
+<li>RX：数据接受脚（Receive Exchange）</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">USART_DeInit</span><span class="hljs-params">(USART_TypeDef* USARTx)</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">USART_Init</span><span class="hljs-params">(USART_TypeDef* USARTx, USART_InitTypeDef* USART_InitStruct)</span></span>;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">USART_StructInit</span><span class="hljs-params">(USART_InitTypeDef* USART_InitStruct)</span></span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">USART_SendData</span><span class="hljs-params">(USART_TypeDef* USARTx, <span class="hljs-type">uint16_t</span> Data)</span></span>;
+<span class="hljs-function"><span class="hljs-type">uint16_t</span> <span class="hljs-title">USART_ReceiveData</span><span class="hljs-params">(USART_TypeDef* USARTx)</span></span>;</code></pre></div>
+<p>同步通信中，数据信号所传输的内容绝大部分都是有效数据，而异步通信中会包含帧的各种标识符，所以同步通信的效率更高。但是同步通信中双方的时钟允许误差较小，而异步通信双方的时钟允许误差较大。</p>
+<ul>
+<li><strong>nRTS：</strong> 请求以发送(Request To Send)，n 表示低电平有效。如果使能 RTS 流控制，当USART 接收器准备好接收新数据时就会将 nRTS 变成低电平；当接收寄存器已满时，nRTS 将被设置为高电平。该引脚只适用于硬件流控制。</li>
+<li><strong>nCTS：</strong> 清除以发送(Clear To Send)，n 表示低电平有效。如果使能 CTS 流控制，发送器在发送下一帧数据之前会检测 nCTS 引脚，如果为低电平，表示可以发送数据，如果为高电平则在发送完当前数据帧之后停止发送。该引脚只适用于硬件流控制。</li>
+</ul>
+<figure>
+<img src="D:\STM32入门教程资料\STM32Project\USART.png" srcset="/img/loading.gif" lazyload alt="USART" /><figcaption aria-hidden="true">USART</figcaption>
+</figure>
+<p><strong>名称-------------------------描述 RE --------------------------接收使能 RXNE-----------------------读数据寄存器非空 RXNEIE--------------------发送完成中断使能</strong></p>
+<h2 id="printf-移植">printf 移植</h2>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// xx.c</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdarg.h&gt;</span></span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fputc</span><span class="hljs-params">(<span class="hljs-type">int</span> ch, FILE *f)</span> </span>&#123;
+	<span class="hljs-built_in">Serial_SendByte</span>(ch);
+	<span class="hljs-keyword">return</span> ch;
+&#125;
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Serial_Printf</span><span class="hljs-params">(<span class="hljs-type">char</span> *format, ...)</span> </span>&#123;
+	<span class="hljs-type">char</span> String[<span class="hljs-number">100</span>+<span class="hljs-number">5</span>];
+	va_list arg;
+	<span class="hljs-built_in">va_start</span>(arg, format);
+	<span class="hljs-built_in">vsprintf</span>(String, format, arg);
+	<span class="hljs-built_in">va_end</span>(arg);
+	<span class="hljs-built_in">Serial_SendString</span>(String);
+&#125;</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">//xx.h</span>
+<span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span>
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Serial_Printf</span><span class="hljs-params">(<span class="hljs-type">char</span> *format, ...)</span></span>;</code></pre></div>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
