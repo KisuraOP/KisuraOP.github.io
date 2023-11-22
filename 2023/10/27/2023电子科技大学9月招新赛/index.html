@@ -386,7 +386,7 @@
 </div>
 <h2 id="c.-new-string">C. New String</h2>
 <div class="note note-info">
-            <p>题意：给定一个自定义字典序排序规则以及若干字符串，求字典序第 <span class="math inline">\(k\)</span> 小的串。</p><p><span class="math inline">\(1\le|S|\le 1000\)</span> 。</p>
+            <p>题意：给定一个自定义字典序排序规则以及若干字符串，求字典序第 <span class="math inline">\(k\)</span> 小的串。</p><p><span class="math inline">\(1\le|S|\le 1000\)</span>。</p>
           </div>
 <div class="note note-success">
             <p>用 <code>std::map</code> 还原字典序或自定义 <code>std::sort</code> 排序规则均可。</p>
@@ -445,7 +445,7 @@
 </div>
 <h2 id="l.-klees-wonderful-adventure">L. Klee's Wonderful Adventure</h2>
 <div class="note note-info">
-            <p>题意：平面直角坐标系上有 <span class="math inline">\(n\)</span> 个点，相同第 <span class="math inline">\(i\)</span> 象限间点的移动速度为 <span class="math inline">\(v_i\)</span> ，不同象限间点间的移动速度为 <span class="math inline">\(v_0\)</span> ，求从起点 <span class="math inline">\(s\)</span> 到终点 <span class="math inline">\(t\)</span> 的最短时间。</p><p><span class="math inline">\(1\le n\le 3\times 10^3\)</span> 。</p>
+            <p>题意：平面直角坐标系上有 <span class="math inline">\(n\)</span> 个点，相同第 <span class="math inline">\(i\)</span> 象限间点的移动速度为 <span class="math inline">\(v_i\)</span>，不同象限间点间的移动速度为 <span class="math inline">\(v_0\)</span>，求从起点 <span class="math inline">\(s\)</span> 到终点 <span class="math inline">\(t\)</span> 的最短时间。</p><p><span class="math inline">\(1\le n\le 3\times 10^3\)</span>。</p>
           </div>
 <div class="note note-success">
             <p>注意到 <span class="math inline">\(n\)</span> 很小，直接预处理出通过任意两点所需的时间，再跑 <code>dijkstra</code> 就行了。</p><p>时间复杂度 <span class="math inline">\(O(n^2)\)</span> 。</p>
@@ -554,10 +554,10 @@
 </div>
 <h2 id="d.-check-problems">D. Check Problems</h2>
 <div class="note note-info">
-            <p>题意：有 <span class="math inline">\(n\)</span> 个人查验题目，第 <span class="math inline">\(i\)</span> 个人在第 <span class="math inline">\(j\)</span> 秒会查验编号为 <span class="math inline">\(a_i+j-1\)</span> 的题。<span class="math inline">\(q\)</span> 次询问，每次问第 <span class="math inline">\(t\)</span> 秒时有多少道题目已经被查验。</p><p><span class="math inline">\(1\le n,q\le 5\times 10^5\)</span> ，<span class="math inline">\(1\le a_1 \le a_2 \le \dots \le a_n \le 10^{18}\)</span>，<span class="math inline">\(0\le t \le 10^{18}\)</span> 。</p>
+            <p>题意：有 <span class="math inline">\(n\)</span> 个人查验题目，第 <span class="math inline">\(i\)</span> 个人在第 <span class="math inline">\(j\)</span> 秒会查验编号为 <span class="math inline">\(a_i+j-1\)</span> 的题。<span class="math inline">\(q\)</span> 次询问，每次问第 <span class="math inline">\(t\)</span> 秒时有多少道题目已经被查验。</p><p><span class="math inline">\(1\le n,q\le 5\times 10^5\)</span>，<span class="math inline">\(1\le a_1 \le a_2 \le \dots \le a_n \le 10^{18}\)</span>，<span class="math inline">\(0\le t \le 10^{18}\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>相当于数轴上 <span class="math inline">\(n\)</span> 个点，每个点每次向右扩张一个单位。</p><p>那么当一个点触到离它右边的一个点时，往后它就没有贡献了。</p><p>并且当一个点没有贡献时，间隔比它小对应的点也都没有了贡献，符合单调性。</p><p>因此我们把每个点间的间隔距离 <span class="math inline">\(a_i-a_{i-1}\)</span> 记录下来，排序，记录前缀和，再在上面二分。</p><p>每次查询总是前缀和 <span class="math inline">\(+\)</span> 没有扩张完的剩下段。</p><p>时间复杂度 <span class="math inline">\(O((n+q)\log n)\)</span> 。</p>
+            <p>相当于数轴上 <span class="math inline">\(n\)</span> 个点，每个点每次向右扩张一个单位。</p><p>那么当一个点触到离它右边的一个点时，往后它就没有贡献了。</p><p>并且当一个点没有贡献时，间隔比它小对应的点也都没有了贡献，符合单调性。</p><p>因此我们把每个点间的间隔距离 <span class="math inline">\(a_i-a_{i-1}\)</span> 记录下来，排序，记录前缀和，再在上面二分。</p><p>每次查询总是前缀和 <span class="math inline">\(+\)</span> 没有扩张完的剩下段。</p><p>时间复杂度 <span class="math inline">\(O((n+q)\log n)\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -630,10 +630,10 @@
 </div>
 <h2 id="e.-tree-problem">E. Tree Problem</h2>
 <div class="note note-info">
-            <p>题意：给定 <span class="math inline">\(n\)</span> 个点的树，<span class="math inline">\(q\)</span> 次询问每次询问一个点 <span class="math inline">\(x\)</span> ，问树上有多少条简单路径途径点 <span class="math inline">\(x\)</span> 。</p><p><span class="math inline">\(2\le n \le 10^5\)</span> ，<span class="math inline">\(1\le q\le 10^5\)</span> 。</p>
+            <p>题意：给定 <span class="math inline">\(n\)</span> 个点的树，<span class="math inline">\(q\)</span> 次询问每次询问一个点 <span class="math inline">\(x\)</span>，问树上有多少条简单路径途径点 <span class="math inline">\(x\)</span>。</p><p><span class="math inline">\(2\le n \le 10^5\)</span>，<span class="math inline">\(1\le q\le 10^5\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>简单画个图，经过 <span class="math inline">\(x\)</span> 的简单路径的数量就是 <span class="math inline">\(x\)</span> 所有子树大小的两两乘积。</p><p>由于每个子树算了两遍，贡献要除以 <span class="math inline">\(2\)</span> 。</p><p>别忘记 <span class="math inline">\(x\)</span> 作为简单路径端点的 <span class="math inline">\(n-1\)</span> 种情况。</p><p>时间复杂度 <span class="math inline">\(O(n+q)\)</span> 。</p>
+            <p>简单画个图，经过 <span class="math inline">\(x\)</span> 的简单路径的数量就是 <span class="math inline">\(x\)</span> 所有子树大小的两两乘积。</p><p>由于每个子树算了两遍，贡献要除以 <span class="math inline">\(2\)</span>。</p><p>别忘记 <span class="math inline">\(x\)</span> 作为简单路径端点的 <span class="math inline">\(n-1\)</span> 种情况。</p><p>时间复杂度 <span class="math inline">\(O(n+q)\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -716,10 +716,10 @@
 </div>
 <h2 id="g.-subarrays">G. Subarrays</h2>
 <div class="note note-info">
-            <p>题意：给定长度为 <span class="math inline">\(n\)</span> 的正整数序列 <span class="math inline">\(a\)</span> ，求满足子段和为 <span class="math inline">\(k\)</span> 的倍数的子段数量。</p><p><span class="math inline">\(1\le n \le 10^5\)</span> ，<span class="math inline">\(1\le k,a_i \le 10^9\)</span> 。</p>
+            <p>题意：给定长度为 <span class="math inline">\(n\)</span> 的正整数序列 <span class="math inline">\(a\)</span>，求满足子段和为 <span class="math inline">\(k\)</span> 的倍数的子段数量。</p><p><span class="math inline">\(1\le n \le 10^5\)</span>，<span class="math inline">\(1\le k,a_i \le 10^9\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>令 <span class="math inline">\(sum\)</span> 为前缀和，即求满足 <span class="math inline">\(sum[l,r]\equiv 0 \pmod k\)</span> 的区间个数。</p><p>即： <span class="math display">\[sum[l,r] \bmod k =(sum[r]-sum[l-1])\bmod k = 0\]</span> 也就是： <span class="math display">\[sum[l-1]\equiv sum[r] \pmod k\]</span> 于是题目变成了对每个位置 <span class="math inline">\(i\)</span> 求小于 <span class="math inline">\(i\)</span> 的所有前缀和中有多少模 <span class="math inline">\(k\)</span> 值相同，用 <code>std::map</code> 维护即可。</p><p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span> 。</p>
+            <p>令 <span class="math inline">\(sum\)</span> 为前缀和，即求满足 <span class="math inline">\(sum[l,r]\equiv 0 \pmod k\)</span> 的区间个数。</p><p>即： <span class="math display">\[sum[l,r] \bmod k =(sum[r]-sum[l-1])\bmod k = 0\]</span> 也就是： <span class="math display">\[sum[l-1]\equiv sum[r] \pmod k\]</span> 于是题目变成了对每个位置 <span class="math inline">\(i\)</span> 求小于 <span class="math inline">\(i\)</span> 的所有前缀和中有多少模 <span class="math inline">\(k\)</span> 值相同，用 <code>std::map</code> 维护即可。</p><p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -783,10 +783,10 @@
 </div>
 <h2 id="f.-easy-problem">F. Easy Problem</h2>
 <div class="note note-info">
-            <p>题意：<span class="math inline">\(A,B\)</span> 在 <span class="math inline">\(n\times n\)</span> 的网格图上游走，每次移动它们能选择上下左右四个方向中的一个，然后两个人按该方向行走一格（如前方是边界或障碍物则不移动），问两人相遇所需的最小移动步数。</p><p><span class="math inline">\(2\le n \le 50\)</span> 。</p>
+            <p>题意：<span class="math inline">\(A,B\)</span> 在 <span class="math inline">\(n\times n\)</span> 的网格图上游走，每次移动它们能选择上下左右四个方向中的一个，然后两个人按该方向行走一格（如前方是边界或障碍物则不移动），问两人相遇所需的最小移动步数。</p><p><span class="math inline">\(2\le n \le 50\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>只要想到把两个玩家的位置同时压缩成一个状态就迎刃而解了。</p><p>令 <span class="math inline">\(dep[ax][ay][bx][by]\)</span> 为 <span class="math inline">\(A\)</span> 在点 <span class="math inline">\((ax,ay)\)</span>，<span class="math inline">\(B\)</span> 在点 <span class="math inline">\((bx,by)\)</span> 时两人相遇所需的最短步数。</p><p>广度优先搜索，每次移动若新位置对应的状态非 <span class="math inline">\(0\)</span> ，则代表有更短的路径到达那个位置。</p><p>那么我们不移动，否则步数 <span class="math inline">\(+1\)</span> 进行转移。</p><p>当 <span class="math inline">\((ax,ay)=(bx,by)\)</span> 时代表两人到达同一点。</p>
+            <p>只要想到把两个玩家的位置同时压缩成一个状态就迎刃而解了。</p><p>令 <span class="math inline">\(dep[ax][ay][bx][by]\)</span> 为 <span class="math inline">\(A\)</span> 在点 <span class="math inline">\((ax,ay)\)</span>，<span class="math inline">\(B\)</span> 在点 <span class="math inline">\((bx,by)\)</span> 时两人相遇所需的最短步数。</p><p>广度优先搜索，每次移动若新位置对应的状态非 <span class="math inline">\(0\)</span>，则代表有更短的路径到达那个位置。</p><p>那么我们不移动，否则步数 <span class="math inline">\(+1\)</span> 进行转移。</p><p>当 <span class="math inline">\((ax,ay)=(bx,by)\)</span> 时代表两人到达同一点。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -885,10 +885,10 @@
 </div>
 <h2 id="j.-ihis-homework">J. IHI's Homework</h2>
 <div class="note note-info">
-            <p>题意：给定整数 <span class="math inline">\(s\)</span> 和序列 <span class="math inline">\(a\)</span> ，令答案为满足 <span class="math inline">\(x_1+x_2+\dots+x_n\le s\)</span> 且 <span class="math inline">\(\forall x_i \ge a_i\)</span> 的序列 <span class="math inline">\(x\)</span> 的方案数。<span class="math inline">\(q\)</span> 次询问每次更改 <span class="math inline">\(a\)</span> 中的一个数，问每次变动后的答案。</p><p><span class="math inline">\(1\le n,q,a_i \le 2\times 10^5\)</span>，<span class="math inline">\(0\le s\le 2\times 10^5\)</span> 。</p>
+            <p>题意：给定整数 <span class="math inline">\(s\)</span> 和序列 <span class="math inline">\(a\)</span>，令答案为满足 <span class="math inline">\(x_1+x_2+\dots+x_n\le s\)</span> 且 <span class="math inline">\(\forall x_i \ge a_i\)</span> 的序列 <span class="math inline">\(x\)</span> 的方案数。<span class="math inline">\(q\)</span> 次询问每次更改 <span class="math inline">\(a\)</span> 中的一个数，问每次变动后的答案。</p><p><span class="math inline">\(1\le n,q,a_i \le 2\times 10^5\)</span>，<span class="math inline">\(0\le s\le 2\times 10^5\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>简单排列组合，但我不会数学，这题就显得很难。</p><p>将题目转化成球盒问题，有 <span class="math inline">\(n\)</span> 个盒子和 <span class="math inline">\(s\)</span> 个球，将无区分的球放进有区分的盒子，可以有空盒，且第 <span class="math inline">\(i\)</span> 个盒子至少得有 <span class="math inline">\(x_i\)</span> 个球，每次修改一个 <span class="math inline">\(x_i\)</span> ，问方案数。</p><p>首先把每个盒子放入 <span class="math inline">\(x_i\)</span> 个球，剩下 <span class="math inline">\(t=s-\sum x_i\)</span> 个球可以任意放入 <span class="math inline">\(n\)</span> 个盒子。</p><p>结论：<span class="math inline">\(n\)</span> 个无区别球放入 <span class="math inline">\(m\)</span> 个有区别盒子，允许空盒的方案数是 <span class="math inline">\(C_{m+n-1}^{n}\)</span> 。</p>
+            <p>简单排列组合，但我不会数学，这题就显得很难。</p><p>将题目转化成球盒问题，有 <span class="math inline">\(n\)</span> 个盒子和 <span class="math inline">\(s\)</span> 个球，将无区分的球放进有区分的盒子，可以有空盒，且第 <span class="math inline">\(i\)</span> 个盒子至少得有 <span class="math inline">\(x_i\)</span> 个球，每次修改一个 <span class="math inline">\(x_i\)</span>，问方案数。</p><p>首先把每个盒子放入 <span class="math inline">\(x_i\)</span> 个球，剩下 <span class="math inline">\(t=s-\sum x_i\)</span> 个球可以任意放入 <span class="math inline">\(n\)</span> 个盒子。</p><p>结论：<span class="math inline">\(n\)</span> 个无区别球放入 <span class="math inline">\(m\)</span> 个有区别盒子，允许空盒的方案数是 <span class="math inline">\(C_{m+n-1}^{n}\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -896,14 +896,14 @@
     </div>
     <div class='spoiler-content'>
         <p>高中数学学过插板法。</p>
-<p>如果每个盒子至少有一个球，那么我们可以用 <span class="math inline">\(m-1\)</span> 个板去插 <span class="math inline">\(n-1\)</span> 个空，方案数是 <span class="math inline">\(C_{n-1}^{m-1}\)</span> 。</p>
+<p>如果每个盒子至少有一个球，那么我们可以用 <span class="math inline">\(m-1\)</span> 个板去插 <span class="math inline">\(n-1\)</span> 个空，方案数是 <span class="math inline">\(C_{n-1}^{m-1}\)</span>。</p>
 <p>如果允许空盒，那么要做一个转化：</p>
-<p>转化为 <span class="math inline">\(n\)</span> 个无区别球和 <span class="math inline">\(m-1\)</span> 个无区别板的一个自由排列，再把这 <span class="math inline">\(m-1\)</span> 个板选出来，也就是 <span class="math inline">\(C_{n+m-1}^{m-1}=C_{n+m-1}^{n}\)</span> 。</p>
+<p>转化为 <span class="math inline">\(n\)</span> 个无区别球和 <span class="math inline">\(m-1\)</span> 个无区别板的一个自由排列，再把这 <span class="math inline">\(m-1\)</span> 个板选出来，也就是 <span class="math inline">\(C_{n+m-1}^{m-1}=C_{n+m-1}^{n}\)</span>。</p>
 
     </div>
 </div>
 <div class="note note-success">
-            <p>那么答案就是： <span class="math display">\[\sum_{i=1}^t C_{n+i-1}^{i}\]</span> 发现对于相同的 <span class="math inline">\(t\)</span> 答案相同，那么只要预处理出上式的前缀和就可以 <span class="math inline">\(O(1)\)</span> 回答询问。</p><p>时间复杂度 <span class="math inline">\(O(n+s+q)\)</span> 。</p>
+            <p>那么答案就是： <span class="math display">\[\sum_{i=1}^t C_{n+i-1}^{i}\]</span> 发现对于相同的 <span class="math inline">\(t\)</span> 答案相同，那么只要预处理出上式的前缀和就可以 <span class="math inline">\(O(1)\)</span> 回答询问。</p><p>时间复杂度 <span class="math inline">\(O(n+s+q)\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -1056,10 +1056,10 @@
 </div>
 <h2 id="k.-ihis-magic-string">K. IHI's Magic String</h2>
 <div class="note note-info">
-            <p>题意：现在有一个空字符串和三种操作，输出 <span class="math inline">\(q\)</span> 次操作后的字符串。</p><ol type="1"><li>把一个指定小写字母插到末尾。</li><li>删除字符串末尾的字符（若为空字符串则不操作）</li><li>把目前所有的字符 <span class="math inline">\(x\)</span> 替换成字符 <span class="math inline">\(y\)</span> 。</li></ol><p><span class="math inline">\(1\le q \le 10^5\)</span> 。</p>
+            <p>题意：现在有一个空字符串和三种操作，输出 <span class="math inline">\(q\)</span> 次操作后的字符串。</p><ol type="1"><li>把一个指定小写字母插到末尾。</li><li>删除字符串末尾的字符（若为空字符串则不操作）</li><li>把目前所有的字符 <span class="math inline">\(x\)</span> 替换成字符 <span class="math inline">\(y\)</span>。</li></ol><p><span class="math inline">\(1\le q \le 10^5\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>一般这种正着做简单但时间复杂度高的题总是考虑倒着做。</p><p>倒着做的好处在于：假设有操作 <span class="math inline">\(a\to b\)</span> ，那么之后添加的 <span class="math inline">\(a\)</span> 都可以直接用 <span class="math inline">\(b\)</span> 替代，那如果再有 <span class="math inline">\(b\to c\)</span> 呢？</p><p>用 <span class="math inline">\(mp[i]\)</span> 表示在添加 <span class="math inline">\(i\)</span> 时应该添加 <span class="math inline">\(mp[i]\)</span>，初始 <span class="math inline">\(mp[i]=i\)</span> 。</p><p>那么对于上面那种情况实际等效于 <span class="math inline">\(a\to c\)</span> ，我们直接 <span class="math inline">\(mp[a]=mp[b]\)</span> 。</p><p>这其实类似并查集的路径压缩方法。</p><p>对于删除操作，可以直接用一个延迟标记（这里是 <span class="math inline">\(\text{del}\)</span>）， 来 <span class="math inline">\(O(1)\)</span> 判断当前字符是否计入答案，很妙。</p><p>时间复杂度 <span class="math inline">\(O(q\log 26)\)</span> 。</p>
+            <p>一般这种正着做简单但时间复杂度高的题总是考虑倒着做。</p><p>倒着做的好处在于：假设有操作 <span class="math inline">\(a\to b\)</span>，那么之后添加的 <span class="math inline">\(a\)</span> 都可以直接用 <span class="math inline">\(b\)</span> 替代，那如果再有 <span class="math inline">\(b\to c\)</span> 呢？</p><p>用 <span class="math inline">\(mp[i]\)</span> 表示在添加 <span class="math inline">\(i\)</span> 时应该添加 <span class="math inline">\(mp[i]\)</span>，初始 <span class="math inline">\(mp[i]=i\)</span>。</p><p>那么对于上面那种情况实际等效于 <span class="math inline">\(a\to c\)</span>，我们直接 <span class="math inline">\(mp[a]=mp[b]\)</span>。</p><p>这其实类似并查集的路径压缩方法。</p><p>对于删除操作，可以直接用一个延迟标记（这里是 <span class="math inline">\(\text{del}\)</span>），来 <span class="math inline">\(O(1)\)</span> 判断当前字符是否计入答案，很妙。</p><p>时间复杂度 <span class="math inline">\(O(q\log 26)\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -1151,10 +1151,10 @@
 </div>
 <h2 id="i.-optimal-biking-strategy">I. Optimal Biking Strategy</h2>
 <div class="note note-info">
-            <p>题意：<span class="math inline">\(\text{Alice}\)</span> 要去到 <span class="math inline">\(p\)</span> 米外的超市，他可以走路或骑车。路上有 <span class="math inline">\(n\)</span> 个停车点，能且仅能在停车点上下车，一块钱最多能骑 <span class="math inline">\(s\)</span> 米（骑 <span class="math inline">\(x\)</span> 米需花费 <span class="math inline">\(\left\lceil \frac{x}{s} \right\rceil\)</span> 元）。他现在只有 <span class="math inline">\(k\)</span> 元，问最少需要走路多远。</p><p><span class="math inline">\(1\le n \le 10^6\)</span> ，<span class="math inline">\(1\le p,s \le 10^9\)</span> ，<span class="math inline">\(1\le k\le 5\)</span> 。</p>
+            <p>题意：<span class="math inline">\(\text{Alice}\)</span> 要去到 <span class="math inline">\(p\)</span> 米外的超市，他可以走路或骑车。路上有 <span class="math inline">\(n\)</span> 个停车点，能且仅能在停车点上下车，一块钱最多能骑 <span class="math inline">\(s\)</span> 米（骑 <span class="math inline">\(x\)</span> 米需花费 <span class="math inline">\(\left\lceil \frac{x}{s} \right\rceil\)</span> 元）。他现在只有 <span class="math inline">\(k\)</span> 元，问最少需要走路多远。</p><p><span class="math inline">\(1\le n \le 10^6\)</span>，<span class="math inline">\(1\le p,s \le 10^9\)</span>，<span class="math inline">\(1\le k\le 5\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>场上写了一个 <span class="math inline">\(O(nk\log n)\)</span> 很奇怪的背包一直调不出来，后面发现完全是假的。</p><p>感觉我到现在对于 <span class="math inline">\(\text{dp}\)</span> 一直是模棱两可的状态，很烦。</p><p>用 <span class="math inline">\(dp_{i,j}\)</span> 代表前 <span class="math inline">\(i\)</span> 个停车点花费 <span class="math inline">\(j\)</span> 能骑的最远距离，那么答案就是 <span class="math inline">\(p-dp_{n,k}\)</span> 。</p><p>至于转移，根据题意算钱要上取整，所以多个相邻的骑车区间肯定是直接合并。</p><p>因为连续，所以可以二分，对于每一个 <span class="math inline">\(k\in[1,j]\)</span> 二分出花费 <span class="math inline">\(k\)</span> 能骑到的最远距离再转移。</p><p>具体地，当前在 <span class="math inline">\(i\)</span> ，就从满足 <span class="math inline">\(a_i-a_l\le sk\)</span> 的最远的 <span class="math inline">\(l\)</span> 处转移而来，即： <span class="math display">\[dp_{i,j}=\max(dp_{i,j},dp_{l,j-k}+a_i-a_l)\]</span> 时间复杂度 <span class="math inline">\(O(nk^2\log n)\)</span> 。</p>
+            <p>场上写了一个 <span class="math inline">\(O(nk\log n)\)</span> 很奇怪的背包一直调不出来，后面发现完全是假的。</p><p>感觉我到现在对于 <span class="math inline">\(\text{dp}\)</span> 一直是模棱两可的状态，很烦。</p><p>用 <span class="math inline">\(dp_{i,j}\)</span> 代表前 <span class="math inline">\(i\)</span> 个停车点花费 <span class="math inline">\(j\)</span> 能骑的最远距离，那么答案就是 <span class="math inline">\(p-dp_{n,k}\)</span> 。</p><p>至于转移，根据题意算钱要上取整，所以多个相邻的骑车区间肯定是直接合并。</p><p>因为连续，所以可以二分，对于每一个 <span class="math inline">\(k\in[1,j]\)</span> 二分出花费 <span class="math inline">\(k\)</span> 能骑到的最远距离再转移。</p><p>具体地，当前在 <span class="math inline">\(i\)</span>，就从满足 <span class="math inline">\(a_i-a_l\le sk\)</span> 的最远的 <span class="math inline">\(l\)</span> 处转移而来，即： <span class="math display">\[dp_{i,j}=\max(dp_{i,j},dp_{l,j-k}+a_i-a_l)\]</span> 时间复杂度 <span class="math inline">\(O(nk^2\log n)\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -1227,10 +1227,10 @@
 </div>
 <h2 id="h.-ganyu-segment-tree">H. Ganyu Segment Tree</h2>
 <div class="note note-info">
-            <p>题意：给定一个长度 <span class="math inline">\(n\)</span> 初值全为 <span class="math inline">\(1\)</span> 的序列 <span class="math inline">\(a\)</span> ，每个位置有上锁和不上锁两种状态。</p><p>三种操作，共操作 <span class="math inline">\(m\)</span> 次：</p><ul><li><code>flip p</code> ：改变 <span class="math inline">\(a_p\)</span> 的状态。</li><li><code>mul l r x</code> ：把子段 <span class="math inline">\([l,r]\)</span> 中所有未上锁元素乘以 <span class="math inline">\(x\)</span> 。</li><li><code>div l r x</code> ：查询子段 <span class="math inline">\([l,r]\)</span> 中所有元素（包括上锁）是否是 <span class="math inline">\(x\)</span> 的倍数，输出 <code>Yes</code> 或 <code>No</code> 。若为 <code>Yes</code> ，将 <span class="math inline">\([l,r]\)</span> 中的所有未上锁元素除以 <span class="math inline">\(x\)</span> 。</li></ul><p><span class="math inline">\(1\le n,m \le 10^5\)</span>，<span class="math inline">\(1\le x \le 30\)</span> 。</p>
+            <p>题意：给定一个长度 <span class="math inline">\(n\)</span> 初值全为 <span class="math inline">\(1\)</span> 的序列 <span class="math inline">\(a\)</span>，每个位置有上锁和不上锁两种状态。</p><p>三种操作，共操作 <span class="math inline">\(m\)</span> 次：</p><ul><li><code>flip p</code> ：改变 <span class="math inline">\(a_p\)</span> 的状态。</li><li><code>mul l r x</code> ：把子段 <span class="math inline">\([l,r]\)</span> 中所有未上锁元素乘以 <span class="math inline">\(x\)</span>。</li><li><code>div l r x</code> ：查询子段 <span class="math inline">\([l,r]\)</span> 中所有元素（包括上锁）是否是 <span class="math inline">\(x\)</span> 的倍数，输出 <code>Yes</code> 或 <code>No</code> 。若为 <code>Yes</code> ，将 <span class="math inline">\([l,r]\)</span> 中的所有未上锁元素除以 <span class="math inline">\(x\)</span>。</li></ul><p><span class="math inline">\(1\le n,m \le 10^5\)</span>，<span class="math inline">\(1\le x \le 30\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>修改的数 <span class="math inline">\(x\)</span> 很小，所以可以把 <span class="math inline">\(x\)</span> 质因数分解，而 <span class="math inline">\([1,30]\)</span> 内就 <span class="math inline">\(10\)</span> 个质数。</p><p>我们对每个质数都建一颗线段树，而处理是否能整除只需判断是否该区间都含有某个质因子。</p><p>具体的，对于操作 <code>mul l r x</code> ，若 <span class="math inline">\(x\)</span> 能分解成 <span class="math inline">\(cnt\)</span> 个质因子 <span class="math inline">\(y\)</span> ，则在 <span class="math inline">\(y\)</span> 所属的线段树上区间 <span class="math inline">\(+ cnt\)</span> 。</p><p>那么对于操作 <code>div l r x</code> ，检查 <span class="math inline">\(x\)</span> 的每个质因子 <span class="math inline">\(y\)</span> ，若 <span class="math inline">\(y\)</span> 所属的线段树在 <span class="math inline">\([l,r]\)</span> 内的区间最小值比 <span class="math inline">\(cnt\)</span> 小，那么该区间不能被整除。否则区间 <span class="math inline">\(-cnt\)</span> 。</p><p>现在考虑如何维护解锁与未解锁。是一个很清奇的技巧：</p><p>对于每颗线段树开两个值 <span class="math inline">\(tr1,tr2\)</span> ，分别代表当前区间未锁定元素的最小值和区间锁定元素的最小值，初始化 <span class="math inline">\(tr1=0,tr2=inf\)</span> 。</p><p>对于 <code>mul</code> 和 <code>div</code> 操作，只对 <span class="math inline">\(tr1\)</span> 进行操作。</p><p>对于 <code>flip</code> 操作，只需单点 <span class="math inline">\(swap(tr1,tr2)\)</span> 。</p><p>对于查询操作，我们返回 <span class="math inline">\(\min(tr1,tr2)\)</span> 。</p><p>我们发现 <span class="math inline">\(inf\)</span> 和加减的值不在一个数量级，相当于没有影响，所以这么做是正确的。</p><p>时间复杂度 <span class="math inline">\(O(m\log n)\)</span> 。</p>
+            <p>修改的数 <span class="math inline">\(x\)</span> 很小，所以可以把 <span class="math inline">\(x\)</span> 质因数分解，而 <span class="math inline">\([1,30]\)</span> 内就 <span class="math inline">\(10\)</span> 个质数。</p><p>我们对每个质数都建一颗线段树，而处理是否能整除只需判断是否该区间都含有某个质因子。</p><p>具体的，对于操作 <code>mul l r x</code> ，若 <span class="math inline">\(x\)</span> 能分解成 <span class="math inline">\(cnt\)</span> 个质因子 <span class="math inline">\(y\)</span>，则在 <span class="math inline">\(y\)</span> 所属的线段树上区间 <span class="math inline">\(+ cnt\)</span>。</p><p>那么对于操作 <code>div l r x</code> ，检查 <span class="math inline">\(x\)</span> 的每个质因子 <span class="math inline">\(y\)</span>，若 <span class="math inline">\(y\)</span> 所属的线段树在 <span class="math inline">\([l,r]\)</span> 内的区间最小值比 <span class="math inline">\(cnt\)</span> 小，那么该区间不能被整除。否则区间 <span class="math inline">\(-cnt\)</span>。</p><p>现在考虑如何维护解锁与未解锁。是一个很清奇的技巧：</p><p>对于每颗线段树开两个值 <span class="math inline">\(tr1,tr2\)</span>，分别代表当前区间未锁定元素的最小值和区间锁定元素的最小值，初始化 <span class="math inline">\(tr1=0,tr2=inf\)</span>。</p><p>对于 <code>mul</code> 和 <code>div</code> 操作，只对 <span class="math inline">\(tr1\)</span> 进行操作。</p><p>对于 <code>flip</code> 操作，只需单点 <span class="math inline">\(swap(tr1,tr2)\)</span>。</p><p>对于查询操作，我们返回 <span class="math inline">\(\min(tr1,tr2)\)</span>。</p><p>我们发现 <span class="math inline">\(inf\)</span> 和加减的值不在一个数量级，相当于没有影响，所以这么做是正确的。</p><p>时间复杂度 <span class="math inline">\(O(m\log n)\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -1412,10 +1412,10 @@
 </div>
 <h2 id="a.-skills">A. Skills</h2>
 <div class="note note-info">
-            <p>题意：现有 <span class="math inline">\(3\)</span> 项技能，编号 <span class="math inline">\(1,2,3\)</span> 。初始每项技能的熟练度为 <span class="math inline">\(0\)</span> 。接下来有 <span class="math inline">\(n\)</span> 天，第 <span class="math inline">\(i\)</span> 天可以选择一项技能（假设是第 <span class="math inline">\(j\)</span> 项）进行练习，然后在这天结束时让这项技能的熟练度增加 <span class="math inline">\(a_{i,j}\)</span> 。同时，如果某一项技能（假设是第 <span class="math inline">\(k\)</span> 项）已经有 <span class="math inline">\(x\)</span> 天没有练习，那么在这天结束时，这项技能的熟练度会减少 <span class="math inline">\(x\)</span> （不会减少到 <span class="math inline">\(0\)</span> 以下）。</p><p>问在第 <span class="math inline">\(n\)</span> 天结束后，这 <span class="math inline">\(3\)</span> 项技能的熟练度之和最大为多少。</p><p><span class="math inline">\(1\le n \le 1000\)</span>，<span class="math inline">\(\forall\text{ } 1\le i\le n\)</span> , <span class="math inline">\(1\le j \le 3\)</span> , <span class="math inline">\(0\le a_{i,j} \le 10^4\)</span> 。</p>
+            <p>题意：现有 <span class="math inline">\(3\)</span> 项技能，编号 <span class="math inline">\(1,2,3\)</span>。初始每项技能的熟练度为 <span class="math inline">\(0\)</span>。接下来有 <span class="math inline">\(n\)</span> 天，第 <span class="math inline">\(i\)</span> 天可以选择一项技能（假设是第 <span class="math inline">\(j\)</span> 项）进行练习，然后在这天结束时让这项技能的熟练度增加 <span class="math inline">\(a_{i,j}\)</span>。同时，如果某一项技能（假设是第 <span class="math inline">\(k\)</span> 项）已经有 <span class="math inline">\(x\)</span> 天没有练习，那么在这天结束时，这项技能的熟练度会减少 <span class="math inline">\(x\)</span>（不会减少到 <span class="math inline">\(0\)</span> 以下）。</p><p>问在第 <span class="math inline">\(n\)</span> 天结束后，这 <span class="math inline">\(3\)</span> 项技能的熟练度之和最大为多少。</p><p><span class="math inline">\(1\le n \le 1000\)</span>，<span class="math inline">\(\forall\text{ } 1\le i\le n\)</span> , <span class="math inline">\(1\le j \le 3\)</span> , <span class="math inline">\(0\le a_{i,j} \le 10^4\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p><span class="math inline">\(\text{dp}\)</span> 题。</p><p>首先要注意到最优解里面，一个技能如果开始学习了，那么中间过程熟练度不会降到 <span class="math inline">\(0\)</span> 以下。否则不如不学。</p><p>其次假如一个技能有 <span class="math inline">\(t\)</span> 天没有学习，那么将会损失 <span class="math inline">\(1+2+\dots+t=\dfrac{t(t+1)}{2}\)</span> 点熟练度。</p><p>也就是说一个技能如果开始学习了，不会停止学习超过 <span class="math inline">\(2\sqrt W +O(1)\)</span> 天，其中 <span class="math inline">\(W=\max (a_{i,j})\)</span> 。</p><p>令 <span class="math inline">\(dp_{i,j,x,y}\)</span> 代表到第 <span class="math inline">\(i\)</span> 天，在这天选择练习技能 <span class="math inline">\(j\)</span> ，其它两项技能分别有 <span class="math inline">\(x\)</span> 天和 <span class="math inline">\(y\)</span> 天没有练习了能带来的最大收益。每次转移从上一天练习的三种情况转移而来。</p><p>那么 <span class="math inline">\(ans=\max(dp_{n,1\sim 3,0\sim W,0\sim W})\)</span> 。</p><p>其中第一维可以滚动，总状态数不超过 <span class="math inline">\(O(W^2)\)</span> 。</p><p>时间复杂度 <span class="math inline">\(O(nW^2)\)</span> 。</p>
+            <p><span class="math inline">\(\text{dp}\)</span> 题。</p><p>首先要注意到最优解里面，一个技能如果开始学习了，那么中间过程熟练度不会降到 <span class="math inline">\(0\)</span> 以下。否则不如不学。</p><p>其次假如一个技能有 <span class="math inline">\(t\)</span> 天没有学习，那么将会损失 <span class="math inline">\(1+2+\dots+t=\dfrac{t(t+1)}{2}\)</span> 点熟练度。</p><p>也就是说一个技能如果开始学习了，不会停止学习超过 <span class="math inline">\(2\sqrt W +O(1)\)</span> 天，其中 <span class="math inline">\(W=\max (a_{i,j})\)</span>。</p><p>令 <span class="math inline">\(dp_{i,j,x,y}\)</span> 代表到第 <span class="math inline">\(i\)</span> 天，在这天选择练习技能 <span class="math inline">\(j\)</span> ，其它两项技能分别有 <span class="math inline">\(x\)</span> 天和 <span class="math inline">\(y\)</span> 天没有练习了能带来的最大收益。每次转移从上一天练习的三种情况转移而来。</p><p>那么 <span class="math inline">\(ans=\max(dp_{n,1\sim 3,0\sim W,0\sim W})\)</span>。</p><p>其中第一维可以滚动，总状态数不超过 <span class="math inline">\(O(W^2)\)</span>。</p><p>时间复杂度 <span class="math inline">\(O(nW^2)\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
