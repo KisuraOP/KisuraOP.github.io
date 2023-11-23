@@ -501,9 +501,9 @@
     </div>
 </div>
 <div class="note note-warning">
-            <p>倍增的写法：</p><div class="code-wrapper"><pre><code class="hljs abnf">for(int j<span class="hljs-operator">=</span><span class="hljs-number">1</span><span class="hljs-comment">;j&lt;=25;++j) &#123;</span>
-	for(int i<span class="hljs-operator">=</span><span class="hljs-number">0</span><span class="hljs-comment">;i&lt;n;++i) &#123;</span>
-		f[i][j]<span class="hljs-operator">=</span>f[f[i][j-<span class="hljs-number">1</span>]][j-<span class="hljs-number">1</span>]<span class="hljs-comment">;</span>
+            <p>倍增的写法：</p><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-number">1</span>;j&lt;=<span class="hljs-number">25</span>;++j) &#123;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;n;++i) &#123;
+		f[i][j]=f[f[i][j<span class="hljs-number">-1</span>]][j<span class="hljs-number">-1</span>];
 	&#125;
 &#125;</code></pre></div><p>选从 <span class="math inline">\(i\)</span> 开始的第 <span class="math inline">\(2^j\)</span> 个相当于选从 <span class="math inline">\(i\)</span> 往后 <span class="math inline">\(2^{j-1}\)</span> 处开始的第 <span class="math inline">\(2^{j-1}\)</span> 个。</p>
           </div>
