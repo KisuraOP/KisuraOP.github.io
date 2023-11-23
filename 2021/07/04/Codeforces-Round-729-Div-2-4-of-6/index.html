@@ -376,7 +376,7 @@
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1542/problem/B">Problem</a></p>
 <span class="label label-primary">好题</span>
 <div class="note note-info">
-            <p>题意：<span class="math inline">\(T\le 10^5\)</span> 组数据，给定正整数 <span class="math inline">\(n,a,b\)</span> ，每次能将一个数 <span class="math inline">\(\times a\)</span> 或 <span class="math inline">\(+b\)</span> ，问是否能将 <span class="math inline">\(1\)</span> 经过若干次操作得到 <span class="math inline">\(n\)</span> 。<span class="math inline">\(1\le n,a,b\le 10^9\)</span>。</p>
+            <p>题意：<span class="math inline">\(T\le 10^5\)</span> 组数据，给定正整数 <span class="math inline">\(n,a,b\)</span> ，每次能将一个数 <span class="math inline">\(\times a\)</span> 或 <span class="math inline">\(+b\)</span>，问是否能将 <span class="math inline">\(1\)</span> 经过若干次操作得到 <span class="math inline">\(n\)</span> 。</p><p><span class="math inline">\(1\le n,a,b\le 10^9\)</span>。</p>
           </div>
 <div class="note note-success">
             <p>若得到了某个数 <span class="math inline">\(x\)</span> 满足 <span class="math inline">\((n-x)\% b=0\)</span> 那么显然符合要求。</p><p>对于 <span class="math inline">\(+b\)</span> 操作，<span class="math inline">\(\%b\)</span> 后余数不变。</p><p>意味着只有 <span class="math inline">\(\times a\)</span> 操作会使 <span class="math inline">\(\%b\)</span> 的余数改变。</p><p>枚举不超过 <span class="math inline">\(n\)</span> 的 <span class="math inline">\(a\)</span> 的次方数 <span class="math inline">\(x\)</span> 判断是否满足 <span class="math inline">\((n-x)\%b=0\)</span> 即可。</p><p>特判 <span class="math inline">\(a=1\)</span> 的情况。</p>
@@ -436,22 +436,22 @@
 <h2 id="c.-strange-function">C. Strange Function</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1542/problem/C">Problem</a></p>
 <div class="note note-info">
-            <p>题意：求 <span class="math inline">\(\sum\limits_{i=1}^n f_i\)</span> ，<span class="math inline">\(f_i\)</span> 为满足 <span class="math inline">\(x\nmid i\)</span> 的最小正整数 <span class="math inline">\(x\)</span> 。<span class="math inline">\(1\le T\le 10^4\)</span>, <span class="math inline">\(1\le n\le 10^{16}\)</span> 。</p>
+            <p>题意：求 <span class="math inline">\(\sum\limits_{i=1}^n f_i\)</span>，<span class="math inline">\(f_i\)</span> 为满足 <span class="math inline">\(x\nmid i\)</span> 的最小正整数 <span class="math inline">\(x\)</span>。</p><p><span class="math inline">\(1\le T\le 10^4\)</span>，<span class="math inline">\(1\le n\le 10^{16}\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>没什么思路，打表得到 <span class="math inline">\(2,3,2,3,2,4,2,3,2,3,2,5,2,\dots\)</span> 。</p><p>令 <span class="math inline">\(p_i\)</span> 为第一次出现 <span class="math inline">\(i\)</span> 的位置，观察有 <span class="math inline">\(p_3=2,p_4=6,p_5=12\)</span> ，类比得 <span class="math inline">\(p_i=\text{lcm} (1\sim i-1)\)</span> 。</p>
+            <p>没什么思路，打表得到 <span class="math inline">\(2,3,2,3,2,4,2,3,2,3,2,5,2,\dots\)</span> 。</p><p>令 <span class="math inline">\(p_i\)</span> 为第一次出现 <span class="math inline">\(i\)</span> 的位置，观察有 <span class="math inline">\(p_3=2,p_4=6,p_5=12\)</span> ，类比得 <span class="math inline">\(p_i=\text{lcm} (1\sim i-1)\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
         Why?
     </div>
     <div class='spoiler-content'>
-        <p>因为对于 <span class="math inline">\(f_x\)</span> ，<span class="math inline">\(1\sim (f_x-1)\)</span> 必然是 <span class="math inline">\(p_{f_x}\)</span> 的因子，故最优选择就是它们的最小公倍数。</p>
+        <p>因为对于 <span class="math inline">\(f_x\)</span>，<span class="math inline">\(1\sim (f_x-1)\)</span> 必然是 <span class="math inline">\(p_{f_x}\)</span> 的因子，故最优选择就是它们的最小公倍数。</p>
 
     </div>
 </div>
 <div class="note note-success">
-            <p>其中每个位置贡献至少为 <span class="math inline">\(2\)</span> ，故初始化 <span class="math inline">\(ans=2n\)</span> 。</p><p>又若 <span class="math inline">\(i\)</span> 在位置 <span class="math inline">\(pos\)</span> 有贡献，则在 <span class="math inline">\(pos\)</span> 的倍数处也必有贡献，且每次贡献为 <span class="math inline">\(1\)</span> 。</p><p>而每个 <span class="math inline">\(i\)</span> 在 <span class="math inline">\(1\sim n\)</span> 中出现 <span class="math inline">\(\left\lfloor\dfrac{n}{p_i}\right\rfloor\)</span> 次，故 <span class="math inline">\(ans=2n+\sum\limits_{i=3}^{p_i\le n}\left\lfloor\dfrac{n}{p_i}\right\rfloor\)</span> .</p>
+            <p>其中每个位置贡献至少为 <span class="math inline">\(2\)</span>，故初始化 <span class="math inline">\(ans=2n\)</span>。</p><p>又若 <span class="math inline">\(i\)</span> 在位置 <span class="math inline">\(pos\)</span> 有贡献，则在 <span class="math inline">\(pos\)</span> 的倍数处也必有贡献，且每次贡献为 <span class="math inline">\(1\)</span>。</p><p>而每个 <span class="math inline">\(i\)</span> 在 <span class="math inline">\(1\sim n\)</span> 中出现 <span class="math inline">\(\left\lfloor\dfrac{n}{p_i}\right\rfloor\)</span> 次，故 <span class="math inline">\(ans=2n+\sum\limits_{i=3}^{p_i\le n}\left\lfloor\dfrac{n}{p_i}\right\rfloor\)</span> .</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -501,10 +501,10 @@
 <h2 id="d.-priority-queue">D. Priority Queue</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1542/problem/D">Problem</a></p>
 <div class="note note-info">
-            <p>题意：给定长为 <span class="math inline">\(n\)</span> 的操作序列 <span class="math inline">\(A\)</span> ，定义操作序列 <span class="math inline">\(B\)</span> 是 <span class="math inline">\(A\)</span> 的一个子序列，并维护一个可重集 <span class="math inline">\(T\)</span> 。若操作形如 <code>+ x</code> 则将 <span class="math inline">\(x\)</span> 插入 <span class="math inline">\(T\)</span> ，若操作形如 <code>-</code> 则将 <span class="math inline">\(T\)</span> 中最小元素删去(若为空则忽略)。令 <span class="math inline">\(f(B)\)</span> 为经过 <span class="math inline">\(B\)</span> 的操作后 <span class="math inline">\(T\)</span> 中剩余元素的和，求 <span class="math inline">\(\sum f(B)\)</span> 。<span class="math inline">\(1\le n \le 500\)</span> 。</p>
+            <p>题意：给定长为 <span class="math inline">\(n\)</span> 的操作序列 <span class="math inline">\(A\)</span> ，定义操作序列 <span class="math inline">\(B\)</span> 是 <span class="math inline">\(A\)</span> 的一个子序列，并维护一个可重集 <span class="math inline">\(T\)</span>。若操作形如 <code>+ x</code> 则将 <span class="math inline">\(x\)</span> 插入 <span class="math inline">\(T\)</span>，若操作形如 <code>-</code> 则将 <span class="math inline">\(T\)</span> 中最小元素删去(若为空则忽略)。令 <span class="math inline">\(f(B)\)</span> 为经过 <span class="math inline">\(B\)</span> 的操作后 <span class="math inline">\(T\)</span> 中剩余元素的和，求 <span class="math inline">\(\sum f(B)\)</span>。</p><p><span class="math inline">\(1\le n \le 500\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>类计数dp，因为我们对于每一个<code>+ x</code> 操作只关心数 <span class="math inline">\(x\)</span> 最终出现在多少个 <span class="math inline">\(B\)</span> 中。因为最多有 <span class="math inline">\(n\)</span> 个 <code>+ x</code>，所以可以最多进行 <span class="math inline">\(n\)</span> 次 dp 得到结果，每次 <span class="math inline">\(O(n^2)\)</span>，一共 <span class="math inline">\(O(n^3)\)</span> 。</p><p>令 <span class="math inline">\(f_{i,j}\)</span> 为前 <span class="math inline">\(i\)</span> 个数中有 <span class="math inline">\(j\)</span> 个数比 <span class="math inline">\(x\)</span> 小的方案数，设当前第 <span class="math inline">\(i\)</span> 位读到 <code>-</code>，比 <span class="math inline">\(x\)</span> 大的数和比 <span class="math inline">\(x\)</span> 小的数，由该位选或不选分类讨论写出转移方程。若 <span class="math inline">\(A[k]=x\)</span> :</p><p><span class="math display">\[f_{i,j}=\begin{cases}f_{i-1,j}+f_{i-1,j+1}&amp;,A[i]= \text{&#39;-&#39;}\\f_{i-1,j}+f_{i-1,j}&amp;,A[i]&gt;x \text{   or }A[i]=x,i&gt;k \\f_{i-1,j}+f_{i-1,j-1}&amp;,A[i]&lt;x,j\neq0 \text{ or }A[i]=x,i&lt;k\\f_{i-1,j}&amp;,A[i]&lt;x,j=0 \text{ or }A[i]=x,i&lt;k\end{cases}\]</span></p><p>特别注意第一种情况当 <span class="math inline">\(i&lt;k\)</span> 且 <span class="math inline">\(j=0\)</span> 时需要加上 <span class="math inline">\(f_{i-1,0}\)</span>，因为此时选上 <code>-</code> 不会使 <span class="math inline">\(j\)</span> 变小。</p>
+            <p>类计数dp，因为我们对于每一个<code>+ x</code> 操作只关心数 <span class="math inline">\(x\)</span> 最终出现在多少个 <span class="math inline">\(B\)</span> 中。因为最多有 <span class="math inline">\(n\)</span> 个 <code>+ x</code>，所以可以最多进行 <span class="math inline">\(n\)</span> 次 dp 得到结果，每次 <span class="math inline">\(O(n^2)\)</span>，一共 <span class="math inline">\(O(n^3)\)</span>。</p><p>令 <span class="math inline">\(f_{i,j}\)</span> 为前 <span class="math inline">\(i\)</span> 个数中有 <span class="math inline">\(j\)</span> 个数比 <span class="math inline">\(x\)</span> 小的方案数，设当前第 <span class="math inline">\(i\)</span> 位读到 <code>-</code>，比 <span class="math inline">\(x\)</span> 大的数和比 <span class="math inline">\(x\)</span> 小的数，由该位选或不选分类讨论写出转移方程。若 <span class="math inline">\(A[k]=x\)</span> :</p><p><span class="math display">\[f_{i,j}=\begin{cases}f_{i-1,j}+f_{i-1,j+1}&amp;,A[i]= \text{&#39;-&#39;}\\f_{i-1,j}+f_{i-1,j}&amp;,A[i]&gt;x \text{   or }A[i]=x,i&gt;k \\f_{i-1,j}+f_{i-1,j-1}&amp;,A[i]&lt;x,j\neq0 \text{ or }A[i]=x,i&lt;k\\f_{i-1,j}&amp;,A[i]&lt;x,j=0 \text{ or }A[i]=x,i&lt;k\end{cases}\]</span></p><p>特别注意第一种情况当 <span class="math inline">\(i&lt;k\)</span> 且 <span class="math inline">\(j=0\)</span> 时需要加上 <span class="math inline">\(f_{i-1,0}\)</span>，因为此时选上 <code>-</code> 不会使 <span class="math inline">\(j\)</span> 变小。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
