@@ -1,0 +1,6 @@
+/* 设置背景图片 */
+body {
+  background: url(../image/other/all.jpg);
+  background-attachment: fixed;
+  background-size: cover;  
+}<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
