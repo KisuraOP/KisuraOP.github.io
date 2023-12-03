@@ -12,4 +12,8 @@ body {
 .tocbot-active-link {
   font-weight: bold;
   color: #EE1289 !important;
+}
+
+.tocbot-header {
+  color: #ffffff !important;
 }<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
