@@ -7,4 +7,9 @@ body {
 
 .tocbot-link {
   color: #ffffff !important;
+}
+
+.tocbot-active-link {
+  font-weight: bold;
+  color: #EE1289 !important;
 }<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
