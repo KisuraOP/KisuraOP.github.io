@@ -3,4 +3,8 @@ body {
   background: url(../image/other/all.jpg);
   background-attachment: fixed;
   background-size: cover;  
+}
+
+.tocbot-link {
+  color: "#ffffff" !important;
 }<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
