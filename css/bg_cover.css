@@ -5,6 +5,7 @@ body {
   background-size: cover;  
 }
 
+/* 文章侧边栏颜色修改 */
 .tocbot-link {
   color: #ffffff !important;
 }
