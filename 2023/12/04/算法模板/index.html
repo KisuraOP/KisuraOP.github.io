@@ -1131,22 +1131,19 @@ vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs
         OI_base_trans
     </div>
     <div class='spoiler-content'>
-        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">string <span class="hljs-title">base_trans</span><span class="hljs-params">(string s,<span class="hljs-type">int</span> opt1,<span class="hljs-type">int</span> opt2)</span></span>
-<span class="hljs-function"></span>&#123;
-	<span class="hljs-keyword">auto</span> qpow = [&amp;](<span class="hljs-type">int</span> k,<span class="hljs-type">int</span> n)&#123;
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">string <span class="hljs-title">base_trans</span><span class="hljs-params">(string s,<span class="hljs-type">int</span> opt1,<span class="hljs-type">int</span> opt2)</span> </span>&#123;
+	<span class="hljs-keyword">auto</span> qpow = [&amp;](<span class="hljs-type">int</span> k,<span class="hljs-type">int</span> n) &#123;
 		<span class="hljs-type">int</span> res=<span class="hljs-number">1</span>;
 		<span class="hljs-keyword">for</span>(;n;n&gt;&gt;=<span class="hljs-number">1</span>,k=k*k) <span class="hljs-keyword">if</span>(n&amp;<span class="hljs-number">1</span>) res*=k;
 		<span class="hljs-keyword">return</span> res;
 	&#125;;
 	<span class="hljs-type">int</span> sum=<span class="hljs-number">0</span>;
-	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;s.<span class="hljs-built_in">size</span>();++i)
-	&#123;
+	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">0</span>;i&lt;s.<span class="hljs-built_in">size</span>();++i) &#123;
 		<span class="hljs-keyword">if</span>(s[i]&lt;<span class="hljs-string">&#x27;A&#x27;</span>) sum+=<span class="hljs-built_in">qpow</span>(opt1,s.<span class="hljs-built_in">size</span>()-i<span class="hljs-number">-1</span>)*(s[i]-<span class="hljs-string">&#x27;0&#x27;</span>);
 		<span class="hljs-keyword">else</span> sum+=<span class="hljs-built_in">qpow</span>(opt1,s.<span class="hljs-built_in">size</span>()-i<span class="hljs-number">-1</span>)*(s[i]-<span class="hljs-string">&#x27;A&#x27;</span>+<span class="hljs-number">10</span>);
 	&#125;
 	string ans;
-	<span class="hljs-keyword">while</span>(sum&gt;<span class="hljs-number">0</span>)
-	&#123;
+	<span class="hljs-keyword">while</span>(sum&gt;<span class="hljs-number">0</span>) &#123;
 		<span class="hljs-type">int</span> x=sum%opt2;
 		<span class="hljs-keyword">if</span>(x&lt;<span class="hljs-number">10</span>) ans+=<span class="hljs-built_in">to_string</span>(x);
 		<span class="hljs-keyword">else</span> ans+=(<span class="hljs-type">char</span>)(x+<span class="hljs-string">&#x27;A&#x27;</span><span class="hljs-number">-10</span>);
