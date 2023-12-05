@@ -81,7 +81,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"kisuraop.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":55,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"c++"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"kisuraop.github.io","root":"/","version":"1.9.5-a","typing":{"enable":true,"typeSpeed":55,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"c++"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/image/other/loading.mp4","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -768,11 +768,11 @@ b的梯度： tensor([<span class="hljs-number">0.0073</span>])</code></pre></di
           <span class="hljs-number">1.0000</span>,  <span class="hljs-number">1.5000</span>,  <span class="hljs-number">2.0000</span>,  <span class="hljs-number">2.5000</span>], requires_grad=<span class="hljs-literal">True</span>),
  tensor([<span class="hljs-number">0.0000</span>, <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.0000</span>, <span class="hljs-number">0.5000</span>, <span class="hljs-number">1.0000</span>,
          <span class="hljs-number">1.5000</span>, <span class="hljs-number">2.0000</span>, <span class="hljs-number">2.5000</span>], grad_fn=&lt;ReluBackward0&gt;))</code></pre></div>
-<p><img src="https://zh-v2.d2l.ai/_images/output_mlp_76f463_21_0.svg" srcset="/img/loading.gif" lazyload style="zoom: 67%;" /></p>
+<p><img src="https://zh-v2.d2l.ai/_images/output_mlp_76f463_21_0.svg" srcset="/image/other/loading.mp4" lazyload style="zoom: 67%;" /></p>
 <p>一个显著的性质是对 <span class="math inline">\(\text{ReLU}(x)\)</span> 求导后非 <span class="math inline">\(0\)</span> 即 <span class="math inline">\(1\)</span> ，即要么让参数消失，要么让参数通过。</p>
-<p><img src="https://zh-v2.d2l.ai/_images/output_mlp_76f463_36_0.svg" srcset="/img/loading.gif" lazyload style="zoom:67%;" /></p>
+<p><img src="https://zh-v2.d2l.ai/_images/output_mlp_76f463_36_0.svg" srcset="/image/other/loading.mp4" lazyload style="zoom:67%;" /></p>
 <p>用许多个 <span class="math inline">\(\text{ReLU}(x)\)</span> 函数构成连续的分段线性函数：</p>
-<p><img src="https://datawhalechina.github.io/d2l-ai-solutions-manual/ch04/ch4-4-1-2-relu.png" srcset="/img/loading.gif" lazyload style="zoom: 33%;" /></p>
+<p><img src="https://datawhalechina.github.io/d2l-ai-solutions-manual/ch04/ch4-4-1-2-relu.png" srcset="/image/other/loading.mp4" lazyload style="zoom: 33%;" /></p>
 <p>变体：（即使参数是负的，某些信息仍然可以通过） <span class="math display">\[
 \text{pReLU}(x)=\max(0,x) + \alpha\min(0,x)
 \]</span></p>
@@ -785,9 +785,9 @@ b的梯度： tensor([<span class="hljs-number">0.0073</span>])</code></pre></di
 <div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>y = torch.sigmoid(x)
 <span class="hljs-meta">&gt;&gt;&gt; </span>x.grad.zero_()
 <span class="hljs-meta">&gt;&gt;&gt; </span>y.backward(torch.ones_like(x), retain_graph=<span class="hljs-literal">True</span>)</code></pre></div>
-<p><img src="https://zh-v2.d2l.ai/_images/output_mlp_76f463_51_0.svg" srcset="/img/loading.gif" lazyload style="zoom: 67%;" /> <span class="math display">\[
+<p><img src="https://zh-v2.d2l.ai/_images/output_mlp_76f463_51_0.svg" srcset="/image/other/loading.mp4" lazyload style="zoom: 67%;" /> <span class="math display">\[
 \dfrac{d}{dx}\text{sigmoid}(x)=\dfrac{e^{-x}}{(1+e^{-x})^2}=\text{sigmoid}(x)(1-\text{sigmoid}(x))
-\]</span> <img src="https://zh-v2.d2l.ai/_images/output_mlp_76f463_66_0.svg" srcset="/img/loading.gif" lazyload style="zoom:67%;" /></p>
+\]</span> <img src="https://zh-v2.d2l.ai/_images/output_mlp_76f463_66_0.svg" srcset="/image/other/loading.mp4" lazyload style="zoom:67%;" /></p>
 <p>易知 <span class="math inline">\(x=0\)</span> 时有导数最大值 <span class="math inline">\(\dfrac{1}{4}\)</span> 。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
