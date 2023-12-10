@@ -433,6 +433,9 @@
 
 <span class="hljs-function">mint <span class="hljs-title">C</span><span class="hljs-params">(<span class="hljs-type">int</span> n,<span class="hljs-type">int</span> m)</span> </span>&#123;
 	<span class="hljs-keyword">return</span> binom.<span class="hljs-built_in">C</span>(n,m); 
+&#125;
+<span class="hljs-function">mint <span class="hljs-title">C</span><span class="hljs-params">(mint n,mint m)</span> </span>&#123;
+	<span class="hljs-keyword">return</span> binom.<span class="hljs-built_in">C</span>(n.<span class="hljs-built_in">val</span>(),m.<span class="hljs-built_in">val</span>()); 
 &#125;</code></pre></div>
 
     </div>
