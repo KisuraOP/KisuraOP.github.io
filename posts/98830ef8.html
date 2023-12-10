@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          21k 字
+          22k 字
         
       </span>
     
@@ -1119,6 +1119,68 @@ vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs
 	<span class="hljs-keyword">if</span>(!dfn[i]) <span class="hljs-built_in">tarjan</span>(i);
 <span class="hljs-built_in">shrinkPoint</span>();
 </code></pre></div>
+
+    </div>
+</div>
+<h2 id="twoset算法">TwoSet算法</h2>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        OI_twoset
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">TwoSet</span> &#123;
+	<span class="hljs-type">int</span> n;
+	vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; adj;
+	vector&lt;<span class="hljs-type">int</span>&gt; ans;
+	<span class="hljs-built_in">TwoSet</span>(<span class="hljs-type">int</span> n) &#123;
+		<span class="hljs-keyword">this</span>-&gt;n = n;
+		adj.<span class="hljs-built_in">resize</span>(<span class="hljs-number">2</span>*n+<span class="hljs-number">1</span>);
+		ans.<span class="hljs-built_in">resize</span>(n+<span class="hljs-number">1</span>);
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">addbind</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">bool</span> ok1,<span class="hljs-type">int</span> y,<span class="hljs-type">bool</span> ok2)</span> </span>&#123;
+		adj[x+n*(!ok1)].<span class="hljs-built_in">push_back</span>(y+n*ok2);
+		adj[y+n*(!ok2)].<span class="hljs-built_in">push_back</span>(x+n*ok1);
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">work</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dfn</span><span class="hljs-params">(<span class="hljs-number">2</span>*n+<span class="hljs-number">1</span>,<span class="hljs-number">0</span>)</span>,<span class="hljs-title">low</span><span class="hljs-params">(<span class="hljs-number">2</span>*n+<span class="hljs-number">1</span>,<span class="hljs-number">0</span>)</span>,<span class="hljs-title">stack_</span><span class="hljs-params">(<span class="hljs-number">2</span>*n+<span class="hljs-number">1</span>,<span class="hljs-number">0</span>)</span>,<span class="hljs-title">c</span><span class="hljs-params">(<span class="hljs-number">2</span>*n+<span class="hljs-number">1</span>,<span class="hljs-number">0</span>)</span></span>;
+		<span class="hljs-function">vector&lt;<span class="hljs-type">bool</span>&gt; <span class="hljs-title">vis</span><span class="hljs-params">(<span class="hljs-number">2</span>*n+<span class="hljs-number">1</span>,<span class="hljs-literal">false</span>)</span></span>;
+		vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">scc</span>(<span class="hljs-number">2</span>*n+<span class="hljs-number">1</span>);
+		<span class="hljs-type">int</span> tim=<span class="hljs-number">0</span>,top=<span class="hljs-number">0</span>,cnt=<span class="hljs-number">0</span>;
+		function&lt;<span class="hljs-type">void</span>(<span class="hljs-type">int</span>)&gt; tarjan = [&amp;](<span class="hljs-type">int</span> x) &#123;
+			dfn[x]=low[x]=++tim;
+			vis[x]=<span class="hljs-literal">true</span>;
+			stack_[++top]=x;
+			<span class="hljs-keyword">for</span>(<span class="hljs-keyword">auto</span> y:adj[x]) &#123;
+				<span class="hljs-keyword">if</span>(!dfn[y]) &#123;
+					<span class="hljs-built_in">tarjan</span>(y);
+					low[x]=<span class="hljs-built_in">min</span>(low[x],low[y]);
+				&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(vis[y]) &#123;
+					low[x]=<span class="hljs-built_in">min</span>(low[x],dfn[y]);
+				&#125;
+			&#125;
+			<span class="hljs-keyword">if</span>(dfn[x]==low[x]) &#123;
+				<span class="hljs-type">int</span> now;++cnt;
+				<span class="hljs-keyword">do</span>&#123;
+					now=stack_[top--];
+					vis[now]=<span class="hljs-literal">false</span>;
+					c[now]=cnt;
+					scc[cnt].<span class="hljs-built_in">push_back</span>(now);
+				&#125;<span class="hljs-keyword">while</span>(x!=now);
+			&#125;
+		&#125;;
+		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">2</span>*n;++i) &#123;
+			<span class="hljs-keyword">if</span>(!dfn[i]) <span class="hljs-built_in">tarjan</span>(i);
+		&#125;
+		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;++i) &#123;
+			<span class="hljs-keyword">if</span>(c[i]==c[i+n]) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+			ans[i]=c[i]&gt;c[i+n]?<span class="hljs-number">1ll</span>:<span class="hljs-number">0ll</span>;
+		&#125;
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+	&#125;
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">getans</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> ans;
+	&#125;
+&#125;;</code></pre></div>
 
     </div>
 </div>
