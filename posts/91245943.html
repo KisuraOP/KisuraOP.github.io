@@ -811,18 +811,24 @@ packageB
 <li><p><code>sequence</code> ：一个序列，迭代器等支持迭代的对象</p></li>
 <li><p><code>start</code> ：下标起始位置的值</p></li>
 <li><p>将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标。</p></li>
-<li><p>```python a = ['a', 'b', 'd', 'c'] for i in enumerate(a): print(i) ''' (0, 'a') (1, 'b') (2, 'd') (3, 'c') ''' <div class="code-wrapper"><pre><code class="hljs python">
-
-```python
-a = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]
-<span class="hljs-keyword">for</span> i, j <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(a):
-    <span class="hljs-built_in">print</span>(i, j)
-<span class="hljs-string">&#x27;&#x27;&#x27;</span>
-<span class="hljs-string">0 a</span>
-<span class="hljs-string">1 b</span>
-<span class="hljs-string">2 d</span>
-<span class="hljs-string">3 c</span>
-<span class="hljs-string">&#x27;&#x27;&#x27;</span></code></pre></div></p></li>
+<li><div class="sourceCode" id="cb1"><div class="code-wrapper"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>a <span class="op">=</span> [<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;d&#39;</span>, <span class="st">&#39;c&#39;</span>]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">enumerate</span>(a):</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="co">(0, &#39;a&#39;)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="co">(1, &#39;b&#39;)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co">(2, &#39;d&#39;)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co">(3, &#39;c&#39;)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="cf">for</span> i, j <span class="kw">in</span> <span class="bu">enumerate</span>(a):</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>    <span class="bu">print</span>(i, j)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="co">0 a</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a><span class="co">1 b</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true"></a><span class="co">2 d</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true"></a><span class="co">3 c</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true"></a><span class="co">&#39;&#39;&#39;</span></span></code></pre></div></div></li>
 </ul></li>
 </ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
