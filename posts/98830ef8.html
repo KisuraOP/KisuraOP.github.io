@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          23k 字
+          24k 字
         
       </span>
     
@@ -1316,7 +1316,8 @@ vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs
 
     </div>
 </div>
-<h2 id="均匀随机数">均匀随机数</h2>
+<h2 id="随机数">随机数</h2>
+<p>生成范围内的均匀随机数。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
         OI_rand
@@ -1328,6 +1329,21 @@ vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs
 	<span class="hljs-function">uniform_int_distribution&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">distrib</span><span class="hljs-params">(l,r)</span></span>;
 	<span class="hljs-keyword">return</span> <span class="hljs-built_in">distrib</span>(gen);
 &#125;</code></pre></div>
+
+    </div>
+</div>
+<p>因为 <code>srand</code> 和 <code>random_device</code> 在实测中出过锅。</p>
+<p>故如果只是单纯的需要生成随机数，以下四种写法更加适合。</p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        OI_rand2
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">mt19937 <span class="hljs-title">rng</span><span class="hljs-params">(time(<span class="hljs-number">0</span>))</span></span>;     <span class="hljs-comment">//生成uint内的随机数</span>
+<span class="hljs-function">mt19937_64 <span class="hljs-title">rng</span><span class="hljs-params">(time(<span class="hljs-number">0</span>))</span></span>;  <span class="hljs-comment">//生成ull内的随机数</span>
+<span class="hljs-function">mt19937 <span class="hljs-title">rng</span><span class="hljs-params">(chrono::steady_clock::now().time_since_epoch().count())</span></span>;   <span class="hljs-comment">//同第一种</span>
+<span class="hljs-function">mt19937_64 <span class="hljs-title">rng</span><span class="hljs-params">(chrono::steady_clock::now().time_since_epoch().count())</span></span>;<span class="hljs-comment">//同第二种</span>
+<span class="hljs-comment">//均通过rng()调用</span></code></pre></div>
 
     </div>
 </div>
