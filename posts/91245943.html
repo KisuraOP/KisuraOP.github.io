@@ -27,8 +27,8 @@
 <meta property="article:published_time" content="2023-10-06T19:55:35.000Z">
 <meta property="article:modified_time" content="2023-11-18T19:55:35.000Z">
 <meta property="article:author" content="KisuraOP">
-<meta property="article:tag" content="python">
 <meta property="article:tag" content="note">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/5a8115df47f79481a7f6103fa85d59b2.jpeg">
   
@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.4k 字
+          8.7k 字
         
       </span>
     
@@ -741,7 +741,8 @@ a.clear()  <span class="hljs-comment"># 清空字典</span>
 <span class="hljs-keyword">else</span>:
     <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;op似光辣&quot;</span>)
 <span class="hljs-comment"># op似光辣</span>
-</code></pre></div></p>
+</code></pre></div></p></li>
+</ul>
 <h2 id="数据类型转换">数据类型转换</h2>
 <ol type="1">
 <li><p><code>int(x[,base])</code> ：将 <code>x</code> 作为 <code>base</code> 进制转换。</p>
@@ -767,8 +768,7 @@ a.clear()  <span class="hljs-comment"># 清空字典</span>
 <p><div class="code-wrapper"><pre><code class="hljs python">a = <span class="hljs-built_in">eval</span>(<span class="hljs-string">&quot;2 ** 5&quot;</span>)
 <span class="hljs-built_in">print</span>(a) <span class="hljs-comment"># 32</span></code></pre></div></p>
 <p>和 <code>exec()</code> 的区别在于 <code>eval()</code> <strong>只能执行表达式而不能执行代码块</strong>。</p></li>
-</ol></li>
-</ul>
+</ol>
 <h2 id="对象的可更改性">对象的可更改性</h2>
 <ul>
 <li><p>可变：类似 C++ 引用传递，如列表，字典。</p></li>
@@ -811,7 +811,6 @@ packageB
 <li><p><code>sequence</code> ：一个序列，迭代器等支持迭代的对象</p></li>
 <li><p><code>start</code> ：下标起始位置的值</p></li>
 <li><p>将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标。</p></li>
-</ul></li>
 </ul>
 <div class="code-wrapper"><pre><code class="hljs python">a = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>, <span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;c&#x27;</span>]
 <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(a):
@@ -830,8 +829,30 @@ packageB
 <span class="hljs-string">1 b</span>
 <span class="hljs-string">2 d</span>
 <span class="hljs-string">3 c</span>
-<span class="hljs-string">&#x27;&#x27;&#x27;</span></code></pre></div>
+<span class="hljs-string">&#x27;&#x27;&#x27;</span></code></pre></div></li>
+</ul>
 <p>​</p>
+<ul>
+<li><code>map(function, iterable, ...)</code>
+<ul>
+<li><code>function</code> ：要应用于每个元素的函数。</li>
+<li><code>iterable</code> ：输入到 <code>function</code> 的可迭代对象，可以是一个或多个。</li>
+<li>将一个函数应用于可迭代对象（例如列表、元组等）的所有元素，返回一个迭代器。</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">square</span>(<span class="hljs-params">x</span>):
+    <span class="hljs-keyword">return</span> x ** <span class="hljs-number">2</span>
+
+numbers = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>]
+
+squared_numbers = <span class="hljs-built_in">map</span>(square, numbers)
+
+<span class="hljs-built_in">print</span>(<span class="hljs-built_in">list</span>(squared_numbers)) <span class="hljs-comment"># 1, 4, 9, 16, 25</span></code></pre></div>
+<ul>
+<li>一个应用是求出一个数 <span class="math inline">\(x\)</span> 的各数位之和（将 <code>int</code> 作为 <code>function</code> 应用到 <span class="math inline">\(x\)</span> 的每一位）</li>
+</ul>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">digit_sum</span>(<span class="hljs-params">n</span>):
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">sum</span>(<span class="hljs-built_in">map</span>(<span class="hljs-built_in">int</span>, <span class="hljs-built_in">str</span>(n)))</code></pre></div></li>
+</ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
@@ -872,9 +893,9 @@ packageB
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/python/" class="print-no-link">#python</a>
-      
         <a href="/tags/note/" class="print-no-link">#note</a>
+      
+        <a href="/tags/python/" class="print-no-link">#python</a>
       
     </div>
   
