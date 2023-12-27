@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.4k 字
+          1.3k 字
         
       </span>
     
@@ -336,7 +336,6 @@
 	<span class="hljs-keyword">if</span> (!cnt) ans = <span class="hljs-built_in">read</span>(), cnt = <span class="hljs-number">1</span>;
    	<span class="hljs-keyword">else</span> cnt += <span class="hljs-built_in">read</span>() == ans ? <span class="hljs-number">1</span> : <span class="hljs-number">-1</span>;
 &#125;</code></pre></div>
-<p>翻译一下就是：将这 <span class="math inline">\(n\)</span> 个数扫一遍，对于每一个读入的数：若 <span class="math inline">\(cnt=0\)</span>，用变量 <span class="math inline">\(ans\)</span> 把这个数记下来，否则就把这个数和 <span class="math inline">\(ans\)</span> 比较，若相同，则 <span class="math inline">\(cnt\)</span> 自增；否则 <span class="math inline">\(cnt\)</span> 自减，最后 <span class="math inline">\(ans\)</span> 中存储的数必然在读入的所有数中出现次数大过一半。</p>
 <p>我们可以借助文字来帮助理解上面这段话：</p>
 <p>摩尔投票法本质上是<strong>每次从序列里选择两个不相同的数字删除掉（或称为“抵消”），最后剩下一个数字或几个相同的数字，就是出现次数大于总数一半的那个。</strong></p>
 <p>所以，<span class="math inline">\(cnt\)</span> 存储的是<strong>当前暂时无法删除的数字的个数</strong>，表现为和上一个记录的数字相等，所以当 <span class="math inline">\(ans=read()\)</span> 时 <span class="math inline">\(cnt\)</span> 自增，反之自减，而 <span class="math inline">\(cnt=0\)</span> 的意思就是"没有数字无法删除了"，即能删的都删完了，或者说没有数可以用来抵消了，只能拿当前的数放到 <span class="math inline">\(ans\)</span> 中和后面的数抵消了。</p>
