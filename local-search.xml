@@ -495,6 +495,35 @@
   
   
   <entry>
+    <title>摩尔投票法及其扩展</title>
+    <link href="/posts/be35d7b0.html"/>
+    <url>/posts/be35d7b0.html</url>
+    
+    <content type="html"><![CDATA[<p>摩尔投票法是用来解决以下问题的一类方法。</p><h4 id="q-在一个长度为-n-的数组中找出出现次数大于一半的元素">Q : 在一个长度为 <span class="math inline">\(n\)</span> 的数组中找出出现次数大于一半的元素。</h4><p>很明显，利用<strong>开桶</strong>，<strong>排序找中位数</strong>等多种多样的方法都可以轻松解决，但摩尔投票法厉害之处在于它的<strong>空间复杂度</strong>仅为 <span class="math inline">\(O(1)\)</span>，意味着数组都不用开。</p><p>摩尔投票法的核心如下：</p><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<span class="hljs-keyword">if</span> (!cnt) ans = <span class="hljs-built_in">read</span>(), cnt = <span class="hljs-number">1</span>;   <span class="hljs-keyword">else</span> cnt += <span class="hljs-built_in">read</span>() == ans ? <span class="hljs-number">1</span> : <span class="hljs-number">-1</span>;&#125;</code></pre></div><p>翻译一下就是：将这 <span class="math inline">\(n\)</span> 个数扫一遍，对于每一个读入的数：若 <span class="math inline">\(cnt=0\)</span>，用变量 <span class="math inline">\(ans\)</span> 把这个数记下来，否则就把这个数和 <span class="math inline">\(ans\)</span> 比较，若相同，则 <span class="math inline">\(cnt\)</span> 自增；否则 <span class="math inline">\(cnt\)</span> 自减，最后 <span class="math inline">\(ans\)</span> 中存储的数必然在读入的所有数中出现次数大过一半。</p><p>我们可以借助文字来帮助理解上面这段话：</p><p>摩尔投票法本质上是<strong>每次从序列里选择两个不相同的数字删除掉（或称为“抵消”），最后剩下一个数字或几个相同的数字，就是出现次数大于总数一半的那个。</strong></p><p>所以，<span class="math inline">\(cnt\)</span> 存储的是<strong>当前暂时无法删除的数字的个数</strong>，表现为和上一个记录的数字相等，所以当 <span class="math inline">\(ans=read()\)</span> 时 <span class="math inline">\(cnt\)</span> 自增，反之自减，而 <span class="math inline">\(cnt=0\)</span> 的意思就是"没有数字无法删除了"，即能删的都删完了，或者说没有数可以用来抵消了，只能拿当前的数放到 <span class="math inline">\(ans\)</span> 中和后面的数抵消了。</p><p>所以我们要做的仅仅就是每次拿读入的数字和 <span class="math inline">\(ans\)</span> 去抵消而已。</p><hr /><h3 id="扩展相关">扩展相关</h3><h4 id="q-在一个长度为n的数组中找出出现次数大于-left-lfloordfrac-nk-right-rfloor-的元素">Q : 在一个长度为n的数组中找出出现次数大于 <span class="math inline">\(\left \lfloor\dfrac nk \right \rfloor\)</span> 的元素。</h4><p>为方便理解，先讨论 <span class="math inline">\(k=3\)</span> 时的情况：</p><p>如果理解了上面 <span class="math inline">\(k=2\)</span> 的那一段话，那么我们发现摩尔投票法是基于这样一个原理：如果一个数组里有一元素超过 <span class="math inline">\(\frac {\ 1\ }{2}\)</span>，那么同时删除 <span class="math inline">\(2\)</span> 个不同的数，数量超过 <span class="math inline">\(\frac {\ 1\ }{2}\)</span> 的数仍然超过 <span class="math inline">\(\frac {\ 1\ }{2}\)</span>。</p><p>稍加修改我们可以猜想：如果一个数组里有一元素超过 <span class="math inline">\(\frac {\ 1\ }{3}\)</span>，那么同时删除 <span class="math inline">\(3\)</span> 个不同的数，数量超过 <span class="math inline">\(\frac {\ 1\ }{3}\)</span> 的数仍然超过 <span class="math inline">\(\frac {\ 1\ }{3}\)</span>。</p><p>我们可以尝试证明它的正确性：</p><ul><li><p>如果删除的 <span class="math inline">\(3\)</span> 个不同的数都不是超过 <span class="math inline">\(\frac {\ 1\ }{3}\)</span> 的元素，显然成立。</p></li><li><p>如果删除的 <span class="math inline">\(3\)</span> 个不同的数有一个是超过 <span class="math inline">\(\frac {\ 1\ }{3}\)</span> 的元素，设该元素有 <span class="math inline">\(m&gt; \frac {\ 1\ }{3}\)</span> 个，即需要证：</p></li></ul><p><span class="math display">\[\dfrac {m-1}{n-3}&gt; \dfrac {n}{3}\Longrightarrow m&gt; \dfrac {n(n-3)}{3}+1\]</span></p><p>而：</p><p><span class="math display">\[\dfrac {n(n-3)}{3}+1 \ge \dfrac {n}{3} \Longrightarrow (n-2)^2-1\ge 0\quad\{n\ge 3\}\]</span></p><p>故命题成立。</p><p>同样的证明方法可以推广到 <span class="math inline">\(k\)</span>，得出：若一个数组里有一元素超过 <span class="math inline">\(\frac {\ 1\ }{k}\)</span>，那么同时删除 <span class="math inline">\(k\)</span> 个不同的数，数量超过 <span class="math inline">\(\frac {\ 1\ }{k}\)</span> 的数仍然超过 <span class="math inline">\(\frac {\ 1\ }{k}\)</span>。</p><p>不过很遗憾，如果 <span class="math inline">\(k\)</span> 很大，只能用数组去存 <span class="math inline">\(cnt_i\)</span>，但其内核仍然值得我们思考。</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    
+    <categories>
+      
+      <category>Competitive Programming</category>
+      
+      <category>note</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>note</tag>
+      
+      <tag>algorithm</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>等差数列与二阶前缀和</title>
     <link href="/posts/854283fe.html"/>
     <url>/posts/854283fe.html</url>
