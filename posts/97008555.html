@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.7k 字
+          1.8k 字
         
       </span>
     
@@ -348,9 +348,8 @@ a_{n+2}&amp;=(3n-1)+(3n-7)+\dots+8+2+a_{1} \\
 &amp;= \dfrac{(2+3n-1)\dfrac{n+1}{2}}{2}+a_1 \\
 &amp;= \dfrac{(n+1)(3n+1)}{4}+a_1
 \end{align}
-\]</span> 令 <span class="math inline">\(b_n=\dfrac{(n+1)(3n+1)}{4}\)</span>.</p>
-<p>因为只研究奇数项，</p>
-<p>令 <span class="math inline">\(c_n=b_{2n-1}=\dfrac{2n(6n-2)}{4}=n(3n-1)=3n-n^2\)</span> .</p>
+\]</span> 令 <span class="math inline">\(b_n=\dfrac{(n+1)(3n+1)}{4}\)</span>. 因为只研究奇数项，</p>
+<p>令 <span class="math inline">\(c_n=b_{2n-1}=\dfrac{2n(6n-2)}{4}=n(3n-1)=3n-n^2\)</span>.</p>
 <p>对于两个等差数列相乘的形式，展开分别求和，于是有 <span class="math display">\[
 \begin{align}
 S_{c_n}&amp;=3\times\dfrac{n(n+1)(2n+1)}{6}-\dfrac{n(n+1)}{2} \\ 
@@ -358,9 +357,9 @@ S_{c_n}&amp;=3\times\dfrac{n(n+1)(2n+1)}{6}-\dfrac{n(n+1)}{2} \\
 &amp;=n^2(n+1)
 \end{align}
 \]</span> 注意到 <span class="math display">\[
-a_{n+2}=b_n+a_1 \\
-a_{2n+1}=b_{2n-1}+a_1=c_n+a_1 \\
 \begin{align}
+a_{n+2}=b_n&amp;+a_1 \\
+a_{2n+1}=b_{2n-1}+&amp;a_1=c_n+a_1 \\
 a_1+a_3+a_5+\dots+a_{2n-1}&amp;=S_{c_n}+(n+1)a_1 \\
 &amp;=n^2(n+1)+(n+1)a_1
 \end{align}
@@ -372,10 +371,12 @@ T_1 &amp;= a_1+a_3+a_5+\dots+a_{2n-1} \\
 \end{align}
 \]</span> 当 <span class="math inline">\(n\)</span> 为偶数时，有 <span class="math inline">\(a_{n+2}+a_n=3n-1\)</span>.</p>
 <p>令 <span class="math inline">\(d_n=a_n+a_{n+2}\)</span>，又只取偶数项，可列出大概示意 <span class="math display">\[
-a_{16}\quad a_{14} \to d_{14} \to e_4 \\
-a_{12}\quad a_{10} \to d_{10} \to e_3 \\
-a_{8}\quad a_{6} \to d_{6} \to e_2 \\
-a_{4}\quad a_{2} \to d_{2} \to e_1 \\
+\begin{align}
+a_{16}\quad a_{14} \to d_{14} \to \ &amp;e_4 \\
+a_{12}\quad a_{10} \to d_{10} \to \ &amp;e_3 \\
+a_{8}\quad a_{6} \to d_{6} \to \ &amp;e_2 \\
+a_{4}\quad a_{2} \to d_{2} \to \ &amp;e_1 \\
+\end{align}
 \]</span> 箭头左边即为所需 <span class="math inline">\(a_n\)</span> 的和</p>
 <p>故可令 <span class="math inline">\(e_n=d_{4n-2}=3(4n-2)-1=12n-7\)</span>. <span class="math display">\[
 \begin{align}
