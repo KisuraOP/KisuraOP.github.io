@@ -16,12 +16,12 @@
   <meta name="author" content="KisuraOP">
   <meta name="keywords" content="">
   
-    <meta name="description" content="问就是女生自用。 有自己写的，也有仿照其它大佬的，及其简陋，也没有排序。 比较享受完善模板的过程。 感觉这些模板就如同我的ACM生涯一样，出生，变化，再到终结。 未来的我会是怎么样的呢？ ————————————————— 整数取余 只适用于静态模数。               OI_modint                   template&lt;class T&gt; constex">
+    <meta name="description" content="问就是女生自用。 有自己写的，也有仿照其它大佬的，及其简陋，也没有排序。 比较享受完善模板的过程。 感觉这些模板就如同我的ACM生涯一样，出生，变化，再到终结。 未来的我会是怎么样的呢？ ————————————————— 整数取余 只适用于静态模数。               IO_modint                   template&lt;class T&gt; constex">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[女生自用] ACM算法模板">
 <meta property="og:url" content="https://kisuraop.github.io/posts/98830ef8.html">
 <meta property="og:site_name" content="KisuraOP">
-<meta property="og:description" content="问就是女生自用。 有自己写的，也有仿照其它大佬的，及其简陋，也没有排序。 比较享受完善模板的过程。 感觉这些模板就如同我的ACM生涯一样，出生，变化，再到终结。 未来的我会是怎么样的呢？ ————————————————— 整数取余 只适用于静态模数。               OI_modint                   template&lt;class T&gt; constex">
+<meta property="og:description" content="问就是女生自用。 有自己写的，也有仿照其它大佬的，及其简陋，也没有排序。 比较享受完善模板的过程。 感觉这些模板就如同我的ACM生涯一样，出生，变化，再到终结。 未来的我会是怎么样的呢？ ————————————————— 整数取余 只适用于静态模数。               IO_modint                   template&lt;class T&gt; constex">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/af7f7fcfa2f4b039a9b4008d05bf81a2.jpeg">
 <meta property="article:published_time" content="2023-12-03T16:35:35.000Z">
@@ -338,7 +338,7 @@
 <p>只适用于静态模数。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_modint
+        IO_modint
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> T&gt;</span>
@@ -396,7 +396,7 @@
 <p>只适用于质数模数。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_binom
+        IO_binom
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">inline</span> mint <span class="hljs-title">qpow</span><span class="hljs-params">(mint k, <span class="hljs-type">int</span> n)</span> </span>&#123;
@@ -410,8 +410,7 @@
 	<span class="hljs-type">int</span> size = <span class="hljs-number">0</span>;
 	vector&lt;mint&gt; frac;
 	vector&lt;mint&gt; inv;
-	<span class="hljs-built_in">math</span>() &#123;&#125;
-	<span class="hljs-built_in">math</span>(<span class="hljs-type">int</span> n) &#123;
+	<span class="hljs-built_in">math</span>(<span class="hljs-type">int</span> n = <span class="hljs-number">0</span>) &#123;
 		<span class="hljs-built_in">init</span>(n);
 	&#125;
 	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;
@@ -439,15 +438,19 @@
 &#125;
 <span class="hljs-function">mint <span class="hljs-title">C</span><span class="hljs-params">(mint n, mint m)</span> </span>&#123;
 	<span class="hljs-keyword">return</span> binom.<span class="hljs-built_in">C</span>(n.<span class="hljs-built_in">val</span>(), m.<span class="hljs-built_in">val</span>()); 
+&#125;
+<span class="hljs-function">mint <span class="hljs-title">frac</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span> </span>&#123;
+	<span class="hljs-keyword">if</span> (binom.size &lt; n) binom.<span class="hljs-built_in">init</span>(n);
+	<span class="hljs-keyword">return</span> binom.frac[n];
 &#125;</code></pre></div>
 
     </div>
 </div>
 <h2 id="树状数组">树状数组</h2>
-<p>具有单点加、区间查、维护第 <span class="math inline">\(k\)</span> 大的功能。</p>
+<p>单点加、区间查、维护第 <span class="math inline">\(k\)</span> 大。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_fenwick
+        IO_fenwick
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">template</span> &lt;<span class="hljs-keyword">typename</span> T&gt;
@@ -500,7 +503,7 @@
 </ol>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_segtree1
+        IO_segtree1
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">SegmentTree</span> &#123;
@@ -634,7 +637,7 @@
 </ol>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_segtree2
+        IO_segtree2
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">SegmentTree</span> &#123;
@@ -767,7 +770,7 @@
 </ol>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_segtree3
+        IO_segtree3
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">SegmentTree</span> &#123;
@@ -917,7 +920,7 @@
 </ol>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_segedge
+        IO_segedge
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">SegEdge</span> &#123;
@@ -979,11 +982,11 @@
 
     </div>
 </div>
-<h2 id="最近公共祖先lca">最近公共祖先(LCA)</h2>
+<h2 id="lca">LCA</h2>
 <p>倍增方法。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_lca
+        IO_lca
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++">vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">fa</span>(n + <span class="hljs-number">1</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">25</span>, <span class="hljs-number">0</span>));
@@ -1024,7 +1027,7 @@
 <h2 id="kmp">KMP</h2>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_kmp
+        IO_kmp
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// find b in a</span>
@@ -1068,7 +1071,7 @@ vector&lt;<span class="hljs-type">int</span>&gt; ans;
 <p>路径压缩。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_dsu
+        IO_dsu
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">DSU</span> &#123;
@@ -1111,7 +1114,7 @@ vector&lt;<span class="hljs-type">int</span>&gt; ans;
 <p>支持一切满足结合律的运算。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_STable
+        IO_STable
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">SparseTable</span> &#123;
@@ -1137,11 +1140,11 @@ vector&lt;<span class="hljs-type">int</span>&gt; ans;
 
     </div>
 </div>
-<h2 id="tarjan缩点">tarjan缩点</h2>
+<h2 id="tarjan">tarjan</h2>
 <p>有向图。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_tarjan
+        IO_tarjan
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dfn</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span>, <span class="hljs-title">low</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span>, <span class="hljs-title">stack_</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span>, <span class="hljs-title">c</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
@@ -1194,7 +1197,7 @@ vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs
 <p>无向图。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_EBCC
+        IO_EBCC
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">EBCC</span> &#123;
@@ -1242,7 +1245,7 @@ vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs
 				vis[now] = <span class="hljs-literal">false</span>;
 				c[now] = cnt;
 				scc[cnt].<span class="hljs-built_in">push_back</span>(now);
-			&#125; <span class="hljs-keyword">while</span>(x != now);
+			&#125; <span class="hljs-keyword">while</span> (x != now);
 		&#125;
 	&#125;
 	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">work</span><span class="hljs-params">()</span> </span>&#123;
@@ -1271,7 +1274,7 @@ vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs
 <h2 id="sat">2-SAT</h2>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_twosat
+        IO_twosat
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">TwoSat</span> &#123;
@@ -1335,7 +1338,7 @@ vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs
 <p>闲的没事写的。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_base_trans
+        IO_base_trans
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">string <span class="hljs-title">base_trans</span><span class="hljs-params">(string s, <span class="hljs-type">int</span> opt1, <span class="hljs-type">int</span> opt2)</span> </span>&#123;
@@ -1363,10 +1366,10 @@ vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs
     </div>
 </div>
 <h2 id="dijkstra">Dijkstra</h2>
-<p>堆优化版。</p>
+<p>堆优化。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_dijkstra
+        IO_dijkstra
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dis</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
@@ -1400,7 +1403,7 @@ vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs
 <p>生成范围内的均匀随机数。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_rand
+        IO_rand
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">Rand</span><span class="hljs-params">(<span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span> </span>&#123;
@@ -1416,7 +1419,7 @@ vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs
 <p>故如果只是单纯的需要生成随机数，以下四种写法更加适合。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_rand2
+        IO_rand2
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">mt19937 <span class="hljs-title">rng</span><span class="hljs-params">(time(<span class="hljs-number">0</span>))</span></span>;     <span class="hljs-comment">//生成uint内的随机数</span>
@@ -1431,7 +1434,7 @@ vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs
 <p>寻找最小 <span class="math inline">\(x\)</span>，最大 <span class="math inline">\(x\)</span>，最小 <span class="math inline">\(y\)</span>，最大 <span class="math inline">\(y\)</span>，解的个数，以及无解的情况。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_function
+        IO_function
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-type">int</span> max_x, max_y, min_x, min_y, num_x;
@@ -1475,11 +1478,11 @@ vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs
 
     </div>
 </div>
-<h2 id="bsgs算法">BSGS算法</h2>
+<h2 id="bsgs">BSGS</h2>
 <p><span class="math inline">\(O(\sqrt{p})\)</span> 内求解 <span class="math inline">\(a^x\equiv b\)</span> 的最小 <span class="math inline">\(x\)</span>。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_bsgs
+        IO_bsgs
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++">unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; hs;
@@ -1543,7 +1546,7 @@ vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs
 <p><span class="math inline">\(O(\sqrt{n})\)</span> 进行单个欧拉函数和莫比乌斯函数的计算。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_math
+        IO_math
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++">vector&lt;<span class="hljs-type">int</span>&gt; phi;
@@ -1646,10 +1649,10 @@ vector&lt;<span class="hljs-type">int</span>&gt; mu;
 
     </div>
 </div>
-<h2 id="自定义-unordered_map">自定义 unordered_map</h2>
+<h2 id="自定义-un_map">自定义 un_map</h2>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
-        OI_hash
+        IO_hash
     </div>
     <div class='spoiler-content'>
         <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">custom_hash</span> &#123;
@@ -1666,6 +1669,40 @@ vector&lt;<span class="hljs-type">int</span>&gt; mu;
         <span class="hljs-keyword">return</span> <span class="hljs-built_in">splitmix64</span>(x + FIXED_RANDOM);
     &#125;
 &#125;;</code></pre></div>
+
+    </div>
+</div>
+<h2 id="manacher">Manacher</h2>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        IO_manacher
+    </div>
+    <div class='spoiler-content'>
+        <p>返回最大回文半径数组，最长回文串的起点和长度。</p>
+<div class="code-wrapper"><pre><code class="hljs c++">tuple&lt;vector&lt;<span class="hljs-type">int</span>&gt;, <span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; <span class="hljs-built_in">manacher</span>(string s) &#123;
+    string t = <span class="hljs-string">&quot;#&quot;</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> c : s) &#123;
+        t += c;
+        t += <span class="hljs-string">&#x27;#&#x27;</span>;
+    &#125;
+    <span class="hljs-type">int</span> n = t.<span class="hljs-built_in">size</span>();
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">r</span><span class="hljs-params">(n)</span></span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;
+        <span class="hljs-keyword">if</span> (<span class="hljs-number">2</span> * j - i &gt;= <span class="hljs-number">0</span> &amp;&amp; j + r[j] &gt; i) &#123;
+            r[i] = <span class="hljs-built_in">min</span>(r[<span class="hljs-number">2</span> * j - i], j + r[j] - i);
+        &#125;
+        <span class="hljs-keyword">while</span> (i - r[i] &gt;= <span class="hljs-number">0</span> &amp;&amp; i + r[i] &lt; n &amp;&amp; t[i - r[i]] == t[i + r[i]]) &#123;
+            r[i] += <span class="hljs-number">1</span>;
+        &#125;
+        <span class="hljs-keyword">if</span> (i + r[i] &gt; j + r[j]) &#123;
+            j = i;
+        &#125;
+    &#125;
+    <span class="hljs-type">int</span> pos = <span class="hljs-built_in">max_element</span>(r.<span class="hljs-built_in">begin</span>(), r.<span class="hljs-built_in">end</span>()) - r.<span class="hljs-built_in">begin</span>();
+    <span class="hljs-type">int</span> ans = r[pos] - <span class="hljs-number">1</span>;
+    pos = pos / <span class="hljs-number">2</span> - ans / <span class="hljs-number">2</span>;
+    <span class="hljs-keyword">return</span> &#123;r, pos, ans&#125;;
+&#125;</code></pre></div>
 
     </div>
 </div>
