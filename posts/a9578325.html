@@ -333,7 +333,7 @@
             <p>题意：给定一个由 <code>.</code> <code>#</code> <code>S</code> 三种字符构成的 <span class="math inline">\(n\times m\)</span> 矩阵，判断是否存在一个长宽均至少为 <span class="math inline">\(2\)</span> 的矩形方框，使其经过 <code>S</code> 而不经过 <code>#</code>。保证字符 <code>S</code> 只出现一次。</p><p><span class="math inline">\(1 \le n,m \le 3 \cdot 10^3\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>法一（枚举+二维前缀和）：</p><p>先考虑起点 <code>S</code> 在目标矩形的边上的情况。此时从 <code>S</code> 出发绕一圈回到 <code>S</code> 共有四种方案，如下图：</p><figure><img src="/image/academic/4.png" srcset="/image/other/loading.mp4" lazyload alt="img" /><figcaption aria-hidden="true">img</figcaption></figure><p>其中划绿色的部分的长度需要枚举，其余部分则可以用二维前缀和 <span class="math inline">\(O(1)\)</span> 判断是否合法。</p><p>至于起点 <code>S</code> 在目标矩形角上的情况，其实就是把 <code>S</code> 所在的两段边并到最后枚举了，细节处理好一点就能被第一种情况囊括。</p><p>期望时间复杂度小于 <span class="math inline">\(O(nm)\)</span>。</p>
+            <p>法一（枚举+二维前缀和）：</p><p>先考虑起点 <code>S</code> 在目标矩形的边上的情况。此时从 <code>S</code> 出发绕一圈回到 <code>S</code> 共有四种方案，如下图：</p><figure><img src="/image/academic/4.png" srcset="/image/other/loading.mp4" lazyload alt="img" /><figcaption aria-hidden="true">img</figcaption></figure><p>其中划绿色的部分的长度需要枚举，其余部分则可以用二维前缀和 <span class="math inline">\(O(1)\)</span> 判断是否合法。</p><p>至于起点 <code>S</code> 在目标矩形角上的情况，其实就是把 <code>S</code> 所在的两段边并到最后枚举了，细节处理好一点就能被第一种情况囊括。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -442,7 +442,7 @@
     </div>
 </div>
 <div class="note note-success">
-            <p>法二（<span class="math inline">\(\text{bfs}\)</span>）：</p><p>很容易想到宽搜，但如果代码实现能力不强会比较窘迫。</p><p>钦定初始的方向跑 <span class="math inline">\(4\)</span> 遍 <span class="math inline">\(\text{bfs}\)</span>。在一次 <span class="math inline">\(\text{bfs}\)</span> 中，枚举每个点是否转向，而转向的方向也可以钦定为顺时针或逆时针，判断在 <span class="math inline">\(4\)</span> 次转向内能否回到原点即可。</p><p>提供一种代码简洁的写法。时间复杂度同样不超过 <span class="math inline">\(O(mn)\)</span>。</p>
+            <p>法二（<span class="math inline">\(\text{bfs}\)</span>）：</p><p>钦定初始的方向跑 <span class="math inline">\(4\)</span> 遍 <span class="math inline">\(\text{bfs}\)</span>。在一次 <span class="math inline">\(\text{bfs}\)</span> 中，枚举每个点是否转向，而转向的方向也可以钦定为顺时针或逆时针，判断在 <span class="math inline">\(4\)</span> 次转向内能否回到原点即可。</p><p>提供一种代码简洁的写法。</p><p>两种方法时间复杂度均为 <span class="math inline">\(O(mn)\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -529,7 +529,7 @@
           </div>
 <h2 id="b.-错峰旅行">B. 错峰旅行</h2>
 <div class="note note-info">
-            <p>题意：有 <span class="math inline">\(n\)</span> 个互相连通的城市，给定 <span class="math inline">\(m\)</span> 条信息每条形如城市 <span class="math inline">\(x\)</span> 在第 <span class="math inline">\(l\sim r\)</span> 天是拥挤的。旅行者每天只会在一个不拥挤的城市停留，第二天可以选择到达任何一个不拥挤的城市（包括当前城市）。他的旅游从第 <span class="math inline">\(S\)</span> 天至第 <span class="math inline">\(T\)</span> 天，不要求逛完所有城市且能从任何一个城市开始，问合法旅游方案数，对 <span class="math inline">\(10^9+7\)</span> 取模。</p><p><span class="math inline">\(1\le n\le 5000\)</span>，<span class="math inline">\(1\le m \le 10^6\)</span>，<span class="math inline">\(0\le S \le l,r \le T \le 10^9\)</span>。</p>
+            <p>题意：有 <span class="math inline">\(n\)</span> 个互相连通的城市，给定 <span class="math inline">\(m\)</span> 条信息每条形如城市 <span class="math inline">\(x\)</span> 在第 <span class="math inline">\(l\sim r\)</span> 天是拥挤的。旅行者每天只会在一个不拥挤的城市停留，第二天可以选择到达任何一个不拥挤的城市（包括当前城市）。他的旅游从第 <span class="math inline">\(S\)</span> 天至第 <span class="math inline">\(T\)</span> 天，不要求逛完所有城市且能从任何一个城市开始，问合法旅游方案数。对 <span class="math inline">\(10^9+7\)</span> 取模。</p><p><span class="math inline">\(1\le n\le 5000\)</span>，<span class="math inline">\(1\le m \le 10^6\)</span>，<span class="math inline">\(0\le S \le l,r \le T \le 10^9\)</span>。</p>
           </div>
 <div class="note note-success">
             
