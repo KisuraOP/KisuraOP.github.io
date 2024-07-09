@@ -371,7 +371,7 @@
 <p>中午补了一下课件上提到的四题。</p>
 <hr />
 <div class="note note-info">
-            <p>【CF1200E】Compress Words</p><p>题意：给定 <span class="math inline">\(n\)</span> 个单词，需要依次合并他们，使得最终单词尽可能短。</p><p><span class="math inline">\(\sum|S|\le 10^6\)</span>。</p>
+            <p>【CF1200E Compress Words】</p><p>题意：给定 <span class="math inline">\(n\)</span> 个单词，需要依次合并他们，使得最终单词尽可能短。</p><p><span class="math inline">\(\sum|S|\le 10^6\)</span>。</p>
           </div>
 <div class="note note-success">
             <p>需要尽可能短，那对于合并后的母串 <span class="math inline">\(S\)</span> 和待并入的子串 <span class="math inline">\(T\)</span>，要找到 <span class="math inline">\(S\)</span> 的最长后缀使之和 <span class="math inline">\(T\)</span> 相应长度的前缀等同。</p><p>不难发现所求即为 <span class="math inline">\(T + S\)</span> 的 border。</p><p>对于每一个串都要对 <span class="math inline">\(T+S\)</span> 做一次 KMP 是不能接受的，因为 <span class="math inline">\(S\)</span> 会随着合并越来越长。</p><p>由于我们只关心 border，所以只需要截取 <span class="math inline">\(S[\max(0,|S|-|T|),|S|]\)</span>。</p><p>故每回合用来跑 KMP 的串为 <span class="math inline">\(T + @ + S[\max(0,|S|-|T|),|S|]\)</span>。</p><p>中间的特殊字符是用来防止相交的，例如 <span class="math inline">\(S =aba\)</span>，<span class="math inline">\(T = aaba\)</span>，若使用 <span class="math inline">\(aabaaba\)</span>，border 是 <span class="math inline">\(4\)</span>，而 <span class="math inline">\(1\)</span> 是正确的，所以使用 <span class="math inline">\(aaba@aba\)</span>。</p>
@@ -612,7 +612,7 @@
 </div>
 <hr />
 <div class="note note-info">
-            <p>题意：给定字符串 <span class="math inline">\(S\)</span>，对于字符串 <span class="math inline">\(T\)</span>，称 <span class="math inline">\(T\)</span> 是 <span class="math inline">\(S\)</span> 的周期当且仅当 <span class="math inline">\(T\)</span> 是 <span class="math inline">\(S\)</span> 的真前缀且 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(T + T\)</span> 的前缀。</p><p>求给定 <span class="math inline">\(S\)</span> 的所有前缀的最大周期长度之和。</p><p><span class="math inline">\(1 \le |S| \le 10^6\)</span>。</p>
+            <p>【P3435 [POI2006] OKR-Periods of Words】</p><p>题意：给定字符串 <span class="math inline">\(S\)</span>，对于字符串 <span class="math inline">\(T\)</span>，称 <span class="math inline">\(T\)</span> 是 <span class="math inline">\(S\)</span> 的周期当且仅当 <span class="math inline">\(T\)</span> 是 <span class="math inline">\(S\)</span> 的真前缀且 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(T + T\)</span> 的前缀。</p><p>求给定 <span class="math inline">\(S\)</span> 的所有前缀的最大周期长度之和。</p><p><span class="math inline">\(1 \le |S| \le 10^6\)</span>。</p>
           </div>
 <div class="note note-success">
             <p><span class="math inline">\(S\)</span> 是 <span class="math inline">\(T+T\)</span> 的前缀可以理解为把 <span class="math inline">\(S\)</span> 的一个前缀复制一份之后能完全包含 <span class="math inline">\(S\)</span>。</p><p>设这个前缀为 <span class="math inline">\(S[1,i]\)</span>，那么 <span class="math inline">\(S[i+1,|S|]\)</span> 必然和 <span class="math inline">\(S[1,|S|-i]\)</span> 相等，即把前缀拿走之后剩余的部分必须是原串的一个 border。</p><p>这个前缀又要最长，那么就是最短 border。</p><p>根据 fail 数组的性质，一直跳到空串之前即可。</p>
@@ -1013,7 +1013,13 @@ tuple&lt;<span class="hljs-type">int</span>, Point&lt;T&gt;, Point&lt;T&gt;&gt; 
     </div>
 </div>
 <hr />
-<p>晚上还是点外卖，一雪前耻。点了个 ¥27 的麻辣香锅，好吃捏好吃捏，分量也足，能有 4 星半（?）</p>
+<p>晚饭还是点外卖，一雪前耻。点了个 ¥27 的麻辣香锅，好吃捏好吃捏，分量也足，能有 4 星半（?）</p>
+<p>专题还是不想做，动力全无。</p>
+<p>试着去研究了一下计算几何的板子，最后研究得出来的结论是：套就完了（?）</p>
+<p>板子是从 jiangly 那里直接扒的，不是不想自己写，是哥哥写的代码太好看了鸭。</p>
+<p>感觉啥也没干，那还是看看专题把。</p>
+<p>十分钟写了个签到 pick 定理，然后坐了两小时牢。</p>
+<p>感觉还没到能徒手干专题的水平，先放着好了。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
