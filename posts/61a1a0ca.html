@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.4k 字
+          8.9k 字
         
       </span>
     
@@ -365,7 +365,7 @@
 <p>xcy 讲课，感觉 ppt 做的好认真鸭，出乎意料的除了势能分析都听懂了，虽然讲的是最基础的 kmp。</p>
 <p>接着 lxy 讲课，我爆了，z 函数听不懂一点，上面板书也小小的看不清。讲到后面写的更小了，这我听集贸啊，就不听了。</p>
 <p>翻了下 oiwiki，写的一般鸭，更加认真地看了看，还是放弃了，去翻洛谷题解了。</p>
-<p>稍微会了点，果然有点图示真的会好很多。</p>
+<p>稍微会了点，果然有点图示会好很多。</p>
 <p>提前下课！好也不好，外卖点了个 ¥20 的猪脚饭。时间还早，冒雨去便利店买了点物资，这便利店完爆沙河。</p>
 <p>外卖被偷了。骑手找了半天，说一分钟前刚放。我不知道该说什么，到了清水河这边干啥都不顺，心态感觉不出几天就垮完了。</p>
 <p>中午补了一下课件上提到的四题。</p>
@@ -609,6 +609,204 @@
 
     </div>
 </div>
+<hr />
+<div class="note note-info">
+            <p>题意：给定字符串 <span class="math inline">\(S\)</span>，对于字符串 <span class="math inline">\(T\)</span>，称 <span class="math inline">\(T\)</span> 是 <span class="math inline">\(S\)</span> 的周期当且仅当 <span class="math inline">\(T\)</span> 是 <span class="math inline">\(S\)</span> 的真前缀且 <span class="math inline">\(S\)</span> 是 <span class="math inline">\(T + T\)</span> 的前缀。</p><p>求给定 <span class="math inline">\(S\)</span> 的所有前缀的最大周期长度之和。</p><p><span class="math inline">\(1 \le |S| \le 10^6\)</span>。</p>
+          </div>
+<div class="note note-success">
+            <p><span class="math inline">\(S\)</span> 是 <span class="math inline">\(T+T\)</span> 的前缀可以理解为把 <span class="math inline">\(S\)</span> 的一个前缀复制一份之后能完全包含 <span class="math inline">\(S\)</span>。</p><p>设这个前缀为 <span class="math inline">\(S[1,i]\)</span>，那么 <span class="math inline">\(S[i+1,|S|]\)</span> 必然和 <span class="math inline">\(S[1,|S|-i]\)</span> 相等，即把前缀拿走之后剩余的部分必须是原串的一个 border。</p><p>这个前缀又要最长，那么就是最短 border。</p><p>根据 fail 数组的性质，一直跳到空串之前即可。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin); freopen(#x<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x)  &#123; cout &lt;&lt; <span class="hljs-string">&quot;check &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; cout.flush();&#125;</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> die(x) &#123; cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;return ;&#125;</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
+
+
+
+
+<span class="hljs-comment">/*ooooooooooooooooooooo</span>
+<span class="hljs-comment">o   templates above   o</span>
+<span class="hljs-comment">oooooooooooooooooooooo*/</span>
+
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-type">int</span> n;
+	string s;
+	cin &gt;&gt; n &gt;&gt; s;
+	s = <span class="hljs-string">&quot; &quot;</span> + s;
+
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">fail</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>, p = <span class="hljs-number">0</span>; i &lt;= n; i++) &#123;
+		<span class="hljs-keyword">while</span> (p &amp;&amp; s[i] != s[p + <span class="hljs-number">1</span>]) &#123;
+			p = fail[p];
+		&#125;
+		<span class="hljs-keyword">if</span> (s[i] == s[p + <span class="hljs-number">1</span>]) &#123;
+			p++;
+		&#125;
+		fail[i] = p;
+	&#125;
+	<span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+		<span class="hljs-type">int</span> p = i;
+		<span class="hljs-keyword">while</span> (fail[p]) &#123;
+			p = fail[p];
+		&#125;
+		<span class="hljs-keyword">if</span> (fail[i]) &#123;
+			fail[i] = p;
+		&#125;
+		ans += i - p;
+	&#125;
+
+	cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">fre</span>(test);
+	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
+
+	<span class="hljs-type">int</span> T = <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span> (T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+		<span class="hljs-comment">// cout.flush();</span>
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<hr />
+<div class="note note-info">
+            <p>【P5829 【模板】失配树】</p><p>题意：给定一个字符串 <span class="math inline">\(S\)</span>，<span class="math inline">\(m\)</span> 组询问。每次给定 <span class="math inline">\(p,q\)</span>，求 <span class="math inline">\(S\)</span> 的 <span class="math inline">\(p\)</span> 前缀和 <span class="math inline">\(q\)</span> 前缀的最长公共 border 的长度。</p><p><span class="math inline">\(1\le p,q\le |S| \le 10^6\)</span>，<span class="math inline">\(1\le m \le 10^5\)</span>。</p>
+          </div>
+<div class="note note-success">
+            <p>fail 树，顾名思义就是连边 <span class="math inline">\(fail[i] \to i\)</span> 形成的树，不断往上跳父亲跳到根就能得到这个字符串所有的 border。</p><p>那题目所求相当于 fail 树上点 <span class="math inline">\(p\)</span> 和点 <span class="math inline">\(q\)</span> 的 <span class="math inline">\(\text{LCA}\)</span>。</p><p>特别注意：如果求出来的 <span class="math inline">\(\text{LCA}\)</span> 是 <span class="math inline">\(p\)</span> 或者 <span class="math inline">\(q\)</span>，那么还要往上跳一格，因为自己不是自己的 border。</p><p>时间复杂度 <span class="math inline">\(O(m\log |S|)\)</span>。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin); freopen(#x<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x)  &#123; cout &lt;&lt; <span class="hljs-string">&quot;check &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; cout.flush();&#125;</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> die(x) &#123; cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;return ;&#125;</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
+
+
+
+
+<span class="hljs-comment">/*ooooooooooooooooooooo</span>
+<span class="hljs-comment">o   templates above   o</span>
+<span class="hljs-comment">oooooooooooooooooooooo*/</span>
+
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	string s;
+	cin &gt;&gt; s;
+	<span class="hljs-type">int</span> n = s.<span class="hljs-built_in">size</span>();
+	s = <span class="hljs-string">&quot; &quot;</span> + s;
+
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">fail</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
+	vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">adj</span>(n + <span class="hljs-number">1</span>);
+	adj[<span class="hljs-number">0</span>].<span class="hljs-built_in">push_back</span>(<span class="hljs-number">1</span>);
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">2</span>, p = <span class="hljs-number">0</span>; i &lt;= n; i++) &#123;
+		<span class="hljs-keyword">while</span> (p &amp;&amp; s[i] != s[p + <span class="hljs-number">1</span>]) &#123;
+			p = fail[p];
+		&#125;
+		<span class="hljs-keyword">if</span> (s[i] == s[p + <span class="hljs-number">1</span>]) &#123;
+			p++;
+		&#125;
+		fail[i] = p;
+		adj[fail[i]].<span class="hljs-built_in">push_back</span>(i);
+	&#125;
+
+	vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">fa</span>(n + <span class="hljs-number">1</span>, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">25</span>, <span class="hljs-number">0</span>));
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">depth</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
+	<span class="hljs-keyword">auto</span> dfs = [&amp;] (<span class="hljs-keyword">auto</span> self, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> fath) -&gt; <span class="hljs-type">void</span> &#123;
+		fa[x][<span class="hljs-number">0</span>] = fath;
+		depth[x] = depth[fath] + <span class="hljs-number">1</span>;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= __lg(depth[x]) + <span class="hljs-number">1</span>; i++) &#123;
+			fa[x][i] = fa[fa[x][i - <span class="hljs-number">1</span>]][i - <span class="hljs-number">1</span>];
+		&#125;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> y : adj[x]) &#123;
+			<span class="hljs-keyword">if</span> (y != fath) &#123;
+				<span class="hljs-built_in">self</span>(self, y, x);
+			&#125;
+		&#125;
+	&#125;;
+	<span class="hljs-keyword">auto</span> LCA = [&amp;] (<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y) &#123;
+		<span class="hljs-keyword">if</span> (depth[x] &lt; depth[y]) &#123;
+			<span class="hljs-built_in">swap</span>(x, y);
+		&#125;
+		<span class="hljs-keyword">while</span> (depth[x] &gt; depth[y]) &#123;
+			x = fa[x][__lg(depth[x] - depth[y])];
+		&#125;
+		<span class="hljs-keyword">if</span> (x == y) &#123;
+			<span class="hljs-keyword">return</span> x;
+		&#125; 
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = __lg(depth[x]); i &gt;= <span class="hljs-number">0</span>; i--) &#123;
+			<span class="hljs-keyword">if</span> (fa[x][i] != fa[y][i]) &#123;
+				x = fa[x][i];
+				y = fa[y][i];
+			&#125;
+		&#125;
+		<span class="hljs-keyword">return</span> fa[x][<span class="hljs-number">0</span>];
+	&#125;;
+	<span class="hljs-built_in">dfs</span>(dfs, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>);
+
+	<span class="hljs-type">int</span> m;
+	cin &gt;&gt; m;
+	<span class="hljs-keyword">while</span> (m--) &#123;
+		<span class="hljs-type">int</span> x, y;
+		cin &gt;&gt; x &gt;&gt; y;
+		<span class="hljs-type">int</span> res = <span class="hljs-built_in">LCA</span>(x, y);
+		<span class="hljs-keyword">if</span> (res == x || res == y) &#123;
+			res = fa[res][<span class="hljs-number">0</span>];
+		&#125;
+		cout &lt;&lt; res &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	&#125;
+&#125;
+
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">fre</span>(test);
+	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
+
+	<span class="hljs-type">int</span> T = <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span> (T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+		<span class="hljs-comment">// cout.flush();</span>
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<hr />
+<p>下午 QHJ 讲计算几何，没睡过，但雨一直下，走过去还要 20 分钟，摆！</p>
+<p>看了看集训计划确认了每个专题第一节不点名，就呆在宿舍听了。</p>
+<p>然后就后悔了，声音断断续续的，基本就是看 PPT。</p>
+<p>怎么感觉都是套板子鸭，很符合我之前对计算几何的印象。</p>
+<p>但我怎么例题都不会做鸭（</p>
+<p>正好有一段声音几乎没了，估计是在黑板上涂涂写写，我听着也难受，就去做了两个 PPT 上的题。</p>
+<p>感觉下午亏麻了鸭！</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
