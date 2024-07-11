@@ -1513,48 +1513,51 @@ tuple&lt;<span class="hljs-type">int</span>, Point&lt;T&gt;, Point&lt;T&gt;&gt; 
 <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin); freopen(#x<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span>
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x)  &#123; cout &lt;&lt; <span class="hljs-string">&quot;check &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; cout.flush();&#125;</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
+
 
 
 <span class="hljs-keyword">struct</span> <span class="hljs-title class_">Trie</span> &#123;
 	<span class="hljs-type">static</span> <span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> S = <span class="hljs-number">28</span>;
 	<span class="hljs-type">static</span> <span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> N = <span class="hljs-number">2.5e6</span> + <span class="hljs-number">2</span>;
-	<span class="hljs-type">int</span> tot = <span class="hljs-number">0</span>;
 	<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Node</span> &#123;
 		<span class="hljs-type">int</span> fa, flag, cnt;
 		array&lt;<span class="hljs-type">int</span>, S&gt; nxt;
 		<span class="hljs-built_in">Node</span>() : fa&#123;<span class="hljs-number">-1</span>&#125;, flag&#123;<span class="hljs-number">-1</span>&#125;, cnt&#123;<span class="hljs-number">0</span>&#125;, nxt&#123;&#125; &#123;&#125;
-	&#125; t[N];
+	&#125;;
+	vector&lt;Node&gt; t;
 
 	<span class="hljs-built_in">Trie</span>() &#123;
+		t.<span class="hljs-built_in">reserve</span>(N);
+		t.<span class="hljs-built_in">assign</span>(<span class="hljs-number">2</span>, <span class="hljs-built_in">Node</span>());
 		t[<span class="hljs-number">0</span>].nxt.<span class="hljs-built_in">fill</span>(<span class="hljs-number">1</span>);
-		t[<span class="hljs-number">1</span>].fa = <span class="hljs-number">0</span>;	
-		tot = <span class="hljs-number">1</span>;
-	&#125;														
-	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">newNode</span><span class="hljs-params">()</span> </span>&#123;														
-		t[++tot] = <span class="hljs-built_in">Node</span>();
-		<span class="hljs-keyword">return</span> tot;								
-	&#125;									
-	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(string s, <span class="hljs-type">int</span> i)</span> </span>&#123;									
-		<span class="hljs-type">int</span> p = <span class="hljs-number">1</span>;									
-		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> c : s) &#123;									
-			<span class="hljs-type">int</span> x;									
-			<span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;.&#x27;</span>) &#123;									
-				x = <span class="hljs-number">26</span>;									
-			&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;/&#x27;</span>) &#123;									
-				x = <span class="hljs-number">27</span>;									
-			&#125; <span class="hljs-keyword">else</span> &#123;									
-				x = c - <span class="hljs-string">&#x27;a&#x27;</span>;									
-			&#125;									
-			<span class="hljs-keyword">if</span> (t[p].nxt[x] == <span class="hljs-number">0</span>) &#123;									
-				t[p].nxt[x] = <span class="hljs-built_in">newNode</span>();									
-				t[t[p].nxt[x]].fa = p;									
-			&#125;									
-			p = t[p].nxt[x];									
-			t[p].flag = i;									
-		&#125;									
-		<span class="hljs-keyword">return</span> p;														
-	&#125;														
-	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">next</span><span class="hljs-params">(<span class="hljs-type">int</span> p, <span class="hljs-type">int</span> x)</span> </span>&#123;														
+		t[<span class="hljs-number">1</span>].fa = <span class="hljs-number">0</span>;
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">newNode</span><span class="hljs-params">()</span> </span>&#123;
+		t.<span class="hljs-built_in">emplace_back</span>();
+		<span class="hljs-keyword">return</span> t.<span class="hljs-built_in">size</span>() - <span class="hljs-number">1</span>;
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">add</span><span class="hljs-params">(string s, <span class="hljs-type">int</span> i)</span> </span>&#123;
+		<span class="hljs-type">int</span> p = <span class="hljs-number">1</span>;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> c : s) &#123;
+			<span class="hljs-type">int</span> x;
+			<span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;.&#x27;</span>) &#123;
+				x = <span class="hljs-number">26</span>;
+			&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;/&#x27;</span>) &#123;
+				x = <span class="hljs-number">27</span>;
+			&#125; <span class="hljs-keyword">else</span> &#123;
+				x = c - <span class="hljs-string">&#x27;a&#x27;</span>;
+			&#125;
+			<span class="hljs-keyword">if</span> (t[p].nxt[x] == <span class="hljs-number">0</span>) &#123;
+				t[p].nxt[x] = <span class="hljs-built_in">newNode</span>();
+				t[t[p].nxt[x]].fa = p;
+			&#125;
+			p = t[p].nxt[x];
+			t[p].flag = i;
+		&#125;
+		<span class="hljs-keyword">return</span> p;
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">next</span><span class="hljs-params">(<span class="hljs-type">int</span> p, <span class="hljs-type">int</span> x)</span> </span>&#123;
 		<span class="hljs-keyword">return</span> t[p].nxt[x];
 	&#125;
 	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">flag</span><span class="hljs-params">(<span class="hljs-type">int</span> p)</span> </span>&#123;
@@ -1566,7 +1569,10 @@ tuple&lt;<span class="hljs-type">int</span>, Point&lt;T&gt;, Point&lt;T&gt;&gt; 
 	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">fa</span><span class="hljs-params">(<span class="hljs-type">int</span> p)</span> </span>&#123;
 		<span class="hljs-keyword">return</span> t[p].fa;
 	&#125;
-&#125; tr;
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">size</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">return</span> t.<span class="hljs-built_in">size</span>();
+	&#125;
+&#125;;
 
 
 <span class="hljs-comment">/*ooooooooooooooooooooo</span>
@@ -1578,6 +1584,7 @@ tuple&lt;<span class="hljs-type">int</span>, Point&lt;T&gt;, Point&lt;T&gt;&gt; 
 <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
 	<span class="hljs-type">int</span> n;
 	cin &gt;&gt; n;
+	Trie tr;
 	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">id</span><span class="hljs-params">(n)</span></span>;
 	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;
 		string s;
@@ -1600,7 +1607,7 @@ tuple&lt;<span class="hljs-type">int</span>, Point&lt;T&gt;, Point&lt;T&gt;&gt; 
 
 
 <span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
-	<span class="hljs-comment">// fre(test);</span>
+
 	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
 	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
 
@@ -1610,8 +1617,7 @@ tuple&lt;<span class="hljs-type">int</span>, Point&lt;T&gt;, Point&lt;T&gt;&gt; 
 		<span class="hljs-comment">// cout.flush();</span>
 	&#125;
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;
-</code></pre></div>
+&#125;</code></pre></div>
 
     </div>
 </div>
