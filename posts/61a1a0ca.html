@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          26k 字
+          28k 字
         
       </span>
     
@@ -1676,6 +1676,87 @@ tuple&lt;<span class="hljs-type">int</span>, Point&lt;T&gt;, Point&lt;T&gt;&gt; 
 	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
 		cout &lt;&lt; dp[t][i][<span class="hljs-number">3</span>] &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
 	&#125;
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">fre</span>(test);
+	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
+
+	<span class="hljs-type">int</span> T = <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span> (T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+		<span class="hljs-comment">// cout.flush();</span>
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<hr />
+<div class="note note-info">
+            <p>【队内赛 1J - gym102920 H. Needle】</p><p>题意：有三条平行 <span class="math inline">\(x\)</span> 轴直线，直线上有缺口，三条直线上的缺口坐标分别给定为 <span class="math inline">\(\{a\},\{b\},\{c\}\)</span>，问有多少组三点共线。</p><p><span class="math inline">\(1 \le n_a,n_b,n_c \le 5\cdot 10^4\)</span>，<span class="math inline">\(-3\cdot10^4 \le a_i,b_i,c_i \le 3\cdot 10^4\)</span>。</p>
+          </div>
+<div class="note note-success">
+            <p>结论：等效于求满足 <span class="math inline">\(a_i+c_k=2\cdot b_j\)</span> 的三元组 <span class="math inline">\((i, j, k)\)</span> 的数量。由中点性质易证。</p><p>移项，得 <span class="math inline">\(a_i - b_j = -c_k + b_j\)</span>。</p><p>将 <span class="math inline">\(a_i\)</span> 和 <span class="math inline">\(-c_k\)</span> 存到 bitset 中，一个左移 <span class="math inline">\(b_j\)</span> 一个右移 <span class="math inline">\(b_j\)</span>，之后 <span class="math inline">\(\&amp;\)</span> 起来为 <span class="math inline">\(1\)</span> 的位置数目就是所求。</p><p>可以直接调用 bitset 中的 <code>count()</code> 函数，时间复杂度 <span class="math inline">\(O(\frac{n^2}{w})\)</span>。</p><p>注意负数，需要整体加一个数全变为正数。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin); freopen(#x<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x)  &#123; cout &lt;&lt; <span class="hljs-string">&quot;check &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; cout.flush();&#125;</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
+
+
+
+<span class="hljs-comment">/*ooooooooooooooooooooo</span>
+<span class="hljs-comment">o   templates above   o</span>
+<span class="hljs-comment">oooooooooooooooooooooo*/</span>
+
+<span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> N = <span class="hljs-number">6e4</span> + <span class="hljs-number">5</span>;
+<span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> eps = <span class="hljs-number">3e4</span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-type">int</span> A;
+	cin &gt;&gt; A;
+	bitset&lt;N&gt; a;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= A; i++) &#123;
+		<span class="hljs-type">int</span> x;
+		cin &gt;&gt; x;
+		a[x + eps] = <span class="hljs-number">1</span>;
+	&#125;
+
+	<span class="hljs-type">int</span> B;
+	cin &gt;&gt; B;
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">b</span><span class="hljs-params">(B + <span class="hljs-number">1</span>)</span></span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= B; i++) &#123;
+		cin &gt;&gt; b[i];
+	&#125;
+
+	<span class="hljs-type">int</span> C;
+	cin &gt;&gt; C;
+	bitset&lt;N&gt; c;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= C; i++) &#123;
+		<span class="hljs-type">int</span> x;
+		cin &gt;&gt; x;
+		c[-x + eps] = <span class="hljs-number">1</span>;
+	&#125;
+
+	<span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= B; i++) &#123;
+		<span class="hljs-keyword">if</span> (b[i] &gt; <span class="hljs-number">0</span>) &#123;
+			ans += ( (a &gt;&gt; b[i]) &amp; (c &lt;&lt; b[i]) ).<span class="hljs-built_in">count</span>();
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			ans += ( (a &lt;&lt; (-b[i]) ) &amp; (c &gt;&gt; (-b[i]) ) ).<span class="hljs-built_in">count</span>();
+		&#125;
+	&#125;
+	cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
 &#125;
 
 
