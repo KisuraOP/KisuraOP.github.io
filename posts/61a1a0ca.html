@@ -1398,10 +1398,8 @@ tuple&lt;<span class="hljs-type">int</span>, Point&lt;T&gt;, Point&lt;T&gt;&gt; 
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
 
 
-
 <span class="hljs-keyword">struct</span> <span class="hljs-title class_">Trie</span> &#123;
 	<span class="hljs-type">static</span> <span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> S = <span class="hljs-number">28</span>;
-	<span class="hljs-type">static</span> <span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> N = <span class="hljs-number">2.5e6</span> + <span class="hljs-number">2</span>;
 	<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Node</span> &#123;
 		<span class="hljs-type">int</span> fa, flag, cnt;
 		array&lt;<span class="hljs-type">int</span>, S&gt; nxt;
@@ -1410,7 +1408,6 @@ tuple&lt;<span class="hljs-type">int</span>, Point&lt;T&gt;, Point&lt;T&gt;&gt; 
 	vector&lt;Node&gt; t;
 
 	<span class="hljs-built_in">Trie</span>() &#123;
-		t.<span class="hljs-built_in">reserve</span>(N);
 		t.<span class="hljs-built_in">assign</span>(<span class="hljs-number">2</span>, <span class="hljs-built_in">Node</span>());
 		t[<span class="hljs-number">0</span>].nxt.<span class="hljs-built_in">fill</span>(<span class="hljs-number">1</span>);
 		t[<span class="hljs-number">1</span>].fa = <span class="hljs-number">0</span>;
@@ -1489,7 +1486,7 @@ tuple&lt;<span class="hljs-type">int</span>, Point&lt;T&gt;, Point&lt;T&gt;&gt; 
 
 
 <span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
-
+	<span class="hljs-comment">// fre(test);</span>
 	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
 	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
 
