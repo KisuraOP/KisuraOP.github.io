@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          54k 字
+          57k 字
         
       </span>
     
@@ -3103,8 +3103,160 @@ Point <span class="hljs-keyword">operator</span>-(<span class="hljs-type">const<
     </div>
 </div>
 <div class="note note-success">
-            
+            <p>上面两种方法一个写起来复杂，一个取巧，那么还有一个比较套路的换根 dp 做法。</p><p>我们钦定 <span class="math inline">\(i\)</span> 为根，定义 <span class="math inline">\(dp_{i,0/1}\)</span>。</p><ul><li><span class="math inline">\(dp_{i,0}\)</span> 代表 <span class="math inline">\(i\)</span> 离与它最远的关键点 <span class="math inline">\(j\)</span> 之间的距离，即最后答案。</li><li><span class="math inline">\(dp_{i,1}\)</span> 代表除 <span class="math inline">\(j\)</span> 所在的 <span class="math inline">\(i\)</span> 的子树外，与 <span class="math inline">\(i\)</span> 距离最远的关键点和 <span class="math inline">\(i\)</span> 之间的距离。</li></ul><p>第一次以 <span class="math inline">\(1\)</span> 为根进行 dfs，同时 <span class="math inline">\(fr_i\)</span> 记录 <span class="math inline">\(dp_{i,0}\)</span> 从哪个节点转移而来：</p><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">vector <span class="hljs-title">dp</span><span class="hljs-params">(n + <span class="hljs-number">1</span>, vector&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">2</span>, -inf))</span></span>;
+<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">from</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
+<span class="hljs-keyword">auto</span> dfs1 = [&amp;] (<span class="hljs-keyword">auto</span> self, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> fa) -&gt; <span class="hljs-type">void</span> &#123;
+	<span class="hljs-keyword">if</span> (a[x]) &#123;
+		dp[x][<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;
+	&#125;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> y : adj[x]) &#123;
+		<span class="hljs-keyword">if</span> (y == fa) &#123;
+			<span class="hljs-keyword">continue</span>;
+		&#125;
+		<span class="hljs-built_in">self</span>(self, y, x);
+		<span class="hljs-type">int</span> t = dp[y][<span class="hljs-number">0</span>] + <span class="hljs-number">1</span>;
+		<span class="hljs-keyword">if</span> (t &gt; dp[x][<span class="hljs-number">0</span>]) &#123;
+			dp[x][<span class="hljs-number">1</span>] = dp[x][<span class="hljs-number">0</span>];
+			dp[x][<span class="hljs-number">0</span>] = t;
+			from[x] = y;
+		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (t &gt; dp[x][<span class="hljs-number">1</span>]) &#123;
+			dp[x][<span class="hljs-number">1</span>] = t;
+		&#125;
+	&#125;
+&#125;;</code></pre></div><p>此时的 <span class="math inline">\(dp_{i}\)</span> 从节点 <span class="math inline">\(1\)</span> 辐向 <span class="math inline">\(i\)</span> 的一侧拥有符合上述意义的答案。</p><p>考虑换根，从 <span class="math inline">\(fa\to x\)</span>，其中 <span class="math inline">\(fr_{fa}\)</span> 是否等于 <span class="math inline">\(x\)</span>，等价于 <span class="math inline">\(fa\)</span> 是否转换到了 <span class="math inline">\(x\)</span> 的另一侧。</p><p>记得此时更新 <span class="math inline">\(dp_{x,0}\)</span> 时也要同步更新 <span class="math inline">\(fr_x\)</span>。</p><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">auto</span> dfs2 = [&amp;] (<span class="hljs-keyword">auto</span> self, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> fa) -&gt; <span class="hljs-type">void</span> &#123;
+		<span class="hljs-type">int</span> t;
+		<span class="hljs-keyword">if</span> (from[fa] != x) &#123;
+			t = dp[fa][<span class="hljs-number">0</span>] + <span class="hljs-number">1</span>;
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			t = dp[fa][<span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;
+		&#125;
+		<span class="hljs-keyword">if</span> (t &gt; dp[x][<span class="hljs-number">0</span>]) &#123;
+			dp[x][<span class="hljs-number">1</span>] = dp[x][<span class="hljs-number">0</span>];
+			dp[x][<span class="hljs-number">0</span>] = t;
+			from[x] = fa;
+		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (t &gt; dp[x][<span class="hljs-number">1</span>]) &#123;
+			dp[x][<span class="hljs-number">1</span>] = t;
+		&#125;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> y : adj[x]) &#123;
+			<span class="hljs-keyword">if</span> (y == fa) &#123;
+				<span class="hljs-keyword">continue</span>;
+			&#125;
+			<span class="hljs-built_in">self</span>(self, y, x); 
+		&#125;
+	&#125;;</code></pre></div><p>不理解可以模拟一下题目的样例，以及将节点 <span class="math inline">\(4\)</span> 也变为关键点的情况。</p><p>我认为还是比较烧脑的。</p>
           </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin); freopen(#x<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x)  &#123; cout &lt;&lt; <span class="hljs-string">&quot;check &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; cout.flush();&#125;</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
+
+
+
+
+<span class="hljs-comment">/*ooooooooooooooooooooo</span>
+<span class="hljs-comment">o   templates above   o</span>
+<span class="hljs-comment">oooooooooooooooooooooo*/</span>
+
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-type">int</span> n, m, d;
+	cin &gt;&gt; n &gt;&gt; m &gt;&gt; d;
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; m; i++) &#123;
+		<span class="hljs-type">int</span> x;
+		cin &gt;&gt; x;
+		a[x] = <span class="hljs-number">1</span>;
+	&#125;	
+	vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">adj</span>(n + <span class="hljs-number">1</span>);
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;
+		<span class="hljs-type">int</span> x, y;
+		cin &gt;&gt; x &gt;&gt; y;
+		adj[x].<span class="hljs-built_in">push_back</span>(y);
+		adj[y].<span class="hljs-built_in">push_back</span>(x);
+	&#125;
+
+	<span class="hljs-function">vector <span class="hljs-title">dp</span><span class="hljs-params">(n + <span class="hljs-number">1</span>, vector&lt;<span class="hljs-type">int</span>&gt;(<span class="hljs-number">2</span>, -inf))</span></span>;
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">from</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
+	<span class="hljs-keyword">auto</span> dfs1 = [&amp;] (<span class="hljs-keyword">auto</span> self, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> fa) -&gt; <span class="hljs-type">void</span> &#123;
+		<span class="hljs-keyword">if</span> (a[x]) &#123;
+			dp[x][<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;
+		&#125;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> y : adj[x]) &#123;
+			<span class="hljs-keyword">if</span> (y == fa) &#123;
+				<span class="hljs-keyword">continue</span>;
+			&#125;
+			<span class="hljs-built_in">self</span>(self, y, x);
+			<span class="hljs-type">int</span> t = dp[y][<span class="hljs-number">0</span>] + <span class="hljs-number">1</span>;
+			<span class="hljs-keyword">if</span> (t &gt; dp[x][<span class="hljs-number">0</span>]) &#123;
+				dp[x][<span class="hljs-number">1</span>] = dp[x][<span class="hljs-number">0</span>];
+				dp[x][<span class="hljs-number">0</span>] = t;
+				from[x] = y;
+			&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (t &gt; dp[x][<span class="hljs-number">1</span>]) &#123;
+				dp[x][<span class="hljs-number">1</span>] = t;
+			&#125;
+		&#125;
+	&#125;;
+	<span class="hljs-built_in">dfs1</span>(dfs1, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+
+	<span class="hljs-keyword">auto</span> dfs2 = [&amp;] (<span class="hljs-keyword">auto</span> self, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> fa) -&gt; <span class="hljs-type">void</span> &#123;
+		<span class="hljs-type">int</span> t;
+		<span class="hljs-keyword">if</span> (from[fa] != x) &#123;
+			t = dp[fa][<span class="hljs-number">0</span>] + <span class="hljs-number">1</span>;
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			t = dp[fa][<span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;
+		&#125;
+		<span class="hljs-keyword">if</span> (t &gt; dp[x][<span class="hljs-number">0</span>]) &#123;
+			dp[x][<span class="hljs-number">1</span>] = dp[x][<span class="hljs-number">0</span>];
+			dp[x][<span class="hljs-number">0</span>] = t;
+			from[x] = fa;
+		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (t &gt; dp[x][<span class="hljs-number">1</span>]) &#123;
+			dp[x][<span class="hljs-number">1</span>] = t;
+		&#125;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> y : adj[x]) &#123;
+			<span class="hljs-keyword">if</span> (y == fa) &#123;
+				<span class="hljs-keyword">continue</span>;
+			&#125;
+			<span class="hljs-built_in">self</span>(self, y, x); 
+		&#125;
+	&#125;;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> y : adj[<span class="hljs-number">1</span>]) &#123;
+		<span class="hljs-built_in">dfs2</span>(dfs2, y, <span class="hljs-number">1</span>);
+	&#125;
+
+	<span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+		<span class="hljs-keyword">if</span> (dp[i][<span class="hljs-number">0</span>] &lt;= d) &#123;
+			ans++;
+		&#125;
+	&#125;
+	cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">fre</span>(test);
+	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
+
+	<span class="hljs-type">int</span> T = <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span> (T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+		<span class="hljs-comment">// cout.flush();</span>
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
 <hr />
 <p>还有一题但是点分树折磨了我两个小时，我要睡觉了。</p>
 <p>骗自己罢了，不眠之夜。</p>
