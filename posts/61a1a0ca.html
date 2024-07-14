@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          51k 字
+          53k 字
         
       </span>
     
@@ -2616,7 +2616,8 @@ tuple&lt;<span class="hljs-type">int</span>, Point&lt;T&gt;, Point&lt;T&gt;&gt; 
 <p>中午朝阳￥15 可乐鸡饭，很牛啊，4 星。这个默认给你的饭很少，下次得向阿姨要多一点。</p>
 <p>回到宿舍水了下群直接睡了。以往中午我都不怎么睡，但可能昨晚睡比较晚？</p>
 <hr />
-<p>下午第三次队内赛，我怎么又白给了。一个小时开了 ABI，然后怎么 C 又坐牢了鸭。</p>
+<p>下午第三次队内赛，我怎么又白给了。4/8（Rank16）</p>
+<p>一个小时开了 ABI，然后怎么 C 又坐牢了鸭。</p>
 <p>不能算坐牢，这个是刚开始就有思路，但写了一坨还调不对（</p>
 <p>wa5，wa6，wa10，tle61...</p>
 <p>唉，没想清楚导致的。</p>
@@ -3005,6 +3006,119 @@ Point <span class="hljs-keyword">operator</span>-(<span class="hljs-type">const<
 </div>
 <hr />
 <p>还有一题但是点分树折磨了我两个小时，我要睡觉了。</p>
+<p>骗自己罢了，不眠之夜。</p>
+<h3 id="day-6">【7.13】 Day 6</h3>
+<p>雨一直下。</p>
+<h3 id="day-7">【7.14】 Day 7</h3>
+<p>雨一直下。</p>
+<p>晚上躺在床上突然想通了什么，伟大的一步。</p>
+<p>晚上快 22 点多了才下床，笔记本充电器不知道去哪了，应该是在 234。骑车过去拿，但灯都黑了，无功而返，跟 xxx 借了一个。</p>
+<p>0 点 35，vp 了昨天的 abc，6/7，G 把板子喂到嘴里了。</p>
+<p>就 F 有点意思，写一下。</p>
+<div class="note note-info">
+            <p>题意：给定一棵 <span class="math inline">\(n\)</span> 个点的树，定义 <span class="math inline">\(dis(x, y)\)</span> 为树上 <span class="math inline">\(x,y\)</span> 间的距离。有一个 <span class="math inline">\(n\)</span> 个点的完全图 <span class="math inline">\(G\)</span>，其中 <span class="math inline">\(w(x,y)=dis(x,y)\)</span>。求这个完全图的一个最大权匹配，输出匹配方案。</p><p><span class="math inline">\(2 \le n \le 2\cdot 10^5\)</span>。</p>
+          </div>
+<div class="note note-success">
+            <p>结论：令 <span class="math inline">\(c\)</span> 为树的重心，则满足以下条件的匹配 <span class="math inline">\(S\)</span> 为答案：</p><ul><li><span class="math inline">\(\forall (x_i,y_i)\in S\)</span>，<span class="math inline">\(x_i\)</span> 和 <span class="math inline">\(y_i\)</span> 位于重心两侧。</li></ul>
+          </div>
+<div class="note note-success">
+            <p>证明：拆贡献，令一条边两侧的点数为 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(n-a\)</span>，则该边的贡献为 <span class="math inline">\(\min(a,n-a)\)</span>。因为理想情况点少的这一侧的所有点都能跨过这条边寻找自己的匹配。那么答案的上界就是所有边的贡献和，即 <span class="math inline">\(\sum\min(a,n-a)\)</span>。</p><p>对于重心 <span class="math inline">\(c\)</span>，我们令 <span class="math inline">\(e\)</span> 为以 <span class="math inline">\(c\)</span> 为根的某个子树中的某一条边，此时 <span class="math inline">\(e\)</span> 的两侧中点比较少的一定是远离重心方向的这一侧。 按照我们的理论，这一侧的点只要跨越了这条边寻找匹配就成功了，此时它们匹配了重心另一侧的点，满足条件。</p><p>不难发现对于以 <span class="math inline">\(c\)</span> 为根的每一个子树中的所有边都满足上述条件，达到了贡献最大值，证毕。</p>
+          </div>
+<div class="note note-success">
+            <p>于是我们可以进行如下构造：</p><ul><li>找到树的重心 <span class="math inline">\(c\)</span>，令 <span class="math inline">\(c\)</span> 的若干子树为 <span class="math inline">\(T_1,T_2,\cdots\)</span>。</li><li>令数组 <span class="math inline">\(A=\{T_1 中点的编号,T_2 中点的编号,\cdots\}\)</span>。</li><li>若 <span class="math inline">\(n\)</span> 为偶数，将 <span class="math inline">\(c\)</span> 补在 <span class="math inline">\(A\)</span> 的末尾。</li><li><span class="math inline">\(\forall i\in[0,\frac{n}{2})\)</span>，<span class="math inline">\((A_i,A_{i+\frac{n}{2}})\)</span> 为一个匹配。<span class="math inline">\((0-\text{index})\)</span></li></ul>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin); freopen(#x<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x)  &#123; cout &lt;&lt; <span class="hljs-string">&quot;check &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; cout.flush();&#125;</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
+
+
+
+
+<span class="hljs-comment">/*ooooooooooooooooooooo</span>
+<span class="hljs-comment">o   templates above   o</span>
+<span class="hljs-comment">oooooooooooooooooooooo*/</span>
+
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-type">int</span> n;
+	cin &gt;&gt; n;
+	vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">adj</span>(n + <span class="hljs-number">1</span>);
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;
+		<span class="hljs-type">int</span> x, y;
+		cin &gt;&gt; x &gt;&gt; y;
+		adj[x].<span class="hljs-built_in">push_back</span>(y);
+		adj[y].<span class="hljs-built_in">push_back</span>(x);
+	&#125;
+
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">sz</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span>, <span class="hljs-title">mx</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
+	<span class="hljs-type">int</span> rt = <span class="hljs-number">-1</span>;
+	<span class="hljs-keyword">auto</span> getsz = [&amp;] (<span class="hljs-keyword">auto</span> self, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> fa) -&gt; <span class="hljs-type">void</span> &#123;
+		sz[x] = <span class="hljs-number">1</span>;
+		mx[x] = <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> y : adj[x]) &#123;
+			<span class="hljs-keyword">if</span> (y == fa) &#123;
+				<span class="hljs-keyword">continue</span>;
+			&#125;
+			<span class="hljs-built_in">self</span>(self, y, x);
+			sz[x] += sz[y];
+			mx[x] = <span class="hljs-built_in">max</span>(mx[x], sz[y]);
+		&#125;
+		mx[x] = <span class="hljs-built_in">max</span>(mx[x], n - sz[x]);
+		<span class="hljs-keyword">if</span> (mx[x] &lt; mx[rt]) &#123;
+			rt = x;
+		&#125;
+	&#125;;	
+	<span class="hljs-built_in">getsz</span>(getsz, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+
+	vector&lt;<span class="hljs-type">int</span>&gt; a;
+	<span class="hljs-keyword">auto</span> dfs = [&amp;] (<span class="hljs-keyword">auto</span> self, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> fa) -&gt; <span class="hljs-type">void</span> &#123;
+		a.<span class="hljs-built_in">push_back</span>(x);
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> y : adj[x]) &#123;
+			<span class="hljs-keyword">if</span> (y == fa) &#123;
+				<span class="hljs-keyword">continue</span>;
+			&#125;
+			<span class="hljs-built_in">self</span>(self, y, x);
+		&#125;
+	&#125;;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> x : adj[rt]) &#123;
+		<span class="hljs-built_in">dfs</span>(dfs, x, rt);
+	&#125;
+
+	<span class="hljs-keyword">if</span> (n % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) &#123;
+		a.<span class="hljs-built_in">push_back</span>(rt);
+	&#125;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n / <span class="hljs-number">2</span>; i++) &#123;
+		cout &lt;&lt; a[i] &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; a[i + n / <span class="hljs-number">2</span>] &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	&#125;
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">fre</span>(test);
+	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
+
+	<span class="hljs-type">int</span> T = <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span> (T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+		<span class="hljs-comment">// cout.flush();</span>
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<h3 id="day-8">【7.15】 Day 8</h3>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
