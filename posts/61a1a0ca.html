@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          64k 字
+          66k 字
         
       </span>
     
@@ -3696,6 +3696,61 @@ Point <span class="hljs-keyword">operator</span>-(<span class="hljs-type">const<
 <p>朝阳，￥15 烤肉饭两荤两素，感觉素菜和荤菜品种都不如沙河阳光餐厅。</p>
 <p>烤肉饭就是烤肉饭的味道，本来是三星，但它那个鸡腿搞得挺好吃，三星半把。</p>
 <p>预感到又是坐牢的一天呐米娜桑。</p>
+<hr />
+<p>猜对了，继续蒸蒸日下。</p>
+<p>先是 A 维护得一坨，再是两个半小时没做出 F，糖丸了。</p>
+<p>赛后发现 <span class="math inline">\(n\)</span> 怎么是 <span class="math inline">\(5000\)</span> 鸭，下意识以为是 <span class="math inline">\(1e5\)</span> 之类的了。虽然正解也不是 <span class="math inline">\(O(n^2)\)</span> 的，但没准 <span class="math inline">\(O(n^2)\)</span> 就恰好会呢？呜呜。</p>
+<p>被 F 红晕了，H 都没仔细看。赛后发现就是 <span class="math inline">\(p_i\)</span> 和 <span class="math inline">\(p_j\)</span> 互相问，十五分钟秒了（</p>
+<p>菜，直接补题吧，没什么好说的。</p>
+<hr />
+<div class="note note-info">
+            <p>【队内赛 6 - F. 迫近的客星 - CF370C. Mittens】</p><p>题意：给定一个 <span class="math inline">\(n\)</span> 个数的数组 <span class="math inline">\(\{a\}\)</span>，你需要寻找 <span class="math inline">\(\{a\}\)</span> 的一个排列 <span class="math inline">\(\{b\}\)</span>（指 <span class="math inline">\(\{b\}\)</span> 和 <span class="math inline">\(\{a\}\)</span> 仅有元素排列顺序不同） 使得满足 <span class="math inline">\(a_i \neq b_i\)</span> 的下标数量尽可能多。</p><p><span class="math inline">\(1 \le n \le 5000\)</span>，<span class="math inline">\(1 \le m \le 100\)</span>。</p>
+          </div>
+<div class="note note-success">
+            <p>结论：将 <span class="math inline">\(\{a\}\)</span> 排序后右移 <span class="math inline">\(\dfrac{n}{2}\)</span> 再复原排序得到 <span class="math inline">\(\{b\}\)</span>。（该题只要求输出映射方案，不需要复原排序）</p><p>很智慧的构造，设 <span class="math inline">\(\{a\}\)</span> 排序之后最长连续段长度为 <span class="math inline">\(d\)</span>，分两种情况讨论：</p><ul><li><p>若 <span class="math inline">\(d \le \left\lfloor\dfrac{n}{2}\right\rfloor\)</span>，如下图。最长段（蓝色）可以错开，剩下的连续段长度都不超过 <span class="math inline">\(d\)</span>，因此可以用其它段（红色）补足空隙，此时上下两个数组就没有重合的地方了。</p><figure><img src="/image/academic/11.png" srcset="/image/other/loading.mp4" lazyload alt="1" /><figcaption aria-hidden="true">1</figcaption></figure></li><li><p>考虑右移 <span class="math inline">\(\dfrac{n}{2}\)</span>，如下图。最长段显然不会重合，其它段用不同颜色进行了标明，意在说明若在空隙的地方（即 <span class="math inline">\(l_2\)</span> 右端）<span class="math inline">\(\{a\}\)</span>，<span class="math inline">\(\{b\}\)</span> 有重合，那么其他段的长度至少要从 <span class="math inline">\(l_1\)</span> 右端开始直到 <span class="math inline">\(l_2\)</span> 右端，长度 <span class="math inline">\(&gt; \dfrac{n}{2}\)</span>，与假设相悖。</p><figure><img src="/image/academic/12.png" srcset="/image/other/loading.mp4" lazyload alt="1" /><figcaption aria-hidden="true">1</figcaption></figure></li><li><p>若 <span class="math inline">\(d &gt; \dfrac{n}{2}\)</span>，如下图。最长段（蓝色）已经不可避免地相交，剩下段（红色）不可能再重叠，因此最大匹配的下标数量为 <span class="math inline">\(n-d\)</span>。</p><figure><img src="/image/academic/13.png" srcset="/image/other/loading.mp4" lazyload alt="1" /><figcaption aria-hidden="true">1</figcaption></figure></li><li><p>考虑右移 <span class="math inline">\(\dfrac{n}{2}\)</span>，如下图。因为右移之后蓝色段 <span class="math inline">\((&gt;\dfrac{n}{2})+\dfrac{n}{2}\to (&gt;n)\)</span> 必然超出右边界，因此剩下的区域仍然要么被 <span class="math inline">\(\{a\}\)</span> 的蓝色段覆盖，要么被 <span class="math inline">\(\{b\}\)</span> 的蓝色段覆盖，取到最大匹配。</p><figure><img src="/image/academic/14.png" srcset="/image/other/loading.mp4" lazyload alt="1" /><figcaption aria-hidden="true">1</figcaption></figure></li></ul>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-type">int</span> n, m;
+	cin &gt;&gt; n &gt;&gt; m;
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n)</span></span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;
+		cin &gt;&gt; a[i];
+	&#125;
+	<span class="hljs-built_in">sort</span>(a.<span class="hljs-built_in">begin</span>(), a.<span class="hljs-built_in">end</span>());
+	<span class="hljs-type">int</span> ans = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;
+		ans += a[i] != a[(i + n / <span class="hljs-number">2</span>) % n];
+	&#125;
+	cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;
+		cout &lt;&lt; a[i] &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; a[(i + n / <span class="hljs-number">2</span>) % n] &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	&#125;
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
+
+	<span class="hljs-type">int</span> T = <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span> (T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
 <hr />
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
