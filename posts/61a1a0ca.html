@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          74k 字
+          77k 字
         
       </span>
     
@@ -4070,6 +4070,120 @@ matrix <span class="hljs-keyword">operator</span> * (<span class="hljs-type">con
 	<span class="hljs-type">int</span> T = <span class="hljs-number">1</span>;
 	<span class="hljs-keyword">while</span> (T--) &#123;
 		<span class="hljs-built_in">solve</span>();		
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<hr />
+<div class="note note-info">
+            <p>【队内赛 7 - D. 这种感觉我从未有 - CF1720D. Cut and Stick】</p><p>题意：给定长为 <span class="math inline">\(n\)</span> 的数组以及 <span class="math inline">\(q\)</span> 次询问。每次询问一个区间 <span class="math inline">\([l, r]\)</span>，问把该区间最少分为几个子序列，使每个子序列（设长度为 <span class="math inline">\(len\)</span>）众数的出现次数 <span class="math inline">\(\le \left\lceil\frac{len}{2}\right\rceil\)</span>。</p><p><span class="math inline">\(1\le n,q,a_i \le 3\cdot 10^5\)</span>。</p>
+          </div>
+<div class="note note-success">
+            <p>设区间长度为 <span class="math inline">\(len\)</span>，众数的出现次数是 <span class="math inline">\(x\)</span>。若 <span class="math inline">\(x\le \left\lceil\frac{len}{2}\right\rceil\)</span>，答案是 <span class="math inline">\(1\)</span>。否则考虑分组，一种最优方案如下：</p><ul><li>其它非众数一共有 <span class="math inline">\(len-x\)</span> 个，将其与 <span class="math inline">\(len-x+1\)</span> 个众数组合，因为此时长度是奇数，故组合后的序列是合法的。</li><li>剩下的众数有 <span class="math inline">\(x-(len-x+1)=2x-len-1\)</span> 个，每个众数单独一组。</li><li>此时有了 <span class="math inline">\(2x-len\)</span> 组，可以证明这是最优的。</li></ul><p>证明就是此时划分成的每个子序列 "众数 <span class="math inline">\(-\)</span> 非众数" 都达到了最大值 <span class="math inline">\(1\)</span>，为最饱和的状态。</p><p>剩下的问题就变成了典题 “求区间众数个数“，常用莫队和主席树。</p><p>同时众数因为有比较强的数量特征，随机化取众数也是十分可行的。这在数据结构专题 <span class="math inline">\(L\)</span> 题有充分体现。</p><p>两种方法的时间复杂度分别是 <span class="math inline">\(O((n+q)\log n)\)</span> <span class="math inline">\(\text{and}\)</span> <span class="math inline">\(O(n+Aq\log n)\)</span>，<span class="math inline">\(A\)</span> 为常数。</p><p>我这里糅合<del>(懒)</del>了一下，写了个莫队 <span class="math inline">\(+\)</span> 随机化，<span class="math inline">\(O(q\log n+Aq\sqrt{n})\)</span>。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin); freopen(#x<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x)  &#123; cout &lt;&lt; <span class="hljs-string">&quot;check &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; cout.flush();&#125;</span>
+
+<span class="hljs-function">mt19937_64 <span class="hljs-title">rng</span><span class="hljs-params">(time(<span class="hljs-number">0</span>))</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">Rand</span><span class="hljs-params">(<span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span> </span>&#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">rng</span>() % (r - l + <span class="hljs-number">1</span>) + l;
+&#125;
+
+
+<span class="hljs-comment">/*ooooooooooooooooooooo</span>
+<span class="hljs-comment">o   templates above   o</span>
+<span class="hljs-comment">oooooooooooooooooooooo*/</span>
+
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-type">int</span> n, q;
+	cin &gt;&gt; n &gt;&gt; q;
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+		cin &gt;&gt; a[i];
+	&#125;
+	vector&lt;array&lt;<span class="hljs-type">int</span>, 3&gt;&gt; <span class="hljs-built_in">qry</span>(q);
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; q; i++) &#123;
+		<span class="hljs-type">int</span> l, r;
+		cin &gt;&gt; l &gt;&gt; r;
+		qry[i] = &#123;l, r, i&#125;;
+	&#125;
+
+	<span class="hljs-type">int</span> sz = n / <span class="hljs-built_in">sqrtl</span>(<span class="hljs-number">1.0</span> * q * <span class="hljs-number">2</span> / <span class="hljs-number">3</span>);
+	<span class="hljs-built_in">sort</span>(qry.<span class="hljs-built_in">begin</span>(), qry.<span class="hljs-built_in">end</span>(),
+		 [&amp;] (array&lt;<span class="hljs-type">int</span>, <span class="hljs-number">3</span>&gt; i, array&lt;<span class="hljs-type">int</span>, <span class="hljs-number">3</span>&gt; j) &#123;
+		 <span class="hljs-keyword">if</span> (i[<span class="hljs-number">0</span>] / sz == j[<span class="hljs-number">0</span>] / sz) &#123;
+		 	<span class="hljs-keyword">if</span> ((i[<span class="hljs-number">0</span>] / sz) % <span class="hljs-number">2</span>) &#123;
+		 		<span class="hljs-keyword">return</span> i[<span class="hljs-number">1</span>] &lt; j[<span class="hljs-number">1</span>];
+		 	&#125; <span class="hljs-keyword">else</span> &#123;
+		 		<span class="hljs-keyword">return</span> i[<span class="hljs-number">1</span>] &gt; j[<span class="hljs-number">1</span>];
+		 	&#125;
+		 &#125; <span class="hljs-keyword">else</span> &#123;
+		 	<span class="hljs-keyword">return</span> i[<span class="hljs-number">0</span>] / sz &lt; j[<span class="hljs-number">0</span>] / sz;
+		 &#125;
+	&#125;) ;
+
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">cnt</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
+
+	<span class="hljs-keyword">auto</span> add = [&amp;] (<span class="hljs-type">int</span> x) &#123;
+		cnt[a[x]]++;
+	&#125;;
+	<span class="hljs-keyword">auto</span> del = [&amp;] (<span class="hljs-type">int</span> x) &#123;
+		cnt[a[x]]--;
+	&#125;;
+
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">ans</span><span class="hljs-params">(q)</span></span>;
+	<span class="hljs-type">int</span> l = <span class="hljs-number">1</span>, r = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> [ql, qr, id] : qry) &#123;
+		<span class="hljs-keyword">while</span> (l &gt; ql) &#123;
+			<span class="hljs-built_in">add</span>(--l);
+		&#125;
+		<span class="hljs-keyword">while</span> (l &lt; ql) &#123;
+			<span class="hljs-built_in">del</span>(l++);
+		&#125;
+		<span class="hljs-keyword">while</span> (r &lt; qr) &#123;
+			<span class="hljs-built_in">add</span>(++r);
+		&#125;
+		<span class="hljs-keyword">while</span> (r &gt; qr) &#123;
+			<span class="hljs-built_in">del</span>(r--);
+		&#125;
+
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">25</span>; i++) &#123;
+			<span class="hljs-type">int</span> pos = <span class="hljs-built_in">Rand</span>(l, r);
+			<span class="hljs-keyword">if</span> (cnt[a[pos]] &gt; (r - l + <span class="hljs-number">2</span>) / <span class="hljs-number">2</span>) &#123;
+				ans[id] = <span class="hljs-number">2</span> * cnt[a[pos]] - (r - l + <span class="hljs-number">1</span>);
+				<span class="hljs-keyword">break</span>;
+			&#125;
+		&#125;
+		<span class="hljs-keyword">if</span> (!ans[id]) &#123;
+			ans[id] = <span class="hljs-number">1</span>;
+		&#125;
+	&#125;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> x : ans) &#123;
+		cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	&#125;
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">fre</span>(test);
+	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
+
+	<span class="hljs-type">int</span> T = <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span> (T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+		<span class="hljs-comment">// cout.flush();</span>
 	&#125;
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre></div>
