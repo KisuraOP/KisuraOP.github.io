@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          77k 字
+          86k 字
         
       </span>
     
@@ -4202,9 +4202,408 @@ matrix <span class="hljs-keyword">operator</span> * (<span class="hljs-type">con
 <p>但二分的话最密也只能压缩到 <span class="math inline">\(9\sim10\)</span> 次左右，红晕了。</p>
 <p>最后半小时看了下榜随便开了个 K，看样例猜了个 BSGS，不出意料 wa2 了。</p>
 <hr />
+<p>赛后 Vingying 讲题，思路很清晰鸭，甚至还有回放，爱了！期待下一次 vy 场OwO！</p>
 <p>晚上跟 xxx 和 jbx 出去麦。</p>
 <p>麦完回来又睡了，虽然很不情愿，一堆题没补，字符串也没看，但还是想打 CF 的时候能精神一点。</p>
 <hr />
+<p>两个小时醒来 CF 继续唐！B 样例都没读懂代码就写完了，wa2 之后又搞到第 35 分钟才搞对。</p>
+<p>C 一个简单 dp，也想了一个来小时。</p>
+<p>剩半个小时，看了眼榜感觉 E 有希望，盲猜硬贪什么的。</p>
+<p>结果把 xor 看成 or 了，完蛋。赛后发现是原，原题我还 AC 过，唐！</p>
+<hr />
+<p>先从队内赛开始补，感觉 vy 选的题很有 edu 意义。CF 的题择日吧。</p>
+<div class="note note-info">
+            <p>【队内赛 8 - C. ズッコケ問答 - gym103469E. Eulerian?】</p><p>题意：交互题。系统隐藏了一个 <span class="math inline">\(n\)</span> 个点的无向连通图 <span class="math inline">\(G\)</span>，保证没有重边和自环。</p><p>你可以进行至多 <span class="math inline">\(60\)</span> 次询问，每次询问 <span class="math inline">\(G\)</span> 中一个点集，系统会返回该点集构成的导出子图的边数。</p><p>你的目标是确定 <span class="math inline">\(G\)</span> 中是否存在一条欧拉回路。交互器不会自适应。</p><p><span class="math inline">\(3 \le n \le 10^4\)</span>，保证 <span class="math inline">\(G\)</span> 中边数不超过 <span class="math inline">\(10^5\)</span>。</p>
+          </div>
+<div class="note note-success">
+            <p>交互器无法自适应（即 <span class="math inline">\(G\)</span> 不会随着询问而变化）提示我们采用随机化方法。</p><p>一个无向图存在欧拉回路的充要条件是所有顶点的度均为偶数。</p><p>我们考虑将 <span class="math inline">\(G\)</span> 中的顶点随机分成两个集合 <span class="math inline">\(A, B\)</span>。此时 <span class="math inline">\(G\)</span> 中的边被分成了三部分：在 <span class="math inline">\(A\)</span> 的导出子图中，在 <span class="math inline">\(B\)</span> 的导出子图之中，以及横跨在 <span class="math inline">\(A, B\)</span> 两个点集之间。</p><p>如果 <span class="math inline">\(A\)</span> 中的顶点的度均为偶数，那么 <span class="math inline">\(A\)</span> 中所有顶点的度数和也为偶数，又因为在 <span class="math inline">\(A\)</span> 中的边每条贡献 <span class="math inline">\(2\)</span> 的度数，不改变奇偶性，那么横跨在 <span class="math inline">\(A,B\)</span> 之间的边也应该是偶数条。</p><p>故有如下询问方案：</p><ul><li>消耗 <span class="math inline">\(1\)</span> 次询问所有的 <span class="math inline">\(n\)</span> 个点，得到 <span class="math inline">\(G\)</span> 的总边数。</li><li>重复 <span class="math inline">\(29\)</span> 次将 <span class="math inline">\(G\)</span> 随机划分成 <span class="math inline">\(A,B\)</span>。消耗 <span class="math inline">\(29\cdot2\)</span> 次分别询问 <span class="math inline">\(A,B\)</span> 导出子图中的边数，从而用总边数减去它们得到横跨边的数量。</li><li>若至少 <span class="math inline">\(1\)</span> 次询问到了 <span class="math inline">\(A,B\)</span> 间有奇数条横跨边，判定不存在欧拉回路；反之存在。</li></ul><p>正确性证明：横跨边数目为奇数或偶数各占 <span class="math inline">\(\frac{1}{2}\)</span> 概率，<span class="math inline">\(29\)</span> 次判定仍旧失败的概率为 <span class="math inline">\(\frac{1}{2^{29}}\)</span>。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin); freopen(#x<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x)  &#123; cout &lt;&lt; <span class="hljs-string">&quot;check &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; cout.flush();&#125;</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
+
+
+
+
+<span class="hljs-comment">/*ooooooooooooooooooooo</span>
+<span class="hljs-comment">o   templates above   o</span>
+<span class="hljs-comment">oooooooooooooooooooooo*/</span>
+
+
+<span class="hljs-function">mt19937_64 <span class="hljs-title">rng</span><span class="hljs-params">(time(<span class="hljs-number">0</span>))</span></span>;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-type">int</span> n, m;
+	cin &gt;&gt; n;
+	cout &lt;&lt; <span class="hljs-string">&quot;? &quot;</span> &lt;&lt; n &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+		cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+	&#125;
+	cout &lt;&lt; endl;
+	cin &gt;&gt; m;
+
+	<span class="hljs-type">int</span> test_case = <span class="hljs-number">29</span>;
+	<span class="hljs-type">bool</span> ok = <span class="hljs-literal">true</span>;
+	<span class="hljs-keyword">while</span> (test_case--) &#123;
+		vector&lt;<span class="hljs-type">int</span>&gt; A, B;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+			<span class="hljs-type">int</span> o = <span class="hljs-built_in">rng</span>() % <span class="hljs-number">2</span>;
+			<span class="hljs-keyword">if</span> (o &gt; <span class="hljs-number">0</span>) &#123;
+				A.<span class="hljs-built_in">push_back</span>(i);
+			&#125; <span class="hljs-keyword">else</span> &#123;
+				B.<span class="hljs-built_in">push_back</span>(i);
+			&#125;
+		&#125;
+
+		cout &lt;&lt; <span class="hljs-string">&quot;? &quot;</span> &lt;&lt; A.<span class="hljs-built_in">size</span>() &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> x : A) &#123;
+			cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+		&#125;
+		cout &lt;&lt; endl;
+		<span class="hljs-type">int</span> cnt1;
+		cin &gt;&gt; cnt1;
+
+		cout &lt;&lt; <span class="hljs-string">&quot;? &quot;</span> &lt;&lt; B.<span class="hljs-built_in">size</span>() &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> x : B) &#123;
+			cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+		&#125;
+		cout &lt;&lt; endl;
+		<span class="hljs-type">int</span> cnt2;
+		cin &gt;&gt; cnt2;
+
+		<span class="hljs-type">int</span> mid = m - cnt1 - cnt2;
+		<span class="hljs-keyword">if</span> (mid &amp; <span class="hljs-number">1</span>) &#123;
+			ok = <span class="hljs-literal">false</span>;
+			<span class="hljs-keyword">break</span>;
+		&#125;
+	&#125;
+	<span class="hljs-keyword">if</span> (ok) &#123;
+		cout &lt;&lt; <span class="hljs-string">&quot;! YES&quot;</span> &lt;&lt; endl;
+	&#125; <span class="hljs-keyword">else</span> &#123;
+		cout &lt;&lt; <span class="hljs-string">&quot;! NO&quot;</span> &lt;&lt; endl;
+	&#125;
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
+
+	<span class="hljs-type">int</span> T = <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span> (T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+		<span class="hljs-comment">// cout.flush();</span>
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<hr />
+<div class="note note-info">
+            <p>【队内赛 8 - K. 世界のまん中 - gym103469F. Fancy Formulas】</p><p>题意：给定一个质数 <span class="math inline">\(p\)</span>，以及 <span class="math inline">\(q\)</span> 组询问。每次给定两个二元组 <span class="math inline">\((a,b)\)</span> 和 <span class="math inline">\((c,d)\)</span>，保证 <span class="math inline">\(p\nmid (a+b)\)</span>。</p><p>一次操作可以选择如下其一，你可以无限次操作。问是否能将 <span class="math inline">\((a,b)\)</span> 转化为 <span class="math inline">\((c,d)\)</span>。</p><ul><li><span class="math inline">\((a,b):=(2a\bmod p, (b+p-a)\bmod p)\)</span></li><li><span class="math inline">\((a, b):=((a+p-b)\bmod p, 2b\bmod p)\)</span></li></ul><p><span class="math inline">\(2 \le p \le 10^9+7\)</span>，<span class="math inline">\(1\le q\le 10^5\)</span>。</p>
+          </div>
+<div class="note note-success">
+            <p>无论那种操作，操作后的 <span class="math inline">\((a, b)\)</span> 均满足 <span class="math inline">\(s=(a+b)\bmod p\)</span> 不变。</p><p>那么知道 <span class="math inline">\((a,b)\)</span> 中的 <span class="math inline">\(a\)</span> 或 <span class="math inline">\(b\)</span>，另一个也同时确定，<span class="math inline">\((c,d)\)</span> 同理。</p><p>于是不妨将问题转化为：每次将一个整数 <span class="math inline">\(a\)</span> 进行 <span class="math inline">\(a:=2a\)</span> 或 <span class="math inline">\(a:= a-b\)</span> 的操作，能否将 <span class="math inline">\(a\to c\)</span>。</p><p>而 <span class="math inline">\(a:=a-b \Leftrightarrow a:=a-(s-a)\)</span>。即 <span class="math inline">\(a:=2a-s\)</span>。</p><p>但有 <span class="math inline">\(s\)</span> 在仍旧不好处理，考虑给 <span class="math inline">\(a,c\)</span> 都乘上 <span class="math inline">\(s^{-1}\)</span>，此时满足 <span class="math inline">\((a+b)\bmod p = 1\)</span>。</p><p>问题再次转化为每次将一个整数 <span class="math inline">\(a\)</span> 进行 <span class="math inline">\(a:=2a\)</span> 或 <span class="math inline">\(a:=2a-1\)</span> 的操作，能否将 <span class="math inline">\(a\to c\)</span>。</p><p>这样就变成了单变量问题。注意到对 <span class="math inline">\(a\)</span> 进行 <span class="math inline">\(k\)</span> 次操作后得到的数一定在一个区间范围内连续分布，具体的，是 <span class="math inline">\([2^ka-(2^k-1), 2^ka]\)</span>。而当 <span class="math inline">\(k &gt; 30\)</span> 的时候，这个区间的长度会 <span class="math inline">\(\ge p\)</span>，意味着在 <span class="math inline">\(\bmod p\)</span> 意义下拥有 <span class="math inline">\(0\sim p-1\)</span> 中的所有取值，就一定能找到和 <span class="math inline">\(c\bmod p\)</span> 同余的数。</p><p>于是直接枚举 <span class="math inline">\(k\)</span>，当值域区间内第一次存在和 <span class="math inline">\(c\)</span> 同余的数时，对应的 <span class="math inline">\(k\)</span> 就是答案。</p><p>时间复杂度 <span class="math inline">\(O(q\log p)\)</span>。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin); freopen(#x<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x)  &#123; cout &lt;&lt; <span class="hljs-string">&quot;check &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; cout.flush();&#125;</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
+
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">qpow</span><span class="hljs-params">(<span class="hljs-type">int</span> k, <span class="hljs-type">int</span> n, <span class="hljs-type">int</span> p)</span> </span>&#123;
+	<span class="hljs-type">int</span> s = <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">for</span> ( ; n; n &gt;&gt;= <span class="hljs-number">1</span>, k = k * k % p) &#123;
+		<span class="hljs-keyword">if</span> (n &amp; <span class="hljs-number">1</span>) s = s * k % p;
+	&#125;
+	<span class="hljs-keyword">return</span> s;
+&#125;
+
+
+<span class="hljs-comment">/*ooooooooooooooooooooo</span>
+<span class="hljs-comment">o   templates above   o</span>
+<span class="hljs-comment">oooooooooooooooooooooo*/</span>
+
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-type">int</span> p, q;
+	cin &gt;&gt; p &gt;&gt; q;
+	<span class="hljs-keyword">while</span> (q--) &#123;
+		<span class="hljs-type">int</span> a, b, c, d;
+		cin &gt;&gt; a &gt;&gt; b &gt;&gt; c &gt;&gt; d;
+		<span class="hljs-keyword">if</span> ((a + b) % p != (c + d) % p) &#123;
+			cout &lt;&lt; <span class="hljs-string">&quot;-1\n&quot;</span>;
+			<span class="hljs-keyword">continue</span>;
+		&#125;
+		<span class="hljs-type">int</span> s = (a + b) % p;
+		a = a * <span class="hljs-built_in">qpow</span>(s, p - <span class="hljs-number">2</span>, p) % p;
+		c = c * <span class="hljs-built_in">qpow</span>(s, p - <span class="hljs-number">2</span>, p) % p;
+		<span class="hljs-keyword">if</span> (a == c) &#123;
+			cout &lt;&lt; <span class="hljs-string">&quot;0\n&quot;</span>;
+			<span class="hljs-keyword">continue</span>;
+		&#125;
+		<span class="hljs-type">int</span> cover = <span class="hljs-number">0</span>;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>, l = a, r = a; ; i++) &#123;
+			l = l * <span class="hljs-number">2</span> - <span class="hljs-number">1</span>;
+			r = r * <span class="hljs-number">2</span>;
+			<span class="hljs-keyword">if</span> (l &lt; <span class="hljs-number">0</span>) &#123;
+				l = p - <span class="hljs-number">1</span>;
+				r = p;
+			&#125;
+			<span class="hljs-type">int</span> len = r - l + <span class="hljs-number">1</span>;
+			<span class="hljs-keyword">if</span> (len &gt;= p) &#123;
+				cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+				<span class="hljs-keyword">break</span>;
+			&#125;
+			<span class="hljs-type">int</span> lp = l % p;
+			<span class="hljs-type">int</span> rp = r % p;
+			<span class="hljs-keyword">if</span> (lp &lt;= rp &amp;&amp; lp &lt;= c &amp;&amp; c &lt;= rp) &#123;
+				cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+				<span class="hljs-keyword">break</span>;
+			&#125;
+			<span class="hljs-keyword">if</span> (lp &gt; rp &amp;&amp; (c &gt;= lp || c &lt;= rp)) &#123;
+				cout &lt;&lt; i &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+				<span class="hljs-keyword">break</span>;
+			&#125;
+		&#125;
+	&#125;
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">fre</span>(test);
+	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
+
+	<span class="hljs-type">int</span> T = <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span> (T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<hr />
+<div class="note note-info">
+            <p>【队内赛 8 - G. 名前をつけてやる - gym102471H. King】</p><p>题意：给定一个质数 <span class="math inline">\(p\)</span>。一个长为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(\{a\}\)</span> 被称作 good，当且仅当 <span class="math inline">\(\exists q\in[1,p), \forall i \in[2, n], qa_{i-1}\equiv a_i \pmod{p}\)</span>。</p><p>给定一个序列 <span class="math inline">\(\{b\}\)</span>，设其最长的 good 子序列长度为 <span class="math inline">\(len\)</span>。若 <span class="math inline">\(len \ge \frac{n}{2}\)</span> 输出 <span class="math inline">\(len\)</span>；否则输出 <span class="math inline">\(-1\)</span>。</p><p><span class="math inline">\(2 \le n \le 2 \cdot 10^5\)</span>，<span class="math inline">\(2 \le p \le 10^9+7\)</span>。</p>
+          </div>
+<div class="note note-success">
+            <p>题目中 <span class="math inline">\(len \ge \frac{n}{2}\)</span> 其实是一个随机化暗示。这意味着组成该子序列的元素在原序列中分布的十分密集。</p><p>如果 <span class="math inline">\(n\)</span> 为奇数，那么至少存在一对相邻的数，它们的比值正好是公比（鸽笼原理）。</p><p>如果 <span class="math inline">\(n\)</span> 为偶数，极限情况也是 <span class="math inline">\(\text{xoxoxoxo}\)</span>（<span class="math inline">\(\text{x}\)</span> 代表出现在最长的 good 子序列中），此时正好占到总长度的 <span class="math inline">\(\frac{1}{2}\)</span>。</p><p>那么我们可以进行以下操作若干次以得到正确答案：</p><ul><li>从 <span class="math inline">\(\{b\}\)</span> 中随机选一对数 <span class="math inline">\((x, y)\)</span>，满足 <span class="math inline">\(y = x + 1\)</span> or <span class="math inline">\(y = x + 2\)</span>。</li><li>令公比为 <span class="math inline">\(\frac{b_y}{b_x}\)</span>，向 <span class="math inline">\(x\)</span> 左侧和 <span class="math inline">\(y\)</span> 右侧拓展得到满足该公比的最长 good 序列长度 <span class="math inline">\(m\)</span>。</li><li>若 <span class="math inline">\(2 \cdot m \ge n\)</span>，更新答案。</li></ul><p>正确性证明：不是很会，但显然失败概率极低。实际取 <span class="math inline">\(50\)</span> 次左右就能 AC 了。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin); freopen(#x<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x)  &#123; cout &lt;&lt; <span class="hljs-string">&quot;check &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; cout.flush();&#125;</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
+
+<span class="hljs-function">mt19937_64 <span class="hljs-title">rng</span><span class="hljs-params">(time(<span class="hljs-number">0</span>))</span></span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">Rand</span><span class="hljs-params">(<span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r)</span> </span>&#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">rng</span>() % (r - l + <span class="hljs-number">1</span>) + l;
+&#125;
+
+<span class="hljs-type">int</span> modp;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">qpow</span><span class="hljs-params">(<span class="hljs-type">int</span> k, <span class="hljs-type">int</span> n)</span> </span>&#123;
+	<span class="hljs-type">int</span> s = <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">for</span> ( ; n; n &gt;&gt;= <span class="hljs-number">1</span>, k = k * k % modp) &#123;
+		<span class="hljs-keyword">if</span> (n &amp; <span class="hljs-number">1</span>) s = s * k % modp;
+	&#125;
+	<span class="hljs-keyword">return</span> s;
+&#125;
+
+<span class="hljs-comment">/*ooooooooooooooooooooo</span>
+<span class="hljs-comment">o   templates above   o</span>
+<span class="hljs-comment">oooooooooooooooooooooo*/</span>
+
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-type">int</span> n;
+	cin &gt;&gt; n &gt;&gt; modp;
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">b</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span>, <span class="hljs-title">inv</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+		cin &gt;&gt; b[i];
+		inv[i] = <span class="hljs-built_in">qpow</span>(b[i], modp - <span class="hljs-number">2</span>);
+	&#125;
+	<span class="hljs-type">int</span> test_case = <span class="hljs-number">50</span>;
+	<span class="hljs-type">int</span> ans = <span class="hljs-number">-1</span>;
+	<span class="hljs-keyword">while</span> (test_case--) &#123;
+		<span class="hljs-type">int</span> x = <span class="hljs-built_in">Rand</span>(<span class="hljs-number">1</span>, n - <span class="hljs-number">1</span>);
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> y : &#123;x + <span class="hljs-number">1</span>, x + <span class="hljs-number">2</span>&#125;) &#123;
+			<span class="hljs-keyword">if</span> (y &gt; n) &#123;
+				<span class="hljs-keyword">continue</span>;
+			&#125;
+			<span class="hljs-type">int</span> d = b[y] * inv[x] % modp;
+			<span class="hljs-type">int</span> res = <span class="hljs-number">2</span>;
+			<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = y + <span class="hljs-number">1</span>, lst = y; i &lt;= n; i++) &#123;
+				<span class="hljs-keyword">if</span> (b[i] * inv[lst] % modp == d) &#123;
+					res++;
+					lst = i;
+				&#125;
+			&#125;
+			<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = x - <span class="hljs-number">1</span>, lst = x; i &gt;= <span class="hljs-number">1</span>; i--) &#123;
+				<span class="hljs-keyword">if</span> (b[lst] * inv[i] % modp == d) &#123;
+					res++;
+					lst = i;
+				&#125;
+			&#125;
+			<span class="hljs-keyword">if</span> (<span class="hljs-number">2</span> * res &gt;= n) &#123;
+				ans = <span class="hljs-built_in">max</span>(ans, res);
+			&#125;
+		&#125; 
+	&#125;
+	cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">fre</span>(test);
+	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
+
+	<span class="hljs-type">int</span> T;
+	cin &gt;&gt; T;
+	<span class="hljs-keyword">while</span> (T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<hr />
+<div class="note note-info">
+            <p>【队内赛 8 - J. ワンターフォゲール - gym102992D. Degree of Spanning Tree】</p><p>题意：给你一张 <span class="math inline">\(n\)</span> 个点 <span class="math inline">\(m\)</span> 条边的无向图，你需要找到它的一个生成树，满足所有节点度数 <span class="math inline">\(\le \frac{n}{2}\)</span>。</p><p><span class="math inline">\(2 \le n \le 10^5\)</span>，<span class="math inline">\(n - 1\le m\le 2\cdot 10^5\)</span>。</p>
+          </div>
+<div class="note note-success">
+            <p>有正常做法，也有随机化做法，这里叙述后者。</p><p>我们先将所有边都连起来，尝试 dfs 找到一棵符合要求的生成树。</p><p>重复以下过程若干次：</p><ul><li>随机一个起点，开始 dfs。</li><li>每到一个未经过的点 <span class="math inline">\(x\)</span>，将 <span class="math inline">\(x\)</span> 的邻接边序列 shuffle 一遍。</li><li>遍历邻接边序列，在 <span class="math inline">\(x\)</span> 不超度数的情况下能连边就连边，递归到点 <span class="math inline">\(y\)</span>。</li><li>若遍历完所有点即找到一个连边方案。</li></ul><p>实测 <span class="math inline">\(50\)</span> 次就能 AC。正确性最不好证明的一集。</p><p>时间复杂度 <span class="math inline">\(O(50n)\)</span>。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin); freopen(#x<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x)  &#123; cout &lt;&lt; <span class="hljs-string">&quot;check &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; cout.flush();&#125;</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
+
+
+
+<span class="hljs-comment">/*ooooooooooooooooooooo</span>
+<span class="hljs-comment">o   templates above   o</span>
+<span class="hljs-comment">oooooooooooooooooooooo*/</span>
+
+
+<span class="hljs-function">mt19937_64 <span class="hljs-title">rng</span><span class="hljs-params">(time(<span class="hljs-number">0</span>))</span></span>;
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-type">int</span> n, m;
+	cin &gt;&gt; n &gt;&gt; m;
+	vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">adj</span>(n + <span class="hljs-number">1</span>);
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; m; i++) &#123;
+		<span class="hljs-type">int</span> x, y;
+		cin &gt;&gt; x &gt;&gt; y;
+		adj[x].<span class="hljs-built_in">push_back</span>(y);
+		adj[y].<span class="hljs-built_in">push_back</span>(x);
+	&#125;
+
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">vis</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span>, <span class="hljs-title">deg</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
+	vector&lt;array&lt;<span class="hljs-type">int</span>, 2&gt;&gt; ans;
+	<span class="hljs-keyword">auto</span> dfs = [&amp;] (<span class="hljs-keyword">auto</span> self, <span class="hljs-type">int</span> x) -&gt; <span class="hljs-type">void</span> &#123;
+		vis[x] = <span class="hljs-literal">true</span>;
+		<span class="hljs-built_in">shuffle</span>(adj[x].<span class="hljs-built_in">begin</span>(), adj[x].<span class="hljs-built_in">end</span>(), rng);
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> y : adj[x]) &#123;
+			<span class="hljs-keyword">if</span> (vis[y] || deg[x] &gt;= n / <span class="hljs-number">2</span>) &#123;
+				<span class="hljs-keyword">continue</span>;
+			&#125;	
+			deg[x]++;
+			deg[y]++;
+			ans.<span class="hljs-built_in">push_back</span>(&#123;x, y&#125;);
+			<span class="hljs-built_in">self</span>(self, y);
+		&#125;
+	&#125;;
+
+	<span class="hljs-type">int</span> test_case = <span class="hljs-number">100</span>;
+	<span class="hljs-keyword">while</span> (test_case--) &#123;
+		vis.<span class="hljs-built_in">assign</span>(n + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+		deg.<span class="hljs-built_in">assign</span>(n + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+		ans.<span class="hljs-built_in">clear</span>();
+		<span class="hljs-built_in">dfs</span>(dfs, <span class="hljs-built_in">rng</span>() % n + <span class="hljs-number">1</span>);
+		<span class="hljs-keyword">if</span> (ans.<span class="hljs-built_in">size</span>() == n - <span class="hljs-number">1</span>) &#123;
+			cout &lt;&lt; <span class="hljs-string">&quot;Yes\n&quot;</span>;
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> [x, y] : ans) &#123;
+				cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot; &quot;</span> &lt;&lt; y &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+			&#125;
+			<span class="hljs-keyword">return</span> ;
+		&#125;
+	&#125;
+	cout &lt;&lt; <span class="hljs-string">&quot;No\n&quot;</span>;
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">fre</span>(test);
+	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
+
+	<span class="hljs-type">int</span> T;
+	cin &gt;&gt; T;
+	<span class="hljs-keyword">while</span> (T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<h3 id="day-12">【7.19】 Day 12</h3>
+<p>定了 9 点的闹钟，但经典下床继续睡。</p>
+<p>中午在基础实验大楼一楼售货机买了一个面包一盒纯牛奶。鉴定为贪睡导致的。</p>
+<p>下午是 psk 场，不知道会不会整什么花活（然而并没有）。</p>
+<hr />
+<p>经典从 M 倒序开题，我超，真是原。这题我怎么感觉在哪里见过啊？但没能想起来，悲。</p>
+<p>手算了一下样例，发现样例都算不对。</p>
+<p>跟榜过了三道签到。但 lyc 15min 过的 J 我怎么签不出来鸭？第一感觉是直接横坐标 <span class="math inline">\(+1\)</span> 或纵坐标 <span class="math inline">\(+1\)</span>，狂wa，遂放着。</p>
+<p>看榜 wbc 过了 D，看了下题，感觉和第三场队内赛的某个题很像，都是中间夹了个回文串，抄了个 manacher 就过了。</p>
+<p>然后看 E，观察到一定是 <span class="math inline">\(1/3\)</span> 一组 <span class="math inline">\(2\)</span> 一组，就写了个二分图染色交了上去，怎么又 wa 了鸭。再次确定了一下思路，又捏了几个边界情况，感觉都没问题，就直接对拍启动了。结果拍出来是我 dfs 挂了，不是哥们？</p>
+<p>继续看 J，我超为什么不对呢？干脆又写了个对拍。马上拍出来了，原来不一定是端点旁边啊？那我不会了。</p>
+<p>看榜 lyc 过了 G，看题这不是逆序对模板题吗？15min 秒了。</p>
+<p>怎么 J 和 L 过了一堆了鸭。L 还是推不出样例，J 画了几个图猜了个结论，又 wa。</p>
+<p>红温了红温了红温了红温了红温了。直到赛后也没有过 J。</p>
+<hr />
+<p>没有讲题，就去吃饭了。朝阳￥16 黑椒牛肉，还不错，三星半或者四星。</p>
+<p>回 234 补题，但是头晕晕的，不知道什么时候就趴桌子上睡着了。醒来快 9 点半了。</p>
+<p>感觉一天什么都没做，倒是欠的题又多了一堆。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
