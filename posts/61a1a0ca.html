@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          99k 字
+          101k 字
         
       </span>
     
@@ -5134,7 +5134,7 @@ vector&lt;<span class="hljs-type">int</span>&gt; prime;
             <p>【队内赛 11D - gym105161B. Area of the Devil】</p><p>题意：给一个半径为 <span class="math inline">\(r\)</span> 的圆上的五段不相交的圆弧，从每个圆弧依次选择一个点然后按顺序连成一个五角星，求五角星的面积并。</p><p><span class="math inline">\(1\le T \le 10^4\)</span>，<span class="math inline">\(1 \le r \le 10^3\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>如下图。我们用整个圆的面积减去五个（小三角 <span class="math inline">\(+\)</span> 弓形）的面积即可。</p><p>令 <span class="math inline">\(A_{is}\)</span> 代表第 <span class="math inline">\(i\)</span> 段圆弧的极角最小点，<span class="math inline">\(A_{it}\)</span> 代表第 <span class="math inline">\(i\)</span> 段圆弧的极角最大点。</p><p>以 <span class="math inline">\(\Delta A_{1s}B_{1}A_{5t}\)</span> 为例，<span class="math inline">\(B_1\)</span> 可以通过直线 <span class="math inline">\(A_{2s}A_{5t}\)</span> 和 <span class="math inline">\(A_{1s}A_{4t}\)</span> 求交点得到。知道了三角形三个点的坐标，利用叉积公式即可求得面积。</p><p>弓形 <span class="math inline">\(\overset{\frown}{A_{1s}A_{5t}}\)</span> 也等价于 <span class="math inline">\(S_{\text{扇形}OA_{1s}A_{5t}} - S_{\Delta OA_{1s}A_{5t}}\)</span>。</p><figure><img src="/image/academic/31.png" srcset="/image/other/loading.mp4" lazyload alt="1" /><figcaption aria-hidden="true">1</figcaption></figure><p>时间复杂度 <span class="math inline">\(O(T)\)</span>。</p><p>值得注意的是，使用叉积公式时不需要加绝对值，因为我们求的不是有向面积。</p><p>如下图（可爱的 xing4c 画出来的！），当出现优弧时，阴影部分的面积应该被加上而不是减去。</p><figure><img src="/image/academic/32.png" srcset="/image/other/loading.mp4" lazyload alt="xing4c" /><figcaption aria-hidden="true">xing4c</figcaption></figure>
+            <p>如下图。我们用整个圆的面积减去五个（小三角 <span class="math inline">\(+\)</span> 弓形）的面积即可。</p><p>令 <span class="math inline">\(A_{is}\)</span> 代表第 <span class="math inline">\(i\)</span> 段圆弧的极角最小点，<span class="math inline">\(A_{it}\)</span> 代表第 <span class="math inline">\(i\)</span> 段圆弧的极角最大点。</p><p>以 <span class="math inline">\(\Delta A_{1s}B_{1}A_{5t}\)</span> 为例，<span class="math inline">\(B_1\)</span> 可以通过直线 <span class="math inline">\(A_{2s}A_{5t}\)</span> 和 <span class="math inline">\(A_{1s}A_{4t}\)</span> 求交点得到。知道了三角形三个点的坐标，利用叉积公式即可求得面积。</p><p>弓形 <span class="math inline">\(\overset{\frown}{A_{1s}A_{5t}}\)</span> 也等价于 <span class="math inline">\(S_{\text{扇形}OA_{1s}A_{5t}} - S_{\Delta OA_{1s}A_{5t}}\)</span>。</p><figure><img src="/image/academic/31.png" srcset="/image/other/loading.mp4" lazyload alt="1" /><figcaption aria-hidden="true">1</figcaption></figure><p>时间复杂度 <span class="math inline">\(O(T)\)</span>。</p><p>值得注意的是，使用叉积公式时不需要加绝对值，因为我们求的是有向面积。</p><p>如下图（可爱的 xing4c 画出来的！），当出现优弧时，阴影部分的面积应该被加上而不是减去。</p><figure><img src="/image/academic/32.png" srcset="/image/other/loading.mp4" lazyload alt="xing4c" /><figcaption aria-hidden="true">xing4c</figcaption></figure>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -5273,6 +5273,26 @@ vector&lt;<span class="hljs-type">int</span>&gt; prime;
 
     </div>
 </div>
+<hr />
+<div class="note note-primary">
+            <h3 id="后缀自动机sam小记">后缀自动机（SAM）小记</h3><ul><li><p>架构</p><ul><li>不包含后缀链接时是一张有向无环图。</li><li>至多 <span class="math inline">\(2n-1\)</span> 个点，<span class="math inline">\(3n-4\)</span> 条边。</li><li>在线的线性算法。</li></ul></li><li><p>Endpos</p><ul><li><p><span class="math inline">\(\text{endpos}\)</span> 是子串在 <span class="math inline">\(S\)</span> 中结束位置的集合，<span class="math inline">\(\text{endpos}\)</span> 相等的子串归为一个等价类。</p></li><li><p>图上到达该节点的所有路径构成了以该等价类为结尾的所有后缀子串。</p></li><li><p>最长的子串称作 <span class="math inline">\(\text{longest(x)}\)</span>，将 <span class="math inline">\(\text{endpos}\)</span> 等价类中的子串按长度从大到小排序得到了 <span class="math inline">\(\text{longest(x)}\)</span> 长度连续的后缀。</p></li><li><p>原串的每个前缀都是 <span class="math inline">\(\text{longest}\)</span>。</p></li></ul></li><li><p>Link</p><ul><li>一个状态的 <span class="math inline">\(x\)</span> 的 <span class="math inline">\(\text{link(x)}\)</span> 连接到最长的后缀 <span class="math inline">\(y\)</span>，满足 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 拥有属于不同等价类。</li><li>如果满足条件的后缀是空串，会直接连向起始节点。</li><li>SAM 维护的三个信息：<span class="math inline">\(\text{longest(x)}\)</span> 的长度 <span class="math inline">\(\text{len(x)}\)</span>，后缀链接 <span class="math inline">\(\text{link(x)}\)</span>，转移 <span class="math inline">\(\text{nxt(x, c)}\)</span>。</li><li>节点和 <span class="math inline">\(\text{link}\)</span> 构成一棵树，称作 <span class="math inline">\(\text{parent}\)</span> 树。</li></ul></li><li><p>构建</p><ul><li>每插入 <span class="math inline">\(c\)</span> 一定会出现一个新的状态（设为 <span class="math inline">\(\text{cur}\)</span>），且一定是 <span class="math inline">\(\text{longest(lst)}+c = \text{longest(cur)}\)</span>。</li><li>开始时 <span class="math inline">\(\text{cur}\)</span> 只有一个串。让指针从 <span class="math inline">\(\text{lst}\)</span> 开始，通过 <span class="math inline">\(\text{link}\)</span> 往起点的方向跳。对于路径上的状态 <span class="math inline">\(\text{p}\)</span>，如果没有 <span class="math inline">\(\text{nxt(p,c)}\)</span> 的转移，那么 <span class="math inline">\(\text{nxt(p, c) = cur}\)</span>。</li><li>因为 <span class="math inline">\(\text{link}\)</span> 指向的都是 <span class="math inline">\(\text{longest}\)</span> 的后缀，所以自然构成新的子串。</li><li>如果已经存在转移，设当前状态为 <span class="math inline">\(\text{p}\)</span>，<span class="math inline">\(\text{q=nxt(p,c)}\)</span>，存在两种情况：<ul><li>若 <span class="math inline">\(\text{len(q)=len(p)+1}\)</span>，说明 <span class="math inline">\(\text{q}\)</span> 中最长的字符串一定是 <span class="math inline">\(\text{longest(p)+c}\)</span>，故连 <span class="math inline">\(\text{link(cur)=q}\)</span>，退出。</li><li>否则我把 <span class="math inline">\(\text{q}\)</span> 拷贝到一个新状态 <span class="math inline">\(\text{clone}\)</span>，<span class="math inline">\(\text{clone}\)</span> 拥有 <span class="math inline">\(\text{link(q)}\)</span> 以及 <span class="math inline">\(q\)</span> 所有的出边。令 <span class="math inline">\(\text{link(clone)=link(p)+1}\)</span>，再把 <span class="math inline">\(\text{q}\)</span> 和 <span class="math inline">\(\text{cur}\)</span> 都 <span class="math inline">\(\text{link}\)</span> 到这个点。</li><li>继续从 <span class="math inline">\(\text{p}\)</span> 向起点跳 <span class="math inline">\(\text{link}\)</span>，若存在指向 <span class="math inline">\(\text{q}\)</span> 的出边，改成指向 <span class="math inline">\(\text{clone}\)</span>；否则退出。</li><li>这么做是因为 <span class="math inline">\(\text{q}\)</span> 原来就存在，但我们不清楚 <span class="math inline">\(\text{q}\)</span> 的最长串是不是 <span class="math inline">\(\text{longest(p)+c}\)</span>，于是将 <span class="math inline">\(\text{longest(p)+c}\)</span> 和其在 <span class="math inline">\(\text{q}\)</span> 中的后缀单独拿出来，形成一个新的节点 <span class="math inline">\(\text{clone}\)</span>，以满足 <span class="math inline">\(\text{link(cur)}\)</span> 的要求。</li></ul></li></ul></li></ul>
+          </div>
+<h3 id="day-16">【7.23】 Day 16</h3>
+<p>要结束了啊，希望今天队内赛能打好一点。</p>
+<p>rating 已经排到 20 名开外了，脑子再不发力就真寄了，脑子给点力哇qwq。</p>
+<hr />
+<p>开题最慢的一次，典中典 M 开，交！wa！看榜 L！不是怎么大家都会勾股数！输！</p>
+<p>注意到了当 <span class="math inline">\(a\)</span> 是质数的时候 <span class="math inline">\(b,c\)</span> 一定连续，交！wa！</p>
+<p>受不了了跟榜看 b，还好是一个简单二分，要不然 1h 过不了一题（</p>
+<p>继续看勾股数，不是所有数质因数分解都能有解，比如 <span class="math inline">\(2\)</span> 就没有一组解，又不会了。</p>
+<p>继续看榜，K 中位数很有意思，map 搞了一下过了。G，H 都 wa2，2h 了，急急急。</p>
+<p>F 有一个人过了，我一看，我趣！这不跑两遍就行了吗，这么简单竟然 2h 才开出来，G 加了特判也过了。</p>
+<p>然后终于会勾股数了，特判了一组 <code>8 15 17</code>，<span class="math inline">\(8\)</span> 之后 <span class="math inline">\(2\)</span> 的倍数都这么搞。</p>
+<p>H 是个分类讨论，wa119，红温！拍！成了！但改了好久。你说得对但 M 怎么一直过不了鸭。</p>
+<p>赛后在群里说，感觉做法没什么问题。结果 wbc 一眼看出我用 <code>lower_bound</code> 搜了一个无序的数组，尼玛！</p>
+<div class="note note-warning">
+            <p><code>std::lower_bound</code> 需要保证数组有序。</p><p><code>std::erase(std::vector)</code> 就算你指定了在迭代器的哪个位置，删除也是线性的！</p>
+          </div>
 <hr />
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
