@@ -80,7 +80,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"kisuraop.github.io","root":"/","version":"1.9.5-a","typing":{"enable":false,"typeSpeed":55,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"c++"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/image/other/loading.mp4","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"kisuraop.github.io","root":"/","version":"1.9.5-a","typing":{"enable":false,"typeSpeed":55,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"c++"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/image/other/loading.mp4","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -333,7 +333,7 @@
             <p>题意：给定一个由 <code>.</code> <code>#</code> <code>S</code> 三种字符构成的 <span class="math inline">\(n\times m\)</span> 矩阵，判断是否存在一个长宽均至少为 <span class="math inline">\(2\)</span> 的矩形方框，使其经过 <code>S</code> 而不经过 <code>#</code>。保证字符 <code>S</code> 只出现一次。</p><p><span class="math inline">\(1 \le n,m \le 3 \cdot 10^3\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>法一（枚举+二维前缀和）：</p><p>先考虑起点 <code>S</code> 在目标矩形的边上的情况。此时从 <code>S</code> 出发绕一圈回到 <code>S</code> 共有四种方案，如下图：</p><figure><img src="/image/academic/4.png" srcset="/image/other/loading.mp4" lazyload alt="img" /><figcaption aria-hidden="true">img</figcaption></figure><p>其中划绿色的部分的长度需要枚举，其余部分则可以用二维前缀和 <span class="math inline">\(O(1)\)</span> 判断是否合法。</p><p>至于起点 <code>S</code> 在目标矩形角上的情况，其实就是把 <code>S</code> 所在的两段边并到最后枚举了，细节处理好一点就能被第一种情况囊括。</p>
+            <p>法一（枚举+二维前缀和）：</p><p>先考虑起点 <code>S</code> 在目标矩形的边上的情况。此时从 <code>S</code> 出发绕一圈回到 <code>S</code> 共有四种方案，如下图：</p><figure><img src="/image/academic/4.png" alt="img" /><figcaption aria-hidden="true">img</figcaption></figure><p>其中划绿色的部分的长度需要枚举，其余部分则可以用二维前缀和 <span class="math inline">\(O(1)\)</span> 判断是否合法。</p><p>至于起点 <code>S</code> 在目标矩形角上的情况，其实就是把 <code>S</code> 所在的两段边并到最后枚举了，细节处理好一点就能被第一种情况囊括。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -848,10 +848,6 @@
 
 
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
 
 
 
@@ -956,7 +952,7 @@
               inlineMath: { '[+]': [['$', '$']] }
             },
             loader : {
-              load: ['ui/lazy']
+              
             },
             options: {
               renderActions: {

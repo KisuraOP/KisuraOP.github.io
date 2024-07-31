@@ -80,7 +80,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"kisuraop.github.io","root":"/","version":"1.9.5-a","typing":{"enable":false,"typeSpeed":55,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"c++"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/image/other/loading.mp4","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"kisuraop.github.io","root":"/","version":"1.9.5-a","typing":{"enable":false,"typeSpeed":55,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"c++"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/image/other/loading.mp4","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -357,7 +357,7 @@
 <li>供电：2.0~3.6V（标准3.3V）</li>
 <li>封装：LQFP48（48个引脚）</li>
 <li>字符意义：</li>
-<li><img src="C:\Users\Kisura\AppData\Roaming\Typora\typora-user-images\image-20231101221531031.png" srcset="/image/other/loading.mp4" lazyload title="fig:" alt="image-20231101221531031" /></li>
+<li><img src="C:\Users\Kisura\AppData\Roaming\Typora\typora-user-images\image-20231101221531031.png" title="fig:" alt="image-20231101221531031" /></li>
 </ul></li>
 <li><p>片上资源/外设</p>
 <table>
@@ -456,7 +456,7 @@
 <li><p>输入模式下可读取端口的高低电平或电压，用于读取按键输入、外接模块电平信号输入、ADC电压采集、模拟通信协议接收数据等</p></li>
 </ul>
 <figure>
-<img src="C:\Users\Kisura\AppData\Roaming\Typora\typora-user-images\image-20231114105200238.png" srcset="/image/other/loading.mp4" lazyload alt="image-20231114105200238" /><figcaption aria-hidden="true">image-20231114105200238</figcaption>
+<img src="C:\Users\Kisura\AppData\Roaming\Typora\typora-user-images\image-20231114105200238.png" alt="image-20231114105200238" /><figcaption aria-hidden="true">image-20231114105200238</figcaption>
 </figure>
 <ul>
 <li>都接在 APB2 总线上，命名为 GPIOA，GPIOB 等。</li>
@@ -525,7 +525,7 @@
 <li><strong>nCTS：</strong> 清除以发送(Clear To Send)，n 表示低电平有效。如果使能 CTS 流控制，发送器在发送下一帧数据之前会检测 nCTS 引脚，如果为低电平，表示可以发送数据，如果为高电平则在发送完当前数据帧之后停止发送。该引脚只适用于硬件流控制。</li>
 </ul>
 <figure>
-<img src="D:\STM32入门教程资料\STM32Project\USART.png" srcset="/image/other/loading.mp4" lazyload alt="USART" /><figcaption aria-hidden="true">USART</figcaption>
+<img src="D:\STM32入门教程资料\STM32Project\USART.png" alt="USART" /><figcaption aria-hidden="true">USART</figcaption>
 </figure>
 <p><strong>名称-------------------------描述 RE --------------------------接收使能 RXNE-----------------------读数据寄存器非空 RXNEIE--------------------发送完成中断使能</strong></p>
 <h2 id="printf-移植">printf 移植</h2>
@@ -752,10 +752,6 @@
 
 
 
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
 
 
 
@@ -860,7 +856,7 @@
               inlineMath: { '[+]': [['$', '$']] }
             },
             loader : {
-              load: ['ui/lazy']
+              
             },
             options: {
               renderActions: {
