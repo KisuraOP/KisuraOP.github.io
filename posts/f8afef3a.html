@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          77 字
+          2.7k 字
         
       </span>
     
@@ -331,6 +331,133 @@
                 <p>进队了！不知道是不是被群巨捞了QAQ</p>
 <p>队友是可爱的 <a target="_blank" rel="noopener" href="https://codeforces.com/profile/everflame">everflame</a> 和可爱的 <a target="_blank" rel="noopener" href="https://codeforces.com/profile/nicnaknic">nicnaknic</a>，队名是 UESTC_EndlessEmbrace。</p>
 <p>要开始了呢。</p>
+<h4 id="day0">【7.31】Day0</h4>
+<p>今天特地去早了一点<del>偷椅子</del>收拾桌面。</p>
+<p>everflame 竟然偷偷努力，学会了刷卡开门QAQ</p>
+<p>今天 vp 的是一场多校，算是验题把。要保密，所以细节就不写了，题解一周后可能会补在这里。</p>
+<p>晚上补题被【数据删除】给恶心了，【数据删除】真神吧，一个小时就写出来了。</p>
+<p>调不出来就去补了昨天 CF 的 F，转化成了一个背包的做法，很妙。</p>
+<p>回到宿舍向【数据删除】要了一份代码，开拍！发现是一个我怎么视奸也很难察觉的地方写挂了，就这样吧。</p>
+<h4 id="day1">【8.1】Day1</h4>
+<p>昨晚因为调昨天那场的【数据删除】和【数据删除】没睡好觉。</p>
+<hr />
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/gym/539789">UESTC 2024 二轮集训 Div2 #1</a></p>
+<p>今天 vp 的是 SEERC2020，第一把就化身牢大（</p>
+<p>没有榜，雪上加霜。</p>
+<p>开局 35min 才开出一道签到，是个博弈。然后看 lyc 队 M 过的很快，就猜了个诈骗，也过了。接着是一道 <span class="math inline">\(3 \mid \sum b_ib_j\)</span> 的神秘题，红温了一小会鹏神意识到要推公式，整理了一下形式也 1A。</p>
+<p>然后就坐牢了，队友大部分时间都在博 F，我都看了一遍感觉 J 有点希望，但直到最后都没有过题，唐。</p>
+<h4 id="day2">【8.2】Day2</h4>
+<div class="note note-info">
+            <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1997/problem/F">Problem - F - Codeforces</a></p>
+          </div>
+<div class="note note-success">
+            
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        
+
+    </div>
+</div>
+<div class="note note-info">
+            <p>【2023江苏省赛 L - Architect】</p><p>题意：给出 <span class="math inline">\(n\)</span> 个长方体，询问其是否拼接成一个 <span class="math inline">\(W×H×L\)</span> 的立方体，没有重叠和空隙。</p><p><span class="math inline">\(1\le n\le 3\cdot 10^5\)</span>，<span class="math inline">\(1\le W,H,L \le 10^9\)</span>。</p>
+          </div>
+<div class="note note-success">
+            <p>将整个 <span class="math inline">\(W\times H \times L\)</span> 的立方体记作大立方体，需要填充的立方体记作小立方体。</p><p>直接记每个小立方体摆放后的坐标是不容易的。可以运用扫描线降维转化为二维平面上的问题。</p><p>记大立方体的下表面为 <span class="math inline">\(-1\)</span>，上表面是 <span class="math inline">\(1\)</span>。小立方体的下表面为 <span class="math inline">\(1\)</span>，上表面为 <span class="math inline">\(-1\)</span>。</p><p>那么所有小立方体无空隙地摆进去的充要条件就是每个 <span class="math inline">\(z\)</span> 轴横截面的权值都是 <span class="math inline">\(0\)</span>，即每个 <span class="math inline">\(-1\)</span> 都与 <span class="math inline">\(1\)</span> 进行了配对。</p><p>现在对每个横截面考虑，继续从 <span class="math inline">\(y\)</span> 轴方向扫描。为了将面为 <span class="math inline">\(0\)</span> 转化为线为 <span class="math inline">\(0\)</span>，若该面的权值为 <span class="math inline">\(t\)</span>，则对扫描到的第一个截线标记为 <span class="math inline">\(t\)</span>，第二个截线标记为 <span class="math inline">\(-t\)</span>，这样从 <span class="math inline">\(z\)</span> 轴的方向来看仍然权值为 <span class="math inline">\(0\)</span>。</p><p>继续降维，check 单点：若该截线权值为 <span class="math inline">\(u\)</span>，则将截线两端点标记为 <span class="math inline">\(u\)</span> 和 <span class="math inline">\(-u\)</span>。此时该平面的所有交点都被赋予了权值，并且若上下截面重合，两个截面的权值互补。检查是否存在叠加后权值不为 <span class="math inline">\(0\)</span> 的点即可。</p><p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin); freopen(#x<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x)  &#123; cout &lt;&lt; <span class="hljs-string">&quot;check &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; cout.flush();&#125;</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
+
+
+
+
+<span class="hljs-comment">/*ooooooooooooooooooooo</span>
+<span class="hljs-comment">o   templates above   o</span>
+<span class="hljs-comment">oooooooooooooooooooooo*/</span>
+
+
+<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">check2</span><span class="hljs-params">(vector&lt;array&lt;<span class="hljs-type">int</span>, <span class="hljs-number">3</span>&gt;&gt; a)</span> </span>&#123;
+	map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; mp;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> [x1, x2, flag] : a) &#123;
+		mp[x1] += flag;
+		mp[x2] += -flag;
+	&#125;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> [_, v] : mp) &#123;
+		<span class="hljs-keyword">if</span> (v) &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+		&#125;
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+&#125;
+
+<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">check</span><span class="hljs-params">(vector&lt;array&lt;<span class="hljs-type">int</span>, <span class="hljs-number">5</span>&gt;&gt; a)</span> </span>&#123;
+	map&lt;<span class="hljs-type">int</span>, vector&lt;array&lt;<span class="hljs-type">int</span>, 3&gt;&gt;&gt; mp;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> [x1, y1, x2, y2, flag] : a) &#123;
+		mp[y1].<span class="hljs-built_in">push_back</span>(&#123;x1, x2, flag&#125;);
+		mp[y2].<span class="hljs-built_in">push_back</span>(&#123;x1, x2, -flag&#125;);
+	&#125;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> [_, v] : mp) &#123;
+		<span class="hljs-keyword">if</span> (!<span class="hljs-built_in">check2</span>(v)) &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+		&#125;
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+&#125;
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-type">int</span> W, H, L;
+	cin &gt;&gt; W &gt;&gt; H &gt;&gt; L;
+
+	map&lt;<span class="hljs-type">int</span>, vector&lt;array&lt;<span class="hljs-type">int</span>, 5&gt;&gt;&gt; mp;
+	mp[<span class="hljs-number">0</span>].<span class="hljs-built_in">push_back</span>(&#123;<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, W, H, <span class="hljs-number">-1</span>&#125;);
+	mp[L].<span class="hljs-built_in">push_back</span>(&#123;<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, W, H, <span class="hljs-number">1</span>&#125;);
+
+	<span class="hljs-type">int</span> n;
+	cin &gt;&gt; n;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;
+		<span class="hljs-type">int</span> x1, y1, z1, x2, y2, z2;
+		cin &gt;&gt; x1 &gt;&gt; y1 &gt;&gt; z1 &gt;&gt; x2 &gt;&gt; y2 &gt;&gt; z2;
+		mp[z1].<span class="hljs-built_in">push_back</span>(&#123;x1, y1, x2, y2, <span class="hljs-number">1</span>&#125;);
+		mp[z2].<span class="hljs-built_in">push_back</span>(&#123;x1, y1, x2, y2, <span class="hljs-number">-1</span>&#125;);
+	&#125;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> [_, v] : mp) &#123;
+		<span class="hljs-keyword">if</span> (!<span class="hljs-built_in">check</span>(v)) &#123;
+			cout &lt;&lt; <span class="hljs-string">&quot;No\n&quot;</span>;
+			<span class="hljs-keyword">return</span> ;
+		&#125;
+	&#125;
+	cout &lt;&lt; <span class="hljs-string">&quot;Yes\n&quot;</span>;
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">fre</span>(test);
+	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
+
+	<span class="hljs-type">int</span> T;
+	cin &gt;&gt; T;
+	<span class="hljs-keyword">while</span> (T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
@@ -437,23 +564,6 @@
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/posts/61a1a0ca.html" title="【游记】2024 UESTC 暑假集训 第一轮">
-                        <span class="hidden-mobile">【游记】2024 UESTC 暑假集训 第一轮</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 
