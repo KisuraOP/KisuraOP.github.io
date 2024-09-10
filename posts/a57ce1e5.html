@@ -701,13 +701,15 @@
     </div>
 </div>
 <h3 id="b.-军训-ii">B. 军训 II</h3>
-<p>感性地，排序后不整齐度最小。</p>
-<p><span class="math inline">\(ans1\)</span> 可以单 <span class="math inline">\(\log\)</span> 求，但允许 <span class="math inline">\(O(n^2)\)</span> 就没必要自讨苦吃。</p>
-<p>接着设每个连续段长 <span class="math inline">\(cnt_i\)</span>，那么 <span class="math inline">\(ans2=2\prod cnt_i\)</span>。系数来自升序排序和降序排序两种。</p>
-<p>特判：所有数都相同时，升序和降序看作一种，<span class="math inline">\(ans2=\prod cnt_i\)</span>。</p>
-<p>时间复杂度 <span class="math inline">\(O(n^2)\)</span>。</p>
 <div class="note note-success">
-            <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+            <p>感性地，排序后不整齐度最小。</p><p><span class="math inline">\(ans1\)</span> 可以单 <span class="math inline">\(\log\)</span> 求，但允许 <span class="math inline">\(O(n^2)\)</span> 就没必要自讨苦吃。</p><p>接着设每个连续段长 <span class="math inline">\(cnt_i\)</span>，那么 <span class="math inline">\(ans2=2\prod cnt_i\)</span>。系数来自升序排序和降序排序两种。</p><p>特判：所有数都相同时，升序和降序看作一种，<span class="math inline">\(ans2=\prod cnt_i\)</span>。</p><p>时间复杂度 <span class="math inline">\(O(n^2)\)</span>。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
 <span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
@@ -769,7 +771,9 @@
 	&#125;
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
 &#125;</code></pre></div>
-          </div>
+
+    </div>
+</div>
 <hr />
 <h3 id="c.-种树">C. 种树</h3>
 <div class="note note-success">
@@ -1093,7 +1097,7 @@
     </div>
 </div>
 <hr />
-<h3 id="j.-取沙子游戏">J. 取沙子游戏</h3>
+<h3 id="k.-取沙子游戏">K. 取沙子游戏</h3>
 <div class="note note-success">
             <p>当 <span class="math inline">\(n\)</span> 为奇数时，先手拿 <span class="math inline">\(1\)</span>，之后后手和先手都只能轮流拿 <span class="math inline">\(1\)</span>，先手必胜。</p><p>否则，先手只能拿偶数，一种策略是每次拿 $ $，之后后手无论拿什么，先手跟着拿就行。</p><p>故当 <span class="math inline">\(\text{lowbit(n)}\le k\)</span> 时，先手必胜。否则无论拿 <span class="math inline">\(1\sim k\)</span> 中的多少，<span class="math inline">\(\text{lowbit(n)}\)</span> 都会落到 <span class="math inline">\(k\)</span> 以内，让后手取得胜利。</p>
           </div>
