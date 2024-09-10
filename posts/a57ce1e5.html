@@ -700,6 +700,7 @@
 
     </div>
 </div>
+<hr />
 <h3 id="b.-军训-ii">B. 军训 II</h3>
 <div class="note note-success">
             <p>感性地，排序后不整齐度最小。</p><p><span class="math inline">\(ans1\)</span> 可以单 <span class="math inline">\(\log\)</span> 求，但允许 <span class="math inline">\(O(n^2)\)</span> 就没必要自讨苦吃。</p><p>接着设每个连续段长 <span class="math inline">\(cnt_i\)</span>，那么 <span class="math inline">\(ans2=2\prod cnt_i\)</span>。系数来自升序排序和降序排序两种。</p><p>特判：所有数都相同时，升序和降序看作一种，<span class="math inline">\(ans2=\prod cnt_i\)</span>。</p><p>时间复杂度 <span class="math inline">\(O(n^2)\)</span>。</p>
