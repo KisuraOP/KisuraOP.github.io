@@ -369,7 +369,7 @@ sudo service nginx reload
 cd /opt/domjudge/domserver
 sudo chown www-data:www-data -R webapp/var/*</code></pre></div>
 <p>接着访问 <code>127.0.0.1/domjudge</code> 就有 web 界面了（如果是云服务器，要将 <code>127.0.0.1</code> 换成公网地址）。</p>
-<p><img src="/image/academic/d1.png" alt="id" style="zoom:70%;" /></p>
+<p><img src="/image/academic/d1.png" style="zoom:70%;" /></p>
 <p>如果没按前两句把 <code>default</code> 删掉你就会收获 404 的好结果。</p>
 <p>接着在网页里 login，账号填 admin，密码通过以下命令获取：</p>
 <div class="code-wrapper"><pre><code class="hljs shell">sudo cat /opt/domjudge/domserver/etc/initial_admin_password.secret</code></pre></div>
@@ -393,8 +393,8 @@ innodb_log_file_size = 2560MB</code></pre></div>
 <p>保存退出。</p>
 <div class="code-wrapper"><pre><code class="hljs shell">sudo systemctl restart mysql</code></pre></div>
 <p>如果一切正常，刷新 DOMjudge 的 web 页面，点进 config checker，你会看到：</p>
-<p><img src="/image/academic/d2.png" alt="id" style="zoom:30%;" /></p>
-<p><img src="/image/academic/d3.png" alt="id" style="zoom:35%;" /></p>
+<p><img src="/image/academic/d2.png" style="zoom:30%;" /></p>
+<p><img src="/image/academic/d3.png" style="zoom:35%;" /></p>
 <h4 id="配置-judgehost-docker">4. 配置 judgehost (docker)</h4>
 <p>首先要下载 docker，如果你用的是云，可以找到对应的文档。</p>
 <p>我则是查阅了一些博客和文章，以下命令可能有不妥之处。</p>
@@ -431,8 +431,8 @@ reboot</code></pre></div>
 <div class="code-wrapper"><pre><code class="hljs shell">sudo cat /opt/domjudge/domserver/etc/restapi.secret</code></pre></div>
 <p><code>&lt;domjudge url&gt;</code> 填 <code>http://localhost/domjudge/</code></p>
 <p>如果一切正常，那么：</p>
-<p><img src="/image/academic/d4.png" alt="id" style="zoom:100%;" /></p>
-<p><img src="/image/academic/d5.png" alt="id" style="zoom:100%;" /></p>
+<p><img src="/image/academic/d4.png" style="zoom:100%;" /></p>
+<p><img src="/image/academic/d5.png" style="zoom:100%;" /></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
