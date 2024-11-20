@@ -2631,7 +2631,7 @@ tuple&lt;<span class="hljs-type">int</span>, Point&lt;T&gt;, Point&lt;T&gt;&gt; 
             <p>【队内赛 3E - CF406D. Hill Climbing】</p><p>题意：有 <span class="math inline">\(n\)</span> 座山，第 <span class="math inline">\(i\)</span> 座山山顶在 <span class="math inline">\((x_i,y_i)\)</span>。如果两个人站在两座山的山顶可以互相看到，则这两座山之间有绳子连接。有 <span class="math inline">\(m\)</span> 支队伍，每队有两个人，每个人都可以通过绳子到达直连的最右边的山顶。现给定每支队伍两个人初始所在的山的编号 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span>，问他们在哪座山的山顶相遇。</p><p><span class="math inline">\(1 \le n,m \le 10^5\)</span>，<span class="math inline">\(1 \le x_i \le10^7\)</span>，<span class="math inline">\(1 \le y_i \le 10^{11}\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>题图画的很清楚，因为选的是尽可能往后连的绳子，所以两个人通过绳子攀爬的路径都是凸的。</p><p>换言之，每座山选择向右到达的山的编号（*）是唯一的，连边能构成一棵树。</p><p>那么答案就是两个人所在点的 LCA。</p><p>（*）可以在求上凸包的过程中处理出来，即栈顶编号。</p><p>时间复杂度 <span class="math inline">\(O(n+m\log n)\)</span>。</p>
+            <p>题图画的很清楚，因为选的是尽可能往后连的绳子，所以两个人通过绳子攀爬的路径都是凸的。</p><p>换言之，每座山选择向右到达的山的编号（*）是唯一的，连边能构成一棵树。</p><p>那么答案就是两个人所在点的 LCA。</p><p>（*）可以在求上凸包的过程中处理出来，即栈顶编号。</p><p>时间复杂度 <span class="math inline">\(O(n\log n+m\log n)\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -5460,29 +5460,6 @@ vector&lt;<span class="hljs-type">int</span>&gt; prime;
 
 
 
-              
-                <div class="post-prevnext my-3">
-                  <article class="post-prev col-6">
-                    
-                    
-                      <a href="/posts/a57ce1e5.html" title="【游记】2024 CCPC 网络预选赛">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">【游记】2024 CCPC 网络预选赛</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </article>
-                  <article class="post-next col-6">
-                    
-                    
-                      <a href="/posts/996d8e6.html" title="[NNSZCP2023] 南宁三中第13届科技文化节程序设计竞赛 G,H,I">
-                        <span class="hidden-mobile">[NNSZCP2023] 南宁三中第13届科技文化节程序设计竞赛 G,H,I</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </article>
-                </div>
               
             </div>
 
