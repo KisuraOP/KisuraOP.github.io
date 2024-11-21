@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.3k 字
+          7.6k 字
         
       </span>
     
@@ -387,6 +387,7 @@ sudo vim /etc/mysql/conf.d/mysql.cnf</code></pre></div>
 max_connections = 1000
 max_allowed_packet = 512MB
 innodb_log_file_size = 2560MB</code></pre></div>
+<p>这只是示例，实际 <code>max_allowed_packet</code> 要改成两倍于题目测试数据文件的大小；<code>innodb_log_file_size</code> 要改成十倍于题目测试数据文件的大小。</p>
 <p>保存退出。</p>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo vim /etc/mysql/mariadb.conf.d/50-server.cnf</code></pre></div>
 <p>找到 <code>max_allowed_packet = 1G</code>，取消这一行的注释。</p>
@@ -425,7 +426,7 @@ sudo vim daemon.json</code></pre></div>
 <div class="code-wrapper"><pre><code class="hljs bash">GRUB_CMDLINE_LINUX_DEFAULT=<span class="hljs-string">&quot;quiet cgroup_enable=memory swapaccount=1 systemd.unified_cgroup_hierarchy=0&quot;</span></code></pre></div>
 <p>保存退出。</p>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo update-grub
-reboot</code></pre></div>
+sudo reboot</code></pre></div>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo docker run --network=<span class="hljs-string">&quot;host&quot;</span> -d -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost-0 --hostname judgedaemon-0 -e DAEMON_ID=0 -e CONTAINER_TIMEZONE=Asia/Shanghai -e JUDGEDAEMON_PASSWORD=&lt;domserver password&gt; -e DOMSERVER_BASEURL=&lt;domjudge url&gt; domjudge/judgehost:8.3.1</code></pre></div>
 <p>其中 <code>&lt;domserver password&gt;</code> 通过以下命令获取：</p>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo <span class="hljs-built_in">cat</span> /opt/domjudge/domserver/etc/restapi.secret</code></pre></div>
@@ -433,6 +434,136 @@ reboot</code></pre></div>
 <p>如果一切正常，那么：</p>
 <p><img src="/image/academic/d4.png" style="zoom:100%;" /></p>
 <p><img src="/image/academic/d5.png" style="zoom:100%;" /></p>
+<h3 id="配置比赛">5. 配置比赛</h3>
+<p>从这里开始就看个人喜好了。</p>
+<p>以下配置均以 UESTC 第十五届趣味程序设计竞赛为例。</p>
+<p>Configuration settings <span class="math inline">\(\to\)</span> External systems <span class="math inline">\(\to\)</span> configuration data external。</p>
+<p>Configuration settings <span class="math inline">\(\to\)</span> Scoring <span class="math inline">\(\to\)</span> Results remap: 推荐将 <code>output-limit</code> 和 <code>no-output</code> 定向为 <code>wrong-answer</code>。</p>
+<p>save 之后如果提示你 Recalculate caches now，就点进去，之后同理。</p>
+<p>Configuration settings <span class="math inline">\(\to\)</span> Judging <span class="math inline">\(\to\)</span> Enable parallel judging 推荐关闭。</p>
+<p>Configuration settings <span class="math inline">\(\to\)</span> Display <span class="math inline">\(\to\)</span> Show flags 推荐关闭。</p>
+<p>Configuration settings <span class="math inline">\(\to\)</span> Display <span class="math inline">\(\to\)</span> Show affiliations 推荐关闭。</p>
+<p>Configuration settings <span class="math inline">\(\to\)</span> Display <span class="math inline">\(\to\)</span> Allow team submission download 推荐开启。</p>
+<p>回到主页，进 Team Categories。</p>
+<p>把 visible 的三个组别的 external ID 改成 <code>beginner</code>，<code>advanced</code> 和 <code>observer</code>，代表零基础组，有基础组，和打星组。</p>
+<p>接着导入队伍，依据 <a target="_blank" rel="noopener" href="https://www.domjudge.org/docs/manual/8.3/import.html#importing-team-affiliations">Link</a> 完成 accounts.yaml，teams.json 和 organizations.json。</p>
+<p>以下是我用到的脚本：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># gen_accounts.py</span>
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> string
+
+<span class="hljs-comment"># 生成账号的数量</span>
+account_number = <span class="hljs-number">452</span>
+
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_team_data</span>():
+    data_list = []
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, account_number + <span class="hljs-number">1</span>):
+        team_id = <span class="hljs-string">f&quot;team<span class="hljs-subst">&#123;i:03d&#125;</span>&quot;</span>
+        <span class="hljs-built_in">id</span> = <span class="hljs-string">f&quot;account<span class="hljs-subst">&#123;i:03d&#125;</span>&quot;</span>
+        username = team_id
+        password = <span class="hljs-string">&#x27;&#x27;</span>.join(random.choices(string.ascii_letters + string.digits, k=<span class="hljs-number">10</span>))
+        data_list.append(<span class="hljs-string">f&quot;- id: <span class="hljs-subst">&#123;<span class="hljs-built_in">id</span>&#125;</span>\n  username: <span class="hljs-subst">&#123;username&#125;</span>\n  password: <span class="hljs-subst">&#123;password&#125;</span>\n  type: team\n  team_id: &#x27;<span class="hljs-subst">&#123;team_id&#125;</span>&#x27;\n\n&quot;</span>)
+    <span class="hljs-keyword">return</span> data_list
+
+
+team_data = generate_team_data()
+
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;accounts.yaml&#x27;</span>, <span class="hljs-string">&#x27;w&#x27;</span>) <span class="hljs-keyword">as</span> file:
+    file.writelines(team_data)</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># gen_organizations.py</span>
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> json
+
+<span class="hljs-comment"># 读取表格第 10 列的内容（学校名称）</span>
+df = pd.read_excel(<span class="hljs-string">&#x27;name.xlsx&#x27;</span>, usecols=[<span class="hljs-number">9</span>], skiprows=<span class="hljs-number">1</span>)
+
+<span class="hljs-comment"># 去重</span>
+universities = df.iloc[:, <span class="hljs-number">0</span>].dropna().unique()
+
+organizations = [&#123;<span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-built_in">str</span>(i + <span class="hljs-number">1</span>), <span class="hljs-string">&quot;name&quot;</span>: university, <span class="hljs-string">&quot;formal_name&quot;</span>: university, <span class="hljs-string">&quot;country&quot;</span>: <span class="hljs-string">&quot;CHN&quot;</span>&#125; <span class="hljs-keyword">for</span> i, university <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(universities) <span class="hljs-keyword">if</span> university]
+
+<span class="hljs-comment"># 本校</span>
+organizations.append(&#123;<span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">&#x27;100&#x27;</span>, <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&#x27;电子科技大学&#x27;</span>, <span class="hljs-string">&quot;formal_name&quot;</span>: <span class="hljs-string">&#x27;电子科技大学&#x27;</span>, <span class="hljs-string">&quot;country&quot;</span>: <span class="hljs-string">&quot;CHN&quot;</span>&#125;)
+
+<span class="hljs-comment"># 没填学校名字的</span>
+organizations.append(&#123;<span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">&#x27;101&#x27;</span>, <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&#x27;未填写&#x27;</span>, <span class="hljs-string">&quot;formal_name&quot;</span>: <span class="hljs-string">&#x27;未填写&#x27;</span>, <span class="hljs-string">&quot;country&quot;</span>: <span class="hljs-string">&quot;CHN&quot;</span>&#125;)
+
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;organizations.json&#x27;</span>, <span class="hljs-string">&#x27;w&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> f:
+    json.dump(organizations, f, ensure_ascii=<span class="hljs-literal">False</span>, indent=<span class="hljs-number">4</span>)</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># gen_teams.py</span>
+<span class="hljs-keyword">import</span> json
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_data</span>():
+    excel_data = pd.read_excel(<span class="hljs-string">&quot;name.xlsx&quot;</span>, sheet_name=<span class="hljs-number">0</span>)
+    organizations = &#123;&#125;
+
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;organizations.json&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:
+        organizations = json.load(f)
+
+    result = []
+    id_counter = <span class="hljs-number">1</span>
+
+    <span class="hljs-keyword">for</span> _, row <span class="hljs-keyword">in</span> excel_data.iterrows():
+        <span class="hljs-keyword">if</span> pd.isna(row[<span class="hljs-number">1</span>]):
+            <span class="hljs-keyword">break</span>
+
+        <span class="hljs-comment"># row[2]: 是否为本校选手</span>
+        <span class="hljs-comment"># row[5]: 是否正式参赛</span>
+        <span class="hljs-comment"># row[6]: 年级</span>
+        <span class="hljs-comment"># row[8]: 是否有信息竞赛基础</span>
+        <span class="hljs-comment"># row[9]: 学校（外校）</span>
+        <span class="hljs-keyword">if</span> row[<span class="hljs-number">2</span>] == <span class="hljs-string">&quot;否&quot;</span> <span class="hljs-keyword">or</span> row[<span class="hljs-number">5</span>] == <span class="hljs-string">&quot;否（不参与评奖）&quot;</span>:
+            X = <span class="hljs-string">&quot;observer&quot;</span>
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-keyword">if</span> row[<span class="hljs-number">6</span>] == <span class="hljs-string">&quot;大一&quot;</span> <span class="hljs-keyword">and</span> row[<span class="hljs-number">8</span>] == <span class="hljs-string">&quot;否&quot;</span>:
+                X = <span class="hljs-string">&quot;beginner&quot;</span>
+            <span class="hljs-keyword">else</span>:
+                X = <span class="hljs-string">&quot;advanced&quot;</span>
+
+        <span class="hljs-keyword">if</span> row[<span class="hljs-number">2</span>] == <span class="hljs-string">&quot;否&quot;</span>:
+            S = row[<span class="hljs-number">9</span>]
+            org_id = <span class="hljs-built_in">next</span>((org[<span class="hljs-string">&quot;id&quot;</span>] <span class="hljs-keyword">for</span> org <span class="hljs-keyword">in</span> organizations <span class="hljs-keyword">if</span> org[<span class="hljs-string">&quot;name&quot;</span>] == S), <span class="hljs-literal">None</span>)
+            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> org_id:
+                org_id = <span class="hljs-number">101</span>
+                <span class="hljs-comment"># raise ValueError(f&quot;组织名称 &#x27;&#123;S&#125;&#x27; 未在 organizations.json 中找到！&quot;)</span>
+        <span class="hljs-keyword">else</span>:
+            org_id = <span class="hljs-number">100</span>
+
+        item = &#123;
+            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">f&quot;team<span class="hljs-subst">&#123;id_counter:03d&#125;</span>&quot;</span>,
+            <span class="hljs-string">&quot;group_ids&quot;</span>: [<span class="hljs-built_in">str</span>(X)],
+            <span class="hljs-string">&quot;name&quot;</span>: row[<span class="hljs-number">1</span>],
+            <span class="hljs-string">&quot;organization_id&quot;</span>: <span class="hljs-built_in">str</span>(org_id)
+        &#125;
+        result.append(item)
+
+        id_counter += <span class="hljs-number">1</span>
+
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;teams.json&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> outfile:
+        json.dump(result, outfile, ensure_ascii=<span class="hljs-literal">False</span>, indent=<span class="hljs-number">4</span>)
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:
+    generate_data()</code></pre></div>
+<p>生成完毕后回到主页，点进 import / export，找到 Teams &amp; groups <span class="math inline">\(\to\)</span> Import JSON / YAML。</p>
+<p>将上述三个文件按 organizations.json，teams.json，accounts.yaml 的顺序传上去（务必注意顺序，Type 也要随着改动）。</p>
+<p>接着建立 Contests。回到主页点进 Contests，demo 删掉，Add new contest，External ID 随便填一个，剩下的选项都有注释，不再赘述。</p>
+<p>可以利用 Problemset document 选项上传题面，在 Polygon 导出 Chinese 题面 PDF 的方法：</p>
+<ul>
+<li>右边栏 Properties/File，找到 statements.ftl，Edit。</li>
+<li>开头粘贴 <code>\usepackage &#123;CJK&#125;</code>，<code>\begin&#123;document&#125;</code> 之后粘贴 <code>\begin&#123;CJK&#125;&#123;UTF8&#125;&#123;gbsn&#125;</code>，结尾 <code>\end&#123;document&#125;</code> 前粘贴 <code>\end &#123;CJK&#125;</code>。</li>
+</ul>
+<p>接着上传题目。需要借助 <a target="_blank" rel="noopener" href="https://github.com/cn-xcpc-tools/Polygon2DOMjudge/blob/master/README.cn.md">Link</a>。</p>
+<p>Polygon 点进 Contest，右边栏找到 Build full packages (+verify)，点 (+verify)，之后点进每个题目的 Package 界面下载 Linux 版本的 package。</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo apt install pipx
+pipx install p2d
+pipx ensurepath</code></pre></div>
+<p>关掉这个终端，重新开一个。</p>
+<p>对每一题执行以下命令：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">p2d --code A --color <span class="hljs-string">&quot;#FF0000&quot;</span> -o /path/to/domjudge-package.zip /path/to/polygon-package.zip</code></pre></div>
+<p>得到的 domjudge-package.zip 就可以在 Import and export <span class="math inline">\(\to\)</span> Problems 里上传了。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
