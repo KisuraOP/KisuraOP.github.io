@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.4k 字
+          3.3k 字
         
       </span>
     
@@ -336,7 +336,7 @@
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/258024151">HeRaNO | 计算机 · DOMjudge Docker 配置</a></p>
 <p>文中的所有流程经过了从头验证，无论是本地系统还是云服务器。</p>
 <p>十分感谢 vy 和 hrdg 的视频会议指导。</p>
-<h4 id="安装-domjudge-和相关依赖">1. 安装 DOMjudge 和相关依赖</h4>
+<h3 id="安装-domjudge-和相关依赖">1. 安装 DOMjudge 和相关依赖</h3>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo apt-get update
 sudo apt-get upgrade</code></pre></div>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo apt install acl zip unzip mariadb-server nginx \
@@ -349,10 +349,10 @@ sudo apt install make gcc g++ debootstrap libcgroup-dev lsof \
 sudo wget https://www.domjudge.org/releases/domjudge-8.3.1.tar.gz
 sudo tar -zxvf domjudge-8.3.1.tar.gz</code></pre></div>
 <p>如果 <code>wget</code> 太慢可以点链接进去下再 <code>sudo mv ./domjudge-8.3.1.tar.gz /opt/</code>。</p>
-<h4 id="编译-domjudge配置数据库和-web-服务器">2. 编译 DOMjudge，配置数据库和 web 服务器</h4>
+<h3 id="编译-domjudge配置数据库和-web-服务器">2. 编译 DOMjudge，配置数据库和 web 服务器</h3>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /opt/domjudge-8.3.1
 sudo ./configure --prefix=/opt/domjudge --with-domjudge-user=root --with-baseurl=127.0.0.1</code></pre></div>
-<p>这一步如果警告缺少 <code>pkg-config</code> 就 <code>sudo apt install pkg-config</code>，我是没遇到。</p>
+<p>这一步如果警告缺少 <code>pkg-config</code> 就 <code>sudo apt install pkg-config</code>。</p>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo make domserver</code></pre></div>
 <p>这一步会弹出一个询问，直接 <code>yes</code>。</p>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo make install-domserver
@@ -362,26 +362,26 @@ sudo <span class="hljs-built_in">ln</span> -s /opt/domjudge/domserver/etc/nginx-
 sudo <span class="hljs-built_in">ln</span> -s /opt/domjudge/domserver/etc/domjudge-fpm.conf /etc/php/8.3/fpm/pool.d/domjudge.conf
 sudo service php8.3-fpm reload</code></pre></div>
 <p>最后两句 php 要换成对应的版本，我这里是 php8.3。</p>
-<p>最后一句可能会有警告说要 <code>systemctl daemon-reload</code>，按它说的输入就行。</p>
+<p>最后一句如果警告说要 <code>systemctl daemon-reload</code>，按它说的执行就行。</p>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /etc/nginx/sites-enabled
 sudo <span class="hljs-built_in">rm</span> default
 sudo service nginx reload
 <span class="hljs-built_in">cd</span> /opt/domjudge/domserver
 sudo <span class="hljs-built_in">chown</span> www-data:www-data -R webapp/var/*</code></pre></div>
-<p>接着访问 <code>127.0.0.1/domjudge</code> 就有 web 界面了（如果是云服务器，要将 <code>127.0.0.1</code> 换成公网地址）。</p>
+<p>接着访问 <code>127.0.0.1/domjudge</code> 就有 web 界面了（云服务器就换成公网地址）。</p>
 <p><img src="/image/academic/d1.png" style="zoom:70%;" /></p>
 <p>如果没按前两句把 <code>default</code> 删掉你就会收获 404 的好结果。</p>
 <p>接着在网页里 login，账号填 admin，密码通过以下命令获取：</p>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo <span class="hljs-built_in">cat</span> /opt/domjudge/domserver/etc/initial_admin_password.secret</code></pre></div>
-<h4 id="配置-php-和-mysql">3. 配置 php 和 mysql</h4>
+<h3 id="配置-php-和-mysql">3. 配置 php 和 mysql</h3>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /etc/php/8.3/fpm/pool.d
 sudo vim domjudge.conf</code></pre></div>
 <p>如果提示没有 vim，就 <code>sudo apt install vim</code>。</p>
 <p>打开配置文件后找到 <code>php_admin_value[memory_limit]</code> 一栏，改成：</p>
 <div class="code-wrapper"><pre><code class="hljs bash">php_admin_value[memory_limit] = 1024M</code></pre></div>
-<p>保存退出（esc + :wq）。</p>
-<div class="code-wrapper"><pre><code class="hljs bash">sudo service php8.3-fpm reload</code></pre></div>
-<div class="code-wrapper"><pre><code class="hljs bash">sudo vim /etc/mysql/conf.d/mysql.cnf</code></pre></div>
+<p>保存退出。</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo service php8.3-fpm reload
+sudo vim /etc/mysql/conf.d/mysql.cnf</code></pre></div>
 <p>你会看到一行 <code>[mysql]</code>，删掉。接着粘贴以下内容：</p>
 <div class="code-wrapper"><pre><code class="hljs bash">[mysqld]
 max_connections = 1000
@@ -395,8 +395,8 @@ innodb_log_file_size = 2560MB</code></pre></div>
 <p>如果一切正常，刷新 DOMjudge 的 web 页面，点进 config checker，你会看到：</p>
 <p><img src="/image/academic/d2.png" style="zoom:30%;" /></p>
 <p><img src="/image/academic/d3.png" style="zoom:35%;" /></p>
-<h4 id="配置-judgehost-docker">4. 配置 judgehost (docker)</h4>
-<p>首先要下载 docker，如果你用的是云，可以找到对应的文档。</p>
+<h3 id="配置-judgehost-docker">4. 配置 judgehost (docker)</h3>
+<p>首先要下载 docker，如果是云服务器，可以找到对应的文档。</p>
 <p>我则是查阅了一些博客和文章，以下命令可能有不妥之处。</p>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo apt-get update
 sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
@@ -412,7 +412,7 @@ sudo apt-get update</code></pre></div>
 <span class="hljs-built_in">cd</span> /etc/docker
 sudo <span class="hljs-built_in">touch</span> daemon.json
 sudo vim daemon.json</code></pre></div>
-<p>输入以下内容：</p>
+<p>粘贴以下内容：</p>
 <div class="code-wrapper"><pre><code class="hljs bash">&#123;
     <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;https://docker.1ms.run&quot;</span>]
 &#125;</code></pre></div>
