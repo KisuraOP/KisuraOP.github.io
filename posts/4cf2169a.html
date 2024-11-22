@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.6k 字
+          9.1k 字
         
       </span>
     
@@ -445,8 +445,11 @@ sudo reboot</code></pre></div>
 <p>Configuration settings <span class="math inline">\(\to\)</span> Display <span class="math inline">\(\to\)</span> Show affiliations 推荐关闭。</p>
 <p>Configuration settings <span class="math inline">\(\to\)</span> Display <span class="math inline">\(\to\)</span> Allow team submission download 推荐开启。</p>
 <p>回到主页，进 Team Categories。</p>
-<p>把 visible 的三个组别的 external ID 改成 <code>beginner</code>，<code>advanced</code> 和 <code>observer</code>，代表零基础组，有基础组，和打星组。</p>
+<p>把 visible 的三个组别的 external ID 改成 <code>beginner</code>，<code>advanced</code> 和 <code>observer</code>，代表零基础组，有基础组，和打星组。然后把 SortOrder 都改成同一个数字。</p>
 <p>接着导入队伍，依据 <a target="_blank" rel="noopener" href="https://www.domjudge.org/docs/manual/8.3/import.html#importing-team-affiliations">Link</a> 完成 accounts.yaml，teams.json 和 organizations.json。</p>
+<ul>
+<li>teams.json 中 display_name 虽然是 [option]，但如果不写这一项会默认设成空串，很神秘，所以还是加上。</li>
+</ul>
 <p>以下是我用到的脚本：</p>
 <div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># gen_accounts.py</span>
 <span class="hljs-keyword">import</span> random
@@ -535,6 +538,7 @@ organizations.append(&#123;<span class="hljs-string">&quot;id&quot;</span>: <spa
             <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">f&quot;team<span class="hljs-subst">&#123;id_counter:03d&#125;</span>&quot;</span>,
             <span class="hljs-string">&quot;group_ids&quot;</span>: [<span class="hljs-built_in">str</span>(X)],
             <span class="hljs-string">&quot;name&quot;</span>: row[<span class="hljs-number">1</span>],
+            <span class="hljs-string">&quot;display_name&quot;</span>: row[<span class="hljs-number">1</span>],
             <span class="hljs-string">&quot;organization_id&quot;</span>: <span class="hljs-built_in">str</span>(org_id)
         &#125;
         result.append(item)
@@ -550,6 +554,9 @@ organizations.append(&#123;<span class="hljs-string">&quot;id&quot;</span>: <spa
 <p>生成完毕后回到主页，点进 import / export，找到 Teams &amp; groups <span class="math inline">\(\to\)</span> Import JSON / YAML。</p>
 <p>将上述三个文件按 organizations.json，teams.json，accounts.yaml 的顺序传上去（务必注意顺序，Type 也要随着改动）。</p>
 <p>接着建立 Contests。回到主页点进 Contests，demo 删掉，Add new contest，External ID 随便填一个，剩下的选项都有注释，不再赘述。</p>
+<ul>
+<li>注意时间格式的 <code>timezone</code> 应该填 <code>Asia/Shanghai</code> 而不是 <code>UTC+8</code>。</li>
+</ul>
 <p>可以利用 Problemset document 选项上传题面，在 Polygon 导出 Chinese 题面 PDF 的方法：</p>
 <ul>
 <li>右边栏 Properties/File，找到 statements.ftl，Edit。</li>
@@ -563,7 +570,60 @@ pipx ensurepath</code></pre></div>
 <p>关掉这个终端，重新开一个。</p>
 <p>对每一题执行以下命令：</p>
 <div class="code-wrapper"><pre><code class="hljs bash">p2d --code A --color <span class="hljs-string">&quot;#FF0000&quot;</span> -o /path/to/domjudge-package.zip /path/to/polygon-package.zip</code></pre></div>
+<p>其中 code 是题目的 short name，color 是题目在 DOMjudge 中的颜色，更多设置项可以点进链接里试。</p>
 <p>得到的 domjudge-package.zip 就可以在 Import and export <span class="math inline">\(\to\)</span> Problems 里上传了。</p>
+<p>补一个邮件收集脚本：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> yaml
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">load_accounts_yaml</span>(<span class="hljs-params">file_path</span>):
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(file_path, <span class="hljs-string">&#x27;r&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> file:
+        accounts = yaml.safe_load(file)
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(accounts, <span class="hljs-built_in">list</span>):
+        accounts_dict = &#123;item[<span class="hljs-string">&#x27;username&#x27;</span>]: item <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> accounts&#125;
+    <span class="hljs-keyword">else</span>:
+        accounts_dict = accounts
+    <span class="hljs-keyword">return</span> accounts_dict
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_email</span>(<span class="hljs-params">row</span>):
+    <span class="hljs-keyword">if</span> row[<span class="hljs-number">2</span>] == <span class="hljs-string">&#x27;是&#x27;</span>:
+        <span class="hljs-keyword">return</span> row[<span class="hljs-number">4</span>] + <span class="hljs-string">&quot;@std.uestc.edu.cn&quot;</span>
+    <span class="hljs-keyword">else</span>:
+        <span class="hljs-keyword">return</span> row[<span class="hljs-number">10</span>]
+
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">create_mail_xlsx</span>(<span class="hljs-params">name_file, accounts_yaml</span>):
+    df = pd.read_excel(name_file)
+    accounts = load_accounts_yaml(accounts_yaml)
+
+    data = []
+
+    <span class="hljs-keyword">for</span> i, row <span class="hljs-keyword">in</span> df.iterrows():
+        <span class="hljs-keyword">if</span> pd.isna(row[<span class="hljs-number">1</span>]):
+            <span class="hljs-keyword">break</span>
+
+        name = row[<span class="hljs-number">1</span>]
+        <span class="hljs-keyword">if</span> row[<span class="hljs-number">2</span>] == <span class="hljs-string">&#x27;是&#x27;</span>:
+            <span class="hljs-built_in">id</span> = <span class="hljs-built_in">int</span>(row[<span class="hljs-number">4</span>])
+            email = <span class="hljs-built_in">str</span>(<span class="hljs-built_in">id</span>) + <span class="hljs-string">&quot;@std.uestc.edu.cn&quot;</span>
+            email2 = <span class="hljs-string">&quot;&quot;</span>
+        <span class="hljs-keyword">else</span>:
+            email = <span class="hljs-built_in">str</span>(row[<span class="hljs-number">10</span>])
+            <span class="hljs-keyword">if</span> pd.isna(row[<span class="hljs-number">11</span>]):
+                email2 = <span class="hljs-string">&quot;&quot;</span>
+            <span class="hljs-keyword">else</span>:
+                email2 = <span class="hljs-built_in">str</span>(row[<span class="hljs-number">11</span>])
+        username = <span class="hljs-string">f&quot;team<span class="hljs-subst">&#123;i + <span class="hljs-number">1</span>:03d&#125;</span>&quot;</span>
+        password = accounts.get(username, &#123;&#125;).get(<span class="hljs-string">&#x27;password&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>)
+
+        data.append([name, email, email2, username, password])
+
+    mail_df = pd.DataFrame(data, columns=[<span class="hljs-string">&quot;姓名&quot;</span>, <span class="hljs-string">&quot;邮箱1&quot;</span>, <span class="hljs-string">&quot;邮箱2&quot;</span>, <span class="hljs-string">&quot;username&quot;</span>, <span class="hljs-string">&quot;password&quot;</span>])
+    mail_df.to_excel(<span class="hljs-string">&#x27;mail.xlsx&#x27;</span>, index=<span class="hljs-literal">False</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:
+    create_mail_xlsx(<span class="hljs-string">&#x27;name.xlsx&#x27;</span>, <span class="hljs-string">&#x27;accounts.yaml&#x27;</span>)
+</code></pre></div>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
