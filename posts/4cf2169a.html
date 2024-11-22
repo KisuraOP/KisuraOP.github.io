@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.1k 字
+          9.2k 字
         
       </span>
     
@@ -367,7 +367,7 @@ sudo service php8.3-fpm reload</code></pre></div>
 sudo <span class="hljs-built_in">rm</span> default
 sudo service nginx reload
 <span class="hljs-built_in">cd</span> /opt/domjudge/domserver
-sudo <span class="hljs-built_in">chown</span> www-data:www-data -R webapp/var/*</code></pre></div>
+sudo <span class="hljs-built_in">chown</span> www-data:www-data -R webapp/public/*</code></pre></div>
 <p>接着访问 <code>127.0.0.1/domjudge</code> 就有 web 界面了（云服务器就换成公网地址）。</p>
 <p><img src="/image/academic/d1.png" style="zoom:70%;" /></p>
 <p>如果没按前两句把 <code>default</code> 删掉你就会收获 404 的好结果。</p>
@@ -438,14 +438,13 @@ sudo reboot</code></pre></div>
 <p>从这里开始就看个人喜好了。</p>
 <p>以下配置均以 UESTC 第十五届趣味程序设计竞赛为例。</p>
 <p>Configuration settings <span class="math inline">\(\to\)</span> External systems <span class="math inline">\(\to\)</span> configuration data external。</p>
-<p>Configuration settings <span class="math inline">\(\to\)</span> Scoring <span class="math inline">\(\to\)</span> Results remap: 推荐将 <code>output-limit</code> 和 <code>no-output</code> 定向为 <code>wrong-answer</code>。</p>
+<p>Configuration settings <span class="math inline">\(\to\)</span> Scoring <span class="math inline">\(\to\)</span> Results remap: 将 <code>output-limit</code> 和 <code>no-output</code> 定向为 <code>wrong-answer</code>。</p>
 <p>save 之后如果提示你 Recalculate caches now，就点进去，之后同理。</p>
-<p>Configuration settings <span class="math inline">\(\to\)</span> Judging <span class="math inline">\(\to\)</span> Enable parallel judging 推荐关闭。</p>
-<p>Configuration settings <span class="math inline">\(\to\)</span> Display <span class="math inline">\(\to\)</span> Show flags 推荐关闭。</p>
-<p>Configuration settings <span class="math inline">\(\to\)</span> Display <span class="math inline">\(\to\)</span> Show affiliations 推荐关闭。</p>
-<p>Configuration settings <span class="math inline">\(\to\)</span> Display <span class="math inline">\(\to\)</span> Allow team submission download 推荐开启。</p>
+<p>Configuration settings <span class="math inline">\(\to\)</span> Judging <span class="math inline">\(\to\)</span> Enable parallel judging 关闭。</p>
+<p>Configuration settings <span class="math inline">\(\to\)</span> Display <span class="math inline">\(\to\)</span> Show flags 关闭。</p>
+<p>Configuration settings <span class="math inline">\(\to\)</span> Display <span class="math inline">\(\to\)</span> Allow team submission download 开启。</p>
 <p>回到主页，进 Team Categories。</p>
-<p>把 visible 的三个组别的 external ID 改成 <code>beginner</code>，<code>advanced</code> 和 <code>observer</code>，代表零基础组，有基础组，和打星组。然后把 SortOrder 都改成同一个数字。</p>
+<p>把 visible 的三个组别的 external ID 改成 <code>beginner</code>，<code>advanced</code> 和 <code>observer</code>，代表零基础组，有基础组，和打星组。然后把这三个组的 SortOrder 改成同一个数字（这样榜单上才不会割裂显示）。</p>
 <p>接着导入队伍，依据 <a target="_blank" rel="noopener" href="https://www.domjudge.org/docs/manual/8.3/import.html#importing-team-affiliations">Link</a> 完成 accounts.yaml，teams.json 和 organizations.json。</p>
 <ul>
 <li>teams.json 中 display_name 虽然是 [option]，但如果不写这一项会默认设成空串，很神秘，所以还是加上。</li>
@@ -553,6 +552,7 @@ organizations.append(&#123;<span class="hljs-string">&quot;id&quot;</span>: <spa
     generate_data()</code></pre></div>
 <p>生成完毕后回到主页，点进 import / export，找到 Teams &amp; groups <span class="math inline">\(\to\)</span> Import JSON / YAML。</p>
 <p>将上述三个文件按 organizations.json，teams.json，accounts.yaml 的顺序传上去（务必注意顺序，Type 也要随着改动）。</p>
+<p>不同大学的校徽可以在 <a target="_blank" rel="noopener" href="https://github.com/CSGrandeur/CCPCOJ/tree/master/ojweb/public/static/image/school_badge">Link</a> 或 <a target="_blank" rel="noopener" href="https://www.urongda.com/logos">Link</a> 里下载，再到主页进 Team Affiliations 里编辑上传。</p>
 <p>接着建立 Contests。回到主页点进 Contests，demo 删掉，Add new contest，External ID 随便填一个，剩下的选项都有注释，不再赘述。</p>
 <ul>
 <li>注意时间格式的 <code>timezone</code> 应该填 <code>Asia/Shanghai</code> 而不是 <code>UTC+8</code>。</li>
@@ -585,13 +585,6 @@ pipx ensurepath</code></pre></div>
         accounts_dict = accounts
     <span class="hljs-keyword">return</span> accounts_dict
 
-<span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_email</span>(<span class="hljs-params">row</span>):
-    <span class="hljs-keyword">if</span> row[<span class="hljs-number">2</span>] == <span class="hljs-string">&#x27;是&#x27;</span>:
-        <span class="hljs-keyword">return</span> row[<span class="hljs-number">4</span>] + <span class="hljs-string">&quot;@std.uestc.edu.cn&quot;</span>
-    <span class="hljs-keyword">else</span>:
-        <span class="hljs-keyword">return</span> row[<span class="hljs-number">10</span>]
-
-
 <span class="hljs-keyword">def</span> <span class="hljs-title function_">create_mail_xlsx</span>(<span class="hljs-params">name_file, accounts_yaml</span>):
     df = pd.read_excel(name_file)
     accounts = load_accounts_yaml(accounts_yaml)
@@ -616,9 +609,17 @@ pipx ensurepath</code></pre></div>
         username = <span class="hljs-string">f&quot;team<span class="hljs-subst">&#123;i + <span class="hljs-number">1</span>:03d&#125;</span>&quot;</span>
         password = accounts.get(username, &#123;&#125;).get(<span class="hljs-string">&#x27;password&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>)
 
-        data.append([name, email, email2, username, password])
+        <span class="hljs-keyword">if</span> row[<span class="hljs-number">2</span>] == <span class="hljs-string">&quot;否&quot;</span> <span class="hljs-keyword">or</span> row[<span class="hljs-number">5</span>] == <span class="hljs-string">&quot;否（不参与评奖）&quot;</span>:
+            user_type = <span class="hljs-string">&quot;打星组&quot;</span>
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-keyword">if</span> row[<span class="hljs-number">6</span>] == <span class="hljs-string">&quot;大一&quot;</span> <span class="hljs-keyword">and</span> row[<span class="hljs-number">8</span>] == <span class="hljs-string">&quot;否&quot;</span>:
+                user_type = <span class="hljs-string">&quot;初学组&quot;</span>
+            <span class="hljs-keyword">else</span>:
+                user_type = <span class="hljs-string">&quot;进阶组&quot;</span>
 
-    mail_df = pd.DataFrame(data, columns=[<span class="hljs-string">&quot;姓名&quot;</span>, <span class="hljs-string">&quot;邮箱1&quot;</span>, <span class="hljs-string">&quot;邮箱2&quot;</span>, <span class="hljs-string">&quot;username&quot;</span>, <span class="hljs-string">&quot;password&quot;</span>])
+        data.append([name, email, email2, username, password, user_type])
+
+    mail_df = pd.DataFrame(data, columns=[<span class="hljs-string">&quot;姓名&quot;</span>, <span class="hljs-string">&quot;邮箱1&quot;</span>, <span class="hljs-string">&quot;邮箱2&quot;</span>, <span class="hljs-string">&quot;username&quot;</span>, <span class="hljs-string">&quot;password&quot;</span>, <span class="hljs-string">&quot;组别&quot;</span>])
     mail_df.to_excel(<span class="hljs-string">&#x27;mail.xlsx&#x27;</span>, index=<span class="hljs-literal">False</span>)
 
 <span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:
