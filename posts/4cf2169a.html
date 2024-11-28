@@ -427,7 +427,7 @@ sudo vim daemon.json</code></pre></div>
 <p>保存退出。</p>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo update-grub
 sudo reboot</code></pre></div>
-<div class="code-wrapper"><pre><code class="hljs bash">sudo docker run -d -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost-0 --network=<span class="hljs-string">&quot;host&quot;</span> -e DAEMON_ID=0 -e CONTAINER_TIMEZONE=Asia/Shanghai -e JUDGEDAEMON_PASSWORD=&lt;domserver password&gt; -e DOMSERVER_BASEURL=http://localhost:12345/domjudge domjudge/judgehost:8.3.1</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo docker run -d -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost-0 --network=<span class="hljs-string">&quot;host&quot;</span> -e DAEMON_ID=0 -e CONTAINER_TIMEZONE=Asia/Shanghai -e JUDGEDAEMON_PASSWORD=&lt;domserver password&gt; -e DOMSERVER_BASEURL=http://localhost:12345/domjudge/ domjudge/judgehost:8.3.1</code></pre></div>
 <p>其中 <code>&lt;domserver password&gt;</code> 通过以下命令获取：</p>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo <span class="hljs-built_in">cat</span> /opt/domjudge/domserver/etc/restapi.secret</code></pre></div>
 <p>如果一切正常，那么：</p>
