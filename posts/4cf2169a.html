@@ -427,10 +427,9 @@ sudo vim daemon.json</code></pre></div>
 <p>保存退出。</p>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo update-grub
 sudo reboot</code></pre></div>
-<div class="code-wrapper"><pre><code class="hljs bash">sudo docker run --network=<span class="hljs-string">&quot;host&quot;</span> -d -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost-0 --hostname judgedaemon-0 -e DAEMON_ID=0 -e CONTAINER_TIMEZONE=Asia/Shanghai -e JUDGEDAEMON_PASSWORD=&lt;domserver password&gt; -e DOMSERVER_BASEURL=&lt;domjudge url&gt; domjudge/judgehost:8.3.1</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo docker run -d -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost-0 --network=<span class="hljs-string">&quot;host&quot;</span> -e DAEMON_ID=0 -e CONTAINER_TIMEZONE=Asia/Shanghai -e JUDGEDAEMON_PASSWORD=&lt;domserver password&gt; -e DOMSERVER_BASEURL=http://localhost:12345/domjudge domjudge/judgehost:8.3.1</code></pre></div>
 <p>其中 <code>&lt;domserver password&gt;</code> 通过以下命令获取：</p>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo <span class="hljs-built_in">cat</span> /opt/domjudge/domserver/etc/restapi.secret</code></pre></div>
-<p><code>&lt;domjudge url&gt;</code> 填 <code>http://localhost/domjudge/</code></p>
 <p>如果一切正常，那么：</p>
 <p><img src="/image/academic/d4.png" style="zoom:100%;" /></p>
 <p><img src="/image/academic/d5.png" style="zoom:100%;" /></p>
@@ -572,6 +571,9 @@ pipx ensurepath</code></pre></div>
 <p>对每一题执行以下命令：</p>
 <div class="code-wrapper"><pre><code class="hljs bash">p2d --code A --color <span class="hljs-string">&quot;#FF0000&quot;</span> -o /path/to/domjudge-package.zip /path/to/polygon-package.zip</code></pre></div>
 <p>其中 code 是题目的 short name，color 是题目在 DOMjudge 中的颜色，更多设置项可以点进链接里试。</p>
+<ul>
+<li><code>--external-id</code> 也建议设置成 ABCD。</li>
+</ul>
 <p>得到的 domjudge-package.zip 就可以在 Import and export <span class="math inline">\(\to\)</span> Problems 里上传了。</p>
 <p>补一个邮件收集脚本：</p>
 <div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
