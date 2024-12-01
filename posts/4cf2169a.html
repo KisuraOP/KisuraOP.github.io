@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.5k 字
+          9.8k 字
         
       </span>
     
@@ -631,6 +631,13 @@ pipx ensurepath</code></pre></div>
 <span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:
     create_mail_xlsx(<span class="hljs-string">&#x27;name.xlsx&#x27;</span>, <span class="hljs-string">&#x27;accounts.yaml&#x27;</span>)
 </code></pre></div>
+<h3 id="比赛结束后">6. 比赛结束后</h3>
+<p>结束的时候马上点进 Contest 界面把 Allow submit 选项关掉。</p>
+<p>接着导出榜单和提交。</p>
+<p>榜单直接在浏览器界面右键打印，选择打印到 PDF。如果预览出来是黑白的，就在更多设置里面找到 "背景图形" 打上勾。</p>
+<p>导出提交需要用到 <a target="_blank" rel="noopener" href="https://github.com/HeRaNO/ChickenRibs/blob/master/ICPCToy/DOMjudge/dj_download_submissions.py">Link</a>。命令如下：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">py dj_download_submissions.py http://localhost/domjudge/ &lt;contest-external-id&gt;</code></pre></div>
+<p>其中 <code>&lt;contest-external-id&gt;</code> 是 contest 页面的 external ID。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
