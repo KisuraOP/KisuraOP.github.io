@@ -1,0 +1,816 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/image/bg/mugeng.ico">
+  <link rel="icon" href="/image/bg/mugeng.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="KisuraOP">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="越训越菜。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Codeforces 2025 寒假补题">
+<meta property="og:url" content="https://kisuraop.github.io/posts/abc8fb81.html">
+<meta property="og:site_name" content="KisuraOP">
+<meta property="og:description" content="越训越菜。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/5327dc9ab73e4ebc42eb021f40fedf49.jpeg">
+<meta property="article:published_time" content="2025-01-19T16:35:35.000Z">
+<meta property="article:modified_time" content="2025-01-19T16:35:35.000Z">
+<meta property="article:author" content="KisuraOP">
+<meta property="article:tag" content="ACM">
+<meta property="article:tag" content="Codeforces">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/5327dc9ab73e4ebc42eb021f40fedf49.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>Codeforces 2025 寒假补题 - KisuraOP</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4277703_p4cthydttt.css">
+<link rel="stylesheet" href="/css/vemoji.css">
+<link rel="stylesheet" href="/css/bg_cover.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kisuraop.github.io","root":"/","version":"1.9.5-a","typing":{"enable":false,"typeSpeed":55,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"c++"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/image/other/loading.mp4","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="https://kisuraop.github.io/js/mouseclick.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>KisuraOPのBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/site/">
+                <i class="iconfont icon-bookmark-fill"></i>
+                <span>收藏夹</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/waiting/">
+                <i class="iconfont icon-plan"></i>
+                <span>待办</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/example/">
+                <i class="iconfont icon-comment"></i>
+                <span>留言</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://moe.jitsu.top/img/?sort=pc') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">Codeforces 2025 寒假补题</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        KisuraOP
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-01-20 00:35" pubdate>
+          2025年1月20日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">Codeforces 2025 寒假补题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h3 id="cf2048f.-kevin-and-math-class"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2048/problem/F">CF2048F. Kevin and Math Class</a></h3>
+<p>*2500 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2048/submission/300486188">Code</a></p>
+<p>对于 <span class="math inline">\(b_x\)</span>，找到 <span class="math inline">\(b_x\)</span> 左侧第一个 <span class="math inline">\(l\)</span> 使得 <span class="math inline">\(b_l &lt; b_x\)</span>，右侧第一个 <span class="math inline">\(r\)</span> 使得 <span class="math inline">\(b_r &lt; b_x\)</span>。</p>
+<p>那么要让 <span class="math inline">\(b_x\)</span> 当最小值，区间最大就是 <span class="math inline">\([l+1,r-1]\)</span>，又我们肯定是选尽可能大的区间，所以要除 <span class="math inline">\(b_x\)</span> 时肯定是对区间 <span class="math inline">\([l+1,r-1]\)</span> 操作。</p>
+<p>于是建出 <span class="math inline">\((i,b_i)\)</span> 的小根笛卡尔树，我们一定是操作笛卡尔树上的区间。</p>
+<p>又 <span class="math inline">\(b_i \ge 2\)</span>，所以每个区间操作不会超过 <span class="math inline">\(64\)</span> 次。</p>
+<p>令 <span class="math inline">\(dp[x][i]\)</span> 表示以 <span class="math inline">\(x\)</span> 为根的子树对应的区间，操作 <span class="math inline">\(i\)</span> 次后区间最大值最小是多少。 <span class="math display">\[
+dp[x][k] = \min_{k=i+j}(\max(dp[ls[x]][i],dp[rs[x]][j],a[x]))\\
+dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
+\]</span> 答案是使 <span class="math inline">\(dp[rt][i]=1\)</span> 的最小的 <span class="math inline">\(i\)</span>。<span class="math inline">\(rt\)</span> 是笛卡尔树的根。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log^2w)\)</span>，<span class="math inline">\(w\)</span> 是值域。</p>
+<p>题解说可以用 <span class="math inline">\(\min-\max\)</span> 卷积优化到 <span class="math inline">\(O(n\log w)\)</span>，但我琢磨了一下不是很会。</p>
+<p>实测双 <span class="math inline">\(\log\)</span> 跑了 1.1s &lt; 2s。</p>
+<h3 id="cf1976d.-invertible-bracket-sequences"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1976/problem/D">CF1976D. Invertible Bracket Sequences</a></h3>
+<p>*2000 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1976/submission/300528983">Code</a></p>
+<p>把左括号看成 <span class="math inline">\(1\)</span>，右括号看成 <span class="math inline">\(-1\)</span>，求前缀和，可以作出折线图。</p>
+<p>一段折线如果要翻转后也形成合法括号序列，需要满足两个条件：</p>
+<ul>
+<li>两端纵坐标相等。</li>
+<li>翻转后最高点不能越过 <span class="math inline">\(x\)</span> 轴。</li>
+</ul>
+<p>第一个条件即 <span class="math inline">\(sum_l = sum_r\)</span>，第二个条件即 <span class="math inline">\(\max_{l\le i\le r}sum_{i}\le2sum_l\)</span>。</p>
+<p>最大值可以用 ST 表或线段树维护，然后沿 <span class="math inline">\(y\)</span> 轴做扫描线即可。注意对于同一 <span class="math inline">\(y\)</span> 坐标，若有三个点满足 <span class="math inline">\(sum_l=sum_m=sum_r\)</span>，且 <span class="math inline">\([l, m]\)</span> 和 <span class="math inline">\([m,r]\)</span> 满足要求，那么 <span class="math inline">\([l,r]\)</span> 也满足要求。使用一个计数器累加即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h3 id="cf1976e.-splittable-permutations"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1976/problem/E">CF1976E. Splittable Permutations</a></h3>
+<p>*2500 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1976/submission/300596121">Code</a></p>
+<p>这题最关键的观察：出现在 <span class="math inline">\(l[i]\)</span>，<span class="math inline">\(r[i]\)</span> 中的所有数的相对位置是可以唯一确定的。</p>
+<ul>
+<li>原因：首先对于一组 <span class="math inline">\((l, r)\)</span>，<span class="math inline">\(l\)</span> 肯定在 <span class="math inline">\(r\)</span> 的左边。倒着扫描序列，每次相当于一次合并。设 <span class="math inline">\(l\)</span> 目前所在的序列为 <span class="math inline">\(a\)</span>，<span class="math inline">\(r\)</span> 目前所在的序列为 <span class="math inline">\(b\)</span>，那么合并后新序列的相对顺序一定是 <span class="math inline">\(b\)</span> 中的元素按顺序拼接在 <span class="math inline">\(a\)</span> 的后面。这个性质可以手玩出来。</li>
+</ul>
+<p>并查集记录这个数属于哪个连通块，再用双向链表连接，就能求出这个相对顺序。</p>
+<p>接着还有一些数没在 <span class="math inline">\(l[i]\)</span>，<span class="math inline">\(r[i]\)</span> 中出现过，我们考虑把它们插进去。</p>
+<p>又一个观察：一个数 <span class="math inline">\(x\)</span> 能插进 <span class="math inline">\(A,B\)</span> 之间的必要条件是 <span class="math inline">\(x\le \max(A,B)\)</span>。</p>
+<ul>
+<li>原因：比较显然。</li>
+</ul>
+<p>于是从大到小枚举要插的数，用一个计数器统计每次有多少空可以插，乘起来就是答案。</p>
+<p>时间复杂度：<span class="math inline">\(O(n\alpha)\)</span>。</p>
+<h3 id="cf2055d.-scarecrow"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2055/problem/D">CF2055D. Scarecrow</a></h3>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2055/submission/301662039">Code</a></p>
+<p>设当前使用的时间是 <span class="math inline">\(t\)</span>，乌鸦当前在 <span class="math inline">\(p\)</span>。</p>
+<p>首先离 <span class="math inline">\(0\)</span> 最近的稻草人要移到 <span class="math inline">\(0\)</span>，那么令初值 <span class="math inline">\(t = a[0]\)</span>，<span class="math inline">\(p=k\)</span>。</p>
+<p>一个观察是：你是被你左边最近的稻草人推着走的，与此同时右边最近的稻草人可以按情况选择左移，不动，或右移来减少你转移到它（也就是被它推着走）的时间。</p>
+<p>那么从左到右扫描每个稻草人，做出如下分类讨论：</p>
+<ul>
+<li><span class="math inline">\(a[i]-t&gt;p\)</span>，即之前的时间都向左移都还在乌鸦的右边时，选择花时间继续向左，与此同时乌鸦也被它左边的稻草人推着向右，所以需要 <span class="math inline">\(t&#39;=(a[i]-t-p)/2\)</span>。那么 <span class="math inline">\(t=t+t&#39;\)</span>，乌鸦转移到 <span class="math inline">\(p=p+t&#39;+k\)</span>。</li>
+<li><span class="math inline">\(a[i]-t\le p\)</span> 时，分两种情况。
+<ul>
+<li><span class="math inline">\(a[i]+t\le p\)</span>，也就是之前的时间一直向右移也在乌鸦的左边，那就取个 <span class="math inline">\(\max\)</span>，即 <span class="math inline">\(p=\max(p,a[i]+t+k)\)</span>。</li>
+<li><span class="math inline">\(a[i]+t&gt;p\)</span>，也就是之前的时间足够右移到乌鸦右边了，此时肯定是恰好停在 $ p$ 不用花额外的时间，所以 <span class="math inline">\(p = p+k\)</span>。</li>
+</ul></li>
+</ul>
+<p>最后如果 <span class="math inline">\(p&lt;l\)</span>，就加上 <span class="math inline">\(l-p\)</span>，代表最后一个稻草人把它推向终点。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h3 id="cf2057e1e2.-another-exercise-on-graphs"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2057/problem/E2">CF2057E1/E2. Another Exercise on Graphs</a></h3>
+<p><em>2300 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2057/submission/301679582">Code</a>（E1）/ </em>2500 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2057/submission/301730095">Code1</a> <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2057/submission/301732253">Code2</a>（E2）</p>
+<p>先考虑这样一个事情：我们将原图 copy 一份，对于新图上的每条边，如果原图的边权 <span class="math inline">\(\le x\)</span>，则赋值为 <span class="math inline">\(0\)</span>，否则赋值为 <span class="math inline">\(1\)</span>。那么 <span class="math inline">\(a\to b\)</span> 在新图上的最短路为 <span class="math inline">\(w \Longleftrightarrow\)</span> <span class="math inline">\(x\)</span> 为原图中 <span class="math inline">\(a\to b\)</span> 路径上第 <span class="math inline">\(w+1\)</span> 大的边。</p>
+<p>那么得到一个暴力做法：从小到大枚举所有的边权 <span class="math inline">\(x\)</span>，按上述规则赋值跑最短路，直到第一个 <span class="math inline">\(w\)</span> 满足 <span class="math inline">\(w+1\le k\)</span>，此时 <span class="math inline">\(x\)</span> 就是答案。</p>
+<p>进一步地，<span class="math inline">\(x\)</span> 每次增大都相当于把一些边（即边权等于新 <span class="math inline">\(x\)</span> 的边）由 <span class="math inline">\(1\to 0\)</span>，我们利用 floyd 枚举这些边的两个端点为中转点就可以很快地更新答案。具体地，更新一次是 <span class="math inline">\(O(n^2)\)</span>，更新不超过 <span class="math inline">\(m\)</span> 次。</p>
+<p>至于多组询问，用 <span class="math inline">\(dis[a][b][x]\)</span> 表示对 <span class="math inline">\(\le x\)</span> 的边赋值为 <span class="math inline">\(0\)</span>，否则赋值为 <span class="math inline">\(1\)</span> 后 <span class="math inline">\(a\to b\)</span> 的最短路，每次询问就对 <span class="math inline">\(dis[a][b][\cdot]\)</span> 二分出第一个 <span class="math inline">\(\le k-1\)</span> 的值对应的 <span class="math inline">\(x\)</span> 就是答案。</p>
+<p>由于要枚举每个边权，时间复杂度 <span class="math inline">\(O(mn^2)\)</span>，能够通过 E1。</p>
+<p>注意我们把一些边由 <span class="math inline">\(1\to0\)</span> 的过程，如果对于所有边权为 <span class="math inline">\(x\)</span> 的边 <span class="math inline">\((a,b)\)</span>，<span class="math inline">\(dis[a][b]\)</span> 都已经为 <span class="math inline">\(0\)</span>，那么此次更新就是不必要的，就能省下一个 <span class="math inline">\(O(n^2)\)</span>。</p>
+<p>实际上，可以证明这样的更新最多进行 <span class="math inline">\(n\)</span> 次：如果当前边 <span class="math inline">\((a,b)\)</span> 有 <span class="math inline">\(dis[a][b]\neq0\)</span>，那么 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> 中的至少一个需要来自之前没更新过的点，而一共就 <span class="math inline">\(n\)</span> 个点，故得证。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^3)\)</span>，能够通过 E2。</p>
+<p>事实上，回答询问的时候二分并不是必要的。我补完之后点进 jiangly 的 submission 才发现这一点。一样是从小到大枚举边权 <span class="math inline">\(x\)</span> 并赋值，但你只需要在 floyd 更新的时候顺便记一下就行了，细节可以阅读 jiangly 的代码。</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Competitive-Programming/" class="category-chain-item">Competitive Programming</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Competitive-Programming/Codeforces/" class="category-chain-item">Codeforces</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ACM/" class="print-no-link">#ACM</a>
+      
+        <a href="/tags/Codeforces/" class="print-no-link">#Codeforces</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>Codeforces 2025 寒假补题</div>
+      <div>https://kisuraop.github.io/posts/abc8fb81.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>KisuraOP</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年1月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/4cf2169a.html" title="使用 DOMjudge 从零搭建一场比赛">
+                        <span class="hidden-mobile">使用 DOMjudge 从零搭建一场比赛</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://kisuraop.github.io/" target="_blank" rel="nofollow noopener"><span>KisuraOP</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="//kisuraop.github.io/js/mouseslide.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
