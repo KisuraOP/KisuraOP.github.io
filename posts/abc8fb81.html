@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.8k 字
+          2.9k 字
         
       </span>
     
@@ -335,8 +335,10 @@
 <p>于是建出 <span class="math inline">\((i,b_i)\)</span> 的小根笛卡尔树，我们一定是操作笛卡尔树上的区间。</p>
 <p>又 <span class="math inline">\(b_i \ge 2\)</span>，所以每个区间操作不会超过 <span class="math inline">\(64\)</span> 次。</p>
 <p>令 <span class="math inline">\(dp[x][i]\)</span> 表示以 <span class="math inline">\(x\)</span> 为根的子树对应的区间，操作 <span class="math inline">\(i\)</span> 次后区间最大值最小是多少。 <span class="math display">\[
+\begin{align}
 dp[x][k] = \min_{k=i+j}(\max(dp[ls[x]][i],dp[rs[x]][j],a[x]))\\
 dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
+\end{align}
 \]</span> 答案是使 <span class="math inline">\(dp[rt][i]=1\)</span> 的最小的 <span class="math inline">\(i\)</span>。<span class="math inline">\(rt\)</span> 是笛卡尔树的根。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log^2w)\)</span>，<span class="math inline">\(w\)</span> 是值域。</p>
 <p>题解说可以用 <span class="math inline">\(\min-\max\)</span> 卷积优化到 <span class="math inline">\(O(n\log w)\)</span>，但我琢磨了一下不是很会。</p>
@@ -349,7 +351,7 @@ dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
 <li>两端纵坐标相等。</li>
 <li>翻转后最高点不能越过 <span class="math inline">\(x\)</span> 轴。</li>
 </ul>
-<p>第一个条件即 <span class="math inline">\(sum_l = sum_r\)</span>，第二个条件即 <span class="math inline">\(\max_{l\le i\le r}sum_{i}\le2sum_l\)</span>。</p>
+<p>第一个条件即 <span class="math inline">\(sum_l = sum_r\)</span>，第二个条件即 <span class="math inline">\(\max\limits_{l\le i\le r}sum_{i}\le2sum_l\)</span>。</p>
 <p>最大值可以用 ST 表或线段树维护，然后沿 <span class="math inline">\(y\)</span> 轴做扫描线即可。注意对于同一 <span class="math inline">\(y\)</span> 坐标，若有三个点满足 <span class="math inline">\(sum_l=sum_m=sum_r\)</span>，且 <span class="math inline">\([l, m]\)</span> 和 <span class="math inline">\([m,r]\)</span> 满足要求，那么 <span class="math inline">\([l,r]\)</span> 也满足要求。使用一个计数器累加即可。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <h3 id="cf1976e.-splittable-permutations"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1976/problem/E">CF1976E. Splittable Permutations</a></h3>
