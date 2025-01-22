@@ -407,7 +407,7 @@ dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
 <p>第二步花费的代价一定是 <span class="math inline">\(F\)</span> 的连通分量个数 <span class="math inline">\(-\)</span> <span class="math inline">\(G\)</span> 的连通分量个数。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\alpha)\)</span>。</p>
 <h2 id="cf2061e.-kevin-and-and"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2061/problem/E">CF2061E. Kevin and And</a></h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2061/submission/302228149">Code</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2061/submission/302339557">Code</a></p>
 <p>题目要让总和最小，一个容易想到的贪心是：每一步操作都让总和尽可能地变小，也就是每次都采取能让总和变化量最大的操作。在以下叙述中，把减少的量称为收益。</p>
 <p>要说明这个贪心是对的，得先证明一个结论：对于一个固定的 <span class="math inline">\(a_i\)</span>，设 <span class="math inline">\(f(j)\)</span> 代表对 <span class="math inline">\(a_i\)</span> 使用 <span class="math inline">\(j\)</span> 次魔法能获得的最大的收益，那么 <span class="math inline">\(f(j)-f(j-1)\)</span> 递减（即 <span class="math inline">\(f(j)\)</span> 是凸的）。</p>
 <ul>
