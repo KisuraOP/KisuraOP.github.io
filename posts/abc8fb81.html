@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k 字
+          4.4k 字
         
       </span>
     
@@ -417,6 +417,14 @@ dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
 <p>代码实现过程中，把 <span class="math inline">\(m\)</span> 个魔法是否使用压缩成一个状态，可以先 <span class="math inline">\(O(2^m\cdot m)\)</span> 求出每种状态的累加效果（即按位与后的结果），再 <span class="math inline">\(O(n\cdot 2^m)\)</span> 对每个 <span class="math inline">\(a_i\)</span> 求出 <span class="math inline">\(f(1\sim m)\)</span>。</p>
 <p>时间复杂度：<span class="math inline">\(O(n2^m+nm\log nm)\)</span>。</p>
 <p>如果使用 <code>std::nth_element</code> 可以省去最后的 <span class="math inline">\(\log\)</span>。</p>
+<h2 id="cf2061f1.-kevin-and-binary-string-easy-version"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2061/problem/F1">CF2061F1. Kevin and Binary String (Easy Version)</a></h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2061/submission/302357467">Code</a></p>
+<p>对于串 <span class="math inline">\(\cdots011001\cdots\)</span>，交换中间的 <span class="math inline">\(11\)</span> 和 <span class="math inline">\(00\)</span>，会让交换后的 <span class="math inline">\(00\)</span> 与左边的 <span class="math inline">\(0\)</span> 粘连，<span class="math inline">\(11\)</span> 与右边的 <span class="math inline">\(1\)</span> 粘连。而一旦粘连，只能一起移动，因此整块的 <span class="math inline">\(1\)</span> 是无法跨越另一个整块的 <span class="math inline">\(1\)</span> 的，整块的 <span class="math inline">\(0\)</span> 也无法跨越另一个整块的 <span class="math inline">\(0\)</span>。</p>
+<p>这就说明了 <span class="math inline">\(s\)</span> 要想变成 <span class="math inline">\(t\)</span>，可以进行以下贪心：从左到右扫描，当 <span class="math inline">\(s[i]\neq t[i]\)</span> 时，就从 <span class="math inline">\(i\)</span> 后边找最近的整块的 <span class="math inline">\(t[i]\)</span> 修补。</p>
+<p>例如，<span class="math inline">\(s=001\color{Red}0\)</span><span class="math inline">\(1\color{Red}00\)</span><span class="math inline">\(101\)</span>，<span class="math inline">\(t=00\color{Green}000\)</span><span class="math inline">\(1111\)</span>。当 <span class="math inline">\(i=3\)</span> 时，<span class="math inline">\(s[i]\neq t[i]\)</span>，且 <span class="math inline">\(t\)</span> 此时还有连续 <span class="math inline">\(3\)</span> 个 <span class="math inline">\(0\)</span>，故要从 <span class="math inline">\(s[3]\)</span> 后边找 <span class="math inline">\(3\)</span> 个 <span class="math inline">\(0\)</span>。找到第一个 <span class="math inline">\(0\)</span> 块有 <span class="math inline">\(1\)</span> 个 <span class="math inline">\(0\)</span>，还需要找 <span class="math inline">\(2\)</span> 个，再往后找到下一个 <span class="math inline">\(0\)</span> 块就恰好找到 <span class="math inline">\(2\)</span> 个。</p>
+<p>而 <span class="math inline">\(s=001\color{Red}0\)</span><span class="math inline">\(1\color{Red}00\)</span><span class="math inline">\(011\)</span>，<span class="math inline">\(t=00\color{Green}000\)</span><span class="math inline">\(1111\)</span> 就无法匹配上，因为往后找只能找到 <span class="math inline">\(1\)</span> 个或 <span class="math inline">\(4\)</span> 个 <span class="math inline">\(0\)</span>，不能补上 <span class="math inline">\(3\)</span> 个 <span class="math inline">\(0\)</span> 的缺口。</p>
+<p>具体实现时可以用容器把 <span class="math inline">\(1,0\)</span> 的位置存起来以便快速向后查找，另有若干细节不再赘述。</p>
+<p>时间复杂度：<span class="math inline">\(O(n)\)</span> 或 <span class="math inline">\(O(n\log n)\)</span>。（依据实现方式）</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
