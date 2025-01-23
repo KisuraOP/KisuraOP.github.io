@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.4k 字
+          4.8k 字
         
       </span>
     
@@ -425,6 +425,14 @@ dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
 <p>而 <span class="math inline">\(s=001\color{Red}0\)</span><span class="math inline">\(1\color{Red}00\)</span><span class="math inline">\(011\)</span>，<span class="math inline">\(t=00\color{Green}000\)</span><span class="math inline">\(1111\)</span> 就无法匹配上，因为往后找只能找到 <span class="math inline">\(1\)</span> 个或 <span class="math inline">\(4\)</span> 个 <span class="math inline">\(0\)</span>，不能补上 <span class="math inline">\(3\)</span> 个 <span class="math inline">\(0\)</span> 的缺口。</p>
 <p>具体实现时可以用容器把 <span class="math inline">\(1,0\)</span> 的位置存起来以便快速向后查找，另有若干细节不再赘述。</p>
 <p>时间复杂度：<span class="math inline">\(O(n)\)</span> 或 <span class="math inline">\(O(n\log n)\)</span>。（依据实现方式）</p>
+<h2 id="cf2056d.-unique-median"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2056/problem/D">CF2056D. Unique Median</a></h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2056/submission/302570099">Code</a></p>
+<p>容斥，用全集 <span class="math inline">\(\frac{n(n+1)}{2}\)</span> 减去中位数不等的子串个数。</p>
+<p>注意到值域很小，故枚举两个中位数中较小的那个（记为 <span class="math inline">\(x\)</span>）。将数组中 <span class="math inline">\(\le x\)</span> 的置为 <span class="math inline">\(-1\)</span>，<span class="math inline">\(&gt;x\)</span> 的置为 <span class="math inline">\(1\)</span> 求出前缀和 <span class="math inline">\(pre\)</span>，那么子串 <span class="math inline">\((i,j)\)</span> 中位数不等 <span class="math inline">\(\Longleftrightarrow\)</span> <span class="math inline">\(pre[i-1]=pre[j]\)</span>。</p>
+<p>由于 <span class="math inline">\(pre[i-1]=pre[j]\)</span> 时对应的串长定为偶数，所以不用考虑奇数长度的判断。</p>
+<p>故我们只需要计数有多少个二元组 <span class="math inline">\((l,r)\)</span> 满足 <span class="math inline">\(pre[l]=pre[r]\)</span> 且区间 <span class="math inline">\([l+1,r]\)</span> 中有 <span class="math inline">\(x\)</span>。</p>
+<p>一种方法是枚举 <span class="math inline">\(i=1\cdots n\)</span>，以及一个指针 <span class="math inline">\(j\)</span>，初始 <span class="math inline">\(j=0\)</span>。当 <span class="math inline">\(a[i]=x\)</span> 时，<span class="math inline">\(j\)</span> 就跟上 <span class="math inline">\(i\)</span> 并把路上的 <span class="math inline">\(pre[j]\)</span> 都加进桶里，然后累加桶里 <span class="math inline">\(pre[i]\)</span> 的数目。正确性显然，即这样两个 <span class="math inline">\(x\)</span> 之间的 <span class="math inline">\(pre\)</span> 值无法造成贡献。</p>
+<p>时间复杂度 <span class="math inline">\(O(wn\log n)\)</span>，<span class="math inline">\(w\)</span> 为值域。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
