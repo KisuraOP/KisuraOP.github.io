@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.8k 字
+          5.8k 字
         
       </span>
     
@@ -358,13 +358,13 @@ dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
 <p>*2500 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1976/submission/300596121">Code</a></p>
 <p>这题最关键的观察：出现在 <span class="math inline">\(l[i]\)</span>，<span class="math inline">\(r[i]\)</span> 中的所有数的相对位置是可以唯一确定的。</p>
 <ul>
-<li>原因：首先对于一组 <span class="math inline">\((l, r)\)</span>，<span class="math inline">\(l\)</span> 肯定在 <span class="math inline">\(r\)</span> 的左边。倒着扫描序列，每次相当于一次合并。设 <span class="math inline">\(l\)</span> 目前所在的序列为 <span class="math inline">\(a\)</span>，<span class="math inline">\(r\)</span> 目前所在的序列为 <span class="math inline">\(b\)</span>，那么合并后新序列的相对顺序一定是 <span class="math inline">\(b\)</span> 中的元素按顺序拼接在 <span class="math inline">\(a\)</span> 的后面。这个性质可以手玩出来。</li>
+<li>首先对于一组 <span class="math inline">\((l, r)\)</span>，<span class="math inline">\(l\)</span> 肯定在 <span class="math inline">\(r\)</span> 的左边。倒着扫描序列，每次相当于一次合并。设 <span class="math inline">\(l\)</span> 目前所在的序列为 <span class="math inline">\(a\)</span>，<span class="math inline">\(r\)</span> 目前所在的序列为 <span class="math inline">\(b\)</span>，那么合并后新序列的相对顺序一定是 <span class="math inline">\(b\)</span> 中的元素按顺序拼接在 <span class="math inline">\(a\)</span> 的后面。这个性质可以手玩出来。</li>
 </ul>
 <p>并查集记录这个数属于哪个连通块，再用双向链表连接，就能求出这个相对顺序。</p>
 <p>接着还有一些数没在 <span class="math inline">\(l[i]\)</span>，<span class="math inline">\(r[i]\)</span> 中出现过，我们考虑把它们插进去。</p>
 <p>又一个观察：一个数 <span class="math inline">\(x\)</span> 能插进 <span class="math inline">\(A,B\)</span> 之间的必要条件是 <span class="math inline">\(x\le \max(A,B)\)</span>。</p>
 <ul>
-<li>原因：比较显然。</li>
+<li>证明比较显然。</li>
 </ul>
 <p>于是从大到小枚举要插的数，用一个计数器统计每次有多少空可以插，乘起来就是答案。</p>
 <p>时间复杂度：<span class="math inline">\(O(n\alpha)\)</span>。</p>
@@ -433,6 +433,27 @@ dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
 <p>故我们只需要计数有多少个二元组 <span class="math inline">\((l,r)\)</span> 满足 <span class="math inline">\(pre[l]=pre[r]\)</span> 且区间 <span class="math inline">\([l+1,r]\)</span> 中有 <span class="math inline">\(x\)</span>。</p>
 <p>一种方法是枚举 <span class="math inline">\(i=1\cdots n\)</span>，以及一个指针 <span class="math inline">\(j\)</span>，初始 <span class="math inline">\(j=0\)</span>。当 <span class="math inline">\(a[i]=x\)</span> 时，<span class="math inline">\(j\)</span> 就跟上 <span class="math inline">\(i\)</span> 并把路上的 <span class="math inline">\(pre[j]\)</span> 都加进桶里，然后累加桶里 <span class="math inline">\(pre[i]\)</span> 的数目。正确性显然，即这样两个 <span class="math inline">\(x\)</span> 之间的 <span class="math inline">\(pre\)</span> 值无法造成贡献。</p>
 <p>时间复杂度 <span class="math inline">\(O(wn\log n)\)</span>，<span class="math inline">\(w\)</span> 为值域。</p>
+<h2 id="cf2056e.-nested-segments"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2056/problem/E">CF2056E. Nested Segments</a></h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2056/submission/302750497">Code</a></p>
+<p>观察 <span class="math inline">\(1\)</span>：当 <span class="math inline">\(m=0\)</span> 时最多能向 <span class="math inline">\([1,n]\)</span> 中填 <span class="math inline">\(2n-1\)</span> 条线段。</p>
+<ul>
+<li>草稿纸画几笔易得。</li>
+</ul>
+<p>观察 <span class="math inline">\(2\)</span>：当 <span class="math inline">\(m=0\)</span> 时向 <span class="math inline">\([1,n]\)</span> 中填 <span class="math inline">\(2n-1\)</span> 条线段的方案数是 <span class="math inline">\(C_{n-1}\)</span>，其中 <span class="math inline">\(C\)</span> 为卡特兰数。</p>
+<ul>
+<li>考虑这样一个事情：把 <span class="math inline">\([1,n]\)</span> 当作根节点，<span class="math inline">\([1, 1],[2, 2],\cdots,[n,n]\)</span> 当作叶节点，若 <span class="math inline">\([L,R]\)</span> 包含 <span class="math inline">\([l,r]\)</span> 就连一条边，最终连成一棵树。同时，当填满 <span class="math inline">\(2n-1\)</span> 条线段时，这一定是一棵满位置二叉树（每个节点有 <span class="math inline">\(0\)</span> 个或 <span class="math inline">\(2\)</span> 个儿子），因为如果有 <span class="math inline">\(&gt;2\)</span> 个儿子，我们一定可以取出两个为其添加一个父亲。</li>
+<li>接着套用结论：有 <span class="math inline">\(n\)</span> 个叶子的满位置二叉树数量为 <span class="math inline">\(C_{n-1}\)</span>。末尾的第二个参考链接附有示例。</li>
+</ul>
+<p>观察 <span class="math inline">\(3\)</span>：当 <span class="math inline">\(m\neq 0\)</span> 时，<span class="math inline">\([1,n]\)</span> 中仍然能填满 <span class="math inline">\(2n-1\)</span> 条线段。</p>
+<ul>
+<li>虽然题目预先给出了一些线段，但保证了已经给出的是好的。草稿纸再画几笔发现我们仍然能建出一个有 <span class="math inline">\(n\)</span> 个儿子的满位置二叉树。</li>
+</ul>
+<p>我们可以先把题给线段构成的树建出来（如果没有 <span class="math inline">\([1,n]\)</span> 的话就为它添加），这时的树有些节点（设为 <span class="math inline">\(x\)</span>）有 <span class="math inline">\(&gt;2\)</span> 个儿子，不妨将 <span class="math inline">\(x\)</span> 的儿子设为 <span class="math inline">\([l_1,r_1],[l_2,r_2],\cdots[l_k,r_k]\)</span>。对于 <span class="math inline">\(\forall i\in[1,k)\)</span>，若 <span class="math inline">\(r_i \neq l_{i+1}\)</span>，那么一定可以添加线段 <span class="math inline">\([r_i+1,r_i+1],[r_i+2,r_i+2],\cdots,[l_{i+1}-1,l_{i+1}-1]\)</span> 在中间。</p>
+<p>再设如此填充线段后 <span class="math inline">\(x\)</span> 有 <span class="math inline">\(p\)</span> 个儿子，我们的目标就是把这个以 <span class="math inline">\(x\)</span> 为根的子树建成一棵满位置二叉树，而这么做的方案数恰好等价于有 <span class="math inline">\(p\)</span> 个叶子的满位置二叉树数量，即 <span class="math inline">\(C_{p-1}\)</span>。</p>
+<p>于是对于每一条线段，它的贡献都是一个卡特兰数，累乘起来就是最终的方案数。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<p>一些卡特兰数模型：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31317307">Link1</a> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31526354">Link2</a>。</p>
+<p>记忆：<span class="math inline">\(C_{n}=\binom{2n}{n}-\binom{2n}{n-1}\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
