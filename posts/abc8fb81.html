@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.8k 字
+          6.5k 字
         
       </span>
     
@@ -441,7 +441,7 @@ dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
 </ul>
 <p>观察 <span class="math inline">\(2\)</span>：当 <span class="math inline">\(m=0\)</span> 时向 <span class="math inline">\([1,n]\)</span> 中填 <span class="math inline">\(2n-1\)</span> 条线段的方案数是 <span class="math inline">\(C_{n-1}\)</span>，其中 <span class="math inline">\(C\)</span> 为卡特兰数。</p>
 <ul>
-<li>考虑这样一个事情：把 <span class="math inline">\([1,n]\)</span> 当作根节点，<span class="math inline">\([1, 1],[2, 2],\cdots,[n,n]\)</span> 当作叶节点，若 <span class="math inline">\([L,R]\)</span> 包含 <span class="math inline">\([l,r]\)</span> 就连一条边，最终连成一棵树。同时，当填满 <span class="math inline">\(2n-1\)</span> 条线段时，这一定是一棵满位置二叉树（每个节点有 <span class="math inline">\(0\)</span> 个或 <span class="math inline">\(2\)</span> 个儿子），因为如果有 <span class="math inline">\(&gt;2\)</span> 个儿子，我们一定可以取出两个为其添加一个父亲。</li>
+<li>考虑这样一个事情：把 <span class="math inline">\([1,n]\)</span> 当作根节点，<span class="math inline">\([1, 1],[2, 2],\cdots,[n,n]\)</span> 当作叶节点，若 <span class="math inline">\([L,R]\)</span> 包含 <span class="math inline">\([l,r]\)</span> 且 <span class="math inline">\([L, R]\)</span> 极小，就连一条边，最终连成一棵树。同时，当填满 <span class="math inline">\(2n-1\)</span> 条线段时，这一定是一棵满位置二叉树（每个节点有 <span class="math inline">\(0\)</span> 个或 <span class="math inline">\(2\)</span> 个儿子），因为如果有 <span class="math inline">\(&gt;2\)</span> 个儿子，我们一定可以取出两个为其添加一个父亲。</li>
 <li>接着套用结论：有 <span class="math inline">\(n\)</span> 个叶子的满位置二叉树数量为 <span class="math inline">\(C_{n-1}\)</span>。末尾的第二个参考链接附有示例。</li>
 </ul>
 <p>观察 <span class="math inline">\(3\)</span>：当 <span class="math inline">\(m\neq 0\)</span> 时，<span class="math inline">\([1,n]\)</span> 中仍然能填满 <span class="math inline">\(2n-1\)</span> 条线段。</p>
@@ -452,8 +452,21 @@ dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
 <p>再设如此填充线段后 <span class="math inline">\(x\)</span> 有 <span class="math inline">\(p\)</span> 个儿子，我们的目标就是把这个以 <span class="math inline">\(x\)</span> 为根的子树建成一棵满位置二叉树，而这么做的方案数恰好等价于有 <span class="math inline">\(p\)</span> 个叶子的满位置二叉树数量，即 <span class="math inline">\(C_{p-1}\)</span>。</p>
 <p>于是对于每一条线段，它的贡献都是一个卡特兰数，累乘起来就是最终的方案数。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
-<p>一些卡特兰数模型：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31317307">Link1</a> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31526354">Link2</a>。</p>
+<p>一些卡特兰数模型：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31317307">Link1</a> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31526354">Link2</a> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/609104268">Link3</a>。</p>
 <p>记忆：<span class="math inline">\(C_{n}=\binom{2n}{n}-\binom{2n}{n-1}\)</span>。</p>
+<h2 id="cf2063f1f2.-counting-is-not-fun"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/problem/F2">CF2063F1/F2. Counting Is Not Fun</a></h2>
+<p>F1 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/submission/302767057">Code</a></p>
+<p>F2 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/submission/302848292">Code</a></p>
+<p>我们将一组 good pair <span class="math inline">\((l,r)\)</span> 看成覆盖 <span class="math inline">\([l,r]\)</span> 的线段，显然任何时候的任意两条线段都要么不交要么完全包含。和这篇文章的上一题及其相似，我们把具有包含关系的线段连边（对于 <span class="math inline">\([l,r]\)</span>，若能找到极小的 <span class="math inline">\([L,R]\)</span> 使其包含 <span class="math inline">\([l,r]\)</span>，就在这两条线段间连一条边），会连成一棵森林。</p>
+<p>令 <span class="math inline">\(f[i]\)</span> 表示第 <span class="math inline">\(i\)</span> 条线段去掉两个端点后没有被其儿子覆盖的长度。这个长度内我们可以自由填。</p>
+<p>定理：用 <span class="math inline">\(n\)</span> 对括号填满 <span class="math inline">\(2n\)</span> 个位置构成平衡括号序列的方案数为 <span class="math inline">\(C_{n}\)</span>（卡特兰数的第 <span class="math inline">\(n\)</span> 项） 。</p>
+<p>于是答案即为 <span class="math inline">\(\prod\limits_{i=1}^m C_{f[i]/2}\)</span>，<span class="math inline">\(m\)</span> 为当前添加的括号组数。</p>
+<p>F1 中，我们可以每次添加括号后 <span class="math inline">\(O(n)\)</span> 地去扫这个序列，求出 <span class="math inline">\(f[i]\)</span>。</p>
+<p>具体地，把非右括号装进栈，扫到右括号时计数弹出了多少元素。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^2)\)</span>。</p>
+<p>F2 需要动态地维护 <span class="math inline">\(f[i]\)</span>，题解给出了一种平衡树做法，但离线是简单的，这里只讲离线怎么做。</p>
+<p>倒着操作，相当于每次拿走一组括号，此时只有这条线段本身和其父亲的贡献发生了变化。具体地，设当前为第 <span class="math inline">\(i\)</span> 条线段，父亲为第 <span class="math inline">\(fa_i\)</span> 条线段，那么答案只需要在之前答案的基础上加上 <span class="math inline">\(-C_{f[i]/2}-C_{f[fa_i]/2}+C_{(f[fa_i]+f[i]+2)/2}\)</span>。</p>
+<p>快速定位到父亲是哪条线段可以用并查集，时间复杂度 <span class="math inline">\(O(n\log n + n\alpha)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
