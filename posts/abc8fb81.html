@@ -479,11 +479,11 @@ dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
 <ol type="1">
 <li><span class="math inline">\(\min(\text{dep}_x, \text{dep}_y)\)</span>：枚举 <span class="math inline">\(x\)</span>，则每个深度比 <span class="math inline">\(x\)</span> 大且不在 <span class="math inline">\(x\)</span> 子树中的 <span class="math inline">\(y\)</span> 有 <span class="math inline">\(\text{dep}_x\)</span> 的贡献。令 <span class="math inline">\(d[x]\)</span> 表示深度 <span class="math inline">\(\ge x\)</span> 的节点数（可以通过一个后缀和实现），分为两种情况。
 <ul>
-<li><span class="math inline">\(\text{dep}_x &lt; \text{dep}_y\)</span>：贡献为 <span class="math inline">\(d[dep[x]+1]-(sz[x]-1)\times dep[x]\)</span>。</li>
+<li><span class="math inline">\(\text{dep}_x &lt; \text{dep}_y\)</span>：贡献为 <span class="math inline">\((d[dep[x]+1]-(sz[x]-1))\times dep[x]\)</span>。</li>
 <li><span class="math inline">\(\text{dep}_x=\text{dep}_y\)</span>：贡献为 <span class="math inline">\((d[dep[x]]-d[dep[x]+1]-1)\times dep[x]\)</span>，最后要除以 <span class="math inline">\(2\)</span> 使无序对 <span class="math inline">\(\to\)</span> 有序对。</li>
 </ul></li>
 <li><span class="math inline">\(\text{dep}_{\text{lca}_{x,y}}\)</span>：枚举 <span class="math inline">\(\text{lca}\)</span>，对于当前点 <span class="math inline">\(x\)</span>，贡献为 <span class="math inline">\(\sum_{y\in son[x]}sz[y]\times (sz[x]-1-sz[y])\times dep[x]\)</span>。</li>
-<li><span class="math inline">\(1\)</span>：即没有祖先关系的 <span class="math inline">\((x,y)\)</span> 对数。对于当前点 <span class="math inline">\(x\)</span>，贡献为 <span class="math inline">\(n-sz[x]-dep[x]+1\)</span>。</li>
+<li><span class="math inline">\(1\)</span>：即没有祖先关系的 <span class="math inline">\((x,y)\)</span> 组数。对于当前点 <span class="math inline">\(x\)</span>，贡献为 <span class="math inline">\(n-sz[x]-dep[x]+1\)</span>。</li>
 </ol>
 <p>第 <span class="math inline">\(2, 3\)</span> 部分最后也需要除以 <span class="math inline">\(2\)</span>，从而只计算有序对。</p>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
