@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8k 字
+          8.1k 字
         
       </span>
     
@@ -508,7 +508,7 @@ ans[x]&amp;=\sum_{j=1}^{16}\left(dp[j][x]\sum_{i=1}^{n}\binom{i}{j}\right)\\
 &amp;=\sum_{j=1}^{16}dp[j][x]\binom{n+1}{j+1}
 \end{align}
 \]</span> 这里运用了上指标求和公式：<span class="math inline">\(\sum\limits_{i=1}^{n}\binom{i}{j}=\binom{n+1}{j+1}\)</span>，可以借助杨辉三角记忆。</p>
-<p>时间复杂度 <span class="math inline">\(O(k\log^2k)\)</span>。</p>
+<p>虽然 <span class="math inline">\(n\)</span> 比较大，但 <span class="math inline">\(\binom{n+1}{j+1}\)</span> 可以用定义 <span class="math inline">\(O(\log k)\)</span> 求得，故总时间复杂度 <span class="math inline">\(O(k\log^2k)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
