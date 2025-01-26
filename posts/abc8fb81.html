@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.3k 字
+          8k 字
         
       </span>
     
@@ -487,6 +487,28 @@ dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
 </ol>
 <p>第 <span class="math inline">\(2, 3\)</span> 部分最后也需要除以 <span class="math inline">\(2\)</span>，从而只计算有序对。</p>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf2060f.-multiplicative-arrays"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2060/problem/F">CF2060F. Multiplicative Arrays</a></h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2060/submission/303010975">Code</a></p>
+<p>首先注意到构造出的 <span class="math inline">\(\{a\}\)</span> 中 <span class="math inline">\(&gt; 1\)</span> 的数不超过 <span class="math inline">\(16\)</span> 个（因为 <span class="math inline">\(2^{17}&gt;10^5\)</span>）。</p>
+<p>于是这个计数分为两步：</p>
+<ol type="1">
+<li><p>算 <span class="math inline">\(&gt;1\)</span> 的数构成 <span class="math inline">\(x\)</span> 有多少种可能。</p></li>
+<li><p>算剩下的 <span class="math inline">\(1\)</span> 有多少种插空方法。</p></li>
+</ol>
+<p>令 <span class="math inline">\(dp[i][j]\)</span> 代表 <span class="math inline">\(i\)</span> 个 <span class="math inline">\(&gt;1\)</span> 的数构成 <span class="math inline">\(j\)</span> 的方案数。</p>
+<ul>
+<li>初态：<span class="math inline">\(\forall i\in[2,k]\)</span>，<span class="math inline">\(dp[1][i]=1\)</span>。</li>
+<li>转移：<span class="math inline">\(dp[i][j] = \sum\limits_{k&gt;1} dp[i-1][\dfrac{j}{k}]\)</span>。</li>
+</ul>
+<p>令 <span class="math inline">\(ans[x]\)</span> 代表乘积为 <span class="math inline">\(x\)</span> 时的方案数，当 <span class="math inline">\(x=1\)</span> 时显然为 <span class="math inline">\(n\)</span>，当 <span class="math inline">\(x &gt; 1\)</span> 时： <span class="math display">\[
+ans[x]=\sum_{i=1}^{n}\sum_{j=1}^{16} dp[j][x]\binom{i}{j}
+\]</span> 其中 <span class="math inline">\(i\)</span> 为枚举的序列长度，<span class="math inline">\(\binom{i}{j}\)</span> 代表选出 <span class="math inline">\(j\)</span> 个 <span class="math inline">\(&gt;1\)</span> 的数的位置，继续化简： <span class="math display">\[
+\begin{align}
+ans[x]&amp;=\sum_{j=1}^{16}\left(dp[j][x]\sum_{i=1}^{n}\binom{i}{j}\right)\\
+&amp;=\sum_{j=1}^{16}dp[j][x]\binom{n+1}{j+1}
+\end{align}
+\]</span> 这里运用了上指标求和公式：<span class="math inline">\(\sum\limits_{i=1}^{n}\binom{i}{j}=\binom{n+1}{j+1}\)</span>，可以借助杨辉三角记忆。</p>
+<p>时间复杂度 <span class="math inline">\(O(k\log^2k)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
