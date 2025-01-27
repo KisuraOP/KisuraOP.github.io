@@ -469,9 +469,9 @@ dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
 <p>快速定位到父亲是哪条线段可以用并查集，时间复杂度 <span class="math inline">\(O(n\log n + n\alpha)\)</span>。</p>
 <h2 id="cf2063e.-triangle-tree"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/problem/E">CF2063E. Triangle Tree</a></h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/submission/302994147">Code</a></p>
-<p>草稿纸画一画，易知 <span class="math inline">\(f(x,y)\)</span> 等价于： <span class="math display">\[
+<p>草稿纸画一画，易知： <span class="math display">\[
 \begin{align}
-&amp; \ \ \ \ \ 2\min(\text{dis}(x,\text{lca}_{x,y}),\text{dis}(y,\text{lca}_{x,y}))-1 \\
+f(x,y)&amp;= 2\min(\text{dis}(x,\text{lca}_{x,y}),\text{dis}(y,\text{lca}_{x,y}))-1 \\
 &amp;= 2\min(\text{dep}_x,\text{dep}_y)-2\text{dep}_{\text{lca}_{x,y}}-1
 \end{align}
 \]</span> 前提是 <span class="math inline">\(x,y\)</span> 没有祖先关系。</p>
