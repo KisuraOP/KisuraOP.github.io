@@ -364,7 +364,7 @@ dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
 <p>接着还有一些数没在 <span class="math inline">\(l[i]\)</span>，<span class="math inline">\(r[i]\)</span> 中出现过，我们考虑把它们插进去。</p>
 <p>又一个观察：一个数 <span class="math inline">\(x\)</span> 能插进 <span class="math inline">\(A,B\)</span> 之间的必要条件是 <span class="math inline">\(x\le \max(A,B)\)</span>。</p>
 <ul>
-<li>证明比较显然。</li>
+<li>比较显然。</li>
 </ul>
 <p>于是从大到小枚举要插的数，用一个计数器统计每次有多少空可以插，乘起来就是答案。</p>
 <p>时间复杂度：<span class="math inline">\(O(n\alpha)\)</span>。</p>
