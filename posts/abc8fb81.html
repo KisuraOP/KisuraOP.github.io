@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.8k 字
+          10k 字
         
       </span>
     
@@ -542,6 +542,17 @@ d=\dfrac{g}{\text{lowbit}(g)}=1\Longrightarrow g=\text{lowbit}(g)\Longrightarrow
 <p>枚举左端点 <span class="math inline">\(L\)</span>，二分找到第一个右端点 <span class="math inline">\(R\)</span> 满足 <span class="math inline">\(\underline{\ }\text{builtin}\underline{}\text{popcount}\left(\gcd\limits_{i\in[L,R]}b_i\right)=1\)</span>。则区间 <span class="math inline">\([L,R], [L,R+1],[L,R+2],\cdots,[L,n]\)</span> 的 <span class="math inline">\(\gcd\)</span> 均为 <span class="math inline">\(2\)</span> 的幂次。这是因为 <span class="math inline">\(2\)</span> 的幂次只有因数 <span class="math inline">\(2\)</span>，与任何数做 <span class="math inline">\(\gcd\)</span> 也只能得到 <span class="math inline">\(2\)</span> 的幂次。</p>
 <p>还是通过二分找到最后一个右端点 <span class="math inline">\(R\)</span> 满足 <span class="math inline">\(\gcd\limits_{i\in[L,R]}b_i=0\)</span>，则区间 <span class="math inline">\([L,L],[L,L+1],[L,L+2],\cdots,[L,R]\)</span> 的 <span class="math inline">\(\gcd\)</span> 均为 <span class="math inline">\(0\)</span>，原因显然。</p>
 <p>区间 <span class="math inline">\(\gcd\)</span> 可以用 ST 表实现，时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf2062d.-balanced-tree"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2062/problem/D">CF2062D. Balanced Tree</a></h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2062/problem/D">Code</a></p>
+<p>操作是：选定一个根，再让一个点的子树 <span class="math inline">\(+1\)</span>。</p>
+<p>对于一条边，我们只会让它一侧的所有节点 <span class="math inline">\(+1\)</span>（因为两侧都加等价于整棵树加，是没有意义的）。</p>
+<p>想象所有点都已经固定点权了，此时肯定是让点权小的一侧的所有点权 <span class="math inline">\(+1\)</span>。边的决策取决于两侧的节点，不妨先随意选定一个根，进行至下而上地贪心。</p>
+<p>设 <span class="math inline">\(f[x]\)</span> 为节点 <span class="math inline">\(x\)</span> 的答案，并初始化一个 <span class="math inline">\(delta=0\)</span> 代表全局 tag。对于当前节点 <span class="math inline">\(x\)</span>，若为叶子，选 <span class="math inline">\(L[x]\)</span> 肯定不劣；否则有两种情况：</p>
+<ul>
+<li><span class="math inline">\(\forall y\in son[x]\)</span>，<span class="math inline">\(f[y]\le r[x]\)</span>。此时选 <span class="math inline">\(\max(l[x],\max\limits_{y\in son[x]} f[y])\)</span> 肯定最优。因为可以让某一个儿子所在的子树变大，儿子之间互不影响。</li>
+<li><span class="math inline">\(\exists y\in son[x],f[y]&gt;r[x]\)</span>。此时节点 <span class="math inline">\(x\)</span> 只能选 <span class="math inline">\(r[x]\)</span>，为了让所有节点权值一样只能让 <span class="math inline">\(x\)</span> 沿着根方向的子树 <span class="math inline">\(+1\)</span>。并且对于每个儿子所在的子树，造成的贡献是累加的，即 <span class="math inline">\(delta \leftarrow delta + \sum\limits_{y\in son[x],f[y] &gt; r[x]} (f[y]-r[x])\)</span>。</li>
+</ul>
+<p>答案即 <span class="math inline">\(f[rt]+delta\)</span>，时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
