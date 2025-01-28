@@ -540,7 +540,7 @@ d=\dfrac{g}{\text{lowbit}(g)}=1\Longrightarrow g=\text{lowbit}(g)\Longrightarrow
 \]</span></p>
 <p>转换为求有多少个子区间的 <span class="math inline">\(\gcd\)</span> 为 <span class="math inline">\(0\)</span> 或 <span class="math inline">\(2\)</span> 的幂。</p>
 <p>枚举左端点 <span class="math inline">\(L\)</span>，二分找到第一个右端点 <span class="math inline">\(R\)</span> 满足 <span class="math inline">\(\underline{\ }\text{builtin}\underline{}\text{popcount}\left(\gcd\limits_{i\in[L,R]}b_i\right)=1\)</span>。则区间 <span class="math inline">\([L,R], [L,R+1],[L,R+2],\cdots,[L,n]\)</span> 的 <span class="math inline">\(\gcd\)</span> 均为 <span class="math inline">\(2\)</span> 的幂次。这是因为 <span class="math inline">\(2\)</span> 的幂次只有因数 <span class="math inline">\(2\)</span>，与任何数做 <span class="math inline">\(\gcd\)</span> 也只能得到 <span class="math inline">\(2\)</span> 的幂次。</p>
-<p>还是通过二分找到最后一个右端点 <span class="math inline">\(R\)</span> 满足 <span class="math inline">\(\gcd\limits_{i\in[L,R]}b_i=0\)</span>，则区间 <span class="math inline">\([L,L+1],[L,L+2],\cdots,[L,R]\)</span> 的 <span class="math inline">\(\gcd\)</span> 均为 <span class="math inline">\(0\)</span>，原因显然。</p>
+<p>还是通过二分找到最后一个右端点 <span class="math inline">\(R\)</span> 满足 <span class="math inline">\(\gcd\limits_{i\in[L,R]}b_i=0\)</span>，则区间 <span class="math inline">\([L,L],[L,L+1],[L,L+2],\cdots,[L,R]\)</span> 的 <span class="math inline">\(\gcd\)</span> 均为 <span class="math inline">\(0\)</span>，原因显然。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
