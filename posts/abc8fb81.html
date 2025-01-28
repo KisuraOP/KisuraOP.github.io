@@ -529,10 +529,11 @@ ans[x]&amp;=\sum_{j=1}^{16}\left(dp[j][x]\sum_{i=1}^{n}\binom{i}{j}\right)\\
 <li>若 <span class="math inline">\(b_i=a_{i+1}-a_i\)</span> 为偶数，则一定有 <span class="math inline">\(c=\frac{a_i+a_{i+1}}{2}\in(a_i,a_{i+1})\)</span> 可以加进 set 里。</li>
 <li>若存在相邻两项 <span class="math inline">\(b_i,b_{i+1}\)</span> 为奇数但不同，则 <span class="math inline">\(b_i+b_{i+1}=a_{i+2}-a_{i}\)</span> 为偶数，且 <span class="math inline">\(c=\frac{a_{i+2}+a_i}{2}\in(a_i,a_{i+1})\cup(a_{i+1},a_{i+2})\)</span> 不在序列里，可以再 expand。</li>
 </ul>
-<p>进一步地，假定 <span class="math inline">\(g=\gcd\limits_{i\in[1,n)}(|a_{i}-a_{i+1}|)\)</span>，<span class="math inline">\(\{a\}\)</span> 的公差为 <span class="math inline">\(d\)</span>，则 <span class="math inline">\(d\)</span> 一定为 <span class="math inline">\(g\)</span> 除以 <span class="math inline">\(2\)</span> 的若干次幂得到。具体地，<span class="math inline">\(d=\dfrac{g}{\text{lowbit}(g)}\)</span>。</p>
+<p>进一步地，假定 <span class="math inline">\(g=\gcd\limits_{i\in[1,n)}(|a_{i}-a_{i+1}|)\)</span>，<span class="math inline">\(\{a\}\)</span> 的公差为 <span class="math inline">\(d\)</span>，则 <span class="math inline">\(d\)</span> 一定是 <span class="math inline">\(g\)</span> 除以 <span class="math inline">\(2\)</span> 的若干次幂得到。具体地，<span class="math inline">\(d=\dfrac{g}{\text{lowbit}(g)}\)</span>。</p>
 <ul>
 <li>因为任意两项的差要是公差 <span class="math inline">\(d\)</span> 的倍数，故 <span class="math inline">\(d\)</span> 是相邻两项差的 <span class="math inline">\(\gcd\)</span> 的因数 。而 <span class="math inline">\(g\)</span> 能再分的前提是 <span class="math inline">\(g\)</span> 是偶数，故 <span class="math inline">\(g\)</span> 不断除以 <span class="math inline">\(2\)</span> 直到为奇数就得到 <span class="math inline">\(d\)</span>，写成公式就是上面那样。</li>
 </ul>
+<p>还需要注意的是这里引入了 <span class="math inline">\(\gcd\)</span>，根据其辗转相减的性质，可知结论对于无序数组依然成立。</p>
 <p>回到题目的要求，连续即 <span class="math inline">\(d=1\)</span>，即：</p>
 <p><span class="math display">\[
 d=\dfrac{g}{\text{lowbit}(g)}=1\Longrightarrow g=\text{lowbit}(g)\Longrightarrow g=0 \cup g=2^k,k\ge 0
