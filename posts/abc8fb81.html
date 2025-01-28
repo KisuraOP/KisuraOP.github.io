@@ -533,12 +533,12 @@ ans[x]&amp;=\sum_{j=1}^{16}\left(dp[j][x]\sum_{i=1}^{n}\binom{i}{j}\right)\\
 <ul>
 <li>因为任意两项的差要是公差 <span class="math inline">\(d\)</span> 的倍数，故 <span class="math inline">\(d\)</span> 是相邻两项差的 <span class="math inline">\(\gcd\)</span> 的因数 。而 <span class="math inline">\(g\)</span> 能再分的前提是 <span class="math inline">\(g\)</span> 是偶数，故 <span class="math inline">\(g\)</span> 不断除以 <span class="math inline">\(2\)</span> 直到为奇数就得到 <span class="math inline">\(d\)</span>，写成公式就是上面那样。</li>
 </ul>
-<p>还需要注意的是这里引入了 <span class="math inline">\(\gcd\)</span>，根据其辗转相减的性质，可知结论对于无序数组依然成立。</p>
+<p>还需要注意的是这里引入了 <span class="math inline">\(\gcd\)</span>，根据其辗转相减的性质，结论对于无序数组依然成立。</p>
 <p>回到题目的要求，连续即 <span class="math inline">\(d=1\)</span>，即：</p>
 <p><span class="math display">\[
 d=\dfrac{g}{\text{lowbit}(g)}=1\Longrightarrow g=\text{lowbit}(g)\Longrightarrow g=0 \cup g=2^k,k\ge 0
 \]</span></p>
-<p>转换为求有多少个子区间的 <span class="math inline">\(\gcd\)</span> 为 <span class="math inline">\(0\)</span> 或 <span class="math inline">\(2\)</span> 的幂。</p>
+<p>转化为求有多少个子区间的 <span class="math inline">\(\gcd\)</span> 为 <span class="math inline">\(0\)</span> 或 <span class="math inline">\(2\)</span> 的幂。</p>
 <p>枚举左端点 <span class="math inline">\(L\)</span>，二分找到第一个右端点 <span class="math inline">\(R\)</span> 满足 <span class="math inline">\(\underline{\ }\text{builtin}\underline{}\text{popcount}\left(\gcd\limits_{i\in[L,R]}b_i\right)=1\)</span>。则区间 <span class="math inline">\([L,R], [L,R+1],[L,R+2],\cdots,[L,n]\)</span> 的 <span class="math inline">\(\gcd\)</span> 均为 <span class="math inline">\(2\)</span> 的幂次。这是因为 <span class="math inline">\(2\)</span> 的幂次只有因数 <span class="math inline">\(2\)</span>，与任何数做 <span class="math inline">\(\gcd\)</span> 也只能得到 <span class="math inline">\(2\)</span> 的幂次。</p>
 <p>还是通过二分找到最后一个右端点 <span class="math inline">\(R\)</span> 满足 <span class="math inline">\(\gcd\limits_{i\in[L,R]}b_i=0\)</span>，则区间 <span class="math inline">\([L,L],[L,L+1],[L,L+2],\cdots,[L,R]\)</span> 的 <span class="math inline">\(\gcd\)</span> 均为 <span class="math inline">\(0\)</span>，原因显然。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
