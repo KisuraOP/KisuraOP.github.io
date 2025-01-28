@@ -566,7 +566,7 @@ d=\dfrac{g}{\text{lowbit}(g)}=1\Longrightarrow g=\text{lowbit}(g)\Longrightarrow
 <li>若 <span class="math inline">\(x\)</span> 恰有一个儿子 <span class="math inline">\(y\)</span>，考虑 <span class="math inline">\(x\)</span> 是否能与 <span class="math inline">\(y\)</span> 的两个端点之一来作为新的直径，不能就直接继承 <span class="math inline">\(y\)</span> 的答案。</li>
 <li>若 <span class="math inline">\(x\)</span> 有两个儿子 <span class="math inline">\(y_1,y_2\)</span>，则有两种情况：
 <ul>
-<li>继承自 <span class="math inline">\(y_1\)</span> 或 <span class="math inline">\(y2\)</span>。</li>
+<li>继承自 <span class="math inline">\(y_1\)</span> 或 <span class="math inline">\(y_2\)</span>。</li>
 <li>穿过 <span class="math inline">\(x\)</span> 将两段拼起来。此时新的直径端点肯定有一个来自 <span class="math inline">\(y_1\)</span> 的两个端点之一，另一个来自 <span class="math inline">\(y_2\)</span> 的两个端点之一。</li>
 </ul></li>
 <li>若 <span class="math inline">\(x\)</span> 有 <span class="math inline">\(\ge 2\)</span> 个儿子，按上一种情况每次合并两个子树，直到合并完即可。</li>
