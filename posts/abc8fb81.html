@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          10k 字
+          11k 字
         
       </span>
     
@@ -553,6 +553,25 @@ d=\dfrac{g}{\text{lowbit}(g)}=1\Longrightarrow g=\text{lowbit}(g)\Longrightarrow
 <li><span class="math inline">\(\exists y\in son[x],f[y]&gt;r[x]\)</span>。此时节点 <span class="math inline">\(x\)</span> 只能选 <span class="math inline">\(r[x]\)</span>，为了让所有节点权值一样只能让 <span class="math inline">\(x\)</span> 沿着根方向的子树 <span class="math inline">\(+1\)</span>。并且对于每个儿子所在的子树，造成的贡献是累加的，即 <span class="math inline">\(delta \leftarrow delta + \sum\limits_{y\in son[x],f[y] &gt; r[x]} (f[y]-r[x])\)</span>。</li>
 </ul>
 <p>答案即 <span class="math inline">\(f[rt]+delta\)</span>，时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf2033g.-sakurako-and-chefir"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2033/problem/G">CF2033G. Sakurako and Chefir</a></h2>
+<p>*2200 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2033/submission/303354940">Code</a></p>
+<p>对于一组询问 <span class="math inline">\((v,k)\)</span>，我们直接跳到 <span class="math inline">\(v\)</span> 的 <span class="math inline">\(k\)</span> 级祖先（设为 <span class="math inline">\(x\)</span>）一定不劣。</p>
+<p>那么询问等价于找 <span class="math inline">\(x\)</span> 的子树中距 <span class="math inline">\(v\)</span> 最远的点。</p>
+<p>这个最远的点一定是 <span class="math inline">\(x\)</span> 的子树的两个直径端点之一。</p>
+<p>问题转化为对树上的每个点 <span class="math inline">\(x\)</span>，求其子树的直径的两个端点。</p>
+<p>这仍然是一个套路化的问题，回顾一下做法：</p>
+<ul>
+<li>至下而上考虑，设当前考虑的节点为 <span class="math inline">\(x\)</span>。</li>
+<li>若 <span class="math inline">\(x\)</span> 为叶子，两个直径端点都是它自身。</li>
+<li>若 <span class="math inline">\(x\)</span> 恰有一个儿子 <span class="math inline">\(y\)</span>，考虑 <span class="math inline">\(x\)</span> 是否能与 <span class="math inline">\(y\)</span> 的两个端点之一来作为新的直径，不能就直接继承 <span class="math inline">\(y\)</span> 的答案。</li>
+<li>若 <span class="math inline">\(x\)</span> 有两个儿子 <span class="math inline">\(y_1,y_2\)</span>，则有两种情况：
+<ul>
+<li>继承自 <span class="math inline">\(y_1\)</span> 或 <span class="math inline">\(y2\)</span>。</li>
+<li>穿过 <span class="math inline">\(x\)</span> 将两段拼起来。此时新的直径端点肯定有一个来自 <span class="math inline">\(y_1\)</span> 的两个端点之一，另一个来自 <span class="math inline">\(y_2\)</span> 的两个端点之一。</li>
+</ul></li>
+<li>若 <span class="math inline">\(x\)</span> 有 <span class="math inline">\(\ge 2\)</span> 个儿子，按上一种情况每次合并两个子树，直到合并完即可。</li>
+</ul>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
