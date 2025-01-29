@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k 字
+          12k 字
         
       </span>
     
@@ -564,14 +564,26 @@ d=\dfrac{g}{\text{lowbit}(g)}=1\Longrightarrow g=\text{lowbit}(g)\Longrightarrow
 <li>至下而上考虑，设当前考虑的节点为 <span class="math inline">\(x\)</span>。</li>
 <li>若 <span class="math inline">\(x\)</span> 为叶子，两个直径端点都是它自身。</li>
 <li>若 <span class="math inline">\(x\)</span> 恰有一个儿子 <span class="math inline">\(y\)</span>，考虑 <span class="math inline">\(x\)</span> 是否能与 <span class="math inline">\(y\)</span> 的两个端点之一来作为新的直径，不能就直接继承 <span class="math inline">\(y\)</span> 的答案。</li>
-<li>若 <span class="math inline">\(x\)</span> 有两个儿子 <span class="math inline">\(y_1,y_2\)</span>，则有两种情况：
+<li>若 <span class="math inline">\(x\)</span> 有两个儿子 <span class="math inline">\(y_1,y_2\)</span>，答案为两种情况取 <span class="math inline">\(\max\)</span>：
 <ul>
 <li>继承自 <span class="math inline">\(y_1\)</span> 或 <span class="math inline">\(y_2\)</span>。</li>
 <li>穿过 <span class="math inline">\(x\)</span> 将两段拼起来。此时新的直径端点肯定有一个来自 <span class="math inline">\(y_1\)</span> 的两个端点之一，另一个来自 <span class="math inline">\(y_2\)</span> 的两个端点之一。</li>
 </ul></li>
-<li>若 <span class="math inline">\(x\)</span> 有 <span class="math inline">\(\ge 2\)</span> 个儿子，按上一种情况每次合并两个子树，直到合并完即可。</li>
+<li>若 <span class="math inline">\(x\)</span> 有 <span class="math inline">\(&gt; 2\)</span> 个儿子，按上一种情况每次合并两个子树，直到合并完为止。</li>
 </ul>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf1993d.-med-imize"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1993/problem/D">CF1993D. Med-imize</a></h2>
+<p>*2200 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1993/submission/303478399">Code</a></p>
+<p>答案具有二分性，设二分出的答案为 <span class="math inline">\(mid\)</span>。</p>
+<p>中位数套路：<span class="math inline">\(\forall i\in[1,n]\)</span>，令 <span class="math inline">\(b[i]=\begin{cases}1&amp;,a[i]\ge mid \\ -1&amp;,a[i]&lt;mid\end{cases}\ \)</span>，则 <span class="math inline">\(\sum b[i]&gt;0 \Longleftrightarrow mid\le median(a)\)</span>。</p>
+<p>题目转化为：给定 <span class="math inline">\(\{b\}\)</span>，每次任选一个长为 <span class="math inline">\(k\)</span> 的段删掉，直到不能删为止，剩下数的和是否 <span class="math inline">\(&gt;0\)</span>。</p>
+<p>这里给出其中一种 dp 方案。</p>
+<p>令 <span class="math inline">\(dp[i][j]\)</span> 表示前 <span class="math inline">\(i\)</span> 个数选了 <span class="math inline">\(j\)</span> 个长为 <span class="math inline">\(k\)</span> 的段删去后，剩下数和的最大值。</p>
+<p>则 <span class="math inline">\(dp[i][j] = \max(dp[i-1][j]+b[i],dp[i-k][j - 1])\)</span>，答案为 <span class="math inline">\(dp[n][\left\lfloor\frac{n-1}{k}\right\rfloor]\)</span>。</p>
+<p>考虑到 <span class="math inline">\(0\le i-jk\le k \Longrightarrow j\in\left[\left\lfloor\dfrac{i-1}{k}\right\rfloor,\left\lfloor\dfrac{i}{k}\right\rfloor\right]\)</span>，即 <span class="math inline">\(j\)</span> 只有两种取值。</p>
+<p>故不妨令 <span class="math inline">\(dp[i][j=0/1]\)</span> 表示前 <span class="math inline">\(i\)</span> 个数选了 <span class="math inline">\(\left\lfloor\dfrac{i-1}{k}\right\rfloor+j\)</span> 个长为 <span class="math inline">\(k\)</span> 的段删去后，剩下数和的最大值。</p>
+<p>使用记忆化搜索转移，时间复杂度 <span class="math inline">\(O(n\log w)\)</span>，<span class="math inline">\(w\)</span> 是值域。</p>
+<p>官方题解里是另一种 dp，我花了半个小时仍未完全理解，希望有生之年我能参悟。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
