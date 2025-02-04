@@ -597,7 +597,7 @@ d=\dfrac{g}{\text{lowbit}(g)}=1\Longrightarrow g=\text{lowbit}(g)\Longrightarrow
 <p><span class="math display">\[
 \begin{cases} 
 x\equiv 0 \pmod{2w} \\
-y\equiv 0 \pmod{2w}
+y\equiv 0 \pmod{2h}
 \end{cases}
 \Longrightarrow
 \begin{cases}
@@ -635,11 +635,22 @@ i &amp;\equiv -\frac{x_j}{g}\left(\frac{x_n}{g}\right)^{-1}\pmod{\frac{2w}{g}}
 <h2 id="cf1972d.-reverse-card-hard-version"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1972/problem/D2">CF1972D. Reverse Card (Hard Version)</a></h2>
 <p>*2200 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1972/submission/303818473">Code</a></p>
 <p>题目要求满足 <span class="math inline">\(a\in[1,n]\)</span>，<span class="math inline">\(b\in[1,m]\)</span>，<span class="math inline">\((a+b)\mid b\cdot\gcd(a,b)\)</span> 的有序对 <span class="math inline">\((a,b)\)</span> 的数量。</p>
-<p>令 <span class="math inline">\(d=\gcd(a,b)\)</span>，<span class="math inline">\(a=pd\)</span>，<span class="math inline">\(b=qd\)</span>，则 <span class="math inline">\(\gcd(p,q)=1\)</span>。带入得： <span class="math display">\[
-a+b\mid b\cdot\gcd(a,b)\longrightarrow (p+q)d\mid qd^2 \to p+q\mid qd
-\]</span> 又 <span class="math inline">\(\gcd(p,q)=1 \to \gcd(p+q,q)=1\)</span>，故 <span class="math inline">\(p+q \mid d\)</span>。</p>
-<p>由 <span class="math inline">\(p+q\mid d \to p+q\le d\to p\le d=\dfrac{a}{p}\le \dfrac{n}{p}\)</span>，得 <span class="math inline">\(p^2 \le n \to p\in[1,\sqrt{n}]\)</span>，同理 <span class="math inline">\(q\in[1,\sqrt{m}]\)</span>。</p>
-<p><span class="math inline">\(O(\sqrt{nm})\)</span> 枚举 <span class="math inline">\(p,q\)</span>，当 <span class="math inline">\(\gcd(p,q)=1\)</span> 时，贡献等价于有多少 <span class="math inline">\(d\)</span> 满足 <span class="math inline">\(p+q\mid d\)</span> 且 <span class="math inline">\(d\le \min(\dfrac{n}{p},\dfrac{m}{q})\)</span>，答案是 <span class="math inline">\(\left\lfloor\dfrac{\min(\dfrac{n}{p},\dfrac{m}{q})}{p+q}\right\rfloor\)</span>。</p>
+<p>令 <span class="math inline">\(d=\gcd(a,b)\)</span>，<span class="math inline">\(a=pd\)</span>，<span class="math inline">\(b=qd\)</span>，则 <span class="math inline">\(\gcd(p,q)=1\)</span>。代入得： <span class="math display">\[
+\begin{align}
+a+b&amp;\mid b\cdot\gcd(a,b)\\ 
+\to (p+q)d&amp;\mid qd^2 \\ 
+\to \quad \ p+q&amp;\mid qd\\
+\to \quad\ p+q&amp;\mid d
+\end{align}
+\]</span> 最后一步是因为 <span class="math inline">\(\gcd(p,q)=1 \to \gcd(p+q,q)=1\)</span>。</p>
+<p>又因为：</p>
+<p><span class="math display">\[
+\begin{align}
+p+q\mid d \to p+q\le d\to p\le d=\dfrac{a}{p}\le \dfrac{n}{p}
+\end{align}
+\]</span></p>
+<p>于是 <span class="math inline">\(p^2 \le n \to p\in[1,\sqrt{n}]\)</span>，同理 <span class="math inline">\(q\in[1,\sqrt{m}]\)</span>。</p>
+<p><span class="math inline">\(O(\sqrt{nm})\)</span> 枚举 <span class="math inline">\(p,q\)</span>，当 <span class="math inline">\(\gcd(p,q)=1\)</span> 时，贡献等价于有多少 <span class="math inline">\(d\)</span> 满足 <span class="math inline">\(p+q\mid d\)</span> 且 <span class="math inline">\(d\le \min(\dfrac{n}{p},\dfrac{m}{q})\)</span>，即 <span class="math inline">\(\left\lfloor\dfrac{\min(\dfrac{n}{p},\dfrac{m}{q})}{p+q}\right\rfloor\)</span>。</p>
 <p>时间复杂度 <span class="math inline">\(O(\sqrt{nm}\log \sqrt{n})\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1983/problem/E">Problem - E - Codeforces</a></p>
