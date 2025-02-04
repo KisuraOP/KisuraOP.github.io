@@ -455,8 +455,8 @@ dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
 <p>一些卡特兰数模型：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31317307">Link1</a> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31526354">Link2</a> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/609104268">Link3</a>。</p>
 <p>记忆：<span class="math inline">\(C_{n}=\binom{2n}{n}-\binom{2n}{n-1}\)</span>。</p>
 <h2 id="cf2063f1f2.-counting-is-not-fun"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/problem/F2">CF2063F1/F2. Counting Is Not Fun</a></h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/submission/302767057">Code</a>（F1）</p>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/submission/302848292">Code</a>（F2）</p>
+<p>*2400 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/submission/302767057">Code</a>（F1）</p>
+<p>*2700 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/submission/302848292">Code</a>（F2）</p>
 <p>我们将一组 good pair <span class="math inline">\((l,r)\)</span> 看成覆盖 <span class="math inline">\([l,r]\)</span> 的线段，显然任何时候的任意两条线段都要么不交要么完全包含。和这篇文章的上一题及其相似，我们把具有包含关系的线段连边（对于 <span class="math inline">\([l,r]\)</span>，若能找到极小的 <span class="math inline">\([L,R]\)</span> 使其包含 <span class="math inline">\([l,r]\)</span>，就在这两条线段间连一条边），会连成一棵森林。</p>
 <p>令 <span class="math inline">\(f[i]\)</span> 表示第 <span class="math inline">\(i\)</span> 条线段去掉两个端点后没有被其儿子覆盖的长度。这个长度内我们可以自由填。</p>
 <p>定理：用 <span class="math inline">\(n\)</span> 对括号填满 <span class="math inline">\(2n\)</span> 个位置构成平衡括号序列的方案数为 <span class="math inline">\(C_{n}\)</span>（卡特兰数的第 <span class="math inline">\(n\)</span> 项） 。</p>
@@ -468,7 +468,7 @@ dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
 <p>倒着操作，相当于每次拿走一组括号，此时只有这条线段本身和其父亲的贡献发生了变化。具体地，设当前为第 <span class="math inline">\(i\)</span> 条线段，父亲为第 <span class="math inline">\(fa_i\)</span> 条线段，那么答案只需要在之前答案的基础上加上 <span class="math inline">\(-C_{f[i]/2}-C_{f[fa_i]/2}+C_{(f[fa_i]+f[i]+2)/2}\)</span>。</p>
 <p>快速定位到父亲是哪条线段可以用并查集，时间复杂度 <span class="math inline">\(O(n\log n + n\alpha)\)</span>。</p>
 <h2 id="cf2063e.-triangle-tree"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/problem/E">CF2063E. Triangle Tree</a></h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/submission/302994147">Code</a></p>
+<p>*2300 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/submission/302994147">Code</a></p>
 <p>草稿纸画一画，易知： <span class="math display">\[
 \begin{align}
 f(x,y)&amp;= 2\min(\text{dis}(x,\text{lca}_{x,y}),\text{dis}(y,\text{lca}_{x,y}))-1 \\
@@ -476,7 +476,7 @@ f(x,y)&amp;= 2\min(\text{dis}(x,\text{lca}_{x,y}),\text{dis}(y,\text{lca}_{x,y})
 \end{align}
 \]</span> 前提是 <span class="math inline">\(x,y\)</span> 没有祖先关系。</p>
 <p>这样就把贡献拆成了三部分，可以分别计算：</p>
-<ol type="1">
+<ul>
 <li><span class="math inline">\(\min(\text{dep}_x, \text{dep}_y)\)</span>：枚举 <span class="math inline">\(x\)</span>，则每个深度比 <span class="math inline">\(x\)</span> 大且不在 <span class="math inline">\(x\)</span> 子树中的 <span class="math inline">\(y\)</span> 有 <span class="math inline">\(\text{dep}_x\)</span> 的贡献。令 <span class="math inline">\(d[x]\)</span> 表示深度 <span class="math inline">\(\ge x\)</span> 的节点数（可以通过一个后缀和实现），分为两种情况。
 <ul>
 <li><span class="math inline">\(\text{dep}_x &lt; \text{dep}_y\)</span>：贡献为 <span class="math inline">\((d[dep[x]+1]-(sz[x]-1))\times dep[x]\)</span>。</li>
@@ -484,7 +484,7 @@ f(x,y)&amp;= 2\min(\text{dis}(x,\text{lca}_{x,y}),\text{dis}(y,\text{lca}_{x,y})
 </ul></li>
 <li><span class="math inline">\(\text{dep}_{\text{lca}_{x,y}}\)</span>：枚举 <span class="math inline">\(\text{lca}\)</span>，对于当前点 <span class="math inline">\(x\)</span>，贡献为 <span class="math inline">\(\sum_{y\in son[x]}sz[y]\times (sz[x]-1-sz[y])\times dep[x]\)</span>。</li>
 <li><span class="math inline">\(1\)</span>：即没有祖先关系的 <span class="math inline">\((x,y)\)</span> 组数。对于当前点 <span class="math inline">\(x\)</span>，贡献为 <span class="math inline">\(n-sz[x]-dep[x]+1\)</span>。</li>
-</ol>
+</ul>
 <p>第 <span class="math inline">\(2, 3\)</span> 部分最后也需要除以 <span class="math inline">\(2\)</span>，从而只计算有序对。</p>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="cf2060f.-multiplicative-arrays"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2060/problem/F">CF2060F. Multiplicative Arrays</a></h2>
@@ -543,7 +543,7 @@ d=\dfrac{g}{\text{lowbit}(g)}=1\Longrightarrow g=\text{lowbit}(g)\Longrightarrow
 <p>还是通过二分找到最后一个右端点 <span class="math inline">\(R\)</span> 满足 <span class="math inline">\(\gcd\limits_{i\in[L,R]}b_i=0\)</span>，则区间 <span class="math inline">\([L,L],[L,L+1],[L,L+2],\cdots,[L,R]\)</span> 的 <span class="math inline">\(\gcd\)</span> 均为 <span class="math inline">\(0\)</span>，原因显然。</p>
 <p>区间 <span class="math inline">\(\gcd\)</span> 可以用 ST 表实现，时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <h2 id="cf2062d.-balanced-tree"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2062/problem/D">CF2062D. Balanced Tree</a></h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2062/problem/D">Code</a></p>
+<p>*2200 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2062/problem/D">Code</a></p>
 <p>操作是：选定一个根，再让一个点的子树 <span class="math inline">\(+1\)</span>。</p>
 <p>对于一条边，我们只会让它一侧的所有节点 <span class="math inline">\(+1\)</span>（因为两侧都加等价于整棵树加，是没有意义的）。</p>
 <p>想象所有点都已经固定点权了，此时肯定是让点权小的一侧的所有点权 <span class="math inline">\(+1\)</span>。边的决策取决于两侧的节点，不妨先随意选定一个根，进行至下而上地贪心。</p>
