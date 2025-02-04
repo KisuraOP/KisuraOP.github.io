@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          12k 字
+          13k 字
         
       </span>
     
@@ -455,8 +455,8 @@ dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
 <p>一些卡特兰数模型：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31317307">Link1</a> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/31526354">Link2</a> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/609104268">Link3</a>。</p>
 <p>记忆：<span class="math inline">\(C_{n}=\binom{2n}{n}-\binom{2n}{n-1}\)</span>。</p>
 <h2 id="cf2063f1f2.-counting-is-not-fun"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/problem/F2">CF2063F1/F2. Counting Is Not Fun</a></h2>
-<p>F1 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/submission/302767057">Code</a></p>
-<p>F2 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/submission/302848292">Code</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/submission/302767057">Code</a>（F1）</p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2063/submission/302848292">Code</a>（F2）</p>
 <p>我们将一组 good pair <span class="math inline">\((l,r)\)</span> 看成覆盖 <span class="math inline">\([l,r]\)</span> 的线段，显然任何时候的任意两条线段都要么不交要么完全包含。和这篇文章的上一题及其相似，我们把具有包含关系的线段连边（对于 <span class="math inline">\([l,r]\)</span>，若能找到极小的 <span class="math inline">\([L,R]\)</span> 使其包含 <span class="math inline">\([l,r]\)</span>，就在这两条线段间连一条边），会连成一棵森林。</p>
 <p>令 <span class="math inline">\(f[i]\)</span> 表示第 <span class="math inline">\(i\)</span> 条线段去掉两个端点后没有被其儿子覆盖的长度。这个长度内我们可以自由填。</p>
 <p>定理：用 <span class="math inline">\(n\)</span> 对括号填满 <span class="math inline">\(2n\)</span> 个位置构成平衡括号序列的方案数为 <span class="math inline">\(C_{n}\)</span>（卡特兰数的第 <span class="math inline">\(n\)</span> 项） 。</p>
@@ -583,11 +583,53 @@ d=\dfrac{g}{\text{lowbit}(g)}=1\Longrightarrow g=\text{lowbit}(g)\Longrightarrow
 <p>考虑到 <span class="math inline">\(0\le i-jk\le k \Longrightarrow j\in\left[\left\lfloor\dfrac{i-1}{k}\right\rfloor,\left\lfloor\dfrac{i}{k}\right\rfloor\right]\)</span>，即 <span class="math inline">\(j\)</span> 只有两种取值。</p>
 <p>故不妨令 <span class="math inline">\(dp[i][j=0/1]\)</span> 表示前 <span class="math inline">\(i\)</span> 个数选了 <span class="math inline">\(\left\lfloor\dfrac{i-1}{k}\right\rfloor+j\)</span> 个长为 <span class="math inline">\(k\)</span> 的段删去后，剩下数和的最大值。</p>
 <p>使用记忆化搜索转移，时间复杂度 <span class="math inline">\(O(n\log w)\)</span>，<span class="math inline">\(w\)</span> 是值域。</p>
-<p>官方题解里是另一种 dp，我花了半个小时仍未完全理解，希望有生之年我能参悟。</p>
+<p>官方题解里是另一种 dp，我花了半个小时仍未完全理解，希望有生之年能够参悟。</p>
+<h2 id="cf1993f1f2.-dyn-scripted-robot"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1993/problem/F2">CF1993F1/F2. Dyn-scripted Robot</a></h2>
+<p>*2400 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1993/submission/303822753">Code</a>（F1）</p>
+<p>*2800 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1993/submission/303832230">Code</a>（F2）</p>
+<p>我们假定一个在没有墙的二维平面中移动的机器人称作 <span class="math inline">\(B\)</span>，题中的机器人称作 <span class="math inline">\(A\)</span>。由于 <span class="math inline">\(B\)</span> 相比 <span class="math inline">\(A\)</span> 取消了墙的限制，移动序列自然不会改变。</p>
+<p>结论：<span class="math inline">\(A\)</span> 回到原点的次数 <span class="math inline">\(\Longleftrightarrow\)</span> <span class="math inline">\(B\)</span> 经过点 <span class="math inline">\((x,y),\begin{cases}x\equiv 0\pmod{2w} \\ y\equiv 0 \pmod{2h} \end{cases}\)</span> 的次数。</p>
+<ul>
+<li>先考虑只存在沿 <span class="math inline">\(y\)</span> 轴方向的移动，当 <span class="math inline">\(A\)</span> 撞到 <span class="math inline">\(y=h\)</span> 后，<span class="math inline">\(A,B\)</span> 运动轨迹沿 <span class="math inline">\(y=h\)</span> 轴对称；而 <span class="math inline">\(A\)</span> 再撞到 <span class="math inline">\(y=0\)</span>（<span class="math inline">\(B\)</span> 撞到 <span class="math inline">\(y=2h\)</span>）后，二者运动方向恢复一致。<span class="math inline">\(x\)</span> 轴方向的运动同理，外推后不难得出该结论。</li>
+</ul>
+<p>接下来只需研究 <span class="math inline">\(B\)</span> 的运动即可。设 <span class="math inline">\(x_i\ (i\in[1,n])\)</span> 表示 <span class="math inline">\(B\)</span> 从 <span class="math inline">\((0,0)\)</span> 开始，经过 <span class="math inline">\(i\)</span> 次移动后的横坐标（在 <span class="math inline">\(\bmod 2w\)</span> 同余系下）; <span class="math inline">\(y_i\ (i\in[1,n])\)</span> 表示 <span class="math inline">\(B\)</span> 从 <span class="math inline">\((0, 0)\)</span> 开始，经过 <span class="math inline">\(i\)</span> 次移动后的纵坐标（在 <span class="math inline">\(\bmod 2h\)</span> 同余系下）。</p>
+假设 <span class="math inline">\(B\)</span> 已经执行了完整的移动序列 <span class="math inline">\(i\in[0,k)\)</span> 次，并额外移动了 <span class="math inline">\(j\in[1,n]\)</span> 次，那么坐标为 <span class="math inline">\((ix_n+x_j,iy_n+y_j)\)</span>。题目转化为求有序对 <span class="math inline">\((i,j)\)</span> 的数目，满足： $$
+<span class="math display">\[\begin{cases} 
+x\equiv 0 \pmod{2w} \\
+y\equiv 0 \pmod{2w}
+\end{cases}\]</span>
+<span class="math display">\[\begin{cases}
+ix_n+x_j\equiv 0 \pmod{2w} \\
+iy_n+y_j\equiv 0 \pmod{2h}
+\end{cases}\]</span>
+<span class="math display">\[
+对于 F1，将式子变形，得到：
+\]</span>
+<span class="math display">\[\begin{cases}
+x_j\equiv -ix_n \pmod{2w} \\
+y_j\equiv -iy_n \pmod{2h}
+\end{cases}\]</span>
+<p>$$ 我们可以把执行一次移动序列经过的点的坐标存到一个 <code>std::map</code> 里，然后枚举 <span class="math inline">\(i\in[0,k)\)</span>，查一下 <code>std::map</code> 中点 <span class="math inline">\((-ix_n,-iy_n)\)</span> 的值即可。时间复杂度 <span class="math inline">\(O(k\log n)\)</span>。</p>
+<p>对于 F2，将式子变形，得到： <span class="math display">\[
+\begin{cases}
+ix_n\equiv -x_j \pmod{2w} \\
+iy_n\equiv -y_j \pmod{2h}
+\end{cases}
+\]</span> 在这个方程组中，除了 <span class="math inline">\(i\)</span> 均为已知，于是可以枚举 <span class="math inline">\(x_j\)</span>，用中国剩余定理解 <span class="math inline">\(n\)</span> 遍即可。在此之前，还需要把方程转化为 <span class="math inline">\(x\equiv a\pmod{p}\)</span> 的标准形式。</p>
+<p>由于 <span class="math inline">\(a\)</span> 在 <span class="math inline">\(\bmod p\)</span> 下的逆元仅在 <span class="math inline">\(a,p\)</span> 互质下存在，故令 <span class="math inline">\(g=\gcd(2w,x_n)\)</span>，则： <span class="math display">\[
+\begin{align}
+\ \ ix_n&amp;\equiv -x_j \pmod{2w}\\
+\ \ i\cdot\frac{x_n}{g}&amp;\equiv -\frac{x_j}{g}\pmod{\frac{2w}{g}}\\
+\ \ \ \ i &amp;\equiv -\frac{x_j}{g}\left(\frac{x_n}{g}\right)^{-1}\pmod{\frac{2w}{g}}
+\end{align}
+\]</span> 显然当 <span class="math inline">\(g \nmid x_j\)</span> 时方程无解。</p>
+<p>对于一个 <span class="math inline">\(x_j\)</span>，用 CRT 解出最小的 <span class="math inline">\(i\)</span> 后，问题转化为 <span class="math inline">\(i,i+M,i+2M,\cdots\)</span> 中有几个在 <span class="math inline">\([0,k-1)\)</span> 范围内，答案是 <span class="math inline">\(\dfrac{k-1-i}{M}+1\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log w)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1993/problem/F2">Problem - F2 - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1983/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1983/problem/F">Problem - F - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1972/problem/E">Problem - E - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2059/problem/E1">Problem - E1 - Codeforces</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
