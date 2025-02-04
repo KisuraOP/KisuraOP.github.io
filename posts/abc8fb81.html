@@ -593,7 +593,8 @@ d=\dfrac{g}{\text{lowbit}(g)}=1\Longrightarrow g=\text{lowbit}(g)\Longrightarrow
 <li>先考虑只存在沿 <span class="math inline">\(y\)</span> 轴方向的移动，当 <span class="math inline">\(A\)</span> 撞到 <span class="math inline">\(y=h\)</span> 后，<span class="math inline">\(A,B\)</span> 运动轨迹沿 <span class="math inline">\(y=h\)</span> 轴对称；而 <span class="math inline">\(A\)</span> 再撞到 <span class="math inline">\(y=0\)</span>（<span class="math inline">\(B\)</span> 撞到 <span class="math inline">\(y=2h\)</span>）后，二者运动方向恢复一致。<span class="math inline">\(x\)</span> 轴方向的运动同理，外推后不难得出该结论。</li>
 </ul>
 <p>接下来只需研究 <span class="math inline">\(B\)</span> 的运动即可。设 <span class="math inline">\(x_i\ (i\in[1,n])\)</span> 表示 <span class="math inline">\(B\)</span> 从 <span class="math inline">\((0,0)\)</span> 开始，经过 <span class="math inline">\(i\)</span> 次移动后的横坐标（在 <span class="math inline">\(\bmod 2w\)</span> 同余系下）; <span class="math inline">\(y_i\ (i\in[1,n])\)</span> 表示 <span class="math inline">\(B\)</span> 从 <span class="math inline">\((0, 0)\)</span> 开始，经过 <span class="math inline">\(i\)</span> 次移动后的纵坐标（在 <span class="math inline">\(\bmod 2h\)</span> 同余系下）。</p>
-假设 <span class="math inline">\(B\)</span> 已经执行了完整的移动序列 <span class="math inline">\(i\in[0,k)\)</span> 次，并额外移动了 <span class="math inline">\(j\in[1,n]\)</span> 次，那么坐标为 <span class="math inline">\((ix_n+x_j,iy_n+y_j)\)</span>。题目转化为求有序对 <span class="math inline">\((i,j)\)</span> 的数目，满足： $$
+<p>假设 <span class="math inline">\(B\)</span> 已经执行了完整的移动序列 <span class="math inline">\(i\in[0,k)\)</span> 次，并额外移动了 <span class="math inline">\(j\in[1,n]\)</span> 次，那么坐标为 <span class="math inline">\((ix_n+x_j,iy_n+y_j)\)</span>。题目转化为求有序对 <span class="math inline">\((i,j)\)</span> 的数目，满足：</p>
+$$
 <span class="math display">\[\begin{cases} 
 x\equiv 0 \pmod{2w} \\
 y\equiv 0 \pmod{2w}
@@ -602,27 +603,32 @@ y\equiv 0 \pmod{2w}
 ix_n+x_j\equiv 0 \pmod{2w} \\
 iy_n+y_j\equiv 0 \pmod{2h}
 \end{cases}\]</span>
-<span class="math display">\[
-对于 F1，将式子变形，得到：
-\]</span>
-<span class="math display">\[\begin{cases}
+<p>$$</p>
+<p>对于 F1，将式子变形，得到：</p>
+<p><span class="math display">\[
+\begin{cases}
 x_j\equiv -ix_n \pmod{2w} \\
 y_j\equiv -iy_n \pmod{2h}
-\end{cases}\]</span>
-<p>$$ 我们可以把执行一次移动序列经过的点的坐标存到一个 <code>std::map</code> 里，然后枚举 <span class="math inline">\(i\in[0,k)\)</span>，查一下 <code>std::map</code> 中点 <span class="math inline">\((-ix_n,-iy_n)\)</span> 的值即可。时间复杂度 <span class="math inline">\(O(k\log n)\)</span>。</p>
-<p>对于 F2，将式子变形，得到： <span class="math display">\[
+\end{cases}
+\]</span></p>
+<p>我们可以把执行一次移动序列经过的点的坐标存到一个 <code>std::map</code> 里，然后枚举 <span class="math inline">\(i\in[0,k)\)</span>，查一下 <code>std::map</code> 中点 <span class="math inline">\((-ix_n,-iy_n)\)</span> 的值即可。时间复杂度 <span class="math inline">\(O(k\log n)\)</span>。</p>
+<p>对于 F2，将式子变形，得到：</p>
+<p><span class="math display">\[
 \begin{cases}
 ix_n\equiv -x_j \pmod{2w} \\
 iy_n\equiv -y_j \pmod{2h}
 \end{cases}
-\]</span> 在这个方程组中，除了 <span class="math inline">\(i\)</span> 均为已知，于是可以枚举 <span class="math inline">\(x_j\)</span>，用中国剩余定理解 <span class="math inline">\(n\)</span> 遍即可。在此之前，还需要把方程转化为 <span class="math inline">\(x\equiv a\pmod{p}\)</span> 的标准形式。</p>
-<p>由于 <span class="math inline">\(a\)</span> 在 <span class="math inline">\(\bmod p\)</span> 下的逆元仅在 <span class="math inline">\(a,p\)</span> 互质下存在，故令 <span class="math inline">\(g=\gcd(2w,x_n)\)</span>，则： <span class="math display">\[
+\]</span></p>
+<p>在这个方程组中，除了 <span class="math inline">\(i\)</span> 均为已知，于是可以枚举 <span class="math inline">\(x_j\)</span>，用中国剩余定理解 <span class="math inline">\(n\)</span> 遍即可。在此之前，还需要把方程转化为 <span class="math inline">\(x\equiv a\pmod{p}\)</span> 的标准形式。</p>
+<p>由于 <span class="math inline">\(a\)</span> 在 <span class="math inline">\(\bmod p\)</span> 下的逆元仅在 <span class="math inline">\(a,p\)</span> 互质下存在，故令 <span class="math inline">\(g=\gcd(2w,x_n)\)</span>，则：</p>
+<p><span class="math display">\[
 \begin{align}
-\ \ ix_n&amp;\equiv -x_j \pmod{2w}\\
-\ \ i\cdot\frac{x_n}{g}&amp;\equiv -\frac{x_j}{g}\pmod{\frac{2w}{g}}\\
-\ \ \ \ i &amp;\equiv -\frac{x_j}{g}\left(\frac{x_n}{g}\right)^{-1}\pmod{\frac{2w}{g}}
+ix_n&amp;\equiv -x_j \pmod{2w}\\
+i\cdot\frac{x_n}{g}&amp;\equiv -\frac{x_j}{g}\pmod{\frac{2w}{g}}\\
+i &amp;\equiv -\frac{x_j}{g}\left(\frac{x_n}{g}\right)^{-1}\pmod{\frac{2w}{g}}
 \end{align}
-\]</span> 显然当 <span class="math inline">\(g \nmid x_j\)</span> 时方程无解。</p>
+\]</span></p>
+<p>显然当 <span class="math inline">\(g \nmid x_j\)</span> 时方程无解。</p>
 <p>对于一个 <span class="math inline">\(x_j\)</span>，用 CRT 解出最小的 <span class="math inline">\(i\)</span> 后，问题转化为 <span class="math inline">\(i,i+M,i+2M,\cdots\)</span> 中有几个在 <span class="math inline">\([0,k-1)\)</span> 范围内，答案是 <span class="math inline">\(\dfrac{k-1-i}{M}+1\)</span>。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log w)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
