@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          14k 字
+          15k 字
         
       </span>
     
@@ -651,7 +651,22 @@ p+q\mid d \to p+q\le d\to p\le d=\dfrac{a}{p}\le \dfrac{n}{p}
 \]</span></p>
 <p>于是 <span class="math inline">\(p^2 \le n \to p\in[1,\sqrt{n}]\)</span>，同理 <span class="math inline">\(q\in[1,\sqrt{m}]\)</span>。</p>
 <p><span class="math inline">\(O(\sqrt{nm})\)</span> 枚举 <span class="math inline">\(p,q\)</span>，当 <span class="math inline">\(\gcd(p,q)=1\)</span> 时，贡献等价于有多少 <span class="math inline">\(d\)</span> 满足 <span class="math inline">\(p+q\mid d\)</span> 且 <span class="math inline">\(d\le \min(\dfrac{n}{p},\dfrac{m}{q})\)</span>，即 <span class="math inline">\(\left\lfloor\dfrac{\min(\dfrac{n}{p},\dfrac{m}{q})}{p+q}\right\rfloor\)</span>。</p>
-<p>时间复杂度 <span class="math inline">\(O(\sqrt{nm}\log \sqrt{n})\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf1824b2.-luotianyi-and-the-floating-islands-hard-version"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1824/problem/B2">CF1824B2. LuoTianyi and the Floating Islands (Hard Version)</a></h2>
+<p>*2300 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1824/submission/304516792">Code</a></p>
+<p>规定有人的点称为黑点，到所有黑点距离和最小的点称为目标点。</p>
+<p>结论：目标点构成一个连通块。</p>
+<ul>
+<li>比较显然。</li>
+</ul>
+<p>结论：当 <span class="math inline">\(k\)</span> 为奇数时，答案为 <span class="math inline">\(1\)</span>。</p>
+<ul>
+<li>对于任意一个有奇数个黑点的局面，假定我们已经找到了一个目标点 <span class="math inline">\(x\)</span>。若存在 <span class="math inline">\(x\)</span> 的一个邻居 <span class="math inline">\(y\)</span> 也是目标点，那么 <span class="math inline">\(x\to y\)</span> 移动的过程中理应没有额外贡献，换句话说边 <span class="math inline">\((x,y)\)</span> 两侧黑点数目相同。此时黑点个数定为偶数，矛盾。故对于任意一个奇数个黑点的局面有且仅有一个目标点。</li>
+</ul>
+<p>接下来考虑将点的贡献放到边上，好处是目标点构成连通块，边的数量总是目标点数量 <span class="math inline">\(-1\)</span>，而且边的贡献容易计算。</p>
+<p>当 <span class="math inline">\(k\)</span> 为偶数时，根据上述分析，一条边当且仅当两侧黑点数目相同时有贡献，故贡献为两侧各选 <span class="math inline">\(\dfrac{k}{2}\)</span> 个黑点的方案数。</p>
+<p>任选根计算出 <span class="math inline">\(sz[x]\)</span> 为子树大小，那么答案即 <span class="math inline">\(\dfrac{\sum\limits_{x=1}^{n}\sum\limits_{y\in son[x]}\dbinom{sz[y]}{\dfrac{k}{2}}\dbinom{n-sz[y]}{\dfrac{k}{2}}}{\dbinom{n}{k}}+1\)</span> 。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1983/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1983/problem/F">Problem - F - Codeforces</a></p>
