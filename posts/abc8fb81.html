@@ -667,11 +667,18 @@ p+q\mid d \to p+q\le d\to p\le d=\dfrac{a}{p}\le \dfrac{n}{p}
 <p>当 <span class="math inline">\(k\)</span> 为偶数时，根据上述分析，一条边当且仅当两侧黑点数目相同时有贡献，故贡献为两侧各选 <span class="math inline">\(\dfrac{k}{2}\)</span> 个黑点的方案数。</p>
 <p>任选根计算出 <span class="math inline">\(sz[x]\)</span> 为子树大小，那么答案即 <span class="math inline">\(\dfrac{\sum\limits_{x=1}^{n}\sum\limits_{y\in son[x]}\dbinom{sz[y]}{\dfrac{k}{2}}\dbinom{n-sz[y]}{\dfrac{k}{2}}}{\dbinom{n}{k}}+1\)</span> 。</p>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1989d.-smithing-skill"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1989/problem/D">CF1989D. Smithing Skill</a></h2>
+<p>*1900 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1989/submission/304548337">Code</a></p>
+<p>首先，不同 <span class="math inline">\(c_j\)</span> 互不影响。其次，对于一个 <span class="math inline">\(c_j\)</span>，肯定是选满足 <span class="math inline">\(c_j\ge a_i\)</span> 的武器中 <span class="math inline">\(a_i-b_i\)</span> 最小的武器，并不断地合成再焚毁直到 <span class="math inline">\(c_j &lt; a_i\)</span> 为止。</p>
+<p>考虑阈值分治，令 <span class="math inline">\(A=\max a_i\)</span>，可以先对每个 <span class="math inline">\(i\in[1,A]\)</span> 预处理出 <span class="math inline">\(res[i]\)</span> 表示 <span class="math inline">\(i\)</span> 个矿石能够获得的最大经验点数；而对于 <span class="math inline">\(c_j &gt; A\)</span> 的询问，用最小的 <span class="math inline">\(a_i-b_i\)</span> 处理直到 <span class="math inline">\(c_j \le A\)</span>，就能直接查表查到 <span class="math inline">\(res[c_j]\)</span>。</p>
+<p>其中 <span class="math inline">\(res[i]\)</span> 的预处理仍然不简单，我们可以定义一个辅助数组 <span class="math inline">\(d[i]\)</span> 表示所有 <span class="math inline">\(a_i \le i\)</span> 的武器里面 <span class="math inline">\(a_i-b_i\)</span> 的最小值。在此基础上，有递推 <span class="math inline">\(res[i]=2+res[i-d[i]]\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n+w+m)\)</span>，<span class="math inline">\(w\)</span> 为值域。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1983/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1983/problem/F">Problem - F - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1972/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2059/problem/E1">Problem - E1 - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1989/problem/D">Problem - D - Codeforces</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
