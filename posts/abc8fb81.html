@@ -477,13 +477,13 @@ f(x,y)&amp;= 2\min(\text{dis}(x,\text{lca}_{x,y}),\text{dis}(y,\text{lca}_{x,y})
 \]</span> 前提是 <span class="math inline">\(x,y\)</span> 没有祖先关系。</p>
 <p>这样就把贡献拆成了三部分，可以分别计算：</p>
 <ul>
-<li><span class="math inline">\(\min(\text{dep}_x, \text{dep}_y)\)</span>：枚举 <span class="math inline">\(x\)</span>，则每个深度比 <span class="math inline">\(x\)</span> 大且不在 <span class="math inline">\(x\)</span> 子树中的 <span class="math inline">\(y\)</span> 有 <span class="math inline">\(\text{dep}_x\)</span> 的贡献。令 <span class="math inline">\(d[x]\)</span> 表示深度 <span class="math inline">\(\ge x\)</span> 的节点数（可以通过一个后缀和实现），分为两种情况。
+<li><span class="math inline">\(\min(\text{dep}_x, \text{dep}_y)\)</span>：枚举 <span class="math inline">\(x\)</span>，则每个深度比 <span class="math inline">\(x\)</span> 大且不在 <span class="math inline">\(x\)</span> 子树中的 <span class="math inline">\(y\)</span> 有 <span class="math inline">\(\text{dep}_x\)</span> 的贡献。令 <span class="math inline">\(d_x\)</span> 表示深度 <span class="math inline">\(\ge x\)</span> 的节点数（可以通过一个后缀和实现），分为两种情况。
 <ul>
-<li><span class="math inline">\(\text{dep}_x &lt; \text{dep}_y\)</span>：贡献为 <span class="math inline">\((d[dep[x]+1]-(sz[x]-1))\times dep[x]\)</span>。</li>
-<li><span class="math inline">\(\text{dep}_x=\text{dep}_y\)</span>：贡献为 <span class="math inline">\((d[dep[x]]-d[dep[x]+1]-1)\times dep[x]\)</span>，最后要除以 <span class="math inline">\(2\)</span> 使无序对 <span class="math inline">\(\to\)</span> 有序对。</li>
+<li><span class="math inline">\(\text{dep}_x &lt; \text{dep}_y\)</span>：贡献为 <span class="math inline">\((d_{dep_x+1}-(sz_x-1))\times dep_x\)</span>。</li>
+<li><span class="math inline">\(\text{dep}_x=\text{dep}_y\)</span>：贡献为 <span class="math inline">\((d_{dep_x}-d_{dep_x+1}-1)\times dep_x\)</span>，最后要除以 <span class="math inline">\(2\)</span> 使无序对 <span class="math inline">\(\to\)</span> 有序对。</li>
 </ul></li>
-<li><span class="math inline">\(\text{dep}_{\text{lca}_{x,y}}\)</span>：枚举 <span class="math inline">\(\text{lca}\)</span>，对于当前点 <span class="math inline">\(x\)</span>，贡献为 <span class="math inline">\(\sum_{y\in son[x]}sz[y]\times (sz[x]-1-sz[y])\times dep[x]\)</span>。</li>
-<li><span class="math inline">\(1\)</span>：即没有祖先关系的 <span class="math inline">\((x,y)\)</span> 组数。对于当前点 <span class="math inline">\(x\)</span>，贡献为 <span class="math inline">\(n-sz[x]-dep[x]+1\)</span>。</li>
+<li><span class="math inline">\(\text{dep}_{\text{lca}_{x,y}}\)</span>：枚举 <span class="math inline">\(\text{lca}\)</span>，对于当前点 <span class="math inline">\(x\)</span>，贡献为 <span class="math inline">\(\sum_{y\in son[x]}sz_y\times (sz_x-1-sz_y)\times dep_x\)</span>。</li>
+<li><span class="math inline">\(1\)</span>：即没有祖先关系的 <span class="math inline">\((x,y)\)</span> 组数。对于当前点 <span class="math inline">\(x\)</span>，贡献为 <span class="math inline">\(n-sz_x-dep_x+1\)</span>。</li>
 </ul>
 <p>第 <span class="math inline">\(2, 3\)</span> 部分最后也需要除以 <span class="math inline">\(2\)</span>，从而只计算有序对。</p>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
@@ -678,7 +678,6 @@ p+q\mid d \to p+q\le d\to p\le d=\dfrac{a}{p}\le \dfrac{n}{p}
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1983/problem/F">Problem - F - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1972/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2059/problem/E1">Problem - E1 - Codeforces</a></p>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1989/problem/D">Problem - D - Codeforces</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
