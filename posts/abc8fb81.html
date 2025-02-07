@@ -367,7 +367,7 @@ dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
 <li>比较显然。</li>
 </ul>
 <p>于是从大到小枚举要插的数，用一个计数器统计每次有多少空可以插，乘起来就是答案。</p>
-<p>时间复杂度：<span class="math inline">\(O(n\alpha)\)</span>。</p>
+<p>时间复杂度<span class="math inline">\(O(n\alpha)\)</span>。</p>
 <h2 id="cf2055d.-scarecrow"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2055/problem/D">CF2055D. Scarecrow</a></h2>
 <p>*2000 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2055/submission/301662039">Code</a></p>
 <p>设当前使用的时间是 <span class="math inline">\(t\)</span>，乌鸦当前在 <span class="math inline">\(p\)</span>。</p>
@@ -395,7 +395,7 @@ dp[x+1][k] = \min(dp[x+1][k],\left\lceil\frac{dp[x][k]}{b[x]}\right\rceil)
 <p>注意我们把一些边由 <span class="math inline">\(1\to0\)</span> 的过程，如果对于所有边权为 <span class="math inline">\(x\)</span> 的边 <span class="math inline">\((a,b)\)</span>，<span class="math inline">\(dis[a][b]\)</span> 都已经为 <span class="math inline">\(0\)</span>，那么此次更新就是不必要的，就能省下一个 <span class="math inline">\(O(n^2)\)</span>。</p>
 <p>实际上，可以证明这样的更新最多进行 <span class="math inline">\(n\)</span> 次：如果当前边 <span class="math inline">\((a,b)\)</span> 有 <span class="math inline">\(dis[a][b]\neq0\)</span>，那么 <span class="math inline">\(a\)</span> 和 <span class="math inline">\(b\)</span> 中的至少一个需要来自之前没更新过的点，而一共就 <span class="math inline">\(n\)</span> 个点，故得证。</p>
 <p>时间复杂度 <span class="math inline">\(O(n^3)\)</span>，能够通过 E2。</p>
-<p>事实上，回答询问的时候二分并不是必要的。我补完之后点进 jiangly 的 submission 才发现这一点。一样是从小到大枚举边权 <span class="math inline">\(x\)</span> 并赋值，但你只需要在 floyd 更新的时候顺便记一下就行了，细节可以阅读 jiangly 的代码。</p>
+<p>事实上，回答询问的时候二分并不是必要的。一样是从小到大枚举边权 <span class="math inline">\(x\)</span> 并赋值，但你只需要在 floyd 更新的时候顺便记一下就行了，细节可以阅读 jiangly 的代码。</p>
 <h2 id="cf2060e.-graph-composition"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2060/problem/E">CF2060E. Graph Composition</a></h2>
 <p>*1500 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2060/submission/301963287">Code</a></p>
 <p>很容易想的很复杂，实际上只需要两步：</p>
