@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          17k 字
+          18k 字
         
       </span>
     
@@ -713,8 +713,19 @@ p+q\mid d \to p+q\le d\to p\le d=\dfrac{a}{p}\le \dfrac{n}{p}
 <p>而 Alice 作为先手会选中 <span class="math inline">\(\left\lceil\dfrac{n-k}{2}\right\rceil\)</span> 个普通球，故他选中普通球价值的期望总和是 <span class="math inline">\(\left\lceil\dfrac{n-k}{2}\right\rceil\cdot normal\)</span>。</p>
 <p>根据期望的线性性， 上述两个式子相加就是 Alice 的答案。Bob 的答案即所有球的价值总和减去 Alice 的答案。</p>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1983f.-array-value"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1983/problem/F">CF1983F. array-value</a></h2>
+<p>*2500 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1983/submission/305454555">Code</a></p>
+<p>二分答案，设二分出的答案是 <span class="math inline">\(mid\)</span>，若至少有 <span class="math inline">\(k\)</span> 个区间的 value <span class="math inline">\(\le mid\)</span>，就往小二分，否则往大二分。</p>
+<p>问题转化为判断求有多少个区间的 value <span class="math inline">\(\le mid\)</span>。</p>
+<p>不妨枚举右端点 <span class="math inline">\(r\)</span>，此时只需找到最大的 <span class="math inline">\(l\)</span> 满足 <span class="math inline">\(a_l \oplus a_r \le mid\)</span>，那么左端点位于 <span class="math inline">\([1,l]\)</span> 内构成的区间均满足条件。</p>
+<p>这是个经典的问题，使用一个 trie 就能维护，步骤如下：</p>
+<ul>
+<li>对每个 trie 树上的节点 <span class="math inline">\(p\)</span> 维护一个 <span class="math inline">\(mx[p]\)</span> 存储经过这个点的值中下标最大值。</li>
+<li>假设当前对 <span class="math inline">\(a_i\)</span> 进行查询，我们要返回一个最大的 <span class="math inline">\(j\)</span> 满足 <span class="math inline">\(a_j\oplus a_i \le mid\)</span>。从大到小枚举每一位，设 <span class="math inline">\(a_i\)</span> 当前位为 <span class="math inline">\(x\)</span>，<span class="math inline">\(mid\)</span> 当前位为 <span class="math inline">\(m\)</span>。若 <span class="math inline">\(m=0\)</span>，为了满足 <span class="math inline">\(\le mid\)</span> 的条件，<span class="math inline">\(a_j\)</span> 这一位应和 <span class="math inline">\(x\)</span> 相同，故只能向 <span class="math inline">\(x\)</span> 的方向走。若 <span class="math inline">\(m=1\)</span>，那么两边都可以走：如果向 <span class="math inline">\(x\)</span> 一侧走，之后无论怎么走得到的 <span class="math inline">\(a_j\)</span> 都会满足 <span class="math inline">\(a_j \oplus a_i \le mid\)</span>，故直接累加 <span class="math inline">\(x\)</span> 一侧的 <span class="math inline">\(mx[p]\)</span>，并转而走向 <span class="math inline">\(x\)</span> 的对侧。</li>
+<li>最后走到底得到的 <span class="math inline">\(a_j\)</span> 一样满足条件，故答案还要和末尾节点的 <span class="math inline">\(mx[p]\)</span> 取 <span class="math inline">\(\max\)</span>。</li>
+</ul>
+<p>时间复杂度 <span class="math inline">\(O(n\log^2w)\)</span>，<span class="math inline">\(w\)</span> 为值域。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1983/problem/F">Problem - F - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2059/problem/E1">Problem - E1 - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1972/problem/F">Problem - F - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2022/problem/E2">Problem - E2 - Codeforces</a></p>
