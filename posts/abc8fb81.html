@@ -721,7 +721,11 @@ p+q\mid d \to p+q\le d\to p\le d=\dfrac{a}{p}\le \dfrac{n}{p}
 <p>这是个经典的问题，使用一个 trie 就能维护，步骤如下：</p>
 <ul>
 <li>对每个 trie 树上的节点 <span class="math inline">\(p\)</span> 维护一个 <span class="math inline">\(mx[p]\)</span> 存储经过这个点的值中下标最大值。</li>
-<li>假设当前对 <span class="math inline">\(a_i\)</span> 进行查询，我们要返回一个最大的 <span class="math inline">\(j\)</span> 满足 <span class="math inline">\(a_j\oplus a_i \le mid\)</span>。从大到小枚举每一位，设 <span class="math inline">\(a_i\)</span> 当前位为 <span class="math inline">\(x\)</span>，<span class="math inline">\(mid\)</span> 当前位为 <span class="math inline">\(m\)</span>。若 <span class="math inline">\(m=0\)</span>，为了满足 <span class="math inline">\(\le mid\)</span> 的条件，<span class="math inline">\(a_j\)</span> 这一位应和 <span class="math inline">\(x\)</span> 相同，故只能向 <span class="math inline">\(x\)</span> 的方向走。若 <span class="math inline">\(m=1\)</span>，那么两边都可以走：如果向 <span class="math inline">\(x\)</span> 一侧走，之后无论怎么走得到的 <span class="math inline">\(a_j\)</span> 都会满足 <span class="math inline">\(a_j \oplus a_i \le mid\)</span>，故直接累加 <span class="math inline">\(x\)</span> 一侧的 <span class="math inline">\(mx[p]\)</span>，并转而走向 <span class="math inline">\(x\)</span> 的对侧。</li>
+<li>假设当前对 <span class="math inline">\(a_i\)</span> 进行查询，我们要返回一个最大的 <span class="math inline">\(j\)</span> 满足 <span class="math inline">\(a_j\oplus a_i \le mid\)</span>。从大到小枚举每一位，设 <span class="math inline">\(a_i\)</span> 当前位为 <span class="math inline">\(x\)</span>，<span class="math inline">\(mid\)</span> 当前位为 <span class="math inline">\(m\)</span>。
+<ul>
+<li>若 <span class="math inline">\(m=0\)</span>，为了满足 <span class="math inline">\(\le mid\)</span> 的条件，<span class="math inline">\(a_j\)</span> 这一位应和 <span class="math inline">\(x\)</span> 相同，故只能向 <span class="math inline">\(x\)</span> 的方向走。</li>
+<li>若 <span class="math inline">\(m=1\)</span>，那么两边都可以走：如果向 <span class="math inline">\(x\)</span> 一侧走，之后无论怎么走得到的 <span class="math inline">\(a_j\)</span> 都会满足 <span class="math inline">\(a_j \oplus a_i \le mid\)</span>，故直接累加 <span class="math inline">\(x\)</span> 一侧的 <span class="math inline">\(mx[p]\)</span>，并转而走向 <span class="math inline">\(x\)</span> 的对侧。</li>
+</ul></li>
 <li>最后走到底得到的 <span class="math inline">\(a_j\)</span> 一样满足条件，故答案还要和末尾节点的 <span class="math inline">\(mx[p]\)</span> 取 <span class="math inline">\(\max\)</span>。</li>
 </ul>
 <p>时间复杂度 <span class="math inline">\(O(n\log^2w)\)</span>，<span class="math inline">\(w\)</span> 为值域。</p>
