@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18k 字
+          19k 字
         
       </span>
     
@@ -328,7 +328,8 @@
             
               <div class="markdown-body">
                 
-                <h2 id="cf2048f.-kevin-and-math-class"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2048/problem/F">CF2048F. Kevin and Math Class</a></h2>
+                <p>寒假给自己定的要求是 vp 后补 <em>2500 以下的题，有些 &gt; </em>2500 但我感兴趣的题也会补。</p>
+<h2 id="cf2048f.-kevin-and-math-class"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2048/problem/F">CF2048F. Kevin and Math Class</a></h2>
 <p>*2500 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2048/submission/300486188">Code</a></p>
 <p>对于 <span class="math inline">\(b_x\)</span>，找到 <span class="math inline">\(b_x\)</span> 左侧第一个 <span class="math inline">\(l\)</span> 使得 <span class="math inline">\(b_l &lt; b_x\)</span>，右侧第一个 <span class="math inline">\(r\)</span> 使得 <span class="math inline">\(b_r &lt; b_x\)</span>。</p>
 <p>那么要让 <span class="math inline">\(b_x\)</span> 当最小值，区间最大就是 <span class="math inline">\([l+1,r-1]\)</span>，又我们肯定是选尽可能大的区间，所以要除 <span class="math inline">\(b_x\)</span> 时肯定是对区间 <span class="math inline">\([l+1,r-1]\)</span> 操作。</p>
@@ -729,11 +730,25 @@ p+q\mid d \to p+q\le d\to p\le d=\dfrac{a}{p}\le \dfrac{n}{p}
 <li>最后走到底得到的 <span class="math inline">\(a_j\)</span> 一样满足条件，故答案还要和末尾节点的 <span class="math inline">\(mx[p]\)</span> 取 <span class="math inline">\(\max\)</span>。</li>
 </ul>
 <p>时间复杂度 <span class="math inline">\(O(n\log^2w)\)</span>，<span class="math inline">\(w\)</span> 为值域。</p>
+<h2 id="cf2004f.-make-a-palindrome"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2004/problem/F">CF2004F. Make a Palindrome</a></h2>
+<p>*2600 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2004/submission/305497742">Code</a></p>
+<p>结论：两种操作对最小操作次数的影响等价，即任选其中一种操作或两种操作都用得到的答案相同。</p>
+<ul>
+<li>考虑对于一个 <span class="math inline">\(\{b\}\)</span>，如何计算 <span class="math inline">\(f(b)\)</span>。设 <span class="math inline">\(\{b\}\)</span> 中第一个元素是 <span class="math inline">\(b_1\)</span>，最后一个是 <span class="math inline">\(b_n\)</span>。首先若 <span class="math inline">\(b_1=b_n\)</span>，可以将它们从序列中拿掉，直到 <span class="math inline">\(b_1 \neq b_n\)</span>。此时如果使用分裂操作肯定是选择将 <span class="math inline">\(b_1,b_n\)</span> 中较大的那个分解成较小的那个，不妨设 <span class="math inline">\(b_1 &lt; b_n\)</span>，则相当于耗费一次操作将 <span class="math inline">\(b_1,b_n\)</span> 去掉并在右侧添加一个 <span class="math inline">\(b_n-b_1\)</span>。此时若 <span class="math inline">\(b_n-b_1 \neq b_2\)</span>，那么此次分裂只是单纯把序列元素个数减少了一个，合并操作同样能做到。若 <span class="math inline">\(b_n-b_1=b_2\)</span>，说明此时可以额外将最左侧的 <span class="math inline">\(b_2\)</span> 和最右侧的 <span class="math inline">\(b_n-b_1\)</span> 去掉，一次操作相当于减少了两个元素；但移项可知 <span class="math inline">\(b_1+b_2=b_n\)</span>，说明最开始我们如果在左侧用一次合并生成 <span class="math inline">\(b_1+b_2\)</span> 再和右边的 <span class="math inline">\(b_n\)</span> 抵掉，也是减少了两个元素。于是分裂和合并操作是等价的。</li>
+</ul>
+<p>接下来我们只讨论合并操作。在最极端的情况下，将长为 <span class="math inline">\(n\)</span> 的序列变成回文需要 <span class="math inline">\(n-1\)</span> 次操作，考虑什么情况能减少操作次数。</p>
+<p>结论：对于一个序列，如果其某一个非空前缀和某一个非空后缀的元素和相同，就能减少一次操作。</p>
+<ul>
+<li>设序列长为 <span class="math inline">\(n\)</span>，若 <span class="math inline">\([1,l]\)</span> 和 <span class="math inline">\([r,n]\)</span> 的元素和相同，说明从两端移去数的过程进行到只剩 <span class="math inline">\(\sum\limits_{i=1}^{l-1}a_i,a_l,a_{l+1},\cdots,a_{r-1},\sum\limits_{i=r}^{n}a_i\)</span> 或 <span class="math inline">\(\sum\limits_{i=1}^{l}a_i,a_{l+1},\cdots,a_{r-1},a_r,\sum\limits_{i=r+1}^{n}a_i\)</span> 时，头两个元素合并或后两个元素合并就能额外减少一个元素，换句话说少用了一次操作，并且操作后序列的结构和操作前一致，可以继续寻找最近的非空前缀和最近的非空后缀。</li>
+</ul>
+<p>特别地，找到的非空前缀和非空后缀可以相交，如何理解？若有 <span class="math inline">\([1,l]\)</span> 和 <span class="math inline">\([r,n]\)</span> 元素和相等但 <span class="math inline">\(l&gt;r\)</span>，说明一定有 <span class="math inline">\([1,r]\)</span> 和 <span class="math inline">\([l,n]\)</span> 元素和相等而中间 <span class="math inline">\([r,l]\)</span> 的部分共用，此时 <span class="math inline">\([r,l]\)</span> 一定构成回文串而不用删掉。</p>
+<p>回到原本的问题上来，我们要计算 <span class="math inline">\(\{a\}\)</span> 所有非空子数组 <span class="math inline">\(\{b\}\)</span> 的 <span class="math inline">\(f(b)\)</span> 之和。假若我们在 <span class="math inline">\(\{a\}\)</span> 中发现了一组 <span class="math inline">\([l_1,r_1]\)</span>，<span class="math inline">\([l_2,r_2]\)</span> 元素和相等，那么这两段如果要作为前后缀只能是对 <span class="math inline">\([l_1,r_2]\)</span> 有 <span class="math inline">\(-1\)</span> 的贡献，对其它区间都没有贡献，故对整个序列的贡献就是 <span class="math inline">\(-1\)</span>。</p>
+<p>故题目转化为求 <span class="math inline">\(\{a\}\)</span> 中有多少对非空子区间相等，枚举每个区间存到 <code>std::map</code> 里统计即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^2\log n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2059/problem/E1">Problem - E1 - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1972/problem/F">Problem - F - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2022/problem/E2">Problem - E2 - Codeforces</a></p>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2004/problem/F">Problem - F - Codeforces</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
