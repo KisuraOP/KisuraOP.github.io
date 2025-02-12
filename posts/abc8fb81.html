@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          19k 字
+          20k 字
         
       </span>
     
@@ -756,6 +756,14 @@ p+q\mid d \to p+q\le d\to p\le d=\dfrac{a}{p}\le \dfrac{n}{p}
 <p><strong>solution2：</strong>显然选长度尽可能大的区间更优，故使用反悔贪心。</p>
 <p>压入堆中的是已经选择的区间的长度。每当堆中元素和 <span class="math inline">\(\ge k\)</span>，就把最小的元素弹出来。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf1821e.-rearrange-brackets"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1821/problem/E">CF1821E. Rearrange Brackets</a></h2>
+<p>*2100 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1821/submission/305857599">Code</a></p>
+<p>题意差评，一堆能让人误会的地方。</p>
+<p>首先，对于给定的平衡括号序列，得到最小 cost 的方式是每次移除最右侧的相邻括号对。</p>
+<p>对于两对括号 <span class="math inline">\(A,B\)</span>，如果 <span class="math inline">\(A\)</span> 包含 <span class="math inline">\(B\)</span>，就连一条 <span class="math inline">\(A\to B\)</span> 的边，建出括号森林。不妨设节点 <span class="math inline">\(1\)</span> 是虚根，这样得到一棵括号树。</p>
+<p>那么移除节点 <span class="math inline">\(x\)</span> 的代价就是 <span class="math inline">\(x\)</span> 的非 <span class="math inline">\(1\)</span> 祖先数目。换句话说，对于任意一个点，它子树内的每个点都有 <span class="math inline">\(1\)</span> 的贡献，即这组括号序列的最小 cost 是 <span class="math inline">\(\sum\limits_{i=2} sz[i]-1\)</span>。</p>
+<p>考虑移动一个括号，可行的移动方式是 <span class="math inline">\(A(B)C\to A()BC\)</span>，这等价于把一个点 <span class="math inline">\(x\)</span> 的儿子接到父亲上，再把 <span class="math inline">\(x\)</span> 删去。不难发现这个过程是无序的（即只要删除的点集是一样的得到的括号树就一样），你只要将 <span class="math inline">\(sz[i]-1\)</span> 排序后选最大的 <span class="math inline">\(k\)</span> 个删去就行。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。<span class="math inline">\(k\)</span> 的范围十分诈骗。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2059/problem/E1">Problem - E1 - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1972/problem/F">Problem - F - Codeforces</a></p>
