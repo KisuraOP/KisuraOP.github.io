@@ -751,7 +751,7 @@ p+q\mid d \to p+q\le d\to p\le d=\dfrac{a}{p}\le \dfrac{n}{p}
 <ul>
 <li>随便举个例子：假设 <span class="math inline">\(k=4\)</span>，对于 <span class="math inline">\([1,1]\)</span> 和 <span class="math inline">\([4,7]\)</span>，选择两个区间最少消耗 <span class="math inline">\(10\)</span> 次操作，如果只选 <span class="math inline">\([4,7]\)</span> 则最少只消耗 <span class="math inline">\(9\)</span> 次。但若是 <span class="math inline">\([1,2]\)</span> 和 <span class="math inline">\([4,7]\)</span>，无论选择两个区间还是只选 <span class="math inline">\([4,7]\)</span>，最少都是消耗 <span class="math inline">\(9\)</span> 次操作。</li>
 </ul>
-<p>于是我们记录 <span class="math inline">\(\tt{one}\)</span> 和 <span class="math inline">\(\tt{sum}\)</span> 分别代表长为 <span class="math inline">\(1\)</span> 的区间个数和长度 <span class="math inline">\(\ge 2\)</span> 的区间的长度和。从左到右扫，分 <span class="math inline">\(\tt{sum}\ \)</span><span class="math inline">\(\ge k\)</span> 和 <span class="math inline">\(\tt{sum+one}\ \)</span><span class="math inline">\(\ge k\)</span> 讨论即可。</p>
+<p>于是我们记录 <span class="math inline">\(\text{one}\)</span> 和 <span class="math inline">\(\text{sum}\)</span> 分别代表长为 <span class="math inline">\(1\)</span> 的区间个数和长度 <span class="math inline">\(\ge 2\)</span> 的区间的长度和。从左到右扫，分 <span class="math inline">\(\text{sum}\ge k\)</span> 和 <span class="math inline">\(\text{sum}+\text{one}\ge k\)</span> 讨论即可。</p>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <p><strong>solution2：</strong>显然选长度尽可能大的区间更优，故使用反悔贪心。</p>
 <p>压入堆中的是已经选择的区间的长度。每当堆中元素和 <span class="math inline">\(\ge k\)</span>，就把最小的元素弹出来。</p>
