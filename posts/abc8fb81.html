@@ -544,7 +544,7 @@ d=\dfrac{g}{\text{lowbit}(g)}=1\Longrightarrow g=\text{lowbit}(g)\Longrightarrow
 <p>还是通过二分找到最后一个右端点 <span class="math inline">\(R\)</span> 满足 <span class="math inline">\(\gcd\limits_{i\in[L,R]}b_i=0\)</span>，则区间 <span class="math inline">\([L,L],[L,L+1],[L,L+2],\cdots,[L,R]\)</span> 的 <span class="math inline">\(\gcd\)</span> 均为 <span class="math inline">\(0\)</span>，原因显然。</p>
 <p>区间 <span class="math inline">\(\gcd\)</span> 可以用 ST 表实现，时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <h2 id="cf2062d.-balanced-tree"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2062/problem/D">CF2062D. Balanced Tree</a></h2>
-<p>*2200 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2062/problem/D">Code</a></p>
+<p>*2200 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2062/submission/303333922">Code</a></p>
 <p>操作是：选定一个根，再让一个点的子树 <span class="math inline">\(+1\)</span>。</p>
 <p>对于一条边，我们只会让它一侧的所有节点 <span class="math inline">\(+1\)</span>（因为两侧都加等价于整棵树加，是没有意义的）。</p>
 <p>想象所有点都已经固定点权了，此时肯定是让点权小的一侧的所有点权 <span class="math inline">\(+1\)</span>。边的决策取决于两侧的节点，不妨先随意选定一个根，进行至下而上地贪心。</p>
@@ -749,6 +749,7 @@ p+q\mid d \to p+q\le d\to p\le d=\dfrac{a}{p}\le \dfrac{n}{p}
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2059/problem/E1">Problem - E1 - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1972/problem/F">Problem - F - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2022/problem/E2">Problem - E2 - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
