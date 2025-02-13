@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          20k 字
+          21k 字
         
       </span>
     
@@ -764,8 +764,31 @@ p+q\mid d \to p+q\le d\to p\le d=\dfrac{a}{p}\le \dfrac{n}{p}
 <p>那么移除节点 <span class="math inline">\(x\)</span> 的代价就是 <span class="math inline">\(x\)</span> 的非 <span class="math inline">\(1\)</span> 祖先数目。换句话说，对于任意一个点，它子树内的每个点都有 <span class="math inline">\(1\)</span> 的贡献，即这组括号序列的最小 cost 是 <span class="math inline">\(\sum\limits_{i=2} sz[i]-1\)</span>。</p>
 <p>考虑移动一个括号，可行的移动方式是 <span class="math inline">\(A(B)C\to A()BC\)</span>，这等价于把一个点 <span class="math inline">\(x\)</span> 的儿子接到父亲上，再把 <span class="math inline">\(x\)</span> 删去。不难发现这个过程是无序的（即只要删除的点集是一样的得到的括号树就一样），你只要将 <span class="math inline">\(sz[i]-1\)</span> 排序后选最大的 <span class="math inline">\(k\)</span> 个删去就行。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。<span class="math inline">\(k\)</span> 的范围十分诈骗。</p>
+<h2 id="cf2022e2.-billetes-mxhard-version"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2022/problem/E2">CF2022E2. Billetes MX（Hard Version）</a></h2>
+<p>*2600 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2022/submission/305865364">Code</a></p>
+<p>结论：对于一个 beautiful 的 <span class="math inline">\(n\times m\)</span> 网格，一定存在长为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(\{X\}\)</span> 和长为 <span class="math inline">\(m\)</span> 的序列 <span class="math inline">\(\{Y\}\)</span> 满足 <span class="math inline">\(a[i][j]=X[i]\oplus Y[j]\)</span>。</p>
+<ul>
+<li>容易说明，对于一个 beautiful 的网格，我们将任意一行异或上任意一个数后得到的新网格仍然 beautiful。于是我们进行如下操作：将每一行都异或上那行的第一个数，每一列都异或上那列的第一个数。这样我们得到了一个第一行、第一列全为 <span class="math inline">\(0\)</span> 的网格，它仍然 beautiful。</li>
+<li>此时 <span class="math inline">\(\forall i\in[2,n],j\in[2,m]\)</span>，有 <span class="math inline">\(a[i][j] \oplus a[1][j]\oplus a[i][1] \oplus a[1][1]=0\)</span>，由于后三项均为 <span class="math inline">\(0\)</span>，则 <span class="math inline">\(a[i][j]=0\)</span>。我们取第一列为序列 <span class="math inline">\(\{X\}\)</span>，第一行为序列 <span class="math inline">\(\{Y\}\)</span>，由 <span class="math inline">\(a[i][j]\)</span> 在异或完 <span class="math inline">\(X[i]\)</span> 和 <span class="math inline">\(Y[j]\)</span> 后为 <span class="math inline">\(0\)</span>，可知 <span class="math inline">\(a[i][j]=X[i]\oplus Y[j]\)</span>。</li>
+</ul>
+<p>那么，<span class="math inline">\(a[i][j]\)</span> 给定意味着 <span class="math inline">\(X[i] \oplus Y[j]\)</span> 给定，我们建立一个图论模型：一个 <span class="math inline">\(n+m\)</span> 个点的图，点 <span class="math inline">\(1\sim n\)</span> 代表对应的行，点 <span class="math inline">\(n+1\sim n+m\)</span> 代表对应的列，给定 <span class="math inline">\(a[i][j]\)</span> 就连一条 <span class="math inline">\(i \to n+j\)</span> 边权为 <span class="math inline">\(a[i][j]\)</span> 的边。</p>
+<p>根据异或的性质，在这个图中所有的环都要满足 "环上的边权异或和为 <span class="math inline">\(0\)</span>"。若不满足，答案就是 <span class="math inline">\(0\)</span>。否则方案数是什么呢？考虑一个没填数的格子，不妨设它的坐标是 <span class="math inline">\((r, c)\)</span>，将它填上相当于将点 <span class="math inline">\(r\)</span> 和点 <span class="math inline">\(n+c\)</span> 连起来了，分两种情况：</p>
+<ul>
+<li>连之前 <span class="math inline">\(r\)</span> 和 <span class="math inline">\(n+c\)</span> 就在一个连通块里了。此时新加进的这条边能构成一个新环，由于一个环上的边异或和要为 <span class="math inline">\(0\)</span>，这条新边权值自然是固定的，答案 <span class="math inline">\(\times 1\)</span>。</li>
+<li>连之前 <span class="math inline">\(r\)</span> 和 <span class="math inline">\(n+c\)</span> 不在一个连通块中。此时新加进的这条边不组成任何一个环，边权就能取任何一个 <span class="math inline">\([0,2^{30}-1]\)</span> 中的值，故答案 <span class="math inline">\(\times 2^{30}\)</span>。</li>
+</ul>
+<p>也就是说，对于当前的一个局面，有 <span class="math inline">\(cnt\)</span> 个连通块，且所有环都满足边权异或和为 <span class="math inline">\(0\)</span>，答案就是 <span class="math inline">\(2^{30\cdot cnt}\)</span>。</p>
+<p>连通块数目用并查集容易维护，只用考虑如何每次修改后都 check 异或和为 <span class="math inline">\(0\)</span> 的条件。</p>
+<p>实际上这个问题同样能用并查集维护：我们对图上每个点 <span class="math inline">\(x\)</span> 记录一个 <span class="math inline">\(g[x]\)</span> 表示 <span class="math inline">\(x\)</span> 到它所在连通块的根的距离（这个根也就是并查集里 find 得到的点）。那么并查集 merge 的时候如果发现 <span class="math inline">\(x,y\)</span> 在一个连通块中且 <span class="math inline">\(g[x]\oplus g[y] \neq w\)</span>，就说明我们发现了异或和 <span class="math inline">\(&gt;0\)</span> 的环。</p>
+<p><span class="math inline">\(g[x]\)</span> 则通过以下操作维护：</p>
+<ul>
+<li>find 函数回溯时 <span class="math inline">\(g[x] =g[x]\oplus g[fa[x]]\)</span>。</li>
+<li>merge 时假定 <span class="math inline">\(fa[rt_y]=rt_x\)</span>，则 <span class="math inline">\(g[rt_y]=(g[x] \oplus g[y]\oplus w)\)</span>。</li>
+</ul>
+<p>给一幅图帮助理解，不再赘述。</p>
+<p><img src="/image/academic/dsu.png" /></p>
+<p>时间复杂度 <span class="math inline">\(O((n+q)\alpha)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2059/problem/E1">Problem - E1 - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1972/problem/F">Problem - F - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2022/problem/E2">Problem - E2 - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
