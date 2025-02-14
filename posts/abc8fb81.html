@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          22k 字
+          23k 字
         
       </span>
     
@@ -808,10 +808,24 @@ p+q\mid d \to p+q\le d\to p\le d=\dfrac{a}{p}\le \dfrac{n}{p}
 <p>这样的好处是要舍去的物品和剩下 Bob 要从 Alice 手里买来的物品有了分界线。我们枚举这个分界线，分界线前我们选 <span class="math inline">\(k\)</span> 个舍去，贪心来讲一定是选 <span class="math inline">\(a[i]\)</span> 最小的 <span class="math inline">\(k\)</span> 个；分界线后我们要获得最大的利润，一定是选所有 <span class="math inline">\(b[i]&gt;a[i]\)</span> 的物品。</p>
 <p>分界线前用一个优先队列维护，分界线后预处理一个后缀和作为贡献。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf2067e.-white-magic"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2067/problem/E">CF2067E. White Magic</a></h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2067/submission/306114621">Code</a></p>
+<p>首先，答案序列中最多出现一个 <span class="math inline">\(0\)</span>。</p>
+<ul>
+<li>若出现两个 <span class="math inline">\(0\)</span>，设它们的下标分别为 <span class="math inline">\(i,j\)</span>。则 <span class="math inline">\(\min(a_1,\cdots,a_i)=0&lt;1\le\text{mex}(a_{i+1},\cdots,a_j=0,\cdots,a_n)\)</span>，矛盾。</li>
+</ul>
+<p>并且，如果答案序列中有 <span class="math inline">\(0\)</span>，这个 <span class="math inline">\(0\)</span> 一定是左数第一个 <span class="math inline">\(0\)</span>。</p>
+<ul>
+<li>贪心的想，这样可以让尽可能长的后缀 <span class="math inline">\(\text{mex}\)</span> 为 <span class="math inline">\(0\)</span>，不劣。</li>
+</ul>
+<p>最后，把非 <span class="math inline">\(0\)</span> 的数都选上一定不劣。</p>
+<p>设有 <span class="math inline">\(cnt\)</span> 个 <span class="math inline">\(i\)</span> 满足 <span class="math inline">\(a_i&gt;0\)</span>，我们只需检查含有第一个 <span class="math inline">\(0\)</span> 和所有 <span class="math inline">\(cnt\)</span> 个非 <span class="math inline">\(0\)</span> 数的序列，若 magical，答案是 <span class="math inline">\(cnt+1\)</span>；否则答案是 <span class="math inline">\(cnt\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2067/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2067/problem/F">Problem - F - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1969/problem/E">Problem - E - Codeforces</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
