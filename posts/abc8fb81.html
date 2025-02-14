@@ -801,6 +801,13 @@ p+q\mid d \to p+q\le d\to p\le d=\dfrac{a}{p}\le \dfrac{n}{p}
 <li><span class="math inline">\(S,T\)</span> 在同一棵子树内但 <span class="math inline">\(T\)</span> 深度大于 <span class="math inline">\(S\)</span> 或二者不是祖先关系。</li>
 </ol>
 <p>时间复杂度 <span class="math inline">\(O(n\log m)\)</span>。</p>
+<h2 id="cf1969d.-shop-game"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1969/problem/D">CF1969D. Shop Game</a></h2>
+<p>*1900 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1969/submission/306110742">Code</a></p>
+<p>Bob 会从 Alice 选的物品里选 <span class="math inline">\(k\)</span> 个 for free，那他肯定会选 <span class="math inline">\(b[i]\)</span> 最大的 <span class="math inline">\(k\)</span> 个。</p>
+<p>我们不妨将物品按 <span class="math inline">\(b[i]\)</span> 降序排序，这样相当于我们要选一个长至少为 <span class="math inline">\(k\)</span> 的子序列，然后把长为 <span class="math inline">\(k\)</span> 的前缀舍去。</p>
+<p>这样的好处是要舍去的物品和剩下 Bob 要从 Alice 手里买来的物品有了分界线。我们枚举这个分界线，分界线前我们选 <span class="math inline">\(k\)</span> 个舍去，贪心来讲一定是选 <span class="math inline">\(a[i]\)</span> 最小的 <span class="math inline">\(k\)</span> 个；分界线后我们要获得最大的利润，一定是选所有 <span class="math inline">\(b[i]&gt;a[i]\)</span> 的物品。</p>
+<p>分界线前用一个优先队列维护，分界线后预处理一个后缀和作为贡献。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2067/problem/E">Problem - E - Codeforces</a></p>
