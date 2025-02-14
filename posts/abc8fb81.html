@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          21k 字
+          22k 字
         
       </span>
     
@@ -788,10 +788,23 @@ p+q\mid d \to p+q\le d\to p\le d=\dfrac{a}{p}\le \dfrac{n}{p}
 <p>给一幅图帮助理解，不再赘述。</p>
 <p><img src="/image/academic/dsu.png" /></p>
 <p>时间复杂度 <span class="math inline">\(O((n+q)\alpha)\)</span>。</p>
+<h2 id="cf1972f.-long-way-to-be-non-decreasing"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1972/problem/F">CF1972F. Long Way to be Non-decreasing</a></h2>
+<p>*2800 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1972/submission/306070777">Code</a></p>
+<p>建图：<span class="math inline">\(\forall i\in [1, m]\)</span>，<span class="math inline">\(i\to b_i\)</span>。</p>
+<p>问题转化为：求最小的 <span class="math inline">\(k\)</span>，使得每个 <span class="math inline">\(a_i\)</span> 最多能在图上走 <span class="math inline">\(k\)</span> 步，得到的序列单调不降。</p>
+<p>容易发现答案单调，于是二分答案，设二分出的答案是 <span class="math inline">\(mid\)</span>。</p>
+<p>考虑一个贪心，对于第一个数而言，肯定是选 <span class="math inline">\(mid\)</span> 步内的权值最小点；第二个数肯定是选 <span class="math inline">\(mid\)</span> 步内权值大于等于第一个数的最小点，以此类推。我们从小到大枚举权值判定能否走到，若能走到，就跳到下一个数；否则继续往大了枚举。</p>
+<p>具体地，我们用一个三元组 <span class="math inline">\((S,T,mid)\)</span> 表示一个判定：判定 <span class="math inline">\(S\)</span> 走不超过 <span class="math inline">\(mid\)</span> 步是否能走到 <span class="math inline">\(T\)</span>。 <span class="math inline">\(T\)</span> 显然单调不降，于是我们只需判定 <span class="math inline">\(O(m)\)</span> 次。</p>
+<p>判定很简单，只是需要一些码力。首先 <span class="math inline">\(i\to b_i\)</span> 能得到一棵基环内向树，两点间的距离分为环上的一段和子树的一段，维护是朴素的。记录每个点属于哪个环对应的子树以及深度，就能 <span class="math inline">\(O(1)\)</span> 得到距离，再和 <span class="math inline">\(mid\)</span> 比较即可。无解情况是：</p>
+<ol type="1">
+<li><span class="math inline">\(S, T\)</span> 不在同一棵子树内并且 <span class="math inline">\(T\)</span> 不在环上。</li>
+<li><span class="math inline">\(S,T\)</span> 在同一棵子树内但 <span class="math inline">\(T\)</span> 深度大于 <span class="math inline">\(S\)</span> 或二者不是祖先关系。</li>
+</ol>
+<p>时间复杂度 <span class="math inline">\(O(n\log m)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1972/problem/F">Problem - F - Codeforces</a></p>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2022/problem/E2">Problem - E2 - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2067/problem/E">Problem - E - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2067/problem/F">Problem - F - Codeforces</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
