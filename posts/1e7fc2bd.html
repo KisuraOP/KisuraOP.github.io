@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18k 字
+          24k 字
         
       </span>
     
@@ -1015,11 +1015,97 @@
 <p><a target="_blank" rel="noopener" href="https://vjudge.net/contest/694446">Virtual Judge Link</a></p>
 <p>前面都是一些很无聊的题...</p>
 <div class="note note-info">
-            <p><a target="_blank" rel="noopener" href="https://vjudge.net/problem/CodeForces-534F">H. Simplified Nonogram</a></p><p>题意：完成一个 <span class="math inline">\(5\times 20\)</span> 的数织。</p>
+            <p><a target="_blank" rel="noopener" href="https://vjudge.net/problem/CodeForces-534F">H. Simplified Nonogram</a></p><p>题意：完成一个 <span class="math inline">\(5\times 20\)</span> 的简易版数织。简易即你只知道每行/列有多少段黑色，而不知道每一段黑色具体长多少。</p>
           </div>
 <div class="note note-success">
-            <p>占坑。</p>
+            <p>我们把同一行连续的一段黑色称为一个连通块。</p><p>令 <span class="math inline">\(dp[col][lst][p_1][p_2][p_3][p_4][p_5]=0/1\)</span> 表示是否能到达 "已经填了 <span class="math inline">\(col\)</span> 列，上一列填了 <span class="math inline">\(lst\)</span>，第 <span class="math inline">\(i\)</span> 行已经有 <span class="math inline">\(p_i\)</span> 个连通块" 这个状态。</p><p>其中 <span class="math inline">\(lst\)</span> 是一个长为 <span class="math inline">\(n\)</span> 的二进制串，第 <span class="math inline">\(i\)</span> 位为 <span class="math inline">\(0/1\)</span> 代表上一列第 <span class="math inline">\(i\)</span> 行是否涂黑。</p><p>由每一行连通块个数 <span class="math inline">\(p_i&lt;\lceil\frac{m}{2}\rceil\)</span>，此时的状态数有 <span class="math inline">\(m\cdot 2^n\cdot (\lceil\frac{m}{2}\rceil)^n=6.4\cdot 10^7\)</span>，开成 bool 类型的数组为 <span class="math inline">\(61\)</span>mB，爆不了。</p><p>考虑转移，我们枚举当前列的 <span class="math inline">\(2^n\)</span> 种状态，遍历一遍看该状态是否满足纵向限制。若满足，再枚举每一行看是否 "当前第 <span class="math inline">\(i\)</span> 行为 <span class="math inline">\(1\)</span> 且 <span class="math inline">\(lst\)</span> 第 <span class="math inline">\(i\)</span> 位为 <span class="math inline">\(0\)</span>"，若是，则对应行的连通块个数 <span class="math inline">\(+1\)</span>；否则不变。</p><p>于是对于当前列的每一种状态，纵向和横向的限制都能在 <span class="math inline">\(O(n)\)</span> 内 check out。</p><p>使用记忆化搜索转移，时间复杂度的上界是状态数乘上 <span class="math inline">\(n\)</span>。</p><p>实测仅使用最简单的剪枝就能跑进 150ms。</p>
           </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin); freopen(#x<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x)  &#123; cout &lt;&lt; <span class="hljs-string">&quot;check &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; cout.flush();&#125;</span>
+
+
+<span class="hljs-comment">//-------------- templates above --------------</span>
+
+
+<span class="hljs-type">bool</span> f[<span class="hljs-number">21</span>][<span class="hljs-number">32</span>][<span class="hljs-number">11</span>][<span class="hljs-number">11</span>][<span class="hljs-number">11</span>][<span class="hljs-number">11</span>][<span class="hljs-number">11</span>];
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-type">int</span> n, m;
+	cin &gt;&gt; n &gt;&gt; m;
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n)</span>, <span class="hljs-title">b</span><span class="hljs-params">(m)</span></span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;
+		cin &gt;&gt; a[i];
+	&#125;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; m; i++) &#123;
+		cin &gt;&gt; b[i];
+	&#125;
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">cnt</span><span class="hljs-params">(<span class="hljs-number">1</span> &lt;&lt; n)</span></span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; (<span class="hljs-number">1</span> &lt;&lt; n); i++) &#123;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;
+			<span class="hljs-keyword">if</span> ((i &gt;&gt; j &amp; <span class="hljs-number">1</span>) &amp;&amp; (j == <span class="hljs-number">0</span> || (i &gt;&gt; (j - <span class="hljs-number">1</span>) &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">0</span>)) &#123;
+				cnt[i]++;
+			&#125;
+		&#125;
+	&#125;
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">ans</span><span class="hljs-params">(m)</span></span>;
+	<span class="hljs-keyword">auto</span> dfs = [&amp;] (<span class="hljs-keyword">auto</span> self, <span class="hljs-type">int</span> col, <span class="hljs-type">int</span> lst, array&lt;<span class="hljs-type">int</span>, <span class="hljs-number">5</span>&gt; p) -&gt; <span class="hljs-type">void</span> &#123;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;
+			<span class="hljs-keyword">if</span> (p[i] &gt; a[i] || p[i] + (m - col) &lt; a[i]) &#123; 
+				<span class="hljs-keyword">return</span> ;
+			&#125;
+		&#125;
+		<span class="hljs-keyword">if</span> (col == m) &#123;
+			<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;
+				<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; m; j++) &#123;
+					cout &lt;&lt; (ans[j] &gt;&gt; i &amp; <span class="hljs-number">1</span> ? <span class="hljs-string">&quot;*&quot;</span> : <span class="hljs-string">&quot;.&quot;</span>); 
+				&#125;
+				cout &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+			&#125;
+			<span class="hljs-built_in">exit</span>(<span class="hljs-number">0</span>);
+		&#125;
+		<span class="hljs-keyword">if</span> (f[col][lst][p[<span class="hljs-number">0</span>]][p[<span class="hljs-number">1</span>]][p[<span class="hljs-number">2</span>]][p[<span class="hljs-number">3</span>]][p[<span class="hljs-number">4</span>]]) &#123;
+			<span class="hljs-keyword">return</span> ;
+		&#125;
+		f[col][lst][p[<span class="hljs-number">0</span>]][p[<span class="hljs-number">1</span>]][p[<span class="hljs-number">2</span>]][p[<span class="hljs-number">3</span>]][p[<span class="hljs-number">4</span>]] = <span class="hljs-literal">true</span>;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; (<span class="hljs-number">1</span> &lt;&lt; n); i++) &#123;
+			<span class="hljs-keyword">if</span> (cnt[i] != b[col]) &#123;
+				<span class="hljs-keyword">continue</span>;
+			&#125;
+			array&lt;<span class="hljs-type">int</span>, 5&gt; cur = p;
+			<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;
+				<span class="hljs-keyword">if</span> ((i &gt;&gt; j &amp; <span class="hljs-number">1</span>) &amp;&amp; (lst &gt;&gt; j &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">0</span>) &#123;
+					cur[j]++;
+				&#125;
+			&#125;
+			ans[col] = i;
+			<span class="hljs-built_in">self</span>(self, col + <span class="hljs-number">1</span>, i, cur);
+		&#125;
+	&#125;;
+	<span class="hljs-built_in">dfs</span>(dfs, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, &#123;<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>&#125;);
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">fre</span>(test);
+	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
+
+	<span class="hljs-type">int</span> T = <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span> (T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
 <hr />
 <div class="note note-info">
             <p><a target="_blank" rel="noopener" href="https://vjudge.net/problem/CodeForces-538F">I. A Heap of Heaps</a></p><p>题意：一棵 <span class="math inline">\(n\)</span> 个节点的堆，点有点权，节点编号为 bfs 序。对 <span class="math inline">\(k\in[1,n-1]\)</span> 求当这个堆是 <span class="math inline">\(k\)</span> 叉堆时有多少个节点的权值比父亲小。</p><p><span class="math inline">\(2 \le n \le 2\cdot 10^5\)</span>。</p>
@@ -1099,7 +1185,6 @@
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin); freopen(#x<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span>
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x)  &#123; cout &lt;&lt; <span class="hljs-string">&quot;check &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; cout.flush();&#125;</span>
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
 <span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
 
 <span class="hljs-keyword">struct</span> <span class="hljs-title class_">DSU</span> &#123;
@@ -1156,14 +1241,11 @@
 		dsu.<span class="hljs-built_in">merge</span>(x, y);
 	&#125;
 	vector&lt;array&lt;<span class="hljs-type">int</span>, 4&gt;&gt; E;
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">f</span><span class="hljs-params">(m)</span></span>;
 	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; m; i++) &#123;
 		<span class="hljs-type">int</span> x, y, w;
 		cin &gt;&gt; x &gt;&gt; y &gt;&gt; w;
 		E.<span class="hljs-built_in">push_back</span>(&#123;w, x, y, i&#125;);
-	&#125;
-	<span class="hljs-built_in">sort</span>(E.<span class="hljs-built_in">begin</span>(), E.<span class="hljs-built_in">end</span>());
-	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">f</span><span class="hljs-params">(m)</span></span>;
-	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> [w, x, y, i] : E) &#123;
 		<span class="hljs-keyword">if</span> (dsu.<span class="hljs-built_in">merge</span>(x, y)) &#123;
 			f[i] = <span class="hljs-literal">true</span>;
 			adj[x].<span class="hljs-built_in">push_back</span>(y);
@@ -1219,7 +1301,176 @@
 
 
 <span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
-	<span class="hljs-built_in">fre</span>(test);
+	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
+
+	<span class="hljs-type">int</span> T = <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span> (T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<h2 id="day-6">【2.20】 Day 6</h2>
+<p>A 题输出浮点数因为没设置精度一直 wa，lyc 指导之后才知道直接输出来会是科学计数法，十分难绷。</p>
+<div class="note note-info">
+            <p>题意：有 <span class="math inline">\(n\)</span> 个灯，给定每个灯的坐标 <span class="math inline">\(A_i\)</span> 和初始状态 <span class="math inline">\(B_i\)</span>（亮或灭）。另有 <span class="math inline">\(m\)</span> 个操作，形如 "将坐标在 <span class="math inline">\(L_i\)</span> 和 <span class="math inline">\(R_i\)</span> 之间的灯的状态取反"，问是否能让所有灯全灭。若能，给出操作方案。</p><p><span class="math inline">\(1 \le n \le 10^5\)</span>，<span class="math inline">\(1\le m \le 2\cdot10^5\)</span>，<span class="math inline">\(1 \le A_i \le 10^9\)</span>。</p>
+          </div>
+<div class="note note-success">
+            <p>离散化是必要的，我们按坐标从小到大给灯标号，然后预处理出每种操作对于灯的标号范围。</p><p>取反等价于异或 <span class="math inline">\(1\)</span>。设按坐标排序后的状态序列为 <span class="math inline">\(\{s\}\)</span>，求出其异或差分数组 <span class="math inline">\(\{t\}\)</span>（即 <span class="math inline">\(t[i]=s[i]\oplus s_[i-1]\)</span>）。那么操作 <span class="math inline">\((L_i,R_i)\)</span> 相当于将 <span class="math inline">\(t[L_i]\)</span> 和 <span class="math inline">\(t[R_i+1]\)</span> 取反，最终目标也转化为使 <span class="math inline">\(\{t\}\)</span> 全为 <span class="math inline">\(0\)</span>（<span class="math inline">\(t[n+1]\)</span> 除外）。</p><p>对每种操作连边 <span class="math inline">\(L_i \leftrightarrow R_{i}+1\)</span>，那么每次肯定是将一条边的两个端点同时取反。</p><p>对于每一个连通分量：从任意一个点（设为 <span class="math inline">\(A\)</span>）开始 dfs，回溯时可以贪心的将当前点与其 dfs 树上的儿子进行操作，使得儿子全为 <span class="math inline">\(0\)</span>。这么做可以使除了 <span class="math inline">\(A\)</span> 之外的所有点为 <span class="math inline">\(0\)</span>。</p><p>接着，能够断言：无解当且仅当 <span class="math inline">\(A\)</span> 的值为 <span class="math inline">\(1\)</span> 且 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(n+1\)</span> 不在一个连通分量。</p><p>因为若在一个连通分量内，可以直接沿着 <span class="math inline">\(A\)</span> 与 <span class="math inline">\(n+1\)</span> 之间的路径一直操作，将 <span class="math inline">\(A\)</span> 的 <span class="math inline">\(1\)</span> 转移给 <span class="math inline">\(n+1\)</span>。</p><p>方案可以在 dfs 时顺便记录。时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin); freopen(#x<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x)  &#123; cout &lt;&lt; <span class="hljs-string">&quot;check &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; cout.flush();&#125;</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
+
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">DSU</span> &#123;
+	vector&lt;<span class="hljs-type">int</span>&gt; f, siz;
+	<span class="hljs-built_in">DSU</span>() &#123;&#125;
+	<span class="hljs-built_in">DSU</span>(<span class="hljs-type">int</span> n) &#123;
+		f.<span class="hljs-built_in">resize</span>(n + <span class="hljs-number">1</span>);
+		siz.<span class="hljs-built_in">resize</span>(n + <span class="hljs-number">1</span>);
+		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= n; i++) &#123;
+			f[i] = i;
+			siz[i] = <span class="hljs-number">1</span>;
+		&#125;
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">find</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;
+		<span class="hljs-keyword">if</span> (x == f[x]) &#123;
+			<span class="hljs-keyword">return</span> x;
+		&#125;
+		<span class="hljs-keyword">return</span> f[x] = <span class="hljs-built_in">find</span>(f[x]);
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">same</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;
+		<span class="hljs-keyword">return</span> <span class="hljs-built_in">find</span>(x) == <span class="hljs-built_in">find</span>(y);
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">merge</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;
+		x = <span class="hljs-built_in">find</span>(x);
+		y = <span class="hljs-built_in">find</span>(y);
+		<span class="hljs-keyword">if</span> (x == y) &#123;
+			<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+		&#125;
+		<span class="hljs-keyword">if</span> (siz[x] &lt; siz[y]) &#123;
+			<span class="hljs-built_in">swap</span>(x, y);
+		&#125;
+		siz[x] += siz[y];
+		f[y] = x;
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">size</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> </span>&#123;
+		<span class="hljs-keyword">return</span> siz[<span class="hljs-built_in">find</span>(x)];
+	&#125;
+&#125;;
+
+
+<span class="hljs-comment">//-------------- templates above --------------</span>
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-type">int</span> n, m;
+	cin &gt;&gt; n &gt;&gt; m;
+	vector&lt;array&lt;<span class="hljs-type">int</span>, 2&gt;&gt; <span class="hljs-built_in">a</span>(n + <span class="hljs-number">1</span>);
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+		<span class="hljs-type">int</span> x, y;
+		cin &gt;&gt; x &gt;&gt; y;
+		a[i] = &#123;x, y&#125;;
+	&#125;
+	<span class="hljs-built_in">sort</span>(a.<span class="hljs-built_in">begin</span>() + <span class="hljs-number">1</span>, a.<span class="hljs-built_in">end</span>());
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">b</span><span class="hljs-params">(n + <span class="hljs-number">2</span>)</span>, <span class="hljs-title">c</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+		b[i] = a[i][<span class="hljs-number">1</span>] ^ a[i - <span class="hljs-number">1</span>][<span class="hljs-number">1</span>];
+		c[i] = a[i][<span class="hljs-number">0</span>];
+	&#125;
+	
+	map&lt;array&lt;<span class="hljs-type">int</span>, 2&gt;, <span class="hljs-type">int</span>&gt; mp;
+	vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">adj</span>(n + <span class="hljs-number">2</span>);
+	<span class="hljs-function">DSU <span class="hljs-title">dsu</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; m; i++) &#123;
+		<span class="hljs-type">int</span> l, r;
+		cin &gt;&gt; l &gt;&gt; r;
+		<span class="hljs-keyword">auto</span> itL = <span class="hljs-built_in">lower_bound</span>(c.<span class="hljs-built_in">begin</span>(), c.<span class="hljs-built_in">end</span>(), l);
+		<span class="hljs-keyword">auto</span> itR = <span class="hljs-built_in">upper_bound</span>(c.<span class="hljs-built_in">begin</span>(), c.<span class="hljs-built_in">end</span>(), r);
+		<span class="hljs-keyword">if</span> (itL == c.<span class="hljs-built_in">end</span>()) &#123;
+			<span class="hljs-keyword">continue</span>;
+		&#125;
+		<span class="hljs-type">int</span> L = itL - c.<span class="hljs-built_in">begin</span>();
+		<span class="hljs-type">int</span> R = itR == c.<span class="hljs-built_in">end</span>() ? n : itR - c.<span class="hljs-built_in">begin</span>() - <span class="hljs-number">1</span>; 
+		<span class="hljs-keyword">if</span> (L &gt; R || mp[&#123;L, R + <span class="hljs-number">1</span>&#125;]) &#123;
+			<span class="hljs-keyword">continue</span>;
+		&#125;
+		dsu.<span class="hljs-built_in">merge</span>(L, R + <span class="hljs-number">1</span>);
+		mp[&#123;L, R + <span class="hljs-number">1</span>&#125;] = mp[&#123;R + <span class="hljs-number">1</span>, L&#125;] = i + <span class="hljs-number">1</span>;
+		adj[L].<span class="hljs-built_in">push_back</span>(R + <span class="hljs-number">1</span>);
+		adj[R + <span class="hljs-number">1</span>].<span class="hljs-built_in">push_back</span>(L);
+	&#125;
+
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">vis</span><span class="hljs-params">(n + <span class="hljs-number">2</span>)</span>, <span class="hljs-title">pre</span><span class="hljs-params">(n + <span class="hljs-number">2</span>)</span></span>;
+	set&lt;<span class="hljs-type">int</span>&gt; ans;
+	<span class="hljs-keyword">auto</span> dfs = [&amp;] (<span class="hljs-keyword">auto</span> self, <span class="hljs-type">int</span> x) -&gt; <span class="hljs-type">void</span> &#123;
+		vis[x] = <span class="hljs-number">1</span>;
+		<span class="hljs-type">int</span> have_T = <span class="hljs-number">0</span>;
+		vector&lt;<span class="hljs-type">int</span>&gt; son;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> y : adj[x]) &#123;
+			<span class="hljs-keyword">if</span> (vis[y]) &#123;
+				<span class="hljs-keyword">continue</span>;
+			&#125;
+			pre[y] = x;
+			<span class="hljs-built_in">self</span>(self, y);
+			<span class="hljs-keyword">if</span> (y == n + <span class="hljs-number">1</span>) &#123;
+				have_T = <span class="hljs-number">1</span>;
+			&#125; <span class="hljs-keyword">else</span> &#123;
+				son.<span class="hljs-built_in">push_back</span>(y);
+			&#125;
+		&#125;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> y : son) &#123;
+			<span class="hljs-keyword">if</span> (b[y]) &#123;
+				ans.<span class="hljs-built_in">insert</span>(mp[&#123;x, y&#125;]);
+				b[y] = <span class="hljs-number">0</span>;	
+				b[x] ^= <span class="hljs-number">1</span>;
+			&#125;
+		&#125;
+		<span class="hljs-keyword">if</span> (b[x] &amp;&amp; have_T) &#123;
+			ans.<span class="hljs-built_in">insert</span>(mp[&#123;x, n + <span class="hljs-number">1</span>&#125;]);
+			b[x] = <span class="hljs-number">0</span>;
+		&#125;
+	&#125;;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+		<span class="hljs-keyword">if</span> (!vis[i]) &#123;
+			<span class="hljs-built_in">dfs</span>(dfs, i);
+			<span class="hljs-keyword">if</span> (b[i]) &#123;
+				<span class="hljs-keyword">if</span> (dsu.<span class="hljs-built_in">same</span>(i, n + <span class="hljs-number">1</span>) == <span class="hljs-number">0</span>) &#123;
+					cout &lt;&lt; <span class="hljs-number">-1</span> &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+					<span class="hljs-keyword">return</span> ;
+				&#125;
+				<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = n + <span class="hljs-number">1</span>; j != i; j = pre[j]) &#123;
+					<span class="hljs-type">int</span> id = mp[&#123;j, pre[j]&#125;];
+					<span class="hljs-keyword">if</span> (ans.<span class="hljs-built_in">count</span>(id)) &#123;
+						ans.<span class="hljs-built_in">erase</span>(id);
+					&#125; <span class="hljs-keyword">else</span> &#123;
+						ans.<span class="hljs-built_in">insert</span>(id);
+					&#125;
+				&#125;
+			&#125;
+		&#125;
+	&#125;
+	cout &lt;&lt; ans.<span class="hljs-built_in">size</span>() &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> x : ans) &#123;
+		cout &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot; &quot;</span>;
+	&#125;
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
 	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
 	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
 
