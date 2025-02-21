@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          24k 字
+          25k 字
         
       </span>
     
@@ -1317,10 +1317,10 @@
 <p><a target="_blank" rel="noopener" href="https://vjudge.net/contest/695051">Virtual Judge Link</a></p>
 <p>A 题输出浮点数因为没设置精度一直 wa，lyc 指导之后才知道直接输出来会是科学计数法，十分难绷。</p>
 <div class="note note-info">
-            <p>题意：有 <span class="math inline">\(n\)</span> 个灯，给定每个灯的坐标 <span class="math inline">\(A_i\)</span> 和初始状态 <span class="math inline">\(B_i\)</span>（亮或灭）。另有 <span class="math inline">\(m\)</span> 个操作，形如 "将坐标在 <span class="math inline">\(L_i\)</span> 和 <span class="math inline">\(R_i\)</span> 之间的灯的状态取反"，问是否能让所有灯全灭。若能，给出操作方案。</p><p><span class="math inline">\(1 \le n \le 10^5\)</span>，<span class="math inline">\(1\le m \le 2\cdot10^5\)</span>，<span class="math inline">\(1 \le A_i \le 10^9\)</span>。</p>
+            <p><a target="_blank" rel="noopener" href="https://vjudge.net/problem/AtCoder-abc155_f">F - Perils in Parallel</a></p><p>题意：有 <span class="math inline">\(n\)</span> 个灯，给定每个灯的坐标 <span class="math inline">\(A_i\)</span> 和初始状态 <span class="math inline">\(B_i\)</span>（亮或灭）。另有 <span class="math inline">\(m\)</span> 个操作，形如 "将坐标在 <span class="math inline">\(L_i\)</span> 和 <span class="math inline">\(R_i\)</span> 之间的灯的状态取反"，问是否能让所有灯全灭。若能，给出操作方案。</p><p><span class="math inline">\(1 \le n \le 10^5\)</span>，<span class="math inline">\(1\le m \le 2\cdot10^5\)</span>，<span class="math inline">\(1 \le A_i \le 10^9\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>离散化是必要的，我们按坐标从小到大给灯标号，然后预处理出每种操作对于灯的标号范围。</p><p>取反等价于异或 <span class="math inline">\(1\)</span>。设按坐标排序后的状态序列为 <span class="math inline">\(\{s\}\)</span>，求出其异或差分数组 <span class="math inline">\(\{t\}\)</span>（即 <span class="math inline">\(t[i]=s[i]\oplus s_[i-1]\)</span>）。那么操作 <span class="math inline">\((L_i,R_i)\)</span> 相当于将 <span class="math inline">\(t[L_i]\)</span> 和 <span class="math inline">\(t[R_i+1]\)</span> 取反，最终目标也转化为使 <span class="math inline">\(\{t\}\)</span> 全为 <span class="math inline">\(0\)</span>（<span class="math inline">\(t[n+1]\)</span> 除外）。</p><p>对每种操作连边 <span class="math inline">\(L_i \leftrightarrow R_{i}+1\)</span>，那么每次肯定是将一条边的两个端点同时取反。</p><p>对于每一个连通分量：从任意一个点（设为 <span class="math inline">\(A\)</span>）开始 dfs，回溯时可以贪心的将当前点与其 dfs 树上的儿子进行操作，使得儿子全为 <span class="math inline">\(0\)</span>。这么做可以使除了 <span class="math inline">\(A\)</span> 之外的所有点为 <span class="math inline">\(0\)</span>。</p><p>接着，能够断言：无解当且仅当 <span class="math inline">\(A\)</span> 的值为 <span class="math inline">\(1\)</span> 且 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(n+1\)</span> 不在一个连通分量。</p><p>因为若在一个连通分量内，可以直接沿着 <span class="math inline">\(A\)</span> 与 <span class="math inline">\(n+1\)</span> 之间的路径一直操作，将 <span class="math inline">\(A\)</span> 的 <span class="math inline">\(1\)</span> 转移给 <span class="math inline">\(n+1\)</span>。</p><p>方案可以在 dfs 时顺便记录。时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+            <p>离散化是必要的，我们按坐标从小到大给灯标号，然后预处理出每种操作对应灯的标号范围。</p><p>取反等价于异或 <span class="math inline">\(1\)</span>。设按坐标排序后的状态序列为 <span class="math inline">\(\{s\}\)</span>，求出其异或差分数组 <span class="math inline">\(\{t\}\)</span>（即 <span class="math inline">\(t[i]=s[i]\oplus s_[i-1]\)</span>）。那么操作 <span class="math inline">\((L_i,R_i)\)</span> 相当于将 <span class="math inline">\(t[L_i]\)</span> 和 <span class="math inline">\(t[R_i+1]\)</span> 取反，最终目标也转化为使 <span class="math inline">\(\{t\}\)</span> 全为 <span class="math inline">\(0\)</span>（<span class="math inline">\(t[n+1]\)</span> 除外）。</p><p>对每种操作连边 <span class="math inline">\(L_i \leftrightarrow R_{i}+1\)</span>，那么每次肯定是将一条边的两个端点同时取反。</p><p>对于每一个连通分量：从任意一个点（设为 <span class="math inline">\(A\)</span>）开始 dfs，回溯时可以贪心的将当前点与其 dfs 树上的儿子进行操作，使得儿子全为 <span class="math inline">\(0\)</span>。这么做可以使除了 <span class="math inline">\(A\)</span> 之外的所有点为 <span class="math inline">\(0\)</span>。</p><p>接着，能够断言：无解当且仅当 <span class="math inline">\(A\)</span> 的值为 <span class="math inline">\(1\)</span> 且 <span class="math inline">\(A\)</span> 和 <span class="math inline">\(n+1\)</span> 不在一个连通分量。</p><p>因为若在一个连通分量内，可以直接沿着 <span class="math inline">\(A\)</span> 与 <span class="math inline">\(n+1\)</span> 之间的路径一直操作，将 <span class="math inline">\(A\)</span> 的 <span class="math inline">\(1\)</span> 转移给 <span class="math inline">\(n+1\)</span>。</p><p>方案可以在 dfs 时顺便记录。时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -1480,6 +1480,51 @@
 		<span class="hljs-built_in">solve</span>();
 	&#125;
 	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<hr />
+<div class="note note-info">
+            <p><a target="_blank" rel="noopener" href="https://vjudge.net/problem/CodeForces-1332F">G - Independent Set</a></p><p>题意：给定一棵 <span class="math inline">\(n\)</span> 个点的树，求它的 <span class="math inline">\(2^{n-1}-1\)</span> 种非空边导出子图的点独立集个数之和。</p><p><span class="math inline">\(2 \le n \le 3 \cdot 10^5\)</span>。</p>
+          </div>
+<div class="note note-success">
+            <p>任意选择一个根节点。</p><p>令 <span class="math inline">\(dp[x][0/1][0/1]\)</span> 表示 "以 <span class="math inline">\(x\)</span> 为根的子树内，是否选 <span class="math inline">\(x\)</span> 上面的边（<span class="math inline">\(x\leftrightarrow fa[x]\)</span>）作为边导出子图的一部分，是否选 <span class="math inline">\(x\)</span> 作为点独立集中的一个元素" 的答案。</p><p>转移如下： <span class="math display">\[\begin{align}&amp;dp[x][0][0]=\prod_{y\in son[x]}dp[y][0][0]+dp[y][0][1]+dp[y][1][0]+dp[y][1][1]\\&amp;dp[x][1][0]=\prod_{y\in son[x]}dp[y][0][0]+dp[y][0][1]+dp[y][1][0]+dp[y][1][1]\\&amp;dp[x][1][1]=\prod_{y\in son[x]}dp[y][0][0]+dp[y][0][1]+dp[y][1][0]\\&amp;dp[x][0][1]=\left(\prod_{y\in son[x]}dp[y][0][0]+dp[y][0][1]+dp[y][1][0]\right)-\left(\prod_{y\in son[x]}dp[y][0][0]+dp[y][0][1]\right)\end{align}\]</span> 前三条根据独立集的定义好理解，最后一条 <span class="math inline">\(dp[x][0][1]\)</span> 代表 <span class="math inline">\(x\)</span> 与其父亲不相连而自己又在独立集中，此时必须保证 <span class="math inline">\(x\)</span> 至少有一个儿子 <span class="math inline">\(y\)</span> 和 <span class="math inline">\(x\)</span> 有边相连。容斥一下就是总方案数减去 "所有儿子都不与 <span class="math inline">\(x\)</span> 连边" 的方案数。</p><p>因为要求边导出子图非空，答案还需要 <span class="math inline">\(-1\)</span>。</p><p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-type">int</span> n;
+	cin &gt;&gt; n;
+	vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; <span class="hljs-built_in">adj</span>(n + <span class="hljs-number">1</span>);
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;
+		<span class="hljs-type">int</span> x, y;
+		cin &gt;&gt; x &gt;&gt; y;
+		adj[x].<span class="hljs-built_in">push_back</span>(y);
+		adj[y].<span class="hljs-built_in">push_back</span>(x);
+	&#125;
+	<span class="hljs-function">vector <span class="hljs-title">dp</span><span class="hljs-params">(n + <span class="hljs-number">1</span>, vector(<span class="hljs-number">2</span>, vector&lt;mint&gt;(<span class="hljs-number">2</span>)))</span></span>;
+	<span class="hljs-keyword">auto</span> dfs = [&amp;] (<span class="hljs-keyword">auto</span> self, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> fa) -&gt; <span class="hljs-type">void</span> &#123;
+		mint c1 = <span class="hljs-number">1</span>, c2 = <span class="hljs-number">1</span>, c3 = <span class="hljs-number">1</span>;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> y : adj[x]) &#123;
+			<span class="hljs-keyword">if</span> (y == fa) &#123;
+				<span class="hljs-keyword">continue</span>;
+			&#125;
+			<span class="hljs-built_in">self</span>(self, y, x);
+			c1 *= dp[y][<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] + dp[y][<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] + dp[y][<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] + dp[y][<span class="hljs-number">1</span>][<span class="hljs-number">1</span>];
+			c2 *= dp[y][<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] + dp[y][<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] + dp[y][<span class="hljs-number">1</span>][<span class="hljs-number">0</span>];
+			c3 *= dp[y][<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] + dp[y][<span class="hljs-number">0</span>][<span class="hljs-number">1</span>];
+		&#125;
+		dp[x][<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] = c1;
+		dp[x][<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] = c1;
+		dp[x][<span class="hljs-number">1</span>][<span class="hljs-number">1</span>] = c2;
+		dp[x][<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] = c2 - c3;
+	&#125;;
+	<span class="hljs-built_in">dfs</span>(dfs, <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);
+	cout &lt;&lt; dp[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>][<span class="hljs-number">1</span>] + dp[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] - <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
 &#125;</code></pre></div>
 
     </div>
