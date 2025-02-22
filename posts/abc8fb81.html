@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          24k 字
+          25k 字
         
       </span>
     
@@ -856,6 +856,27 @@ dp[pre_{i-1}]=3\cdot dp[pre_{i-1}]+2\cdot dp[pre_i]
 <p>那么如何计数呢？现在我们考虑同一种颜色 <span class="math inline">\(x\)</span>，将所有 <span class="math inline">\(c_i =x\)</span> 的 <span class="math inline">\(i\)</span> 列出来，记为 <span class="math inline">\(col[x]=i_1,i_2,i_3,\cdots\)</span>，那么我们一定可以将 <span class="math inline">\(col[x]\)</span> 划分为若干连续段，段内对应的行可以两两交换，两两交换意味着可以任意排列，方案数自然是段内元素个数的阶乘。接着将每一段的贡献乘起来，就是颜色 <span class="math inline">\(x\)</span> 的贡献。再把所有颜色的贡献乘起来，就是最终答案。</p>
 <p>但这么计数太繁琐了，我们考虑一个等价计数：将 <span class="math inline">\(p_i\)</span> 从小到大枚举，统计完之后把 <span class="math inline">\(i\)</span> 这个位置删掉，两端用双向链表连接。这么做的好处是统计到 <span class="math inline">\(p_i\)</span> 时能与 <span class="math inline">\(p_i\)</span> 交换的行一定相邻（不相邻只能是中间夹着更短的，但更短的已经在这之前被删掉了），形成一个连通块。假设此时 <span class="math inline">\(p_i\)</span> 所在的连通块大小是 <span class="math inline">\(t_i\)</span>，最终答案就是 <span class="math inline">\(\prod t_i\)</span>。如果你理解了上一段所述的计数方式，就不难想通为何是等价的。</p>
 <p>用并查集维护连通块大小。时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf2069e.-a-b-ab-and-ba"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2069/problem/E">CF2069E. A, B, AB and BA</a></h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2069/submission/307315231">Code</a></p>
+<p>"AA" 和 "BB" 是不被允许的。我们在相邻的两个 "A"，相邻的两个 "B" 中间划一刀，这样整个序列被分割成若干子串，每个子串是下列四种之一：</p>
+<ul>
+<li>ABAB...AB;</li>
+<li>BABA...BA;</li>
+<li>ABAB...ABA;</li>
+<li>BABA...BAB.</li>
+</ul>
+<p>对于长为 <span class="math inline">\(l\)</span> 的第三第四类子串，可以用 <span class="math inline">\(\frac{l-1}{2}\)</span> 个 AB 或 BA 填充，剩下的一定是一个 A（如果是第三类）或者一个 B（如果是第四类）。此时 AB 和 BA 的地位等价。</p>
+<p>对于长为 <span class="math inline">\(l\)</span> 的第一类子串，可以用 <span class="math inline">\(\frac{l}{2}\)</span> 个 AB 完全填充，或 <span class="math inline">\(\frac{l}{2}-1\)</span> 个 BA 外加一个 A 和一个 B。此时 AB 的地位显然高于 BA。同理对于第二类子串，BA 的地位高于 AB。</p>
+<p>对于第一第二类子串，只有用 AB（或 BA）完全填满才不会浪费，所以我们的决策顺序是：</p>
+<ul>
+<li>用 AB 填充长度最小的第一类串，直到 AB 不足或没有第一类串了。</li>
+<li>用 BA 填充长度最小的第二类串，直到 BA 不足或没有第二类串了。</li>
+<li>用 BA，A，B 填充第一类串的剩余部分。</li>
+<li>用 AB，A，B 填充第二类串的剩余部分。</li>
+<li>用剩下的 AB，BA，A，B 填充第三第四类串。</li>
+</ul>
+<p>若填充过程缺材料了，就是 NO。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1969/problem/E">Problem - E - Codeforces</a></p>
