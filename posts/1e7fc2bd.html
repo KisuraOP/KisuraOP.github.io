@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          33k 字
+          35k 字
         
       </span>
     
@@ -563,10 +563,34 @@
 </div>
 <hr />
 <div class="note note-info">
-            <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc160/tasks/arc160_d?lang=en">H. Mahjong</a></p>
+            <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc160/tasks/arc160_d?lang=en">H. Mahjong</a></p><p>题意：称一个序列 <span class="math inline">\(\{b\}\)</span> 是好的当且仅当 <span class="math inline">\(\sum b_i=m\)</span> 且可以通过任意次以下两种操作使得 <span class="math inline">\(\{b\}\)</span> 全为 <span class="math inline">\(0\)</span>。</p><ul><li>选一个元素减 <span class="math inline">\(k\)</span>。</li><li>选一个长为 <span class="math inline">\(k\)</span> 的连续段每个元素减 <span class="math inline">\(1\)</span>。</li></ul><p>问有多少个长为 <span class="math inline">\(n\)</span> 的非负整数序列 <span class="math inline">\(\{a\}\)</span> 是好的，对 998244353 取模。</p><p><span class="math inline">\(1 \le k\le n\le 2000\)</span>，<span class="math inline">\(1\le m\le 10^{18}\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>占坑。一周没补就是嗝屁了，数学低手是这样的。</p>
+            <p>计数 <span class="math inline">\(\{a\}\)</span> 即考虑初始一个全为 <span class="math inline">\(0\)</span> 的序列，通过那两种操作能变成哪些。</p><p>首先两种操作每次对总和的贡献都是 <span class="math inline">\(k\)</span>，若 <span class="math inline">\(k\nmid m\)</span>，一定无解。否则两种操作的次数加起来一定是 <span class="math inline">\(\frac{m}{k}\)</span>。</p><p>注意到选同一个长为 <span class="math inline">\(k\)</span> 的段进行操作 <span class="math inline">\(2\)</span>，反复进行 <span class="math inline">\(k\)</span> 次，等同于对每个位置都进行一次操作 <span class="math inline">\(1\)</span>。为了计数不重复，钦定对于同一个段，操作 <span class="math inline">\(2\)</span> 最多进行 <span class="math inline">\(k-1\)</span> 次。</p><p>用一个长为 <span class="math inline">\(2n-k+1\)</span> 的序列 <span class="math inline">\(\{c\}\)</span> 来表示一种操作序列：</p><ul><li><span class="math inline">\(c_1\sim c_{n-k+1}\)</span> 这 <span class="math inline">\(n-k+1\)</span> 个数代表了那 <span class="math inline">\(n-k+1\)</span> 个长为 <span class="math inline">\(k\)</span> 的连续段分别进行了多少次操作 <span class="math inline">\(2\)</span>。</li><li><span class="math inline">\(c_{n-k+2}\sim c_{2n-k+1}\)</span> 这 <span class="math inline">\(n\)</span> 个数代表了每个位置分别进行了多少次操作 <span class="math inline">\(1\)</span>。</li></ul><p>此时，原问题等价为有多少个长为 <span class="math inline">\(2n-k+1\)</span> 的非负整数序列 <span class="math inline">\(\{c\}\)</span> 满足：</p><ul><li><span class="math inline">\(\forall i\in [1,n-k+1]\)</span>，<span class="math inline">\(c_i&lt;k\)</span>。</li><li><span class="math inline">\(\sum\limits_{i=1}^{2n-k+1}c_i=\dfrac{m}{k}\)</span>。</li></ul><p>运用容斥和插板法，答案是： <span class="math display">\[\sum_{t=0}^{n-k+1}(-1)^{t}\binom{n-k+1}{t}\binom{\frac{m}{k}-tk+2n-k}{2n-k}\]</span> 文末有详细的推导。</p><p>时间复杂度 <span class="math inline">\(O(n^2)\)</span>。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-type">int</span> n, m, k;
+	cin &gt;&gt; n &gt;&gt; m &gt;&gt; k;
+	<span class="hljs-keyword">if</span> (m % k) &#123;
+		cout &lt;&lt; <span class="hljs-number">0</span> &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+		<span class="hljs-keyword">return</span> ;
+	&#125;
+	mint s = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> t = <span class="hljs-number">0</span>; t &lt;= n - k + <span class="hljs-number">1</span>; t++) &#123;
+		s += (t &amp; <span class="hljs-number">1</span> ? <span class="hljs-number">-1</span> : <span class="hljs-number">1</span>) * <span class="hljs-built_in">C</span>(n - k + <span class="hljs-number">1</span>, t) * <span class="hljs-built_in">bfC</span>(m / k - t * k + <span class="hljs-number">2</span> * n - k, <span class="hljs-number">2</span> * n - k);
+	&#125;
+	cout &lt;&lt; s &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<div class="note note-primary">
+            <p>给定 <span class="math inline">\(n,m,k,s\)</span>，有多少个长为 <span class="math inline">\(n\)</span> 的数列 <span class="math inline">\(\{a\}\)</span> 满足以下要求？</p><ul><li><span class="math inline">\(\forall i\in [1,n]\)</span>，<span class="math inline">\(a_i \ge 0\)</span>。</li><li><span class="math inline">\(\forall i\in[1,m]\)</span>，<span class="math inline">\(a_i \le k\)</span>。</li><li><span class="math inline">\(\sum\limits_{i=1}^{n} a_i=s\)</span>。</li></ul><p>若不考虑条件 <span class="math inline">\(2\)</span>，解的数目可以通过经典的隔板法得到： <span class="math display">\[\binom{s+n-1}{n-1}\]</span> 即将总和为 <span class="math inline">\(s\)</span> 看成 <span class="math inline">\(s\)</span> 个 <span class="math inline">\(1\)</span>，在这 <span class="math inline">\(s\)</span> 个 <span class="math inline">\(1\)</span> 中间插 <span class="math inline">\(n-1\)</span> 个板，分成的 <span class="math inline">\(n\)</span> 个部分每个部分的和对应一个非负整数。</p><p>考虑条件 <span class="math inline">\(2\)</span>，对每个 <span class="math inline">\(i\in[1,m]\)</span> 的 <span class="math inline">\(a_i\)</span>，定义事件 <span class="math inline">\(P_i\)</span>："<span class="math inline">\(a_i&gt;k\)</span>"。</p><p>那么，根据容斥原理： <span class="math display">\[\begin{align}\textbf{不违反任何 } P_i \textbf{ 的解数}&amp;= \textbf{总情况数}\\&amp;-\sum \textbf{违反至少一个 } P_i \textbf{ 的情况数} \\&amp;+\sum \textbf{违反至少两个 } P_i \textbf{ 的情况数} \\&amp;- \cdots\end{align}\]</span> 我们枚举 <span class="math inline">\(t\)</span>，代表违反的约束的个数，那么答案是： <span class="math display">\[\sum_{t=0}^{m}(-1)^{t}\binom{m}{t}\cdot[\textbf{违反了至少 }t\textbf{ 个 }P_i \textbf{ 的情况数}]\]</span> 其中 <span class="math inline">\(\binom{m}{t}\)</span> 代表从前 <span class="math inline">\(m\)</span> 个位置中选 <span class="math inline">\(t\)</span> 个位置，钦定这 <span class="math inline">\(t\)</span> 个位置上的数<strong>一定</strong> <span class="math inline">\(&gt;k\)</span>。</p><p>也就是说，这 <span class="math inline">\(t\)</span> 个位置上的数的合法取值变成了 <span class="math inline">\([k+1,*]\)</span>，而其它位置上的数的合法取值为 <span class="math inline">\([0,*]\)</span>，这等价于将总和 <span class="math inline">\(s\)</span> 替换成 <span class="math inline">\(s&#39;=s-t(k+1)\)</span>。</p><p>于是，问题转化为有多少个长为 <span class="math inline">\(n\)</span> 的非负整数序列和为 <span class="math inline">\(s-t(k+1)\)</span>，根据前文提到的隔板法，答案是： <span class="math display">\[\binom{s-t(k+1)+n-1}{n-1}\]</span> 代回容斥后的式子，即得： <span class="math display">\[ans=\sum_{t=0}^{m}(-1)^{t}\binom{m}{t}\binom{s-t(k+1)+n-1}{n-1}\]</span></p>
           </div>
 <hr />
 <div class="note note-info">
@@ -1947,8 +1971,8 @@ Info <span class="hljs-keyword">operator</span>+(<span class="hljs-type">const</
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/abc8fb81.html" title="【题解】Codeforces 2025 寒假补题（寒假不断更新）">
-                        <span class="hidden-mobile">【题解】Codeforces 2025 寒假补题（寒假不断更新）</span>
+                      <a href="/posts/abc8fb81.html" title="【题解】Codeforces 2025 寒假补题">
+                        <span class="hidden-mobile">【题解】Codeforces 2025 寒假补题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
