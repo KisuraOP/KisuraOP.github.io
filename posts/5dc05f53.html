@@ -18,7 +18,7 @@
   
     <meta name="description" content="再不训就要被优化了QAQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【题解】三月份训练日记">
+<meta property="og:title" content="【题解】三月份训练日记（更新中）">
 <meta property="og:url" content="https://kisuraop.github.io/posts/5dc05f53.html">
 <meta property="og:site_name" content="KisuraOP">
 <meta property="og:description" content="再不训就要被优化了QAQ">
@@ -37,7 +37,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>【题解】三月份训练日记 - KisuraOP</title>
+  <title>【题解】三月份训练日记（更新中） - KisuraOP</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -245,7 +245,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">【题解】三月份训练日记</span>
+            <span id="subtitle">【题解】三月份训练日记（更新中）</span>
           
         </div>
 
@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          36 字
+          718 字
         
       </span>
     
@@ -324,12 +324,35 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">【题解】三月份训练日记</h1>
+            <h1 id="seo-header">【题解】三月份训练日记（更新中）</h1>
             
             
               <div class="markdown-body">
                 
-                <p>说是三月份，但实际上是从 2025.02.23 开始的，因为上一篇就是寒假。</p>
+                <p>说是三月份，但实际上是从 2025.02.24 开始的，因为上一篇就是寒假。</p>
+<h2 id="abc394e.-palindromic-shortest-path"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/tasks/abc394_e">abc394e. Palindromic Shortest Path</a></h2>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/submissions/63139453">Code</a></p>
+<p><span class="math inline">\(\tiny乱编了一个 \text{floyd} 过不去样例，我是小丑QAQ。\)</span></p>
+<p>把从 <span class="math inline">\(S\)</span> 到 <span class="math inline">\(T\)</span> 的路径看成一个状态 <span class="math inline">\((S,T)\)</span>。初始只有两种状态是合法的：</p>
+<ul>
+<li><span class="math inline">\(\forall i\in [1,n]\)</span>，<span class="math inline">\((i,i)\)</span>。</li>
+<li><span class="math inline">\(\forall i\in[1,n],j\in[1,n],s[i][j]\neq \text{“}-\text{”}\)</span>，<span class="math inline">\((i,j)\)</span>。</li>
+</ul>
+<p>以这些状态为起点进行 bfs。对于当前状态 <span class="math inline">\((x,y)\)</span>，二维枚举 <span class="math inline">\(i,j\)</span>，若 <span class="math inline">\(s[i][x]=s[y][j]\)</span>，说明可拓展，将状态 <span class="math inline">\((i,j)\)</span> 压入队列中。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^3)\)</span>。</p>
+<h2 id="abc394f.-alkane"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/tasks/abc394_f">abc394F. Alkane</a></h2>
+<p><span class="math inline">\(\tiny AC\times58, \ WA\times 1\text{ (憋笑)}.\)</span></p>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/submissions/63140699">Code</a></p>
+<p>令 <span class="math inline">\(dp[x]\)</span> 代表 <span class="math inline">\(x\)</span> 贡献了三个儿子的答案。</p>
+<p>转移自然是 <span class="math inline">\(dp[x]\)</span> 取它儿子里面最大的三个 <span class="math inline">\(dp[y]\)</span> 求和。</p>
+<p>对于当前节点 <span class="math inline">\(x\)</span>，有这么几种情况：</p>
+<ul>
+<li><span class="math inline">\(x\)</span> 的度数 <span class="math inline">\(\ge 1\)</span>，遍历所有儿子。取度数 <span class="math inline">\(\ge 4\)</span> 的儿子 <span class="math inline">\(dp[y]\)</span> 加上 <span class="math inline">\(x\)</span> 自身一个计入答案。</li>
+<li><span class="math inline">\(x\)</span> 的度数 <span class="math inline">\(\ge 4\)</span>，且有 <span class="math inline">\(\ge 4\)</span> 个儿子，取最大的四个 <span class="math inline">\(dp[y]\)</span> 的和加上 <span class="math inline">\(x\)</span> 自身一个计入答案。</li>
+<li><span class="math inline">\(x\)</span> 的度数 <span class="math inline">\(\ge 4\)</span>，且有 <span class="math inline">\(\ge 3\)</span> 个儿子，则计算出 <span class="math inline">\(dp[x]\)</span> 传递上去。</li>
+<li>除此之外 <span class="math inline">\(x\)</span> 只能作为一个叶子贡献给父亲。</li>
+</ul>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
@@ -386,7 +409,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>【题解】三月份训练日记</div>
+      <div>【题解】三月份训练日记（更新中）</div>
       <div>https://kisuraop.github.io/posts/5dc05f53.html</div>
     </div>
     <div class="license-meta">
@@ -438,6 +461,23 @@
 
 
 
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/1e7fc2bd.html" title="【题解】2025 UESTC 寒假集训">
+                        <span class="hidden-mobile">【题解】2025 UESTC 寒假集训</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
               
             </div>
 

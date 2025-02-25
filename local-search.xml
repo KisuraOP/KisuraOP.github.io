@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>【题解】三月份训练日记（更新中）</title>
+    <link href="/posts/5dc05f53.html"/>
+    <url>/posts/5dc05f53.html</url>
+    
+    <content type="html"><![CDATA[<p>说是三月份，但实际上是从 2025.02.24 开始的，因为上一篇就是寒假。</p><h2 id="abc394e.-palindromic-shortest-path"><a href="https://atcoder.jp/contests/abc394/tasks/abc394_e">abc394e. Palindromic Shortest Path</a></h2><p><a href="https://atcoder.jp/contests/abc394/submissions/63139453">Code</a></p><p><span class="math inline">\(\tiny乱编了一个 \text{floyd} 过不去样例，我是小丑QAQ。\)</span></p><p>把从 <span class="math inline">\(S\)</span> 到 <span class="math inline">\(T\)</span> 的路径看成一个状态 <span class="math inline">\((S,T)\)</span>。初始只有两种状态是合法的：</p><ul><li><span class="math inline">\(\forall i\in [1,n]\)</span>，<span class="math inline">\((i,i)\)</span>。</li><li><span class="math inline">\(\forall i\in[1,n],j\in[1,n],s[i][j]\neq \text{“}-\text{”}\)</span>，<span class="math inline">\((i,j)\)</span>。</li></ul><p>以这些状态为起点进行 bfs。对于当前状态 <span class="math inline">\((x,y)\)</span>，二维枚举 <span class="math inline">\(i,j\)</span>，若 <span class="math inline">\(s[i][x]=s[y][j]\)</span>，说明可拓展，将状态 <span class="math inline">\((i,j)\)</span> 压入队列中。</p><p>时间复杂度 <span class="math inline">\(O(n^3)\)</span>。</p><h2 id="abc394f.-alkane"><a href="https://atcoder.jp/contests/abc394/tasks/abc394_f">abc394F. Alkane</a></h2><p><span class="math inline">\(\tiny AC\times58, \ WA\times 1\text{ (憋笑)}.\)</span></p><p><a href="https://atcoder.jp/contests/abc394/submissions/63140699">Code</a></p><p>令 <span class="math inline">\(dp[x]\)</span> 代表 <span class="math inline">\(x\)</span> 贡献了三个儿子的答案。</p><p>转移自然是 <span class="math inline">\(dp[x]\)</span> 取它儿子里面最大的三个 <span class="math inline">\(dp[y]\)</span> 求和。</p><p>对于当前节点 <span class="math inline">\(x\)</span>，有这么几种情况：</p><ul><li><span class="math inline">\(x\)</span> 的度数 <span class="math inline">\(\ge 1\)</span>，遍历所有儿子。取度数 <span class="math inline">\(\ge 4\)</span> 的儿子 <span class="math inline">\(dp[y]\)</span> 加上 <span class="math inline">\(x\)</span> 自身一个计入答案。</li><li><span class="math inline">\(x\)</span> 的度数 <span class="math inline">\(\ge 4\)</span>，且有 <span class="math inline">\(\ge 4\)</span> 个儿子，取最大的四个 <span class="math inline">\(dp[y]\)</span> 的和加上 <span class="math inline">\(x\)</span> 自身一个计入答案。</li><li><span class="math inline">\(x\)</span> 的度数 <span class="math inline">\(\ge 4\)</span>，且有 <span class="math inline">\(\ge 3\)</span> 个儿子，则计算出 <span class="math inline">\(dp[x]\)</span> 传递上去。</li><li>除此之外 <span class="math inline">\(x\)</span> 只能作为一个叶子贡献给父亲。</li></ul><p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+    
+    
+    <categories>
+      
+      <category>Competitive Programming</category>
+      
+      <category>Codeforces</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Atcoder</tag>
+      
+      <tag>Codeforces</tag>
+      
+      <tag>ICPC</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>【题解】2025 UESTC 寒假集训</title>
     <link href="/posts/1e7fc2bd.html"/>
     <url>/posts/1e7fc2bd.html</url>
