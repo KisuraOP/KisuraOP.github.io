@@ -18,7 +18,7 @@
   
     <meta name="description" content="再不训就要被优化了QAQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【题解】三月份训练日记（更新中）">
+<meta property="og:title" content="【题解】三月训练日记（更新中）">
 <meta property="og:url" content="https://kisuraop.github.io/posts/5dc05f53.html">
 <meta property="og:site_name" content="KisuraOP">
 <meta property="og:description" content="再不训就要被优化了QAQ">
@@ -37,7 +37,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>【题解】三月份训练日记（更新中） - KisuraOP</title>
+  <title>【题解】三月训练日记（更新中） - KisuraOP</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -245,7 +245,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">【题解】三月份训练日记（更新中）</span>
+            <span id="subtitle">【题解】三月训练日记（更新中）</span>
           
         </div>
 
@@ -324,7 +324,7 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">【题解】三月份训练日记（更新中）</h1>
+            <h1 id="seo-header">【题解】三月训练日记（更新中）</h1>
             
             
               <div class="markdown-body">
@@ -347,7 +347,7 @@
 <p>转移自然是 <span class="math inline">\(dp[x]\)</span> 取它儿子里面最大的三个 <span class="math inline">\(dp[y]\)</span> 求和。</p>
 <p>对于当前节点 <span class="math inline">\(x\)</span>，有这么几种情况：</p>
 <ul>
-<li><span class="math inline">\(x\)</span> 的度数 <span class="math inline">\(\ge 1\)</span>，遍历所有儿子。取度数 <span class="math inline">\(\ge 4\)</span> 的儿子 <span class="math inline">\(dp[y]\)</span> 加上 <span class="math inline">\(x\)</span> 自身一个计入答案。</li>
+<li><span class="math inline">\(x\)</span> 的度数 <span class="math inline">\(\ge 1\)</span>，遍历所有儿子，取度数 <span class="math inline">\(\ge 4\)</span> 的儿子的 <span class="math inline">\(dp[y]\)</span> 加上 <span class="math inline">\(x\)</span> 自身一个计入答案。</li>
 <li><span class="math inline">\(x\)</span> 的度数 <span class="math inline">\(\ge 4\)</span>，且有 <span class="math inline">\(\ge 4\)</span> 个儿子，取最大的四个 <span class="math inline">\(dp[y]\)</span> 的和加上 <span class="math inline">\(x\)</span> 自身一个计入答案。</li>
 <li><span class="math inline">\(x\)</span> 的度数 <span class="math inline">\(\ge 4\)</span>，且有 <span class="math inline">\(\ge 3\)</span> 个儿子，则计算出 <span class="math inline">\(dp[x]\)</span> 传递上去。</li>
 <li>除此之外 <span class="math inline">\(x\)</span> 只能作为一个叶子贡献给父亲。</li>
@@ -355,10 +355,11 @@
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="cf1004e.-sonya-and-ice-cream"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1004/problem/E">CF1004E. Sonya and Ice Cream</a></h2>
 <p>*2400 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1004/submission/307667954">Code</a></p>
+<p>将 <span class="math inline">\(A,B\)</span> 两点间的距离简记为 <span class="math inline">\(d_{AB}\)</span>。</p>
 <p>结论：最佳的路径一定被直径包含。</p>
 <ul>
 <li>首先，一个经典的结论是：对于树上任意一点，离它最远的点一定是直径的两个端点之一。对于直径外一点 <span class="math inline">\(x\)</span>，设离 <span class="math inline">\(x\)</span> 最近的直径上的点是点 <span class="math inline">\(y\)</span>，当 <span class="math inline">\(x\)</span> 向 <span class="math inline">\(y\)</span> 靠近时，离 <span class="math inline">\(x\)</span> 最远的点仍然是直径的两个端点，但最远距离减小，故取 <span class="math inline">\(y\)</span> 优于 <span class="math inline">\(x\)</span>。于是，我们选的第一个点肯定是在直径上。</li>
-<li>设我们选的第一个点是 <span class="math inline">\(A\)</span>，接下来证明 <span class="math inline">\(A\)</span> 沿着直径扩展最佳。如下图，<span class="math inline">\(L,R\)</span> 是直径的两个端点，<span class="math inline">\(E,G\)</span> 分别是 <span class="math inline">\(D,F\)</span> 向下延伸出去最远的点。若从 <span class="math inline">\(A\)</span> 出发沿直径选了 <span class="math inline">\(B\)</span>，答案是 <span class="math inline">\(\max(dis(L,A),dis(A,E),dis(B,G),dis(B,R))\)</span>；若沿子树方向选了 <span class="math inline">\(D\)</span>，答案是 <span class="math inline">\(\max(dis(L,A),dis(D,E),dis(A,R),dis(A,G))\)</span>。依据直径的性质有 <span class="math inline">\(dis(B,G) &lt; dis(B,R)\)</span>，<span class="math inline">\(dis(A,G)&lt;dis(A,R)\)</span>，<span class="math inline">\(dis(A,E) &lt; dis(L,A)\)</span>，<span class="math inline">\(dis(D,E)&lt;dis(L,A)\)</span>，此时相当于比较 <span class="math inline">\(\max(dis(L,A),dis(B,R))\)</span> 与 <span class="math inline">\(\max(dis(L,A),dis(A,R))\)</span>，又 <span class="math inline">\(dis(A,R)&gt;dis(B,R)\)</span>，故选 <span class="math inline">\(B\)</span> 相比选 <span class="math inline">\(D\)</span> 更优。将 <span class="math inline">\(A,B\)</span> 看成一个整体，同理可证明选 <span class="math inline">\(C\)</span> 比选 <span class="math inline">\(F\)</span> 要更优......因此路径肯定是沿着直径方向一直拓展。</li>
+<li>设我们选的第一个点是 <span class="math inline">\(A\)</span>，接下来证明 <span class="math inline">\(A\)</span> 沿着直径扩展最佳。如下图，<span class="math inline">\(L,R\)</span> 是直径的两个端点，<span class="math inline">\(E,G\)</span> 分别是 <span class="math inline">\(D,F\)</span> 向下延伸出去最远的点。若从 <span class="math inline">\(A\)</span> 出发沿直径选了 <span class="math inline">\(B\)</span>，答案是 <span class="math inline">\(\max(d_{LA},d_{AE},d_{BG},d_{BR})\)</span>；若沿子树方向选了 <span class="math inline">\(D\)</span>，答案是 <span class="math inline">\(\max(d_{LA},d_{DE},d_{AR},d_{AG})\)</span>。依据直径的性质有 <span class="math inline">\(d_{BG} &lt; d_{BR}\)</span>，<span class="math inline">\(d_{AG}&lt;d_{AR}\)</span>，<span class="math inline">\(d_{AE} &lt; d_{LA}\)</span>，<span class="math inline">\(d_{DE} &lt; d_{LA}\)</span>，此时相当于比较 <span class="math inline">\(\max(d_{LA},d_{BR})\)</span> 与 <span class="math inline">\(\max(d_{LA},d_{AR})\)</span>，又 <span class="math inline">\(d_{AR} &gt; d_{BR}\)</span>，故选 <span class="math inline">\(B\)</span> 相比选 <span class="math inline">\(D\)</span> 更优。将 <span class="math inline">\(A,B\)</span> 看成一个整体，同理可证明选 <span class="math inline">\(C\)</span> 比选 <span class="math inline">\(F\)</span> 要更优，以此类推......因此路径肯定是沿着直径方向一直扩展。</li>
 </ul>
 <p><img src="/image/academic/CF1004.png" /></p>
 <p>当 <span class="math inline">\(k\)</span> 大于等于直径长度时，就选完整个直径。否则在直径上搞一个长为 <span class="math inline">\(k\)</span> 的滑动窗口，窗口两侧延伸出去的最长距离可以预处理前缀后缀和计算，窗口内部子树的答案等同于区间最值。</p>
@@ -419,7 +420,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>【题解】三月份训练日记（更新中）</div>
+      <div>【题解】三月训练日记（更新中）</div>
       <div>https://kisuraop.github.io/posts/5dc05f53.html</div>
     </div>
     <div class="license-meta">
