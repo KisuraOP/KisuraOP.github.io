@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          718 字
+          1.5k 字
         
       </span>
     
@@ -353,6 +353,16 @@
 <li>除此之外 <span class="math inline">\(x\)</span> 只能作为一个叶子贡献给父亲。</li>
 </ul>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1004e.-sonya-and-ice-cream"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1004/problem/E">CF1004E. Sonya and Ice Cream</a></h2>
+<p>*2400 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1004/submission/307667954">Code</a></p>
+<p>结论：最佳的路径一定被直径包含。</p>
+<ul>
+<li>首先，一个经典的结论是：对于树上任意一点，离它最远的点一定是直径的两个端点之一。对于直径外一点 <span class="math inline">\(x\)</span>，设离 <span class="math inline">\(x\)</span> 最近的直径上的点是点 <span class="math inline">\(y\)</span>，当 <span class="math inline">\(x\)</span> 向 <span class="math inline">\(y\)</span> 靠近时，离 <span class="math inline">\(x\)</span> 最远的点仍然是直径的两个端点，但最远距离减小，故取 <span class="math inline">\(y\)</span> 优于 <span class="math inline">\(x\)</span>。于是，我们选的第一个点肯定是在直径上。</li>
+<li>设我们选的第一个点是 <span class="math inline">\(A\)</span>，接下来证明 <span class="math inline">\(A\)</span> 沿着直径扩展最佳。如下图，<span class="math inline">\(L,R\)</span> 是直径的两个端点，<span class="math inline">\(E,G\)</span> 分别是 <span class="math inline">\(D,F\)</span> 向下延伸出去最远的点。若从 <span class="math inline">\(A\)</span> 出发沿直径选了 <span class="math inline">\(B\)</span>，答案是 <span class="math inline">\(\max(dis(L,A),dis(A,E),dis(B,G),dis(B,R))\)</span>；若沿子树方向选了 <span class="math inline">\(D\)</span>，答案是 <span class="math inline">\(\max(dis(L,A),dis(D,E),dis(A,R),dis(A,G))\)</span>。依据直径的性质有 <span class="math inline">\(dis(B,G) &lt; dis(B,R)\)</span>，<span class="math inline">\(dis(A,G)&lt;dis(A,R)\)</span>，<span class="math inline">\(dis(A,E) &lt; dis(L,A)\)</span>，<span class="math inline">\(dis(D,E)&lt;dis(L,A)\)</span>，此时相当于比较 <span class="math inline">\(\max(dis(L,A),dis(B,R))\)</span> 与 <span class="math inline">\(\max(dis(L,A),dis(A,R))\)</span>，又 <span class="math inline">\(dis(A,R)&gt;dis(B,R)\)</span>，故选 <span class="math inline">\(B\)</span> 相比选 <span class="math inline">\(D\)</span> 更优。将 <span class="math inline">\(A,B\)</span> 看成一个整体，同理可证明选 <span class="math inline">\(C\)</span> 比选 <span class="math inline">\(F\)</span> 要更优......因此路径肯定是沿着直径方向一直拓展。</li>
+</ul>
+<p><img src="/image/academic/CF1004.png" /></p>
+<p>当 <span class="math inline">\(k\)</span> 大于等于直径长度时，就选完整个直径。否则在直径上搞一个长为 <span class="math inline">\(k\)</span> 的滑动窗口，窗口两侧延伸出去的最长距离可以预处理前缀后缀和计算，窗口内部子树的答案等同于区间最值。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>，若用单调队列求极值就是 <span class="math inline">\(O(n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
