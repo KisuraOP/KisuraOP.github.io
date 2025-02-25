@@ -778,7 +778,7 @@
 <hr />
 <h3 id="c.-种树">C. 种树</h3>
 <div class="note note-success">
-            <p>将已经种了树的点称为黑点，否则白点。</p><p>两种<strong>错误</strong>的贪心举例：</p><ul><li>两个黑点间夹 <span class="math inline">\(k\)</span> 个白点，<span class="math inline">\(k\)</span> 为偶数时用 <span class="math inline">\(\dfrac{k}{2}\)</span> 次操作填满。</li><li>以两个或以上相连的黑点为界，每个连通块贡献为 <span class="math inline">\(\left\lceil \dfrac{白点个数}{2}\right\rceil\)</span>。</li></ul><p>反例对应如下。</p><p><img src="/image/academic/CCPC1.png" alt="id" style="zoom:50%;" /></p><p><strong>正确</strong>的贪心：任选一黑点为根 dfs，自下而上贪心，每次填两个。对于一个黑点：</p><ul><li>若当前子树中白点数为偶数，填满。</li><li>否则考虑是否能把多余的一个涂色操作摊给当前黑点的父亲。</li></ul><p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+            <p>将已经种了树的点称为黑点，否则白点。</p><p>两种<strong>错误</strong>的贪心举例：</p><ul><li>两个黑点间夹 <span class="math inline">\(k\)</span> 个白点，<span class="math inline">\(k\)</span> 为偶数时用 <span class="math inline">\(\dfrac{k}{2}\)</span> 次操作填满。</li><li>以两个或以上相连的黑点为界，每个连通块贡献为 <span class="math inline">\(\left\lceil \dfrac{白点个数}{2}\right\rceil\)</span>。</li></ul><p>反例对应如下。</p><p><img src="/image/academic/CCPC1.png" style="zoom:25%;" /></p><p><strong>正确</strong>的贪心：任选一黑点为根 dfs，自下而上贪心，每次填两个。对于一个黑点：</p><ul><li>若当前子树中白点数为偶数，填满。</li><li>否则考虑是否能把多余的一个涂色操作摊给当前黑点的父亲。</li></ul><p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
