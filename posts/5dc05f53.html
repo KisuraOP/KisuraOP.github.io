@@ -341,8 +341,8 @@
 <p>以这些状态为起点进行 bfs。对于当前状态 <span class="math inline">\((x,y)\)</span>，二维枚举 <span class="math inline">\(i,j\)</span>，若 <span class="math inline">\(s[i][x]=s[y][j]\)</span>，说明可拓展，将状态 <span class="math inline">\((i,j)\)</span> 压入队列中。</p>
 <p>时间复杂度 <span class="math inline">\(O(n^3)\)</span>。</p>
 <h2 id="abc394f.-alkane"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/tasks/abc394_f">abc394F. Alkane</a></h2>
-<p><span class="math inline">\(\tiny AC\times58, \ WA\times 1\text{ (憋笑)}.\)</span></p>
 <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/submissions/63140699">Code</a></p>
+<p><span class="math inline">\(\tiny AC\times58, \ WA\times 1\text{ (憋笑)}.\)</span></p>
 <p>令 <span class="math inline">\(dp[x]\)</span> 代表 <span class="math inline">\(x\)</span> 贡献了三个儿子的答案。</p>
 <p>转移自然是 <span class="math inline">\(dp[x]\)</span> 取它儿子里面最大的三个 <span class="math inline">\(dp[y]\)</span> 求和。</p>
 <p>对于当前节点 <span class="math inline">\(x\)</span>，有这么几种情况：</p>
