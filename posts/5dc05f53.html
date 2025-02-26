@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          2.2k 字
         
       </span>
     
@@ -364,6 +364,13 @@
 <p><img src="/image/academic/CF1004.png" style="zoom:50%;" /></p>
 <p>当 <span class="math inline">\(k\)</span> 大于等于直径长度时，就选完整个直径。否则在直径上搞一个长为 <span class="math inline">\(k\)</span> 的滑动窗口，窗口两侧延伸出去的最长距离可以预处理前缀后缀和计算，窗口内部子树的答案等同于区间最值。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>，若用单调队列求极值就是 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1969e.-unique-array"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1969/problem/E">CF1969E. Unique Array</a></h2>
+<p>*2400 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1969/submission/307896648">Code</a></p>
+<p>对于一个数 <span class="math inline">\(a_i\)</span>，设 <span class="math inline">\(a_i\)</span> 上一个出现的位置是 <span class="math inline">\(\text{lst}_{a_i}\)</span>，下一个出现的位置是 <span class="math inline">\(\text{nxt}_{a_i}\)</span>，那么 <span class="math inline">\(a_i\)</span> 在区间 <span class="math inline">\([l,r]\)</span> 中唯一的充要条件是 <span class="math inline">\(l\in(\text{lst}_{a_i},i]\)</span> 且 <span class="math inline">\(r\in [i,\text{nxt}_{a_i})\)</span>。</p>
+<p>考虑从左到右枚举线段的右端点 <span class="math inline">\(r\)</span>，判断是否有不合法的左端点。</p>
+<p>令 <span class="math inline">\(\text{llst}_{a_i}\)</span> 是 <span class="math inline">\(a_i\)</span> 的上一个的上一个的出现位置。当右端点移动到 <span class="math inline">\(i\)</span> 时，<span class="math inline">\((\text{llst}_{a_i},\text{lst}_{a_i}]\)</span> 这一段不能再作为合法的左端点了，我们将这个区间 <span class="math inline">\(-1\)</span>。而 <span class="math inline">\(l\in (\text{lst}_{a_i},i]\)</span> 是新增的合法左端点，我们将这个区间 <span class="math inline">\(+1\)</span>。</p>
+<p>如此一来，对于当前右端点 <span class="math inline">\(i\)</span>，以 <span class="math inline">\(l\in[1,i]\)</span> 为左端点的区间全部 unique 就等价于区间 <span class="math inline">\([1,i]\)</span> 的最小值 <span class="math inline">\(&gt;0\)</span>。若不满足条件，我们就把 <span class="math inline">\(a_i\)</span> 替换掉，并且贪心的想肯定是替换成一个序列里从没出现过的数。替换后，左端点就能存在于 <span class="math inline">\([1,i]\)</span> 中的任何位置，于是我们将区间 <span class="math inline">\([1,i]+1\)</span>，同时把答案 <span class="math inline">\(+1\)</span>。</p>
+<p>整个过程仅涉及区间加、区间极值，使用线段树维护。时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
