@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          3.7k 字
         
       </span>
     
@@ -371,6 +371,29 @@
 <p>令 <span class="math inline">\(\text{llst}_{a_i}\)</span> 是 <span class="math inline">\(a_i\)</span> 的上一个的上一个的出现位置。当右端点移动到 <span class="math inline">\(i\)</span> 时，<span class="math inline">\((\text{llst}_{a_i},\text{lst}_{a_i}]\)</span> 这一段不能再作为合法的左端点了，我们将这个区间 <span class="math inline">\(-1\)</span>。而 <span class="math inline">\(l\in (\text{lst}_{a_i},i]\)</span> 是新增的合法左端点，我们将这个区间 <span class="math inline">\(+1\)</span>。</p>
 <p>如此一来，对于当前右端点 <span class="math inline">\(i\)</span>，以 <span class="math inline">\(l\in[1,i]\)</span> 为左端点的区间全部 unique 就等价于区间 <span class="math inline">\([1,i]\)</span> 的最小值 <span class="math inline">\(&gt;0\)</span>。若不满足条件，我们就把 <span class="math inline">\(a_i\)</span> 替换掉，并且贪心的想肯定是替换成一个序列里从没出现过的数。替换后，左端点就能存在于 <span class="math inline">\([1,i]\)</span> 中的任何位置，于是我们将区间 <span class="math inline">\([1,i]+1\)</span>，同时把答案 <span class="math inline">\(+1\)</span>。</p>
 <p>整个过程仅涉及区间加、区间极值，使用线段树维护。时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf2064f.-we-be-summing"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2064/problem/F">CF2064F. We Be Summing</a></h2>
+<p>*2600 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2064/submission/307985033">Code</a></p>
+<p>注意到随着 <span class="math inline">\(i\)</span> 增加，<span class="math inline">\(\min(b_1,\ldots,b_i)\)</span> 递减，<span class="math inline">\(\max(b_{i+1},\ldots,b_m)\)</span> 也递减。这两项加起来要是定值，说明对于任意 epic 的序列，满足相加等于 <span class="math inline">\(k\)</span> 的 <span class="math inline">\(\min(b_1,\ldots,b_i)\)</span> 唯一，<span class="math inline">\(\max(b_{i+1},\ldots,b_m)\)</span> 也唯一。我们把前缀 <span class="math inline">\(\min\)</span> 这一项的值记为 <span class="math inline">\(x\)</span>，后缀 <span class="math inline">\(\max\)</span> 这一项自然是 <span class="math inline">\(k-x\)</span>。对于满足该要求的序列，称之为 <span class="math inline">\(x\)</span>-epic 序列，并将 <span class="math inline">\(\min(b_1,\ldots,b_i)=x\)</span> 的 <span class="math inline">\(i\)</span> 称为分割点。不难发现分割点一定构成一段连续的区间。</p>
+<p>记 <span class="math inline">\(lmn_i\)</span> 为 <span class="math inline">\(i\)</span> 左侧第一个 <span class="math inline">\(\le a_i\)</span> 的位置，<span class="math inline">\(lmx_i\)</span> 为 <span class="math inline">\(i\)</span> 左侧第一个 <span class="math inline">\(&gt;a_i\)</span> 的位置，<span class="math inline">\(rmx_i\)</span> 为 <span class="math inline">\(i\)</span> 右侧第一个 <span class="math inline">\(\ge a_i\)</span> 的位置，<span class="math inline">\(rmn_i\)</span> 为右侧第一个 <span class="math inline">\(&lt; a_i\)</span> 的位置。</p>
+<p>依据第一段的分析，我们枚举 <span class="math inline">\(x\)</span>，对每个 <span class="math inline">\(x\)</span> 统计有多少 <span class="math inline">\(x\)</span>-epic 的子数组。对于当前 <span class="math inline">\(a_i=x\)</span>，若要 <span class="math inline">\(a_i\)</span> 成为前缀最小值（为了计数不重复，这里指第一个前缀最小值），左端点可以是 <span class="math inline">\((lmn_i+1,i]\)</span> 中的任意一个。再枚举满足 <span class="math inline">\(j &gt;i\)</span> 且 <span class="math inline">\(a_j=k-x\)</span> 的 <span class="math inline">\(j\)</span>，若要 <span class="math inline">\(a_j\)</span> 成为后缀最大值（同理这里指最后一个后缀最大值），右端点可以是 <span class="math inline">\([j,rmx_i)\)</span>。</p>
+<p>不难发现，<span class="math inline">\(a_i,a_j\)</span> 要分别作为最小前缀和最大后缀贡献答案，当且仅当区间 <span class="math inline">\((lmn_i,rmn_i)\)</span> 和 <span class="math inline">\((lmx_j,rmx_j)\)</span> 相交，此时 <span class="math inline">\([lmx_j,rmn_i]\)</span> 内的任意一点均为分割点。若满足此条件，包含 <span class="math inline">\([i,j]\)</span> 的任一子数组均 <span class="math inline">\(a_i\)</span>-epic，贡献是 <span class="math inline">\((rmx_j-j)\times(i-lmn_i)\)</span>。</p>
+<p>可以使用树状数组或线段树快速统计贡献。时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf2072g.-ive-been-flipping-numbers-for-300-years-and-calculated-the-sum"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2072/problem/G">CF2072G. I've Been Flipping Numbers for 300 Years and Calculated the Sum</a></h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2072/submission/308019731">Code</a></p>
+<p>阈值分治。</p>
+<ul>
+<li><p>当 <span class="math inline">\(p \le \sqrt{n}\)</span> 时，暴力计算 <span class="math inline">\(\text{rev}(n,p)\)</span>。时间复杂度 <span class="math inline">\(O(\sqrt{n})\)</span>。</p></li>
+<li><p>当 <span class="math inline">\(p&gt;n\)</span> 时，<span class="math inline">\(\text{rev}(n,p)=n\)</span>。时间复杂度 <span class="math inline">\(O(1)\)</span>。</p></li>
+</ul>
+<p>只用考虑 <span class="math inline">\(\sqrt{n}&lt;p\le n\)</span> 时如何快速计算。</p>
+<p>注意到 <span class="math inline">\(n\)</span> 在 <span class="math inline">\(p\)</span> 进制下最多只有两位，翻转后式子写出来是： <span class="math display">\[
+\begin{align}
+&amp;\quad\ (n\bmod p)\cdot p+\left\lfloor\frac{n}{p}\right\rfloor\\
+&amp;=(n-\left\lfloor\frac{n}{p}\right\rfloor \cdot p)\cdot p+\left\lfloor\frac{n}{p}\right\rfloor\\
+&amp;=-\left\lfloor\frac{n}{p}\right\rfloor\cdot p^2+np+\left\lfloor\frac{n}{p}\right\rfloor
+\end{align}
+\]</span> 数论分块枚举 <span class="math inline">\(\left\lfloor\dfrac{n}{p}\right\rfloor\)</span> 的值，一段区间内 <span class="math inline">\(p^2\)</span> 和 <span class="math inline">\(p\)</span> 的和可以快速计算。</p>
+<p>时间复杂度 <span class="math inline">\(O(t\sqrt{n})\)</span>，<span class="math inline">\(t\)</span> 是数据组数。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
