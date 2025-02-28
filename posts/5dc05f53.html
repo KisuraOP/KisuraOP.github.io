@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.7k 字
+          4.4k 字
         
       </span>
     
@@ -394,6 +394,25 @@
 \end{align}
 \]</span> 数论分块枚举 <span class="math inline">\(\left\lfloor\dfrac{n}{p}\right\rfloor\)</span> 的值，一段区间内 <span class="math inline">\(p^2\)</span> 的和以及 <span class="math inline">\(p\)</span> 的和可以用公式快速计算。</p>
 <p>时间复杂度 <span class="math inline">\(O(t\sqrt{n})\)</span>，<span class="math inline">\(t\)</span> 是数据组数。</p>
+<h2 id="cf1839d.-ball-sorting"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1839/problem/D">CF1839D. Ball Sorting</a></h2>
+<p>*2100 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1839/submission/308219457">Code</a></p>
+<p>考虑这么一种操作策略：选择原序列的任意一个上升子序列，称这个子序列里的元素为选定点。我们钦定选定点都不动，那么所需要 <span class="math inline">\(0\)</span> 的最小个数就是极长非选定点连续段的个数。</p>
+<p>容易发现枚举所有的上升子序列可以涵盖所有可能的最优策略。</p>
+<p>另一个观察是对于非选定点，可以只通过 <span class="math inline">\(1\)</span> 次移动就能移动到正确的位置上。</p>
+<p>令 <span class="math inline">\(dp[i][j]\)</span> 表示若 <span class="math inline">\(i\)</span> 是一个选定点，<span class="math inline">\([1,i]\)</span> 中有至多 <span class="math inline">\(j\)</span> 个极长非选定点连续段，将 <span class="math inline">\([1,i]\)</span> 排好序的最小代价。</p>
+<p>枚举上升子序列的上一个元素（即上一个选定点），做出以下转移： <span class="math display">\[
+dp[i][j]=\min
+\begin{cases}
+dp[i][j - 1]\\
+dp[i-1][j] &amp;,\text{if }c[i-1]&lt;c[i]\\
+dp[k][j-1]+(i-k-1)&amp;,\forall k\in[0,i),c[k]&lt;c[i]
+\end{cases}
+\]</span></p>
+<ul>
+<li><p>初态：<span class="math inline">\(dp[i][0]=\begin{cases}0&amp;,\text{if }c[i]\textbf{ 在 }[1,i] \textbf{ 单调增}\\ \text{inf}&amp;,\text{otherwise}\end{cases}\)</span></p></li>
+<li><p>答案：<span class="math inline">\(\min\begin{cases}dp[n][k]\\ dp[i][k-1]+(n-i)&amp;,\forall i\in[1,n)\end{cases}\)</span></p></li>
+</ul>
+<p>时间复杂度 <span class="math inline">\(O(n^3)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
