@@ -405,7 +405,7 @@ dp[i][j]=\min
 \begin{cases}
 dp[i][j - 1]\\
 dp[i-1][j] &amp;,\text{if }c[i-1]&lt;c[i]\\
-dp[k][j-1]+(i-k-1)&amp;,\forall k\in[0,i),c[k]&lt;c[i]
+dp[k][j-1]+(i-k-1)&amp;,\forall k\in[0,i-1),c[k]&lt;c[i]
 \end{cases}
 \]</span></p>
 <ul>
