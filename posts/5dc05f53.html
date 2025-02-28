@@ -409,7 +409,7 @@ dp[k][j-1]+(i-k-1)&amp;,\forall k\in[0,i),c[k]&lt;c[i]
 \end{cases}
 \]</span></p>
 <ul>
-<li><p>初态：<span class="math inline">\(dp[i][0]=\begin{cases}0&amp;,\text{if }c[i]\textbf{ 在 }[1,i] \textbf{ 单调增}\\ \text{inf}&amp;,\text{otherwise}\end{cases}\)</span></p></li>
+<li><p>初态：<span class="math inline">\(dp[i][0]=\begin{cases}0&amp;,\text{if }\{c\}\textbf{ 在 }[1,i] \textbf{ 单调增}\\ \text{inf}&amp;,\text{otherwise}\end{cases}\)</span></p></li>
 <li><p>答案：<span class="math inline">\(\min\begin{cases}dp[n][k]\\ dp[i][k-1]+(n-i)&amp;,\forall i\in[1,n)\end{cases}\)</span></p></li>
 </ul>
 <p>时间复杂度 <span class="math inline">\(O(n^3)\)</span>。</p>
