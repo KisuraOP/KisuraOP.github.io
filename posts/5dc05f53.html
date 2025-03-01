@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.7k 字
+          5.8k 字
         
       </span>
     
@@ -438,7 +438,7 @@ dp[k][j-1]+(i-k-1)&amp;,\forall k\in[0,i-1),c[k]&lt;c[i]
 <p>问题转化为有若干组询问，每次询问两个点，需要找出两点间的一条简单路径，让路径上所有边的边权最小值最大（最大瓶颈路）。</p>
 <p>这是个经典的问题（NOIP 货车运输），做法是 kruskal 重构树或者在最大生成树上倍增。</p>
 <h2 id="cf1982d.-beauty-of-the-mountains"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1982/problem/D">CF1982D. Beauty of the mountains</a></h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1982/submission/308516339">Code</a></p>
+<p>*1700 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1982/submission/308516339">Code</a></p>
 <p>把有雪的格子称为 <span class="math inline">\(0\)</span> 格子，没雪的格子称为 <span class="math inline">\(1\)</span> 格子。</p>
 <p>先计算出初始 <span class="math inline">\(1\)</span> 格子的高度和与 <span class="math inline">\(0\)</span> 格子的高度和的差值，记作 <span class="math inline">\(s\)</span>。</p>
 <p>对于每一个 <span class="math inline">\(k\times k\)</span> 的矩形，我们可以用二维前缀和快速计算出对这个矩形整体 <span class="math inline">\(+1\)</span> 对 "<span class="math inline">\(1\)</span> 格子的高度和与 <span class="math inline">\(0\)</span> 格子的高度和的差值" 的贡献，把这个贡献记作 <span class="math inline">\(c_i\)</span>。</p>
