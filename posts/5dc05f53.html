@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.4k 字
+          5.4k 字
         
       </span>
     
@@ -340,7 +340,7 @@
 </ul>
 <p>以这些状态为起点进行 bfs。对于当前状态 <span class="math inline">\((x,y)\)</span>，二维枚举 <span class="math inline">\(i,j\)</span>，若 <span class="math inline">\(s[i][x]=s[y][j]\)</span>，说明可拓展，将状态 <span class="math inline">\((i,j)\)</span> 压入队列中。</p>
 <p>时间复杂度 <span class="math inline">\(O(n^3)\)</span>。</p>
-<h2 id="abc394f.-alkane"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/tasks/abc394_f">abc394F. Alkane</a></h2>
+<h2 id="abc394f.-alkane"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/tasks/abc394_f">abc394f. Alkane</a></h2>
 <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/submissions/63140699">Code</a></p>
 <p><span class="math inline">\(\tiny AC\times58, \ WA\times 1\text{ (憋笑)}.\)</span></p>
 <p>令 <span class="math inline">\(dp[x]\)</span> 代表 <span class="math inline">\(x\)</span> 贡献了三个儿子的答案。</p>
@@ -413,9 +413,32 @@ dp[k][j-1]+(i-k-1)&amp;,\forall k\in[0,i-1),c[k]&lt;c[i]
 <li><p>答案：<span class="math inline">\(\min\begin{cases}dp[n][k]\\ dp[i][k-1]+(n-i)&amp;,\forall i\in[1,n)\end{cases}\)</span></p></li>
 </ul>
 <p>时间复杂度 <span class="math inline">\(O(n^3)\)</span>。</p>
+<h2 id="cf1839e.-decreasing-game"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1839/problem/E">CF1839E. Decreasing Game</a></h2>
+<p>*2400 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1839/submission/308401912">Code</a></p>
+<p>结论：后手必胜当且仅当 <span class="math inline">\(\{a\}\)</span> 能被划分为元素和相等的两部分。</p>
+<ul>
+<li><p>充分性：设划分成的两部分为 <span class="math inline">\(A,B\)</span>，后手必胜的策略如下。若先手选择了 <span class="math inline">\(A\)</span> 中的元素，后手就选择 <span class="math inline">\(B\)</span> 中的元素；否则后手选择 <span class="math inline">\(A\)</span> 中的元素。如此操作后 <span class="math inline">\(A,B\)</span> 两部分的元素和都减少了 <span class="math inline">\(d\)</span>，因此任何时刻 <span class="math inline">\(A,B\)</span> 两部分元素和相等。于是若先手还能继续游戏（即选择了一个 <span class="math inline">\(a_i&gt;0\)</span> 的 <span class="math inline">\(i\)</span>），后手也一定能从另一部分里找到一个 <span class="math inline">\(j\neq i\)</span> 使得 <span class="math inline">\(a_j&gt;0\)</span>。</p></li>
+<li><p>必要性：若初始 <span class="math inline">\(\{a\}\)</span> 不能划分为元素和相等的两部分，则能够证明后续每一轮操作后 <span class="math inline">\(\{a\}\)</span> 仍旧不能划分为元素和相等的两部分。</p>
+<ul>
+<li>设某一轮中两人选择了 <span class="math inline">\(a_i,a_j\)</span>，不妨令 <span class="math inline">\(a_i\le a_j\)</span>。假设操作前 <span class="math inline">\(\{a\}\)</span> 不能被划分为了总和相等的两部分而操作结束后可以，令操作结束后 <span class="math inline">\(a_j-a_i\)</span> 所在的那部分其它数的和为 <span class="math inline">\(s_1\)</span>，另一部分总和为 <span class="math inline">\(s_2\)</span>，则 <span class="math inline">\(s_1+(a_j-a_i)=s_2\)</span>。移项得 <span class="math inline">\(s_1+a_j=s_2+a_i\)</span>，矛盾。</li>
+</ul>
+<p>于是，先手无论怎么抉择最后的局面都一定是只剩一个非零数或两个不同的非零数，必胜。</p></li>
+</ul>
+<p>最后的问题是如何找出这个划分，这等价于找一个和为 <span class="math inline">\(\dfrac{\sum a_i}{2}\)</span> 的子序列，是一个经典的背包问题。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^3)\)</span>。</p>
+<h2 id="abc394g.-dense-buildings"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/tasks/abc394_g">abc394g. Dense Buildings</a></h2>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/submissions/63238482">Code</a></p>
+<p>对于一组询问 <span class="math inline">\((x_1,y_1,z_1,x_2,y_2,z_2)\)</span>，如果我们找到一条路径连通 <span class="math inline">\((x_1,y_1)\)</span> 与 <span class="math inline">\((x_2,y_2)\)</span> 且路径上最低的楼房高 <span class="math inline">\(h\)</span>。那么：</p>
+<ul>
+<li>若 <span class="math inline">\(h&lt; \min(z_1,z_2)\)</span>，则垂直方向上我们要 <span class="math inline">\(z_1\to h\)</span> 再 <span class="math inline">\(h\to z_2\)</span>，写成式子是 <span class="math inline">\(z_1+z_2-2h\)</span>。</li>
+<li>若 <span class="math inline">\(h \ge \min(z_1,z_2)\)</span>，答案是 <span class="math inline">\(|z_1-z_2|\)</span>。</li>
+</ul>
+<p>为了让答案最小，我们肯定是找最大的 <span class="math inline">\(h\)</span>。</p>
+<p>对于相邻的楼房，连边，边权是较低的楼房的高度。</p>
+<p>问题转化为有若干组询问，每次询问两个点，需要找出两点间的一条简单路径，让路径上所有边的边权最小值最大（最大瓶颈路）。</p>
+<p>这是个经典的问题（NOIP 货车运输），做法是 kruskal 重构树或者在最大生成树上倍增。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
-<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/tasks/abc394_g">G - Dense Buildings</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
