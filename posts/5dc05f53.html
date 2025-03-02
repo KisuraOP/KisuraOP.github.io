@@ -500,9 +500,9 @@ d(kb+p,b)\to \begin{cases}1+d(b,p)&amp;,k \textbf{ 为奇数}\\ d(p,b) &amp;, k\
 \]</span></p>
 <p>非常 amazing 啊经过大力找规律，得到的结论是进行 <span class="math inline">\(2^k,k\in N^+\)</span> 次操作后，<span class="math inline">\(f_{2^k,i}=f_{0,i}\oplus f_{0,(i+2^k)\bmod n}\)</span>。</p>
 <p>题目又保证 <span class="math inline">\(n\)</span> 是 <span class="math inline">\(2\)</span> 的幂，故 <span class="math inline">\(n\)</span> 次操作后 <span class="math inline">\(\{a\}\)</span> 一定全 <span class="math inline">\(0\)</span>，没有无解的情况。</p>
-<p>接着，又能观察到如果 <span class="math inline">\(\{a\}\)</span> 已经全 <span class="math inline">\(0\)</span>，再操作肯定也是全 <span class="math inline">\(0\)</span>，换句话说答案可以二分。</p>
+<p>接着，又观察到若 <span class="math inline">\(\{a\}\)</span> 已经全 <span class="math inline">\(0\)</span>，再操作肯定也是全 <span class="math inline">\(0\)</span>，换句话说答案可以二分。</p>
 <p>设二分出的答案是 <span class="math inline">\(x\)</span>，预处理对于 <span class="math inline">\(k\in[0,\log n]\)</span>，操作 <span class="math inline">\(2^k\)</span> 次后的数组，枚举 <span class="math inline">\(x\)</span> 的每一位大力操作即可。</p>
-<p>更好的实现是倍增，依次进行 <span class="math inline">\(i=\frac{n}{2},\frac{n}{4},\frac{n}{8},\ldots\)</span> 次操作，直到某次操作后序列全为 <span class="math inline">\(0\)</span>。</p>
+<p>更聪明的做法是倍增，令 <span class="math inline">\(i=\frac{n}{2},\frac{n}{4},\frac{n}{8},\ldots\)</span> ，对每个 <span class="math inline">\(i\)</span> 先令 <span class="math inline">\(\{b\}=\{a\}\)</span>，在 <span class="math inline">\(\{b\}\)</span> 上操作 <span class="math inline">\(i\)</span> 次，若操作后 <span class="math inline">\(\{b\}\)</span> 不全为 <span class="math inline">\(0\)</span>，说明答案比 <span class="math inline">\(i\)</span> 大，此时将答案累加上 <span class="math inline">\(i\)</span> 并把 <span class="math inline">\(\{b\}\)</span> 赋值给 <span class="math inline">\(\{a\}\)</span>。</p>
 <p>时间复杂度前者 <span class="math inline">\(O(n\log^2 n)\)</span>，后者 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
