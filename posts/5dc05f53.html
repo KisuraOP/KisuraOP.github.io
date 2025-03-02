@@ -499,7 +499,7 @@ d(kb+p,b)\to \begin{cases}1+d(b,p)&amp;,k \textbf{ 为奇数}\\ d(p,b) &amp;, k\
 \end{align}
 \]</span></p>
 <p>非常 amazing 啊经过大力找规律，得到的结论是进行 <span class="math inline">\(2^k,k\in N^+\)</span> 次操作后，<span class="math inline">\(f_{2^k,i}=f_{0,i}\oplus f_{0,(i+2^k)\bmod n}\)</span>。</p>
-<p>又题目保证 <span class="math inline">\(n\)</span> 是 <span class="math inline">\(2\)</span> 的幂，故 <span class="math inline">\(n\)</span> 次操作后 <span class="math inline">\(\{a\}\)</span> 一定全 <span class="math inline">\(0\)</span>，没有无解的情况。</p>
+<p>题目又保证 <span class="math inline">\(n\)</span> 是 <span class="math inline">\(2\)</span> 的幂，故 <span class="math inline">\(n\)</span> 次操作后 <span class="math inline">\(\{a\}\)</span> 一定全 <span class="math inline">\(0\)</span>，没有无解的情况。</p>
 <p>接着，又能观察到如果 <span class="math inline">\(\{a\}\)</span> 已经全 <span class="math inline">\(0\)</span>，再操作肯定也是全 <span class="math inline">\(0\)</span>，换句话说答案可以二分。</p>
 <p>设二分出的答案是 <span class="math inline">\(x\)</span>，预处理对于 <span class="math inline">\(k\in[0,\log n]\)</span>，操作 <span class="math inline">\(2^k\)</span> 次后的数组，枚举 <span class="math inline">\(x\)</span> 的每一位大力操作即可。</p>
 <p>更好的实现是倍增，依次进行 <span class="math inline">\(i=\frac{n}{2},\frac{n}{4},\frac{n}{8},\ldots\)</span> 次操作，直到某次操作后序列全为 <span class="math inline">\(0\)</span>。</p>
