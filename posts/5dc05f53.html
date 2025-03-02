@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8k 字
+          8.1k 字
         
       </span>
     
@@ -489,11 +489,15 @@ d(kb+p,b)\to \begin{cases}1+d(b,p)&amp;,k \textbf{ 为奇数}\\ d(p,b) &amp;, k\
 <h2 id="cf1848f.-vika-and-wiki"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1848/problem/F">CF1848F. Vika and Wiki</a></h2>
 <p>*2400 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1848/submission/308661424">Code</a></p>
 <p>令 <span class="math inline">\(f_{i,j}\)</span> 表示进行 <span class="math inline">\(i\)</span> 次操作后 <span class="math inline">\(a_j\)</span> 的值。</p>
-<p><span class="math inline">\(f_0=\{a\}\)</span>。</p>
-<p><span class="math inline">\(f_{1,i}=f_{0,i}\oplus f_{0,i+1}\)</span>。</p>
-<p><span class="math inline">\(f_{2,i}=f_{1,i}\oplus f_{1,i+1}=(f_{0,i}\oplus f_{0,i+1})\oplus(f_{0,i+1}\oplus f_{0,i+2})=f_{0,i}\oplus f_{0,i+2}\)</span>。</p>
-<p><span class="math inline">\(f_{3,i}=f_{2,i}\oplus f_{2,i+1}=(f_{0,i}\oplus f_{0,i+2})\oplus (f_{0,i+1}\oplus f_{0,i+3})\)</span>。</p>
-<p><span class="math inline">\(f_{4,i}=f_{3,i}\oplus f_{3,i+1}=(f_{0,i}\oplus f_{0,i+1}\oplus f_{0,i+2}\oplus f_{0,i+3})\oplus (f_{0,i+1}\oplus f_{0,i+2}\oplus f_{0,i+3}\oplus f_{0,i+4})=f_{0,i}\oplus f_{0,i+4}\)</span>。</p>
+<p><span class="math display">\[
+\begin{align}
+&amp;f_0=\{a\} \\
+&amp;f_{1,i}=f_{0,i}\oplus f_{0,i+1}\\
+&amp;f_{2,i}=f_{1,i}\oplus f_{1,i+1}=(f_{0,i}\oplus f_{0,i+1})\oplus(f_{0,i+1}\oplus f_{0,i+2})=f_{0,i}\oplus f_{0,i+2}\\
+&amp;f_{3,i}=f_{2,i}\oplus f_{2,i+1}=(f_{0,i}\oplus f_{0,i+2})\oplus (f_{0,i+1}\oplus f_{0,i+3})\\
+&amp;f_{4,i}=f_{3,i}\oplus f_{3,i+1}=(f_{0,i}\oplus f_{0,i+1}\oplus f_{0,i+2}\oplus f_{0,i+3})\oplus (f_{0,i+1}\oplus f_{0,i+2}\oplus f_{0,i+3}\oplus f_{0,i+4})=f_{0,i}\oplus f_{0,i+4}\\
+\end{align}
+\]</span></p>
 <p>非常 amazing 啊经过大力找规律，得到的结论是进行 <span class="math inline">\(2^k,k\in N^+\)</span> 次操作后，<span class="math inline">\(f_{2^k,i}=f_{0,i}\oplus f_{0,(i+2^k)\bmod n}\)</span>。</p>
 <p>又题目保证 <span class="math inline">\(n\)</span> 是 <span class="math inline">\(2\)</span> 的幂，故 <span class="math inline">\(n\)</span> 次操作后 <span class="math inline">\(\{a\}\)</span> 一定全 <span class="math inline">\(0\)</span>，没有无解的情况。</p>
 <p>接着，又能观察到如果 <span class="math inline">\(\{a\}\)</span> 已经全 <span class="math inline">\(0\)</span>，再操作肯定也是全 <span class="math inline">\(0\)</span>，换句话说答案可以二分。</p>
