@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.2k 字
+          9.5k 字
         
       </span>
     
@@ -522,6 +522,15 @@ d(kb+p,b)\to \begin{cases}1+d(b,p)&amp;,k \textbf{ 为奇数}\\ d(p,b) &amp;, k\
 <p>而先手无法操作时，序列一定形如 <span class="math inline">\(0101\cdots0101\)</span>，即 <span class="math inline">\(c_1\ge c_0\)</span>，这个条件和上述四个先手必胜条件都相悖，因此先手必败。证毕。</p>
 <p>原问题转化为求满足上述四个条件之一的子串有多少个。我们将序列中的 <span class="math inline">\(1\)</span> 看作 <span class="math inline">\(-3\)</span>，<span class="math inline">\(0\)</span> 看作 <span class="math inline">\(1\)</span> 求前缀和，条件 <span class="math inline">\(c_0\ge 3c_1+k_i\)</span> 便等价于区间和 <span class="math inline">\(\ge k_i\)</span>。</p>
 <p>对<span class="math inline">\(\bmod 4\)</span> 相同的下标维护一个树状数组，每次到这四个树状数组里统计贡献。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf1895c.-torn-lucky-ticket"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1895/problem/C">CF1895C. Torn Lucky Ticket</a></h2>
+<p>*1400 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1895/submission/308826631">Code</a></p>
+<p>上手直接蟒就容易写成一坨的题。（至少我是这样QAQ</p>
+<p>这里给出一种优雅的解法。以下默认 0-index。</p>
+<p>把数字看成字符串，记 <span class="math inline">\(f(i,j)\)</span> 代表第 <span class="math inline">\(i\)</span> 位到第 <span class="math inline">\(j\)</span> 位之间数位的和。</p>
+<p>遍历每个串，设当前串长为 <span class="math inline">\(m\)</span>，<span class="math inline">\(\forall i\in[0,m)\)</span>，将二元组 <span class="math inline">\(\{f(0,i)-f(i+1,m-1),(i+1)-(m-i-1)\}\)</span> 记录进一个 <code>std::map</code> 中。</p>
+<p>枚举每个串作为拼接左侧，能与它拼起来构成 pair 的字符串数等价于二元组 <span class="math inline">\(\{f(0,m-1),m\}\)</span> 和 <span class="math inline">\(\{-f(0,m-1),-m\}\)</span> 的数目和。</p>
+<p>容易发现一个字符串既能做左侧合法拼接又能做右侧合法拼接的情况被规避掉了，计数不重不漏。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
