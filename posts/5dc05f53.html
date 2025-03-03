@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.5k 字
+          9.9k 字
         
       </span>
     
@@ -532,6 +532,14 @@ d(kb+p,b)\to \begin{cases}1+d(b,p)&amp;,k \textbf{ 为奇数}\\ d(p,b) &amp;, k\
 <p>枚举每个串作为拼接左侧，能与它拼起来构成 pair 的字符串数等价于二元组 <span class="math inline">\(\{f(0,m-1),m\}\)</span> 和 <span class="math inline">\(\{-f(0,m-1),-m\}\)</span> 的数目和。</p>
 <p>容易发现一个字符串既能做左侧合法拼接又能做右侧合法拼接的情况被规避掉了，计数不重不漏。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf1895d.-xor-construction"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1895/problem/D">CF1895D. XOR Construction</a></h2>
+<p>*1900 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1895/submission/308831646">Code</a></p>
+<p>设 <span class="math inline">\(s_i=a_1\oplus a_2\oplus \cdots \oplus a_i\)</span>。</p>
+<p>则 <span class="math inline">\(\forall i&gt;1\)</span>，<span class="math inline">\(b_i=b_{i-1}\oplus a_{i-1}=b_{i-2}\oplus a_{i-2}\oplus a_{i-1}=\cdots=b_1\oplus s_{i-1}\)</span>。</p>
+<p>要让 <span class="math inline">\(b_i&lt;n\)</span>，就是让 <span class="math inline">\(\max\limits_{i\in[1,n]}(b_1\oplus s_{i-1})&lt;n\)</span>。</p>
+<p>枚举 <span class="math inline">\(b_1\)</span>，用 trie 找到这个异或最大值，看它是否 <span class="math inline">\(&lt;n\)</span>。</p>
+<p>因为单次判断是 <span class="math inline">\(\log\)</span> 级别的，从 <span class="math inline">\(0\)</span> 到 <span class="math inline">\(n-1\)</span> 暴力枚举就好。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log w)\)</span>，<span class="math inline">\(w\)</span> 是值域。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1982/problem/E">Problem - E - Codeforces</a></p>
