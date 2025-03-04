@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          10k 字
+          12k 字
         
       </span>
     
@@ -543,6 +543,53 @@ d(kb+p,b)\to \begin{cases}1+d(b,p)&amp;,k \textbf{ 为奇数}\\ d(p,b) &amp;, k\
 <p>枚举 <span class="math inline">\(b_1\)</span>，用 trie 找到这个异或最大值，看它是否 <span class="math inline">\(&lt;n\)</span>。</p>
 <p>因为单次判断是 <span class="math inline">\(\log\)</span> 级别的，从 <span class="math inline">\(0\)</span> 到 <span class="math inline">\(n-1\)</span> 暴力枚举就好。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log w)\)</span>，<span class="math inline">\(w\)</span> 是值域。</p>
+<h2 id="cf1894d.-neutral-tonality"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1894/problem/D">CF1894D. Neutral Tonality</a></h2>
+<p>*1700 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1894/submission/308865251">Code</a></p>
+<p>依据 Dilworth 定理，<span class="math inline">\(\{b\}\)</span> 一定是排成降序最优，此时插进 <span class="math inline">\(\{a\}\)</span> 中最多让 LIS 长度 <span class="math inline">\(+1\)</span>。</p>
+<p>我们只需尝试构造一种插入方式使得 LIS 长度尽可能不变。</p>
+<p>贪心地想，对于当前 <span class="math inline">\(a_i\)</span>，可以将最小值 <span class="math inline">\(\ge a_i\)</span> 的一段下降序列插入到 <span class="math inline">\(a_i\)</span> 的前面，此时 LIS 长度一定不会增加。</p>
+<p>维护一个双指针即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf1894e.-freedom-of-choice"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1894/problem/E">CF1894E. Freedom of Choice</a></h2>
+<p>*2000 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1894/submission/308868532">Code</a></p>
+<p>设 <span class="math inline">\(L=\sum\limits_{i=1}^{m} l_i\)</span>，<span class="math inline">\(R =\sum\limits_{i=1}^{m} r_i\)</span>，<span class="math inline">\(N=\sum\limits_{i=1}^{m}n_i\)</span>。</p>
+<p>断言：当 <span class="math inline">\(R-L+1&gt;N\)</span> 时，答案为 <span class="math inline">\(0\)</span>。</p>
+<ul>
+<li>根据 anti-beauty 的定义，一个 <span class="math inline">\(|X|\)</span> 对应一个 <span class="math inline">\(a_i\)</span>，而 <span class="math inline">\(a_i\)</span> 一共有 <span class="math inline">\(N\le 10^5\)</span> 种取值。当 <span class="math inline">\(|X|\)</span> 有 <span class="math inline">\(R-L+1&gt;N\)</span> 种取值时，由抽屉原理，一定存在一个 <span class="math inline">\(|X|\)</span> 没有 <span class="math inline">\(a_i\)</span> 与之对应，此时答案为 <span class="math inline">\(0\)</span>。</li>
+</ul>
+<p>否则我们可以 <span class="math inline">\(O(N)\)</span> 枚举 <span class="math inline">\(|X|\in [L,R]\)</span>，对于每一个 multiset，策略一定是 "若能不拿 <span class="math inline">\(|X|\)</span> 就不拿"。</p>
+<p>具体地，初始化计数器 <span class="math inline">\(cnt=0\)</span>。对于当前 multiset，除了 <span class="math inline">\(|X|\)</span> 之外所有 <span class="math inline">\(a_i\)</span> 的 <span class="math inline">\(c_i\)</span> 之和为 <span class="math inline">\(s\)</span>，若 <span class="math inline">\(s&lt;l_i\)</span>，则有 <span class="math inline">\(l_i-s\)</span> 个 <span class="math inline">\(|X|\)</span> 是必须要拿的，令 <span class="math inline">\(cnt\leftarrow cnt+l_i-s\)</span> 且 <span class="math inline">\(s\leftarrow l_i\)</span>；否则 <span class="math inline">\(s=\min(s,r_i)\)</span>。将每个 multiset 的 <span class="math inline">\(s\)</span> 求和，设为 <span class="math inline">\(S\)</span>。</p>
+<p>若 <span class="math inline">\(S\ge |X|\)</span>，说明我们只需支付必要的 <span class="math inline">\(cnt\)</span> 个 <span class="math inline">\(|X|\)</span> 就能满足要求，当前 <span class="math inline">\(|X|\)</span> 的答案就是 <span class="math inline">\(cnt\)</span>；否则，我们还需在 <span class="math inline">\(cnt\)</span> 的基础上支付额外的 <span class="math inline">\(|X|-S\)</span>。</p>
+<p>当然，我们不能对每个 <span class="math inline">\(|X|\in[L,R]\)</span> 都枚举所有 <span class="math inline">\(m\)</span> 个 multisets。我们用一个 <code>std::map&lt;int, set&lt;int&gt;&gt;</code> 预处理出 <span class="math inline">\(|X|\)</span> 存在于哪些 multiset 中。此外还需要记录在每个 multiset 中 <span class="math inline">\(|X|\)</span> 的 <span class="math inline">\(c_i\)</span> 是多少。</p>
+<p>时间复杂度 <span class="math inline">\(O(N\log N)\)</span>。</p>
+<h2 id="cf2028d.-alices-adventures-in-cards"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2028/problem/D">CF2028D. Alice's Adventures in Cards</a></h2>
+<p>*2000 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2028/submission/308902705">Code</a></p>
+<p>Alice 能从第 <span class="math inline">\(i\)</span> 列移动到第 <span class="math inline">\(j\ (j&gt;i)\)</span> 列当且仅当 <span class="math inline">\(\exists k\in\{0,1,2\}\)</span>，<span class="math inline">\(a[k][j]&lt;a[k][i]\)</span>。</p>
+<p>考虑从后向前枚举 <span class="math inline">\(i\)</span>，维护 <span class="math inline">\(dp[i]\)</span> 表示 Alice 能否从第 <span class="math inline">\(i\)</span> 列经过一系列移动到达第 <span class="math inline">\(n\)</span> 列。</p>
+<p>为方便转移，令 <span class="math inline">\(\text{minp}[k]\)</span> 代表第 <span class="math inline">\(k\)</span> 行的当前后缀中 <span class="math inline">\(dp=1\)</span> 且值最小的元素的下标，那么 <span class="math inline">\(dp[i]=1\)</span> 当且仅当 <span class="math inline">\(\exists k\in \{0,1,2\}\)</span>，<span class="math inline">\(a[k][\text{minp}[k]]&lt;a[k][i]\)</span>。</p>
+<p>同时若 <span class="math inline">\(dp[i]=1\)</span>，就 check 一下每一行的 <span class="math inline">\(\text{minp}\)</span> 能不能更新。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf2028e.-alices-adventures-in-the-rabbit-hole"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2028/problem/E">CF2028E. Alice's Adventures in the Rabbit Hole</a></h2>
+<p>*2300 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2028/submission/308910581">Code</a></p>
+<p>令 <span class="math inline">\(f_x\)</span> 表示点 <span class="math inline">\(x\)</span> 的答案，由题 <span class="math inline">\(f_{1}=1\)</span>，<span class="math inline">\(f_{leaf}=0\)</span>。</p>
+<p>每次轮到 Alice 操作肯定是向根节点走，轮到皇后操作肯定是前往距当前节点最近的叶子。</p>
+<p>设当前研究的点为 <span class="math inline">\(x\)</span>，点 <span class="math inline">\(y\)</span> 是 <span class="math inline">\(x\)</span> 的儿子且在 <span class="math inline">\(x\)</span> 的所有儿子中离叶子最近，则： <span class="math display">\[
+f_x=\frac{1}{2}(f_{fa}+f_y)
+\]</span> 尝试待定系数，设 <span class="math inline">\(f_x=k_xf_{fa}+b_x\)</span>，代入。</p>
+<p><span class="math display">\[
+\begin{align}
+f_x={\color{Red}k_x}f_{fa}+\color{Green}{b_x}&amp;=\frac{1}{2}(f_{fa}+f_y)\\
+&amp;=\dfrac{1}{2}(f_{fa}+k_yf_x+b_y)\\
+&amp;=\frac{1}{2}(f_{fa}+k_y(k_xf_{fa}+b_x)+b_y)\\
+&amp;=\frac{1}{2}((k_xk_y+1)f_{fa}+k_yb_x+b_y)\\
+&amp;={\color{Red}\frac{1}{2}(k_xk_y+1)}f_{fa}+{\color{Green}\frac{1}{2}(k_yb_x+b_y)}
+\end{align}
+\]</span></p>
+<p>标红的两项对应相等，标绿的两项对应相等，解得： <span class="math display">\[
+k_x=\frac{1}{2-k_y}\qquad b_x=\frac{b_y}{2-k_y}
+\]</span> 又因叶子节点有 <span class="math inline">\(k_{leaf}=b_{leaf}=0\)</span>，根据 <span class="math inline">\(b_x\)</span> 递推式已知对于任意节点 <span class="math inline">\(b_x\)</span> 均为 <span class="math inline">\(0\)</span>。</p>
+<p>用一遍 dfs 至下而上求出每个节点的 <span class="math inline">\(k_x\)</span>，再 dfs 一遍即可求出 <span class="math inline">\(f_x\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1982/problem/E">Problem - E - Codeforces</a></p>
