@@ -587,7 +587,7 @@ f_x={\color{Red}k_x}f_{fa}+\color{Green}{b_x}&amp;=\frac{1}{2}(f_{fa}+f_y)\\
 \]</span></p>
 <p>标红的两项对应相等，标绿的两项对应相等，解得： <span class="math display">\[
 k_x=\frac{1}{2-k_y}\qquad b_x=\frac{b_y}{2-k_y}
-\]</span> 又因叶子节点有 <span class="math inline">\(k_{leaf}=b_{leaf}=0\)</span>，根据 <span class="math inline">\(b_x\)</span> 递推式已知对于任意节点 <span class="math inline">\(b_x\)</span> 均为 <span class="math inline">\(0\)</span>。</p>
+\]</span> 又因叶子节点有 <span class="math inline">\(k_{leaf}=b_{leaf}=0\)</span>，根据 <span class="math inline">\(b_x\)</span> 递推式易知对于任意节点 <span class="math inline">\(b_x\)</span> 均为 <span class="math inline">\(0\)</span>。</p>
 <p>用一遍 dfs 至下而上求出每个节点的 <span class="math inline">\(k_x\)</span>，再 dfs 一遍即可求出 <span class="math inline">\(f_x\)</span>。</p>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
