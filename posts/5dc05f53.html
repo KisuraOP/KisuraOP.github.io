@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          12k 字
+          13k 字
         
       </span>
     
@@ -589,6 +589,17 @@ f_x={\color{Red}k_x}f_{fa}+\color{Green}{b_x}&amp;=\frac{1}{2}(f_{fa}+f_y)\\
 k_x=\frac{1}{2-k_y}\qquad b_x=\frac{b_y}{2-k_y}
 \]</span> 又因叶子节点有 <span class="math inline">\(k_{leaf}=b_{leaf}=0\)</span>，根据 <span class="math inline">\(b_x\)</span> 递推式易知对于任意节点 <span class="math inline">\(b_x\)</span> 均为 <span class="math inline">\(0\)</span>。</p>
 <p>用一遍 dfs 至下而上求出每个节点的 <span class="math inline">\(k_x\)</span>，再 dfs 一遍即可求出 <span class="math inline">\(f_x\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1820e.-the-fox-and-the-complete-tree-traversal"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1820/problem/E">CF1820E. The Fox and the Complete Tree Traversal</a></h2>
+<p>*2400 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1820/submission/309151081">Code</a></p>
+<p>萌萌性质题。手玩之后做出以下 Claim。</p>
+<ul>
+<li>能找到一个符合要求的回路当且仅当整棵树是一个毛毛虫（由一条主链和长度不超过 <span class="math inline">\(1\)</span> 的支链组成的结构）。而整棵树是毛毛虫时，直径显然可以充当主链。</li>
+</ul>
+<p>换句话说，<code>Yes</code> 当且仅当这棵树由直径和接在直径上的若干单点组成。</p>
+<p>令 <span class="math inline">\(dp[x]\)</span> 代表 <span class="math inline">\(x\)</span> 的子树中以 <span class="math inline">\(x\)</span> 为毛毛虫的头的最大毛毛虫大小。转移是朴素的，最后只需判断这棵树的最大毛毛虫大小是否等于 <span class="math inline">\(n\)</span>。如果你不熟悉可以看一下 <span class="math inline">\(\to\)</span> <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3174">Link</a>。</p>
+<p>最后是构造方案。如下图构造即可（<span class="math inline">\(x,y\)</span> 是直径端点），其实就是看这个点在直径序列上下标的奇偶性。</p>
+<p><img src="/image/academic/CF1820E.png" /></p>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
