@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          13k 字
+          15k 字
         
       </span>
     
@@ -610,7 +610,7 @@ f(n,k)\to f(m,k),f(n-m,k-1)
 <p>合并的时候类似线段树维护前后缀，分情况讨论即可。</p>
 <p>时间复杂度 <span class="math inline">\(O(t\log^2 n)\)</span>，其中一个 <span class="math inline">\(\log\)</span> 来自 <code>std::map</code> 的记忆化。</p>
 <h2 id="cf1797e.-li-hua-and-array"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1797/problem/E">CF1797E. Li Hua and Array</a></h2>
-<p>*2300 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1797/submission/309298175">Code</a></p>
+<p>*2300 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1797/submission/309307708">Code</a></p>
 <p>将值域内的所有 <span class="math inline">\(x\)</span> 与 <span class="math inline">\(\varphi(x)\)</span> 连边（<span class="math inline">\(\varphi(x)\)</span> 是 <span class="math inline">\(x\)</span> 的父亲），构成一棵深度为 <span class="math inline">\(O(\log w)\)</span> 的树，根是 <span class="math inline">\(1\)</span>。</p>
 <p>操作 <span class="math inline">\(1\)</span> 相当于让一段区间内的点同时跳向父亲，操作 <span class="math inline">\(2\)</span> 相当于求一段区间内的点的深度和，以及一段区间内所有点的 LCA 的深度。</p>
 <p>对于操作 <span class="math inline">\(1\)</span>，因为树高是 <span class="math inline">\(\log\)</span> 级别，所以可以暴跳。若一个点跳到了 <span class="math inline">\(1\)</span>，它后面就不再跳了，故用双向链表维护非 <span class="math inline">\(1\)</span> 的节点。这样所有的操作 <span class="math inline">\(1\)</span> 复杂度之和不超过 <span class="math inline">\(O(n\log w)\)</span>。</p>
@@ -621,7 +621,22 @@ f(n,k)\to f(m,k),f(n-m,k-1)
 </ul>
 <p>还是用线段树维护一段区间里最小 dfn 和最大 dfn，这样就是单 <span class="math inline">\(\log\)</span> 的。</p>
 <p>编码时要注意并不需要倍增求 LCA，暴跳求 LCA 就行了，因为空间限制不允许你倍增。</p>
-<p>时间复杂度 <span class="math inline">\(O(w+n\log n\log w+m\log n)\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(w+n\log n\log w+m\log n)\)</span>，<span class="math inline">\(w\)</span> 是值域。</p>
+<h2 id="cf1974g.-money-buys-less-happiness-now"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1974/problem/G">CF1974G. Money Buys Less Happiness Now</a></h2>
+<p>*2000 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1974/submission/309608229">Code</a></p>
+<p>非常经典的反悔贪心。契机是每次换取的幸福值是一样的，你只关心得到了多少，而不关心来自哪次交易。</p>
+<p>用一个大根堆存储已经进行完交易的 <span class="math inline">\(c_i\)</span>，每次没钱时就把堆顶弹出来。</p>
+<p>时间复杂度 <span class="math inline">\(O(m\log m)\)</span>。</p>
+<h2 id="cf1797f.-li-hua-and-path"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1797/problem/F">CF1797F. Li Hua and Path</a></h2>
+<p>*3000 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1797/submission/309616026">Code</a></p>
+<p>这篇题解将会用到 Kruskal 点权多叉重构树。推荐前往 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/alex-wei/p/Tree_Tree_Tree_Tree_Tree_Tree_Tree_Tree_Tree_Tree_Tree_Tree_Tree_Tree_Tree.html">Link</a> 了解，如果你未曾接触过。</p>
+<p>我们将树上的一对 pair <span class="math inline">\((u,v)\)</span> 分成三类，<span class="math inline">\(A\)</span> 类满足 <span class="math inline">\(u\)</span> 是 <span class="math inline">\(u\to v\)</span> 上的最小点，<span class="math inline">\(B\)</span> 类满足 <span class="math inline">\(v\)</span> 是 <span class="math inline">\(u\to v\)</span> 上的最大点，<span class="math inline">\(C\)</span> 类则同时满足 <span class="math inline">\(u\)</span> 是最小点且 <span class="math inline">\(v\)</span> 是最大点。简单容斥，答案是 <span class="math inline">\(|A|+|B|-2|C|\)</span>。</p>
+<p>先考虑 <span class="math inline">\(A\)</span> 类路径的个数怎么求。求 <span class="math inline">\(A\)</span> 类本质上是对每一个点 <span class="math inline">\(i\)</span>，找从 <span class="math inline">\(i\)</span> 出发只经过编号大于等于 <span class="math inline">\(i\)</span> 的点能到达的点集大小。我们按点权从大到小的顺序建出原树的 Kruskal 点权多叉重构树（后文称为 <span class="math inline">\(A\)</span> 树），此时这棵树满足小根堆的性质，对于其上任意一点 <span class="math inline">\(x\)</span>，从 <span class="math inline">\(x\)</span> 出发能到达的点全在 <span class="math inline">\(x\)</span> 的子树中。因此 <span class="math inline">\(|A|=\sum\limits_{i=1}^{n}(sz_i-1)\)</span>。<span class="math inline">\(sz_i\)</span> 代表重构树上点 <span class="math inline">\(i\)</span> 的子树大小。</p>
+<p>同理 <span class="math inline">\(B\)</span> 类路径就是按点权从小到大建树（称为 <span class="math inline">\(B\)</span> 树），这棵树满足大根堆的性质。</p>
+<p>接着考虑 <span class="math inline">\(C\)</span> 类路径。一个 pair <span class="math inline">\((u,v)\)</span> 满足 <span class="math inline">\(C\)</span> 类当且仅当 <span class="math inline">\(u\)</span> 在 <span class="math inline">\(A\)</span> 树上是 <span class="math inline">\(v\)</span> 的祖先，且 <span class="math inline">\(u\)</span> 在 <span class="math inline">\(B\)</span> 树上是 <span class="math inline">\(v\)</span> 的子孙。容易将这个问题转化为子树加，利用树状数组维护。</p>
+<p>最后考虑那 <span class="math inline">\(m\)</span> 次操作。注意到我们加的点的编号递增，这能引申出一系列良好的性质。</p>
+<p>设新加的点编号为 <span class="math inline">\(x\)</span>，则 <span class="math inline">\(x\)</span> 在 <span class="math inline">\(A\)</span> 树上一定是叶子，在 <span class="math inline">\(B\)</span> 树上一定是根。进一步，<span class="math inline">\(x\)</span> 对 <span class="math inline">\(A\)</span> 类的贡献就是它的深度（对每个祖先贡献 <span class="math inline">\(1\)</span> 的子树大小），对 <span class="math inline">\(B\)</span> 类的贡献就是加进去的时候整个 <span class="math inline">\(B\)</span> 树的大小（即 <span class="math inline">\(x-1\)</span>）。对于 <span class="math inline">\(C\)</span> 类，因为 <span class="math inline">\(x\)</span> 编号最大，只能作为 pair 的第二维，<span class="math inline">\((u,x)\)</span> 是 <span class="math inline">\(C\)</span> 类当且仅当 <span class="math inline">\(u\)</span> 在 <span class="math inline">\(A\)</span> 树上是 <span class="math inline">\(x\)</span> 的祖先，且在 <span class="math inline">\(B\)</span> 树上是 <span class="math inline">\(x\)</span> 的子孙。换句话说 <span class="math inline">\(C\)</span> 类贡献与 <span class="math inline">\(A\)</span> 类相同，是 <span class="math inline">\(x\)</span> 的深度。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/549/problem/E">Problem - E - Codeforces</a></p>
