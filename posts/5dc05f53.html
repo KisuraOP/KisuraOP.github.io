@@ -637,6 +637,14 @@ f(n,k)\to f(m,k),f(n-m,k-1)
 <p>最后考虑那 <span class="math inline">\(m\)</span> 次操作。注意到我们加的点的编号递增，这能引申出一系列良好的性质。</p>
 <p>设新加的点编号为 <span class="math inline">\(x\)</span>，则 <span class="math inline">\(x\)</span> 在 <span class="math inline">\(A\)</span> 树上一定是叶子，在 <span class="math inline">\(B\)</span> 树上一定是根。进一步，<span class="math inline">\(x\)</span> 对 <span class="math inline">\(A\)</span> 类的贡献就是它的深度（对每个祖先贡献 <span class="math inline">\(1\)</span> 的子树大小），对 <span class="math inline">\(B\)</span> 类的贡献就是加进去的时候整个 <span class="math inline">\(B\)</span> 树的大小（即 <span class="math inline">\(x-1\)</span>）。对于 <span class="math inline">\(C\)</span> 类，因为 <span class="math inline">\(x\)</span> 编号最大，只能作为 pair 的第二维，<span class="math inline">\((u,x)\)</span> 是 <span class="math inline">\(C\)</span> 类当且仅当 <span class="math inline">\(u\)</span> 在 <span class="math inline">\(A\)</span> 树上是 <span class="math inline">\(x\)</span> 的祖先，且在 <span class="math inline">\(B\)</span> 树上是 <span class="math inline">\(x\)</span> 的子孙。换句话说 <span class="math inline">\(C\)</span> 类贡献与 <span class="math inline">\(A\)</span> 类相同，是 <span class="math inline">\(x\)</span> 的深度。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="abc396g.-flip-row-or-col"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc396/tasks/abc396_g">abc396g. Flip Row or Col</a></h2>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc396/submissions/63615012">Code</a></p>
+<p>对于一行来说，如果这一行有 <span class="math inline">\(c\)</span> 个 <span class="math inline">\(1\)</span>，我们肯定是调整至 <span class="math inline">\(\min(c,W-c)\)</span> 个 <span class="math inline">\(1\)</span>。</p>
+<p>记 <span class="math inline">\(B_i\)</span> 代表第 <span class="math inline">\(i\)</span> 行对应的十进制数，枚举每一列是否翻转，答案是： <span class="math display">\[
+\min_{X=0}^{2^W-1}\sum_{i=0}^{H-1}\min(\text{popcount}(B_i\oplus X),W-\text{popcount}(B_i\oplus X))
+\]</span> 对于枚举的每一种列状态，时间复杂度不允许我们再枚举每一行，我们考虑对把 <span class="math inline">\(\text{popcount}(B_i\oplus X)\)</span> 相同的 <span class="math inline">\(i\)</span> 一起统计。</p>
+<p>令 <span class="math inline">\(dp[X][c]\)</span> 代表满足 <span class="math inline">\(\text{popcount}(B_i\oplus X)=c\)</span> 的 <span class="math inline">\(i\)</span> 的数量，枚举 <span class="math inline">\(X,c\)</span> 以及 <span class="math inline">\(j\)</span>，意为从状态 <span class="math inline">\(X\oplus 2^j,j\in[0,W)\)</span> 转移过来。</p>
+<p>答案是 <span class="math inline">\(\min\limits_{X=0}^{2^W-1}\sum_{c=0}^{W}dp[X][c]\cdot\min(c,W-c)\)</span>。时间复杂度 <span class="math inline">\(O(W^22^W)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/549/problem/E">Problem - E - Codeforces</a></p>
