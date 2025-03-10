@@ -643,7 +643,7 @@ f(n,k)\to f(m,k),f(n-m,k-1)
 <p>记 <span class="math inline">\(B_i\)</span> 代表第 <span class="math inline">\(i\)</span> 行对应的十进制数，枚举每一列是否翻转，答案是： <span class="math display">\[
 \min_{X=0}^{2^W-1}\sum_{i=0}^{H-1}\min(\text{popcount}(B_i\oplus X),W-\text{popcount}(B_i\oplus X))
 \]</span> 对于枚举的每一种列状态，时间复杂度不允许我们再枚举每一行，我们考虑对把 <span class="math inline">\(\text{popcount}(B_i\oplus X)\)</span> 相同的 <span class="math inline">\(i\)</span> 一起统计。</p>
-<p>令 <span class="math inline">\(dp[X][c]\)</span> 代表满足 <span class="math inline">\(\text{popcount}(B_i\oplus X)=c\)</span> 的 <span class="math inline">\(i\)</span> 的数量，枚举 <span class="math inline">\(X,c\)</span> 以及 <span class="math inline">\(j\)</span> ——从状态 <span class="math inline">\(X\oplus 2^j,j\in[0,W)\)</span> 转移过来。</p>
+<p>令 <span class="math inline">\(dp[X][c]\)</span> 代表满足 <span class="math inline">\(\text{popcount}(B_i\oplus X)=c\)</span> 的 <span class="math inline">\(i\)</span> 的数量，枚举 <span class="math inline">\(X,c\)</span> 以及 <span class="math inline">\(j\in[0,W)\to\)</span> 从状态 <span class="math inline">\(X\oplus 2^j\)</span> 转移过来。</p>
 <p>答案是 <span class="math inline">\(\min\limits_{X=0}^{2^W-1}\sum_{c=0}^{W}dp[X][c]\cdot\min(c,W-c)\)</span>。时间复杂度 <span class="math inline">\(O(W^22^W)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
