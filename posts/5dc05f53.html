@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          15k 字
+          16k 字
         
       </span>
     
@@ -382,7 +382,7 @@
 <p>不难发现，<span class="math inline">\(a_i,a_j\)</span> 要分别作为最小前缀和最大后缀贡献答案，当且仅当区间 <span class="math inline">\((lmn_i,rmn_i)\)</span> 和 <span class="math inline">\((lmx_j,rmx_j)\)</span> 相交，此时 <span class="math inline">\([lmx_j,rmn_i]\)</span> 内的任意一点均为分割点。若满足此条件，包含 <span class="math inline">\([i,j]\)</span> 的任一子数组均 <span class="math inline">\(a_i\)</span>-epic，贡献是 <span class="math inline">\((rmx_j-j)\times(i-lmn_i)\)</span>。</p>
 <p>可以使用树状数组或线段树快速统计贡献。时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <h2 id="cf2072g.-ive-been-flipping-numbers-for-300-years-and-calculated-the-sum"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2072/problem/G">CF2072G. I've Been Flipping Numbers for 300 Years and Calculated the Sum</a></h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2072/submission/308019731">Code</a></p>
+<p>*2200 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2072/submission/308019731">Code</a></p>
 <p>阈值分治。</p>
 <ul>
 <li><p>当 <span class="math inline">\(p \le \sqrt{n}\)</span> 时，暴力计算 <span class="math inline">\(\text{rev}(n,p)\)</span>。时间复杂度 <span class="math inline">\(O(\sqrt{n})\)</span>。</p></li>
@@ -508,7 +508,7 @@ d(kb+p,b)\to \begin{cases}1+d(b,p)&amp;,k \textbf{ 为奇数}\\ d(p,b) &amp;, k\
 <p>更聪明的做法是倍增，令 <span class="math inline">\(i=\frac{n}{2},\frac{n}{4},\frac{n}{8},\ldots\)</span> ，对每个 <span class="math inline">\(i\)</span> 先令 <span class="math inline">\(\{b\}=\{a\}\)</span>，在 <span class="math inline">\(\{b\}\)</span> 上操作 <span class="math inline">\(i\)</span> 次，若操作后 <span class="math inline">\(\{b\}\)</span> 不全为 <span class="math inline">\(0\)</span>，说明答案比 <span class="math inline">\(i\)</span> 大，此时将答案累加上 <span class="math inline">\(i\)</span> 并把 <span class="math inline">\(\{b\}\)</span> 赋值给 <span class="math inline">\(\{a\}\)</span>。</p>
 <p>时间复杂度前者 <span class="math inline">\(O(n\log^2 n)\)</span>，后者 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <h2 id="cf2070e.-game-with-binary-string"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2070/problem/E">CF2070E. Game with Binary String</a></h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2070/submission/308694558">Code</a></p>
+<p>*2200 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2070/submission/308694558">Code</a></p>
 <p>后手为了让 <span class="math inline">\(0\)</span> 尽可能少，一定是拿取相邻的一个 <span class="math inline">\(1\)</span> 和一个 <span class="math inline">\(0\)</span>。又因为序列是循环的，故若序列中存在至少一个 <span class="math inline">\(1\)</span> 和一个 <span class="math inline">\(0\)</span>，就肯定有相邻的 <span class="math inline">\(10\)</span> 或者 <span class="math inline">\(01\)</span>。</p>
 <p>我们将这个游戏做一个转化：先手不必拿取相邻的两个 <span class="math inline">\(0\)</span>，而是序列中的任意两个 <span class="math inline">\(0\)</span>；同时后手也不必拿取相邻的 <span class="math inline">\(1\)</span> 和 <span class="math inline">\(0\)</span>，而是序列中的任何一个 <span class="math inline">\(1\)</span> 以及任何一个 <span class="math inline">\(0\)</span>（若没有 <span class="math inline">\(0\)</span> 就是任意两个 <span class="math inline">\(1\)</span>）。</p>
 <p>此时，在一个完整回合中，总计三个 <span class="math inline">\(0\)</span> 和一个 <span class="math inline">\(1\)</span> 被取走，我们不难想到按序列长度<span class="math inline">\(\bmod 4\)</span> 进行分类。记我们研究的序列长为 <span class="math inline">\(m\)</span>，用 <span class="math inline">\(c_{0/1}\)</span> 代表序列中 <span class="math inline">\(0/1\)</span> 的数量，手玩后得到如下结论。</p>
@@ -645,6 +645,25 @@ f(n,k)\to f(m,k),f(n-m,k-1)
 \]</span> 对于枚举的每一种列状态，时间复杂度不允许我们再枚举每一行，我们考虑对把 <span class="math inline">\(\text{popcount}(B_i\oplus X)\)</span> 相同的 <span class="math inline">\(i\)</span> 一起统计。</p>
 <p>令 <span class="math inline">\(dp[X][c]\)</span> 代表满足 <span class="math inline">\(\text{popcount}(B_i\oplus X)=c\)</span> 的 <span class="math inline">\(i\)</span> 的数量，枚举 <span class="math inline">\(X,c\)</span> 以及 <span class="math inline">\(j\in[0,W)\to\)</span> 从状态 <span class="math inline">\(X\oplus 2^j\)</span> 转移过来。</p>
 <p>答案是 <span class="math inline">\(\min\limits_{X=0}^{2^W-1}\sum\limits_{c=0}^{W}dp[X][c]\cdot\min(c,W-c)\)</span>。时间复杂度 <span class="math inline">\(O(W^22^W)\)</span>。</p>
+<h2 id="cf2029e.-common-generator"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2029/problem/E">CF2029E. Common Generator</a></h2>
+<p>*2100 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2029/submission/309724863">Code</a></p>
+<p><strong>Claim 1.</strong> <span class="math inline">\(2\)</span> 能生成所有的合数。</p>
+<ul>
+<li>首先，<span class="math inline">\(2\)</span> 的倍数显然可以合成。否则假设当前合数为 <span class="math inline">\(x\)</span>，<span class="math inline">\(x\)</span> 一定可以表示成 <span class="math inline">\(x=pq\)</span>，其中 <span class="math inline">\(p\)</span> 是 <span class="math inline">\(x\)</span> 的最小质因数且 <span class="math inline">\(p\ge 3,q&gt;1\)</span>。又 <span class="math inline">\(pq\)</span> 可以由 <span class="math inline">\((p-1)q\)</span> 合成，而 <span class="math inline">\(p-1\)</span> 是偶数，偶数可以由 <span class="math inline">\(2\)</span> 生成，故 <span class="math inline">\(x=pq\)</span> 可以由 <span class="math inline">\(2\)</span> 生成。</li>
+</ul>
+<p><strong>Claim 2. </strong> 质数只能由它自己生成。（显然，不证了）</p>
+<p>至此我们扫一遍 <span class="math inline">\(\{a\}\)</span>，若没有质数，答案是 <span class="math inline">\(2\)</span>；若有不同的质数，无解。</p>
+<p>否则设唯一质数为 <span class="math inline">\(p\)</span>，我们只用考虑 <span class="math inline">\(p\)</span> 能否生成 <span class="math inline">\(\{a\}\)</span> 中剩下的所有数。</p>
+<p><strong>Claim 3. </strong> <span class="math inline">\(p\)</span> 能生成偶数 <span class="math inline">\(x\)</span> 当且仅当 <span class="math inline">\(x\ge 2p\)</span>。</p>
+<ul>
+<li>因为 <span class="math inline">\(p\)</span> 第一步只能变成 <span class="math inline">\(2p\)</span>，<span class="math inline">\(2p\)</span> 又是偶数。之后一直 <span class="math inline">\(+2\)</span> 得到所有 <span class="math inline">\(\ge 2p\)</span> 的偶数。</li>
+</ul>
+<p><strong>Claim4. </strong> <span class="math inline">\(p\)</span> 能生成奇合数 <span class="math inline">\(x\)</span> 当且仅当 <span class="math inline">\(x-\text{minp}_x\ge 2p\)</span>，其中 <span class="math inline">\(\text{minp}_x\)</span> 是 <span class="math inline">\(x\)</span> 的最小质因数。</p>
+<ul>
+<li><span class="math inline">\(x-\text{minp}_x\)</span> 是最大的 <span class="math inline">\(&lt; x\)</span> 的偶数。若 <span class="math inline">\(x-\text{minp}_x &lt; 2p\)</span>，即最大的能生成 <span class="math inline">\(x\)</span> 的偶数都无法生成，自然无解。</li>
+</ul>
+<p>素数和最小质因数都能线性筛，这样每组数据就是线性的。</p>
+<p>时间复杂度 <span class="math inline">\(O(w+n)\)</span>，<span class="math inline">\(w\)</span> 是值域。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/549/problem/E">Problem - E - Codeforces</a></p>
