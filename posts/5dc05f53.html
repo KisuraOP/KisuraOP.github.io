@@ -680,6 +680,12 @@ ans=\sum_{p=1}^{X}(p-1)C_{ip}+\sum_{p=1}^{Y}pC_{jp}+(X+Y)\sum_{p=1}^{Z}C_{kp}
 \]</span> 插入的位置可以二分出来，增量则是一段后缀。</p>
 <p>但这并不意味着需要动态维护后缀和，因为我们插入的 <span class="math inline">\(C_x\)</span> 递减，每次插入的位置一定在之前的 <span class="math inline">\(C_x\)</span> 之后。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="arc194d.-reverse-brackets"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc194/tasks/arc194_d">arc194d. Reverse Brackets</a></h2>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc194/submissions/63655541">Code</a></p>
+<p>建出括号树（包括虚根），一次操作相当于选定一个点 <span class="math inline">\(x\)</span>（设 <span class="math inline">\(x\)</span> 的儿子按原序列顺序依次是 <span class="math inline">\(y_1,y_2,y_3,\ldots\)</span>），接着选定一个区间 <span class="math inline">\([l,r]\)</span>，将 <span class="math inline">\(y_l,y_{l+1},\ldots,y_r\)</span> 连带它们的子树翻转。</p>
+<p>不难发现如此操作能任意排列一个点的儿子。</p>
+<p>接着就是数树的形态了。我们把同构的两棵子树用相同的数字表示，对于一个点来说，将以它所有儿子为根的子树代表的数字排成序列，方案数相当于重排这个序列能得到的本质不同的序列数量。</p>
+<p>使用树哈希容易做到 <span class="math inline">\(O(n\log n)\)</span> 或 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/549/problem/E">Problem - E - Codeforces</a></p>
