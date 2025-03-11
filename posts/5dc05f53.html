@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          16k 字
+          17k 字
         
       </span>
     
@@ -664,10 +664,25 @@ f(n,k)\to f(m,k),f(n-m,k-1)
 </ul>
 <p>素数和最小质因数都能线性筛，这样每组数据就是线性的。</p>
 <p>时间复杂度 <span class="math inline">\(O(w+n)\)</span>，<span class="math inline">\(w\)</span> 是值域。</p>
+<h2 id="arc194c.-cost-to-flip"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc194/tasks/arc194_c">arc194c. Cost to Flip</a></h2>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc194/submissions/63650748">Code</a></p>
+<p>用二元组 <span class="math inline">\((x,y)\)</span> 代表状态 <span class="math inline">\(A_i=x,B_i=y\)</span>。首先 <span class="math inline">\((0,1)\)</span> 和 <span class="math inline">\((1, 0)\)</span> 是无可避免的，<span class="math inline">\((0,0)\)</span> 不用动，<span class="math inline">\((1,1)\)</span> 既可以选择不动也可以选择 <span class="math inline">\(1\to 0\)</span> 再 <span class="math inline">\(0\to 1\)</span>。</p>
+<p>依据贪心原则，满足状态 <span class="math inline">\((1, 0)\)</span> 的列肯定是按 <span class="math inline">\(c_i\)</span> 从大到小进行操作，满足状态 <span class="math inline">\((0,1)\)</span> 的列肯定是按 <span class="math inline">\(c_i\)</span> 从小到大进行操作。此外，对于状态 <span class="math inline">\((1, 1)\)</span>，也一定存在一个阈值 <span class="math inline">\(W\)</span>，使得 <span class="math inline">\(C_i\le W\)</span> 的列选择不动，<span class="math inline">\(C_i&gt;W\)</span> 的列选择 <span class="math inline">\(1\to 0\)</span> 再 <span class="math inline">\(0\to 1\)</span>。</p>
+<p>我们考虑从小到大枚举这个阈值，列出式子并观察增量有何变化。</p>
+<p>所有 <span class="math inline">\((1,1)\)</span> 选择不动时，有： <span class="math display">\[
+ans=\sum_{p=1}^{X}(p-1)C_{ip}+\sum_{p=1}^{Y}pC_{jp}+(X+Y)\sum_{p=1}^{Z}C_{kp}
+\]</span> 其中 <span class="math inline">\(C_{i1}\ge C_{i2}\ge C_{i3}\ge \ldots\ge C_{iX}\)</span> 代表满足状态 <span class="math inline">\((1,0)\)</span> 的 <span class="math inline">\(C\)</span>，<span class="math inline">\(C_{j1}\ge C_{j2}\ge C_{j3}\ge \ldots\ge C_{jY}\)</span> 代表满足状态 <span class="math inline">\((0, 1)\)</span> 的 <span class="math inline">\(C\)</span>，<span class="math inline">\(C_{k1},C_{k2},\ldots,C_{kZ}\)</span> 则代表满足状态 <span class="math inline">\((1, 1)\)</span> 的 <span class="math inline">\(C\)</span>。</p>
+<p>选中一个状态 <span class="math inline">\((1,1)\)</span> 进行操作时，设对应的 <span class="math inline">\(C\)</span> 为 <span class="math inline">\(C_x\)</span>，最后一项会变成 <span class="math inline">\((X+Y+2)\left(\sum C_{kp}-C_x\right)\)</span>。</p>
+<p>对于前面两项，拿第一项举例。操作前： <span class="math display">\[
+0\cdot C_{i1}+1\cdot C_{i2}+2\cdot C_{i3}+3\cdot C_{i4}+ 4\cdot C_{i5}+5\cdot C_{i6}
+\]</span> 将 <span class="math inline">\(C_x\)</span> 插入后： <span class="math display">\[
+0\cdot C_{i1}+1\cdot C_{i2}+2\cdot C_{i3}+{\color{Green}3\cdot C_{x}}+{\color{Red}4}\cdot C_{i4}+ {\color{Red}5}\cdot C_{i5}+{\color{Red}6}\cdot C_{i6}
+\]</span> 插入的位置可以二分出来，增量则是一段后缀。</p>
+<p>但这并不意味着需要动态维护后缀和，因为我们插入的 <span class="math inline">\(C_x\)</span> 递减，每次插入的位置一定在之前的 <span class="math inline">\(C_x\)</span> 之后。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/549/problem/E">Problem - E - Codeforces</a></p>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2001/problem/D">Problem - D - Codeforces</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
