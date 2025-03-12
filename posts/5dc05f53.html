@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          17k 字
+          18k 字
         
       </span>
     
@@ -686,9 +686,35 @@ ans=\sum_{p=1}^{X}(p-1)C_{ip}+\sum_{p=1}^{Y}pC_{jp}+(X+Y)\sum_{p=1}^{Z}C_{kp}
 <p>不难发现如此操作能任意排列一个点的儿子。</p>
 <p>接着就是数树的形态了。我们把同构的两棵子树用相同的数字表示，对于一个点来说，将以它所有儿子为根的子树代表的数字排成序列，方案数相当于重排这个序列能得到的本质不同的序列数量。</p>
 <p>使用树哈希容易做到 <span class="math inline">\(O(n\log n)\)</span> 或 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf2071f.-towering-arrays"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2071/problem/F">CF2071F. Towering Arrays</a></h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2071/submission/310224979">Code</a></p>
+<p>题外话：时限 6s，拼尽全力卡常喜提 5999ms。上面代码放的是没有刻意卡常的版本，clone 下来跑了 7s。</p>
+<p>二分答案，设二分出的答案是 <span class="math inline">\(p\)</span>，我们就要找到最长的 <span class="math inline">\(p-towering\)</span> 序列的长度 <span class="math inline">\(m\)</span>，判断是否 <span class="math inline">\(n-m\le k\)</span>。</p>
+<p>考虑遍历序列上的每一个位置 <span class="math inline">\(i\)</span>，check <span class="math inline">\(a_i\)</span> 是否能作为 <span class="math inline">\(p-towering\)</span> 序列的顶点。此时 <span class="math inline">\(a_i\)</span> 两侧延伸出去的长度独立，我们可以只考虑一边，然后把序列 reverse 做另一边。</p>
+<p>现在的问题是对于每一个 <span class="math inline">\(i\)</span>，求序列 <span class="math inline">\(a_1\sim a_i\)</span> 中以 <span class="math inline">\(a_i\)</span> 结尾的最长的子序列 <span class="math inline">\(\{s\}\)</span>，满足 <span class="math inline">\(s\)</span> 最后一个元素 <span class="math inline">\(\ge p\)</span>，倒数第二个元素 <span class="math inline">\(\ge p-1\)</span>，倒数第三个元素 <span class="math inline">\(\ge p-2\)</span>，<span class="math inline">\(\ldots\)</span></p>
+<p>结论：若 <span class="math inline">\(a_{i}\ge p\)</span>，对于任意满足 <span class="math inline">\(j&lt;i\)</span> 且 <span class="math inline">\(a_j\ge p\)</span> 的 <span class="math inline">\(j\)</span>，序列 <span class="math inline">\(a_1\sim a_i\)</span> 构造出的 <span class="math inline">\(\{s\}\)</span> 一定完全包含序列 <span class="math inline">\(a_1\sim a_{j}\)</span> 构造出的 <span class="math inline">\(\{s\}\)</span> 中的元素。换句话说随着 <span class="math inline">\(i\)</span> 增加，我们一定只是在 <span class="math inline">\(\{s\}\)</span> 的末尾添加元素。</p>
+<ul>
+<li>当我们把 <span class="math inline">\(a_i\)</span> 加进 <span class="math inline">\(\{s\}\)</span> 后，<span class="math inline">\(\{s\}\)</span> 中倒数第 <span class="math inline">\(i\)</span> 个元素要求 <span class="math inline">\(\ge p-i+1\)</span>，而在原来的 <span class="math inline">\(\{s\}\)</span> 中倒数第 <span class="math inline">\(i-1\)</span> 个元素满足 <span class="math inline">\(\ge p-i+2\)</span>。故得证。</li>
+</ul>
+<p>一个使用线段树维护 <span class="math inline">\(\{s\}\)</span> 最长长度的流程是：</p>
+<ol type="1">
+<li>按顺序扫描序列，对于当前 <span class="math inline">\(i\)</span>，给线段树上第 <span class="math inline">\(i\)</span> 个位置赋值 <span class="math inline">\(p-a_i\)</span>。</li>
+<li>找到 <span class="math inline">\(1\sim i\)</span> 中最后一个值 <span class="math inline">\(\le0\)</span> 的位置，设下标为 <span class="math inline">\(t\)</span>。将 <span class="math inline">\(a_t\)</span> 加进 <span class="math inline">\(\{s\}\)</span> 中，并给线段树上 <span class="math inline">\(1\sim t\)</span> 这段前缀 <span class="math inline">\(-1\)</span>。（多一个元素自然前面的元素限制 <span class="math inline">\(-1\)</span>）</li>
+<li>将位置 <span class="math inline">\(t\)</span> 设为 <span class="math inline">\(+\infty\)</span>。（保证已经选中的之后不再选中）</li>
+<li>重复步骤 <span class="math inline">\(2,3\)</span> 直到找不到值 <span class="math inline">\(\le 0\)</span> 的位置。此时 <span class="math inline">\(\{s\}\)</span> 中元素个数即为当前 <span class="math inline">\(i\)</span> 的答案。</li>
+</ol>
+<p>时间复杂度 <span class="math inline">\(O(n\log n\log w)\)</span>，<span class="math inline">\(w\)</span> 是值域。</p>
+<h2 id="cf2074g.-game-with-triangles-season-2"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2074/problem/G">CF2074G. Game With Triangles: Season 2</a></h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2074/submission/310276404">Code</a></p>
+<p>区间 dp。拆环成链，记 <span class="math inline">\(dp[L][R]\)</span> 为区间 <span class="math inline">\([L,R]\)</span> 的答案。</p>
+<p>从小到大枚举长度，对于当前 <span class="math inline">\([L,R]\)</span>，枚举 <span class="math inline">\(k\in[L+1,R-1]\)</span> 让 <span class="math inline">\(L,k,R\)</span> 成为三角形的三个顶点。 <span class="math display">\[
+dp[L][R]=\max_{k\in(L,R)}(dp[L+1][k-1]+dp[k+1][R-1]+a_L\cdot a_k\cdot a_R)
+\]</span> 别忘了还有区间 dp 的定义式： <span class="math display">\[
+dp[L][R]=\max_{k\in[L,R)}(dp[L][k]+dp[k+1][R])
+\]</span> 时间复杂度 <span class="math inline">\(O(n^3)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/549/problem/E">Problem - E - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/549/problem/E">Problem - E - Codeforces</a>（烂尾）</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
