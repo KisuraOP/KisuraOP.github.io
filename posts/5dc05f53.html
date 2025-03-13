@@ -721,6 +721,14 @@ dp[L][R]=\max_{k\in[L,R)}(dp[L][k]+dp[k+1][R])
 <p>第三次操作，<span class="math inline">\(\ldots\)</span></p>
 <p>综上，本题一定有解，按照上述流程构造一个即可。</p>
 <p>时间复杂度 <span class="math inline">\(O(n^2)\)</span>。</p>
+<h2 id="cf1994f.-stardew-valley"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1994/problem/F">CF1994F. Stardew Valley</a></h2>
+<p>*2500 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1994/submission/310403549">Code</a></p>
+<p>把有 NPC 的边称为 <span class="math inline">\(1\)</span> 边，否则称为 <span class="math inline">\(0\)</span> 边。</p>
+<p>我们要找到一条经过每条 <span class="math inline">\(1\)</span> 边恰好一次的回路。可以将该问题转化为选择一些 <span class="math inline">\(0\)</span> 边删掉，使得图中所有点的度均为偶数，这样我们只用跑一遍欧拉回路就行。</p>
+<p>当我们删除一条边时，如果两个端点原来都是奇度点，那么图中奇度点个数 <span class="math inline">\(-2\)</span>；如果两个端点原来度数一奇一偶，那么图中奇度点个数不变。</p>
+<p>于是，建出一个只有 <span class="math inline">\(0\)</span> 边的图，<code>YES</code> 的充要条件就是对于图中每个连通分量，奇度点个数均为偶数。</p>
+<p>一个较好的实现是：对每个连通分量 dfs，在 dfs 生成树上至下而上贪心地删边，若删到根后根是奇度点，就是 <code>NO</code>。这样删哪条边也顺便记录了。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2065/problem/H">Problem - H - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/549/problem/E">Problem - E - Codeforces</a>（烂尾）</p>
