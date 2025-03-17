@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          20k 字
+          21k 字
         
       </span>
     
@@ -738,8 +738,22 @@ dp[L][R]=\max_{k\in[L,R)}(dp[L][k]+dp[k+1][R])
 <p>接下来我们面临 <span class="math inline">\(q\)</span> 次单点加，当区间里的一个数超出了 <span class="math inline">\(2^k-1\)</span>，这个区间就会分成两个子区间，这是不好处理的。</p>
 <p>于是考虑离线，倒着操作序列，变成单点减。我们依旧是对每个 <span class="math inline">\(k\)</span> 维护一个并查集，将 <span class="math inline">\(&lt; 2^k\)</span> 的数连在一起，这样每次只用考虑是否可以将被操作的位置的两端合并成一个大区间。若可以，就启发式合并，将小的那一段区间 <code>unordered_map</code> 记录的信息合并到大的那一段区间来。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log^2 n)\)</span>。</p>
+<h2 id="cf2078g.-another-folding-strip"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2078/problem/G">CF2078G. Another Folding Strip</a></h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2078/submission/310973326">Code</a></p>
+<p>两个格子通过折叠能一上一下挨着当且仅当这两个格子的下标之差为奇数。</p>
+<p>换句话说，一次操作相当于选择一组下标序列 <span class="math inline">\(i_1,i_2,i_3,\ldots\)</span>，其中 <span class="math inline">\(\forall k &gt; 0\)</span>，<span class="math inline">\(i_{k}\)</span> 与 <span class="math inline">\(i_{k+1}\)</span> 奇偶性不同，然后使这些位置上的值 <span class="math inline">\(+1\)</span>。</p>
+<p>倒着考虑，每次让一组下标序列对应位置上的值 <span class="math inline">\(-1\)</span>，问将 <span class="math inline">\(\{a\}\)</span> 变成全 <span class="math inline">\(0\)</span> 序列的最小操作次数。</p>
+<p>对序列进行黑白染色：<span class="math inline">\(\forall i\in[1,n]\)</span>，令 <span class="math inline">\(b_i=(-1)^ia_i\)</span>。</p>
+<p>令一次操作后的 <span class="math inline">\(\{b\}\)</span> 为 <span class="math inline">\(\{b&#39;\}\)</span>，一个很强的性质是对于 <span class="math inline">\(1\sim n\)</span> 上任意一个区间 <span class="math inline">\([l,r]\)</span>，有 <span class="math inline">\(\left|\sum\limits_{i=l}^{r}b&#39;_i-\sum\limits_{i=l}^{r}b_i\right| \le 1\)</span>。</p>
+<p>这意味着若 <span class="math inline">\(\{b\}\)</span> 上存在一个和为 <span class="math inline">\(k\)</span> 的子段，那么这个子段至少要进行 <span class="math inline">\(|k|\)</span> 次操作才能变为全 <span class="math inline">\(0\)</span>。</p>
+<p>故 <span class="math inline">\(f(a_1a_2\ldots a_n)\)</span> 的下界是 <span class="math inline">\(\max\limits_{1\le l\le r\le n}\left|\sum\limits_{i=l}^{r}b_i\right|\)</span>。事实上能够证明该下界可达，具体见官方题解。（毕竟下标序列的选择条件是相当宽松的，退一步写一个 <span class="math inline">\(O(n^2)\)</span> 检验样例也很容易，这里就不证了）</p>
+<p>令 <span class="math inline">\(pre_i=\sum\limits_{j=1}^{i}b_j\)</span>，式子变成 <span class="math inline">\(\max\limits_{1\le l\le r\le n}\left|pre_r-pre_{l-1}\right|\)</span>，即 <span class="math inline">\(\{pre\}\)</span> 的极差。</p>
+<p>原问题转化为求 <span class="math inline">\(\{b\}\)</span> 所有连续子序列的极差之和。枚举一个数作为极大值/极小值占领的区间，单调栈或线段树均可做。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span> 或 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2078/problem/G">Problem - G - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc397/tasks/abc397_g">G - Maximize Distance</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2082/problem/F">Problem - F - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2082/problem/E">Problem - E - Codeforces</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
