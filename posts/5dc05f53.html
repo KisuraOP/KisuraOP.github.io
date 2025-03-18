@@ -766,7 +766,7 @@ dp[L][R]=\max_{k\in[L,R)}(dp[L][k]+dp[k+1][R])
 <ul>
 <li>初态：<span class="math inline">\(dp[i][j]=\begin{cases}0&amp;,i=0\cap j=0\\ \infty &amp;,\text{otherwise}\end{cases}\)</span></li>
 <li>转移：<span class="math inline">\(dp[i][j]=\min\limits_{1\le k\le 60}\begin{cases}dp[i-k][j]+2^k &amp;,k\le i\\ dp[i][j-k]+2^k &amp;,k\le j\end{cases}\)</span></li>
-<li>答案：<span class="math inline">\(dp[k_1][k^2]\)</span></li>
+<li>答案：<span class="math inline">\(dp[k_1][k_2]\)</span></li>
 </ul>
 <p>但事实上 <span class="math inline">\(k_1\)</span> 和 <span class="math inline">\(k_2\)</span> 并不能贪心地确定。</p>
 <p>正确的做法是枚举所有 "<span class="math inline">\(x\)</span> 右移 <span class="math inline">\(k_1\)</span> 位 <span class="math inline">\(=\)</span> <span class="math inline">\(y\)</span> 右移 <span class="math inline">\(k_2\)</span> 位" 的 <span class="math inline">\(k_1\)</span> 与 <span class="math inline">\(k_2\)</span>。</p>
