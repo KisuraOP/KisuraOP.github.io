@@ -687,7 +687,7 @@ ans=\sum_{p=1}^{X}(p-1)C_{ip}+\sum_{p=1}^{Y}pC_{jp}+(X+Y)\sum_{p=1}^{Z}C_{kp}
 <p>接着就是数树的形态了。我们把同构的两棵子树用相同的数字表示，对于一个点来说，将以它所有儿子为根的子树代表的数字排成序列，方案数相当于重排这个序列能得到的本质不同的序列数量。</p>
 <p>使用树哈希容易做到 <span class="math inline">\(O(n\log n)\)</span> 或 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="cf2071f.-towering-arrays"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2071/problem/F">CF2071F. Towering Arrays</a></h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2071/submission/310224979">Code</a></p>
+<p>*2700 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2071/submission/310224979">Code</a></p>
 <p>题外话：时限 6s，拼尽全力卡常喜提 5999ms。上面代码放的是没有刻意卡常的版本，clone 下来跑了 7s。</p>
 <p>二分答案，设二分出的答案是 <span class="math inline">\(p\)</span>，我们就要找到最长的 <span class="math inline">\(p-towering\)</span> 序列的长度 <span class="math inline">\(m\)</span>，判断是否 <span class="math inline">\(n-m\le k\)</span>。</p>
 <p>考虑遍历序列上的每一个位置 <span class="math inline">\(i\)</span>，check <span class="math inline">\(a_i\)</span> 是否能作为 <span class="math inline">\(p-towering\)</span> 序列的最高点。此时 <span class="math inline">\(a_i\)</span> 两侧延伸出去的长度独立，我们可以只考虑一边，然后把序列 reverse 做另一边。</p>
@@ -705,7 +705,7 @@ ans=\sum_{p=1}^{X}(p-1)C_{ip}+\sum_{p=1}^{Y}pC_{jp}+(X+Y)\sum_{p=1}^{Z}C_{kp}
 </ol>
 <p>时间复杂度 <span class="math inline">\(O(n\log n\log w)\)</span>，<span class="math inline">\(w\)</span> 是值域。</p>
 <h2 id="cf2074g.-game-with-triangles-season-2"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2074/problem/G">CF2074G. Game With Triangles: Season 2</a></h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2074/submission/310276404">Code</a></p>
+<p>*2100 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2074/submission/310276404">Code</a></p>
 <p>区间 dp。拆环成链，记 <span class="math inline">\(dp[L][R]\)</span> 为区间 <span class="math inline">\([L,R]\)</span> 的答案。</p>
 <p>从小到大枚举长度，对于当前 <span class="math inline">\([L,R]\)</span>，枚举 <span class="math inline">\(k\in[L+1,R-1]\)</span> 让 <span class="math inline">\(L,k,R\)</span> 成为三角形的三个顶点。 <span class="math display">\[
 dp[L][R]=\max_{k\in(L,R)}(dp[L+1][k-1]+dp[k+1][R-1]+a_L\cdot a_k\cdot a_R)
@@ -739,7 +739,7 @@ dp[L][R]=\max_{k\in[L,R)}(dp[L][k]+dp[k+1][R])
 <p>于是考虑离线，倒着操作序列，变成单点减。我们依旧是对每个 <span class="math inline">\(k\)</span> 维护一个并查集，将 <span class="math inline">\(&lt; 2^k\)</span> 的数连在一起，这样每次只用考虑是否可以将被操作的位置的两端合并成一个大区间。若可以，就启发式合并，将小的那一段区间 <code>unordered_map</code> 记录的信息合并到大的那一段区间来。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log^2 n)\)</span>。</p>
 <h2 id="cf2078g.-another-folding-strip"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2078/problem/G">CF2078G. Another Folding Strip</a></h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2078/submission/310973326">Code</a></p>
+<p>*2700 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2078/submission/310973326">Code</a></p>
 <p>两个格子通过折叠能一上一下挨着当且仅当这两个格子的下标之差为奇数。</p>
 <p>换句话说，一次操作相当于选择一组下标序列 <span class="math inline">\(i_1,i_2,i_3,\ldots\)</span>，其中 <span class="math inline">\(\forall k &gt; 0\)</span>，<span class="math inline">\(i_{k}\)</span> 与 <span class="math inline">\(i_{k+1}\)</span> 奇偶性不同，然后使这些位置上的值 <span class="math inline">\(+1\)</span>。</p>
 <p>倒着考虑，每次让一组下标序列对应位置上的值 <span class="math inline">\(-1\)</span>，问将 <span class="math inline">\(\{a\}\)</span> 变成全 <span class="math inline">\(0\)</span> 序列的最小操作次数。</p>
@@ -750,9 +750,31 @@ dp[L][R]=\max_{k\in[L,R)}(dp[L][k]+dp[k+1][R])
 <p>令 <span class="math inline">\(pre_i=\sum\limits_{j=1}^{i}b_j\)</span>，式子变成 <span class="math inline">\(\max\limits_{1\le l\le r\le n}\left|pre_r-pre_{l-1}\right|\)</span>，即 <span class="math inline">\(\{pre\}\)</span> 的极差。</p>
 <p>原问题转化为求 <span class="math inline">\(\{b\}\)</span> 所有连续子序列的极差之和。枚举一个数作为极大值/极小值占领的区间，单调栈或线段树均可做。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span> 或 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf2082f.-mst-in-modulo-graph"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2082/problem/F">CF2082F. MST in Modulo Graph</a></h2>
+<p>*2600 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2082/submission/311029035">Code</a></p>
+<p>对每一个 <span class="math inline">\(p_i\)</span>，枚举 <span class="math inline">\(k=p_i,2p_i,3p_i,\ldots\)</span>，再二分出第一个 <span class="math inline">\(\ge k\)</span> 的 <span class="math inline">\(p_j\)</span>。将这对 <span class="math inline">\((i,j)\)</span> 放进候选表里。</p>
+<p>此时对于 <span class="math inline">\(p_i\)</span> 来说，<span class="math inline">\(p_j\bmod p_i\)</span> 最小的 <span class="math inline">\(p_j\)</span> 一定在候选表中。</p>
+<p>最终我们会有 <span class="math inline">\(O(n\log n)\)</span> 条候选边（调和级数效应）。用这些边跑最小生成树即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log^2 n)\)</span>。</p>
+<h2 id="cf2075d.-equalization"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2075/problem/D">CF2075D. Equalization</a></h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2075/submission/311292632">Code</a></p>
+<p>每次操作相当于将二进制下的 <span class="math inline">\(x\)</span> 或 <span class="math inline">\(y\)</span> 右移一定位数。</p>
+<p>假若我们确定了最优答案中 <span class="math inline">\(x\)</span> 右移了 <span class="math inline">\(k_1\)</span> 位，<span class="math inline">\(y\)</span> 右移了 <span class="math inline">\(k_2\)</span> 位，该如何计算最小操作次数？</p>
+<p>将一次花费 <span class="math inline">\(2^k\)</span> 的操作看作一个物品，这个物品的体积是 <span class="math inline">\(k\)</span>，价值是 <span class="math inline">\(2^k\)</span>，且每个物品至多被选一次。</p>
+<p>也就是说这是一个 <span class="math inline">\(01\)</span> 背包问题，而且是两个背包，容量分别为 <span class="math inline">\(k_1\)</span> 与 <span class="math inline">\(k_2\)</span>。</p>
+<p>令 <span class="math inline">\(dp[i][j]\)</span> 为两个背包分别塞了 <span class="math inline">\(i\)</span> 体积和 <span class="math inline">\(j\)</span> 体积东西时的选取物品的最小价值。</p>
+<ul>
+<li>初态：<span class="math inline">\(dp[i][j]=\begin{cases}0&amp;,i=0\cap j=0\\ \infty &amp;,\text{otherwise}\end{cases}\)</span></li>
+<li>转移：<span class="math inline">\(dp[i][j]=\min\limits_{1\le k\le 60}\begin{cases}dp[i-k][j]+2^k &amp;,k\le i\\ dp[i][j-k]+2^k &amp;,k\le j\end{cases}\)</span></li>
+<li>答案：<span class="math inline">\(dp[k_1][k^2]\)</span></li>
+</ul>
+<p>但事实上 <span class="math inline">\(k_1\)</span> 和 <span class="math inline">\(k_2\)</span> 并不能贪心地确定。</p>
+<p>正确的做法是枚举所有 "<span class="math inline">\(x\)</span> 右移 <span class="math inline">\(k_1\)</span> 位 <span class="math inline">\(=\)</span> <span class="math inline">\(y\)</span> 右移 <span class="math inline">\(k_2\)</span> 位" 的 <span class="math inline">\(k_1\)</span> 与 <span class="math inline">\(k_2\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(\log^3w)-O(\log^2 w)\)</span>，<span class="math inline">\(w\)</span> 为值域。</p>
+<h2 id="abc397g.-maximize-distance"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc397/tasks/abc397_g">abc397g. Maximize Distance</a></h2>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc397/submissions/63932043">Code</a></p>
+<p>这个题要画个图才好理解，明天再说。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
-<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc397/tasks/abc397_g">G - Maximize Distance</a></p>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2082/problem/F">Problem - F - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2082/problem/E">Problem - E - Codeforces</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
