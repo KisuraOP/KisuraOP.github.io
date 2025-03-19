@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          21k 字
+          23k 字
         
       </span>
     
@@ -335,7 +335,6 @@
 <p>愿我获得算法之神的庇佑。</p>
 <h2 id="abc394e.-palindromic-shortest-path"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/tasks/abc394_e">abc394e. Palindromic Shortest Path</a></h2>
 <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/submissions/63139453">Code</a></p>
-<p><span class="math inline">\(\tiny乱编了一个 \text{floyd} 过不去样例，我是小丑QAQ。\)</span></p>
 <p>把从 <span class="math inline">\(S\)</span> 到 <span class="math inline">\(T\)</span> 的路径看成一个状态 <span class="math inline">\((S,T)\)</span>。初始只有两种状态是合法的：</p>
 <ul>
 <li><span class="math inline">\(\forall i\in [1,n]\)</span>，<span class="math inline">\((i,i)\)</span>。</li>
@@ -345,7 +344,6 @@
 <p>时间复杂度 <span class="math inline">\(O(n^3)\)</span>。</p>
 <h2 id="abc394f.-alkane"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/tasks/abc394_f">abc394f. Alkane</a></h2>
 <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/submissions/63140699">Code</a></p>
-<p><span class="math inline">\(\tiny AC\times58, \ WA\times 1\text{ (憋笑)}.\)</span></p>
 <p>令 <span class="math inline">\(dp[x]\)</span> 代表 <span class="math inline">\(x\)</span> 贡献了三个儿子的答案。</p>
 <p>转移自然是 <span class="math inline">\(dp[x]\)</span> 取它儿子里面最大的三个 <span class="math inline">\(dp[y]\)</span> 求和。</p>
 <p>对于当前节点 <span class="math inline">\(x\)</span>，有这么几种情况：</p>
@@ -766,16 +764,61 @@ dp[L][R]=\max_{k\in[L,R)}(dp[L][k]+dp[k+1][R])
 <ul>
 <li>初态：<span class="math inline">\(dp[i][j]=\begin{cases}0&amp;,i=0\cap j=0\\ \infty &amp;,\text{otherwise}\end{cases}\)</span></li>
 <li>转移：<span class="math inline">\(dp[i][j]=\min\limits_{1\le k\le 60}\begin{cases}dp[i-k][j]+2^k &amp;,k\le i\\ dp[i][j-k]+2^k &amp;,k\le j\end{cases}\)</span></li>
-<li>答案：<span class="math inline">\(dp[k_1][k_2]\)</span></li>
+<li>答案：<span class="math inline">\(dp[k_1][k_2]\)</span>。</li>
 </ul>
 <p>但事实上 <span class="math inline">\(k_1\)</span> 和 <span class="math inline">\(k_2\)</span> 并不能贪心地确定。</p>
 <p>正确的做法是枚举所有 "<span class="math inline">\(x\)</span> 右移 <span class="math inline">\(k_1\)</span> 位 <span class="math inline">\(=\)</span> <span class="math inline">\(y\)</span> 右移 <span class="math inline">\(k_2\)</span> 位" 的 <span class="math inline">\(k_1\)</span> 与 <span class="math inline">\(k_2\)</span>。</p>
 <p>时间复杂度 <span class="math inline">\(O(\log^3w)-O(\log^2 w)\)</span>，<span class="math inline">\(w\)</span> 为值域。</p>
+<h2 id="cf1808d.-petya-petya-petr-and-palindromes"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1808/problem/D">CF1808D. Petya, Petya, Petr, and Palindromes</a></h2>
+<p>*2100 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1808/submission/311347398">Code</a></p>
+<p>正难则反，用总和减去相等数对造成的贡献得到答案。</p>
+<p>所有长为 <span class="math inline">\(k\)</span> 的子串的 palindromicity 之和为 <span class="math inline">\(\lfloor\frac{k}{2}\rfloor(n-k+1)\)</span>。</p>
+<p>考虑满足 <span class="math inline">\(a_i=a_j\)</span> 的一对 <span class="math inline">\((i,j)(i&lt;j)\)</span>，这对 <span class="math inline">\((i,j)\)</span> 能造成 <span class="math inline">\(1\)</span> 的贡献当且仅当：</p>
+<ul>
+<li><p><span class="math inline">\(i\bmod 2=j\bmod 2\)</span>；</p></li>
+<li><p><span class="math inline">\(j-i+1\le k\)</span>；</p></li>
+<li><p><span class="math inline">\(i-\frac{k-(j-i+1)}{2}\ge 1\)</span>；</p></li>
+<li><p><span class="math inline">\(j+\frac{k-(j-i+1)}{2}\le n\)</span>。</p></li>
+</ul>
+<p>解得 <span class="math inline">\(j\in [\max(i+1,k+1-i),\min(n,i+k-1,2n-k-i+1)]\)</span>。</p>
+<p>将 <span class="math inline">\(\{a\}\)</span> 按照下标奇偶分成两个数组。对每个数组 <span class="math inline">\(\{b\}\)</span>，枚举 <span class="math inline">\(i\)</span>，二分出上述区间里有多少个 <span class="math inline">\(j\)</span> 满足 <span class="math inline">\(b_i=b_j\)</span>，计入贡献。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf1808e1e2.-minibuses-on-venus"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1808/problem/E1">CF1808E1/E2. Minibuses on Venus</a></h2>
+<p>*2200 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1808/submission/311374162">Code</a>（E1）</p>
+<p>*2500 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1808/submission/311387002">Code</a>（E2）</p>
+<p>将 <span class="math inline">\(n\)</span> 个数位看成一个长为 <span class="math inline">\(n\)</span> 的数列 <span class="math inline">\(\{a\}\)</span>，每个元素的取值是 <span class="math inline">\([0,k)\)</span>。</p>
+<p>一个数列满足条件当且仅当 <span class="math inline">\(\exists i\in[1,n]\)</span>，<span class="math inline">\(a_i\equiv a_1+a_2+\ldots+a_{i-1}+a_{i+1}+\ldots a_n\pmod{k}\)</span>。</p>
+<p>令 <span class="math inline">\(S=\sum\limits_{i=1}^{n}a_i\)</span>，则改写为 <span class="math inline">\(a_i\equiv S-a_i\pmod {k}\)</span>，也就是 <span class="math inline">\(2a_i\equiv S\pmod {k}\)</span>。</p>
+<p>容斥，用总方案数 <span class="math inline">\(k^n\)</span> 减去 <span class="math inline">\(\forall i\in[1,n]\)</span>，<span class="math inline">\(2a_i\not\equiv S\pmod {k}\)</span> 的 <span class="math inline">\(\{a\}\)</span> 的数量。</p>
+<p>当我们每次往 <span class="math inline">\(\{a\}\)</span> 里添一个数时，<span class="math inline">\(S\)</span> 会动态变化。但<span class="math inline">\(\bmod k\)</span> 下 <span class="math inline">\(S\)</span> 只有 <span class="math inline">\(k\)</span> 种取值，所以我们可以枚举 <span class="math inline">\(S\)</span>。</p>
+<p>对于一个固定的 <span class="math inline">\(S\)</span>，满足条件的序列数量可以用动态规划求解。</p>
+<p>令 <span class="math inline">\(dp_{i,j}\)</span> 表示已经填了前 <span class="math inline">\(i\)</span> 个数，这 <span class="math inline">\(i\)</span> 个数和为 <span class="math inline">\(j\)</span> 的方案数。</p>
+<ul>
+<li><p>初态：<span class="math inline">\(dp_{0,0}=1\)</span>；</p></li>
+<li><p>转移：<span class="math inline">\(\forall x\in [0,k),\forall j\in[0,k),2x\not\equiv S\pmod {k}\)</span>，<span class="math inline">\(dp_{i,(j+x)\bmod k}=dp_{i,(j+x)\bmod{k}}+dp_{i-1,j}\)</span>；</p></li>
+<li><p>答案：<span class="math inline">\(dp_{n,S}\)</span>。</p></li>
+</ul>
+<p>时间复杂度 <span class="math inline">\(O(nk^3)\)</span>，可以通过 E1。</p>
+<p>这个转移看起来就很矩阵，于是令矩阵 <span class="math inline">\(A_{i,(i+j)\bmod k}=[2j\not\equiv S\pmod{k}]\)</span>，则： <span class="math display">\[
+[dp_{i,0},dp_{i,1},\cdots,dp_{i,k-1}]\times A=[dp_{i+1,0},dp_{i+1, 1},\cdots,dp_{i+1,k-1}]
+\]</span></p>
+<ul>
+<li>初态：<span class="math inline">\(dp_0=[1,0,0,\cdots,0]\)</span>；</li>
+<li>答案：<span class="math inline">\(dp_{0}\times A^{n}\)</span> 的第 <span class="math inline">\(S\)</span> 项。</li>
+</ul>
+<p>矩阵快速幂是 <span class="math inline">\(O(k^3\log n)\)</span>，加上枚举 <span class="math inline">\(S\)</span>，就是 <span class="math inline">\(O(k^4\log n)\)</span> ，并不能通过 E2。<a target="_blank" rel="noopener" href="https://codeforces.com/contest/1808/submission/311376877">Code</a></p>
+<p>但注意到 <span class="math inline">\(A\)</span> 是一个循环矩阵（每一行都是上一行的循环右移），这意味着我们可以把 <span class="math inline">\(dp_{i,0}\sim dp_{i,k-1}\)</span> 看成多项式的系数，用循环卷积去优化它。</p>
+<p>具体地，定义多项式 <span class="math inline">\(f_i(x) = dp_{i,0}\cdot x^0+dp_{i,1}\cdot x^1+\cdots+dp_{i,k-1}\cdot x^{k-1}\)</span>。</p>
+<p>转移多项式 <span class="math inline">\(G(x)\)</span> 取 <span class="math inline">\(A\)</span> 的第一行，也就是 <span class="math inline">\([x^i]G(x)=[2i\not\equiv S\pmod{k}]\)</span>。</p>
+<p>答案即 <span class="math inline">\([x^S](f_0\times G^n(x))\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(k^3\log n)\)</span>，如果会 FFT 能做到 <span class="math inline">\(O(k^2\log n)\)</span>。能吗？反正我不会QAQ。</p>
 <h2 id="abc397g.-maximize-distance"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc397/tasks/abc397_g">abc397g. Maximize Distance</a></h2>
 <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc397/submissions/63932043">Code</a></p>
 <p>这个题要画个图才好理解，明天再说。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2082/problem/E">Problem - E - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/D">Problem - D - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
