@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          23k 字
+          24k 字
         
       </span>
     
@@ -815,6 +815,20 @@ dp[L][R]=\max_{k\in[L,R)}(dp[L][k]+dp[k+1][R])
 <h2 id="abc397g.-maximize-distance"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc397/tasks/abc397_g">abc397g. Maximize Distance</a></h2>
 <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc397/submissions/63932043">Code</a></p>
 <p>这个题要画个图才好理解，明天再说。</p>
+<h2 id="cf2035e.-monster"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2035/problem/E">CF2035E. Monster</a></h2>
+<p>*2300 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2035/submission/311492543">Code</a></p>
+<p>假设我们总共使用了 <span class="math inline">\(a\)</span> 次操作 <span class="math inline">\(1\)</span>，<span class="math inline">\(b\)</span> 次操作 <span class="math inline">\(2\)</span>。</p>
+<p>贪心地想，最优策略一定是 "提升 <span class="math inline">\(k\)</span> 次攻击力，打一次"，"提升 <span class="math inline">\(k\)</span> 次攻击力，打一次"，<span class="math inline">\(\ldots\)</span>，如此反复 <span class="math inline">\(c=\min(\left\lfloor\frac{a}{k}\right\rfloor,b)\)</span> 次，再将剩下的 <span class="math inline">\(a\bmod k\)</span> 次攻击力提升用完，打 <span class="math inline">\(b-c\)</span> 次怪物。</p>
+<p>等差数列求和，造成的总伤害 <span class="math inline">\(\text{damage}(a,b)=\frac{c(c+1)}{2}k+a(b-c)\)</span>，总代价 <span class="math inline">\(\text{cost}(a,b)=ax+by\)</span>。</p>
+<p>发现当 <span class="math inline">\(a\)</span> 固定时，<span class="math inline">\(\text{damage}(a,b)\)</span> 随着 <span class="math inline">\(b\)</span> 增加单调不降；当 <span class="math inline">\(b\)</span> 固定时，<span class="math inline">\(\text{damage}(a,b)\)</span> 随着 <span class="math inline">\(a\)</span> 增加单调不降。</p>
+<p>于是可以枚举 <span class="math inline">\(a\)</span>，二分出使得 <span class="math inline">\(\text{damage}(a,b)\ge z\)</span> 的最小 <span class="math inline">\(b\)</span>；或者枚举 <span class="math inline">\(b\)</span>，二分出使得 <span class="math inline">\(\text{damage}(a,b)\ge z\)</span> 的最小 <span class="math inline">\(a\)</span>。</p>
+<p>但 <span class="math inline">\(a,b\)</span> 太大不能枚举，根据你对算法竞赛的了解这时候肯定从哪里推导出一个神秘的不等式然后把 <span class="math inline">\(a\)</span> 或 <span class="math inline">\(b\)</span> 的上界缩小。恭喜你猜对了。（实际上你可以根据时限和数据组数试一个刚好不会超时的上界）</p>
+<p>证明：<span class="math inline">\(\min(a,b)\le \sqrt{2z}\)</span>。</p>
+<ul>
+<li>当 <span class="math inline">\(k=1\)</span> 时，攻击间隔最短，最低效。此时 <span class="math inline">\(c=\min(\left\lfloor\frac{a}{k}\right\rfloor)=\min(a,b)\)</span>，而当你提升一次攻击力就打一次的时候，最后一次操作不是攻击肯定没有意义，所以 <span class="math inline">\(a\le b\)</span>，故 <span class="math inline">\(c=a\)</span>。</li>
+<li>此时 <span class="math inline">\(\text{damage}(a,b)\ge \frac{a(a+1)}{2}+a(b-a)=\frac{a(2b-a+1)}{2}\ge \frac{a(2b-b+1)}{2}&gt;\frac{ab}{2}\)</span>。</li>
+<li>由 <span class="math inline">\(\text{damage}(a,b)&gt;\frac{ab}{2}\ge z\)</span>，得证。</li>
+</ul>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2082/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/D">Problem - D - Codeforces</a></p>
