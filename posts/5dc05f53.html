@@ -838,7 +838,7 @@ dp[L][R]=\max_{k\in[L,R)}(dp[L][k]+dp[k+1][R])
 <ul>
 <li>当 <span class="math inline">\(k=1\)</span> 时，攻击间隔最短，最低效。此时 <span class="math inline">\(c=\min(\left\lfloor\frac{a}{k}\right\rfloor)=\min(a,b)\)</span>，而当你提升一次攻击力就打一次的时候，最后一次操作不是攻击肯定没有意义，所以 <span class="math inline">\(a\le b\)</span>，故 <span class="math inline">\(c=a\)</span>。</li>
 <li>此时 <span class="math inline">\(\text{damage}(a,b)\ge \frac{a(a+1)}{2}+a(b-a)=\frac{a(2b-a+1)}{2}\ge \frac{a(2b-b+1)}{2}&gt;\frac{ab}{2}\)</span>。</li>
-<li>由 <span class="math inline">\(\text{damage}(a,b)&gt;\frac{ab}{2}\ge z\)</span>，得证。</li>
+<li>当 <span class="math inline">\(\text{damage}(a,b)\)</span> 取到 <span class="math inline">\(z\)</span> 时，有 <span class="math inline">\(z&gt;\frac{ab}{2}\)</span>，即 <span class="math inline">\(ab&lt;2z\)</span>，<span class="math inline">\(\min(a,b)\le \sqrt{2z}\)</span>，得证。</li>
 </ul>
 <p>时间复杂度 <span class="math inline">\(O(\sqrt{z}\log z)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
