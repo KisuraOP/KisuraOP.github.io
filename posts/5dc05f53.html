@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          24k 字
+          25k 字
         
       </span>
     
@@ -814,7 +814,18 @@ dp[L][R]=\max_{k\in[L,R)}(dp[L][k]+dp[k+1][R])
 <p>时间复杂度 <span class="math inline">\(O(k^3\log n)\)</span>，如果会 FFT 能做到 <span class="math inline">\(O(k^2\log n)\)</span>。能吗？反正我不会QAQ。</p>
 <h2 id="abc397g.-maximize-distance"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc397/tasks/abc397_g">abc397g. Maximize Distance</a></h2>
 <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc397/submissions/63932043">Code</a></p>
-<p>这个题要画个图才好理解，明天再说。</p>
+<p>二分答案，设二分出的答案是 <span class="math inline">\(d\)</span>，那么需要判定让 <span class="math inline">\(1\to n\)</span> 的最短路为 <span class="math inline">\(d\)</span> 的最小操作次数是否 <span class="math inline">\(\le K\)</span>。</p>
+<p>当 <span class="math inline">\(d=1\)</span> 时，问题等价于选定一个最小边集，使得任何一条从 <span class="math inline">\(1\to n\)</span> 的路径都无可避免地经过这个边集中的边。换句话说，边集中的边将原图分割成了两部分，即最小割。</p>
+<p>当 <span class="math inline">\(d&gt;1\)</span> 时，我们能通过建模将问题转化为一个分层图的最小割。</p>
+<p><img src="/image/academic/AT1.jpg" /></p>
+<p>上图是 <span class="math inline">\(d=1\)</span> 的情况，标注出的数字代表流量。考虑同样的图，但 <span class="math inline">\(d=3\)</span>：</p>
+<p><img src="/image/academic/AT3.jpg" /></p>
+<p>这只是一个分层图的框架，当我们需要让 <span class="math inline">\(1\to n\)</span> 的最短路为 <span class="math inline">\(3\)</span> 时，会出现一些问题。</p>
+<p><img src="/image/academic/AT6.jpg" /></p>
+<p>左图是我们期望的：分层图的每一层都选定了一些边，且每一层选定的边都组成了原图的一个最小割。把它们割掉，原图不连通，这样一个 <span class="math inline">\(d\)</span> 层的分层图的最小割就是让 <span class="math inline">\(1\to n\)</span> 的最短路为 <span class="math inline">\(d\)</span> 的最小操作次数。但能这么做的前提是每一层选定的边集互不相同，右图中我们只选定了三条边就能让图不连通，显然不合法。</p>
+<p><img src="/image/academic/final.jpg" /></p>
+<p>解决方案是对于每一条存在于原图中的边 <span class="math inline">\((u,v)\)</span>，<span class="math inline">\(\forall i\in[1,d)\)</span>，从第 <span class="math inline">\(i\)</span> 层的 <span class="math inline">\(u\)</span> 向第 <span class="math inline">\(i+1\)</span> 层的 <span class="math inline">\(v\)</span> 连边。这样选中不同层的同一条边就没有了意义。</p>
+<p>时间复杂度 <span class="math inline">\(O(\text{maxflow}(n^2,mn+n^2)\log n)\)</span>。</p>
 <h2 id="cf2035e.-monster"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2035/problem/E">CF2035E. Monster</a></h2>
 <p>*2300 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2035/submission/311492543">Code</a></p>
 <p>假设我们总共使用了 <span class="math inline">\(a\)</span> 次操作 <span class="math inline">\(1\)</span>，<span class="math inline">\(b\)</span> 次操作 <span class="math inline">\(2\)</span>。</p>
