@@ -864,6 +864,16 @@ dp[L][R]=\max_{k\in[L,R)}(dp[L][k]+dp[k+1][R])
 <p>考虑形如 <span class="math inline">\(p,p-1,p+1,p-2,p+2,\cdots\)</span> 的结构，此时前缀和出现了 <span class="math inline">\(p,3p,5p,\cdots\)</span>，它们除以 <span class="math inline">\(i\)</span> 恰好都是 <span class="math inline">\(p\)</span>。</p>
 <p>为了让这个结构尽可能长，取 <span class="math inline">\(p\)</span> 为最靠近 <span class="math inline">\(\frac{n}{2}\)</span> 的素数即可。</p>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1654e.-arithmetic-operations"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1654/problem/E">CF1654E. Arithmetic Operations</a></h2>
+<p>*2300 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1654/submission/312269153">Code</a></p>
+<p>考虑求出最多不需要修改的位置个数 <span class="math inline">\(cnt\)</span>，答案就是 <span class="math inline">\(n-cnt\)</span>。</p>
+<p>设 <span class="math inline">\(\forall i\in [1,n]\)</span>，<span class="math inline">\(b_i=a_i-i\cdot d\)</span>。当公差 <span class="math inline">\(d\)</span> 确定时，<span class="math inline">\(\{b\}\)</span> 中众数的出现次数就是对应的 <span class="math inline">\(cnt\)</span>。</p>
+<p>阈值分治，设 <span class="math inline">\(B\)</span> 为阈值。当 <span class="math inline">\(-B \le d \le B\)</span> 时，直接枚举 <span class="math inline">\(d\)</span>，扫一遍求众数，这部分是 <span class="math inline">\(O(nB)\)</span>。</p>
+<p>当 <span class="math inline">\(d&lt; -B\)</span> 或 <span class="math inline">\(d&gt;B\)</span> 时，若存在两个位置 <span class="math inline">\(i,j\)</span> 不会被修改，那么 <span class="math inline">\(|i-j|\le \frac{W}{B}\)</span>。</p>
+<p>枚举左端点 <span class="math inline">\(i\)</span>，右端点扫描 <span class="math inline">\([i+1,i+\frac{W}{B}]\)</span>，若 <span class="math inline">\(j-i\mid a_j-a_i\)</span>，那么 <span class="math inline">\(\dfrac{a_j-a_i}{j-i}\)</span> 就是一个可能的公差。</p>
+<p>把所有可能的公差都 <span class="math inline">\(O(n)\)</span> check 一遍，是不能够接受的。</p>
+<p>合理的做法是用一个桶对当前左端点 <span class="math inline">\(i\)</span> 统计公差 <span class="math inline">\(\dfrac{a_j-a_i}{j-i}\)</span> 的众数的出现次数，设为 <span class="math inline">\(tot\)</span>，那么 <span class="math inline">\(cnt=tot+1\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n(B+\frac{W}{B}))\)</span>，显然 <span class="math inline">\(B\)</span> 取 <span class="math inline">\(\sqrt{W}\)</span> 最优。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2090/problem/E1">Problem - E1 - Codeforces</a></p>
