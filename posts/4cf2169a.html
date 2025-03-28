@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.8k 字
+          9.9k 字
         
       </span>
     
@@ -370,6 +370,7 @@ sudo <span class="hljs-built_in">chown</span> www-data:www-data -R webapp/public
 <p>接着访问 <code>127.0.0.1/domjudge</code> 就有 web 界面了（云服务器就换成公网地址）。</p>
 <p><img src="/image/academic/d1.png" style="zoom:70%;" /></p>
 <p>如果没按前两句把 <code>default</code> 删掉你就会收获 404 的好结果。</p>
+<p>如果还没有 web 界面就看看服务器 80 端口有没有打开。</p>
 <p>接着在网页里 login，账号填 admin，密码通过以下命令获取：</p>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo <span class="hljs-built_in">cat</span> /opt/domjudge/domserver/etc/initial_admin_password.secret</code></pre></div>
 <h3 id="配置-php-和-mysql">3. 配置 php 和 mysql</h3>
@@ -378,6 +379,8 @@ sudo vim domjudge.conf</code></pre></div>
 <p>如果提示没有 vim，就 <code>sudo apt install vim</code>。</p>
 <p>打开配置文件后找到 <code>php_admin_value[memory_limit]</code> 一栏，改成：</p>
 <div class="code-wrapper"><pre><code class="hljs bash">php_admin_value[memory_limit] = 1024M</code></pre></div>
+<p>再找到 <code>php_admin_value[date.timezone]</code> 一栏，改成：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">php_admin_value[date.timezone] = Asia/Shanghai</code></pre></div>
 <p>保存退出。</p>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo service php8.3-fpm reload
 sudo vim /etc/mysql/conf.d/mysql.cnf</code></pre></div>
