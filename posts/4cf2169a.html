@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.9k 字
+          10k 字
         
       </span>
     
@@ -429,7 +429,7 @@ sudo vim daemon.json</code></pre></div>
 <p>保存退出。</p>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo update-grub
 sudo reboot</code></pre></div>
-<div class="code-wrapper"><pre><code class="hljs bash">sudo docker run -d -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost-0 --network=<span class="hljs-string">&quot;host&quot;</span> -e DAEMON_ID=0 -e CONTAINER_TIMEZONE=Asia/Shanghai -e JUDGEDAEMON_PASSWORD=&lt;domserver password&gt; -e DOMSERVER_BASEURL=http://localhost/domjudge/ domjudge/judgehost:8.3.1</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo docker run -d -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost-new0 --hostname localhost --network=<span class="hljs-string">&quot;host&quot;</span> -e DAEMON_ID=0 -e CONTAINER_TIMEZONE=Asia/Shanghai -e JUDGEDAEMON_PASSWORD=&lt;domserver password&gt; -e DOMSERVER_BASEURL=http://localhost/domjudge/ domjudge/judgehost:8.3.1</code></pre></div>
 <p>其中 <code>&lt;domserver password&gt;</code> 通过以下命令获取：</p>
 <div class="code-wrapper"><pre><code class="hljs bash">sudo <span class="hljs-built_in">cat</span> /opt/domjudge/domserver/etc/restapi.secret</code></pre></div>
 <p>如果一切正常，那么：</p>
@@ -437,7 +437,9 @@ sudo reboot</code></pre></div>
 <p><img src="/image/academic/d5.png" style="zoom:100%;" /></p>
 <p>如果起多个 judgehost，需要修改 <code>--name</code> 参数和 <code>DAEMON_ID</code> 参数。后者是核编号，不能超过机子的核心数。</p>
 <p>例如起第 2 个 judgehost 的话，命令得是：</p>
-<div class="code-wrapper"><pre><code class="hljs bash">sudo docker run -d -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost-1 --network=<span class="hljs-string">&quot;host&quot;</span> -e DAEMON_ID=1 -e CONTAINER_TIMEZONE=Asia/Shanghai -e JUDGEDAEMON_PASSWORD=&lt;domserver password&gt; -e DOMSERVER_BASEURL=http://localhost/domjudge/ domjudge/judgehost:8.3.1</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo docker run -d -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost-new1 --hostname localhost --network=<span class="hljs-string">&quot;host&quot;</span> -e DAEMON_ID=1 -e CONTAINER_TIMEZONE=Asia/Shanghai -e JUDGEDAEMON_PASSWORD=&lt;domserver password&gt; -e DOMSERVER_BASEURL=http://localhost/domjudge/ domjudge/judgehost:8.3.1</code></pre></div>
+<p>起第 3 个的话，得是：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">sudo docker run -d -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost-new2 --hostname localhost --network=<span class="hljs-string">&quot;host&quot;</span> -e DAEMON_ID=2 -e CONTAINER_TIMEZONE=Asia/Shanghai -e JUDGEDAEMON_PASSWORD=&lt;domserver password&gt; -e DOMSERVER_BASEURL=http://localhost/domjudge/ domjudge/judgehost:8.3.1</code></pre></div>
 <h3 id="配置比赛">5. 配置比赛</h3>
 <p>从这里开始就看个人喜好了。</p>
 <p>以下配置均以 UESTC 第十五届趣味程序设计竞赛为例。</p>
