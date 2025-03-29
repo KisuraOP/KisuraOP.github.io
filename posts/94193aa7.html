@@ -490,6 +490,7 @@
 
     </div>
 </div>
+<hr />
 <h3 id="b.-简单可满足性问题">B. 简单可满足性问题</h3>
 <p>假定已经将所有变量赋过了值，可以分出以下三类子句。</p>
 <ol type="1">
@@ -558,6 +559,7 @@
 
     </div>
 </div>
+<hr />
 <h3 id="c.-箭串">C. 箭串</h3>
 <p>将询问离线。暴力做就是倒序遍历每个区间，如果是 <code>*</code>，就覆盖；否则不操作。</p>
 <p>用 <code>std::set</code> 维护当前还存活的 <code>*</code> 的位置。对于一个询问 <span class="math inline">\([l,r]\)</span>，二分出 <code>std::set</code> 中第一个 <span class="math inline">\(\ge l\)</span> 的位置，迭代器一直向右，修改沿途位置即可。</p>
@@ -639,6 +641,7 @@
 
     </div>
 </div>
+<hr />
 <h3 id="d.-阿罗祖斯坦的桥">D. 阿罗祖斯坦的桥</h3>
 <p>令 <span class="math inline">\(f[l][r],g[l][r]\)</span> 分别表示在 <span class="math inline">\([l,r]\)</span> 里建桥的最大数量和最小总长度，然后就是一个裸的区间 dp。</p>
 <p>发现 <span class="math inline">\(w(l,r)=d\cdot \text{arcsin}(\frac{\text{dis}(l,r)}{d})\)</span> 具有单调性（跨度大桥更长）和四边形不等式条件（交叉弱于包含），于是套一个四边形不等式优化的板子就过了。</p>
@@ -723,6 +726,7 @@
 
     </div>
 </div>
+<hr />
 <h3 id="e.-猫猫城大选困难版">E. 猫猫城大选（困难版）</h3>
 <p>把问题 format 一下：给定一个变量 <span class="math inline">\(x\)</span>，初始为 <span class="math inline">\(0\)</span>，四种操作如下，问最终 <span class="math inline">\(x\)</span> 的期望。</p>
 <ol type="1">
@@ -1007,6 +1011,7 @@ Info <span class="hljs-keyword">operator</span>+(<span class="hljs-type">const</
 
     </div>
 </div>
+<hr />
 <h3 id="f.-我知道你姓啥">F. 我知道你姓啥！</h3>
 <p>竖着看，相当于 <span class="math inline">\(m\)</span> 个长为 <span class="math inline">\(n\)</span> 的字符串。我们的目标是使这 <span class="math inline">\(m\)</span> 个字符串互不相同。</p>
 <p>一次添加操作相当于给每个字符串末尾添上 <span class="math inline">\(0\)</span> 或 <span class="math inline">\(1\)</span>。对于两个相同的字符串，在其末尾一个添 <span class="math inline">\(0\)</span>，一个添 <span class="math inline">\(1\)</span>，就能让它们不同。</p>
@@ -1074,6 +1079,7 @@ Info <span class="hljs-keyword">operator</span>+(<span class="hljs-type">const</
 
     </div>
 </div>
+<hr />
 <h3 id="g.-猜数游戏">G. 猜数游戏</h3>
 <p>可以找到 <span class="math inline">\(\ge l\)</span> 的最小的满足 <span class="math inline">\(x\bmod p=a\)</span> 的位置 <span class="math inline">\(i\)</span>，判断 <span class="math inline">\(i\)</span> 是否 <span class="math inline">\(\le r\)</span>。</p>
 <p>令 <span class="math inline">\(i=kp+a\ge l\)</span>，得 <span class="math inline">\(k\ge \lceil\frac{l-a}{p} \rceil\)</span>，故 <span class="math inline">\(i=\lceil\frac{l-a}{p}\rceil p+a\)</span>。</p>
@@ -1121,6 +1127,7 @@ Info <span class="hljs-keyword">operator</span>+(<span class="hljs-type">const</
 
     </div>
 </div>
+<hr />
 <h3 id="i.-圆与直线交点">I. 圆与直线交点</h3>
 <p>因为不能出现浮点数，所以整个计算过程要保留分数形式。</p>
 <p>python 的 fraction 是简单的，能帮你自动约分，四则运算也很方便。C++ 要么手写分数类，要么另谋出路。</p>
@@ -1191,6 +1198,7 @@ d=\frac{|(X-P_x)V_y-(Y-P_y)V_x|}{\sqrt{V_x^2+V_y^2}}
 
     </div>
 </div>
+<hr />
 <h3 id="j.-创建用户">J. 创建用户</h3>
 <p>按照题意模拟即可。</p>
 <p>C++ 使用 <code>getline</code> 读入一整行。</p>
@@ -1257,6 +1265,7 @@ d=\frac{|(X-P_x)V_y-(Y-P_y)V_x|}{\sqrt{V_x^2+V_y^2}}
 
     </div>
 </div>
+<hr />
 <h3 id="k.-哲学之门">K. 哲学之门</h3>
 <p>想好怎么枚举是重要的。</p>
 <p><img src="/image/academic/UESTCPC2.png" /></p>
@@ -1369,6 +1378,7 @@ d=\frac{|(X-P_x)V_y-(Y-P_y)V_x|}{\sqrt{V_x^2+V_y^2}}
 
     </div>
 </div>
+<hr />
 <h3 id="m.-前兜车一转后兜车一转">M. 前兜车一转后兜车一转</h3>
 <p>选定的前缀和后缀可以是不交、恰交、相交，每种情况都讨论一下。</p>
 <p>恰交是简单的。</p>
@@ -1442,6 +1452,7 @@ d=\frac{|(X-P_x)V_y-(Y-P_y)V_x|}{\sqrt{V_x^2+V_y^2}}
 
     </div>
 </div>
+<hr />
 <h3 id="n.-幸运之环-ii">N. 幸运之环 II</h3>
 <p>用 dfs 找出这棵基环树的环。</p>
 <p>找到环上最小的点 <span class="math inline">\(x\)</span>，再看一下 <span class="math inline">\(x\)</span> 沿环上两个方向的邻居，哪个邻居小就往哪个方向输出。</p>
@@ -1551,6 +1562,7 @@ d=\frac{|(X-P_x)V_y-(Y-P_y)V_x|}{\sqrt{V_x^2+V_y^2}}
 
     </div>
 </div>
+<hr />
 <h3 id="o.-不走回头路">O. 不走回头路</h3>
 <p>在一个强连通分量内，所有的点都可以互相到达。即同一个 SCC 内的景点可以任意安排游览顺序。</p>
 <p>缩点，得到一个 DAG。若要能遍历所有的点，这个 DAG 必然是一条链。</p>
@@ -1671,6 +1683,7 @@ d=\frac{|(X-P_x)V_y-(Y-P_y)V_x|}{\sqrt{V_x^2+V_y^2}}
 
     </div>
 </div>
+<hr />
 <h3 id="p.-相同字符">P. 相同字符</h3>
 <p>预处理 <span class="math inline">\(pre[i]\)</span> 代表从前向后在 <span class="math inline">\(a\)</span> 中匹配上 <span class="math inline">\(b\)</span> 中的字符的个数，即 <span class="math inline">\(a[0..i]\)</span> 能匹配上 <span class="math inline">\(b[0..(pre[i]-1)]\)</span>。</p>
 <p>预处理 <span class="math inline">\(suf[i]\)</span> 代表从后向前在 <span class="math inline">\(a\)</span> 中匹配上 <span class="math inline">\(b\)</span> 中的字符的个数，即 <span class="math inline">\(a[i..n-1]\)</span> 能匹配上 <span class="math inline">\(b[(m-suf[i])..m-1]\)</span>。</p>
@@ -1761,6 +1774,7 @@ d=\frac{|(X-P_x)V_y-(Y-P_y)V_x|}{\sqrt{V_x^2+V_y^2}}
 
     </div>
 </div>
+<hr />
 <h3 id="q.-校车">Q. 校车</h3>
 <p>数据范围识状压。将给定的 <span class="math inline">\(w\)</span> 个路口称作关键点。</p>
 <p>令 <span class="math inline">\(dp[S][i]\)</span> 代表从起点出发经过了状态 <span class="math inline">\(S\)</span> 中的点，最终到达关键点 <span class="math inline">\(i\)</span> 所需的路程。</p>
