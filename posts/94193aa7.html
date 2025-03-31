@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          31k 字
+          35k 字
         
       </span>
     
@@ -1214,6 +1214,149 @@ Info <span class="hljs-keyword">operator</span>+(<span class="hljs-type">const</
     </div>
 </div>
 <hr />
+<h3 id="h.-独立事件">H. 独立事件</h3>
+<p>(upd on 03.31)</p>
+<p>当 <span class="math inline">\(P(A)=0/1\)</span> 时，答案是 trivial 的。否则，存在以下推导： <span class="math display">\[
+\begin{align}
+&amp;P(A)P(B_I)=P(A\cap B_I)\\
+\rightarrow\  &amp;P(B\mid A)=P(B\mid  \overline{A}) \\
+\rightarrow\ &amp;\frac{P(AB)}{P(A)}=\frac{P(\overline{A}B)}{P(\overline{A})}
+\end{align}
+\]</span></p>
+<p>记 <span class="math inline">\(f[i]\)</span> 表示在事件 <span class="math inline">\(A\)</span> 对应的集合中选出元素总和为 <span class="math inline">\(i\)</span> 的方案数。</p>
+<p>记 <span class="math inline">\(g[i]\)</span> 表示在事件 <span class="math inline">\(\overline{A}\)</span> 对应的集合中选出元素总和为 <span class="math inline">\(i\)</span> 的方案数。</p>
+<p>那么答案是：</p>
+<p><span class="math display">\[
+\sum_{i=0}^{1000}\sum_{j=0}^{1000}f[i]\cdot g[j]\cdot [\frac{i}{P(A)}=\frac{j}{P(\overline{A})}]
+\]</span></p>
+<p>其中，<span class="math inline">\(P(A)=\dfrac{\sum\limits_{i=1}^{k}a_i}{1000}\)</span>，<span class="math inline">\(P(\overline{A})=1-P(A)\)</span>。</p>
+<p><span class="math inline">\(f[i]\)</span> 和 <span class="math inline">\(g[i]\)</span> 可以分别用 <span class="math inline">\(01\)</span> 背包求出。</p>
+<p>时间复杂度 <span class="math inline">\(O(nw+w^2)\)</span>，<span class="math inline">\(w\)</span> 为值域。</p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin); freopen(#x<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x)  &#123; cout &lt;&lt; <span class="hljs-string">&quot;check &quot;</span> &lt;&lt; x &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>; cout.flush();&#125;</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> double long double</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3fffffffffffffff</span>
+
+<span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> T&gt;</span>
+<span class="hljs-function"><span class="hljs-keyword">constexpr</span> T <span class="hljs-title">power</span><span class="hljs-params">(T a, <span class="hljs-type">int</span> b)</span> </span>&#123;
+    T res = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span> (; b; b /= <span class="hljs-number">2</span>, a *= a)
+        <span class="hljs-keyword">if</span> (b % <span class="hljs-number">2</span>) res *= a;
+    <span class="hljs-keyword">return</span> res;
+&#125;
+<span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> <span class="hljs-title">mul</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b, <span class="hljs-type">int</span> p)</span> </span>&#123;
+    <span class="hljs-type">int</span> res = a * b % p;
+    <span class="hljs-keyword">if</span> (res &lt; <span class="hljs-number">0</span>) res += p;
+    <span class="hljs-keyword">return</span> res;
+&#125;
+<span class="hljs-keyword">template</span>&lt;<span class="hljs-type">int</span> P&gt;
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">MInt</span> &#123;
+    <span class="hljs-type">int</span> x;
+    <span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-title">MInt</span><span class="hljs-params">()</span> : x&#123;</span>&#125; &#123;&#125;
+    <span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-title">MInt</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> : x&#123;</span><span class="hljs-built_in">norm</span>(x % <span class="hljs-built_in">getMod</span>())&#125; &#123;&#125;
+    <span class="hljs-type">static</span> <span class="hljs-type">int</span> Mod;
+    <span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-type">static</span> <span class="hljs-type">int</span> <span class="hljs-title">getMod</span><span class="hljs-params">()</span> </span>&#123; <span class="hljs-keyword">return</span> P &gt; <span class="hljs-number">0</span> ? P : Mod;&#125;
+    <span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-type">static</span> <span class="hljs-type">void</span> <span class="hljs-title">setMod</span><span class="hljs-params">(<span class="hljs-type">int</span> Mod_)</span> </span>&#123; Mod = Mod_;&#125;
+    <span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> <span class="hljs-title">norm</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span> <span class="hljs-type">const</span> </span>&#123; <span class="hljs-keyword">if</span> (x &lt; <span class="hljs-number">0</span>) x += <span class="hljs-built_in">getMod</span>(); <span class="hljs-keyword">if</span> (x &gt;= <span class="hljs-built_in">getMod</span>()) x -= <span class="hljs-built_in">getMod</span>(); <span class="hljs-keyword">return</span> x;&#125;
+    <span class="hljs-function"><span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> <span class="hljs-title">val</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123; <span class="hljs-keyword">return</span> x;&#125;
+    <span class="hljs-function"><span class="hljs-keyword">explicit</span> <span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">operator</span> <span class="hljs-title">int</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123; <span class="hljs-keyword">return</span> x;&#125;
+    <span class="hljs-keyword">constexpr</span> MInt <span class="hljs-keyword">operator</span>-() <span class="hljs-type">const</span> &#123; MInt res; res.x = <span class="hljs-built_in">norm</span>(<span class="hljs-built_in">getMod</span>() - x); <span class="hljs-keyword">return</span> res;&#125;
+    <span class="hljs-function"><span class="hljs-keyword">constexpr</span> MInt <span class="hljs-title">inv</span><span class="hljs-params">()</span> <span class="hljs-type">const</span> </span>&#123; <span class="hljs-built_in">assert</span>(x != <span class="hljs-number">0</span>); <span class="hljs-keyword">return</span> <span class="hljs-built_in">power</span>(*<span class="hljs-keyword">this</span>, <span class="hljs-built_in">getMod</span>() - <span class="hljs-number">2</span>);&#125;
+    <span class="hljs-keyword">constexpr</span> MInt &amp;<span class="hljs-keyword">operator</span>*=(MInt rhs) &amp; &#123; x = <span class="hljs-built_in">mul</span>(x, rhs.x, <span class="hljs-built_in">getMod</span>()); <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;&#125;
+    <span class="hljs-keyword">constexpr</span> MInt &amp;<span class="hljs-keyword">operator</span>+=(MInt rhs) &amp; &#123; x = <span class="hljs-built_in">norm</span>(x + rhs.x); <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;&#125;
+    <span class="hljs-keyword">constexpr</span> MInt &amp;<span class="hljs-keyword">operator</span>-=(MInt rhs) &amp; &#123; x = <span class="hljs-built_in">norm</span>(x - rhs.x); <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span>;&#125;
+    <span class="hljs-keyword">constexpr</span> MInt &amp;<span class="hljs-keyword">operator</span>/=(MInt rhs) &amp; &#123; <span class="hljs-keyword">return</span> *<span class="hljs-keyword">this</span> *= rhs.<span class="hljs-built_in">inv</span>();&#125;
+    <span class="hljs-keyword">friend</span> <span class="hljs-keyword">constexpr</span> MInt <span class="hljs-keyword">operator</span>*(MInt lhs, MInt rhs) &#123; MInt res = lhs; res *= rhs; <span class="hljs-keyword">return</span> res;&#125;
+    <span class="hljs-keyword">friend</span> <span class="hljs-keyword">constexpr</span> MInt <span class="hljs-keyword">operator</span>+(MInt lhs, MInt rhs) &#123; MInt res = lhs; res += rhs; <span class="hljs-keyword">return</span> res;&#125;
+    <span class="hljs-keyword">friend</span> <span class="hljs-keyword">constexpr</span> MInt <span class="hljs-keyword">operator</span>-(MInt lhs, MInt rhs) &#123; MInt res = lhs; res -= rhs; <span class="hljs-keyword">return</span> res;&#125;
+    <span class="hljs-keyword">friend</span> <span class="hljs-keyword">constexpr</span> MInt <span class="hljs-keyword">operator</span>/(MInt lhs, MInt rhs) &#123; MInt res = lhs; res /= rhs; <span class="hljs-keyword">return</span> res;&#125;
+    <span class="hljs-keyword">friend</span> <span class="hljs-keyword">constexpr</span> istream &amp;<span class="hljs-keyword">operator</span>&gt;&gt;(istream &amp;is, MInt &amp;a) &#123; <span class="hljs-type">int</span> v; is &gt;&gt; v; a = <span class="hljs-built_in">MInt</span>(v); <span class="hljs-keyword">return</span> is;&#125;
+    <span class="hljs-keyword">friend</span> <span class="hljs-keyword">constexpr</span> ostream &amp;<span class="hljs-keyword">operator</span>&lt;&lt;(ostream &amp;os, <span class="hljs-type">const</span> MInt &amp;a) &#123; <span class="hljs-keyword">return</span> os &lt;&lt; a.<span class="hljs-built_in">val</span>();&#125;
+    <span class="hljs-keyword">friend</span> <span class="hljs-keyword">constexpr</span> <span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span>==(MInt lhs, MInt rhs) &#123; <span class="hljs-keyword">return</span> lhs.<span class="hljs-built_in">val</span>() == rhs.<span class="hljs-built_in">val</span>();&#125;
+    <span class="hljs-keyword">friend</span> <span class="hljs-keyword">constexpr</span> <span class="hljs-type">bool</span> <span class="hljs-keyword">operator</span>!=(MInt lhs, MInt rhs) &#123; <span class="hljs-keyword">return</span> lhs.<span class="hljs-built_in">val</span>() != rhs.<span class="hljs-built_in">val</span>();&#125;
+&#125;;
+
+<span class="hljs-keyword">template</span>&lt;&gt;
+<span class="hljs-type">int</span> MInt&lt;<span class="hljs-number">0</span>&gt;::Mod = <span class="hljs-number">998244353</span>;
+
+<span class="hljs-keyword">template</span>&lt;<span class="hljs-type">int</span> V, <span class="hljs-type">int</span> P&gt;
+<span class="hljs-keyword">constexpr</span> MInt&lt;P&gt; CInv = <span class="hljs-built_in">MInt</span>&lt;P&gt;(V).<span class="hljs-built_in">inv</span>();
+
+<span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> modp = <span class="hljs-number">998244353</span>;
+<span class="hljs-keyword">using</span> Z = MInt&lt;modp&gt;;
+
+<span class="hljs-comment">// template&lt;int P&gt;</span>
+<span class="hljs-comment">// int MInt&lt;P&gt;::Mod = P;</span>
+
+<span class="hljs-comment">// using Z = MInt&lt;0&gt;;</span>
+<span class="hljs-comment">// Z::setMod(mod);</span>
+
+
+<span class="hljs-comment">//-------------- templates above --------------</span>
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-type">int</span> n, k;
+	cin &gt;&gt; n &gt;&gt; k;
+	<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">a</span><span class="hljs-params">(n + <span class="hljs-number">1</span>)</span></span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+		cin &gt;&gt; a[i];
+	&#125;
+	<span class="hljs-type">int</span> S = <span class="hljs-number">0</span>, T = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+		<span class="hljs-keyword">if</span> (i &lt;= k) &#123;
+			S += a[i];
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			T += a[i];
+		&#125;
+	&#125;
+	<span class="hljs-function">vector&lt;Z&gt; <span class="hljs-title">f</span><span class="hljs-params">(S + <span class="hljs-number">1</span>)</span>, <span class="hljs-title">g</span><span class="hljs-params">(T + <span class="hljs-number">1</span>)</span></span>;
+	f[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+	g[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= k; i++) &#123;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = S; j &gt;= a[i]; j--) &#123;
+			f[j] += f[j - a[i]];
+		&#125;
+	&#125;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = k + <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = T; j &gt;= a[i]; j--) &#123;
+			g[j] += g[j - a[i]];
+		&#125;
+	&#125;
+	Z ans = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= S; i++) &#123;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt;= T; j++) &#123;
+			<span class="hljs-keyword">if</span> (i * T == j * S) &#123;
+				ans += f[i] * g[j];
+			&#125;
+		&#125;
+	&#125;
+	cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-built_in">fre</span>(test);
+	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
+
+	<span class="hljs-type">int</span> T = <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span> (T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
 <h3 id="i.-圆与直线交点">I. 圆与直线交点</h3>
 <p>因为不能出现浮点数，所以整个计算过程要保留分数形式。</p>
 <p>python 的 fraction 是简单的，能帮你自动约分，四则运算也很方便。C++ 要么手写分数类，要么另谋出路。</p>
