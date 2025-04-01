@@ -755,7 +755,7 @@ dp[L][R]=\max_{k\in[L,R)}(dp[L][k]+dp[k+1][R])
 <p>最终我们会有 <span class="math inline">\(O(n\log n)\)</span> 条候选边（调和级数效应）。用这些边跑最小生成树即可。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log^2 n)\)</span>。</p>
 <h2 id="cf2075d.-equalization"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2075/problem/D">CF2075D. Equalization</a></h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2075/submission/311292632">Code</a></p>
+<p>*2000 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2075/submission/311292632">Code</a></p>
 <p>每次操作相当于将二进制下的 <span class="math inline">\(x\)</span> 或 <span class="math inline">\(y\)</span> 右移一定位数。</p>
 <p>假若我们确定了最优答案中 <span class="math inline">\(x\)</span> 右移了 <span class="math inline">\(k_1\)</span> 位，<span class="math inline">\(y\)</span> 右移了 <span class="math inline">\(k_2\)</span> 位，该如何计算最小操作次数？</p>
 <p>将一次花费 <span class="math inline">\(2^k\)</span> 的操作看作一个物品，这个物品的体积是 <span class="math inline">\(k\)</span>，价值是 <span class="math inline">\(2^k\)</span>，且每个物品至多被选一次。</p>
@@ -909,13 +909,6 @@ d&amp;,b_i=1\cap d\le k\\
 <p>求出 <span class="math inline">\(b_1\)</span> 和 <span class="math inline">\(b_m\)</span> 在满二叉树上的 LCA，计算出 <span class="math inline">\(b_1,b_m\)</span> 之间的简单路径长度 <span class="math inline">\(len\)</span>（这里 <span class="math inline">\(len\)</span> 是路径上除了 <span class="math inline">\(b_1,b_m\)</span> 外点的数目）。那么若 <span class="math inline">\((m-2)&lt;len\)</span> 或 <span class="math inline">\(m-2 \not\equiv len\pmod{2}\)</span>，就无解。</p>
 <p>否则构造方式就是从两边分别跳父亲，中间的一段反复 <span class="math inline">\(\times 2,\div 2\)</span> 补齐。</p>
 <p>求 LCA 可以暴跳，时间复杂度 <span class="math inline">\(O(n\log w)\)</span>，<span class="math inline">\(w\)</span> 是值域。</p>
-<h2 id="等待补题列表">等待补题列表</h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2090/problem/E1">Problem - E1 - Codeforces</a></p>
-<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/tasks/abc399_e">E - Replace</a></p>
-<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/tasks/abc399_f">F - Range Power Sum</a></p>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1981/problem/D">Problem - D - Codeforces</a></p>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1981/problem/E">Problem - E - Codeforces</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
