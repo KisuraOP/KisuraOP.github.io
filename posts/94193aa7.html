@@ -1798,6 +1798,7 @@ d=\frac{|(X-P_x)V_y-(Y-P_y)V_x|}{\sqrt{V_x^2+V_y^2}}
 <p>缩点，得到一个 DAG。若要能遍历所有的点，这个 DAG 必然是一条链。</p>
 <p>在 DAG 上 dp（令 <span class="math inline">\(f[x]\)</span> 代表以 <span class="math inline">\(x\)</span> 结尾的链的长度的最大值），判断是否存在一个点 <span class="math inline">\(f[x]=cnt\)</span> 即可（<span class="math inline">\(cnt\)</span> 是缩点后的图的顶点数）。</p>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<p>FunFact：一个误区是只判断缩点后的图 "恰有一个入度为 <span class="math inline">\(0\)</span> 的点" 和 "恰有一个出度为 <span class="math inline">\(0\)</span>" 的点，这是错误的，反例是 <span class="math inline">\(1\to 2\to 3,1\to 4\to3\)</span>。赛时的数据有这个缺陷（包括其它一些没缩点乱搞度数的做法也过了），磕头 <span class="math inline">\(+1\)</span>。补题链接里的数据是更新过的。</p>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
         Code
