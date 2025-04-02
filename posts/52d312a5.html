@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          1.9k 字
         
       </span>
     
@@ -347,13 +347,23 @@
 <p>二分出最小满足条件的 <span class="math inline">\(m\)</span>，构造出对应的 <span class="math inline">\(m\)</span> 个点的完全图（若 <span class="math inline">\(m\)</span> 是偶数还要按上述规则删边），跑出一条欧拉路径。若路径上第 <span class="math inline">\(i\)</span> 个点是 <span class="math inline">\(x\)</span>，对应到序列上 <span class="math inline">\(a_i\)</span> 就是第 <span class="math inline">\(x\)</span> 小的质数。</p>
 <p>当 <span class="math inline">\(m=1500\)</span> 时，构造出的图有 <span class="math inline">\(1125001&gt;10^6\)</span> 条边，而第 <span class="math inline">\(1500\)</span> 小的质数是 <span class="math inline">\(12553&lt;3\cdot 10^5\)</span>，满足条件。</p>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1981e.-turtle-and-intersected-segments"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1981/problem/E">CF1981E. Turtle and Intersected Segments</a></h2>
+<p>*2600 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1981/submission/313615140">Code</a></p>
+<p>对于三条两两相交的线段 <span class="math inline">\([l_1,r_1,a_1],[l_2,r_2,a_2],[l_3,r_3,a_3]\)</span>，设 <span class="math inline">\(a_1\le a_2\le a_3\)</span>，那么可以仅保留边 <span class="math inline">\(1\leftrightarrow 2,2\leftrightarrow 3\)</span>。（因为 <span class="math inline">\(|a_1-a_3|=|a_1-a_2|+|a_2-a_3|\)</span>，选第 <span class="math inline">\(3\)</span> 条边肯定不优）</p>
+<p>不难发现对于每一条线段 <span class="math inline">\([l_i,r_i,a_i]\)</span>，我们只用保留两条边：</p>
+<ol type="1">
+<li>与该线段相交的线段中，权值（设为 <span class="math inline">\(a_j\)</span>）最大且满足 <span class="math inline">\(a_j\le a_i\)</span> 的边。</li>
+<li>与该线段相交的线段中，权值（设为 <span class="math inline">\(a_j\)</span>）最小且满足 <span class="math inline">\(a_j\ge a_i\)</span> 的边。</li>
+</ol>
+<p>扫描线，维护一个 <code>std::set</code>，扫描到一条线段的左端点时就把线段的权值加进去，扫描到右端点时就把对应的权值删掉。保留的边相当于线段在容器中的前驱和后继。</p>
+<p>最终处理出的侯选边有 <span class="math inline">\(O(n)\)</span> 条，跑最小生成树即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p>最近太忙了，下面越来越长是正常的.jpg</p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2090/problem/E1">Problem - E1 - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/tasks/abc399_e">E - Replace</a></p>
 <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/tasks/abc399_f">F - Range Power Sum</a></p>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1981/problem/E">Problem - E - Codeforces</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
