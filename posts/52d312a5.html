@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          2.3k 字
         
       </span>
     
@@ -358,11 +358,22 @@
 <p>扫描线，维护一个 <code>std::set</code>，扫描到一条线段的左端点时就把线段的权值加进去，扫描到右端点时就把对应的权值删掉。保留的边相当于线段在容器中的前驱和后继。</p>
 <p>最终处理出的侯选边有 <span class="math inline">\(O(n)\)</span> 条，跑最小生成树即可。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="abc399e.-replace"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/tasks/abc399_e">abc399e. Replace</a></h2>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/submissions/64455710">Code</a></p>
+<p>连边 <span class="math inline">\(S_i\to T_i\)</span>。</p>
+<p>首先每个点至多有一条出边，否则 <code>-1</code>。<span class="math inline">\(26\)</span> 个点都有入度，也为 <code>-1</code>。</p>
+<p>否则答案的下界是图上的边数（不含自环）。</p>
+<p>对于一个环，分两种情况：</p>
+<ul>
+<li>环上存在入度为 <span class="math inline">\(2\)</span> 的点。说明存在一条边 <span class="math inline">\(x\to y\)</span> 满足 <span class="math inline">\(y\)</span> 在环上而 <span class="math inline">\(x\)</span> 不在。设 <span class="math inline">\(y\)</span> 的另一条入边是 <span class="math inline">\(z\to y\)</span>，此时可以花 <span class="math inline">\(1\)</span> 的代价将 <span class="math inline">\(z\)</span> 改为 <span class="math inline">\(x\)</span>，破环成链，且不花费额外次数（即用 <span class="math inline">\(1\)</span> 次操作断了一条边，与预设 "答案是图上的边数" 相符）。</li>
+<li>环上所有点入度为 <span class="math inline">\(1\)</span>。此时只能将环上任意一点 <span class="math inline">\(x\)</span> 替换为图中的一个孤点，最后再改回来，花费了 <span class="math inline">\(1\)</span> 点额外次数。</li>
+</ul>
+<p>于是答案是图上的边数 <span class="math inline">\(+\)</span> 第二类环的数量。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p>最近太忙了，下面越来越长是正常的.jpg</p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2090/problem/E1">Problem - E1 - Codeforces</a></p>
-<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/tasks/abc399_e">E - Replace</a></p>
 <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/tasks/abc399_f">F - Range Power Sum</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
