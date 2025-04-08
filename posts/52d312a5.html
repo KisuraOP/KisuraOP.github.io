@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.3k 字
+          3.6k 字
         
       </span>
     
@@ -370,11 +370,39 @@
 </ul>
 <p>于是答案是图上的边数 <span class="math inline">\(+\)</span> 第二类环的数量。</p>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1139e.-maximize-mex"><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1139/E">CF1139E. Maximize Mex</a></h2>
+<p>*2400 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1139/submission/314383443">Code</a></p>
+<p>考虑没有人离开社团的情况。此时二分答案，设二分的 <span class="math inline">\(\text{mex}\)</span> 是 <span class="math inline">\(mid\)</span>，那么只需要保留潜力值 <span class="math inline">\(&lt;mid\)</span> 的学生。</p>
+<p>建出一个二分图，左部图是 <span class="math inline">\(m\)</span> 个社团，右部图对应 <span class="math inline">\(0\sim mid - 1\)</span> 这 <span class="math inline">\(mid\)</span> 个潜力值。对于一个学生，我们可以连出一条边，最终只要看最大匹配是否为 <span class="math inline">\(mid\)</span>。</p>
+<p>若有学生离开了，相当于删掉一条边，这是不好处理的。但我们想到 Dinic 可以动态加边，于是离线下来倒着做。</p>
+<p>但每加一条边就要重新二分枚举 <span class="math inline">\(\text{mex}\)</span> 就太低效了。注意到加边的时候 <span class="math inline">\(\text{mex}\)</span> 只增不减，换句话匹配数只增不减。我们可以从 <span class="math inline">\(1\)</span> 开始枚举 <span class="math inline">\(\text{mex}\)</span>，每次将 <span class="math inline">\(p[i]=\text{mex}-1\)</span> 的学生加到图上，若匹配数恰好为 <span class="math inline">\(\text{mex}\)</span>，就 <span class="math inline">\(\text{mex}\leftarrow \text{mex}+1\)</span>，重复这个流程。</p>
+<p>此时，一个学生 <span class="math inline">\(i\)</span> 加入社团，分两种情况处理：</p>
+<ol type="1">
+<li>加入时枚举的 <span class="math inline">\(\text{mex}\ge p[i]\)</span>。直接加边即可。</li>
+<li>加入时枚举的 <span class="math inline">\(\text{mex}&lt;p[i]\)</span>。将学生 <span class="math inline">\(i\)</span> 加进备选名单里，等 <span class="math inline">\(\text{mex}\)</span> 枚举到的时候再加边。</li>
+</ol>
+<p>时间复杂度 <span class="math inline">\(O(\text{MaxFlow}(m, n))\)</span>。</p>
+<h2 id="cf1746f.-kazaee"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1746/problem/F">CF1746F. Kazaee</a></h2>
+<p>*2800 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1746/submission/314411747">Code</a></p>
+<p>先将所有数（包括原有的 <span class="math inline">\(a_i\)</span> 与每次修改后的 <span class="math inline">\(x\)</span>）进行离散化。</p>
+<p>一个暴力的做法是对每个数都维护一个树状数组，这样整道题能在 <span class="math inline">\(O(n^2+qn\log n)\)</span> 内解决。</p>
+<p>面临的困难无非只有一点：对于一个区间，时间复杂度不允许我们 check 区间里每一个数的出现次数。</p>
+<p>一个关键点是，一段区间中，如果所有数字的出现次数都是 <span class="math inline">\(k\)</span> 的倍数，其出现次数之和也一定为 <span class="math inline">\(k\)</span> 的倍数，但这是必要不充分条件。</p>
+<p>随机化，在值域内随机选出 <span class="math inline">\(B\)</span> 个子集，对于一个询问，逐一 check 每一个子集，看每个子集里的数的出现次数之和是否为 <span class="math inline">\(k\)</span> 的倍数。</p>
+<p>而单点修改时，遍历这 <span class="math inline">\(B\)</span> 个子集，若当前子集包含修改前/修改后的数，就相应在树状数组上修改。</p>
+<p>为了保证正确性，每个子集按照以下方式随机：</p>
+<ul>
+<li><span class="math inline">\(\forall i\in [1,W]\)</span>，<span class="math inline">\(i\)</span> 有 <span class="math inline">\(\dfrac{1}{2}\)</span> 的概率选进子集。其中 <span class="math inline">\(W\)</span> 为离散化后的值域。</li>
+</ul>
+<p>错误率分析：最坏情况下，判错当且仅当存在一对数 <span class="math inline">\(x,y\)</span>，满足 <span class="math inline">\(k\mid cnt_x+cnt_y\)</span> 且 <span class="math inline">\(k\not\mid cnt_x\)</span>，<span class="math inline">\(k\not\mid cnt_y\)</span>。四种情况：选 <span class="math inline">\(x\)</span> 没选 <span class="math inline">\(y\)</span>，选 <span class="math inline">\(y\)</span> 没选 <span class="math inline">\(x\)</span>，没选 <span class="math inline">\(x\)</span> 没选 <span class="math inline">\(y\)</span>，选 <span class="math inline">\(x\)</span> 选 <span class="math inline">\(y\)</span>，它们在概率上各占 <span class="math inline">\(\dfrac{1}{4}\)</span>，其中仅第三第四种会犯错，占 <span class="math inline">\(\dfrac{1}{2}\)</span>。取 <span class="math inline">\(B=30\)</span>，错误率就是 <span class="math inline">\(\dfrac{1}{2^{30}}\)</span>，足够低了。</p>
+<p>时间复杂度 <span class="math inline">\(O(nB\log n+qB\log n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
-<p>最近太忙了，下面越来越长是正常的.jpg</p>
+<p>最近太忙了（主要是期中考试和暑假前集训的筹备），下面越来越长是正常的.jpg</p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2090/problem/E1">Problem - E1 - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/tasks/abc399_f">F - Range Power Sum</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2084/problem/E">Problem - E - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/555/E">Problem - 555E - Codeforces</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
