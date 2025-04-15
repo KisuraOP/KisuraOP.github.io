@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.6k 字
+          4k 字
         
       </span>
     
@@ -396,6 +396,14 @@
 </ul>
 <p>错误率分析：最坏情况下，判错当且仅当存在一对数 <span class="math inline">\(x,y\)</span>，满足 <span class="math inline">\(k\mid cnt_x+cnt_y\)</span> 且 <span class="math inline">\(k\not\mid cnt_x\)</span>，<span class="math inline">\(k\not\mid cnt_y\)</span>。四种情况：选 <span class="math inline">\(x\)</span> 没选 <span class="math inline">\(y\)</span>，选 <span class="math inline">\(y\)</span> 没选 <span class="math inline">\(x\)</span>，没选 <span class="math inline">\(x\)</span> 没选 <span class="math inline">\(y\)</span>，选 <span class="math inline">\(x\)</span> 选 <span class="math inline">\(y\)</span>，它们在概率上各占 <span class="math inline">\(\dfrac{1}{4}\)</span>，其中仅第三第四种会犯错，占 <span class="math inline">\(\dfrac{1}{2}\)</span>。取 <span class="math inline">\(B=30\)</span>，错误率就是 <span class="math inline">\(\dfrac{1}{2^{30}}\)</span>，足够低了。</p>
 <p>时间复杂度 <span class="math inline">\(O(nB\log n+qB\log n)\)</span>。</p>
+<h2 id="abc401f.-add-one-edge-3"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc401/tasks/abc401_f">abc401f. Add One Edge 3</a></h2>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc401/submissions/64815017">Code</a></p>
+<p>记 <span class="math inline">\(G\)</span> 为树 <span class="math inline">\(1\)</span>，<span class="math inline">\(H\)</span> 为树 <span class="math inline">\(2\)</span>。</p>
+<p>记 <span class="math inline">\(d_1,A_1,A_2\)</span> 为 <span class="math inline">\(G\)</span> 的直径及其两个端点，<span class="math inline">\(d_2,B_1,B_2\)</span> 为 <span class="math inline">\(H\)</span> 的直径及其两个端点。</p>
+<p>记 <span class="math inline">\(f_x/g_x\)</span> 为以 <span class="math inline">\(G/H\)</span> 中的点 <span class="math inline">\(x\)</span> 为端点的最长的路径的距离，显然有 <span class="math inline">\(f_x=\max(dis(A_1,x),dis(A_2,x))\)</span>，<span class="math inline">\(g_x=\max(dis(B_1,x),dis(B_2,x))\)</span>。</p>
+<p>对于一条连接了 <span class="math inline">\(G\)</span> 中点 <span class="math inline">\(i\)</span> 和 <span class="math inline">\(H\)</span> 中点 <span class="math inline">\(j\)</span> 的边，新图直径变为 <span class="math inline">\(\max(\max(d_1,d_2),f_i+g_j+1)\)</span>。</p>
+<p>将 <span class="math inline">\(f_x,g_x\)</span> 升序排序，枚举 <span class="math inline">\(f_i\)</span>，就能二分或双指针求出有多少个满足 <span class="math inline">\(f_i+g_j+1&gt;\max(d_1,d_2)\)</span> 的 <span class="math inline">\(g_j\)</span>，贡献就是一段 <span class="math inline">\(g\)</span> 的后缀和。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p>最近太忙了（主要是期中考试和暑假前集训的筹备），下面越来越长是正常的.jpg</p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>

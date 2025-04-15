@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          28k 字
+          26k 字
         
       </span>
     
@@ -354,17 +354,6 @@
 <li>除此之外 <span class="math inline">\(x\)</span> 只能作为一个叶子贡献给父亲。</li>
 </ul>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
-<h2 id="cf1004e.-sonya-and-ice-cream"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1004/problem/E">CF1004E. Sonya and Ice Cream</a></h2>
-<p>*2400 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1004/submission/307667954">Code</a></p>
-<p>将 <span class="math inline">\(A,B\)</span> 两点间的距离简记为 <span class="math inline">\(d_{AB}\)</span>。</p>
-<p>结论：最佳的路径一定被直径包含。</p>
-<ul>
-<li>首先，一个经典的结论是：对于树上任意一点，离它最远的点一定是直径的两个端点之一。对于直径外一点 <span class="math inline">\(x\)</span>，设离 <span class="math inline">\(x\)</span> 最近的直径上的点是点 <span class="math inline">\(y\)</span>，当 <span class="math inline">\(x\)</span> 向 <span class="math inline">\(y\)</span> 靠近时，离 <span class="math inline">\(x\)</span> 最远的点仍然是直径的两个端点，但最远距离减小，故取 <span class="math inline">\(y\)</span> 优于 <span class="math inline">\(x\)</span>。于是，我们选的第一个点肯定是在直径上。</li>
-<li>设我们选的第一个点是 <span class="math inline">\(A\)</span>，接下来证明 <span class="math inline">\(A\)</span> 沿着直径扩展最佳。如下图，<span class="math inline">\(L,R\)</span> 是直径的两个端点，<span class="math inline">\(E,G\)</span> 分别是 <span class="math inline">\(D,F\)</span> 向下延伸出去最远的点。若从 <span class="math inline">\(A\)</span> 出发沿直径选了 <span class="math inline">\(B\)</span>，答案是 <span class="math inline">\(\max(d_{LA},d_{AE},d_{BG},d_{BR})\)</span>；若沿子树方向选了 <span class="math inline">\(D\)</span>，答案是 <span class="math inline">\(\max(d_{LA},d_{DE},d_{AR},d_{AG})\)</span>。依据直径的性质有 <span class="math inline">\(d_{BG} &lt; d_{BR}\)</span>，<span class="math inline">\(d_{AG}&lt;d_{AR}\)</span>，<span class="math inline">\(d_{AE} &lt; d_{LA}\)</span>，<span class="math inline">\(d_{DE} &lt; d_{LA}\)</span>，此时相当于比较 <span class="math inline">\(\max(d_{LA},d_{BR})\)</span> 与 <span class="math inline">\(\max(d_{LA},d_{AR})\)</span>，又 <span class="math inline">\(d_{AR} &gt; d_{BR}\)</span>，故选 <span class="math inline">\(B\)</span> 相比选 <span class="math inline">\(D\)</span> 更优。将 <span class="math inline">\(A,B\)</span> 看成一个整体，同理可证明选 <span class="math inline">\(C\)</span> 比选 <span class="math inline">\(F\)</span> 要更优，以此类推......因此路径肯定是沿着直径方向一直扩展。</li>
-</ul>
-<p><img src="/image/academic/CF1004.png" style="zoom:50%;" /></p>
-<p>当 <span class="math inline">\(k\)</span> 大于等于直径长度时，就选完整个直径。否则在直径上搞一个长为 <span class="math inline">\(k\)</span> 的滑动窗口，窗口两侧延伸出去的最长距离可以预处理前缀后缀和计算，窗口内部子树的答案等同于区间最值。</p>
-<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>，若用单调队列求极值就是 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="cf1969e.-unique-array"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1969/problem/E">CF1969E. Unique Array</a></h2>
 <p>*2400 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1969/submission/307896648">Code</a></p>
 <p>对于一个数 <span class="math inline">\(a_i\)</span>，设 <span class="math inline">\(a_i\)</span> 上一个出现的位置是 <span class="math inline">\(\text{lst}_{a_i}\)</span>，下一个出现的位置是 <span class="math inline">\(\text{nxt}_{a_i}\)</span>，那么 <span class="math inline">\(a_i\)</span> 在区间 <span class="math inline">\([l,r]\)</span> 中唯一的充要条件是 <span class="math inline">\(l\in(\text{lst}_{a_i},i]\)</span> 且 <span class="math inline">\(r\in [i,\text{nxt}_{a_i})\)</span>。</p>
@@ -427,17 +416,6 @@ dp[k][j-1]+(i-k-1)&amp;,\forall k\in[0,i-1),c[k]&lt;c[i]
 </ul>
 <p>最后的问题是如何找出这个划分，这等价于找一个和为 <span class="math inline">\(\dfrac{\sum a_i}{2}\)</span> 的子序列，是一个经典的背包问题。</p>
 <p>时间复杂度 <span class="math inline">\(O(n^3)\)</span>。</p>
-<h2 id="abc394g.-dense-buildings"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/tasks/abc394_g">abc394g. Dense Buildings</a></h2>
-<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/submissions/63238482">Code</a></p>
-<p>对于一组询问 <span class="math inline">\((x_1,y_1,z_1,x_2,y_2,z_2)\)</span>，如果我们找到一条路径连通 <span class="math inline">\((x_1,y_1)\)</span> 与 <span class="math inline">\((x_2,y_2)\)</span> 且路径上最低的楼房高 <span class="math inline">\(h\)</span>。那么：</p>
-<ul>
-<li>若 <span class="math inline">\(h&lt; \min(z_1,z_2)\)</span>，则垂直方向上我们要 <span class="math inline">\(z_1\to h\)</span> 再 <span class="math inline">\(h\to z_2\)</span>，写成式子是 <span class="math inline">\(z_1+z_2-2h\)</span>。</li>
-<li>若 <span class="math inline">\(h \ge \min(z_1,z_2)\)</span>，答案是 <span class="math inline">\(|z_1-z_2|\)</span>。</li>
-</ul>
-<p>为了让答案最小，我们肯定是找最大的 <span class="math inline">\(h\)</span>。</p>
-<p>对于相邻的楼房，连边，边权是较低的楼房的高度。</p>
-<p>问题转化为有若干组询问，每次询问两个点，需要找出两点间的一条简单路径，让路径上所有边的边权最小值最大（最大瓶颈路）。</p>
-<p>这是个经典的问题（NOIP 货车运输），做法是 kruskal 重构树或者在最大生成树上倍增。</p>
 <h2 id="cf1982d.-beauty-of-the-mountains"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1982/problem/D">CF1982D. Beauty of the mountains</a></h2>
 <p>*1700 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1982/submission/308516339">Code</a></p>
 <p>把有雪的格子称为 <span class="math inline">\(0\)</span> 格子，没雪的格子称为 <span class="math inline">\(1\)</span> 格子。</p>
@@ -812,20 +790,6 @@ dp[L][R]=\max_{k\in[L,R)}(dp[L][k]+dp[k+1][R])
 <p>转移多项式 <span class="math inline">\(G(x)\)</span> 取 <span class="math inline">\(A\)</span> 的第一行，也就是 <span class="math inline">\([x^i]G(x)=[2i\not\equiv S\pmod{k}]\)</span>。</p>
 <p>答案即 <span class="math inline">\([x^S](f_0\times G^n(x))\)</span>。</p>
 <p>时间复杂度 <span class="math inline">\(O(k^3\log n)\)</span>，如果会 FFT 能做到 <span class="math inline">\(O(k^2\log n)\)</span>。能吗？反正我不会QAQ。</p>
-<h2 id="abc397g.-maximize-distance"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc397/tasks/abc397_g">abc397g. Maximize Distance</a></h2>
-<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc397/submissions/63932043">Code</a></p>
-<p>二分答案，设二分出的答案是 <span class="math inline">\(d\)</span>，那么需要判定让 <span class="math inline">\(1\to n\)</span> 的最短路为 <span class="math inline">\(d\)</span> 的最小操作次数是否 <span class="math inline">\(\le K\)</span>。</p>
-<p>当 <span class="math inline">\(d=1\)</span> 时，问题等价于选定一个最小边集，使得任何一条从 <span class="math inline">\(1\to n\)</span> 的路径都无可避免地经过这个边集中的边。换句话说，边集中的边将原图分割成了两部分，即最小割。</p>
-<p>当 <span class="math inline">\(d&gt;1\)</span> 时，我们能通过建模将问题转化为一个分层图的最小割。</p>
-<p><img src="/image/academic/AT1.jpg" /></p>
-<p>上图是 <span class="math inline">\(d=1\)</span> 的情况，标注出的数字代表流量。考虑同样的图，但 <span class="math inline">\(d=3\)</span>：</p>
-<p><img src="/image/academic/AT3.jpg" /></p>
-<p>这只是一个分层图的框架，当我们需要让 <span class="math inline">\(1\to n\)</span> 的最短路为 <span class="math inline">\(3\)</span> 时，会出现一些问题。</p>
-<p><img src="/image/academic/AT6.jpg" /></p>
-<p>左图是我们期望的：分层图的每一层都选定了一些边，且每一层选定的边都组成了原图的一个最小割。把它们割掉，原图不连通，这样一个 <span class="math inline">\(d\)</span> 层的分层图的最小割就是让 <span class="math inline">\(1\to n\)</span> 的最短路为 <span class="math inline">\(d\)</span> 的最小操作次数。但能这么做的前提是每一层选定的边集互不相同，右图中我们只选定了三条边就能让图不连通，显然不合法。</p>
-<p><img src="/image/academic/final.jpg" /></p>
-<p>解决方案是对于每一条存在于原图中的边 <span class="math inline">\((u,v)\)</span>，<span class="math inline">\(\forall i\in[1,d)\)</span>，从第 <span class="math inline">\(i\)</span> 层的 <span class="math inline">\(u\)</span> 向第 <span class="math inline">\(i+1\)</span> 层的 <span class="math inline">\(v\)</span> 连边。这样选中不同层的同一条边就没有了意义。</p>
-<p>时间复杂度 <span class="math inline">\(O(\text{maxflow}(n^2,mn+n^2)\log n)\)</span>。</p>
 <h2 id="cf2035e.-monster"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2035/problem/E">CF2035E. Monster</a></h2>
 <p>*2300 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2035/submission/311492543">Code</a></p>
 <p>假设我们总共使用了 <span class="math inline">\(a\)</span> 次操作 <span class="math inline">\(1\)</span>，<span class="math inline">\(b\)</span> 次操作 <span class="math inline">\(2\)</span>。</p>
