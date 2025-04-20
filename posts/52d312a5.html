@@ -404,7 +404,7 @@
 <p>对于一条连接了 <span class="math inline">\(G\)</span> 中点 <span class="math inline">\(i\)</span> 和 <span class="math inline">\(H\)</span> 中点 <span class="math inline">\(j\)</span> 的边，新图直径变为 <span class="math inline">\(\max(\max(d_1,d_2),f_i+g_j+1)\)</span>。</p>
 <p>将 <span class="math inline">\(f_x,g_x\)</span> 升序排序，枚举 <span class="math inline">\(f_i\)</span>，就能二分或双指针求出有多少个满足 <span class="math inline">\(f_i+g_j+1&gt;\max(d_1,d_2)\)</span> 的 <span class="math inline">\(g_j\)</span>，贡献就是一段 <span class="math inline">\(g\)</span> 的后缀和。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
-<h2 id="problem---e---codeforces"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1749/problem/E">Problem - E - Codeforces</a></h2>
+<h2 id="cf1749e.-cactus-wall"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1749/problem/E">CF1749E. Cactus Wall</a></h2>
 <p>*2400 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1749/submission/316076925">Code</a></p>
 <p>转化：相当于寻找一条 <code>#</code> 构成的路径，这条路径从第一列开始，到最后一列结束，且每次只能走对角线的四个方向。</p>
 <p>先把图上所有可以放置 <code>#</code> 的位置找出来（包括原来就有的 <code>#</code>），称作关键点。</p>
