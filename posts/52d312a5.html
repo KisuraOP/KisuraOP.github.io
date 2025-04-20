@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4k 字
+          5.2k 字
         
       </span>
     
@@ -404,6 +404,36 @@
 <p>对于一条连接了 <span class="math inline">\(G\)</span> 中点 <span class="math inline">\(i\)</span> 和 <span class="math inline">\(H\)</span> 中点 <span class="math inline">\(j\)</span> 的边，新图直径变为 <span class="math inline">\(\max(\max(d_1,d_2),f_i+g_j+1)\)</span>。</p>
 <p>将 <span class="math inline">\(f_x,g_x\)</span> 升序排序，枚举 <span class="math inline">\(f_i\)</span>，就能二分或双指针求出有多少个满足 <span class="math inline">\(f_i+g_j+1&gt;\max(d_1,d_2)\)</span> 的 <span class="math inline">\(g_j\)</span>，贡献就是一段 <span class="math inline">\(g\)</span> 的后缀和。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="problem---e---codeforces"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1749/problem/E">Problem - E - Codeforces</a></h2>
+<p>*2400 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1749/submission/316076925">Code</a></p>
+<p>转化：相当于寻找一条 <code>#</code> 构成的路径，这条路径从第一列开始，到最后一列结束，且每次只能走对角线的四个方向。</p>
+<p>先把图上所有可以放置 <code>#</code> 的位置找出来（包括原来就有的 <code>#</code>），称作关键点。</p>
+<p>建图，源点 <span class="math inline">\(S\)</span> 向第一列的关键点连边，每个关键点向四个对角线方向的关键点连边，最后一列的关键点向汇点 <span class="math inline">\(T\)</span> 连边。</p>
+<p>一条边 <span class="math inline">\((u,v)\)</span> 的边权取决于 <span class="math inline">\(v\)</span>，若 <span class="math inline">\(v\)</span> 为汇点或原来就有 <code>#</code> 的位置，边权就是 <span class="math inline">\(0\)</span>；否则边权是 <span class="math inline">\(1\)</span>（代表需要在此处新放置一个 <code>#</code>）。</p>
+<p>跑最短路即可，记一下路径方案也就有了。</p>
+<p>时间复杂度：<span class="math inline">\(O(nm\log nm)\)</span>。若使用 01bfs 还可以省去 <span class="math inline">\(\log\)</span>。</p>
+<h2 id="cf2096e.-wonderful-teddy-bears"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2096/problem/E">CF2096E. Wonderful Teddy Bears</a></h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2096/submission/316390064">Code</a></p>
+<p>将 <code>B</code> 看作 <span class="math inline">\(0\)</span>，<code>P</code> 看作 <span class="math inline">\(1\)</span>。</p>
+<p>对一个长为 <span class="math inline">\(3\)</span> 的子串操作，分为以下四种情况。</p>
+<ol type="1">
+<li><span class="math inline">\(010\to 001\)</span>；</li>
+<li><span class="math inline">\(100\to 001\)</span>；</li>
+<li><span class="math inline">\(101\to 011\)</span>；</li>
+<li><span class="math inline">\(110\to 011\)</span>。</li>
+</ol>
+<p>我们将操作 <span class="math inline">\(1,3\)</span> 归为一类，称为 <span class="math inline">\(A\)</span>；操作 <span class="math inline">\(2,4\)</span> 归为一类，称为 <span class="math inline">\(B\)</span>。</p>
+<p>之所以这么分，是因为观察到如下性质：</p>
+<ul>
+<li><span class="math inline">\(A\)</span> 类操作能将逆序对数 <span class="math inline">\(-1\)</span>，而 <span class="math inline">\(B\)</span> 类操作能将逆序对数 <span class="math inline">\(-2\)</span>。</li>
+<li><span class="math inline">\(A\)</span> 类操作能改变一个 <span class="math inline">\(0\)</span> 的下标奇偶性，而 <span class="math inline">\(B\)</span> 类操作不能。</li>
+</ul>
+<p>令 <span class="math inline">\(c_0,c_1\)</span> 分别表示序列中 <span class="math inline">\(0/1\)</span> 的个数，<span class="math inline">\(rev\)</span> 表示逆序对数，<span class="math inline">\(tot\)</span> 表示下标为偶数的 <span class="math inline">\(0\)</span> 的数量。</p>
+<p>想象一个排好序的的 <span class="math inline">\(01\)</span> 串：有 <span class="math inline">\(\left\lfloor\frac{c_0}{2}\right\rfloor\)</span> 个 <span class="math inline">\(0\)</span> 的下标为偶数（1-index）。</p>
+<p>那么可以先用 <span class="math inline">\(\left|tot-\left\lfloor\frac{c_0}{2}\right\rfloor\right|\)</span> 次 <span class="math inline">\(A\)</span> 类操作调整奇偶性，再用 <span class="math inline">\(B\)</span> 类操作减少逆序对数。</p>
+<p>可以预见的是调整奇偶性后逆序对数一定是偶数，故最后不必再用 <span class="math inline">\(A\)</span> 类操作减少逆序对数。</p>
+<p>答案是 <span class="math inline">\(\left|tot-\left\lfloor\frac{c_0}{2}\right\rfloor\right| + \dfrac{(rev-\left|tot-\left\lfloor\frac{c_0}{2}\right\rfloor\right|)}{2}=\dfrac{rev+\left|tot-\left\lfloor\frac{c_0}{2}\right\rfloor\right|}{2}\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p>最近太忙了（主要是期中考试和暑假前集训的筹备），下面越来越长是正常的.jpg</p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>
@@ -411,6 +441,7 @@
 <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/tasks/abc399_f">F - Range Power Sum</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2084/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/555/E">Problem - 555E - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1749/problem/F">Problem - F - Codeforces</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
