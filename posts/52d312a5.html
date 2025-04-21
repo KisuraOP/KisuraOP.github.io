@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.2k 字
+          5.5k 字
         
       </span>
     
@@ -434,6 +434,12 @@
 <p>可以预见的是调整奇偶性后逆序对数一定是偶数，故最后不必再用 <span class="math inline">\(A\)</span> 类操作减少逆序对数。</p>
 <p>答案是 <span class="math inline">\(\left|tot-\left\lfloor\frac{c_0}{2}\right\rfloor\right| + \dfrac{(rev-\left|tot-\left\lfloor\frac{c_0}{2}\right\rfloor\right|)}{2}=\dfrac{rev+\left|tot-\left\lfloor\frac{c_0}{2}\right\rfloor\right|}{2}\)</span>。</p>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1977d.-xorificator"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1977/problem/D">CF1977D. XORificator</a></h2>
+<p>*2300 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1977/submission/316507565">Code</a></p>
+<p>注意到当我们钦定某个点 <span class="math inline">\((x,y)\)</span> 为那一列（即第 <span class="math inline">\(y\)</span> 列）唯一的 <span class="math inline">\(1\)</span> 时，每一行是否需要翻转就被唯一确定了（或者说整个矩阵都被确定了）。</p>
+<p>考虑枚举每个点作为那一列唯一的 <span class="math inline">\(1\)</span>，问题转换为如何快速知道该状态下有多少列仅有一个 <span class="math inline">\(1\)</span>。</p>
+<p>反向思考，钦定一个点作为那一列唯一的 <span class="math inline">\(1\)</span> 时，把此时的 XORificator 记录下来（题解里用的 Zobrist hashing，implement 非常精悍短小），答案就是出现次数最多的 XORificator 的出现次数。</p>
+<p>时间复杂度 <span class="math inline">\(O(nm\log nm)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p>最近太忙了（主要是期中考试和暑假前集训的筹备），下面越来越长是正常的.jpg</p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>
