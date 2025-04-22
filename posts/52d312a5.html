@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.5k 字
+          6k 字
         
       </span>
     
@@ -400,7 +400,7 @@
 <p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc401/submissions/64815017">Code</a></p>
 <p>记 <span class="math inline">\(G\)</span> 为树 <span class="math inline">\(1\)</span>，<span class="math inline">\(H\)</span> 为树 <span class="math inline">\(2\)</span>。</p>
 <p>记 <span class="math inline">\(d_1,A_1,A_2\)</span> 为 <span class="math inline">\(G\)</span> 的直径及其两个端点，<span class="math inline">\(d_2,B_1,B_2\)</span> 为 <span class="math inline">\(H\)</span> 的直径及其两个端点。</p>
-<p>记 <span class="math inline">\(f_x/g_x\)</span> 为以 <span class="math inline">\(G/H\)</span> 中的点 <span class="math inline">\(x\)</span> 为端点的最长的路径的距离，显然有 <span class="math inline">\(f_x=\max(dis(A_1,x),dis(A_2,x))\)</span>，<span class="math inline">\(g_x=\max(dis(B_1,x),dis(B_2,x))\)</span>。</p>
+<p>记 <span class="math inline">\(f_x/g_x\)</span> 为以 <span class="math inline">\(G/H\)</span> 中的点 <span class="math inline">\(x\)</span> 为端点的最长的路径的长度，显然有 <span class="math inline">\(f_x=\max(dis(A_1,x),dis(A_2,x))\)</span>，<span class="math inline">\(g_x=\max(dis(B_1,x),dis(B_2,x))\)</span>。</p>
 <p>对于一条连接了 <span class="math inline">\(G\)</span> 中点 <span class="math inline">\(i\)</span> 和 <span class="math inline">\(H\)</span> 中点 <span class="math inline">\(j\)</span> 的边，新图直径变为 <span class="math inline">\(\max(\max(d_1,d_2),f_i+g_j+1)\)</span>。</p>
 <p>将 <span class="math inline">\(f_x,g_x\)</span> 升序排序，枚举 <span class="math inline">\(f_i\)</span>，就能二分或双指针求出有多少个满足 <span class="math inline">\(f_i+g_j+1&gt;\max(d_1,d_2)\)</span> 的 <span class="math inline">\(g_j\)</span>，贡献就是一段 <span class="math inline">\(g\)</span> 的后缀和。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
@@ -440,6 +440,19 @@
 <p>考虑枚举每个点作为那一列唯一的 <span class="math inline">\(1\)</span>，问题转换为如何快速知道该状态下有多少列仅有一个 <span class="math inline">\(1\)</span>。</p>
 <p>反向思考，钦定一个点作为那一列唯一的 <span class="math inline">\(1\)</span> 时，把此时的 XORificator 记录下来（题解里用的 Zobrist hashing，implement 非常精悍短小），答案就是出现次数最多的 XORificator 的出现次数。</p>
 <p>时间复杂度 <span class="math inline">\(O(nm\log nm)\)</span>。</p>
+<h2 id="cf1622d.-shuffle"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1622/problem/D">CF1622D. Shuffle</a></h2>
+<p>*2000 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1622/submission/316676899">Code</a></p>
+<p>要求本质不同看起来十分困难，但有个 trick 是你枚举所有区间，然后钦定这个区间的左端点和右端点都一定发生了变化，这样计数不重不漏，考虑起来就轻松很多。</p>
+<p>先特判掉整个串的 <span class="math inline">\(1\)</span> 都不足 <span class="math inline">\(k\)</span> 个的情况。</p>
+<p>首先，枚举的区间需要满足 "区间内 <span class="math inline">\(1\)</span> 的个数 <span class="math inline">\(\le k\)</span>"，为什么是小于等于？因为我们实际操作的区间恰有 <span class="math inline">\(k\)</span> 个 <span class="math inline">\(1\)</span>，但相对原来发生变化的区间可以是一个子集。</p>
+<p>接着，区间两侧的数必须发生变化，非两侧的数任意排列，贡献就是一个组合数。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^2)\)</span>。</p>
+<h2 id="cf1622e.-math-test"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1622/problem/E">CF1622E. Math Test</a></h2>
+<p>*2200 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1622/submission/316688280">Code</a></p>
+<p>trick：拆绝对值。<span class="math inline">\(|x_i-r_i|\)</span> 可以拆成 <span class="math inline">\(x_i-r_i\)</span> 和 <span class="math inline">\(r_i-x_i\)</span> 两种，时间复杂度允许我们 <span class="math inline">\(O(2^n)\)</span> 枚举每一种拆法。</p>
+<p>贪心，我们可以统计出每道题被多少个人解决了（如果那个人是 <span class="math inline">\(x_i-r_i\)</span>，<span class="math inline">\(r_i\)</span> 的贡献是负的，就当作 <span class="math inline">\(-1\)</span> 个人；反之 <span class="math inline">\(r_i-x_i\)</span> 就看作 <span class="math inline">\(+1\)</span> 个人），给被更多人解决的题赋值一个大的 <span class="math inline">\(p_j\)</span>。</p>
+<p>因为绝对值被拆掉了，<span class="math inline">\(\{p\}\)</span> 确定之后最终答案也确定了，取 <span class="math inline">\(\max\)</span> 即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(nm2^n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p>最近太忙了（主要是期中考试和暑假前集训的筹备），下面越来越长是正常的.jpg</p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>
@@ -448,6 +461,8 @@
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2084/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/555/E">Problem - 555E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1749/problem/F">Problem - F - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1977/problem/E">Problem - E - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1380/problem/F">Problem - F - Codeforces</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
