@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6k 字
+          7.1k 字
         
       </span>
     
@@ -413,7 +413,7 @@
 <p>跑最短路即可，记一下路径方案也就有了。</p>
 <p>时间复杂度：<span class="math inline">\(O(nm\log nm)\)</span>。若使用 01bfs 还可以省去 <span class="math inline">\(\log\)</span>。</p>
 <h2 id="cf2096e.-wonderful-teddy-bears"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2096/problem/E">CF2096E. Wonderful Teddy Bears</a></h2>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2096/submission/316390064">Code</a></p>
+<p>*2400 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/2096/submission/316390064">Code</a></p>
 <p>将 <code>B</code> 看作 <span class="math inline">\(0\)</span>，<code>P</code> 看作 <span class="math inline">\(1\)</span>。</p>
 <p>对一个长为 <span class="math inline">\(3\)</span> 的子串操作，分为以下四种情况。</p>
 <ol type="1">
@@ -453,6 +453,35 @@
 <p>贪心，我们可以统计出每道题被多少个人解决了（如果那个人是 <span class="math inline">\(x_i-r_i\)</span>，<span class="math inline">\(r_i\)</span> 的贡献是负的，就当作 <span class="math inline">\(-1\)</span> 个人；反之 <span class="math inline">\(r_i-x_i\)</span> 就看作 <span class="math inline">\(+1\)</span> 个人），给被更多人解决的题赋值一个大的 <span class="math inline">\(p_j\)</span>。</p>
 <p>因为绝对值被拆掉了，<span class="math inline">\(\{p\}\)</span> 确定之后最终答案也确定了，取 <span class="math inline">\(\max\)</span> 即可。</p>
 <p>时间复杂度 <span class="math inline">\(O(nm2^n)\)</span>。</p>
+<h2 id="cf1354e.-graph-coloring"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1354/problem/E">CF1354E. Graph Coloring</a></h2>
+<p>*2100 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1354/submission/317219740">Code</a></p>
+<p>注意到 <span class="math inline">\(1,3\)</span> 作为一组，<span class="math inline">\(2\)</span> 作为一组，组间连边组内不连边，构成二分图。</p>
+<p>故 <code>YES</code> 的必要条件是给定的图的每一个连通分量均是二分图。</p>
+<p>接着考虑数量限制：我们只用关心 <span class="math inline">\(2\)</span> 的数量能否得到满足，<span class="math inline">\(2\)</span> 满足了 <span class="math inline">\(1,3\)</span> 自然满足。</p>
+<p>设给定的图有 <span class="math inline">\(m\)</span> 个连通分量，第 <span class="math inline">\(i\)</span> 个连通分量有 <span class="math inline">\(L_i\)</span> 个左部点，<span class="math inline">\(R_i\)</span> 个右部点。</p>
+<p>现在我们要对每个连通分量选出左部或者右部填 <span class="math inline">\(2\)</span>，另一部 <span class="math inline">\(1,3\)</span> 任意填。</p>
+<p>抽象出来相当于有 <span class="math inline">\(m\)</span> 个集合，每个集合可以选 <span class="math inline">\(L_i\)</span> 或 <span class="math inline">\(R_i\)</span> 中的恰好一个，判断是否存在一种选择方案使得选出的 <span class="math inline">\(m\)</span> 个数的总和是 <span class="math inline">\(n_2\)</span>。</p>
+<p>令 <span class="math inline">\(dp[i][j]\)</span> 表示前 <span class="math inline">\(i\)</span> 个集合选出的数是否能凑成 <span class="math inline">\(j\)</span>，还需另开一个数组记录方案。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^2)\)</span>。</p>
+<h2 id="cf1354f.-summoning-minions"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1354/problem/F">CF1354F. Summoning Minions</a></h2>
+<p>*2500 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1354/submission/317254824">Code1</a> <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1354/submission/317268482">Code2</a></p>
+<p>对于一个将来需要销毁的仆从，将它升级没有意义，故选择召唤之后马上销毁。</p>
+<p>于是，最佳策略应该形如：</p>
+<ol type="1">
+<li>从 <span class="math inline">\(n\)</span> 个仆从中选择 <span class="math inline">\(k-1\)</span> 个召唤。</li>
+<li>从剩下的 <span class="math inline">\(n-k+1\)</span> 仆从中选择 <span class="math inline">\(n-k\)</span> 个召唤后立即销毁。</li>
+<li>召唤剩下的那 <span class="math inline">\(1\)</span> 个仆从。</li>
+</ol>
+<p>在第一步中，假设仆从 <span class="math inline">\(i\)</span> 在第 <span class="math inline">\(j\)</span> 个被召唤，则贡献是 <span class="math inline">\(a_i+b_i (j-1)\)</span>。</p>
+<p>在第二步中，仆从 <span class="math inline">\(i\)</span> 被召唤的贡献固定为 <span class="math inline">\(b_i(k-1)\)</span>。</p>
+<p>在第三步中，仆从 <span class="math inline">\(i\)</span> 被召唤的贡献为 <span class="math inline">\(a_i+b_i(k-1)\)</span>，可以和第一步的贡献合并。</p>
+<p>建立二分图，左部点代表仆从，右部点代表被召唤时的顺序，问题转化为一个满二分图的最大权匹配，跑最大费用最大流即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(T\cdot \text{MinCostMaxFlow}(n, n^2))\)</span>。</p>
+<p>另一种方法是注意到在第一步中，选定的 <span class="math inline">\(k\)</span> 个仆从（与第三步合并了，所以是 <span class="math inline">\(k\)</span> 个）一定按 <span class="math inline">\(b_i\)</span> 升序召唤。</p>
+<p>令 <span class="math inline">\(dp[i][j]\)</span> 表示前 <span class="math inline">\(i\)</span> 个仆从选出 <span class="math inline">\(j\)</span> 个放在第一步的最大答案。 <span class="math display">\[
+dp[i][j] = \max(dp[i-1][j]+b_i(k-1),dp[i-1][j-1]+a_i+b_i(j-1))
+\]</span> 回溯以记录方案。</p>
+<p>时间复杂度 <span class="math inline">\(O(Tnk)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p>最近太忙了（主要是期中考试和暑假前集训的筹备），下面越来越长是正常的.jpg</p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>
@@ -463,6 +492,8 @@
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1749/problem/F">Problem - F - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1977/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1380/problem/F">Problem - F - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2005/problem/D">Problem - D - Codeforces</a></p>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1366/problem/F">Problem - F - Codeforces</a></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
