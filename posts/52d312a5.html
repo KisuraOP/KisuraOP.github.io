@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.1k 字
+          8.2k 字
         
       </span>
     
@@ -482,13 +482,39 @@
 dp[i][j] = \max(dp[i-1][j]+b_i(k-1),dp[i-1][j-1]+a_i+b_i(j-1))
 \]</span> 回溯以记录方案。</p>
 <p>时间复杂度 <span class="math inline">\(O(Tnk)\)</span>。</p>
+<h2 id="cf555e.-case-of-computer-network"><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/555/E">CF555E. Case of Computer Network</a></h2>
+<p>*2800 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/555/submission/317567976">Code</a></p>
+<p>位于同一个边双连通分量中的点总是可以互相到达。（指总是存在一种可行的定向方案）</p>
+<p>边双缩点，对于一组 <span class="math inline">\((s_i, d_i)\)</span>，若 <span class="math inline">\(s_i\)</span> 和 <span class="math inline">\(d_i\)</span> 在同一个边双内，则可以忽略。</p>
+<p>否则，<span class="math inline">\(s_i\to d_i\)</span> 上的边的方向就被固定了。（此处的 <span class="math inline">\(s_i,d_i\)</span> 指的都是其所在边双的编号，下同）</p>
+<p>固定一个根，对每个点维护两个标记 <span class="math inline">\(up\)</span> 和 <span class="math inline">\(down\)</span> 分别表示上下两个方向。</p>
+<p>对于一组询问，<span class="math inline">\(s_i\to \text{LCA}(s_i,d_i)\)</span> 上的点的 <span class="math inline">\(up\)</span> 标记 <span class="math inline">\(+1\)</span>，<span class="math inline">\(\text{LCA}(s_i,d_i)\to d_i\)</span> 上的点的 <span class="math inline">\(down\)</span> 标记 <span class="math inline">\(+1\)</span>，这个操作可以用树上差分简单实现。</p>
+<p>最后，若有一个点同时有非零的 <span class="math inline">\(up\)</span> 和 <span class="math inline">\(down\)</span> 标记，就是 <code>No</code>。</p>
+<p>此题有若干细节：</p>
+<ul>
+<li>图不连通，缩点后是一个森林，处理 LCA 时要小心。</li>
+<li>若询问中的两个点不在一个连通分量内，直接就是 <code>No</code>。</li>
+<li>有重边。若两个点之间有重边，则它们属于同一个边双。</li>
+</ul>
+<p>时间复杂度 <span class="math inline">\(O((n+q)\log n)\)</span>。</p>
+<h2 id="abc399f.-range-power-sum"><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/tasks/abc399_f">abc399f. Range Power Sum</a></h2>
+<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/submissions/65320388">Code</a></p>
+<p>令 <span class="math inline">\(s_i=\sum\limits_{j=1}^{i} s_j\)</span>，则： <span class="math display">\[
+\begin{align}
+\sum_{1\le l\le r\le N}\left(\sum_{l\le i\le r}a_i\right)^k
+&amp;= \sum_{l=1}^{n}\sum_{r=l}^{n}\left(s_r-s_{l-1}\right)^k \\
+&amp;= \sum_{l=1}^{n}\sum_{r=l}^{n}\sum_{i=0}^{k}(-1)^{k-i}\binom{k}{i}s_r^{i}s_{l-1}^{k-i} \\
+&amp;= \sum_{i=0}^{k}(-1)^{k-i}\binom{k}{i}\sum_{l=1}^{n}\sum_{r=l}^{n}s_r^{i}s_{l-1}^{k-i} \\
+&amp;= \sum_{i=0}^{k}(-1)^{k-i}\binom{k}{i}\sum_{r=1}^{n}\sum_{l=1}^{r}s_r^{i}s_{l-1}^{k-i} \\
+&amp;= \sum_{i=0}^{k}(-1)^{k-i}\binom{k}{i}\sum_{r=1}^{n}s_r^{i}\sum_{l=1}^{r}s_{l-1}^{k-i} \\
+\end{align}
+\]</span> 枚举 <span class="math inline">\(i,r\)</span>，而 <span class="math inline">\(\sum\limits_{l=1}^{r}s_{l-1}^{k-i}\)</span> 可以预处理前缀和 <span class="math inline">\(O(1)\)</span> 求。</p>
+<p>时间复杂度 <span class="math inline">\(O(nk)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p>最近太忙了（主要是期中考试和暑假前集训的筹备），下面越来越长是正常的.jpg</p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2090/problem/E1">Problem - E1 - Codeforces</a></p>
-<p><a target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/tasks/abc399_f">F - Range Power Sum</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2084/problem/E">Problem - E - Codeforces</a></p>
-<p><a target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/555/E">Problem - 555E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1749/problem/F">Problem - F - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1977/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1380/problem/F">Problem - F - Codeforces</a></p>
