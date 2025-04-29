@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.2k 字
+          8.9k 字
         
       </span>
     
@@ -510,6 +510,17 @@ dp[i][j] = \max(dp[i-1][j]+b_i(k-1),dp[i-1][j-1]+a_i+b_i(j-1))
 \end{align}
 \]</span> 枚举 <span class="math inline">\(i,r\)</span>，而 <span class="math inline">\(\sum\limits_{l=1}^{r}s_{l-1}^{k-i}\)</span> 可以预处理前缀和 <span class="math inline">\(O(1)\)</span> 求。</p>
 <p>时间复杂度 <span class="math inline">\(O(nk)\)</span>。</p>
+<h2 id="cf2104g.-modulo-3"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2104/problem/G">CF2104G. Modulo 3</a></h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2104/submission/317693007">Code</a></p>
+<p>每个点至多有一条出边，意味着这个图由若干环和链组成。并且，这种特殊的结构使得同一个环上的点的颜色一定相同，而链上的每个点都能取 <span class="math inline">\(k\)</span> 种颜色中的任意一种。</p>
+<p>具体的，设图中环的数量为 <span class="math inline">\(c\)</span>，第 <span class="math inline">\(i\)</span> 个环的长度为 <span class="math inline">\(l_i\)</span>，对于一个给定的 <span class="math inline">\(k\)</span>，答案是： <span class="math display">\[
+k^c\cdot k^{(n-\sum\limits_{i=1}^{c}l_i)}=k^{n+c-\sum\limits_{i=1}^{c}l_i}
+\]</span> 根据欧拉定理，对于任意互质的 <span class="math inline">\(a,p\)</span>，有 <span class="math inline">\(a^{\varphi(p)}\equiv 1\pmod{p}\)</span>，进一步对于任意 <span class="math inline">\(x\)</span> 有 <span class="math inline">\(a^x\equiv a^{x\bmod \varphi(p)}\pmod {p}\)</span>。于是： <span class="math display">\[
+k^{n+c-\sum\limits_{i=1}^{c}l_i}\equiv k^{(n+c-\sum\limits_{i=1}^{c}l_i)\bmod 2}=k^{n\bmod 2+c\bmod 2+\sum\limits_{i=1}^{c}l_i\bmod 2}\pmod{3}
+\]</span> 令 <span class="math inline">\(M = c\bmod 2+\sum\limits_{i=1}^{c}l_i\bmod 2\)</span>，注意到奇环对 <span class="math inline">\(M\)</span> 是没有任何贡献的，于是 <span class="math inline">\(M\)</span> 等价于 "偶环个数<span class="math inline">\(\bmod 2\)</span>"。</p>
+<p>有向图偶环是不好维护的，但这题中只要有偶环就一定连通（指存在一个点，环上的所有点都能从该点到达），故实际上我们可以当作无向图偶环来处理，用一个并查集维护。</p>
+<p>因为是动态图，所以还要套一个线段树分治。</p>
+<p>时间复杂度 <span class="math inline">\(O(q\log^2 q)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p>最近太忙了（主要是期中考试和暑假前集训的筹备），下面越来越长是正常的.jpg</p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>
