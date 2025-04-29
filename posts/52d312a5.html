@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.9k 字
+          9.2k 字
         
       </span>
     
@@ -522,6 +522,17 @@ k^{n+c-\sum\limits_{i=1}^{c}l_i}\equiv k^{(n+c-\sum\limits_{i=1}^{c}l_i)\bmod 2}
 <p>有向图偶环是不好维护的，但这题中只要有偶环就一定连通（指存在一个点，环上的所有点都能从该点到达），故实际上我们可以当作无向图偶环来处理，用一个并查集维护。</p>
 <p>因为是动态图，所以还要套一个线段树分治。</p>
 <p>时间复杂度 <span class="math inline">\(O(q\log^2 q)\)</span>。</p>
+<h2 id="qoj7653.-balloon-darts"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1402/problem/7653">qoj7653. Balloon Darts</a></h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1007001">Code</a></p>
+<p>枚举一条直线都会用掉 <span class="math inline">\(O(n^2)\)</span> 的复杂度，启发我们并不需要枚举所有 <span class="math inline">\(n\)</span> 个点。</p>
+<p>依据抽屉原理，<span class="math inline">\(k\)</span> 条直线（这里 <span class="math inline">\(k=3\)</span>）上任取 <span class="math inline">\(k+1\)</span> 个点，必然有两点满足确定的直线是 <span class="math inline">\(k\)</span> 条中的一条。</p>
+<p>或者反证法，如果选出的 <span class="math inline">\(k+1\)</span> 个点不存在两点组成目标直线中的一条，则这 <span class="math inline">\(k+1\)</span> 个点需要 <span class="math inline">\(k+1\)</span> 条直线才能消除。</p>
+<p>于是我们的做法是：</p>
+<ul>
+<li>对于当前 <span class="math inline">\(k\)</span>，从前 <span class="math inline">\(k+1\)</span> 个点里选两点构成一条直线，遍历所有剩下的点，消除在这条直线上的点。</li>
+<li>将问题递归到 <span class="math inline">\(k-1\)</span>。边界条件是点数 <span class="math inline">\(\le 2k\)</span> 返回 <code>true</code>。</li>
+</ul>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p>最近太忙了（主要是期中考试和暑假前集训的筹备），下面越来越长是正常的.jpg</p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>
