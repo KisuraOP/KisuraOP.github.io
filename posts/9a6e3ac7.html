@@ -334,7 +334,7 @@
 <img src="/image/academic/remake.png" alt="remake" /><figcaption aria-hidden="true">remake</figcaption>
 </figure>
 <h2 id="cf2108e.-spruce-dispute"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2108/problem/E">CF2108E. Spruce Dispute</a></h2>
-<h6 id="code"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2108/submission/318087489">Code</a></h6>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2108/submission/318087489">Code</a></p>
 <p>考虑如何给删完点后的剩下 <span class="math inline">\(n-1\)</span> 个点分配颜色使得答案最大。</p>
 <p>拆贡献，对于一条边，我们肯定想让跨过这条边的路径尽可能多。换句话说，设这条边两侧的子树大小分别为 <span class="math inline">\(a,b\ (a&lt;b)\)</span>，我们肯定想让子树大小为 <span class="math inline">\(a\)</span> 的一侧的点的颜色互不相同。</p>
 <p>可以证明，从这棵树的重心开始按 dfs 序涂色最优。即按 dfs 顺序 <span class="math inline">\(1\to 2\to 3\to \ldots \to \left\lfloor\frac{n}{2}\right\rfloor\to 1\to 2\to \ldots\to \left\lfloor\frac{n}{2}\right\rfloor\)</span> 这么涂。</p>
