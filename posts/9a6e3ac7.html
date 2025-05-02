@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          834 字
+          1.9k 字
         
       </span>
     
@@ -345,6 +345,28 @@
 <li>删叶子比删其它点优。因为删非叶子会让其子树内的点的深度都 <span class="math inline">\(-1\)</span>，不划算。</li>
 <li>其次，在所有叶子中，删深度最小的。这是上一段的直接推论。</li>
 </ul>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1450c1c2.-errich-tac-toe"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1450/problem/C2">CF1450C1/C2. Errich-Tac-Toe</a></h2>
+<p>*2100 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1450/submission/318153681">Code</a>（C1）</p>
+<p>*2300 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1450/submission/318153746">Code</a>（C2）</p>
+<p>见到 <span class="math inline">\(\lfloor\frac{n}{3}\rfloor\)</span>，可以有意识的将操作划分为三个等价类，满足三个等价类的操作数之和为 <span class="math inline">\(n\)</span>。这样根据抽屉原理，一定有一类操作的数量 <span class="math inline">\(\le \lfloor\frac{n}{3}\rfloor\)</span>。</p>
+<p>对于 C1，令 <span class="math inline">\(t_{i,j}=(i+j)\bmod 3\)</span>，那么网格被划分成了三类。定义三种操作如下：</p>
+<ul>
+<li>对于所有 <span class="math inline">\(t_{i,j}=0\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，则改为 <span class="math inline">\(O\)</span>。</li>
+<li>对于所有 <span class="math inline">\(t_{i,j}=1\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，则改为 <span class="math inline">\(O\)</span>。</li>
+<li>对于所有 <span class="math inline">\(t_{i,j}=2\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，则改为 <span class="math inline">\(O\)</span>。</li>
+</ul>
+<p>注意到上述任意一种操作都能实现目标（因为任意三个横着的或竖着的格子必定包含 <span class="math inline">\(t_{i,j}\)</span> 的三种取值）。</p>
+<p>并且这三类操作的操作数之和恰好为 <span class="math inline">\(n\)</span>，根据抽屉原理，一定有一种操作满足操作数 <span class="math inline">\(\le \lfloor\frac{n}{3}\rfloor\)</span>。</p>
+<p>对于 C2，同样令 <span class="math inline">\(t_{i,j}=(i+j)\bmod 3\)</span>，但三种操作变化如下：</p>
+<ul>
+<li>对于所有 <span class="math inline">\(t_{i,j}=0\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，则改为 <span class="math inline">\(O\)</span>；对于所有 <span class="math inline">\(t_{i,j}=1\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= O\)</span>，则改为 <span class="math inline">\(X\)</span>。</li>
+<li>对于所有 <span class="math inline">\(t_{i,j}=1\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，则改为 <span class="math inline">\(O\)</span>；对于所有 <span class="math inline">\(t_{i,j}=2\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= O\)</span>，则改为 <span class="math inline">\(X\)</span>。</li>
+<li>对于所有 <span class="math inline">\(t_{i,j}=2\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，则改为 <span class="math inline">\(O\)</span>；对于所有 <span class="math inline">\(t_{i,j}=0\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= O\)</span>，则改为 <span class="math inline">\(X\)</span>。</li>
+</ul>
+<p>每种操作都由两个 <span class="math inline">\(X\to O\)</span>，<span class="math inline">\(O\to X\)</span> 的子操作组合而成，保证了任意三个横着的或竖着的格子都一定不全为 <span class="math inline">\(X/O\)</span>。</p>
+<p>因为对于每个 <span class="math inline">\(s_{i,j}\)</span> 不为 <code>.</code> 的格子，至多变化一次，所以上述三种操作的操作数之和仍然是 <span class="math inline">\(n\)</span>。</p>
+<p>同理也一定有一种操作满足操作数 <span class="math inline">\(\le \lfloor\frac{n}{3}\rfloor\)</span>。</p>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>
