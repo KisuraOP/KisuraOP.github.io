@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.6k 字
+          3.5k 字
         
       </span>
     
@@ -384,6 +384,30 @@
 <p>A2：我们选取每一个点都作为零势点跑 spfa，并钦定 <span class="math inline">\(0\)</span> 是最小值，这样最后若存在 <span class="math inline">\(dis&lt;0\)</span> 或负环，该方案就不合法，忽略掉就行了。</p>
 <p>于是，做法是遍历 <span class="math inline">\(i\in [1,n]\)</span>，钦定 <span class="math inline">\(i\)</span> 为起点跑出一个 <span class="math inline">\(dis\)</span> 序列，最后取极差最大的即可。</p>
 <p>时间复杂度 <span class="math inline">\(O(n^2m)\)</span>。</p>
+<h2 id="cf1445e.-team-building"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1445/problem/E">CF1445E. Team-Building</a></h2>
+<p>*2500 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1445/submission/318251078">Code</a></p>
+<p>题意概括一下：给定一个 <span class="math inline">\(n\)</span> 个点 <span class="math inline">\(m\)</span> 条边的图，有 <span class="math inline">\(k\)</span> 种颜色，每个点的颜色你也知道，问选出两种颜色，使它们的导出子图是二分图的方案数。</p>
+<p>首先，你得会怎么用并查集判断二分图，不懂的可以做一下 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1525">P1525</a> 以及 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5787">P5787</a>。</p>
+<p>这里总结一下，分如下几步：</p>
+<ul>
+<li><p>初始化一个大小为 <span class="math inline">\(2n\)</span> 的并查集。</p></li>
+<li><p>遍历每条边 <span class="math inline">\((x,y)\)</span>：</p>
+<ul>
+<li>若 <span class="math inline">\(\text{dsu.same}(x,y)\)</span>，则不是二分图。</li>
+<li><span class="math inline">\(\text{dsu.merge}(x,y+n)\)</span>，<span class="math inline">\(\text{dsu.merge}(y,x+n)\)</span>。</li>
+<li>若 <span class="math inline">\(\text{dsu.same}(x,x+n)\)</span> 或 <span class="math inline">\(\text{dsu.same}(y,y+n)\)</span>，则不是二分图。</li>
+</ul></li>
+<li><p>否则是二分图。</p></li>
+</ul>
+<p>回到该题，我们可以把图中的所有边分为两类，第一类是连接相同颜色的边，第二类是连接不同颜色的边。</p>
+<p>我们先把第一类边都连起来，对所有 <span class="math inline">\(k\)</span> 种颜色判断第 <span class="math inline">\(i\)</span> 种颜色构成的单色连通块是否是二分图。</p>
+<p>一种颜色的单色连通块若不是二分图，那么这种颜色与其它颜色的导出子图就一定不是二分图。（因为二分图等价于没有奇环，有奇环的图和其它图并起来原来的奇环也不会消失）</p>
+<p>设有 <span class="math inline">\(cnt\)</span> 种颜色的单色连通块是二分图，那么答案的上界是 <span class="math inline">\(\frac{cnt(cnt-1)}{2}\)</span>，尝试容斥一下，排除一些不是二分图的组合。</p>
+<p>暴力的做法是 <span class="math inline">\(O(cnt^2)\)</span> 枚举两种颜色，将连接这两种颜色的边的第二类边加上，判断是否为二分图。</p>
+<p>注意到第二类边的数量是有限的，如果改成枚举边的话，就是 <span class="math inline">\(O(m)\)</span> 的。</p>
+<p>一种简洁且直接的做法是对每一个颜色二元组 <span class="math inline">\((col_x,col_y)\)</span> 记录有哪些边 <span class="math inline">\((u,v)\)</span> 连接了颜色分别为 <span class="math inline">\(col_x\)</span> 和 <span class="math inline">\(col_y\)</span> 的点。即用一个 <code>map&lt;array&lt;int, 2&gt;, vector&lt;array&lt;int, 2&gt;&gt;&gt;</code> 存边，虽然多了一个 <span class="math inline">\(\log\)</span>，但相比把边按颜色排序的做法会好写很多。</p>
+<p>注意到整个判断过程第一类边一直保留，第二类边在判断完一种颜色组合后需要撤销，故用一个可撤销并查集来维护。</p>
+<p>时间复杂度 <span class="math inline">\(O(m\log m+m\log n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2084/problem/E">Problem - E - Codeforces</a></p>
