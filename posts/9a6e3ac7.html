@@ -364,7 +364,7 @@
 <li><span class="math inline">\(\forall \ t_{i,j}=1\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，则改为 <span class="math inline">\(O\)</span>；<span class="math inline">\(\forall \ t_{i,j}=2\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= O\)</span>，则改为 <span class="math inline">\(X\)</span>。</li>
 <li><span class="math inline">\(\forall \ t_{i,j}=2\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，则改为 <span class="math inline">\(O\)</span>；<span class="math inline">\(\forall \ t_{i,j}=0\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= O\)</span>，则改为 <span class="math inline">\(X\)</span>。</li>
 </ul>
-<p>每种操作都由两个 <span class="math inline">\(X\to O\)</span>，<span class="math inline">\(O\to X\)</span> 的子操作组合而成，保证了任意三个横着的或竖着的格子都一定不全为 <span class="math inline">\(X/O\)</span>。</p>
+<p>每种操作都由两个形如 <span class="math inline">\(X\to O\)</span>，<span class="math inline">\(O\to X\)</span> 的子操作组合而成，保证了任意三个横着的或竖着的格子都一定不全为 <span class="math inline">\(X/O\)</span>。</p>
 <p>又对于每个 <span class="math inline">\(s_{i,j}\)</span> 不为 <code>.</code> 的格子，至多变化一次，所以上述三种操作的操作数之和仍然是 <span class="math inline">\(k\)</span>。</p>
 <p>同理也一定有一种操作满足操作数 <span class="math inline">\(\le \lfloor\frac{k}{3}\rfloor\)</span>。</p>
 <p>时间复杂度 <span class="math inline">\(O(n^2)\)</span>。</p>
