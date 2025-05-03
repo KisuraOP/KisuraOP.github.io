@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          2.5k 字
         
       </span>
     
@@ -368,6 +368,20 @@
 <p>又对于每个 <span class="math inline">\(s_{i,j}\)</span> 不为 <code>.</code> 的格子，至多变化一次，所以上述三种操作的操作数之和仍然是 <span class="math inline">\(k\)</span>。</p>
 <p>同理也一定有一种操作满足操作数 <span class="math inline">\(\le \lfloor\frac{k}{3}\rfloor\)</span>。</p>
 <p>时间复杂度 <span class="math inline">\(O(n^2)\)</span>。</p>
+<h2 id="cf1450e.-capitalism"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1450/problem/E">CF1450E. Capitalism</a></h2>
+<p>*2700 <a target="_blank" rel="noopener" href="https://codeforces.com/contest/1450/submission/318179144">Code</a></p>
+<p>首先，原图一定构成二分图，按照 <span class="math inline">\(a_i\)</span> 的奇偶性分成两侧。不是二分图一定无解。</p>
+<p>其次，考虑未定向的边 <span class="math inline">\((u,v)\)</span>，需要满足 <span class="math inline">\(a_u=a_v+1\)</span> 或 <span class="math inline">\(a_v=a_u+1\)</span>。</p>
+<p>转换成可以使用差分约束的形式，也就是 <span class="math inline">\(a_u-a_v\le 1\)</span> 且 <span class="math inline">\(a_v-a_u\le 1\)</span>。</p>
+<p>但这两个条件只是必要条件，若充分则还需满足 <span class="math inline">\(a_u\neq a_v\)</span>。但注意到二分图自然满足 <span class="math inline">\(a_u\neq a_v\)</span>（边权为 <span class="math inline">\(1\)</span> 且没有奇环的情况下两个相邻点的最短路的奇偶性一定不同），故判完二分图上面的转化自然充要。</p>
+<p>接着，考虑已经定向了的边 <span class="math inline">\((u,v)\)</span>，不妨令 <span class="math inline">\(a_v=a_u+1\)</span>，则同样可以转化为：<span class="math inline">\(a_u-a_v\le -1\)</span> 且 <span class="math inline">\(a_v-a_u\le 1\)</span>。</p>
+<p>现在可以开始跑差分约束了，但还面临两个问题：</p>
+<ul>
+<li>如何保证跑出来的可行解极差最大？</li>
+<li>选出哪一个点作为起点（零势点）？</li>
+</ul>
+<p>我们选取每一个点都作为零势点跑 spfa，并钦定 <span class="math inline">\(0\)</span> 是最小值，这样最后若存在 <span class="math inline">\(dis&lt;0\)</span> 或负环，该方案就不合法，忽略掉就行了。接下来如何让最大值尽可能大？注意到最大值不可能超过从起点出发到某一点的最短路，换句话说差分约束跑出来的值就已经顶到了上界。于是对于不同的起点，我们将得到的 <span class="math inline">\(dis\)</span> 序列存起来，最后取极差最大的即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^2m)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2084/problem/E">Problem - E - Codeforces</a></p>
