@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.5k 字
+          4k 字
         
       </span>
     
@@ -408,6 +408,19 @@
 <p>一种简洁且直接的做法是对每一个颜色二元组 <span class="math inline">\((col_x,col_y)\)</span> 记录有哪些边 <span class="math inline">\((u,v)\)</span> 连接了颜色分别为 <span class="math inline">\(col_x\)</span> 和 <span class="math inline">\(col_y\)</span> 的点。即用一个 <code>map&lt;array&lt;int, 2&gt;, vector&lt;array&lt;int, 2&gt;&gt;&gt;</code> 存边，虽然多了一个 <span class="math inline">\(\log\)</span>，但相比把边按颜色排序的做法会好写很多。</p>
 <p>注意到整个判断过程第一类边一直保留，第二类边在判断完一种颜色组合后需要撤销，故用一个可撤销并查集来维护。</p>
 <p>时间复杂度 <span class="math inline">\(O(m\log m+m\log n)\)</span>。</p>
+<h2 id="cf2102e.-23-kingdom"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2102/problem/E">CF2102E. 23 Kingdom</a></h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2102/submission/319302504">Code</a></p>
+<p>题目相当于对所有 <span class="math inline">\(i\in [1,n]\)</span>，选出至多一组 <span class="math inline">\(a_l=i\)</span>，<span class="math inline">\(a_r=i\)</span>，<span class="math inline">\(l&lt;r\)</span> 的 <span class="math inline">\(l,r\)</span>，并累加 <span class="math inline">\(r-l\)</span> 的贡献。</p>
+<p>因为序列中的每个数只能变小不能变大，故从大到小枚举 <span class="math inline">\(i\)</span>，试图确定左右端点，没用上的位置丢进一个集合 <span class="math inline">\(S\)</span> 里备选。而用上的数将来也可能变小作为新的端点，所以这其实是一个反悔贪心问题。</p>
+<p>现在，对于一个 <span class="math inline">\(i\)</span>，我们从 <span class="math inline">\(S\)</span> 中取出最小的数作为 <span class="math inline">\(l\)</span>，最大的数作为 <span class="math inline">\(r\)</span>。有两种选择：</p>
+<ul>
+<li><span class="math inline">\([l,r]\)</span> 作为一个新的线段。</li>
+<li><span class="math inline">\(l\)</span> 替代已有线段中最大的 <span class="math inline">\(l\)</span>，<span class="math inline">\(r\)</span> 替代已有线段中最小的 <span class="math inline">\(r\)</span>。</li>
+</ul>
+<p>二选一怎么选？注意到已有线段中最大的 <span class="math inline">\(l\)</span> 一定小于已有线段中最小的 <span class="math inline">\(r\)</span>，否则肯定不优。</p>
+<p>如果 <span class="math inline">\([l,r]\)</span> 加进当前线段集合后仍然满足上述条件，那么这条新线段的贡献肯定严格大于第二种情况。</p>
+<p>故优先判断 <span class="math inline">\([l,r]\)</span> 作为一个新线段是否可行，不行再考虑替代已有的左右端点。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1814/problem/E">Problem - E - Codeforces</a></p>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2084/problem/E">Problem - E - Codeforces</a></p>
