@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4k 字
+          4.1k 字
         
       </span>
     
@@ -419,6 +419,7 @@
 </ul>
 <p>二选一怎么选？注意到已有线段中最大的 <span class="math inline">\(l\)</span> 一定小于已有线段中最小的 <span class="math inline">\(r\)</span>，否则肯定不优。</p>
 <p>如果 <span class="math inline">\([l,r]\)</span> 加进当前线段集合后仍然满足上述条件，那么这条新线段的贡献肯定严格大于第二种情况。</p>
+<p>反过来，如果 <span class="math inline">\((L&#39;,R&#39;)\)</span> 加进去变成 <span class="math inline">\(L\ L&#39; \ L\ R&#39; \ L\ R\ R\ R\)</span>，那就不如 <span class="math inline">\(L&#39;\)</span> 替换最后一个 <span class="math inline">\(L\)</span>，变成 <span class="math inline">\(L\ L\ L&#39;\ R\ R\ R\)</span>。</p>
 <p>故优先判断 <span class="math inline">\([l,r]\)</span> 作为一个新线段是否可行，不行再考虑替代已有的左右端点。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <h2 id="等待补题列表">等待补题列表</h2>
