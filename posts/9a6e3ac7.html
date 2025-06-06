@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.8k 字
+          4.7k 字
         
       </span>
     
@@ -352,17 +352,17 @@
 <p>见到 <span class="math inline">\(\lfloor\frac{k}{3}\rfloor\)</span>，可以有意识的将操作划分为三个等价类，满足三个等价类的操作数之和为 <span class="math inline">\(k\)</span>。这样根据抽屉原理，一定有一类操作的数量 <span class="math inline">\(\le \lfloor\frac{k}{3}\rfloor\)</span>。</p>
 <p>对于 C1，令 <span class="math inline">\(t_{i,j}=(i+j)\bmod 3\)</span>，那么网格被划分成了三类。定义三种操作如下：</p>
 <ul>
-<li><span class="math inline">\(\forall \ t_{i,j}=0\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，则改为 <span class="math inline">\(O\)</span>。</li>
-<li><span class="math inline">\(\forall \ t_{i,j}=1\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，则改为 <span class="math inline">\(O\)</span>。</li>
-<li><span class="math inline">\(\forall \ t_{i,j}=2\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，则改为 <span class="math inline">\(O\)</span>。</li>
+<li><span class="math inline">\(\forall \ t_{i,j}=0\)</span> 的 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，改为 <span class="math inline">\(O\)</span>。</li>
+<li><span class="math inline">\(\forall \ t_{i,j}=1\)</span> 的 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，改为 <span class="math inline">\(O\)</span>。</li>
+<li><span class="math inline">\(\forall \ t_{i,j}=2\)</span> 的 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，改为 <span class="math inline">\(O\)</span>。</li>
 </ul>
 <p>注意到上述任意一种操作都能实现目标（因为任意三个横着的或竖着的格子必定包含 <span class="math inline">\(t_{i,j}\)</span> 的三种取值）。</p>
 <p>并且这三类操作的操作数之和恰好为 <span class="math inline">\(k\)</span>，根据抽屉原理，一定有一种操作满足操作数 <span class="math inline">\(\le \lfloor\frac{k}{3}\rfloor\)</span>。</p>
 <p>对于 C2，同样令 <span class="math inline">\(t_{i,j}=(i+j)\bmod 3\)</span>，但三种操作变化如下：</p>
 <ul>
-<li><span class="math inline">\(\forall \ t_{i,j}=0\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，则改为 <span class="math inline">\(O\)</span>；<span class="math inline">\(\forall \ t_{i,j}=1\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= O\)</span>，则改为 <span class="math inline">\(X\)</span>。</li>
-<li><span class="math inline">\(\forall \ t_{i,j}=1\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，则改为 <span class="math inline">\(O\)</span>；<span class="math inline">\(\forall \ t_{i,j}=2\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= O\)</span>，则改为 <span class="math inline">\(X\)</span>。</li>
-<li><span class="math inline">\(\forall \ t_{i,j}=2\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，则改为 <span class="math inline">\(O\)</span>；<span class="math inline">\(\forall \ t_{i,j}=0\)</span> 的格子 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= O\)</span>，则改为 <span class="math inline">\(X\)</span>。</li>
+<li><span class="math inline">\(\forall \ t_{i,j}=0\)</span> 的 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，改为 <span class="math inline">\(O\)</span>；<span class="math inline">\(\forall \ t_{i,j}=1\)</span> 的 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= O\)</span>，改为 <span class="math inline">\(X\)</span>。</li>
+<li><span class="math inline">\(\forall \ t_{i,j}=1\)</span> 的 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，改为 <span class="math inline">\(O\)</span>；<span class="math inline">\(\forall \ t_{i,j}=2\)</span> 的 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= O\)</span>，改为 <span class="math inline">\(X\)</span>。</li>
+<li><span class="math inline">\(\forall \ t_{i,j}=2\)</span> 的 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= X\)</span>，改为 <span class="math inline">\(O\)</span>；<span class="math inline">\(\forall \ t_{i,j}=0\)</span> 的 <span class="math inline">\((i,j)\)</span>，若 <span class="math inline">\(s_{i,j}= O\)</span>，改为 <span class="math inline">\(X\)</span>。</li>
 </ul>
 <p>每种操作都由两个形如 <span class="math inline">\(X\to O\)</span>，<span class="math inline">\(O\to X\)</span> 的子操作组合而成，保证了任意三个横着的或竖着的格子都一定不全为 <span class="math inline">\(X/O\)</span>。</p>
 <p>又对于每个 <span class="math inline">\(s_{i,j}\)</span> 不为 <code>.</code> 的格子，至多变化一次，所以上述三种操作的操作数之和仍然是 <span class="math inline">\(k\)</span>。</p>
@@ -424,7 +424,7 @@
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <h2 id="cf2110d.-fewer-batteries"><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2110/problem/D">CF2110D. Fewer Batteries</a></h2>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/2110/submission/321181200">Code</a></p>
-<p>二分答案。设二分出的答案是 <span class="math inline">\(mid\)</span>，那么我们的策略就固定了：在把电池拿到 <span class="math inline">\(mid\)</span> 个前，能拿就尽量拿。</p>
+<p>二分答案。设二分出的答案是 <span class="math inline">\(mid\)</span>，那么策略就固定了：在把电池拿到 <span class="math inline">\(mid\)</span> 个前，能拿就尽量拿。</p>
 <p>DAG 上 dp，令 <span class="math inline">\(dp[x]\)</span> 表示从 <span class="math inline">\(1\to x\)</span> 这一段最多能拿到的电池数目： <span class="math display">\[
 dp[y]=\min(mid,\max_{x\to y}(dp[x]+b[y]))
 \]</span> 初始令 <span class="math inline">\(dp[x]=\begin{cases}\min(mid,b[1])&amp;,x=1\\-1 &amp;,x&gt;1\end{cases}\)</span>，最后 check 一下 <span class="math inline">\(dp[n]\)</span> 是否非负即可。</p>
