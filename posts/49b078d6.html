@@ -1,0 +1,998 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/image/bg/mugeng.ico">
+  <link rel="icon" href="/image/bg/mugeng.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="KisuraOP">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="哈哈，两年前不会DP，现在也不会。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【题解】Codeforces Round 729 (Div.2) 4 of 6">
+<meta property="og:url" content="https://kisuraop.github.io/posts/49b078d6.html">
+<meta property="og:site_name" content="KisuraOP">
+<meta property="og:description" content="哈哈，两年前不会DP，现在也不会。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c17e18190fb6dea6e843b32fb19de3c0.jpeg">
+<meta property="article:published_time" content="2021-07-04T11:48:50.000Z">
+<meta property="article:modified_time" content="2021-07-04T11:48:50.000Z">
+<meta property="article:author" content="KisuraOP">
+<meta property="article:tag" content="ICPC">
+<meta property="article:tag" content="Codeforces">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/c17e18190fb6dea6e843b32fb19de3c0.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>【题解】Codeforces Round 729 (Div.2) 4 of 6 - KisuraOP</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4277703_p4cthydttt.css">
+<link rel="stylesheet" href="/css/vemoji.css">
+<link rel="stylesheet" href="/css/bg_cover.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kisuraop.github.io","root":"/","version":"1.9.5-a","typing":{"enable":false,"typeSpeed":55,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"c++"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/image/other/loading.mp4","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="https://kisuraop.github.io/js/mouseclick.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>KisuraOPのBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/site/">
+                <i class="iconfont icon-bookmark-fill"></i>
+                <span>收藏夹</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/waiting/">
+                <i class="iconfont icon-plan"></i>
+                <span>待办</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/example/">
+                <i class="iconfont icon-comment"></i>
+                <span>留言</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://moe.jitsu.top/img/?sort=pc') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">【题解】Codeforces Round 729 (Div.2) 4 of 6</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        KisuraOP
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-07-04 19:48" pubdate>
+          2021年7月4日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.7k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【题解】Codeforces Round 729 (Div.2) 4 of 6</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="a.-odd-set">A. Odd Set</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1542/problem/A">Problem</a></p>
+<div class="note note-info">
+            <p>题意：给出长为 <span class="math inline">\(2n\)</span> 的数组，问是否能分成 <span class="math inline">\(n\)</span> 个长度为 <span class="math inline">\(2\)</span> 的组使每组内两数之和均为奇数。</p>
+          </div>
+<div class="note note-success">
+            <p>若和为奇数，则两数一奇一偶，即判断原数列中奇数个数是否等于偶数个数。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> re register int</span>
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-type">int</span> x=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();
+	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch))&#123;<span class="hljs-keyword">if</span>(ch==<span class="hljs-string">&#x27;-&#x27;</span>)f=<span class="hljs-number">-1</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
+	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch))&#123;x=(x&lt;&lt;<span class="hljs-number">3</span>)+(x&lt;&lt;<span class="hljs-number">1</span>)+(ch^<span class="hljs-number">48</span>);ch=<span class="hljs-built_in">getchar</span>();&#125;
+	<span class="hljs-keyword">return</span> f==<span class="hljs-number">1</span>?x:-x;
+&#125;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-type">int</span> T=<span class="hljs-built_in">read</span>();
+	<span class="hljs-keyword">while</span>(T--) 
+    &#123;
+		<span class="hljs-type">int</span> n=<span class="hljs-built_in">read</span>();
+		<span class="hljs-type">int</span> cnt=<span class="hljs-number">0</span>;
+		<span class="hljs-keyword">for</span>(re i=<span class="hljs-number">1</span>;i&lt;=n*<span class="hljs-number">2</span>;++i) &#123;
+			<span class="hljs-type">int</span> x=<span class="hljs-built_in">read</span>();
+			cnt+=(x%<span class="hljs-number">2</span>);
+		&#125;
+		<span class="hljs-keyword">if</span>(cnt==n) &#123;
+			<span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Yes&quot;</span>);
+		&#125; <span class="hljs-keyword">else</span> &#123;
+			<span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;No&quot;</span>);
+		&#125;
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<h2 id="b.-plus-and-multiply">B. Plus and Multiply</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1542/problem/B">Problem</a></p>
+<span class="label label-primary">好题</span>
+<div class="note note-info">
+            <p>题意：<span class="math inline">\(T\le 10^5\)</span> 组数据，给定正整数 <span class="math inline">\(n,a,b\)</span> ，每次能将一个数 <span class="math inline">\(\times a\)</span> 或 <span class="math inline">\(+b\)</span>，问是否能将 <span class="math inline">\(1\)</span> 经过若干次操作得到 <span class="math inline">\(n\)</span> 。</p><p><span class="math inline">\(1\le n,a,b\le 10^9\)</span>。</p>
+          </div>
+<div class="note note-success">
+            <p>若得到了某个数 <span class="math inline">\(x\)</span> 满足 <span class="math inline">\((n-x)\% b=0\)</span> 那么显然符合要求。</p><p>对于 <span class="math inline">\(+b\)</span> 操作，<span class="math inline">\(\%b\)</span> 后余数不变。</p><p>意味着只有 <span class="math inline">\(\times a\)</span> 操作会使 <span class="math inline">\(\%b\)</span> 的余数改变。</p><p>枚举不超过 <span class="math inline">\(n\)</span> 的 <span class="math inline">\(a\)</span> 的次方数 <span class="math inline">\(x\)</span> 判断是否满足 <span class="math inline">\((n-x)\%b=0\)</span> 即可。</p><p>特判 <span class="math inline">\(a=1\)</span> 的情况。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> re register int</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-type">int</span> x=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();
+	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch))&#123;<span class="hljs-keyword">if</span>(ch==<span class="hljs-string">&#x27;-&#x27;</span>)f=<span class="hljs-number">-1</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
+	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch))&#123;x=(x&lt;&lt;<span class="hljs-number">3</span>)+(x&lt;&lt;<span class="hljs-number">1</span>)+(ch^<span class="hljs-number">48</span>);ch=<span class="hljs-built_in">getchar</span>();&#125;
+	<span class="hljs-keyword">return</span> f==<span class="hljs-number">1</span>?x:-x;
+&#125;
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-type">int</span> T=<span class="hljs-built_in">read</span>();
+	<span class="hljs-keyword">while</span>(T--)
+	&#123;
+		<span class="hljs-type">int</span> x=<span class="hljs-built_in">read</span>(),a=<span class="hljs-built_in">read</span>(),b=<span class="hljs-built_in">read</span>();
+		<span class="hljs-type">int</span> tmp=a,flag=<span class="hljs-number">0</span>;
+		<span class="hljs-keyword">if</span>(a==<span class="hljs-number">1</span>) &#123;
+			<span class="hljs-keyword">if</span>((x<span class="hljs-number">-1</span>)%b==<span class="hljs-number">0</span>) &#123;
+                <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Yes&quot;</span>);
+            &#125; <span class="hljs-keyword">else</span> &#123;
+                <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;No&quot;</span>);
+            &#125;
+			<span class="hljs-keyword">continue</span>;
+		&#125;
+		<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>) &#123;
+			<span class="hljs-keyword">if</span>(tmp&gt;x) &#123;
+                <span class="hljs-keyword">break</span>;
+            &#125;
+			<span class="hljs-keyword">if</span>((x-tmp)%b==<span class="hljs-number">0</span>) &#123;
+				flag=<span class="hljs-number">1</span>;
+				<span class="hljs-keyword">break</span>;
+			&#125;
+			tmp*=a;
+		&#125;
+		<span class="hljs-keyword">if</span>(flag || (x<span class="hljs-number">-1</span>)%b==<span class="hljs-number">0</span>) &#123;
+            <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;Yes&quot;</span>);
+        &#125; <span class="hljs-keyword">else</span> &#123; 
+            <span class="hljs-built_in">puts</span>(<span class="hljs-string">&quot;No&quot;</span>);
+        &#125;
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<h2 id="c.-strange-function">C. Strange Function</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1542/problem/C">Problem</a></p>
+<div class="note note-info">
+            <p>题意：求 <span class="math inline">\(\sum\limits_{i=1}^n f_i\)</span>，<span class="math inline">\(f_i\)</span> 为满足 <span class="math inline">\(x\nmid i\)</span> 的最小正整数 <span class="math inline">\(x\)</span>。</p><p><span class="math inline">\(1\le T\le 10^4\)</span>，<span class="math inline">\(1\le n\le 10^{16}\)</span>。</p>
+          </div>
+<div class="note note-success">
+            <p>没什么思路，打表得到 <span class="math inline">\(2,3,2,3,2,4,2,3,2,3,2,5,2,\dots\)</span> 。</p><p>令 <span class="math inline">\(p_i\)</span> 为第一次出现 <span class="math inline">\(i\)</span> 的位置，观察有 <span class="math inline">\(p_3=2,p_4=6,p_5=12\)</span> ，类比得 <span class="math inline">\(p_i=\text{lcm} (1\sim i-1)\)</span>。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Why?
+    </div>
+    <div class='spoiler-content'>
+        <p>因为对于 <span class="math inline">\(f_x\)</span>，<span class="math inline">\(1\sim (f_x-1)\)</span> 必然是 <span class="math inline">\(p_{f_x}\)</span> 的因子，故最优选择就是它们的最小公倍数。</p>
+
+    </div>
+</div>
+<div class="note note-success">
+            <p>其中每个位置贡献至少为 <span class="math inline">\(2\)</span>，故初始化 <span class="math inline">\(ans=2n\)</span>。</p><p>又若 <span class="math inline">\(i\)</span> 在位置 <span class="math inline">\(pos\)</span> 有贡献，则在 <span class="math inline">\(pos\)</span> 的倍数处也必有贡献，且每次贡献为 <span class="math inline">\(1\)</span>。</p><p>而每个 <span class="math inline">\(i\)</span> 在 <span class="math inline">\(1\sim n\)</span> 中出现 <span class="math inline">\(\left\lfloor\dfrac{n}{p_i}\right\rfloor\)</span> 次，故 <span class="math inline">\(ans=2n+\sum\limits_{i=3}^{p_i\le n}\left\lfloor\dfrac{n}{p_i}\right\rfloor\)</span> .</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> re register int</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-type">int</span> x=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();
+	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch))&#123;<span class="hljs-keyword">if</span>(ch==<span class="hljs-string">&#x27;-&#x27;</span>)f=<span class="hljs-number">-1</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
+	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch))&#123;x=(x&lt;&lt;<span class="hljs-number">3</span>)+(x&lt;&lt;<span class="hljs-number">1</span>)+(ch^<span class="hljs-number">48</span>);ch=<span class="hljs-built_in">getchar</span>();&#125;
+	<span class="hljs-keyword">return</span> f==<span class="hljs-number">1</span>?x:-x;
+&#125;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> maxn=<span class="hljs-number">1e16</span>+<span class="hljs-number">10</span>,modp=<span class="hljs-number">1e9</span>+<span class="hljs-number">7</span>;
+<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">gcd</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> y)</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-keyword">return</span> !y?x:<span class="hljs-built_in">gcd</span>(y,x%y);
+&#125;
+<span class="hljs-type">int</span> Lcm[<span class="hljs-number">50</span>];<span class="hljs-comment">//lcm[i]表示1~i-1的最小公倍数 </span>
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-type">int</span> tmp=<span class="hljs-number">1</span>,x=<span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span>(<span class="hljs-number">1</span>)
+	&#123;
+		Lcm[tmp]=x;
+		x=x*tmp/<span class="hljs-built_in">gcd</span>(x,tmp);
+		<span class="hljs-keyword">if</span>(x&gt;maxn)<span class="hljs-keyword">break</span>;
+		tmp++;
+    &#125;
+	<span class="hljs-type">int</span> T=<span class="hljs-built_in">read</span>();
+	<span class="hljs-keyword">while</span>(T--)
+	&#123;
+		<span class="hljs-type">int</span> n=<span class="hljs-built_in">read</span>(),ans=<span class="hljs-number">2</span>*n%modp;
+		<span class="hljs-keyword">for</span>(re i=<span class="hljs-number">3</span>;i&lt;=tmp;++i)
+			ans=(ans+n/Lcm[i])%modp;
+		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans);
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<h2 id="d.-priority-queue">D. Priority Queue</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/contest/1542/problem/D">Problem</a></p>
+<div class="note note-info">
+            <p>题意：给定长为 <span class="math inline">\(n\)</span> 的操作序列 <span class="math inline">\(A\)</span> ，定义操作序列 <span class="math inline">\(B\)</span> 是 <span class="math inline">\(A\)</span> 的一个子序列，并维护一个可重集 <span class="math inline">\(T\)</span>。若操作形如 <code>+ x</code> 则将 <span class="math inline">\(x\)</span> 插入 <span class="math inline">\(T\)</span>，若操作形如 <code>-</code> 则将 <span class="math inline">\(T\)</span> 中最小元素删去(若为空则忽略)。令 <span class="math inline">\(f(B)\)</span> 为经过 <span class="math inline">\(B\)</span> 的操作后 <span class="math inline">\(T\)</span> 中剩余元素的和，求 <span class="math inline">\(\sum f(B)\)</span>。</p><p><span class="math inline">\(1\le n \le 500\)</span>。</p>
+          </div>
+<div class="note note-success">
+            <p>类计数dp，因为我们对于每一个<code>+ x</code> 操作只关心数 <span class="math inline">\(x\)</span> 最终出现在多少个 <span class="math inline">\(B\)</span> 中。因为最多有 <span class="math inline">\(n\)</span> 个 <code>+ x</code>，所以可以最多进行 <span class="math inline">\(n\)</span> 次 dp 得到结果，每次 <span class="math inline">\(O(n^2)\)</span>，一共 <span class="math inline">\(O(n^3)\)</span>。</p><p>令 <span class="math inline">\(f_{i,j}\)</span> 为前 <span class="math inline">\(i\)</span> 个数中有 <span class="math inline">\(j\)</span> 个数比 <span class="math inline">\(x\)</span> 小的方案数，设当前第 <span class="math inline">\(i\)</span> 位读到 <code>-</code>，比 <span class="math inline">\(x\)</span> 大的数和比 <span class="math inline">\(x\)</span> 小的数，由该位选或不选分类讨论写出转移方程。若 <span class="math inline">\(A[k]=x\)</span> :</p><p><span class="math display">\[f_{i,j}=\begin{cases}f_{i-1,j}+f_{i-1,j+1}&amp;,A[i]= \text{&#39;-&#39;}\\f_{i-1,j}+f_{i-1,j}&amp;,A[i]&gt;x \text{   or }A[i]=x,i&gt;k \\f_{i-1,j}+f_{i-1,j-1}&amp;,A[i]&lt;x,j\neq0 \text{ or }A[i]=x,i&lt;k\\f_{i-1,j}&amp;,A[i]&lt;x,j=0 \text{ or }A[i]=x,i&lt;k\end{cases}\]</span></p><p>特别注意第一种情况当 <span class="math inline">\(i&lt;k\)</span> 且 <span class="math inline">\(j=0\)</span> 时需要加上 <span class="math inline">\(f_{i-1,0}\)</span>，因为此时选上 <code>-</code> 不会使 <span class="math inline">\(j\)</span> 变小。</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> re register int</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> int long long</span>
+<span class="hljs-function"><span class="hljs-keyword">inline</span> <span class="hljs-type">int</span> <span class="hljs-title">read</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-type">int</span> x=<span class="hljs-number">0</span>,f=<span class="hljs-number">1</span>;<span class="hljs-type">char</span> ch=<span class="hljs-built_in">getchar</span>();
+	<span class="hljs-keyword">while</span>(!<span class="hljs-built_in">isdigit</span>(ch))&#123;<span class="hljs-keyword">if</span>(ch==<span class="hljs-string">&#x27;-&#x27;</span>)f=<span class="hljs-number">-1</span>;ch=<span class="hljs-built_in">getchar</span>();&#125;
+	<span class="hljs-keyword">while</span>(<span class="hljs-built_in">isdigit</span>(ch))&#123;x=(x&lt;&lt;<span class="hljs-number">3</span>)+(x&lt;&lt;<span class="hljs-number">1</span>)+(ch^<span class="hljs-number">48</span>);ch=<span class="hljs-built_in">getchar</span>();&#125;
+	<span class="hljs-keyword">return</span> f==<span class="hljs-number">1</span>?x:-x;
+&#125;
+<span class="hljs-type">const</span> <span class="hljs-type">int</span> modp=<span class="hljs-number">998244353</span>; 
+<span class="hljs-type">int</span> A[<span class="hljs-number">500</span>+<span class="hljs-number">10</span>],f[<span class="hljs-number">500</span>+<span class="hljs-number">10</span>][<span class="hljs-number">500</span>+<span class="hljs-number">10</span>];
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>
+<span class="hljs-function"></span>&#123;
+	<span class="hljs-type">int</span> n=<span class="hljs-built_in">read</span>();
+	<span class="hljs-keyword">for</span>(re i=<span class="hljs-number">1</span>;i&lt;=n;++i)
+	&#123;
+		<span class="hljs-type">char</span> x[<span class="hljs-number">3</span>];<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%s&quot;</span>,&amp;x);
+		<span class="hljs-keyword">if</span>(x[<span class="hljs-number">0</span>]==<span class="hljs-string">&#x27;+&#x27;</span>) A[i]=<span class="hljs-built_in">read</span>();
+		<span class="hljs-keyword">else</span> A[i]=<span class="hljs-number">-1</span>;
+	&#125;
+	<span class="hljs-type">int</span> ans=<span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span>(re k=<span class="hljs-number">1</span>;k&lt;=n;++k)
+	&#123;
+		<span class="hljs-keyword">if</span>(A[k]==<span class="hljs-number">-1</span>) <span class="hljs-keyword">continue</span>;
+		<span class="hljs-built_in">memset</span>(f,<span class="hljs-number">0</span>,<span class="hljs-keyword">sizeof</span> f);
+		f[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>]=<span class="hljs-number">1</span>;
+		<span class="hljs-keyword">for</span>(re i=<span class="hljs-number">1</span>;i&lt;=n;++i)
+		&#123;
+			<span class="hljs-keyword">if</span>(i==k)
+			&#123;
+				<span class="hljs-built_in">memcpy</span>(f[i],f[i<span class="hljs-number">-1</span>],<span class="hljs-keyword">sizeof</span> f[i]);
+				<span class="hljs-keyword">continue</span>;
+			&#125;
+			<span class="hljs-keyword">for</span>(re j=<span class="hljs-number">0</span>;j&lt;=n;++j)
+			&#123;
+				<span class="hljs-keyword">if</span>(A[i]==<span class="hljs-number">-1</span>)
+				&#123;
+					f[i][j]=(f[i<span class="hljs-number">-1</span>][j]+f[i<span class="hljs-number">-1</span>][j+<span class="hljs-number">1</span>])%modp;
+					<span class="hljs-keyword">if</span>(j==<span class="hljs-number">0</span> &amp;&amp; i&lt;k) f[i][j]=(f[i][j]+f[i<span class="hljs-number">-1</span>][j])%modp;
+				&#125;
+				<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(A[i]&lt;A[k] || (A[i]==A[k] &amp;&amp; i&lt;k))
+				&#123;
+					<span class="hljs-keyword">if</span>(j==<span class="hljs-number">0</span>)f[i][j]=f[i<span class="hljs-number">-1</span>][j];
+					<span class="hljs-keyword">else</span> f[i][j]=(f[i<span class="hljs-number">-1</span>][j]+f[i<span class="hljs-number">-1</span>][j<span class="hljs-number">-1</span>])%modp;
+				&#125;
+				<span class="hljs-keyword">else</span> f[i][j]=(f[i<span class="hljs-number">-1</span>][j]+f[i<span class="hljs-number">-1</span>][j])%modp;
+			&#125;	
+		&#125;
+		<span class="hljs-type">int</span> sum=<span class="hljs-number">0</span>;
+		<span class="hljs-keyword">for</span>(re j=<span class="hljs-number">0</span>;j&lt;=n;++j)
+			sum=(sum+f[n][j])%modp;
+		ans=(ans+sum*A[k]%modp)%modp;
+	&#125;
+	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>,ans);
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Competitive-Programming/" class="category-chain-item">Competitive Programming</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Competitive-Programming/Codeforces/" class="category-chain-item">Codeforces</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ICPC/" class="print-no-link">#ICPC</a>
+      
+        <a href="/tags/Codeforces/" class="print-no-link">#Codeforces</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【题解】Codeforces Round 729 (Div.2) 4 of 6</div>
+      <div>https://kisuraop.github.io/posts/49b078d6.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>KisuraOP</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2021年7月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/79e649ee.html" title="【题解】AtCoder Regular Contest 124 (4 of 6)">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【题解】AtCoder Regular Contest 124 (4 of 6)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/be35d7b0.html" title="摩尔投票法及其扩展">
+                        <span class="hidden-mobile">摩尔投票法及其扩展</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://kisuraop.github.io/" target="_blank" rel="nofollow noopener"><span>KisuraOP</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

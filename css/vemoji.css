@@ -1,0 +1,28 @@
+.v[data-class=v] .vemoji, .v[data-class=v] .emoji {
+    width: 80px !important;
+    height: 80px !important;
+    overflow: hidden !important;
+    vertical-align: middle !important;
+    margin: 0 1px !important;
+    display: inline-block !important;
+}
+
+.v[data-class=v] .vwrap .vemojis i {
+    font-style: normal !important;
+    padding-top: 7px !important;
+    width: 70px !important;
+    cursor: pointer !important;
+    text-align: center !important;
+    display: inline-block !important;
+    vertical-align: middle !important;
+}
+
+.v[data-class=v] .vwrap .vemojis {
+    display: none;
+    font-size: 18px;
+    max-height: 500px !important;
+    overflow: auto;
+    padding-bottom: 10px;
+    -webkit-box-shadow: 0px 0 1px #f0f0f0;
+    box-shadow: 0px 0 1px #f0f0f0;
+}<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
