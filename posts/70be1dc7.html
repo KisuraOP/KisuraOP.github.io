@@ -16,12 +16,12 @@
   <meta name="author" content="KisuraOP">
   <meta name="keywords" content="">
   
-    <meta name="description" content="收录了二轮集训的部分题解。 [TOC] 抛一点链接，方便日后跳转。  7.31 https:&#x2F;&#x2F;codeforces.com&#x2F;gym&#x2F;537696（2024 HDU 多校 6） 8.1 https:&#x2F;&#x2F;codeforces.com&#x2F;gym&#x2F;539789（SEERC 2020） 8.2 https:&#x2F;&#x2F;codeforces.com&#x2F;gym&#x2F;540037（2023 江苏省赛&#x2F; CCPC Hunan）">
+    <meta name="description" content="收录了二轮集训的部分题解。  抛一点链接，方便日后跳转。 7.31 https:&#x2F;&#x2F;codeforces.com&#x2F;gym&#x2F;537696（2024 HDU 多校 6） 8.1 https:&#x2F;&#x2F;codeforces.com&#x2F;gym&#x2F;539789（SEERC 2020） 8.2 https:&#x2F;&#x2F;codeforces.com&#x2F;gym&#x2F;540037（2023 江苏省赛&#x2F; CCPC Hunan） 8.3 ht">
 <meta property="og:type" content="article">
 <meta property="og:title" content="”【题解】2024 UESTC 暑假集训 第二轮“">
 <meta property="og:url" content="https://kisuraop.github.io/posts/70be1dc7.html">
 <meta property="og:site_name" content="KisuraOP">
-<meta property="og:description" content="收录了二轮集训的部分题解。 [TOC] 抛一点链接，方便日后跳转。  7.31 https:&#x2F;&#x2F;codeforces.com&#x2F;gym&#x2F;537696（2024 HDU 多校 6） 8.1 https:&#x2F;&#x2F;codeforces.com&#x2F;gym&#x2F;539789（SEERC 2020） 8.2 https:&#x2F;&#x2F;codeforces.com&#x2F;gym&#x2F;540037（2023 江苏省赛&#x2F; CCPC Hunan）">
+<meta property="og:description" content="收录了二轮集训的部分题解。  抛一点链接，方便日后跳转。 7.31 https:&#x2F;&#x2F;codeforces.com&#x2F;gym&#x2F;537696（2024 HDU 多校 6） 8.1 https:&#x2F;&#x2F;codeforces.com&#x2F;gym&#x2F;539789（SEERC 2020） 8.2 https:&#x2F;&#x2F;codeforces.com&#x2F;gym&#x2F;540037（2023 江苏省赛&#x2F; CCPC Hunan） 8.3 ht">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/76b86f9fdad7ee7a8bdac489d9306e0c.jpeg">
 <meta property="article:published_time" content="2024-09-01T16:35:35.000Z">
@@ -329,9 +329,8 @@
               <div class="markdown-body">
                 
                 <p>收录了二轮集训的部分题解。</p>
-<p>[TOC]</p>
-<p>抛一点链接，方便日后跳转。</p>
 <hr />
+<p>抛一点链接，方便日后跳转。</p>
 <p>7.31 https://codeforces.com/gym/537696（2024 HDU 多校 6）</p>
 <p>8.1 https://codeforces.com/gym/539789（SEERC 2020）</p>
 <p>8.2 https://codeforces.com/gym/540037（2023 江苏省赛/ CCPC Hunan）</p>
@@ -3642,7 +3641,7 @@ vector&lt;<span class="hljs-type">int</span>&gt; frac, inv;
             <p>维护长为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(\{a\}\)</span>，并有 <span class="math inline">\(m\)</span> 次操作，每次可能是以下两种之一。</p><p><code>update l r d</code>：<span class="math inline">\(\forall i\in [l, r]\)</span>，<span class="math inline">\(a_i := a_i+d\)</span>。</p><p><code>check l r</code>：查询区间 <span class="math inline">\([l, r]\)</span> 的局部最小值序列是否严格递增。</p><p>区间 <span class="math inline">\([l,r]\)</span> 的局部最小值序列：将 <span class="math inline">\([l, r]\)</span> 中相邻且相同的元素只保留一个后，数值上小于两侧元素的数构成的集合。</p><p><span class="math inline">\(1 \le n,m \le 3\cdot 10^5\)</span>，<span class="math inline">\(-10^8\le a_i,d\le 10^8\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>线段树板题，就是维护起来细节比较多。</p><p>线段树维护七个值：</p><ul><li><code>l1</code>：区间左起第一个数。</li><li><code>l2</code>：区间左起和 <code>l1</code> 不同的第二个数。</li><li><code>r1</code>：区间右起第一个数。</li><li><code>r2</code>：区间右起和 <code>r1</code> 不同的第二个数。</li><li><code>f1</code>：区间左起第一个局部最小值的值。</li><li><code>f2</code>：区间右起第一个局部最小值的值。</li><li><code>ok</code>：该区间的局部最小值序列是否递增。</li></ul><p>然后就是分类讨论了，代码里我分区间去重后只有一个值，只有两个值，超过两个值讨论了一下。</p><p>注意区间左右两侧的边界情况需要特判。</p><p>时间复杂度 <span class="math inline">\(O((n+m)\log n)\)</span>。</p><p><span class="math inline">\(\tiny{妈的出这种题真是闲的没事干，调了两个白天一个晚上我都不知道说什么好了，rzy到底是怎么做到赛时出的，哎我他妈怎么这么菜啊哎哟你干嘛，不行我几把必须要拿这道题在暑假前集训折磨那帮小登，哈哈我怎么这么坏，一想到有人会在大半夜拍一下改一下拍一下改一下我就想笑，哎哎怎么又到后半夜了，皎洁的月光透射进窗户，我被囚禁在算法的牢笼之中静待救赎，哈哈又在幻想了，不知道若干年后的世界是什么样的呢，假若 ai 具备了 tourist 的水平，那么 CP 的消失只是一个小小的代价吗，我存在的意义又是什么呢？睁开眼睛看看这世界吧，侧耳倾听人们的希冀吧，满载着愤怒悲伤还有忧愁，恍如戏剧却如此真实的声音，是多么痛啊...}\)</span></p>
+            <p>线段树板题，就是维护起来细节比较多。</p><p>线段树维护七个值：</p><ul><li><code>l1</code>：区间左起第一个数。</li><li><code>l2</code>：区间左起和 <code>l1</code> 不同的第二个数。</li><li><code>r1</code>：区间右起第一个数。</li><li><code>r2</code>：区间右起和 <code>r1</code> 不同的第二个数。</li><li><code>f1</code>：区间左起第一个局部最小值的值。</li><li><code>f2</code>：区间右起第一个局部最小值的值。</li><li><code>ok</code>：该区间的局部最小值序列是否递增。</li></ul><p>然后就是分类讨论了，代码里我分区间去重后只有一个值，只有两个值，超过两个值讨论了一下。</p><p>注意区间左右两侧的边界情况需要特判。</p><p>时间复杂度 <span class="math inline">\(O((n+m)\log n)\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
