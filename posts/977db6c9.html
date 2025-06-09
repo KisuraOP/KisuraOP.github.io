@@ -415,7 +415,7 @@ f[i]=\min(f[i-1],\frac{\sum_{j\in S(i)}f[j-1]}{|S(i)|})
 <p>否则我们考虑我们把贡献算错了多少。</p>
 <p>当 <span class="math inline">\(S\)</span> 的某个子串 <span class="math inline">\(T\)</span> 恰有 <span class="math inline">\(a,b,c\)</span> 中的一种字符时，我们期望得到 <span class="math inline">\(0\)</span>，但我们算成了 <span class="math inline">\(\dfrac{|c_a-0|+|c_a-0|+|0-0|}{2}=c_a\)</span>（这里假设 <span class="math inline">\(T\)</span> 只含 <span class="math inline">\(a\)</span>），即多算了 <span class="math inline">\(c_a=|T|\)</span>。</p>
 <p>故我们要减去 <span class="math display">\[
-\sum_{T\in S,\ T \text{只含\ } a,b,c \text{ 中的一种字符}} |T|
+\sum_{T\in S,\ T \text{ 只含 } a,b,c \text{ 中的一种字符}} |T|
 \]</span> 怎么算这个式子？</p>
 <ul>
 <li>对于一个长为 <span class="math inline">\(n\)</span> 的字符串，它的所有子串的长度之和为 <span class="math inline">\(\dfrac{n(n+1)(n+2)}{6}\)</span>。</li>
