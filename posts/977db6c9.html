@@ -397,7 +397,7 @@ dp[y][i + a] = \min_{x\to y}(dp[x][i] + b)
 <hr />
 <h3 id="c.-最优时间">C. 最优时间</h3>
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/gym/105949/submission/323461032">Code</a></p>
-<p>先把所有 <span class="math inline">\(i\in [1,n]\)</span> 的 <span class="math inline">\(S(x)\)</span> 处理出来。</p>
+<p>先把所有 <span class="math inline">\(i\in [1,n]\)</span> 的 <span class="math inline">\(S(i)\)</span> 处理出来。</p>
 <p>暴力迭代，令 <span class="math inline">\(f[x]\)</span> 表示 <span class="math inline">\(x\)</span> 的答案，则 dp 转移如下： <span class="math display">\[
 f[i]=\min(f[i-1],\frac{\sum_{j\in S(i)}f[j-1]}{|S(i)|})
 \]</span> 迭代 <span class="math inline">\(100\)</span> 次即可 AC。</p>
