@@ -489,7 +489,7 @@ F(x) = \prod_{i=1}^{n} (x - a_i)
 <p><span class="math display">\[
 \frac{d}{dx} F(x) = \sum_{j=1}^{n} \left( \frac{d}{dx}(x-a_j) \cdot \prod_{i=1, i \neq j}^{n}(x-a_i) \right)=\sum_{j=1}^{n} \prod_{i=1, i \neq j}^{n} (x - a_i)
 \]</span></p>
-<p>直观上来看是 <span class="math inline">\(n\)</span> 项一堆乘积之和，当 <span class="math inline">\(x=k\)</span> 时：</p>
+<p>直观上来看是 <span class="math inline">\(n\)</span> 项一堆乘积之和，当 <span class="math inline">\(x=a_k\)</span> 时：</p>
 <ul>
 <li><span class="math inline">\(j=k\)</span> 的项等价于 <span class="math inline">\(\prod\limits_{i=1, i \neq k}^{n} (a_k - a_i)\)</span>。</li>
 <li><span class="math inline">\(j\neq k\)</span> 的项一定会有 <span class="math inline">\(i=k\)</span> 的时候，此时 <span class="math inline">\(a_k-a_i=0\)</span>，整个项就为 <span class="math inline">\(0\)</span>。</li>
