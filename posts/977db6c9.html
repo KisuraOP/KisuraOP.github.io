@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5k 字
+          6.6k 字
         
       </span>
     
@@ -504,6 +504,45 @@ x_k=\frac{F(t)}{(t-a_k)F&#39;(a_k)}
 <li>知道了 <span class="math inline">\(F(x)\)</span> 每一项的系数，<span class="math inline">\(F&#39;(x)\)</span> 可以线性构建。</li>
 <li>求 <span class="math inline">\(F&#39;(x)\)</span> 在 <span class="math inline">\(x=a_1,a_2,\ldots,a_n\)</span> 处的值，即<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5050">【模板】多项式多点求值</a>，同样为 <span class="math inline">\(O(n\log^2 n)\)</span>。</li>
 </ul>
+<hr />
+<h3 id="e.-竞赛图">E. 竞赛图</h3>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/gym/105949/submission/324298923">Code</a></p>
+<p>强连通 <span class="math inline">\(n(n\ge 3)\)</span> 阶竞赛图一定存在一条哈密顿回路，因此 <span class="math inline">\(k\)</span> 元环与大小为 <span class="math inline">\(k\)</span> 的强连通分量等价。</p>
+<p>特判 <span class="math inline">\(k=2\text{ or }k&gt;n\)</span> 答案为 <span class="math inline">\(0\)</span>。问题转化为求包含至少一个大小为 <span class="math inline">\(k\)</span> 的 SCC 的 <span class="math inline">\(n\)</span> 个点的有标号竞赛图数量。</p>
+<p>记号约定如下：</p>
+<ul>
+<li><span class="math inline">\(f_i\)</span>：大小为 <span class="math inline">\(i\)</span> 的有标号强连通竞赛图数量。</li>
+<li><span class="math inline">\(g_i\)</span>：大小为 <span class="math inline">\(i\)</span> 的有标号竞赛图数量。显然 <span class="math inline">\(g(i)=2^{\Large\frac{i(i-1)}{2}}\)</span>。</li>
+<li><span class="math inline">\(h_i\)</span>：大小为 <span class="math inline">\(i\)</span> 的所有 SCC 都 <span class="math inline">\(&lt;k\)</span> 的有标号竞赛图数量。</li>
+</ul>
+<p>容斥，答案是 <span class="math inline">\(g_n-h_n\)</span>。</p>
+<p>如何求 <span class="math inline">\(h_n\)</span>？首先，竞赛图缩点后会形成一条链，链首（即入度为 <span class="math inline">\(0\)</span> 的点）向之后的所有点连边。计数时，我们从 <span class="math inline">\(n\)</span> 个点里选出 <span class="math inline">\(i\in [1,k)\)</span> 个点作为链首，这 <span class="math inline">\(i\)</span> 个点组成 SCC 的方式就是 <span class="math inline">\(f_i\)</span>，剩下 <span class="math inline">\(n-i\)</span> 个点也需要满足 "所有 SCC 都 <span class="math inline">\(&lt; k\)</span>"，所以是 <span class="math inline">\(h_{n-i}\)</span>，于是 <span class="math display">\[
+h_n=\sum_{i=1}^{k-1}\binom{n}{i}f_ih_{n-i}\tag{1}
+\]</span> 先假设我们知道 <span class="math inline">\(f_i\)</span>，来看我们如何算这个式子。</p>
+<p>这是一个典型的使用 EGF（指数生成函数）计算的式子，但因为我是初学者，所以写一下推导过程。</p>
+<p>将组合数展开，我们有 <span class="math display">\[
+h_n=\sum_{i=1}^{k-1}\frac{n!}{i!(n-i)!}f_ih_{n-i}
+\]</span> 移项 <span class="math display">\[
+\frac{h_n}{n!}=\sum_{i=1}^{k-1}\left(\frac{f_i}{i!}\right)\left(\frac{h_{n-i}}{(n-i)!}\right)
+\]</span> 这是一个卷积的形式。</p>
+<p>令 <span class="math inline">\(H(x)=\sum\limits_{i=0}^{\infty}\dfrac{h_i}{i!}x^i\)</span>，<span class="math inline">\(F_{&lt;k}(x)={\sum\limits_{i=1}^{k-1}}\dfrac{f_i}{i!}x^i\)</span>，则 <span class="math display">\[
+H(x)=1+F_{&lt;k}(x)H(x)
+\]</span> 其中 <span class="math inline">\(1\)</span> 是因为 <span class="math inline">\(h_0=1\)</span>，则 <span class="math inline">\([x^0]H(x)=1\)</span>。</p>
+<p>再移项，最终得到 <span class="math display">\[
+H(x)=\frac{1}{1-F_{&lt;k}(x)}\tag{2}
+\]</span> 只需要一次多项式求逆，之后 <span class="math inline">\(h_n=[x^n]H(x)\cdot n!\)</span>。</p>
+<p>接下来看如何求 <span class="math inline">\(f_i\)</span>。</p>
+<p>类似 <span class="math inline">\((1)\)</span>，我们能得到一个 <span class="math inline">\(g_n\)</span> 的递推式：从 <span class="math inline">\(n\)</span> 个点里选出 <span class="math inline">\(i\in [1,n]\)</span> 个点作为链首，这 <span class="math inline">\(i\)</span> 个点组成 SCC 的方式就是 <span class="math inline">\(f_i\)</span>，剩下 <span class="math inline">\(n-i\)</span> 个点只用构成竞赛图就可以了，所以是 <span class="math inline">\(g_{n-i}\)</span>，于是 <span class="math display">\[
+g_n=\sum_{i=1}^{n}\binom{n}{i}f_ig_{n-i}
+\]</span> 可以发现，除了求和上界变成了 <span class="math inline">\(n\)</span>，这简直和 <span class="math inline">\((1)\)</span> 一毛一样。</p>
+<p>这其实是 EGF 计数有标号的一般套路，求和上界变成 <span class="math inline">\(n\)</span> 意味着我们可以用所有大小（也就是 <span class="math inline">\([1,n]\)</span>）的强连通竞赛图构成整体。而在 <span class="math inline">\((1)\)</span> 中我们只能使用大小 <span class="math inline">\(&lt;k\)</span> 的强连通竞赛图。</p>
+<p>于是，类似 <span class="math inline">\((1)\to (2)\)</span> 的过程，我们有 <span class="math display">\[
+G(x)=\frac{1}{1-F(x)}
+\]</span> 这里 <span class="math inline">\(F(x)={\sum\limits_{i=1}^{\infty}}\dfrac{f_i}{i!}x^i\)</span>，<span class="math inline">\(G(x)={\sum\limits_{i=0}^{\infty}}\dfrac{g_i}{i!}x^i\)</span>。</p>
+<p>移项 <span class="math display">\[
+F(x)=1-\frac{1}{G(x)}
+\]</span> 最后 <span class="math inline">\(f_i=[x^i]F(x)\cdot i!\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
