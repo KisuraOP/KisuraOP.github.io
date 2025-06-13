@@ -527,7 +527,7 @@ h_n=\sum_{i=1}^{k-1}\frac{n!}{i!(n-i)!}f_ih_{n-i}
 \]</span> 这是一个卷积的形式。</p>
 <p>令 <span class="math inline">\(H(x)=\sum\limits_{i=0}^{\infty}\dfrac{h_i}{i!}x^i\)</span>，<span class="math inline">\(F_{&lt;k}(x)={\sum\limits_{i=1}^{k-1}}\dfrac{f_i}{i!}x^i\)</span>，则 <span class="math display">\[
 H(x)=1+F_{&lt;k}(x)H(x)
-\]</span> 其中 <span class="math inline">\(1\)</span> 是因为 <span class="math inline">\(h_0=1\)</span>，则 <span class="math inline">\([x^0]H(x)=1\)</span>。</p>
+\]</span> 其中 <span class="math inline">\(1\)</span> 是因为 <span class="math inline">\(h_0=1\)</span>，有 <span class="math inline">\([x^0]H(x)=1\)</span>，这一项卷积里没有。</p>
 <p>再移项，最终得到 <span class="math display">\[
 H(x)=\frac{1}{1-F_{&lt;k}(x)}\tag{2}
 \]</span> 只需要一次多项式求逆，之后 <span class="math inline">\(h_n=[x^n]H(x)\cdot n!\)</span>。</p>
