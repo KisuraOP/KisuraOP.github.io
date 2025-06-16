@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/0bf9850577fc6e07f96c6e881d886e2d.jpeg">
 <meta property="article:published_time" content="2025-06-16T17:14:49.000Z">
-<meta property="article:modified_time" content="2025-06-16T17:21:48.957Z">
+<meta property="article:modified_time" content="2025-06-16T17:29:16.273Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="-600">
 <meta name="twitter:card" content="summary_large_image">
@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          13k 字
+          12k 字
         
       </span>
     
@@ -674,23 +674,6 @@ dp[x][2]=\prod_{y\in son[x]}(dp[y][1]+dp[y][2])
         <span class="hljs-built_in">apply</span>(rs, tag[p]);
         tag[p] = <span class="hljs-built_in">Tag</span>();
     &#125;
-    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">modify</span><span class="hljs-params">(<span class="hljs-type">int</span> p, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r, <span class="hljs-type">int</span> pos, <span class="hljs-type">const</span> Info &amp;x)</span> </span>&#123;
-        <span class="hljs-keyword">if</span> (l == r) &#123;
-            tr[p] = x;
-            <span class="hljs-keyword">return</span>;
-        &#125;
-        <span class="hljs-built_in">pushdown</span>(p);
-        <span class="hljs-type">int</span> m = l + r &gt;&gt; <span class="hljs-number">1</span>;
-        <span class="hljs-keyword">if</span> (pos &lt;= m) &#123;
-            <span class="hljs-built_in">modify</span>(ls, l, m, pos, x);
-        &#125; <span class="hljs-keyword">else</span> &#123;
-            <span class="hljs-built_in">modify</span>(rs, m + <span class="hljs-number">1</span>, r, pos, x);
-        &#125;
-        <span class="hljs-built_in">pushup</span>(p);
-    &#125;
-    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">modify</span><span class="hljs-params">(<span class="hljs-type">int</span> pos, <span class="hljs-type">const</span> Info &amp;x)</span> </span>&#123;
-        <span class="hljs-built_in">modify</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, n, pos, x);
-    &#125;
     <span class="hljs-function">Info <span class="hljs-title">query</span><span class="hljs-params">(<span class="hljs-type">int</span> p, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r, <span class="hljs-type">int</span> ql, <span class="hljs-type">int</span> qr)</span> </span>&#123;
         <span class="hljs-keyword">if</span> (ql &lt;= l &amp;&amp; qr &gt;= r) &#123;
             <span class="hljs-keyword">return</span> tr[p];
@@ -730,52 +713,6 @@ dp[x][2]=\prod_{y\in son[x]}(dp[y][1]+dp[y][2])
     		<span class="hljs-keyword">return</span> ;
     	&#125;
         <span class="hljs-keyword">return</span> <span class="hljs-built_in">modify</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, n, ql, qr, x);
-    &#125;
-    <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> F&gt;</span>
-<span class="hljs-function">    <span class="hljs-type">int</span> <span class="hljs-title">findFirst</span><span class="hljs-params">(<span class="hljs-type">int</span> p, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r, <span class="hljs-type">int</span> ql, <span class="hljs-type">int</span> qr, F &amp;&amp;pred)</span> </span>&#123;
-        <span class="hljs-keyword">if</span> (l &gt; qr || r &lt; ql) &#123;
-            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
-        &#125;
-        <span class="hljs-keyword">if</span> (ql &lt;= l &amp;&amp; qr &gt;= r &amp;&amp; !<span class="hljs-built_in">pred</span>(tr[p])) &#123;
-            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
-        &#125;
-        <span class="hljs-keyword">if</span> (l == r) &#123;
-            <span class="hljs-keyword">return</span> l;
-        &#125;
-        <span class="hljs-built_in">pushdown</span>(p);
-        <span class="hljs-type">int</span> m = l + r &gt;&gt; <span class="hljs-number">1</span>;
-        <span class="hljs-type">int</span> res = <span class="hljs-built_in">findFirst</span>(ls, l, m, ql, qr, pred);
-        <span class="hljs-keyword">if</span> (res == <span class="hljs-number">-1</span>) &#123;
-            res = <span class="hljs-built_in">findFirst</span>(rs, m + <span class="hljs-number">1</span>, r, ql, qr, pred);
-        &#125;
-        <span class="hljs-keyword">return</span> res;
-    &#125;
-    <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> F&gt;</span>
-<span class="hljs-function">    <span class="hljs-type">int</span> <span class="hljs-title">findFirst</span><span class="hljs-params">(<span class="hljs-type">int</span> ql, <span class="hljs-type">int</span> qr, F &amp;&amp;pred)</span> </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">findFirst</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, n, ql, qr, pred);
-    &#125;
-    <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> F&gt;</span>
-<span class="hljs-function">    <span class="hljs-type">int</span> <span class="hljs-title">findLast</span><span class="hljs-params">(<span class="hljs-type">int</span> p, <span class="hljs-type">int</span> l, <span class="hljs-type">int</span> r, <span class="hljs-type">int</span> ql, <span class="hljs-type">int</span> qr, F &amp;&amp;pred)</span> </span>&#123;
-        <span class="hljs-keyword">if</span> (l &gt; qr || r &lt; ql) &#123;
-            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
-        &#125;
-        <span class="hljs-keyword">if</span> (ql &lt;= l &amp;&amp; qr &gt;= r &amp;&amp; !<span class="hljs-built_in">pred</span>(tr[p])) &#123;
-            <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;
-        &#125;
-        <span class="hljs-keyword">if</span> (l == r) &#123;
-            <span class="hljs-keyword">return</span> l;
-        &#125;
-        <span class="hljs-built_in">pushdown</span>(p);
-        <span class="hljs-type">int</span> m = l + r &gt;&gt; <span class="hljs-number">1</span>;
-        <span class="hljs-type">int</span> res = <span class="hljs-built_in">findLast</span>(rs, m + <span class="hljs-number">1</span>, r, ql, qr, pred);
-        <span class="hljs-keyword">if</span> (res == <span class="hljs-number">-1</span>) &#123;
-            res = <span class="hljs-built_in">findLast</span>(ls, l, m, ql, qr, pred);
-        &#125;
-        <span class="hljs-keyword">return</span> res;
-    &#125;
-    <span class="hljs-function"><span class="hljs-keyword">template</span>&lt;<span class="hljs-keyword">class</span> F&gt;</span>
-<span class="hljs-function">    <span class="hljs-type">int</span> <span class="hljs-title">findLast</span><span class="hljs-params">(<span class="hljs-type">int</span> ql, <span class="hljs-type">int</span> qr, F &amp;&amp;pred)</span> </span>&#123;
-        <span class="hljs-keyword">return</span> <span class="hljs-built_in">findLast</span>(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, n, ql, qr, pred);
     &#125;
 &#125;;
  
