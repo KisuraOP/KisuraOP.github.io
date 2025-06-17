@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/0bf9850577fc6e07f96c6e881d886e2d.jpeg">
 <meta property="article:published_time" content="2025-06-16T17:14:49.000Z">
-<meta property="article:modified_time" content="2025-06-16T17:29:16.273Z">
+<meta property="article:modified_time" content="2025-06-17T02:50:53.320Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="-600">
 <meta name="twitter:card" content="summary_large_image">
@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          12k 字
+          15k 字
         
       </span>
     
@@ -327,7 +327,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2025年6月17日 凌晨
+                    本文最后更新于：2025年6月17日 上午
                   
                 
               </p>
@@ -948,6 +948,215 @@ matrix <span class="hljs-keyword">operator</span> * (<span class="hljs-type">con
 	<span class="hljs-type">int</span> p = T.a[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>];
 	<span class="hljs-type">int</span> q = (T.a[<span class="hljs-number">0</span>][<span class="hljs-number">0</span>] - <span class="hljs-number">1</span> + modp) % modp;
 	<span class="hljs-type">int</span> ans = <span class="hljs-built_in">qpow</span>(<span class="hljs-number">2</span>, p) * <span class="hljs-built_in">qpow</span>(<span class="hljs-number">3</span>, q) % mod;
+	cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-type">signed</span> <span class="hljs-title">main</span><span class="hljs-params">()</span> </span>&#123;
+	ios::<span class="hljs-built_in">sync_with_stdio</span>(<span class="hljs-literal">false</span>);
+	cin.<span class="hljs-built_in">tie</span>(<span class="hljs-literal">nullptr</span>);
+
+	<span class="hljs-type">int</span> T = <span class="hljs-number">1</span>;
+	<span class="hljs-keyword">while</span> (T--) &#123;
+		<span class="hljs-built_in">solve</span>();
+	&#125;
+	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+&#125;</code></pre></div>
+
+    </div>
+</div>
+<hr />
+<h3 id="j.-公路">J. 公路</h3>
+<p>拆贡献。枚举每一种颜色（即边权），把和该颜色相同的边全部拆掉，整棵树被拆分为若干连通块，设每个连通块的点数分别为 <span class="math inline">\(T_1,T_2,\ldots,T_m\)</span>。那么，这种颜色的贡献就是： <span class="math display">\[
+n(n-1)-\sum_{i=1}^{m}T_i(T_i-1)
+\]</span> 最终的答案就是每种颜色的贡献之和。</p>
+<p>选定任意一个点为根，一个朴素的想法是对每种颜色建出虚树（取对应颜色的边下面的点，以及根节点），这确实是可行的。</p>
+<p>设 <span class="math inline">\(sz[x]\)</span> 表示以 <span class="math inline">\(x\)</span> 为根的子树大小，称虚树上在我们选取的点集中的点称为黑点（特别的，包括根节点），其它点称为白点。</p>
+<p>那么我们可以对每个黑点 <span class="math inline">\(x\)</span> 算出它所在的连通块的大小，即 <span class="math display">\[
+sz[x]-\sum_{y,\ y\text{ 是 } x \text{ 子树中的黑点 }, \text{ 且 } x\to y \text{ 的路径上没有其它黑点}} sz[y]
+\]</span> 具体的，如果 <span class="math inline">\(y\)</span> 上面的点是白点，就可以把 <span class="math inline">\(sz[y]\)</span> 传递上去。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>，但实际 T 了，跑了 1.1s。</p>
+<p>下面的代码经过刻意卡常，洛谷上跑了 860ms。</p>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        Code
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
+<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> fre(x) freopen(#x<span class="hljs-string">&quot;.in&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, stdin); freopen(#x<span class="hljs-string">&quot;.out&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, stdout)</span>
+<span class="hljs-meta">#<span class="hljs-keyword">define</span> ck(x)  &#123; cout &lt;&lt; <span class="hljs-string">&quot;check &quot;</span> &lt;&lt; x &lt;&lt; endl;&#125;</span>
+
+<span class="hljs-keyword">constexpr</span> <span class="hljs-type">int</span> N = <span class="hljs-number">5e5</span> + <span class="hljs-number">5</span>;
+vector&lt;<span class="hljs-type">int</span>&gt; col[N];
+vector&lt;array&lt;<span class="hljs-type">int</span>, 2&gt;&gt; adj[N];
+<span class="hljs-type">int</span> tim, tot, fa[N][<span class="hljs-number">20</span>], sz[N], dfn[N], dep[N], id[N], rid[N], f[N];
+<span class="hljs-type">bool</span> inTree[N];
+
+<span class="hljs-keyword">using</span> _node = vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt;;
+<span class="hljs-keyword">struct</span> <span class="hljs-title class_">VirtualTree</span> &#123;
+	<span class="hljs-type">int</span> n;
+	<span class="hljs-built_in">VirtualTree</span>(<span class="hljs-type">int</span> size) &#123;
+		<span class="hljs-keyword">this</span>-&gt;n = size;
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">add</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y, <span class="hljs-type">int</span> w)</span> </span>&#123;
+		adj[x].<span class="hljs-built_in">push_back</span>(&#123;y, w&#125;);
+		adj[y].<span class="hljs-built_in">push_back</span>(&#123;x, w&#125;);
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> fath)</span> </span>&#123;
+		dfn[x] = ++tim;
+		fa[x][<span class="hljs-number">0</span>] = fath;
+		dep[x] = dep[fath] + <span class="hljs-number">1</span>;
+		sz[x] = <span class="hljs-number">1</span>;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= __lg(dep[x]) + <span class="hljs-number">1</span>; i++) &#123;
+			fa[x][i] = fa[fa[x][i - <span class="hljs-number">1</span>]][i - <span class="hljs-number">1</span>];
+		&#125;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> [y, w] : adj[x]) &#123;
+			<span class="hljs-keyword">if</span> (y != fath) &#123;
+				col[w].<span class="hljs-built_in">push_back</span>(y);
+				<span class="hljs-built_in">dfs</span>(y, x);
+				sz[x] += sz[y];
+			&#125;
+		&#125;
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">init</span><span class="hljs-params">(<span class="hljs-type">int</span> rt)</span> </span>&#123;
+		<span class="hljs-built_in">dfs</span>(rt, <span class="hljs-number">0</span>);
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">LCA</span><span class="hljs-params">(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;
+		<span class="hljs-keyword">if</span> (dep[x] &lt; dep[y]) &#123;
+			<span class="hljs-built_in">swap</span>(x, y);
+		&#125;
+		<span class="hljs-keyword">while</span> (dep[x] &gt; dep[y]) &#123;
+			x = fa[x][__lg(dep[x] - dep[y])];
+		&#125;
+		<span class="hljs-keyword">if</span> (x == y) &#123;
+			<span class="hljs-keyword">return</span> x;
+		&#125; 
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = __lg(dep[x]); i &gt;= <span class="hljs-number">0</span>; i--) &#123;
+			<span class="hljs-keyword">if</span> (fa[x][i] != fa[y][i]) &#123;
+				x = fa[x][i];
+				y = fa[y][i];
+			&#125;
+		&#125;
+		<span class="hljs-keyword">return</span> fa[x][<span class="hljs-number">0</span>];
+	&#125;
+	vector&lt;<span class="hljs-type">int</span>&gt; b;
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Add</span><span class="hljs-params">(_node &amp;Adj, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y)</span> </span>&#123;
+		<span class="hljs-comment">// cout &lt;&lt; &quot;Add (&quot; &lt;&lt; x &lt;&lt; &quot; -&gt; &quot; &lt;&lt; y &lt;&lt; &quot;)\n&quot;; </span>
+		<span class="hljs-keyword">if</span> (id[x] == <span class="hljs-number">0</span>) &#123;
+			id[x] = ++tot;
+			rid[tot] = x;
+			b.<span class="hljs-built_in">push_back</span>(x);
+		&#125;
+		<span class="hljs-keyword">if</span> (id[y] == <span class="hljs-number">0</span>) &#123;
+			id[y] = ++tot;
+			rid[tot] = y;
+			b.<span class="hljs-built_in">push_back</span>(y);
+		&#125;
+		Adj[id[x]].<span class="hljs-built_in">push_back</span>(id[y]);
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">Del</span><span class="hljs-params">()</span> </span>&#123;
+		<span class="hljs-keyword">while</span> (!b.<span class="hljs-built_in">empty</span>()) &#123;
+			id[b.<span class="hljs-built_in">back</span>()] = <span class="hljs-number">0</span>;
+			b.<span class="hljs-built_in">pop_back</span>();
+		&#125;
+		tot = <span class="hljs-number">0</span>;
+	&#125;
+	<span class="hljs-function">_node <span class="hljs-title">getTree</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;a)</span> </span>&#123;
+		<span class="hljs-built_in">Del</span>();
+		<span class="hljs-type">int</span> sz = <span class="hljs-number">2</span> * a.<span class="hljs-built_in">size</span>() + <span class="hljs-number">1</span>;
+		<span class="hljs-type">int</span> top = <span class="hljs-number">1</span>;
+		<span class="hljs-built_in">sort</span>(a.<span class="hljs-built_in">begin</span>(), a.<span class="hljs-built_in">end</span>(), [&amp;] (<span class="hljs-type">const</span> <span class="hljs-type">int</span> &amp;i, <span class="hljs-type">const</span> <span class="hljs-type">int</span> &amp;j) &#123;
+			<span class="hljs-keyword">return</span> dfn[i] &lt; dfn[j];
+		&#125;);
+
+		<span class="hljs-function">_node <span class="hljs-title">Adj</span><span class="hljs-params">(sz + <span class="hljs-number">1</span>)</span></span>;
+		<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">stk</span><span class="hljs-params">(sz + <span class="hljs-number">1</span>)</span></span>;
+		stk[top] = <span class="hljs-number">1</span>;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> x : a) &#123;
+			<span class="hljs-keyword">if</span> (x == <span class="hljs-number">1</span>) &#123;
+				<span class="hljs-keyword">continue</span>;
+			&#125;
+			<span class="hljs-type">int</span> lca = <span class="hljs-built_in">LCA</span>(x, stk[top]);
+			<span class="hljs-keyword">if</span> (lca != stk[top]) &#123;
+				<span class="hljs-keyword">while</span> (top &gt; <span class="hljs-number">1</span> &amp;&amp; dfn[stk[top - <span class="hljs-number">1</span>]] &gt; dfn[lca]) &#123;
+					<span class="hljs-built_in">Add</span>(Adj, stk[top - <span class="hljs-number">1</span>], stk[top]);
+					top--;
+				&#125;
+				<span class="hljs-keyword">if</span> (lca != stk[top - <span class="hljs-number">1</span>]) &#123;
+					Adj[id[lca]].<span class="hljs-built_in">clear</span>();
+					<span class="hljs-built_in">Add</span>(Adj, lca, stk[top]);
+					stk[top] = lca;
+				&#125; <span class="hljs-keyword">else</span> &#123;
+					<span class="hljs-built_in">Add</span>(Adj, lca, stk[top]);
+					top--;
+				&#125;
+			&#125;
+			Adj[id[x]].<span class="hljs-built_in">clear</span>();
+			stk[++top] = x;
+		&#125;
+		<span class="hljs-keyword">while</span> (top &gt; <span class="hljs-number">1</span>) &#123;
+			<span class="hljs-built_in">Add</span>(Adj, stk[top - <span class="hljs-number">1</span>], stk[top]);
+			top--;
+		&#125;
+		<span class="hljs-keyword">return</span> Adj;
+	&#125;
+&#125;;
+
+
+<span class="hljs-comment">//-------------- templates above --------------</span>
+
+
+<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">solve</span><span class="hljs-params">()</span> </span>&#123;
+	<span class="hljs-type">int</span> n;
+	cin &gt;&gt; n;
+	<span class="hljs-function">VirtualTree <span class="hljs-title">G</span><span class="hljs-params">(n)</span></span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;
+		<span class="hljs-type">int</span> x, y, w;
+		cin &gt;&gt; x &gt;&gt; y &gt;&gt; w;
+		G.<span class="hljs-built_in">add</span>(x, y, w);
+	&#125;
+	G.<span class="hljs-built_in">init</span>(<span class="hljs-number">1</span>);
+
+	<span class="hljs-type">long</span> <span class="hljs-type">long</span> ans = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+		<span class="hljs-keyword">if</span> (col[i].<span class="hljs-built_in">empty</span>()) &#123;
+			<span class="hljs-keyword">continue</span>;
+		&#125;
+		<span class="hljs-type">long</span> <span class="hljs-type">long</span> res = <span class="hljs-number">1ll</span> * n * (n - <span class="hljs-number">1</span>);
+		col[i].<span class="hljs-built_in">push_back</span>(<span class="hljs-number">1</span>);
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> x : col[i]) &#123;
+			inTree[x] = <span class="hljs-literal">true</span>;
+		&#125;
+		<span class="hljs-keyword">auto</span> Adj = G.<span class="hljs-built_in">getTree</span>(col[i]);
+
+		<span class="hljs-keyword">auto</span> dfs = [&amp;] (<span class="hljs-keyword">auto</span> self, <span class="hljs-type">int</span> x) -&gt; <span class="hljs-type">void</span> &#123;
+			<span class="hljs-keyword">if</span> (inTree[rid[x]]) &#123;
+				f[x] = sz[rid[x]];
+			&#125; <span class="hljs-keyword">else</span> &#123;
+				f[x] = <span class="hljs-number">0</span>;
+			&#125;
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> y : Adj[x]) &#123;
+				<span class="hljs-built_in">self</span>(self, y);
+				<span class="hljs-keyword">if</span> (!inTree[rid[x]]) &#123;
+					f[x] += f[y];
+				&#125;
+			&#125;
+			<span class="hljs-keyword">if</span> (inTree[rid[x]]) &#123;
+				<span class="hljs-type">int</span> g = f[x];
+				<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> y : Adj[x]) &#123;
+					g -= f[y];
+				&#125;
+				res -= <span class="hljs-number">1ll</span> * g * (g - <span class="hljs-number">1</span>);
+			&#125;
+		&#125;;
+		<span class="hljs-built_in">dfs</span>(dfs, id[<span class="hljs-number">1</span>]);
+
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">auto</span> x : col[i]) &#123;
+			inTree[x] = <span class="hljs-literal">false</span>;
+		&#125;
+		ans += res;
+	&#125;
 	cout &lt;&lt; ans &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
 &#125;
 
