@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.6k 字
+          6.7k 字
         
       </span>
     
@@ -348,7 +348,7 @@
 <p><a target="_blank" rel="noopener" href="https://codeforces.com/gym/105949/submission/323441010">Code</a></p>
 <p><span class="math inline">\(X\)</span> 轴和 <span class="math inline">\(Y\)</span> 轴可以分开考虑。</p>
 <p>令 <span class="math inline">\(f[i][0/1]\)</span> 表示从 <span class="math inline">\(0\to i\)</span> 走偶数/奇数步最少需要走几步，<span class="math inline">\(dx=|x-X|\)</span>，<span class="math inline">\(dy=|y-Y|\)</span>，则 <span class="math display">\[
-ans = \min(\max(f[dx][0],f[dy][0]), \max(f[dx][1], f[dy][1]))
+ans = \min\begin{cases}\max(f[dx][0],f[dy][0])\\ \max(f[dx][1], f[dy][1])\end{cases}
 \]</span> 纸上列个表易得： <span class="math display">\[
 f[i][0]=\begin{cases}
 0 &amp;,i=0\\
@@ -476,7 +476,7 @@ x_k=\frac{\det(A_k)}{\det (A)}\tag{1}
 \]</span> 再看分子 <span class="math inline">\(\det(A^k)\)</span>，眼尖的你会发现这仍然是一个范德蒙德矩阵的转置，只不过生成元从 <span class="math inline">\((a_1\ \ a_2\ \cdots\ a_n)\)</span> 变为了 <span class="math inline">\((a_1\ \cdots \ t \ \cdots \ a_n)\)</span>。于是 <span class="math display">\[
 \det(A_k) = \left( \prod_{\substack{1 \le i &lt; j \le n \\ i,j \neq k}} (a_j - a_i) \right) \cdot \left( \prod_{i=1}^{k-1} (t - a_i) \right) \cdot \left( \prod_{j=k+1}^{n} (a_j - t) \right)
 \]</span> 将 <span class="math inline">\(\det(A)\)</span> 和 <span class="math inline">\(\det(A_k)\)</span> 的展开代入公式 <span class="math inline">\((1)\)</span>，大部分的项都可以约分，最终剩下 <span class="math display">\[
-x_k = \frac{\prod\limits_{i=1, i \neq k}^{n} (t - a_i)}{\prod\limits_{i=1, i \neq k}^{n} (a_k - a_i)}\tag{2}
+\large x_k = \frac{\prod\limits_{i=1, i \neq k}^{n} (t - a_i)}{\prod\limits_{i=1, i \neq k}^{n} (a_k - a_i)}\tag{2}
 \]</span></p>
 <p>到这一步，计算每个 <span class="math inline">\(x_k\)</span> 需要 <span class="math inline">\(O(n)\)</span> 时间，于是我们已经可以 <span class="math inline">\(O(n^2)\)</span> 地解决这个问题了。</p>
 <p>接下来的优化需要引入一个辅助多项式，令</p>
