@@ -541,17 +541,19 @@ E[X]=\sum_{i\neq j}\frac{p_ip_j}{p_i+p_j}
 <p>对于一个点 <span class="math inline">\(P_i(x_i,y_i)\)</span>，它能被 <span class="math inline">\(P_j(x_j,y_j)\)</span> 照射到，当且仅当方向向量 <span class="math inline">\(\overrightarrow{P_jP_i}=(x_i-x_j,y_i-y_j)\)</span> 在扇区内。</p>
 <p>分别取扇区两条边界线上两点 <span class="math inline">\(A(\cos\alpha,-\sin\alpha)\)</span> 和 <span class="math inline">\(B(\cos\beta,-\sin\beta)\)</span>。其中 <span class="math inline">\(\alpha\)</span> 和 <span class="math inline">\(\beta\)</span> 是射线与 <span class="math inline">\(x\)</span> 轴的夹角，不妨令 <span class="math inline">\(\alpha &lt; \beta\)</span>。</p>
 <p>那么，由 <span class="math inline">\(\overrightarrow{P_jP_i}\)</span> 在扇区内，有</p>
-$$
-<span class="math display">\[\begin{cases}
+<p>$$ <span class="math display">\[\begin{align}
+\begin{cases}
 \overrightarrow{OA}\times \overrightarrow{P_jP_i}\le 0\\
 \overrightarrow{OB}\times \overrightarrow{P_jP_i}\ge 0
-\end{cases}\]</span>
-<p> </p>
-<span class="math display">\[\begin{cases}
+\end{cases}
+
+\ \Longrightarrow
+
+\begin{cases}
 \cos\alpha \cdot y_i+\sin\alpha\cdot x_i\le \cos\alpha\cdot y_j+\sin\alpha\cdot x_j\\
 \cos\beta \cdot y_i+\sin\beta\cdot x_i\ge \cos\beta\cdot y_j+\sin\beta\cdot x_j
-\end{cases}\]</span>
-<p>$$</p>
+\end{cases}
+\end{align}\]</span> $$</p>
 <p>令 <span class="math inline">\(w_1(P_i)=\cos\alpha\cdot y_i+\sin\alpha\cdot x_i\)</span>，以及 <span class="math inline">\(w_2(P_i)=\cos\beta\cdot y_i+\sin\beta\cdot x_i\)</span>，则</p>
 <p><span class="math display">\[
 \begin{cases}
