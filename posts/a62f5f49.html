@@ -387,7 +387,7 @@ e(a_k,b_1) &amp; e(a_k,b_2) &amp; \cdots &amp; e(a_k,b_k)
 <p>当 <span class="math inline">\(m=0\)</span> 时，只有全 <span class="math inline">\(0\)</span> 序列能满足要求，故 <span class="math inline">\(f_n(0)=1\)</span>。</p>
 <p>当 <span class="math inline">\(m=1\)</span> 时，<span class="math inline">\(\{a\}\)</span> 只能是 <span class="math inline">\(01\)</span> 序列。根据定义易知 <span class="math inline">\(\{a\}\)</span> 需要满足 "没有连续两个 <span class="math inline">\(0\)</span>" 且 "没有连续三个 <span class="math inline">\(1\)</span>"。</p>
 <p>这等价于在下述状态机中，从任意一个顶点出发，经过 <span class="math inline">\(n\)</span> 条边回到同一顶点的路径条数。</p>
-<p><img src="/image/academic/qoj9479.png" style="zoom:35%;" /></p>
+<p><img src="/image/academic/qoj9479.png" style="zoom:30%;" /></p>
 <p>邻接矩阵配合矩阵快速幂，可以在 <span class="math inline">\(O(\log n)\)</span> 内解决。</p>
 <p>当 <span class="math inline">\(m\)</span> 为 <span class="math inline">\(\ge 2\)</span> 的偶数时，草稿纸上画一下，易知此时 <span class="math inline">\(\{a\}\)</span> 要么全是偶数，要么全是奇数。</p>
 <ul>
