@@ -392,7 +392,7 @@ e(a_k,b_1) &amp; e(a_k,b_2) &amp; \cdots &amp; e(a_k,b_k)
 <p>当 <span class="math inline">\(m\)</span> 为 <span class="math inline">\(\ge 2\)</span> 的偶数时，草稿纸上画一下，易知此时 <span class="math inline">\(\{a\}\)</span> 要么全是偶数，要么全是奇数。</p>
 <ul>
 <li>当 <span class="math inline">\(\{a\}\)</span> 全为偶数时，令 <span class="math inline">\(a_i=2b_i\)</span>，方程变为 <span class="math inline">\(2b_i+(2b_{i-1}\&amp;2b_{i+1})=m\)</span>。由位运算的性质，括号里的 <span class="math inline">\(2\)</span> 可以提出来，于是方程化为 <span class="math inline">\(b_i+(b_{i-1}\&amp;b_{i+1})=\dfrac{m}{2}\)</span>。这是一个规模更小的问题，即 <span class="math inline">\(f_n(\dfrac{m}{2})\)</span>。</li>
-<li>当 <span class="math inline">\(\{a\}\)</span> 全为奇数时，令 <span class="math inline">\(a_i=2b_i+1\)</span>，代入方程，同样能推导出 <span class="math inline">\(b_i+(b_{i-1}\&amp;b_{i+1})=\dfrac{m}{2}-1\)</span>，即 <span class="math inline">\(f_n(\dfrac{m}{2}-1)\)</span>。</li>
+<li>当 <span class="math inline">\(\{a\}\)</span> 全为奇数时，令 <span class="math inline">\(a_i=2b_i+1\)</span>，代入方程，同样能推导出 <span class="math inline">\(b_i+(b_{i-1}\&amp;b_{i+1})=\dfrac{m}{2}-1\)</span>。</li>
 </ul>
 <p>故 <span class="math inline">\(f_n(m)=f_n(\dfrac{m}{2})+f_n(\dfrac{m}{2}-1)\)</span>。</p>
 <p>当 <span class="math inline">\(m\)</span> 为 <span class="math inline">\(\ge 3\)</span> 的奇数时，换一个视角，在计算 <span class="math inline">\(a_i+(a_{i-1}\&amp;a_{i+1})\)</span> 时二进制下最低位一定不会产生进位。</p>
