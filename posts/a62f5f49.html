@@ -351,8 +351,8 @@
 <h2 id="qoj9476.-012-grid"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1812/problem/9476">QOJ9476. 012 Grid</a></h2>
 <p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1085839">Code</a></p>
 <p>先引用四张官方题解的图片。</p>
-<p><img src="image/academic/qoj9476_1.png" /></p>
-<p><img src="image/academic/qoj9476_2.png" /></p>
+<p><img src="/image/academic/qoj9476_1.png" /></p>
+<p><img src="/image/academic/qoj9476_2.png" /></p>
 <p>不难发现，题目的约束等同于找两条从左下到右上的路径，这两条路径分别分割了 <span class="math inline">\(0/1\)</span> 以及 <span class="math inline">\(1/2\)</span>，严格不相交。其中前两幅图路径起点都是 <span class="math inline">\((0,1)\)</span> 和 <span class="math inline">\((1,0)\)</span>，终点都是 <span class="math inline">\((n, m-1)\)</span> 和 <span class="math inline">\((n-1,m)\)</span>。而后两幅图可以提取出一个子矩形（红圈框起来），只研究这个子矩形的话和前两幅图无异。</p>
 <p>于是我们先研究前两幅图的情况。回忆 LGV 引理，有向无环图上，给定 <span class="math inline">\(k\)</span> 个起点 <span class="math inline">\(\{a_1,a_2,\ldots,a_k\}\)</span> 和 <span class="math inline">\(k\)</span> 个终点 <span class="math inline">\(\{b_1,b_2,\ldots,b_k\}\)</span>，那么要满足 <span class="math inline">\(a_i\to b_i\)</span> 这 <span class="math inline">\(k\)</span> 条路径严格互不相交，方案数是： <span class="math display">\[
 \det\pmatrix{e(a_1,b_1) &amp; e(a_1,b_2) &amp; \cdots &amp; e(a_1,b_k)\\
