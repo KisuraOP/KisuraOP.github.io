@@ -1,0 +1,990 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/image/bg/mugeng.ico">
+  <link rel="icon" href="/image/bg/mugeng.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="KisuraOP">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="QOJ9748. 最大公因数的平方和 Code 由莫比乌斯反演，令 \(g(n)&#x3D;n^2&#x3D;\sum\limits_{d\mid n}f(d)\)，则 \(f(n)&#x3D;\sum\limits_{d\mid n}\mu(d)g\left(\dfrac{n}{d}\right)&#x3D;\sum\limits_{d\mid n}\mu(d)\left(\dfrac{n}{d}\right)^2\)。 我们可以在调">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【题解】六月训练日记">
+<meta property="og:url" content="https://kisuraop.github.io/posts/a62f5f49.html">
+<meta property="og:site_name" content="KisuraOP">
+<meta property="og:description" content="QOJ9748. 最大公因数的平方和 Code 由莫比乌斯反演，令 \(g(n)&#x3D;n^2&#x3D;\sum\limits_{d\mid n}f(d)\)，则 \(f(n)&#x3D;\sum\limits_{d\mid n}\mu(d)g\left(\dfrac{n}{d}\right)&#x3D;\sum\limits_{d\mid n}\mu(d)\left(\dfrac{n}{d}\right)^2\)。 我们可以在调">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/7a19545ce4313b1626c04606489150d8.jpeg">
+<meta property="article:published_time" content="2025-06-26T15:50:10.000Z">
+<meta property="article:modified_time" content="2025-06-26T15:50:10.000Z">
+<meta property="article:author" content="KisuraOP">
+<meta property="article:tag" content="ICPC">
+<meta property="article:tag" content="Codeforces">
+<meta property="article:tag" content="QOJ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/7a19545ce4313b1626c04606489150d8.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>【题解】六月训练日记 - KisuraOP</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4277703_p4cthydttt.css">
+<link rel="stylesheet" href="/css/vemoji.css">
+<link rel="stylesheet" href="/css/bg_cover.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kisuraop.github.io","root":"/","version":"1.9.5-a","typing":{"enable":false,"typeSpeed":55,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"c++"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/image/other/loading.mp4","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="https://kisuraop.github.io/js/mouseclick.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>KisuraOPのBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/site/">
+                <i class="iconfont icon-bookmark-fill"></i>
+                <span>收藏夹</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/waiting/">
+                <i class="iconfont icon-plan"></i>
+                <span>待办</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/example/">
+                <i class="iconfont icon-comment"></i>
+                <span>留言</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://moe.jitsu.top/img/?sort=pc') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">【题解】六月训练日记</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        KisuraOP
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-26 23:50" pubdate>
+          2025年6月26日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          11k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【题解】六月训练日记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="qoj9748.-最大公因数的平方和"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1841/problem/9748">QOJ9748. 最大公因数的平方和</a></h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1086982">Code</a></p>
+<p>由莫比乌斯反演，令 <span class="math inline">\(g(n)=n^2=\sum\limits_{d\mid n}f(d)\)</span>，则 <span class="math inline">\(f(n)=\sum\limits_{d\mid n}\mu(d)g\left(\dfrac{n}{d}\right)=\sum\limits_{d\mid n}\mu(d)\left(\dfrac{n}{d}\right)^2\)</span>。</p>
+<p>我们可以在调和级数复杂度内预处理出所有的 <span class="math inline">\(f(n)\)</span>。</p>
+<p>于是，原式化为 <span class="math display">\[
+\begin{align}
+\sum_{i=l}^{r}\sum_{j=L}^{R}\gcd(a_i,b_j)^2
+&amp;=\sum_{i=l}^{r}\sum_{j=L}^{R}\sum_{d\mid \gcd(a_i,b_j)}f(d)\\
+&amp;=\sum_{i=l}^{r}\sum_{j=L}^{R}\sum_{d\mid a_i\land d\mid b_j}f(d)\\
+&amp;=\sum_{d=1}^{n}f(d)\sum_{i=l}^{r}[d\mid a_i]\sum_{j=L}^{R}[d\mid b_j]
+\end{align}
+\]</span> 后两项形式相同，我们以 <span class="math inline">\(\sum\limits_{i=l}^{r}[d\mid a_i]\)</span> 为例，相当于问一段区间内有多少个数是某个值 <span class="math inline">\(d\)</span> 的倍数。</p>
+<p>阈值分治，设阈值为 <span class="math inline">\(B\)</span>。那么当 <span class="math inline">\(d\le B\)</span> 时，我们可以对每个 <span class="math inline">\(d\)</span> 处理出一个前缀和，这样每个询问就可以 <span class="math inline">\(O(1)\)</span> 查询。这部分是 <span class="math inline">\(O(nB+qB)\)</span> 的。</p>
+<p>而 <span class="math inline">\(d&gt;B\)</span> 时，把这个倍数在 <span class="math inline">\(\{a\}\)</span> 中的下标记作 <span class="math inline">\(i\)</span>，在 <span class="math inline">\(\{b\}\)</span> 中的下标记作 <span class="math inline">\(j\)</span>。可以看成如下二维数点问题：</p>
+<ul>
+<li>二维平面上有若干个点，每个点的坐标是 <span class="math inline">\((i,j)\)</span>，有一个权值 <span class="math inline">\(f(d)\)</span>。</li>
+<li>有若干询问，每个询问形如：在一个矩形区域内所有点的权值和。</li>
+</ul>
+<p>利用分块进行二维数点，这部分是 <span class="math inline">\(O(\dfrac{n^2}{B^2}+q\sqrt{n})\)</span> 的。</p>
+<h2 id="qoj9476.-012-grid"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1812/problem/9476">QOJ9476. 012 Grid</a></h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1085839">Code</a></p>
+<p>先引用四张官方题解的图片。</p>
+<p><img src="image/academic/qoj9476_1.png" /></p>
+<p><img src="image/academic/qoj9476_2.png" /></p>
+<p>不难发现，题目的约束等同于找两条从左下到右上的路径，这两条路径分别分割了 <span class="math inline">\(0/1\)</span> 以及 <span class="math inline">\(1/2\)</span>，严格不相交。其中前两幅图路径起点都是 <span class="math inline">\((0,1)\)</span> 和 <span class="math inline">\((1,0)\)</span>，终点都是 <span class="math inline">\((n, m-1)\)</span> 和 <span class="math inline">\((n-1,m)\)</span>。而后两幅图可以提取出一个子矩形（红圈框起来），只研究这个子矩形的话和前两幅图无异。</p>
+<p>于是我们先研究前两幅图的情况。回忆 LGV 引理，有向无环图上，给定 <span class="math inline">\(k\)</span> 个起点 <span class="math inline">\(\{a_1,a_2,\ldots,a_k\}\)</span> 和 <span class="math inline">\(k\)</span> 个终点 <span class="math inline">\(\{b_1,b_2,\ldots,b_k\}\)</span>，那么要满足 <span class="math inline">\(a_i\to b_i\)</span> 这 <span class="math inline">\(k\)</span> 条路径严格互不相交，方案数是： <span class="math display">\[
+\det\pmatrix{e(a_1,b_1) &amp; e(a_1,b_2) &amp; \cdots &amp; e(a_1,b_k)\\
+e(a_2,b_1) &amp; e(a_2,b_2) &amp; \cdots &amp; e(a_2,b_k)\\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots\\
+e(a_k,b_1) &amp; e(a_k,b_2) &amp; \cdots &amp; e(a_k,b_k)
+}
+\]</span> 其中 <span class="math inline">\(e(a_i,b_j)\)</span> 表示从 <span class="math inline">\(a_i\)</span> 到 <span class="math inline">\(b_j\)</span> 所有路径的权重之和。再者，一条路径的权重定义为路径上所有边权之积。于是，当图中所有边权都是 <span class="math inline">\(1\)</span> 时，<span class="math inline">\(e(a_i,b_j)\)</span> 就等价于从 <span class="math inline">\(a_i\)</span> 到 <span class="math inline">\(b_j\)</span> 有多少条不同的路径。再回忆，网格图上，如果只朝右或朝上走（这样相当于有向无环图），那么从点 <span class="math inline">\(P(x_1,y_1)\)</span> 到 <span class="math inline">\(Q(x_2,y_2)\)</span> 有 <span class="math inline">\(\dbinom{|x_1-x_2|+|y_1-y_2|}{|x_1-x_2|}\)</span> 种不同的走法（插板法），故 <span class="math inline">\(e(P,Q)= \dbinom{|x_1-x_2|+|y_1-y_2|}{|x_1-x_2|}\)</span>。</p>
+<p>回到本题，<span class="math inline">\(k=2\)</span>，起点分别为 <span class="math inline">\((0,1),(1,0)\)</span>，终点分别为 <span class="math inline">\((n,m-1),(n-1,m)\)</span>，那么严格不相交路径数等于 <span class="math display">\[
+\det\pmatrix{\dbinom{n+m-2}{n} &amp; \dbinom{n+m-2}{n-1}\\
+\dbinom{n+m-2}{n-1} &amp; \dbinom{n+m-2}{m}
+}
+=
+\frac{(n+m-2)!(n+m-1)!}{n!m!(n-1)!(m-1)!}
+\]</span> 这个组合数展开花了我相当多的时间，可能需要一点技巧（</p>
+<p>好，现在我们看向后两幅图，我们现在要枚举那个红框框起来的区域。观察这两幅图，左边这幅子矩形贴着右侧和下侧，我们称这种情况为 "右下"，同理右边这幅是 "左右" 的情况。</p>
+<p>于是，共有左上、右下、左右、上下四种情况，后两种比较平凡，枚举矩形的长/宽，乘这样尺寸的矩形有几个，再累加即可。</p>
+<p>对于前两种，矩形的长和宽都需要枚举，相当于求一个这样的式子 <span class="math display">\[
+\sum_{i=1}^{n}\sum_{j=1}^{m}\frac{(i+j-2)!(i+j-1)!}{i!j!(i-1)!(j-1)!}
+\]</span> 分子的形式引起我们注意，令 <span class="math inline">\(p=i+j\)</span>，原式化为 <span class="math display">\[
+\sum_{p=2}^{n+m}(p-2)!(p-1)!
+\sum_{i+j=k}
+\underbrace{\frac{1}{i!(i-1)!}}_{\Large f_i}
+\cdot 
+\underbrace{\frac{1}{j!(j-1)!}}_{\Large g_j}
+\]</span> 后面那项用 NTT 卷积即可。</p>
+<p>时间复杂度 <span class="math inline">\(O((n+m)\log (n+m))\)</span>。</p>
+<h2 id="qoj9479.-and-dna"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1812/problem/9479">QOJ9479. And DNA</a></h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1094637">Code</a></p>
+<p>定义 <span class="math inline">\(f_n(m)\)</span>：长度为 <span class="math inline">\(n\)</span> 的序列 <span class="math inline">\(\{a\}\)</span>，满足 <span class="math inline">\(\forall i\in [1,n]\)</span>，<span class="math inline">\(a_i+(a_{i-1}\&amp;a_{i+1})=m\)</span> 的序列数量。</p>
+<p>先思考 <span class="math inline">\(m\)</span> 比较小的情况。</p>
+<p>当 <span class="math inline">\(m=0\)</span> 时，只有全 <span class="math inline">\(0\)</span> 序列能满足要求，故 <span class="math inline">\(f_n(0)=1\)</span>。</p>
+<p>当 <span class="math inline">\(m=1\)</span> 时，<span class="math inline">\(\{a\}\)</span> 只能是 <span class="math inline">\(01\)</span> 序列。根据定义易知 <span class="math inline">\(\{a\}\)</span> 需要满足 "没有连续两个 <span class="math inline">\(0\)</span>" 且 "没有连续三个 <span class="math inline">\(1\)</span>"。</p>
+<p>这等价于在下述状态机中，从任意一个顶点出发，经过 <span class="math inline">\(n\)</span> 条边回到同一顶点的路径条数。</p>
+<p><img src="/image/academic/qoj9479.png" /></p>
+<p>邻接矩阵配合矩阵快速幂，可以在 <span class="math inline">\(O(\log n)\)</span> 内解决。</p>
+<p>当 <span class="math inline">\(m\)</span> 为 <span class="math inline">\(\ge 2\)</span> 的偶数时，草稿纸上画一下，易知此时 <span class="math inline">\(\{a\}\)</span> 要么全是偶数，要么全是奇数。</p>
+<ul>
+<li>当 <span class="math inline">\(\{a\}\)</span> 全为偶数时，令 <span class="math inline">\(a_i=2b_i\)</span>，方程变为 <span class="math inline">\(2b_i+(2b_{i-1}\&amp;2b_{i+1})=m\)</span>。由位运算的性质，括号里的 <span class="math inline">\(2\)</span> 可以提出来，于是方程化为 <span class="math inline">\(b_i+(b_{i-1}\&amp;b_{i+1})=\dfrac{m}{2}\)</span>。这是一个规模更小的问题，即 <span class="math inline">\(f_n(\dfrac{m}{2})\)</span>。</li>
+<li>当 <span class="math inline">\(\{a\}\)</span> 全为奇数时，令 <span class="math inline">\(a_i=2b_i+1\)</span>，代入方程，同样能推导出 <span class="math inline">\(b_i+(b_{i-1}\&amp;b_{i+1})=\dfrac{m}{2}-1\)</span>，即 <span class="math inline">\(f_n(\dfrac{m}{2}-1)\)</span>。</li>
+</ul>
+<p>故 <span class="math inline">\(f_n(m)=f_n(\dfrac{m}{2})+f_n(\dfrac{m}{2}-1)\)</span>。</p>
+<p>当 <span class="math inline">\(m\)</span> 为 <span class="math inline">\(\ge 3\)</span> 的奇数时，换一个视角，在计算 <span class="math inline">\(a_i+(a_{i-1}\&amp;a_{i+1})\)</span> 时二进制下最低位一定不会产生进位。</p>
+<p>这允许我们将最低位和高位部分分开计算，两部分独立，方案数可以乘起来。</p>
+<ul>
+<li>最低位部分，<span class="math inline">\(a_i^{(low)}+(a_{i-1}^{(low)}\&amp;a_{i+1}^{(low)})=1\)</span>，即 <span class="math inline">\(f_n(1)\)</span>。</li>
+<li>高位部分，把末尾的 <span class="math inline">\(1\)</span> 除掉之后剩下 <span class="math inline">\(\dfrac{m-1}{2}\)</span>，即 <span class="math inline">\(f_n(\dfrac{m-1}{2})\)</span>。</li>
+</ul>
+<p>故 <span class="math inline">\(f_n(m)=f_n(1)\times f_n(\dfrac{m-1}{2})\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(\log n+\log m)\)</span>。</p>
+<h2 id="qoj9488.-do-not-turn-back"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1812/problem/9488">QOJ9488. Do Not Turn Back</a></h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1094352">Code</a></p>
+<p>将 "不连续走同一条边" 的条件称为 <span class="math inline">\((*)\)</span> 条件。</p>
+<p>定义一个 <span class="math inline">\(N\times N\)</span> 的方阵 <span class="math inline">\(X_k\)</span>：<span class="math inline">\(X_k[i][j]\)</span> 表示从 <span class="math inline">\(i\)</span> 到 <span class="math inline">\(j\)</span> 长度为 <span class="math inline">\(k\)</span> 且满足 <span class="math inline">\((*)\)</span> 的路径数量。</p>
+<p>于是答案即为 <span class="math inline">\(X_k[1][n]\)</span>。</p>
+<p>同样定义以下几个 <span class="math inline">\(N\times N\)</span> 的矩阵：</p>
+<ul>
+<li><span class="math inline">\(A\)</span>：图 <span class="math inline">\(G\)</span> 的邻接矩阵。</li>
+<li><span class="math inline">\(D\)</span>：图 <span class="math inline">\(G\)</span> 的度数矩阵。（对角矩阵，对角线上的元素为对应顶点的度数）</li>
+<li><span class="math inline">\(I\)</span>：单位矩阵。</li>
+<li><span class="math inline">\(O\)</span>：零矩阵。</li>
+</ul>
+<p>接下来看怎么推导出 <span class="math inline">\(X_k\)</span>。</p>
+<p>当 <span class="math inline">\(k=1\)</span> 时，显然有 <span class="math inline">\(X_1=A\)</span>。</p>
+<p>当 <span class="math inline">\(k=2\)</span> 时，若不考虑 <span class="math inline">\((*)\)</span>，答案是 <span class="math inline">\(A^2\)</span>。而不满足 <span class="math inline">\((*)\)</span> 的路径形如 <span class="math inline">\(i\to j\to i\)</span>，这样的路径有 <span class="math inline">\(\text{deg}(i)\)</span> 条，于是 <span class="math inline">\(X_2=A^2-D\)</span>。</p>
+<p>当 <span class="math inline">\(k\ge 3\)</span> 时，同样考虑从 <span class="math inline">\(AX_{k-1}\)</span> 中减去不满足 <span class="math inline">\((*)\)</span> 的部分。</p>
+<p>考虑 <span class="math inline">\(AX_{k-1}\)</span> 的含义是所有长度为 <span class="math inline">\(k-1\)</span> 的合法路径再往前走一步。对于一条路径： <span class="math display">\[
+a_0\to \ldots \to a_{k-3}\to a_{k-2}\to a_{k-1}
+\]</span> 不满足 <span class="math inline">\((*)\)</span> 的路径形如，从 <span class="math inline">\(a_{k-2}\)</span> 开始走一段 <span class="math inline">\(i\to j\to i\ (i=a_{k-2})\)</span>。其中 <span class="math inline">\(j\)</span> 的选择有 <span class="math inline">\(\text{deg}(i)-1\)</span> 种，减一是因为前面的路径合法保证了 <span class="math inline">\(j\)</span> 不能是 <span class="math inline">\(a_{k-3}\)</span>。于是，不满足 <span class="math inline">\((*)\)</span> 的路径数有 <span class="math inline">\((D-I)X_{k-2}\)</span> 这么多。</p>
+<p>也就是说，<span class="math inline">\(X_k=AX_{k-1}-(D-I)X_{k-2},\ k\ge 3\)</span>。</p>
+<p>写成矩阵快速幂的形式 <span class="math display">\[
+\pmatrix{X_k\\X_{k-1}}=\pmatrix{A &amp; -(D-I)\\ I &amp; O}\pmatrix{X_{k-1}\\ X_{k-2}}
+\]</span> 即 <span class="math display">\[
+\pmatrix{X_k\\X_{k-1}}=\pmatrix{A &amp; -(D-I)\\ I &amp; O}^{k-2}\pmatrix{X_2\\ X_1}
+\]</span> 时间复杂度 <span class="math inline">\(O(N^3\log K)\)</span>。</p>
+<h2 id="qoj10346.-make-triangle"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1967/problem/10346">QOJ10346. Make Triangle</a></h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1105077">Code</a></p>
+<p>令 <span class="math inline">\(S=\sum x_i\)</span>，三个集合分别为 <span class="math inline">\(A, B, C\)</span>，则题目可以转化为给出 <span class="math inline">\(\{x\}\)</span> 的一个三集合划分使得 <span class="math inline">\(|A|=n_a\)</span>，<span class="math inline">\(|B|=n_b\)</span>，<span class="math inline">\(|C|=n_c\)</span> 且 <span class="math inline">\(\min\left(\sum\limits_{x\in A}x,\sum\limits_{x\in B}x,\sum\limits_{x\in C}x\right) &lt; \dfrac{S}{2}\)</span>。</p>
+<p>在以下叙述中，默认 <span class="math inline">\(x_1\le x_2 \le \ldots\le x_n\)</span> 且 <span class="math inline">\(n_a\le n_b\le n_c\)</span>。</p>
+<p>下面是一些必要条件</p>
+<ul>
+<li>最大的元素不能太大：<span class="math inline">\(x_n+\sum\limits_{i=1}^{n_a-1}x_i&lt;\dfrac{S}{2}\)</span>。</li>
+<li>最大的组要装得下最小的几个元素：<span class="math inline">\(\sum\limits_{i=1}^{n_c}x_i&lt;\dfrac{S}{2}\)</span>。</li>
+</ul>
+<p>可以证明这个条件是充分的。但我们选择证明一个比上述条件更强的引理。</p>
+<p><em>Lemma.</em> 如果我们按 <span class="math inline">\(\{x_i\}\)</span> 从大到小选择它们应该放进的集合（即当前需要放置的元素比任何已经在集合里的元素都要小），设 <span class="math inline">\(n&#39;\)</span> 表示还没放的数的个数（即 <span class="math inline">\(x_1,x_2,\ldots,x_{n&#39;}\)</span>），<span class="math inline">\(n_a&#39;\)</span>，<span class="math inline">\(n_b&#39;\)</span>，<span class="math inline">\(n_c&#39;\)</span> 表示三个集合的剩余容量（满足 <span class="math inline">\(n_a&#39;+n_b&#39;+n_c&#39;=n&#39;\)</span>），<span class="math inline">\(S_a\)</span>，<span class="math inline">\(S_b\)</span>，<span class="math inline">\(S_c\)</span> 表示三个集合已经装进的数的和，则剩下的这 <span class="math inline">\(n&#39;\)</span> 个数能合法塞进三个集合的<strong>充要</strong>条件是：</p>
+<ul>
+<li><span class="math inline">\(\exists g\in \{a,b,c\}\)</span>，<span class="math inline">\(S_g+x_{n&#39;}+\sum\limits_{i=1}^{n_g&#39;-1}x_i&lt;\dfrac{S}{2}\)</span>。</li>
+<li><span class="math inline">\(\forall g\in \{a,b,c\}\)</span>，<span class="math inline">\(S_g+\sum\limits_{i=1}^{n_g&#39;} &lt; \dfrac{S}{2}\)</span>。</li>
+</ul>
+<p><em>Prove.</em> 必要性显然，这里证充分性。我们不妨令集合 <span class="math inline">\(A\)</span> 满足第一个条件，那么 <span class="math inline">\(S_a+x_{n&#39;}+\sum\limits_{i=1}^{n_a&#39;-1}x_i&lt;\dfrac{S}{2}\)</span>。</p>
+<p>此时将 <span class="math inline">\(x_{n&#39;}\)</span> 放进 <span class="math inline">\(A\)</span> 中，剩下的 <span class="math inline">\(x_1\sim x_{n&#39;-1}\)</span> 任意放进 <span class="math inline">\(B,C\)</span> 中。设如此操作后有 <span class="math inline">\(S_a&#39;\)</span>，<span class="math inline">\(S_b&#39;\)</span> 和 <span class="math inline">\(S_c&#39;\)</span>，则若 <span class="math inline">\(S_b&#39;&lt;\dfrac{S}{2}\)</span> 且 <span class="math inline">\(S_c&#39;&lt;\dfrac{S}{2}\)</span>，那么我们就已经找到了一组合法划分。否则，<span class="math inline">\(\max(S_b&#39;,S_c&#39;)\ge \dfrac{S}{2}\)</span>，不失一般性，我们令 <span class="math inline">\(S_b&#39;\ge \dfrac{S}{2}\)</span>。</p>
+<p>此时，<span class="math inline">\(S_a&#39;+S_c&#39;&lt;\dfrac{S}{2}\)</span>，我们可以任意交换 <span class="math inline">\(A,C\)</span> 中的元素（除 <span class="math inline">\(x_{n&#39;}\)</span> 外）。现在，观察如果任意交换 <span class="math inline">\(B,C\)</span> 中的元素，会发生什么情况。在一次交换中，换进 <span class="math inline">\(C\)</span> 的元素 <span class="math inline">\(&lt;x_{n&#39;}\)</span>，换出 <span class="math inline">\(C\)</span> 的元素 <span class="math inline">\(\ge 1\)</span>，那么 <span class="math inline">\(C\)</span> 中元素的和最多增长 <span class="math inline">\(x_{n&#39;}-1\)</span>。而交换前 <span class="math inline">\(S_c&#39;\le S-S_b&#39;-S_a&#39;\le \dfrac{S}{2}-S_a&#39;\le \dfrac{S}{2}-x_{n&#39;}\)</span>。</p>
+<p>意思是，交换后 <span class="math inline">\(S_c&#39;&#39;\le S_c&#39;+(x_{n&#39;}-1)\le \dfrac{S}{2}-x_{n&#39;}+(x_{n&#39;}-1)&lt;\dfrac{S}{2}\)</span>。</p>
+<p>也就是说，<span class="math inline">\(B,C\)</span> 也可以任意交换，再加上 <span class="math inline">\(A,C\)</span> 可以任意交换，所有元素都可以在三个集合之间调整，直到 <span class="math inline">\(S_b&#39;&lt;\dfrac{S}{2}\)</span>。又因为 Lemma 的第二个条件的存在，保证了一定能调整出来。故该引理得证。</p>
+<p>好的，现在我们拥有了这个 Lemma，做法也就呼之欲出了：从大到小分配 <span class="math inline">\(\{x\}\)</span> 中的元素，逐一尝试分配到 <span class="math inline">\(A,B,C\)</span> 中，看一下某次尝试后，Lemma 的条件是否满足。若满足，就分配。若无论分配到哪一个集合都无法满足 Lemma，就无解。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="qoj9851.-cup-of-water"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1870/problem/9851">QOJ9851. Cup of Water</a></h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1120501">Code</a></p>
+<p>设每个回合倒的水量是 <span class="math inline">\(U_i\)</span>，那么 <span class="math inline">\(U_i\sim \text{Unif}(0,x)\)</span>。</p>
+<p>记 <span class="math inline">\(n\)</span> 个回合后倒水量的总和为 <span class="math inline">\(S_n=U_1+U_2+\ldots+U_n\)</span>。</p>
+<p>定义随机变量 <span class="math inline">\(N\)</span> 表示首次将桶装满所需的回合数，我们要求的就是 <span class="math inline">\(E[N]\)</span>。</p>
+<p>因为第 <span class="math inline">\(n\)</span> 次装满 <span class="math inline">\(\to\)</span> 前 <span class="math inline">\(n-1\)</span> 次都没装满，所以 <span class="math display">\[
+E[N]=\sum_{n=1}^{\infty}P(S_{n-1}&lt;1)\longrightarrow E[N]=\sum_{n=0}^{\infty}P(S_n&lt;1)\tag{1}
+\]</span> 令 <span class="math inline">\(U_i=x\cdot V_i\)</span>，则 <span class="math inline">\(V_i\sim \text{Unif}(0,1)\)</span>。那么 <span class="math display">\[
+S_n &lt; 1\longrightarrow x\sum_{i=1}^{n}V_i&lt;1\longrightarrow \sum_{i=1}^{n}V_i&lt;\frac{1}{x}
+\]</span> 这是 Irwin-Hall 分布，详情见 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/Charlie-Vinnie/p/17366993.html">link</a>。</p>
+<p>结论是，对于 <span class="math inline">\(n\)</span> 个在 <span class="math inline">\([0,1]\)</span> 内均匀分布的实数随机变量，它们的和不超过一个实数 <span class="math inline">\(z\)</span> 的概率 <span class="math display">\[
+P\left(\sum V_i &lt; y\right)=\frac{1}{n!}\sum_{k=0}^{\lfloor z\rfloor}(-1)^k\binom{n}{k}(z-k)^{n}
+\]</span> 在这里 <span class="math inline">\(z=\dfrac{1}{x}\)</span>，即 <span class="math display">\[
+\begin{align}
+P(S_n&lt;1)
+&amp;=\frac{1}{n!}\sum_{k=0}^{\lfloor 1/x\rfloor}(-1)^k\binom{n}{k}\left(\frac{1}{x}-k\right)^{n}\\
+&amp;=\frac{1}{n!x^n}\sum_{k=0}^{\lfloor 1/x\rfloor}(-1)^k\binom{n}{k}(1-kx)^{n}
+\end{align}
+\]</span> 代回 <span class="math inline">\((1)\)</span> 中，调整求和顺序，有 <span class="math display">\[
+\begin{align}
+E[N]
+&amp;=\sum_{n=0}^{\infty}\frac{1}{n!x^n}\sum_{k=0}^{\lfloor 1/x\rfloor}(-1)^k\binom{n}{k}(1-kx)^{n}\\
+&amp;=\sum_{k=0}^{\lfloor 1/x\rfloor}(-1)^k\sum_{n=0}^{\infty}\frac{1}{n!x^n}\binom{n}{k}(1-kx)^{n}\tag{2}
+\end{align}
+\]</span> 注意到 <span class="math inline">\(n&lt;k\)</span> 时 <span class="math inline">\(\dbinom{n}{k}=0\)</span>，所以第二个求和号实际是从 <span class="math inline">\(n=k\)</span> 开始。</p>
+<p>我们不妨单独拎出来 <span class="math display">\[
+\sum_{n=k}^{\infty}\frac{1}{n!x^n}\binom{n}{k}(1-kx)^{n}
+\]</span> 令 <span class="math inline">\(m=n-k\)</span>，即 <span class="math inline">\(n=k+m\)</span>，代入。这么做是因为要将求和下界重新调整为 <span class="math inline">\(0\)</span>。</p>
+<p>同时将组合数展开，有 <span class="math display">\[
+\begin{aligned}
+&amp;\ \ \ \ \sum_{m=0}^\infty
+  \frac{1}{(k+m)!\,x^{k+m}}
+  \cdot\frac{(k+m)!}{k!\,m!}\,(1-kx)^{k+m}\\
+&amp;=\sum_{m=0}^\infty
+  \frac{(1-kx)^{k+m}}{k!\,m!\,x^{k+m}}\\
+&amp;=\frac{(1-kx)^k}{k!\,x^k}
+ \sum_{m=0}^\infty\frac{\left(\frac{(1-kx)}{x}\right)^{m}}{m!}\\
+&amp;=\frac{(1-kx)^k}{k!\,x^k}\,
+ \exp\left(\frac{1-kx}{x}\right)
+\end{aligned}
+\]</span> 最后一步是幂级数展开，<span class="math inline">\(e^x=\sum\limits_{i=0}^{\infty}\dfrac{x^i}{i!}\)</span>。</p>
+<p>代回 <span class="math inline">\((2)\)</span>，最终有 <span class="math display">\[
+E[N]
+=\sum_{k=0}^{\lfloor1/x\rfloor}
+(-1)^k\,
+\frac{(1-kx)^k}{k!\,x^k}\,
+\exp\left(\frac{1-kx}{x}\right)
+\]</span> 因为 <span class="math inline">\(x\ge 0.05\)</span>，所以 <span class="math inline">\(\left\lfloor\dfrac{1}{x}\right\rfloor \le 20\)</span>，很小，直接暴力算这个式子即可。</p>
+<p>单组数据几乎是 <span class="math inline">\(O(1)\)</span> 的。</p>
+<h2 id="qoj9853.-easy-string-problem"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1870/problem/9853">QOJ9853. Easy String Problem</a></h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1121590">Code</a></p>
+<p>定义 <span class="math inline">\(S(l, r)\)</span> 表示割掉 <span class="math inline">\([l, r]\)</span> 后得到的串，即 <span class="math inline">\(\overline{a_1a_2\ldots a_{l-1}a_{r+1}\ldots a_n}\)</span>。</p>
+<p>结论：若 <span class="math inline">\(\exists k\)</span>，<span class="math inline">\(S(l,r)=S(l+k,r+k)\)</span>，那么 <span class="math inline">\(\forall i\in [0,k]\)</span>，<span class="math inline">\(S(l, r)=S(l+i,r+i)\)</span>。</p>
+<p>纸上画一下还是比较显然的。</p>
+<p>那么，对于一组询问 <span class="math inline">\((L,R)\)</span>，我们相当于求有多少对 <span class="math inline">\((l,r)\)</span>，满足 <span class="math inline">\(l\le L\le R\le r\)</span>，且 <span class="math inline">\(S(l,r)\neq S(l-1,r-1)\)</span>。</p>
+<p>容斥，这等价于 <span class="math inline">\(L\cdot(n-R+1)\)</span> 减去 <span class="math inline">\(S(l,r)=S(l-1,r-1)\)</span> 的 <span class="math inline">\((l,r)\)</span> 对数。</p>
+<p>而 <span class="math inline">\(S(l,r)=S(l-1,r-1)\)</span> 又当且仅当 <span class="math inline">\(a_{l-1}=a_r\)</span>。</p>
+<p>所以我们实际要求有多少对 <span class="math inline">\((l,r)\)</span> 满足 <span class="math inline">\(1\le l\le L-1\)</span>，<span class="math inline">\(R+1\le r\le n\)</span> 且 <span class="math inline">\(a_l=a_r\)</span>。</p>
+<p>用莫队求解。</p>
+<p>具体的，维护 <span class="math inline">\(\text{inL}[x]\)</span> 和 <span class="math inline">\(\text{inR}[x]\)</span> 表示在当前区间左侧/右侧的 <span class="math inline">\(x\)</span> 个数，边界移动时贡献是好算的。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\sqrt{n})\)</span>。</p>
+<h2 id="qoj9855.-glass-bead-game"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1870/problem/9855">QOJ9855. Glass Bead Game</a></h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1121703">Code</a></p>
+<p>拆贡献期望题。</p>
+<p>注意到当轮数到达无穷时，珠子初始位置其实并不重要，即某个珠子出现在某个位置的概率是固定的。</p>
+<p>我们要求的是按给定概率选中一个玻璃珠，将它往前移动的期望代价。</p>
+<p>而代价定义为在当前珠子前面的珠子个数，故定义 <span class="math display">\[
+X_{i,j}=
+\begin{cases}
+1 &amp;, \text{选中第 } i \text{ 个珠子并且第 } j \text{ 个珠子在第 } i \text{ 个珠子前面}\\ 
+0 &amp;, \text{otherwise}\\
+\end{cases}
+\]</span> 设答案为 <span class="math inline">\(X\)</span>，那么 <span class="math display">\[
+X=\sum_{i\neq j} X_{i,j}
+\]</span> 由期望的线性性 <span class="math display">\[
+E[X]=E\left[\sum_{i\neq j}X_{i,j}\right]=\sum_{i\neq j}E[X_{i,j}]\tag{1}
+\]</span> 根据 <span class="math inline">\(X_{i,j}\)</span> 的定义，令事件 <span class="math inline">\(A\)</span> 为选中第 <span class="math inline">\(i\)</span> 个珠子，事件 <span class="math inline">\(B\)</span> 为移动第 <span class="math inline">\(i\)</span> 个珠子时，第 <span class="math inline">\(j\)</span> 个珠子在其前面，两个事件相互独立。则 <span class="math display">\[
+E[X_{i,j}]=P(X_{i,j}=1)=P(A\cap B)=P(A)P(B)\tag{2}
+\]</span> 其中 <span class="math inline">\(P(A)=p_i\)</span>，而 <span class="math inline">\(P(B)\)</span> 可以如下考虑。</p>
+<p>我们只关心第 <span class="math inline">\(i\)</span> 个珠子和第 <span class="math inline">\(j\)</span> 个珠子的相对位置，移动其它珠子不会改变这个相对位置，所以我们可以考虑只包含这两个珠子的模型。什么时候 <span class="math inline">\(j\)</span> 会在 <span class="math inline">\(i\)</span> 前面，无非是上一步选中了 <span class="math inline">\(j\)</span> 往前移，这个概率等于 <span class="math display">\[
+P(B)=\frac{p_j}{p_i+p_j}
+\]</span> 代回 <span class="math inline">\((2)\)</span>，<span class="math inline">\((2)\)</span> 再代回 <span class="math inline">\((1)\)</span>，有 <span class="math display">\[
+E[X]=\sum_{i\neq j}\frac{p_ip_j}{p_i+p_j}
+\]</span> 时间复杂度 <span class="math inline">\(O(n^2)\)</span>。</p>
+<p>数据范围略微诈骗，不知道有没有其它复杂度的做法。</p>
+<h2 id="qoj9860.-light-of-stars"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1870/problem/9860">QOJ9860. Light of Stars</a></h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1122185">Code</a></p>
+<p><span class="math inline">\(k\)</span> 很小，可以每个扇区分开计算。</p>
+<p>对于一个点 <span class="math inline">\(P_i(x_i,y_i)\)</span>，它能被 <span class="math inline">\(P_j(x_j,y_j)\)</span> 照射到，当且仅当方向向量 <span class="math inline">\(\overrightarrow{P_jP_i}=(x_i-x_j,y_i-y_j)\)</span> 在扇区内。</p>
+<p>分别取扇区两条边界线上两点 <span class="math inline">\(A(\cos\alpha,-\sin\alpha)\)</span> 和 <span class="math inline">\(B(\cos\beta,-\sin\beta)\)</span>。其中 <span class="math inline">\(\alpha\)</span> 和 <span class="math inline">\(\beta\)</span> 是射线与 <span class="math inline">\(x\)</span> 轴的夹角，不妨令 <span class="math inline">\(\alpha &lt; \beta\)</span>。</p>
+那么，由 <span class="math inline">\(\overrightarrow{P_jP_i}\)</span> 在扇区内，有 $$
+<span class="math display">\[\begin{cases}
+\overrightarrow{OA}\times \overrightarrow{P_jP_i}\le 0\\
+\overrightarrow{OB}\times \overrightarrow{P_jP_i}\ge 0
+\end{cases}\]</span>
+ 
+<span class="math display">\[\begin{cases}
+\cos\alpha \cdot y_i+\sin\alpha\cdot x_i\le \cos\alpha\cdot y_j+\sin\alpha\cdot x_j\\
+\cos\beta \cdot y_i+\sin\beta\cdot x_i\ge \cos\beta\cdot y_j+\sin\beta\cdot x_j\\
+\end{cases}\]</span>
+<span class="math display">\[
+令 $w_1(P_i)=\cos\alpha\cdot y_i+\sin\alpha\cdot x_i$，以及 $w_2(P_i)=\cos\beta\cdot y_i+\sin\beta\cdot x_i$，则
+\]</span>
+<span class="math display">\[\begin{cases}
+w_1(P_i)\le w_1(P_j)\\
+w_2(P_i)\ge w_2(P_j)
+\end{cases}\]</span>
+<p>$$ 就转化为了二维数点问题。</p>
+<p>离散化后，按其中一维排序，树状数组统计另一维贡献即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(kn\log n)\)</span>。</p>
+<div class="note note-success">
+            <p>浮点类型数组的去重：</p><div class="code-wrapper"><pre><code class="hljs c++">b.<span class="hljs-built_in">erase</span>(<span class="hljs-built_in">unique</span>(b.<span class="hljs-built_in">begin</span>(), b.<span class="hljs-built_in">end</span>(), [&amp;] (<span class="hljs-type">double</span> X, <span class="hljs-type">double</span> Y) &#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-built_in">fabs</span>(X - Y) &lt; eps;
+&#125;), b.<span class="hljs-built_in">end</span>());</code></pre></div><p>浮点类型数组的 <code>std::lower_bound</code>：</p><div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+	c[i] = <span class="hljs-built_in">lower_bound</span>(b.<span class="hljs-built_in">begin</span>(), b.<span class="hljs-built_in">end</span>(), w[i], [&amp;] (<span class="hljs-type">double</span> X, <span class="hljs-type">double</span> Y) &#123;
+		<span class="hljs-keyword">return</span> X &lt; Y - eps;
+	&#125;) - b.<span class="hljs-built_in">begin</span>() + <span class="hljs-number">1</span>;
+&#125;</code></pre></div>
+          </div>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Competitive-Programming/" class="category-chain-item">Competitive Programming</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Competitive-Programming/Diary/" class="category-chain-item">Diary</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ICPC/" class="print-no-link">#ICPC</a>
+      
+        <a href="/tags/Codeforces/" class="print-no-link">#Codeforces</a>
+      
+        <a href="/tags/QOJ/" class="print-no-link">#QOJ</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【题解】六月训练日记</div>
+      <div>https://kisuraop.github.io/posts/a62f5f49.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>KisuraOP</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/c80723a0.html" title="【题解】2025 蓝桥杯国赛 CA">
+                        <span class="hidden-mobile">【题解】2025 蓝桥杯国赛 CA</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://kisuraop.github.io/" target="_blank" rel="nofollow noopener"><span>KisuraOP</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
