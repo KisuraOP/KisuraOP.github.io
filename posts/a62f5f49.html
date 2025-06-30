@@ -540,17 +540,18 @@ E[X]=\sum_{i\neq j}\frac{p_ip_j}{p_i+p_j}
 <p><span class="math inline">\(k\)</span> 很小，可以每个扇区分开计算。</p>
 <p>对于一个点 <span class="math inline">\(P_i(x_i,y_i)\)</span>，它能被 <span class="math inline">\(P_j(x_j,y_j)\)</span> 照射到，当且仅当方向向量 <span class="math inline">\(\overrightarrow{P_jP_i}=(x_i-x_j,y_i-y_j)\)</span> 在扇区内。</p>
 <p>分别取扇区两条边界线上两点 <span class="math inline">\(A(\cos\alpha,-\sin\alpha)\)</span> 和 <span class="math inline">\(B(\cos\beta,-\sin\beta)\)</span>。其中 <span class="math inline">\(\alpha\)</span> 和 <span class="math inline">\(\beta\)</span> 是射线与 <span class="math inline">\(x\)</span> 轴的夹角，不妨令 <span class="math inline">\(\alpha &lt; \beta\)</span>。</p>
-那么，由 <span class="math inline">\(\overrightarrow{P_jP_i}\)</span> 在扇区内，有 $$
-<span class="math display">\[\begin{cases}
+那么，由 <span class="math inline">\(\overrightarrow{P_jP_i}\)</span> 在扇区内，有 $$ <span class="math display">\[\begin{align}
+\begin{cases}
 \overrightarrow{OA}\times \overrightarrow{P_jP_i}\le 0\\
 \overrightarrow{OB}\times \overrightarrow{P_jP_i}\ge 0
-\end{cases}\]</span>
- 
-<span class="math display">\[\begin{cases}
+\end{cases}
+
+\ \Longrightarrow
+\begin{cases}
 \cos\alpha \cdot y_i+\sin\alpha\cdot x_i\le \cos\alpha\cdot y_j+\sin\alpha\cdot x_j\\
 \cos\beta \cdot y_i+\sin\beta\cdot x_i\ge \cos\beta\cdot y_j+\sin\beta\cdot x_j\\
-\end{cases}\]</span>
-<span class="math display">\[
+\end{cases}
+\end{align}\]</span> <span class="math display">\[
 令 $w_1(P_i)=\cos\alpha\cdot y_i+\sin\alpha\cdot x_i$，以及 $w_2(P_i)=\cos\beta\cdot y_i+\sin\beta\cdot x_i$，则
 \]</span>
 <span class="math display">\[\begin{cases}
