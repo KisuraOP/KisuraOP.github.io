@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k 字
+          12k 字
         
       </span>
     
@@ -573,6 +573,50 @@ w_2(P_i)\ge w_2(P_j)
 	&#125;) - b.<span class="hljs-built_in">begin</span>() + <span class="hljs-number">1</span>;
 &#125;</code></pre></div>
           </div>
+<h2 id="qoj8542.-add-one-2"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1596/problem/8542">QOJ8542. Add One 2</a></h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1136906">Code</a></p>
+<p>很牛的一道题，就是官方题解写得太简略了。</p>
+<p>首先，我们称题目给的两种操作分别为 "前缀加" 和 ”后缀加“。</p>
+<p>称一个全 <span class="math inline">\(0\)</span> 序列通过任意次前缀加/后缀加得到的序列为 "合法序列"。</p>
+<p>注意到，两种操作都是耗费 <span class="math inline">\(k\)</span> 的代价对长为 <span class="math inline">\(k\)</span> 的段进行操作，摊到每一个元素上的代价是 <span class="math inline">\(1\)</span>。</p>
+<p>那么，题目等同于让我们在 <span class="math inline">\(\{y\}\)</span> 上进行若干单点 <span class="math inline">\(+1\)</span> 操作，使得</p>
+<ul>
+<li><span class="math inline">\(\{y\}\)</span> 是 "合法序列"。</li>
+<li><span class="math inline">\(\sum\limits_{i=1}^{n} y_i\)</span> 最小。</li>
+</ul>
+<p>在此基础上，答案就是 <span class="math inline">\(\sum\limits_{i=1}^{n}y_i\)</span>。</p>
+<p>接着，什么情况下，一个序列 <span class="math inline">\(\{x\}\)</span> 是 "合法序列"？反向考虑，将 <span class="math inline">\(\{x\}\)</span> 逐步减为全 <span class="math inline">\(0\)</span> 序列。</p>
+<p>如果 <span class="math inline">\(\exists i\)</span>，<span class="math inline">\(x_i&gt;x_{i+1}\)</span>，那么至少要对 <span class="math inline">\([1,i]\)</span> 进行 <span class="math inline">\(x_i-x_{i+1}\)</span> 次前缀减。</p>
+<p>同理，如果 <span class="math inline">\(\exists i\)</span>，<span class="math inline">\(x_i&lt;x_{i+1}\)</span>，那么至少要对 <span class="math inline">\([i+1,n]\)</span> 进行 <span class="math inline">\(x_{i+1}-x_i\)</span> 次后缀减。</p>
+<p>一步一步来，首先，对 <span class="math inline">\(\{x\}\)</span> 进行如下操作：</p>
+<ul>
+<li>从头扫一遍，如果 <span class="math inline">\(\exists i\)</span>，<span class="math inline">\(x_{i}&gt;x_{i+1}\)</span>，就对 <span class="math inline">\([1,i]\)</span> 进行 <span class="math inline">\(x_i-x_{i+1}\)</span> 次前缀减。<span class="math inline">\((\alpha)\)</span>。</li>
+</ul>
+<p>操作后，<span class="math inline">\(\{x\}\)</span> 会变成一个非递减序列。继续</p>
+<ul>
+<li>从头扫一遍，如果 <span class="math inline">\(\exists i\)</span>，<span class="math inline">\(x_i&lt;x_{i+1}\)</span>，就对 <span class="math inline">\([i+1,n]\)</span> 进行 <span class="math inline">\(x_{i+1}-x_i\)</span> 次后缀减。<span class="math inline">\((\beta)\)</span>。</li>
+</ul>
+<p>此时，<span class="math inline">\(\{x\}\)</span> 所有元素将变得相同。</p>
+<p>显然，若此时 <span class="math inline">\(\{x\}\)</span> 中的元素非负，就能断定操作前，<span class="math inline">\(\{x\}\)</span> 是 "合法序列"。</p>
+<p>现在，我们恢复 <span class="math inline">\(\{x\}\)</span> 到操作前，在头尾添加 <span class="math inline">\(x_0=x_{n+1}=M\)</span>，其中 <span class="math inline">\(M\)</span> 是一个很大的数字。</p>
+<p>进行操作 <span class="math inline">\((\alpha)\)</span>，操作后 <span class="math inline">\(x_0\)</span> 被减去了 <span class="math inline">\(\sum\limits_{i=0}^{n}\max(0,x_i-x_{i+1})\)</span>。</p>
+<p>再进行操作 <span class="math inline">\((\beta)\)</span>，操作后 <span class="math inline">\(x_{n+1}\)</span> 被减去了 <span class="math inline">\(\sum\limits_{i=0}^{n}\max(0, x_{i+1}-x_i)\)</span>。</p>
+<p>我们刚刚说过，两遍操作后 <span class="math inline">\(\{x\}\)</span> 中的元素将变得相同，要让 <span class="math inline">\(x_0,x_{n+1}\)</span> 非负，则 <span class="math display">\[
+\begin{cases}
+x_0-\sum_{i=0}^{n}\max(0,x_i-x_{i+1})\ge 0\\
+x_{n+1}-\sum_{i=0}^{n}\max(0,x_{i+1}-x_i)\ge 0
+\end{cases}
+\]</span> 两个不等式相加，移项，代入 <span class="math inline">\(x_0=x_{n+1}=M\)</span>，有 <span class="math display">\[
+\sum_{i=0}^{n}|x_i-x_{i+1}|\le 2M
+\]</span> 这就是 <span class="math inline">\(\{x\}\)</span> 是 "合法序列" 的<strong>充要条件</strong>了。</p>
+<p>现在，题目可以转化为：给定 <span class="math inline">\(\{y\}\)</span>，你可以花费 <span class="math inline">\(1\)</span> 的代价选择一个 <span class="math inline">\(y_i\)</span> 加一，问使得以下不等式成立所需的最小花费。 <span class="math display">\[
+\sum_{i=0}^{n}|y_i-y_{i+1}|\le 2M\tag{*}
+\]</span> 令 <span class="math inline">\(F=\sum\limits_{i=0}^{n}|y_i-y_{i+1}|\)</span>。我们每次可以选择一段极长的 <span class="math inline">\(y_l=y_{l+1}=\ldots=y_r\)</span>，满足 <span class="math inline">\(y_l&lt;y_{l-1}\)</span> 且 <span class="math inline">\(y_l&lt;y_{r+1}\)</span>，将区间 <span class="math inline">\([l,r]\)</span> 整体 <span class="math inline">\(+1\)</span>。将 <span class="math inline">\(\{y\}\)</span> 看成柱状图的话，相当于 "填坑"。</p>
+<p>每填一层坑，<span class="math inline">\(F\)</span> 都会 <span class="math inline">\(-2\)</span>，而我们耗费了 "坑的宽度" 这么多代价。于是，我们的策略肯定是：每次选择宽度尽可能小的坑来填。我们就这样不断填，直到条件 <span class="math inline">\((*)\)</span> 成立。</p>
+<p><img src="/image/academic/qoj8542.png" /></p>
+<p>如上图，我们可以预先将 <span class="math inline">\(\{y\}\)</span> 分成很多小块（以颜色区分）。不难发现，我们既然是贪心拿宽度小的，那我们一定不会发生类似 "红色没填，橙色却先填了的情况"。</p>
+<p>于是直接利用单调栈预处理出每个颜色块的宽度（和高度），排序后模拟填的过程即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
