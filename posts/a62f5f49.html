@@ -273,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          12k 字
+          13k 字
         
       </span>
     
@@ -617,6 +617,19 @@ x_{n+1}-\sum_{i=0}^{n}\max(0,x_{i+1}-x_i)\ge 0
 <p>如上图，我们可以预先将 <span class="math inline">\(\{y\}\)</span> 分成很多小块（以颜色区分）。不难发现，我们既然是贪心拿宽度小的，那我们一定不会发生类似 "红色没填，橙色却先填了的情况"。</p>
 <p>于是直接利用单调栈预处理出每个颜色块的宽度（和高度），排序后模拟填的过程即可。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="qoj6845.-tax"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1305/problem/6845">QOJ6845. Tax</a></h2>
+<p><em>conclusion.</em> 爆搜是可行的，前提是忽略不在最短路上的边。</p>
+<p>做法：</p>
+<ul>
+<li>从起点跑一遍 bfs，记录到第 <span class="math inline">\(i\)</span> 个点的最短路径 <span class="math inline">\(d_i\)</span>。</li>
+<li>从起点开始 dfs，遍历到一条边时如果 <span class="math inline">\(d_y\neq d_x+1\)</span> 就跳过，直到遍历完所有可能的路径，代价取最小值。</li>
+</ul>
+<p><em>prove.</em> 按 <span class="math inline">\(d_i\)</span> 构建分层图。从上至下第 <span class="math inline">\(j\)</span> 层包含所有 <span class="math inline">\(d_i=j\)</span> 的点 <span class="math inline">\(i\)</span>。</p>
+<p>只走最短路径，说明每次走的都是第 <span class="math inline">\(i\)</span> 层到第 <span class="math inline">\(i+1\)</span> 层的边。</p>
+<p>假设第 <span class="math inline">\(i\)</span> 层有 <span class="math inline">\(c_i\)</span> 个节点。那么从起点开始，每次往下走一层，走到第 <span class="math inline">\(i\)</span> 层有 <span class="math inline">\(\prod\limits_{j\le i} c_j\)</span> 种方案。</p>
+<p>找最大路径数，相当于 "将 <span class="math inline">\(n\)</span> 分成若干正数的和，要怎么分，才能使分出的数的积最大"。</p>
+<p>列公式，求导得极值，结论是每层 <span class="math inline">\(e\)</span> 个点取得最大路径数。取正整数的话就是 <span class="math inline">\(3\)</span>。</p>
+<p>综上，每层向下有 <span class="math inline">\(3\)</span> 种选择，共 <span class="math inline">\(\dfrac{n}{3}\)</span> 层，爆搜复杂度是 <span class="math inline">\(O(\large{3^{\frac{n}{3}}})\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
