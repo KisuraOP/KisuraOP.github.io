@@ -16,12 +16,12 @@
   <meta name="author" content="KisuraOP">
   <meta name="keywords" content="">
   
-    <meta name="description" content="如梦似幻。 【7.9】 2025 上海市赛 用了 1h 意识到树形背包是 \(O(n^2)\) 的。 C. 饺子 Code 令 \(f(x)\) 表示恰好吃 \(x\) 个饺子，能得到的最大愉悦值（忽略额外愉悦值 \(val\)）。 容易看出，\(f(x)\) 是一个上凸函数，答案只能取在 \(0,m\) 和极值点三者之一。 对于某个取值点，可以使用 WQS 二分。二分斜率，对于一根固定斜率 \(">
+    <meta name="description" content="如梦似幻。 【7.9】 2025 上海市赛 Contest Link 用了 1h 意识到树形背包是 \(O(n^2)\) 的，太神奇了树形背包。 C. 饺子 Code 令 \(f(x)\) 表示恰好吃 \(x\) 个饺子，能得到的最大愉悦值（忽略额外愉悦值 \(val\)）。 容易看出，\(f(x)\) 是一个上凸函数，答案只能取在 \(0,m\) 和极值点三者之一。 对于某个取值点，可以使用 W">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【题解】2025 UESTC 暑假集训（div.1）">
 <meta property="og:url" content="https://kisuraop.github.io/posts/80517353.html">
 <meta property="og:site_name" content="KisuraOP">
-<meta property="og:description" content="如梦似幻。 【7.9】 2025 上海市赛 用了 1h 意识到树形背包是 \(O(n^2)\) 的。 C. 饺子 Code 令 \(f(x)\) 表示恰好吃 \(x\) 个饺子，能得到的最大愉悦值（忽略额外愉悦值 \(val\)）。 容易看出，\(f(x)\) 是一个上凸函数，答案只能取在 \(0,m\) 和极值点三者之一。 对于某个取值点，可以使用 WQS 二分。二分斜率，对于一根固定斜率 \(">
+<meta property="og:description" content="如梦似幻。 【7.9】 2025 上海市赛 Contest Link 用了 1h 意识到树形背包是 \(O(n^2)\) 的，太神奇了树形背包。 C. 饺子 Code 令 \(f(x)\) 表示恰好吃 \(x\) 个饺子，能得到的最大愉悦值（忽略额外愉悦值 \(val\)）。 容易看出，\(f(x)\) 是一个上凸函数，答案只能取在 \(0,m\) 和极值点三者之一。 对于某个取值点，可以使用 W">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/60ace5d38359edea13a361fff5643eed.jpeg">
 <meta property="article:published_time" content="2025-07-09T10:17:15.000Z">
@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          809 字
+          2.3k 字
         
       </span>
     
@@ -329,7 +329,8 @@
                 
                 <p>如梦似幻。</p>
 <h2 id="上海市赛">【7.9】 2025 上海市赛</h2>
-<p>用了 1h 意识到树形背包是 <span class="math inline">\(O(n^2)\)</span> 的。</p>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2238">Contest Link</a></p>
+<p>用了 1h 意识到树形背包是 <span class="math inline">\(O(n^2)\)</span> 的，太神奇了树形背包。</p>
 <h3 id="c.-饺子">C. 饺子</h3>
 <p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1147422">Code</a></p>
 <p>令 <span class="math inline">\(f(x)\)</span> 表示恰好吃 <span class="math inline">\(x\)</span> 个饺子，能得到的最大愉悦值（忽略额外愉悦值 <span class="math inline">\(val\)</span>）。</p>
@@ -350,6 +351,46 @@
 <p>这是因为每次 <span class="math inline">\(\gcd\)</span> 操作，<span class="math inline">\(a_i\)</span> 的值至少减半，所以全局上看区间覆盖操作成功执行的次数的上界是 <span class="math inline">\(O(n\log w)\)</span>。</p>
 <p>而算上求 <span class="math inline">\(\gcd\)</span>，单次修改的成本是 <span class="math inline">\(O(\log n\log w)\)</span>，所以一共就 <span class="math inline">\(O(n\log n\log^2w)\)</span>。</p>
 <p>要更加严谨的话需要势能分析。</p>
+<h2 id="icpc-jinan-regional">【7.10】2020 ICPC Jinan Regional</h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2181">Contest Link</a></p>
+<p>虽然是单挑，但是前期意外的顺。</p>
+<p>开完 ez 之后被迫下班（</p>
+<p>L 完全不会，扔给队友补了，K 先占坑。</p>
+<h2 id="icpc-nac">【7.11】2025 ICPC NAC</h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2041">Contest Link</a></p>
+<p>L 闹麻了，红温 3h。D 是个签但到比赛快结束的时候才看了一眼题。</p>
+<p>F 也是个签但是题都没看。</p>
+<p>猪包.jpg</p>
+<h3 id="d.-geometry-rush">D. Geometry Rush</h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1151586">Code</a></p>
+<p>维护出 <span class="math inline">\(u[x],d[x]\)</span> 分别表示横坐标为 <span class="math inline">\(x\)</span> 时纵坐标在 <span class="math inline">\(d[x]\sim u[x]\)</span> 是安全的。</p>
+<p>再加上任意时刻你所在的坐标 <span class="math inline">\((x,y)\)</span> 一定有 <span class="math inline">\(x \equiv y\pmod {2}\)</span>，扫一遍就能求出你在任意 <span class="math inline">\(x\)</span> 时实际能到达的纵坐标范围了。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h3 id="f.-mob-grinder">F. Mob Grinder</h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1151673">Code</a></p>
+<p>首先若 <span class="math inline">\(U &lt; n - 1\)</span> 或 <span class="math inline">\(R &lt; m - 1\)</span> 一定无解。</p>
+<p>否则，可以用 <span class="math inline">\(n - 1\)</span> 个 <span class="math inline">\(U\)</span> 和 <span class="math inline">\(m - 1\)</span> 个 <span class="math inline">\(R\)</span> 构筑出一条左下到右上的路线。</p>
+<p>注意到，路径的左上方可以任意填 <span class="math inline">\(D\)</span> 或 <span class="math inline">\(R\)</span>，路径的右下方可以任意填 <span class="math inline">\(U\)</span> 或 <span class="math inline">\(L\)</span>。</p>
+<p>我们总是可以调整这条路径使得 "左上方的格子数" 和 "右下方的格子数" 契合 <span class="math inline">\(D+R\)</span> 和 <span class="math inline">\(U+L\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h3 id="j.-popping-balloons">J. Popping Balloons</h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1151853">Code</a></p>
+<p>蓝色看成 <span class="math inline">\(0\)</span>，黄色看成 <span class="math inline">\(1\)</span>，红色看成 <span class="math inline">\(2\)</span>，问题变为每秒从序列中随机移除一个值，让序列变得有序的期望时间。</p>
+<p>设随机变量 <span class="math inline">\(X\)</span> 表示序列有序后剩下来的长度，则 <span class="math display">\[
+P(X\ge k)=\dfrac{f(k)}{\binom{n}{k}}
+\]</span> 其中 <span class="math inline">\(f(k)\)</span> 表示序列中长为 <span class="math inline">\(k\)</span> 的非降子序列数量。</p>
+<p>进一步 <span class="math display">\[
+E[X]=\sum_{k=1}^{n}P(x\ge k)
+\]</span> 最终题目的答案就是 <span class="math inline">\(n-E[X]\)</span>。</p>
+<p>现在，问题只剩如何对 <span class="math inline">\(k\in [1,n]\)</span> 求出 <span class="math inline">\(f(k)\)</span>。</p>
+<p>尝试用多项式描述信息。定义多项式 <span class="math inline">\(F_{L,R,i,j}(x)\)</span>，它 <span class="math inline">\(x^k\)</span> 项的系数表示 "区间 <span class="math inline">\([L,R]\)</span> 中，以 <span class="math inline">\(i\)</span> 开头，<span class="math inline">\(j\)</span> 结尾 <span class="math inline">\((0\le i\le j\le 2)\)</span>，长为 <span class="math inline">\(k\)</span> 的非降子序列数量"。</p>
+<p>这么定义的好处是，两个多项式相乘，<span class="math inline">\(x^i\)</span> 的系数和 <span class="math inline">\(x^j\)</span> 的系数会累加到新多项式 <span class="math inline">\(x^{i+j}\)</span> 的系数上，意义就是两个区间合并，长为 <span class="math inline">\(i\)</span> 的非降子序列和长为 <span class="math inline">\(j\)</span> 的非降子序列会拼接成长为 <span class="math inline">\(i+j\)</span> 的非降子序列。</p>
+<p>先考虑基态。对于 <span class="math inline">\(a_i=x\ (x\in \{0,1,2\})\)</span>，<span class="math inline">\([x^1]F_{i,i,x,x}=1\)</span>，其它项均为 <span class="math inline">\(0\)</span>。</p>
+<p>再考虑合并。假设我们已经知道了区间 <span class="math inline">\([l,m]\)</span> 的答案 <span class="math inline">\(F_{l,m,i,j}\)</span> 和区间 <span class="math inline">\([m+1,r]\)</span> 的答案 <span class="math inline">\(F_{m+1,r,i,j}\)</span>（我们得到的是所有 <span class="math inline">\(i,j\)</span> 的答案，换句话说，是一个 <span class="math inline">\(3\times 3\)</span> 的多项式矩阵），那么 <span class="math display">\[
+\large F_{l,r,i,j}=\sum_{i\le p_1\le p_2\le j} F_{l,m,i,p_1}F_{m+1,r,p_2,j}+F_{l,m,i,j}+F_{m+1,r,i,j}
+\]</span> 第一项表示拼接，后两项表示继承两侧区间的非降子序列数量。</p>
+<p>分治 NTT 即可，最终 <span class="math inline">\(f(k)=\sum\limits_{i=0}^{2}\sum\limits_{j=0}^{2}[x^k]F_{1,n,i,j}\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log^2 n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
