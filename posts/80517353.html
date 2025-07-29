@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          19k 字
+          20k 字
         
       </span>
     
@@ -496,7 +496,7 @@ L(x)=
 <ul>
 <li><span class="math inline">\(\forall i\in [1,n]\)</span>，<span class="math inline">\(b_i\le \left\lfloor\dfrac{a_i}{3}\right\rfloor\)</span>。</li>
 </ul>
-<p>进一步，每个 "XXX" 都要匹配一个 "Y"（"X" $$ "Y"），那么</p>
+<p>进一步，每个 "XXX" 都要匹配一个 "Y"（"X" <span class="math inline">\(\neq\)</span> "Y"），那么</p>
 <ul>
 <li><span class="math inline">\(\forall i\in [1,n]\)</span>，<span class="math inline">\(b_i\le \sum\limits_{j=1,j\neq i}^{n}c_j=C-c_i\)</span>。</li>
 </ul>
@@ -1046,6 +1046,31 @@ matrix <span class="hljs-keyword">operator</span> * (<span class="hljs-type">con
 
     </div>
 </div>
+<h2 id="牛客多校-5">【7.29】牛客多校 5</h2>
+<h3 id="c.-array-deletion-game">C. Array Deletion Game</h3>
+<p><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/view-submission?submissionId=78535003">Code</a></p>
+<p>结论：若 <span class="math inline">\(\sum\limits_{i=l+1}^{r-1}&gt;s\)</span>，那么 <span class="math inline">\((l, r)\)</span> 与 <span class="math inline">\((l+1, r-1)\)</span> 胜负态相同。</p>
+<ul>
+<li>若 <span class="math inline">\((l, r)\)</span> 是必胜态 <span class="math inline">\(\to\)</span> <span class="math inline">\(\{\)</span>要么 <span class="math inline">\((l,r-1)\)</span> 必败<span class="math inline">\(\}\)</span> <span class="math inline">\((1)\)</span>，<span class="math inline">\(\{\)</span>要么 <span class="math inline">\((l+1,r)\)</span> 必败<span class="math inline">\(\}\)</span> <span class="math inline">\((2)\)</span>。
+<ul>
+<li><span class="math inline">\((1)\)</span> 和 <span class="math inline">\((2)\)</span> 都能推出 <span class="math inline">\((l+1,r-1)\)</span> 必胜。</li>
+</ul></li>
+<li>若 <span class="math inline">\((l, r)\)</span> 是必败态 <span class="math inline">\(\to\)</span> <span class="math inline">\(\{(l+1,r)\)</span> 必胜<span class="math inline">\(\}\)</span> <span class="math inline">\((3)\)</span>，且 <span class="math inline">\(\{(l,r-1)\)</span> 必胜<span class="math inline">\(\}\)</span> <span class="math inline">\((4)\)</span>。
+<ul>
+<li><span class="math inline">\((3)\)</span> 推出 <span class="math inline">\(\{\)</span>要么 <span class="math inline">\((l+1,r-1)\)</span> 必败，要么 <span class="math inline">\((l+2,r)\)</span> 必败<span class="math inline">\(\}\)</span> <span class="math inline">\((5)\)</span>。</li>
+<li><span class="math inline">\((4)\)</span> 推出 <span class="math inline">\(\{\)</span>要么 <span class="math inline">\((l+1,r-1)\)</span> 必败，要么 <span class="math inline">\((l,r-2)\)</span> 必败<span class="math inline">\(\}\)</span> <span class="math inline">\((6)\)</span>。</li>
+<li>如果 <span class="math inline">\((5)\)</span> 和 <span class="math inline">\((6)\)</span> 中第一个子句有一个成立，那么 <span class="math inline">\((l+1,r-1)\)</span> 必败。</li>
+<li>否则 <span class="math inline">\(\{(l+2,r)\)</span> 必败<span class="math inline">\(\}\)</span> <span class="math inline">\((7)\)</span>，且 <span class="math inline">\(\{(l,r-2)\)</span> 必败<span class="math inline">\(\}\)</span> <span class="math inline">\((8)\)</span>。</li>
+<li><span class="math inline">\((7)\)</span> 推出 <span class="math inline">\(\{(l+2,r-1)\)</span> 必胜<span class="math inline">\(\}\)</span> <span class="math inline">\((9)\)</span>，<span class="math inline">\((8)\)</span> 推出 <span class="math inline">\(\{(l+1,r-2)\)</span> 必胜<span class="math inline">\(\}\)</span> <span class="math inline">\((10)\)</span>。</li>
+<li>假设 <span class="math inline">\((l+1,r-1)\)</span> 是必胜态，那么推出 <span class="math inline">\(\{(l+2,r-1)\)</span> 必败，或 <span class="math inline">\((l+1,r-2)\)</span> 必败<span class="math inline">\(\}\)</span>，这与 <span class="math inline">\((9)(10)\)</span> 矛盾。</li>
+<li>因此，<span class="math inline">\((l+1,r-1)\)</span> 必败。</li>
+</ul></li>
+</ul>
+<p>得证。</p>
+<p>因此，我们可以不断把序列两端各砍掉一个，直到当前 <span class="math inline">\(l&#39;, r&#39;\)</span> 满足 <span class="math inline">\(\sum\limits_{i=l&#39;+1}^{r&#39;-1}\le s\)</span>，即再两边砍一个就寄。</p>
+<p>此时玩家只能不断从一边取数，胜负态确定。</p>
+<p>具体的，设 <span class="math inline">\(fl\)</span> 表示最大的下标，满足拿掉 <span class="math inline">\(fl\)</span> 后 <span class="math inline">\((fl+1,r&#39;)\)</span> 这一段就 <span class="math inline">\(\le s\)</span>；设 <span class="math inline">\(fr\)</span> 表示最小的下标，满足拿掉 <span class="math inline">\(fr\)</span> 后 <span class="math inline">\((l&#39;, fr-1)\)</span> 这一段就 <span class="math inline">\(\le s\)</span>。<span class="math inline">\((l&#39;,r&#39;)\)</span> 先手必胜当且仅当 <span class="math inline">\(fl-l&#39;\)</span> 是奇数或者 <span class="math inline">\(r&#39;-fr\)</span> 是奇数。</p>
+<p>对于一次询问，先一遍二分找出 <span class="math inline">\((l&#39;,r&#39;)\)</span>，再两遍二分找出 <span class="math inline">\(fl,fr\)</span>。时间复杂度 <span class="math inline">\(O(q\log n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
