@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          20k 字
+          21k 字
         
       </span>
     
@@ -1071,6 +1071,39 @@ matrix <span class="hljs-keyword">operator</span> * (<span class="hljs-type">con
 <p>此时玩家只能不断从一边取数，胜负态确定。</p>
 <p>具体的，设 <span class="math inline">\(fl\)</span> 表示最大的下标，满足拿掉 <span class="math inline">\(fl\)</span> 后 <span class="math inline">\((fl+1,r&#39;)\)</span> 这一段就 <span class="math inline">\(\le s\)</span>；设 <span class="math inline">\(fr\)</span> 表示最小的下标，满足拿掉 <span class="math inline">\(fr\)</span> 后 <span class="math inline">\((l&#39;, fr-1)\)</span> 这一段就 <span class="math inline">\(\le s\)</span>。<span class="math inline">\((l&#39;,r&#39;)\)</span> 先手必胜当且仅当 <span class="math inline">\(fl-l&#39;\)</span> 是奇数或者 <span class="math inline">\(r&#39;-fr\)</span> 是奇数。</p>
 <p>对于一次询问，先一遍二分找出 <span class="math inline">\((l&#39;,r&#39;)\)</span>，再两遍二分找出 <span class="math inline">\(fl,fr\)</span>。时间复杂度 <span class="math inline">\(O(q\log n)\)</span>。</p>
+<h2 id="nwerc-2024">【7.30】NWERC 2024</h2>
+<p><a target="_blank" rel="noopener" href="https://codeforces.com/gym/626008">Contest Link</a></p>
+<p>放松场，做的貌似全是签到。剩个 B，队友补了就是我补了（确信</p>
+<h2 id="牛客多校-6">【7.31】牛客多校 6</h2>
+<p>发烧了，头很痛，没打。去校医院开了两盒药，一觉睡到晚上，随手点开题解里的一个 easy-mid，发现榜上只过了 20+，没绷住。</p>
+<h2 id="ucup3-18.-seerc-2024">【8.1】Ucup3-18. SEERC 2024</h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1849">Contest Link</a></p>
+<p>感觉没 hdu 有意思，先补一下 hdu。</p>
+<h3 id="lutece3353.-a-boring-game">Lutece3353. A Boring Game</h3>
+<p><a target="_blank" rel="noopener" href="https://cdoj.site/d/lutece/record/688cc1ce385b3643f339badf">Code</a></p>
+<p>今日 hdu 的 A 题弱化，先写一下这题。</p>
+<p>建出一棵 <span class="math inline">\((i,a_i)\)</span> 大根笛卡尔树。</p>
+<p>假设当前在点 <span class="math inline">\(i\)</span>，那么点 <span class="math inline">\(i\)</span> 子树里的点肯定都能被攻破，相当于每次看 "利用当前子树里的所有资源，能否向根节点前进一步"。</p>
+<p>具体的，令 <span class="math inline">\(S_x=\sum\limits_{y\in\text{subtree}(x)} b_y\)</span>，那么 <span class="math inline">\(x\)</span> 能走到 <span class="math inline">\(fa_x\)</span> 当且仅当 <span class="math inline">\(v+S_x\ge a_{fa_x}\)</span>，其中 <span class="math inline">\(v\)</span> 表示角色的初始攻击力。</p>
+<p>也就是说，当 <span class="math inline">\(a_{fa_x}-S_x&gt; v\)</span> 时，角色就无法继续移动了。对于一个询问 <span class="math inline">\((p,v)\)</span>，我们找到 <span class="math inline">\(p\)</span> 到根节点的路径上第一个满足 <span class="math inline">\(a_{fa_x}-S_x&gt;v\)</span> 的点 <span class="math inline">\(x\)</span>，答案就是 <span class="math inline">\(v+S_x\)</span>。而找到 <span class="math inline">\(x\)</span> 的过程可以用倍增实现。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h3 id="a.-一个更无聊的游戏">A. 一个更无聊的游戏</h3>
+<p><a target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/contest/view-code?cid=1176&amp;rid=14865">Code</a></p>
+<p>上一题放到了树上。我们仍旧考虑建出 <span class="math inline">\((i,a_i)\)</span> 大根笛卡尔树。</p>
+<p>类似点分治的过程，找到最大的 <span class="math inline">\(a_i\)</span>，划分为若干子树，然后递归下去。</p>
+<p>比较巧妙的做法是类似今年四川省赛，倒着考虑，按 <span class="math inline">\(a_i\)</span> 从小到大枚举 <span class="math inline">\(i\)</span>，遍历 <span class="math inline">\(i\)</span> 的邻居 <span class="math inline">\(j\)</span>，如果 <span class="math inline">\(j\)</span> 被遍历过，就把 <span class="math inline">\(i\)</span> 设为 <span class="math inline">\(j\)</span> 所在连通块的根的祖先。</p>
+<p>建出笛卡尔树后就和上一题无异了。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="ptz-winter-camp-2021-day-8">【8.2】Ptz Winter Camp 2021 Day 8</h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/contest/536">Contest Link</a></p>
+<p>今天脑子有点好，感觉写了很多题，不过还是没搞出 E，可惜。</p>
+<h3 id="f.-border-similarity-undertaking">F. Border Similarity Undertaking</h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1200136">Code</a></p>
+<p>分治。设当前处理的矩形为 <span class="math inline">\([l_1,r_1]\times [l_2,r_2]\)</span>。如果 <span class="math inline">\(r_1-l_1&gt;r_2-l_2\)</span>，我们就把矩形转一下，保证矩形的宽度大于高度，接着在中间砍一刀，分成 <span class="math inline">\([l_1,r_1]\times [l_2,mid]\)</span> 和 <span class="math inline">\([l_1,r_l]\times [mid+1,r_2]\)</span> 两部分，如此递归下去。</p>
+<p>每次，我们计数 "左边界小于等于 <span class="math inline">\(y=mid\)</span>" 且 "右边界大于等于 <span class="math inline">\(y=mid+1\)</span>" 的矩形。</p>
+<p><span class="math inline">\(\forall i\in [l_1,r_1]\)</span>，扫描这一行，找到最小的 <span class="math inline">\(L[i]\)</span> 和最大的 <span class="math inline">\(R[i]\)</span>，其中 <span class="math inline">\(l_2\le L[i]\le mid &lt; R[i]\le r_2\)</span>，满足 <span class="math inline">\((i,L[i])\sim (i,R[i])\)</span> 为同种字母。同样的，还要处理出 <span class="math inline">\(D[i][j]\)</span> 表示 <span class="math inline">\((i,j)\)</span> 向下最多能延伸多少格。</p>
+<p>在中心线上，我们枚举待计数矩形的上下边界，贡献可以用前缀和 or 树状数组加速计算。</p>
+<p>时间复杂度 <span class="math inline">\(O(nm\log nm)\)</span>。代码里我图方便写的双 <span class="math inline">\(\log\)</span>，同样跑得飞快。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
