@@ -1107,6 +1107,7 @@ matrix <span class="hljs-keyword">operator</span> * (<span class="hljs-type">con
 <p>用大写字母表示锁，小写字母表示钥匙。</p>
 <p>对于一组 <span class="math inline">\((X,x)\)</span>，容易看出：以 <span class="math inline">\(x\)</span> 为根时，<span class="math inline">\(X\)</span> 子树里的点的答案均为 <span class="math inline">\(0\)</span>。可以用树上差分标记所有不能作为起点的 <span class="math inline">\(x\)</span>。此时，剩下的能作为起点的 <span class="math inline">\(x\)</span> 一定形成一个连通块（连通块里只有钥匙没有锁）。</p>
 <p>从这些点出发 bfs，模拟开锁的过程，看是否能遍历完图上所有点。若能，则这些起点答案为 <span class="math inline">\(1\)</span>，其余为 <span class="math inline">\(0\)</span>；否则，答案全为 <span class="math inline">\(0\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <h3 id="cats-的加减乘除">1012. cats 的加减乘除</h3>
 <p><a target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/contest/view-code?cid=1177&amp;rid=13817">Code</a></p>
 <p>首先，一个符号位填入 <code>+</code> 和 <code>-</code> 的概率是均等的。意味着任何一段接在加减后的仅包含乘除的连续段，期望为 <span class="math inline">\(0\)</span>。因此，整个表达式的期望等于从头开始的乘除连续段的期望。</p>
