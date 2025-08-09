@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          25k 字
+          26k 字
         
       </span>
     
@@ -1225,6 +1225,14 @@ F(x)=\prod_{i=1}^{m}\left(1+\left(b_i+\dfrac{1}{b_i}\right)x\right)
 <p>因为生成树只用连 <span class="math inline">\(n - 1\)</span> 次，只会执行 <span class="math inline">\(O(n)\)</span> 次二分，每次线段树 check，总复杂度 <span class="math inline">\(O(n\log^2 n)\)</span>。</p>
 <p>另有单 <span class="math inline">\(\log\)</span> 的做法，占坑。</p>
 <h3 id="切披萨">1011. 切披萨</h3>
+<p><a target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/contest/view-code?cid=1178&amp;rid=17840">Code</a></p>
+<p>离线整体二分。</p>
+<p>为了方便之后切上凸壳，预先对点集（以下称 <span class="math inline">\(\{p\}\)</span>）按 <span class="math inline">\(x\)</span> 坐标从小到大排序，询问（直线集合，下称 <span class="math inline">\(\{q\}\)</span>）按斜率 <span class="math inline">\((-\dfrac{A}{B})\)</span> 从小到大排序，斜率相同优先截距 <span class="math inline">\((\dfrac{C}{B})\)</span> 大的。</p>
+<p>对于当前四元组 <span class="math inline">\((l,r,\{p\},\{q\})\)</span>，将编号小于等于 <span class="math inline">\(mid\)</span> 的询问分进 <span class="math inline">\(\{ql\}\)</span>，否则分进 <span class="math inline">\(\{qr\}\)</span>。</p>
+<p>问题是 <span class="math inline">\(\{p\}\)</span> 要如何划分。一个点被分进 <span class="math inline">\(\{pl\}\)</span> 当且仅当它在某一条 <span class="math inline">\(\{ql\}\)</span> 内的线段下方。</p>
+<p>单调栈切出 <span class="math inline">\(\{ql\}\)</span> 的上凸壳，不仅记录组成上凸壳的每条直线的信息，还要处理出上凸壳上每个交点的横坐标，这样就可以按 <span class="math inline">\(x\)</span> 坐标从小到大遍历 <span class="math inline">\(\{p\}\)</span> 中的每个点，双指针移动到凸壳上对应的直线，判断当前点是否满足 <span class="math inline">\(Ax+By\le C\)</span>。满足的分到 <span class="math inline">\(\{pl\}\)</span>，否则分到 <span class="math inline">\(\{pr\}\)</span>。</p>
+<p>算交点横坐标时，可以直接取整数，因为 <span class="math inline">\(\{p\}\)</span> 中均为整点。举个例子，若真实的 <span class="math inline">\(x=5.7\)</span>，你取 <span class="math inline">\(x’=5\)</span>，那么满足 <span class="math inline">\(y\le x\)</span> 的 <span class="math inline">\(y\)</span> 也满足 <span class="math inline">\(y\le x&#39;\)</span>；满足 <span class="math inline">\(y&gt;x\)</span> 的 <span class="math inline">\(y\)</span> 也满足 <span class="math inline">\(y&gt;x&#39;\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。注意不要输出行末空格，问就是 hduoj 特性。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
