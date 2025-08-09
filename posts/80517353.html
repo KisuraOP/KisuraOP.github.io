@@ -1090,7 +1090,7 @@ matrix <span class="hljs-keyword">operator</span> * (<span class="hljs-type">con
 <p>比较巧妙的做法是类似今年四川省赛，倒着考虑，按 <span class="math inline">\(a_i\)</span> 从小到大枚举 <span class="math inline">\(i\)</span>，遍历 <span class="math inline">\(i\)</span> 的邻居 <span class="math inline">\(j\)</span>，如果 <span class="math inline">\(j\)</span> 被遍历过，就把 <span class="math inline">\(i\)</span> 设为 <span class="math inline">\(j\)</span> 所在连通块的根的祖先。</p>
 <p>建出笛卡尔树后就和上一题无异了。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
-<h2 id="ptz-winter-camp-2021-day-8">【8.2】Ptz Winter Camp 2021 Day 8</h2>
+<h2 id="ptz-winter-2021-day-8">【8.2】Ptz Winter 2021 Day 8</h2>
 <p><a target="_blank" rel="noopener" href="https://qoj.ac/contest/536">Contest Link</a></p>
 <p>今天脑子有点好，感觉写了很多题，不过还是没搞出 E，可惜。</p>
 <h3 id="f.-border-similarity-undertaking">F. Border Similarity Undertaking</h3>
@@ -1212,6 +1212,7 @@ F(x)=\prod_{i=1}^{m}\left(1+\left(b_i+\dfrac{1}{b_i}\right)x\right)
 <p>时间复杂度 <span class="math inline">\(O(n\log^2 n)\)</span>。</p>
 <h2 id="杭电多校-7">【8.8】杭电多校 7</h2>
 <p>倒闭 +1。</p>
+<p>1002 想了个和题解完全不同的做法，很麻烦，所以还是补一下正解。</p>
 <h3 id="qoj9904.-最小生成树">QOJ9904. 最小生成树</h3>
 <p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1213030">Code</a></p>
 <p>很有意思的题。</p>
@@ -1233,6 +1234,16 @@ F(x)=\prod_{i=1}^{m}\left(1+\left(b_i+\dfrac{1}{b_i}\right)x\right)
 <p>单调栈切出 <span class="math inline">\(\{ql\}\)</span> 的上凸壳，不仅记录组成上凸壳的每条直线的信息，还要处理出上凸壳上每个交点的横坐标，这样就可以按 <span class="math inline">\(x\)</span> 坐标从小到大遍历 <span class="math inline">\(\{p\}\)</span> 中的每个点，双指针移动到凸壳上对应的直线，判断当前点是否满足 <span class="math inline">\(Ax+By\le C\)</span>。满足的分到 <span class="math inline">\(\{pl\}\)</span>，否则分到 <span class="math inline">\(\{pr\}\)</span>。</p>
 <p>算交点横坐标时，可以直接取整数，因为 <span class="math inline">\(\{p\}\)</span> 中均为整点。举个例子，若真实的 <span class="math inline">\(x=5.7\)</span>，你取 <span class="math inline">\(x’=5\)</span>，那么满足 <span class="math inline">\(y\le x\)</span> 的 <span class="math inline">\(y\)</span> 也满足 <span class="math inline">\(y\le x&#39;\)</span>；满足 <span class="math inline">\(y&gt;x\)</span> 的 <span class="math inline">\(y\)</span> 也满足 <span class="math inline">\(y&gt;x&#39;\)</span>。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。注意不要输出行末空格，问就是 hduoj 特性。</p>
+<h3 id="龙族栖息地">1002. 龙族栖息地</h3>
+<p><a target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/contest/view-code?cid=1178&amp;rid=17856">Code</a></p>
+<p>观察可得，两点 <span class="math inline">\((q_1,r_1,s_1),(q_2,r_2,s_2)\)</span> 间的最短距离是 <span class="math inline">\(\dfrac{|q_1-q_2|+|r_1-r_2|+|s_1-s_2|}{2}\)</span>。</p>
+<p>设核心房间的坐标是 <span class="math inline">\((x,y,-x-y)\)</span>，那么任务是最小化 <span class="math display">\[
+f(x,y)=\sum_{i=1}^{n}\left(|x-q_i|+|y-r_i|+|-x-y-s_i|\right)
+\]</span> 对于一个固定的 <span class="math inline">\(x\)</span>，寻找 <span class="math inline">\(y\)</span> 使得 <span class="math inline">\(f(x,y)\)</span> 最小是一个经典问题。结论是 <span class="math inline">\(y\)</span> 取 <span class="math inline">\(\{r_1,r_2,\ldots,r_n,-x-s_1,-x-s_2,\ldots,-x-s_n\}\)</span> 这 <span class="math inline">\(2n\)</span> 个数的中位数是最优的。利用 <code>std::nth_element</code> 可以线性取出。</p>
+<p>但枚举每一个 <span class="math inline">\(x\)</span> 复杂度依然很大。注意到 <span class="math inline">\(f(x,y)\)</span> 展开式中的三项每一项都关于 <span class="math inline">\(x,y\)</span> 二维下凸，求和后依然二维下凸。因此，三分找到最优的 <span class="math inline">\(x\)</span> 即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log w)\)</span>。</p>
+<h2 id="ptz-summer-2020-day-3">【8.9】Ptz Summer 2020 Day 3</h2>
+<p>挺有意思的场，可补的题挺多的。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
