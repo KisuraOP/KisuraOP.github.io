@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          26k 字
+          27k 字
         
       </span>
     
@@ -1244,6 +1244,14 @@ f(x,y)=\sum_{i=1}^{n}\left(|x-q_i|+|y-r_i|+|-x-y-s_i|\right)
 <p>时间复杂度 <span class="math inline">\(O(n\log w)\)</span>。</p>
 <h2 id="ptz-summer-2020-day-3">【8.9】Ptz Summer 2020 Day 3</h2>
 <p>挺有意思的场，可补的题挺多的。</p>
+<h3 id="c.-count-on-a-tree-ii-striking-back">C. Count on a Tree II Striking Back</h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1215742">Code</a></p>
+<p><span class="math inline">\(f(a,b)\ge 2f(c,d)\)</span> 或 <span class="math inline">\(f(c,d)\ge 2f(a,b)\)</span> 是一个重要的突破点。</p>
+<p>考虑随机化，对于 <span class="math inline">\(k\)</span> 个 <span class="math inline">\([0,1]\)</span> 内的实数随机变量，最小值的期望是 <span class="math inline">\(\dfrac{1}{k+1}\)</span>。</p>
+<p>我们对每一种颜色随机一个整数，称作哈希值。对于一次询问 <span class="math inline">\((a,b,c,d)\)</span>，令 <span class="math inline">\(g(a,b)\)</span> 表示 <span class="math inline">\(a,b\)</span> 两点的简单路径上每个点对应颜色的哈希值的最小值。如果 <span class="math inline">\(g(a,b)&lt;g(c,d)\)</span>，我们就能估计 <span class="math inline">\(f(a,b)&gt;f(c,d)\)</span>。</p>
+<p>将上述看成一次试验，为保证正确性，我们要进行 <span class="math inline">\(B\)</span> 次试验，在这 <span class="math inline">\(B\)</span> 次试验中，每次都为所有 <span class="math inline">\(n\)</span> 种颜色重新分配哈希值。</p>
+<p>令 <span class="math inline">\(S_{a,b}\)</span> 表示 <span class="math inline">\(B\)</span> 次试验中 <span class="math inline">\(g(a,b)\)</span> 之和，若 <span class="math inline">\(S_{a,b}&lt;S_{c,d}\)</span>，就判定 <span class="math inline">\(f(a,b)&gt;f(c,d)\)</span>，此时错误率已经足够低。</p>
+<p>建出 <span class="math inline">\(B\)</span> 棵线段树跑重链剖分，时间复杂度 <span class="math inline">\(O(nB+mB\log^2n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
