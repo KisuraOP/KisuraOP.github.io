@@ -1252,6 +1252,17 @@ f(x,y)=\sum_{i=1}^{n}\left(|x-q_i|+|y-r_i|+|-x-y-s_i|\right)
 <p>将上述看成一次试验，为保证正确性，我们要进行 <span class="math inline">\(B\)</span> 次试验，在这 <span class="math inline">\(B\)</span> 次试验中，每次都为所有 <span class="math inline">\(n\)</span> 种颜色重新分配哈希值。</p>
 <p>令 <span class="math inline">\(S_{a,b}\)</span> 表示 <span class="math inline">\(B\)</span> 次试验中 <span class="math inline">\(g(a,b)\)</span> 之和，若 <span class="math inline">\(S_{a,b}&lt;S_{c,d}\)</span>，就判定 <span class="math inline">\(f(a,b)&gt;f(c,d)\)</span>，此时错误率已经足够低。</p>
 <p>建出 <span class="math inline">\(B\)</span> 棵线段树跑重链剖分，时间复杂度 <span class="math inline">\(O(nB+mB\log^2n)\)</span>。</p>
+<h2 id="杭电多校-8">【8.11】杭电多校 8</h2>
+<h3 id="最遥远的路">1001. 最遥远的路</h3>
+<p><a target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/contest/view-code?cid=1179&amp;rid=13981">Code</a></p>
+<p>考虑单个询问 <span class="math inline">\([ql, qr]\)</span> 怎么做。</p>
+<p>令 <span class="math inline">\(dp[x]\)</span> 表示以 <span class="math inline">\(x\)</span> 结尾的最长路径长度。按边权 <span class="math inline">\(w\)</span> 从小到大的顺序依次枚举 <span class="math inline">\(w\in [ql, qr]\)</span> 的边转移，有 <span class="math display">\[
+dp[y]=\max_{(x,y,w,d)}dp[x]+d
+\]</span> 若初始 <span class="math inline">\(dp[i]=0,\ dp[\text{others}]=-\infty\)</span>，得到的就是以 <span class="math inline">\(i\)</span> 为起点，<span class="math inline">\(x\)</span> 为终点的最长路径长度。</p>
+<p>线段树分治。对于线段树上一个点 <span class="math inline">\([l, r]\)</span>，存储所有跨过 <span class="math inline">\(\dfrac{l+r}{2}\)</span> 的询问。对于一个询问 <span class="math inline">\([ql, qr]\)</span>，将其拆分到线段树上的 <span class="math inline">\(\log\)</span> 个节点上，二分确定每个节点对应该询问的边界。</p>
+<p>分治计算时，设当前为 <span class="math inline">\((l, r)\)</span>，枚举 <span class="math inline">\(1\sim n\)</span> 中的每个点 <span class="math inline">\(i\)</span> 作为中转点，在 <span class="math inline">\(\text{mid}\)</span> 两侧分别 dp，算出：<span class="math inline">\(d1[x]\)</span> 表示 <span class="math inline">\((l,\text{mid})\)</span> 中以 <span class="math inline">\(x\)</span> 为起点，<span class="math inline">\(i\)</span> 为终点的最长路径长度；<span class="math inline">\(d2[x]\)</span> 表示 <span class="math inline">\((\text{mid} + 1,r)\)</span> 中以 <span class="math inline">\(i\)</span> 为起点，<span class="math inline">\(x\)</span> 为终点的最长路径长度。这样，对于当前节点的每一组询问 <span class="math inline">\([ql, qr]\)</span>，就能用如下式子更新答案。 <span class="math display">\[
+\max_{i=ql}^{\text{mid}} d1[i]+\max_{j=\text{mid}+1}^{qr}d2[j]
+\]</span> 时间复杂度 <span class="math inline">\(O(nm\log m+q\log m)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
