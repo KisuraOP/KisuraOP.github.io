@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          28k 字
+          29k 字
         
       </span>
     
@@ -1285,6 +1285,15 @@ dp[y]=\max_{(x,y,w,d)}dp[x]+d
 \text{dis}[y][f&#39;]=\min_{f&#39;=f\  \land\  \text{nxt}[y]=i\ \land \ \text{pre}[y]=x} \text{dis}[x][f]+w
 \]</span> 初态 <span class="math inline">\(\text{dis}[1][1]=0\)</span>，答案就是 <span class="math inline">\(\text{dis}[n][0]\)</span>。</p>
 <p>时间复杂度 <span class="math inline">\(O(m^2\log m)\)</span>。</p>
+<h2 id="牛客多校-9">【8.12】牛客多校 9</h2>
+<p>简单场，但烂完了。</p>
+<h3 id="i.-tree-construction">I. Tree Construction</h3>
+<p><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/view-submission?submissionId=78816916">Code</a></p>
+<p>考虑一个简化的问题：给定一棵树的 <span class="math inline">\(\text{dis}[i][j]\)</span>，能否还原出树的结构？</p>
+<p>答案是肯定的。将所有 <span class="math inline">\(n^2\)</span> 组 <span class="math inline">\(\text{dis}[i][j]\)</span> 从小到大排序，每次并查集合并不在同一连通块的两点，最终得到的最小生成树即为所求。原理是：相邻的点因为边权更小，会优先合并。</p>
+<p>回到这题，注意到无论 <span class="math inline">\(\text{d1}[i][j]\)</span> 和 <span class="math inline">\(\text{d2}[i][j]\)</span> 怎么交换，<span class="math inline">\(\text{d}1[i][j]+\text{d}2[i][j]\)</span> 都是定值。于是，我们将 <span class="math inline">\(\text{d}1[i][j]+\text{d}2[i][j]\)</span> 作为 <span class="math inline">\((i,j)\)</span> 的边权，跑最小生成树，就能还原树的结构。原理是：相邻的点同样因为 <span class="math inline">\(\text{d}1[i][j]+\text{d}2[i][j]\)</span> 更小，会优先合并。</p>
+<p>接下来，要确定 <span class="math inline">\(\text{d1}[i][j]\)</span> 和 <span class="math inline">\(\text{d2}[i][j]\)</span> 如何分配到两棵树上（称为树 <span class="math inline">\(T_1\)</span> 和树 <span class="math inline">\(T_2\)</span>）。我们任取一点为根 dfs，当前边为 <span class="math inline">\((u,v)\)</span>，不妨先假设 <span class="math inline">\(w_1=\text{d1}[u][v]\)</span> 属于 <span class="math inline">\(T_1\)</span>，<span class="math inline">\(w_2=\text{d2}[u][v]\)</span> 属于 <span class="math inline">\(T_2\)</span>，然后遍历已经经过的点，看有没有冲突的地方。有冲突，就交换 <span class="math inline">\(w_1\)</span> 和 <span class="math inline">\(w_2\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^2\log n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
