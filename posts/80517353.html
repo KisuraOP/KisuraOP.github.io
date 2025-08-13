@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          29k 字
+          30k 字
         
       </span>
     
@@ -1243,6 +1243,7 @@ f(x,y)=\sum_{i=1}^{n}\left(|x-q_i|+|y-r_i|+|-x-y-s_i|\right)
 <p>但枚举每一个 <span class="math inline">\(x\)</span> 复杂度依然很大。注意到 <span class="math inline">\(f(x,y)\)</span> 展开式中的三项每一项都关于 <span class="math inline">\(x,y\)</span> 二维下凸，求和后依然二维下凸。因此，三分找到最优的 <span class="math inline">\(x\)</span> 即可。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log w)\)</span>。</p>
 <h2 id="ptz-summer-2020-day-3">【8.9】Ptz Summer 2020 Day 3</h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/contest/503">Contest Link</a></p>
 <p>挺有意思的场，可补的题挺多的。</p>
 <h3 id="c.-count-on-a-tree-ii-striking-back">C. Count on a Tree II Striking Back</h3>
 <p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1215742">Code</a></p>
@@ -1294,6 +1295,21 @@ dp[y]=\max_{(x,y,w,d)}dp[x]+d
 <p>回到这题，注意到无论 <span class="math inline">\(\text{d1}[i][j]\)</span> 和 <span class="math inline">\(\text{d2}[i][j]\)</span> 怎么交换，<span class="math inline">\(\text{d}1[i][j]+\text{d}2[i][j]\)</span> 都是定值。于是，我们将 <span class="math inline">\(\text{d}1[i][j]+\text{d}2[i][j]\)</span> 作为 <span class="math inline">\((i,j)\)</span> 的边权，跑最小生成树，就能还原树的结构。原理是：相邻的点同样因为 <span class="math inline">\(\text{d}1[i][j]+\text{d}2[i][j]\)</span> 更小，会优先合并。</p>
 <p>接下来，要确定 <span class="math inline">\(\text{d1}[i][j]\)</span> 和 <span class="math inline">\(\text{d2}[i][j]\)</span> 如何分配到两棵树上（称为树 <span class="math inline">\(T_1\)</span> 和树 <span class="math inline">\(T_2\)</span>）。我们任取一点为根 dfs，当前边为 <span class="math inline">\((u,v)\)</span>，不妨先假设 <span class="math inline">\(w_1=\text{d1}[u][v]\)</span> 属于 <span class="math inline">\(T_1\)</span>，<span class="math inline">\(w_2=\text{d2}[u][v]\)</span> 属于 <span class="math inline">\(T_2\)</span>，然后遍历已经经过的点，看有没有冲突的地方。有冲突，就交换 <span class="math inline">\(w_1\)</span> 和 <span class="math inline">\(w_2\)</span>。</p>
 <p>时间复杂度 <span class="math inline">\(O(n^2\log n)\)</span>。</p>
+<h2 id="ucup3-21.-ōokayama">【8.13】Ucup3-21. Ōokayama</h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1872">Contest Link</a></p>
+<p>好难的场。</p>
+<h3 id="m.-cartesian-trees">M. Cartesian Trees</h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1223380">Code</a></p>
+<p>考虑给每个询问的区间 <span class="math inline">\([l, r]\)</span> 搞出一个哈希值，这样只用统计有多少不同的哈希值。</p>
+<p>如果两个区间的笛卡尔树同构，哈希值必须相同。我们要想办法提取出一个区间的特征。</p>
+<p>令 <span class="math inline">\(L[i]\)</span> 表示 <span class="math inline">\(i\)</span> 左侧最近的 <span class="math inline">\(&lt;a_i\)</span> 的位置，<span class="math inline">\(R[i]\)</span> 表示 <span class="math inline">\(i\)</span> 右侧最近的 <span class="math inline">\(&lt;a_i\)</span> 的位置。</p>
+<p>一个想法是，对于一个区间 <span class="math inline">\([l,r]\)</span>，我们保存所有满足 <span class="math inline">\(l\le L[i]&lt;i\le r\)</span> 的 <span class="math inline">\(i-L[i]\)</span>（这表示笛卡尔树上左子树的大小），并按 <span class="math inline">\(i\)</span> 升序保存它们，得到一个列表 <span class="math inline">\(\{i_1-L[i_1],i_2-L[i_2],\ldots\}\  (i_1&lt;i_2&lt;\ldots)\)</span>，称作 <span class="math inline">\(f_1[l,r]\)</span>。</p>
+<p>同样的，对于所有满足 <span class="math inline">\(l\le i&lt;R[i]\le r\)</span> 的 <span class="math inline">\(R[i]-i\)</span>（这对于笛卡尔树上右子树的大小），并按 <span class="math inline">\(i\)</span> 升序保存它们，得到 <span class="math inline">\(\{R[i_1]-i_1,R[i_2]-i_2,\ldots\}\ (i_1&lt;i_2&lt;\ldots)\)</span>，称作 <span class="math inline">\(f_2[l,r]\)</span>。</p>
+<p>两个区间 <span class="math inline">\([l_1,r_1],[l_2,r_2]\)</span> 的笛卡尔树同构，当且仅当 <span class="math inline">\(f_1[l_1,r_1]=f_1[l_2,r_2]\)</span> 且 <span class="math inline">\(f_2[l_1,r_1]=f_2[l_2,r_2]\)</span>。而对于不同构的两个区间，两个等号必有一个不能取到。</p>
+<p>于是，我们将二元组 <span class="math inline">\((f_1[l, r], f_2[l, r])\)</span> 作为区间 <span class="math inline">\([l, r]\)</span> 的哈希值是合适的。</p>
+<p>怎么对所有 <span class="math inline">\(Q\)</span> 个区间求出哈希值？我们将每个 <span class="math inline">\(i-L[i]\)</span> 和 <span class="math inline">\(R[i]-i\)</span> 看作一个字符，查询一段区间的 <span class="math inline">\(i-L[i]\)</span> 的列表就相当于用字符串哈希询问一个区间的哈希值。</p>
+<p>将所有询问离线，扫描线，对于一组 <span class="math inline">\((L[i],i)\)</span>，我们在 <span class="math inline">\(i\)</span> 时刻将 <span class="math inline">\(i-L[i]\)</span> 的单点哈希值加进树状数组的 <span class="math inline">\(L[i]\)</span> 位置。<span class="math inline">\((i,R[i])\)</span> 同理。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
