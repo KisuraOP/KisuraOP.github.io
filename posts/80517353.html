@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          30k 字
+          32k 字
         
       </span>
     
@@ -1309,6 +1309,38 @@ dp[y]=\max_{(x,y,w,d)}dp[x]+d
 <p>于是，我们将二元组 <span class="math inline">\((f_1[l, r], f_2[l, r])\)</span> 作为区间 <span class="math inline">\([l, r]\)</span> 的哈希值是合适的。</p>
 <p>怎么对所有 <span class="math inline">\(Q\)</span> 个区间求出哈希值？我们将每个 <span class="math inline">\(i-L[i]\)</span> 和 <span class="math inline">\(R[i]-i\)</span> 看作一个字符，查询一段区间的 <span class="math inline">\(i-L[i]\)</span> 的列表就相当于用字符串哈希询问一个区间的哈希值。</p>
 <p>将所有询问离线，扫描线，对于一组 <span class="math inline">\((L[i],i)\)</span>，我们在 <span class="math inline">\(i\)</span> 时刻将 <span class="math inline">\(i-L[i]\)</span> 的单点哈希值加进树状数组的 <span class="math inline">\(L[i]\)</span> 位置。<span class="math inline">\((i,R[i])\)</span> 同理。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h3 id="i.-near-pair">I. Near Pair</h3>
+<p>很有趣味的一题，嘴巴会了，但还没写，先占坑。</p>
+<h2 id="牛客多校-10">【8.14】牛客多校 10</h2>
+<p>罚时吃得最饱的一场。疑似凌晨 4 点睡导致脑子一团浆糊，狂暴 wa 了四发才醒过来。</p>
+<p>水母，嘿嘿嘿。海星，嘿嘿嘿。鳗鱼，嘿嘿嘿。</p>
+<h2 id="杭电多校-9">【8.15】杭电多校 9</h2>
+<p>三开大失败。虽然我 1007 已经想清楚了，但脑瘫写了个可能会退化到 <span class="math inline">\(O(n^2)\)</span> 的东西。</p>
+<p>不过赛后发现即便改过来了，<code>map&lt;array&lt;int, 2&gt;, int&gt;</code> 的常数还是很大。</p>
+<p>又狂 T 了十几发之后，终于发现开 <span class="math inline">\(n\)</span> 个 <code>map&lt;int, int&gt;</code> 会大幅减小常数，之后才过。</p>
+<p>挺好的题，从 <a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/32975dk3">Link</a> 里学到了怎么找到三角剖分里的所有三角形，并为每条有向线段找到逆时针方向的三角形顶点编号。非常巧妙，代码也很短，感谢 Diaosi 的指导。</p>
+<h3 id="三角剖分">1007. 三角剖分</h3>
+<p><a target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/contest/view-code?cid=1180&amp;rid=14506&amp;from=rank">Code</a></p>
+<p>首先，任意简单多边形的任一三角剖分的对偶图是一个 "任一节点度数至多为 <span class="math inline">\(3\)</span>" 的树。也就是说，当你选定任意一点为根，呈现出的是一棵二叉树。</p>
+<p>我们可以在这棵树上进行 dp。当然，也可以不显式把树建出来，直接分治求解。</p>
+<p><img src="/image/academic/tri.png" /></p>
+<p>如上图，以对角线 <span class="math inline">\((x,y)\)</span> 为例，在 <span class="math inline">\((x,y)\)</span> 右侧（或者说 <span class="math inline">\(\overrightarrow{xy}\)</span> 的逆时针方向），所在三角形是 <span class="math inline">\(xyz\)</span>，我们可以把问题递归到边 <span class="math inline">\((x,z)\)</span> 和 <span class="math inline">\((z,y)\)</span>。而 <span class="math inline">\((x,z)\)</span> 逆时针方向是三角形 <span class="math inline">\(xzw_1\)</span>，我们又可以递归到 <span class="math inline">\((x,w_1)\)</span> 和 <span class="math inline">\((w_1,z)\)</span>。此时已经到了多边形边界，递归停止。</p>
+<p>为方便表述，定义 <span class="math inline">\(S(x,y)\)</span> 表示 <span class="math inline">\(\overrightarrow{xy}\)</span> 与其逆时针方向的凸多边形边界围成的子多边形。例如，图中 <span class="math inline">\(S(x,y)\)</span> 就表示多边形 <span class="math inline">\(xyw_2zw_1\)</span>，而 <span class="math inline">\(S(y,x)\)</span> 就表示多边形 <span class="math inline">\(yxw_3\)</span>。定义 <span class="math inline">\(p(x,y)\)</span> 表示 <span class="math inline">\(\overrightarrow{xy}\)</span> 逆时针方向的三角形顶点编号，对于图中就是 <span class="math inline">\(p(x,y)=z\)</span>，<span class="math inline">\(p(y,x)=w_3\)</span>。接下来我们就可以开始 dp 了。</p>
+<p>令 <span class="math inline">\(f_{S(x,y)}\)</span> 表示 <span class="math inline">\(S(x,y)\)</span> 中生成树的数量。</p>
+<p>令 <span class="math inline">\(g_{S(x,y)}\)</span> 表示 <span class="math inline">\(S(x,y)\)</span> 中恰有两个连通分量，且 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 不在一个连通分量的生成森林的数量。</p>
+<p>初态：当 <span class="math inline">\(S(x,y)\)</span> 为多边形的一段边界时，<span class="math inline">\(f_{S(x,y)}=g_{S(x,y)}=1\)</span>。</p>
+<p>令 <span class="math inline">\(z=p(x,y)\)</span>，转移如下 <span class="math display">\[
+\begin{align}
+g_{S(x,y)} &amp;=f_{S(x,z)}\cdot g_{S(z,y)}+f_{S(z,y)}\cdot g_{S(x,z)}\\
+f_{S(x,y)} &amp;= f_{S(x,z)} \cdot f_{S(z,y)}+g_{S(x,y)}
+\end{align}
+\]</span> 解释一下：先看第一个式子，<span class="math inline">\(f_{S(x,z)}\cdot g_{S(z,y)}\)</span> 表示从 <span class="math inline">\(S(x,z)\)</span> 中选取一个完整的生成树，再从 <span class="math inline">\(S(z,y)\)</span> 中选取 <span class="math inline">\(z\)</span> 和 <span class="math inline">\(y\)</span> 不在一个连通分量的一个生成森林，这样 <span class="math inline">\(z\)</span> 所在的连通分量通过点 <span class="math inline">\(z\)</span> 并入了 <span class="math inline">\(S(x,z)\)</span> 的生成树，而 <span class="math inline">\(x,y\)</span> 依然处于不同的连通分量。另一部分同理。</p>
+<p>再看第二个式子，<span class="math inline">\(f_{S(x,z)} \cdot f_{S(z,y)}\)</span> 表示 <span class="math inline">\(S(x,y)\)</span> 中不经过边 <span class="math inline">\((x,y)\)</span> 的生成树数量，而 <span class="math inline">\(g_{S(x,y)}\)</span> 恰好表示经过边 <span class="math inline">\((x,y)\)</span> 的生成树数量（将原本不在同一连通分量的 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 所在的连通分量用边 <span class="math inline">\((x,y)\)</span> 连起来，得到一棵生成树）。</p>
+<p>至此，我们可以枚举每条对角线，向两侧递归，得到所有的 <span class="math inline">\(f_{S(x,y)}\)</span> 和 <span class="math inline">\(g_{S(x,y)}\)</span>。使用记忆化搜索，每个 <span class="math inline">\(S(x,y)\)</span> 的答案至多只会算一次，所以是单 <span class="math inline">\(\log\)</span> 的。</p>
+<p>对于一个询问 <span class="math inline">\((x,y)\)</span>，我们要算去掉对角线 <span class="math inline">\((x,y)\)</span> 后的生成树数量，答案是 <span class="math display">\[
+(f_{S(x,y)}-g_{S(x,y)})\cdot g_{S(y,x)}+(f_{S(y,x)}-g_{S(y,x)})\cdot g_{S(x,y)}
+\]</span> 如果理解了之前的转移方程，这里是不难理解的。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
