@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          34k 字
+          33k 字
         
       </span>
     
@@ -1364,29 +1364,10 @@ f_{S(x,y)} &amp;= f_{S(x,z)} \cdot f_{S(z,y)}+g_{S(x,y)}
 <p>当然，我们不可能对所有 <span class="math inline">\(k\in [1,m]\)</span> 都跑一次最大费用最大流。经典的套路是把所有容量为 <span class="math inline">\(k\)</span> 的边的容量都重新设置为 <span class="math inline">\(m\)</span>，每次跑一条增广路出来。</p>
 <p>时间复杂度，<span class="math inline">\(O(4031\texttt{ms})\)</span>。</p>
 <h2 id="尾声">【尾声】</h2>
-<p>随便写写。</p>
-<h3 id="qoj10784.-strange-series"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/1997/problem/10784">QOJ10784. Strange Series</a></h3>
-<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1260983">Code</a></p>
-<p>我们要求 <span class="math display">\[
-\begin{align}
-p&amp;=\dfrac{S}{e}\\
-&amp;=\dfrac{1}{e}\sum_{m=0}^{\infty}\dfrac{P(m)}{m!}\\
-&amp;=\dfrac{1}{e}\sum_{m=0}^{\infty}\dfrac{\sum_{i=0}^{n}a_im^i}{m!}\\
-&amp;=\sum_{i=0}^{n}a_i\cdot \dfrac{1}{e}\sum_{m=0}^{\infty}\frac{m^i}{m!}
-\end{align}
-\]</span> 令 <span class="math inline">\(T_i=\dfrac{1}{e}\sum\limits_{m=0}^{\infty}\dfrac{m^i}{m!}\)</span>，我们要对 <span class="math inline">\(i\in [0,n]\)</span> 求出 <span class="math inline">\(T_i\)</span>。</p>
-<p>对 <span class="math inline">\(T_i\)</span> 建立 EGF，设 <span class="math inline">\(F(x)=\sum\limits_{i=0}^{\infty}T_i\dfrac{x^i}{i!}\)</span>。那么 <span class="math display">\[
-\begin{align}
-F(x)&amp;=\sum_{i=0}^{\infty}\left(\dfrac{1}{e}\sum_{m=0}^{\infty}\frac{m^i}{m!}\right)\dfrac{x^i}{i!}\\
-&amp;=\dfrac{1}{e}\sum_{m=0}^{\infty}\sum_{i=0}^{\infty}\left(\dfrac{m^i}{m!}\right)\dfrac{x^i}{i!}\\
-&amp;=\dfrac{1}{e}\sum_{m=0}^{\infty}\frac{1}{m!}\sum_{i=0}^{\infty}\dfrac{(mx)^i}{i!}\\
-&amp;=\dfrac{1}{e}\sum_{m=0}^{\infty}\dfrac{1}{m!}e^{mx}\\
-&amp;=\dfrac{1}{e}\sum_{m=0}^{\infty}\dfrac{(e^x)^m}{m!}\\
-&amp;=e^{e^x-1}
-\end{align}
-\]</span> 令 <span class="math inline">\(G(x)=e^x-1=\left(\sum\limits_{i=0}^{\infty}\dfrac{x^i}{i!}\right)-1=\sum\limits_{i=1}^{\infty}\dfrac{x^i}{i!}\)</span>。</p>
-<p>那么 <span class="math inline">\(T_i=i!\cdot [x^i]F(x)=i!\cdot [x^i]e^{G(x)}\)</span>，多项式 <span class="math inline">\(\text{exp}\)</span> 即可。</p>
-<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<p>第二次来清水河集训了，相比第一次，最大的变化可能是学子 mai 取代了朝阳二楼的位置（笑哭</p>
+<p>简单回忆，收获比较大的是与生成函数，分治有关的一点技巧，但也只是一点皮毛。</p>
+<p>比较难忘的是前期若干和重链剖分有关的题，以及最后的三角剖分。</p>
+<p>另有若干题没来得及补，例如两道倍增并查集的题。说实话，暑假一过我大概率就没什么动力去补了。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
