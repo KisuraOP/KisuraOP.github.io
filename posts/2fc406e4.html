@@ -16,16 +16,16 @@
   <meta name="author" content="KisuraOP">
   <meta name="keywords" content="">
   
-    <meta name="description" content="vp 多一点还是有好处的。 计划将区域赛前的训练都写在这里。 与以往不同，这篇博客说是题解，实际上只会记录简要的解题思路，用于我日后进行回忆。 NWERC 2023 H. Higher Arithmetic 一个经典的结论是：将一个数拆分成若干正整数，要使得乘积最大，应当先尽可能多地拆成 \(3\)，再尽可能多地拆成 \(2\)。如果最后剩下 \(1\)，就把之前组合出的一个 \(3\) 拆掉，拼">
+    <meta name="description" content="vp 多一点还是有好处的。 计划将区域赛前的训练都写在这里。 与以往不同，这篇博客说是题解，实际上只会记录简要的解题思路，用于我日后进行回忆。 NWERC 2023 H. Higher Arithmetic              将一个数拆分成若干正整数，要使得乘积最大，应当先尽可能多地拆成 \(3\)，再尽可能多地拆成 \(2\)。如果最后剩下 \(1\)，就把之前组合出的一个 \(3\)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【题解】龟速更新的加训日记">
 <meta property="og:url" content="https://kisuraop.github.io/posts/2fc406e4.html">
 <meta property="og:site_name" content="KisuraOP">
-<meta property="og:description" content="vp 多一点还是有好处的。 计划将区域赛前的训练都写在这里。 与以往不同，这篇博客说是题解，实际上只会记录简要的解题思路，用于我日后进行回忆。 NWERC 2023 H. Higher Arithmetic 一个经典的结论是：将一个数拆分成若干正整数，要使得乘积最大，应当先尽可能多地拆成 \(3\)，再尽可能多地拆成 \(2\)。如果最后剩下 \(1\)，就把之前组合出的一个 \(3\) 拆掉，拼">
+<meta property="og:description" content="vp 多一点还是有好处的。 计划将区域赛前的训练都写在这里。 与以往不同，这篇博客说是题解，实际上只会记录简要的解题思路，用于我日后进行回忆。 NWERC 2023 H. Higher Arithmetic              将一个数拆分成若干正整数，要使得乘积最大，应当先尽可能多地拆成 \(3\)，再尽可能多地拆成 \(2\)。如果最后剩下 \(1\)，就把之前组合出的一个 \(3\)">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c370581af70000acd68b3a0310452556.jpeg">
 <meta property="article:published_time" content="2025-08-29T01:08:41.000Z">
-<meta property="article:modified_time" content="2025-08-29T01:39:45.685Z">
+<meta property="article:modified_time" content="2025-08-29T13:21:23.232Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ICPC">
 <meta property="article:tag" content="QOJ">
@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.2k 字
+          4.6k 字
         
       </span>
     
@@ -328,7 +328,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2025年8月29日 上午
+                    本文最后更新于：2025年8月29日 晚上
                   
                 
               </p>
@@ -341,16 +341,16 @@
 <p>与以往不同，这篇博客说是题解，实际上只会记录简要的解题思路，用于我日后进行回忆。</p>
 <h2 id="nwerc-2023">NWERC 2023</h2>
 <h3 id="h.-higher-arithmetic">H. Higher Arithmetic</h3>
-<p>一个经典的结论是：将一个数拆分成若干正整数，要使得乘积最大，应当先尽可能多地拆成 <span class="math inline">\(3\)</span>，再尽可能多地拆成 <span class="math inline">\(2\)</span>。如果最后剩下 <span class="math inline">\(1\)</span>，就把之前组合出的一个 <span class="math inline">\(3\)</span> 拆掉，拼成两个 <span class="math inline">\(2\)</span>。</p>
-<p>注：实际上拆分成 <span class="math inline">\(e\)</span> 最好，只不过 <span class="math inline">\(3\)</span> 是最接近 <span class="math inline">\(e\)</span> 的正整数，其次是 <span class="math inline">\(2\)</span>。</p>
+<div class="note note-primary">
+            <p>将一个数拆分成若干正整数，要使得乘积最大，应当先尽可能多地拆成 <span class="math inline">\(3\)</span>，再尽可能多地拆成 <span class="math inline">\(2\)</span>。如果最后剩下 <span class="math inline">\(1\)</span>，就把之前组合出的一个 <span class="math inline">\(3\)</span> 拆掉，拼成两个 <span class="math inline">\(2\)</span>。</p><p>注：实际上拆分成 <span class="math inline">\(e\)</span> 最好，只不过 <span class="math inline">\(3\)</span> 是最接近 <span class="math inline">\(e\)</span> 的正整数，其次是 <span class="math inline">\(2\)</span>。</p>
+          </div>
 <p>回到这道题，<span class="math inline">\(\ge 3\)</span> 的肯定直接乘起来，否则想办法凑出多的 <span class="math inline">\(3\)</span>，其次凑出多的 <span class="math inline">\(2\)</span>。</p>
 <h3 id="j.-jogging-tour">J. Jogging Tour</h3>
 <p>枚举 <span class="math inline">\(n\)</span> 个点两两之间的 <span class="math inline">\(n^2\)</span> 条边，最优策略中坐标轴肯定与其中一条边平行。</p>
-<p>坐标轴旋转公式（逆时针旋转 <span class="math inline">\(\theta\)</span>），原坐标 <span class="math inline">\((x,y)\)</span>，新坐标 <span class="math inline">\((x&#39;,y&#39;)\)</span>。 <span class="math display">\[
-\begin{align}
-\pmatrix{x&#39; \\ y&#39;}=\pmatrix{\cos\theta &amp; \sin\theta\\ -\sin\theta &amp; \cos \theta}\pmatrix{x\\ y}
-\end{align}
-\]</span> 之后跑最短哈密顿路径即可。</p>
+<div class="note note-primary">
+            <p>坐标轴旋转公式（逆时针旋转 <span class="math inline">\(\theta\)</span>），原坐标 <span class="math inline">\((x,y)\)</span>，新坐标 <span class="math inline">\((x&#39;,y&#39;)\)</span>。 <span class="math display">\[\begin{align}\pmatrix{x&#39; \\ y&#39;}=\pmatrix{\cos\theta &amp; \sin\theta\\ -\sin\theta &amp; \cos \theta}\pmatrix{x\\ y}\end{align}\]</span></p>
+          </div>
+<p>之后跑最短哈密顿路径即可。</p>
 <h3 id="i.-isolated-island">I. Isolated Island</h3>
 <p>比较蠢的方法是先建出平面图，再用最小左转法转成对偶图，再从无限面开始 bfs。</p>
 <p>这当然是能做的，<a target="_blank" rel="noopener" href="https://qoj.ac/submission/1251741">Link</a>，<span class="math inline">\(O(n^2\log n)\)</span>，缺点是一大坨。</p>
@@ -397,11 +397,9 @@ F(x)&amp;=\sum_{i=0}^{\infty}\left(\dfrac{1}{e}\sum_{m=0}^{\infty}\frac{m^i}{m!}
 <h3 id="m.-coloring-rectangles">M. Coloring Rectangles</h3>
 <p>每个矩形以其两条对角线为分隔，分出上下左右四个三角形。上和下恰好一个涂黑。左和有恰好一个涂黑，对应了题中的四种情况。用一个变量表示上黑还是下黑，另一个变量表示左黑还是右黑，一种染色情况就能用 <span class="math inline">\(2n\)</span> 个二元变量来描述。两个三角形如果严格相交，就表示二者不能同时涂黑，2-SAT 即可。</p>
 <p>因为要字典序最大，我们可以依次钦定每一个矩形是 <span class="math inline">\(3,2,1\)</span> 或 <span class="math inline">\(0\)</span>，最多跑 <span class="math inline">\(4n\)</span> 遍 2-SAT，最终 <span class="math inline">\(O(n^3)\)</span>。</p>
-<p>注：两个三角形 <span class="math inline">\(A,B\)</span> 严格相交（公共面积 <span class="math inline">\(&gt;0\)</span>），等价于</p>
-<ul>
-<li><span class="math inline">\(A\)</span> 中一条边和 <span class="math inline">\(B\)</span> 中一条边在非三角形端点处规范相交。</li>
-<li>或者，其中一个三角形的重心严格在另一个三角形内部。</li>
-</ul>
+<div class="note note-primary">
+            <p>两个三角形 <span class="math inline">\(A,B\)</span> 严格相交（公共面积 <span class="math inline">\(&gt;0\)</span>），等价于</p><ul><li><span class="math inline">\(A\)</span> 中一条边和 <span class="math inline">\(B\)</span> 中一条边在非三角形端点处规范相交。</li><li>或者，其中一个三角形的重心严格在另一个三角形内部。</li></ul>
+          </div>
 <h3 id="a.-space-station">A. Space Station</h3>
 <p>好难写，占坑。</p>
 <h2 id="ucup3-39.-tokyo">Ucup3-39. Tokyo</h2>
@@ -411,11 +409,66 @@ F(x)&amp;=\sum_{i=0}^{\infty}\left(\dfrac{1}{e}\sum_{m=0}^{\infty}\frac{m^i}{m!}
 <p>将 <span class="math inline">\(f_d\)</span> 拆开，得到 <span class="math display">\[
 f_d=\sum_{i-j=d}a_i(a_i+1)\cdot (a_j+1)-2\sum_{i-j=d}a_i(a_i+1)\cdot a_j(a_j+1)+\sum_{i-j=d}(a_i+1)\cdot a_j(a_j+1)
 \]</span> 每一项分别计算，将差卷积转化为和卷积后，用 NTT 求解。</p>
+<div class="note note-primary">
+            <p>差卷积化和卷积（0-index）： <span class="math display">\[\sum_{i-j=d}f(i)g(j)=\sum_{i+(n-j-1)=d+n-1}f(i)g(j)\]</span> 令 <span class="math inline">\(g_{\text{rev}}(i)=g(n-i-1)\)</span>，化为 <span class="math inline">\(\sum\limits_{i+j=d+n-1}f(i)g_{\text{rev}}(j)\)</span>。</p>
+          </div>
 <h3 id="l.-lis-triangle">L. LIS Triangle</h3>
 <p>如果 <span class="math inline">\(K=i\)</span> 有解，那么 <span class="math inline">\(K&gt;i\)</span> 也有解，因为整体加一不影响构成三角形。</p>
 <p><span class="math inline">\(K=1\)</span> 时无解，<span class="math inline">\(K=2\)</span> 时一定有解，两种构造如下</p>
 <p><img src="/image/academic/10981.png" style="zoom:40%;" /></p>
 <p><span class="math inline">\(L=N\)</span> 时要特判。</p>
+<h3 id="n.-nice-bouquets">N. Nice Bouquets</h3>
+<p>转化题意：找到最小的 <span class="math inline">\(c\)</span>，通过对树 <span class="math inline">\(1\sim c\)</span> 操作，使得在所有 <span class="math inline">\(k\)</span> 天里，每一天三种颜色的花的数量（<span class="math inline">\(n_R,n_G,n_B\)</span>）都满足 <span class="math inline">\(n_R\equiv n_G\equiv n_B\pmod {3}\)</span>。</p>
+<p>一棵树用长为 <span class="math inline">\(2k\)</span> 的向量描述：第 <span class="math inline">\(2i\)</span> 个值表示第 <span class="math inline">\(i\)</span> 天这棵树对 <span class="math inline">\(n_R-n_G\pmod {3}\)</span> 的贡献，第 <span class="math inline">\(2i+1\)</span> 个值表示第 <span class="math inline">\(i\)</span> 天这棵树对 <span class="math inline">\(n_G-n_b\pmod {3}\)</span> 的贡献。如此得到 <span class="math inline">\(n\)</span> 个长为 <span class="math inline">\(2k\)</span> 的向量构成的向量组 <span class="math inline">\(\{v_i\}\)</span>。</p>
+<p>对第 <span class="math inline">\(i\)</span> 棵树操作，默认状态 <span class="math inline">\(1\cdot v_i\)</span>，砍掉即 <span class="math inline">\(0\cdot v_i\)</span>，加速即 <span class="math inline">\(2\cdot v_i\)</span>。令 <span class="math inline">\(V_{\text{init}}=\sum_{i=1}^{n}v_i\pmod{3}\)</span>，目标是选取一组 <span class="math inline">\(\{a_i\}\)</span> 使得 <span class="math display">\[
+V_{\text{init}}+\sum_{i=1}^{c} a_iv_i \equiv 0 \pmod{3} \ \ (a_i\in \{0,1,2\})
+\]</span> 即向量 <span class="math inline">\(-V_{\text{init}}\)</span> 是否能被向量组 <span class="math inline">\(\{v_1,v_2,\ldots,v_c\}\)</span> 线性表出，用线性基求解。</p>
+<div class="note note-primary">
+            <p><span class="math inline">\(GF(3)\)</span> 下的线性基：核心仍然是高斯消元。</p><p>基的每一维都是一个向量（当然也可以是三进制数）</p>
+          </div>
+<div class='spoiler collapsed'>
+    <div class='spoiler-title'>
+        GF(3) basis
+    </div>
+    <div class='spoiler-content'>
+        <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">Basis</span> &#123;
+	<span class="hljs-type">int</span> n;
+	vector&lt;vector&lt;<span class="hljs-type">int</span>&gt;&gt; p;
+	<span class="hljs-built_in">Basis</span>(<span class="hljs-type">int</span> _n) : <span class="hljs-built_in">n</span>(_n), <span class="hljs-built_in">p</span>(n) &#123;&#125;
+	<span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">insert</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; v)</span> </span>&#123;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = n - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;
+			<span class="hljs-keyword">if</span> (v[i] == <span class="hljs-number">0</span>) &#123;
+				<span class="hljs-keyword">continue</span>;
+			&#125;
+			<span class="hljs-keyword">if</span> (p[i].<span class="hljs-built_in">empty</span>()) &#123;
+				p[i] = v;
+				<span class="hljs-keyword">return</span> ;
+			&#125;
+			<span class="hljs-type">int</span> fac = v[i] * p[i][i] % <span class="hljs-number">3</span>;
+			<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;
+				v[j] = (v[j] - fac * p[i][j] % <span class="hljs-number">3</span> + <span class="hljs-number">3</span>) % <span class="hljs-number">3</span>;
+			&#125;
+		&#125;
+	&#125;
+	<span class="hljs-function"><span class="hljs-type">bool</span> <span class="hljs-title">query</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; v)</span> </span>&#123;
+		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = n - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;
+			<span class="hljs-keyword">if</span> (v[i] == <span class="hljs-number">0</span>) &#123;
+				<span class="hljs-keyword">continue</span>;
+			&#125;
+			<span class="hljs-keyword">if</span> (p[i].<span class="hljs-built_in">empty</span>()) &#123;
+				<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+			&#125;
+			<span class="hljs-type">int</span> fac = v[i] * p[i][i] % <span class="hljs-number">3</span>;
+			<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; n; j++) &#123;
+				v[j] = (v[j] - fac * p[i][j] % <span class="hljs-number">3</span> + <span class="hljs-number">3</span>) % <span class="hljs-number">3</span>;
+			&#125;
+		&#125;
+		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+	&#125;
+&#125;;</code></pre></div>
+
+    </div>
+</div>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
