@@ -1,0 +1,834 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/image/bg/mugeng.ico">
+  <link rel="icon" href="/image/bg/mugeng.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="KisuraOP">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="vp 多一点还是有好处的。 计划将区域赛前的训练都写在这里。 与以往不同，这篇博客说是题解，实际上只会记录简要的解题思路，用于我日后进行回忆。 NWERC 2023 H. Higher Arithmetic 一个经典的结论是：将一个数拆分成若干正整数，要使得乘积最大，应当先尽可能多地拆成 \(3\)，再尽可能多地拆成 \(2\)。如果最后剩下 \(1\)，就把之前组合出的一个 \(3\) 拆掉，拼">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【题解】龟速更新的加训日记">
+<meta property="og:url" content="https://kisuraop.github.io/posts/2fc406e4.html">
+<meta property="og:site_name" content="KisuraOP">
+<meta property="og:description" content="vp 多一点还是有好处的。 计划将区域赛前的训练都写在这里。 与以往不同，这篇博客说是题解，实际上只会记录简要的解题思路，用于我日后进行回忆。 NWERC 2023 H. Higher Arithmetic 一个经典的结论是：将一个数拆分成若干正整数，要使得乘积最大，应当先尽可能多地拆成 \(3\)，再尽可能多地拆成 \(2\)。如果最后剩下 \(1\)，就把之前组合出的一个 \(3\) 拆掉，拼">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c370581af70000acd68b3a0310452556.jpeg">
+<meta property="article:published_time" content="2025-08-29T01:08:41.000Z">
+<meta property="article:modified_time" content="2025-08-29T01:11:18.245Z">
+<meta property="article:author" content="KisuraOP">
+<meta property="article:tag" content="ICPC">
+<meta property="article:tag" content="QOJ">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/c370581af70000acd68b3a0310452556.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>【题解】龟速更新的加训日记 - KisuraOP</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4277703_p4cthydttt.css">
+<link rel="stylesheet" href="/css/vemoji.css">
+<link rel="stylesheet" href="/css/bg_cover.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kisuraop.github.io","root":"/","version":"1.9.5-a","typing":{"enable":false,"typeSpeed":55,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"c++"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3","collapseDepth":0},"lazyload":{"enable":false,"loading_img":"/image/other/loading.mp4","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<!-- hexo injector head_end start --><script src="https://kisuraop.github.io/js/mouseclick.js"></script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>KisuraOPのBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/site/">
+                <i class="iconfont icon-bookmark-fill"></i>
+                <span>收藏夹</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/waiting/">
+                <i class="iconfont icon-plan"></i>
+                <span>待办</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/example/">
+                <i class="iconfont icon-comment"></i>
+                <span>留言</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://moe.jitsu.top/img/?sort=pc') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">【题解】龟速更新的加训日记</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        KisuraOP
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-29 09:08" pubdate>
+          2025年8月29日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.2k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【题解】龟速更新的加训日记</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2025年8月29日 上午
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>vp 多一点还是有好处的。</p>
+<p>计划将区域赛前的训练都写在这里。</p>
+<p>与以往不同，这篇博客说是题解，实际上只会记录简要的解题思路，用于我日后进行回忆。</p>
+<h2 id="nwerc-2023">NWERC 2023</h2>
+<h3 id="h.-higher-arithmetic">H. Higher Arithmetic</h3>
+<p>一个经典的结论是：将一个数拆分成若干正整数，要使得乘积最大，应当先尽可能多地拆成 <span class="math inline">\(3\)</span>，再尽可能多地拆成 <span class="math inline">\(2\)</span>。如果最后剩下 <span class="math inline">\(1\)</span>，就把之前组合出的一个 <span class="math inline">\(3\)</span> 拆掉，拼成两个 <span class="math inline">\(2\)</span>。</p>
+<p>注：实际上拆分成 <span class="math inline">\(e\)</span> 最好，只不过 <span class="math inline">\(3\)</span> 是最接近 <span class="math inline">\(e\)</span> 的正整数，其次是 <span class="math inline">\(2\)</span>。</p>
+<p>回到这道题，<span class="math inline">\(\ge 3\)</span> 的肯定直接乘起来，否则想办法凑出多的 <span class="math inline">\(3\)</span>，其次凑出多的 <span class="math inline">\(2\)</span>。</p>
+<h3 id="j.-jogging-tour">J. Jogging Tour</h3>
+<p>枚举 <span class="math inline">\(n\)</span> 个点两两之间的 <span class="math inline">\(n^2\)</span> 条边，最优策略中坐标轴肯定与其中一条边平行。</p>
+<p>坐标轴旋转公式（逆时针旋转 <span class="math inline">\(\theta\)</span>），原坐标 <span class="math inline">\((x,y)\)</span>，新坐标 <span class="math inline">\((x&#39;,y&#39;)\)</span>。 <span class="math display">\[
+\begin{align}
+\pmatrix{x&#39; \\ y&#39;}=\pmatrix{\cos\theta &amp; \sin\theta\\ -\sin\theta &amp; \cos \theta}\pmatrix{x\\ y}
+\end{align}
+\]</span> 之后跑最短哈密顿路径即可。</p>
+<h3 id="i.-isolated-island">I. Isolated Island</h3>
+<p>比较蠢的方法是先建出平面图，再用最小左转法转成对偶图，再从无限面开始 bfs。</p>
+<p>这当然是能做的，<a target="_blank" rel="noopener" href="https://qoj.ac/submission/1251741">Link</a>，<span class="math inline">\(O(n^2\log n)\)</span>，缺点是一大坨。</p>
+<p>注意到答案是 <span class="math inline">\(\texttt {No}\)</span> 当且仅当对偶图是二分图。（相邻点到海边的距离最多相差 <span class="math inline">\(1\)</span>，按到海边的距离的奇偶性建二分图，这个条件是充要的）</p>
+<p>二分图意味着没有奇环，因为 "奇 + 偶 = 奇"，如果对偶图有奇环，那么一定存在一个极小的奇环，环内的点度数为奇数。</p>
+<p>于是判断输入的 <span class="math inline">\(n\)</span> 条线段是否有某一个端点只出现了奇数次即可。</p>
+<h3 id="g.-galaxy-quest">G. Galaxy Quest</h3>
+<p>设在第 <span class="math inline">\(i\)</span> 条边上我们用了 <span class="math inline">\(x_i\)</span> 秒来加速。如果我们知道最终走了哪些边，就能转化为线性规划问题 <span class="math display">\[
+\begin{align}
+&amp;\min \ 2\sum x_i\\
+&amp;\sum x_i + \dfrac{d_i}{x_i}\le t
+\end{align}
+\]</span> 拉格朗日乘数法，最终得到 <span class="math display">\[
+2\sum x_i=t-\sqrt{t^2-4(\sum \sqrt{d_i})}
+\]</span> 所以答案越小等同于让 <span class="math inline">\(\sum \sqrt{d_i}\)</span> 越小。</p>
+<p>给每条边赋权 <span class="math inline">\(\sqrt{d_i}\)</span> 跑 dijkstra 即可，单次 <span class="math inline">\(O(1)\)</span> 回答询问。</p>
+<h2 id="icpc-jinan-regional">2021 ICPC Jinan Regional</h2>
+<h3 id="c.-optimal-strategy">C. Optimal Strategy</h3>
+<p>先考虑所有数出现次数只有偶数的情况，如果一个人拿了最大的，另一个人必须跟着拿，因此可以两两配对。</p>
+<p>从小到大考虑每个数，如果新加进一个数 <span class="math inline">\(x\)</span>，导致 <span class="math inline">\(x\)</span> 的出现次数变成奇数，先手肯定将 <span class="math inline">\(x\)</span> 拿走一个，回到刚刚的情况。</p>
+<p>对操作序列计数，设 <span class="math inline">\(f[i]\)</span> 为当前最大的数为 <span class="math inline">\(i\)</span> 的答案，用隔板法试图将 <span class="math inline">\(i\)</span> 插进序列 <span class="math display">\[
+f[i]=f[i-1]\cdot \binom{cnt[i]/2+\sum_{j=1}^{i-1}cnt[j] }{cnt[i] / 2}\cdot cnt[i]!
+\]</span> 最后乘阶乘表示分配这 <span class="math inline">\(cnt[i]\)</span> 个 <span class="math inline">\(i\)</span> 的次序。</p>
+<h3 id="l.-strange-series">L. Strange Series</h3>
+<p><span class="math display">\[
+\begin{align}
+p&amp;=\dfrac{S}{e}\\
+&amp;=\dfrac{1}{e}\sum_{m=0}^{\infty}\dfrac{\sum_{i=0}^{n}a_im^i}{m!}\\
+&amp;=\sum_{i=0}^{n}a_i\cdot \dfrac{1}{e}\sum_{m=0}^{\infty}\frac{m^i}{m!}
+\end{align}
+\]</span> 令 <span class="math inline">\(T_i=\dfrac{1}{e}\sum\limits_{m=0}^{\infty}\dfrac{m^i}{m!}\)</span>，我们要对 <span class="math inline">\(i\in [0,n]\)</span> 求出 <span class="math inline">\(T_i\)</span>。</p>
+<p>对 <span class="math inline">\(T_i\)</span> 建立 EGF，设 <span class="math inline">\(F(x)=\sum\limits_{i=0}^{\infty}T_i\dfrac{x^i}{i!}\)</span>。那么 <span class="math display">\[
+\begin{align}
+F(x)&amp;=\sum_{i=0}^{\infty}\left(\dfrac{1}{e}\sum_{m=0}^{\infty}\frac{m^i}{m!}\right)\dfrac{x^i}{i!}\\
+&amp;=\dfrac{1}{e}\sum_{m=0}^{\infty}\frac{1}{m!}\sum_{i=0}^{\infty}\dfrac{(mx)^i}{i!}\\
+&amp;=\dfrac{1}{e}\sum_{m=0}^{\infty}\dfrac{(e^x)^m}{m!}\\
+&amp;=e^{e^x-1}
+\end{align}
+\]</span> 令 <span class="math inline">\(G(x)=e^x-1=\sum\limits_{i=1}^{\infty}\dfrac{x^i}{i!}\)</span>。那么 <span class="math inline">\(T_i=i!\cdot [x^i]e^{G(x)}\)</span>，多项式 <span class="math inline">\(\text{exp}\)</span> 即可。</p>
+<h3 id="b.-monitored-area">B. Monitored Area</h3>
+<p>对于一个多边形内的监控 <span class="math inline">\(O\)</span>，以它为原点向多边形的每个顶点做射线，每条射线取极长的在多边形内的部分。极角序相邻的射线与多边形的一条边构成三角形，得到 <span class="math inline">\(n\)</span> 个三角形，每个监控都这么做，再把所有三角形求并就是答案。</p>
+<p>难点是如何正确识别三角形的顶点。我们对每一组极角序相邻的射线考虑，枚举多边形的每条边，对于一条边，如果某一条射线和它没有交点，就排除，否则设交点坐标分别为 <span class="math inline">\(A,B\)</span>，只用判断线段 <span class="math inline">\(OA\)</span> 和线段 <span class="math inline">\(OB\)</span> 是否完全在多边形内部就行。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^4)\)</span>。</p>
+<h3 id="m.-coloring-rectangles">M. Coloring Rectangles</h3>
+<p>每个矩形以其两条对角线为分隔，分出上下左右四个三角形。上和下恰好一个涂黑。左和有恰好一个涂黑，对应了题中的四种情况。用一个变量表示上黑还是下黑，另一个变量表示左黑还是右黑，一种染色情况就能用 <span class="math inline">\(2n\)</span> 个二元变量来描述。两个三角形如果严格相交，就表示二者不能同时涂黑，2-SAT 即可。</p>
+<p>因为要字典序最大，我们可以依次钦定每一个矩形是 <span class="math inline">\(3,2,1\)</span> 或 <span class="math inline">\(0\)</span>，最多跑 <span class="math inline">\(4n\)</span> 遍 2-SAT，最终 <span class="math inline">\(O(n^3)\)</span>。</p>
+<p>注：两个三角形 <span class="math inline">\(A,B\)</span> 严格相交（公共面积 <span class="math inline">\(&gt;0\)</span>），等价于</p>
+<ul>
+<li><span class="math inline">\(A\)</span> 中一条边和 <span class="math inline">\(B\)</span> 中一条边在非三角形端点处规范相交。</li>
+<li>或者，其中一个三角形的重心严格在另一个三角形内部。</li>
+</ul>
+<h3 id="a.-space-station">A. Space Station</h3>
+<p>好难写，占坑。</p>
+<h2 id="ucup3-39.-tokyo">Ucup3-39. Tokyo</h2>
+<h3 id="k.-k-rep-array">K. K-rep Array</h3>
+<p>数组可以是 <span class="math inline">\(K\)</span>-rep 当且仅当不存在 <span class="math inline">\(i,j\)</span> 使得 <span class="math inline">\(a_i\neq -1,a_j\neq -1,a_i\neq a_j\)</span> 且 <span class="math inline">\(|i-j|\bmod K=0\)</span>。</p>
+<p>令 <span class="math inline">\(f_d=\sum\limits_{i-j=d}(a_i+1)(a_j+1)(a_i-a_j)^2\)</span>，那么 <span class="math inline">\(K=i\)</span> 时答案为 <span class="math inline">\(1\)</span> 当且仅当 <span class="math inline">\(\forall j,i\mid j\)</span>，<span class="math inline">\(f_j=0\)</span>。</p>
+<p>将 <span class="math inline">\(f_d\)</span> 拆开，得到 <span class="math display">\[
+f_d=\sum_{i-j=d}a_i(a_i+1)\cdot (a_j+1)-2\sum_{i-j=d}a_i(a_i+1)\cdot a_j(a_j+1)+\sum_{i-j=d}(a_i+1)\cdot a_j(a_j+1)
+\]</span> 每一项分别计算，将差卷积转化为和卷积后，用 NTT 求解。</p>
+<h3 id="l.-lis-triangle">L. LIS Triangle</h3>
+<p>如果 <span class="math inline">\(K=i\)</span> 有解，那么 <span class="math inline">\(K&gt;i\)</span> 也有解，因为整体加一不影响构成三角形。</p>
+<p><span class="math inline">\(K=1\)</span> 时无解，<span class="math inline">\(K=2\)</span> 时一定有解，两种构造如下</p>
+<p><img src="/image/academic/10981.png" /></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Competitive-Programming/" class="category-chain-item">Competitive Programming</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Competitive-Programming/Diary/" class="category-chain-item">Diary</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ICPC/" class="print-no-link">#ICPC</a>
+      
+        <a href="/tags/QOJ/" class="print-no-link">#QOJ</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【题解】龟速更新的加训日记</div>
+      <div>https://kisuraop.github.io/posts/2fc406e4.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>KisuraOP</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/80517353.html" title="【题解】2025 UESTC 暑假集训（div.1）">
+                        <span class="hidden-mobile">【题解】2025 UESTC 暑假集训（div.1）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://kisuraop.github.io/" target="_blank" rel="nofollow noopener"><span>KisuraOP</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
