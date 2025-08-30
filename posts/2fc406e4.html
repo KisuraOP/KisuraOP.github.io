@@ -16,16 +16,16 @@
   <meta name="author" content="KisuraOP">
   <meta name="keywords" content="">
   
-    <meta name="description" content="vp 多一点还是有好处的。 计划将区域赛前的训练都写在这里。 与以往不同，这篇博客说是题解，实际上只会记录简要的解题思路，用于我日后进行回忆。 NWERC 2023 H. Higher Arithmetic              将一个数拆分成若干正整数，要使得乘积最大，应当先尽可能多地拆成 \(3\)，再尽可能多地拆成 \(2\)。如果最后剩下 \(1\)，就把之前组合出的一个 \(3\)">
+    <meta name="description" content="vp 多一点还是有好处的。 计划将区域赛前的训练都写在这里。 与以往不同，这篇博客说是题解，实际上只会记录简要的解题思路，用于我日后进行回忆。 【8.21】NWERC 2023 H. Higher Arithmetic              将一个数拆分成若干正整数，要使得乘积最大，应当先尽可能多地拆成 \(3\)，再尽可能多地拆成 \(2\)。如果最后剩下 \(1\)，就把之前组合出的一个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【题解】龟速更新的加训日记">
 <meta property="og:url" content="https://kisuraop.github.io/posts/2fc406e4.html">
 <meta property="og:site_name" content="KisuraOP">
-<meta property="og:description" content="vp 多一点还是有好处的。 计划将区域赛前的训练都写在这里。 与以往不同，这篇博客说是题解，实际上只会记录简要的解题思路，用于我日后进行回忆。 NWERC 2023 H. Higher Arithmetic              将一个数拆分成若干正整数，要使得乘积最大，应当先尽可能多地拆成 \(3\)，再尽可能多地拆成 \(2\)。如果最后剩下 \(1\)，就把之前组合出的一个 \(3\)">
+<meta property="og:description" content="vp 多一点还是有好处的。 计划将区域赛前的训练都写在这里。 与以往不同，这篇博客说是题解，实际上只会记录简要的解题思路，用于我日后进行回忆。 【8.21】NWERC 2023 H. Higher Arithmetic              将一个数拆分成若干正整数，要使得乘积最大，应当先尽可能多地拆成 \(3\)，再尽可能多地拆成 \(2\)。如果最后剩下 \(1\)，就把之前组合出的一个">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c370581af70000acd68b3a0310452556.jpeg">
 <meta property="article:published_time" content="2025-08-29T01:08:41.000Z">
-<meta property="article:modified_time" content="2025-08-29T13:39:21.704Z">
+<meta property="article:modified_time" content="2025-08-30T20:15:08.764Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ICPC">
 <meta property="article:tag" content="QOJ">
@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.6k 字
+          5.5k 字
         
       </span>
     
@@ -328,7 +328,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2025年8月29日 晚上
+                    本文最后更新于：2025年8月31日 凌晨
                   
                 
               </p>
@@ -339,7 +339,7 @@
                 <p>vp 多一点还是有好处的。</p>
 <p>计划将区域赛前的训练都写在这里。</p>
 <p>与以往不同，这篇博客说是题解，实际上只会记录简要的解题思路，用于我日后进行回忆。</p>
-<h1 id="nwerc-2023">NWERC 2023</h1>
+<h1 id="nwerc-2023">【8.21】NWERC 2023</h1>
 <h2 id="h.-higher-arithmetic">H. Higher Arithmetic</h2>
 <div class="note note-primary">
             <p>将一个数拆分成若干正整数，要使得乘积最大，应当先尽可能多地拆成 <span class="math inline">\(3\)</span>，再尽可能多地拆成 <span class="math inline">\(2\)</span>。如果最后剩下 <span class="math inline">\(1\)</span>，就把之前组合出的一个 <span class="math inline">\(3\)</span> 拆掉，拼成两个 <span class="math inline">\(2\)</span>。</p><p>注：实际上拆分成 <span class="math inline">\(e\)</span> 最好，只不过 <span class="math inline">\(3\)</span> 是最接近 <span class="math inline">\(e\)</span> 的正整数，其次是 <span class="math inline">\(2\)</span>。</p>
@@ -366,7 +366,7 @@
 2\sum x_i=t-\sqrt{t^2-4(\sum \sqrt{d_i})}
 \]</span> 所以答案越小等同于让 <span class="math inline">\(\sum \sqrt{d_i}\)</span> 越小。</p>
 <p>给每条边赋权 <span class="math inline">\(\sqrt{d_i}\)</span> 跑 dijkstra 即可，单次 <span class="math inline">\(O(1)\)</span> 回答询问。</p>
-<h1 id="icpc-jinan-regional">2021 ICPC Jinan Regional</h1>
+<h1 id="icpc-jinan-regional">【8.25】2021 ICPC Jinan Regional</h1>
 <h2 id="c.-optimal-strategy">C. Optimal Strategy</h2>
 <p>先考虑所有数出现次数只有偶数的情况，如果一个人拿了最大的，另一个人必须跟着拿，因此可以两两配对。</p>
 <p>从小到大考虑每个数，如果新加进一个数 <span class="math inline">\(x\)</span>，导致 <span class="math inline">\(x\)</span> 的出现次数变成奇数，先手肯定将 <span class="math inline">\(x\)</span> 拿走一个，回到刚刚的情况。</p>
@@ -401,7 +401,7 @@ F(x)&amp;=\sum_{i=0}^{\infty}\left(\dfrac{1}{e}\sum_{m=0}^{\infty}\frac{m^i}{m!}
           </div>
 <h2 id="a.-space-station">A. Space Station</h2>
 <p>好难写，占坑。</p>
-<h1 id="ucup3-39.-tokyo">Ucup3-39. Tokyo</h1>
+<h1 id="ucup3-39.-tokyo">【8.28】Ucup3-39. Tokyo</h1>
 <h2 id="k.-k-rep-array">K. K-rep Array</h2>
 <p>数组可以是 <span class="math inline">\(K\)</span>-rep 当且仅当不存在 <span class="math inline">\(i,j\)</span> 使得 <span class="math inline">\(a_i\neq -1,a_j\neq -1,a_i\neq a_j\)</span> 且 <span class="math inline">\(|i-j|\bmod K=0\)</span>。</p>
 <p>令 <span class="math inline">\(f_d=\sum\limits_{i-j=d}(a_i+1)(a_j+1)(a_i-a_j)^2\)</span>，那么 <span class="math inline">\(K=i\)</span> 时答案为 <span class="math inline">\(1\)</span> 当且仅当 <span class="math inline">\(\forall j,\ i\mid j\)</span>，<span class="math inline">\(f_j=0\)</span>。</p>
@@ -468,6 +468,18 @@ V_{\text{init}}+\sum_{i=1}^{c} a_iv_i \equiv 0 \pmod{3} \ \ (a_i\in \{0,1,2\})
 
     </div>
 </div>
+<h2 id="g.-guarding-plan">G. Guarding Plan</h2>
+<p>好像能口胡了，但还是进行一个坑的占。</p>
+<h1 id="ccpc-2023-harbin">【8.30】CCPC 2023 Harbin</h1>
+<h2 id="e.-revenge-on-my-boss">E. Revenge on My Boss</h2>
+<p>二分答案，设为 <span class="math inline">\(T\)</span>。<span class="math inline">\(T\)</span> 可行 <span class="math inline">\(\Leftrightarrow\)</span> 重排三元组 <span class="math inline">\(\{a_i,b_i,c_i\}\)</span> 使得 <span class="math inline">\(\forall m\in [1,n]\)</span>，<span class="math inline">\((\sum\limits_{i=1}^{m} a_i+\sum\limits_{i=m}^{n}b_i)\cdot c_m \le T\)</span>。</p>
+<p>令 <span class="math inline">\(d_i=a_i-b_i\)</span>，<span class="math inline">\(B=\sum\limits_{i=1}^{n}b_i\)</span>，推一下式子，等价的条件是 <span class="math display">\[
+\sum\limits_{i=1}^{m-1} d_i\le T / c_m-B-a_m
+\]</span> 不等号右侧均和放置顺序无关，记为 <span class="math inline">\(e_m\)</span>。现在要重排 <span class="math inline">\(\{d_i,e_i\}\)</span> 使得 <span class="math inline">\(\forall m\in [1,n]\)</span>，<span class="math inline">\(\sum\limits_{i=1}^{m-1}d_i \le e_i\)</span>。</p>
+<p>最优策略下，显然先放置 <span class="math inline">\(d_i\le 0\)</span> 的项，再放置 <span class="math inline">\(d_i&gt;0\)</span> 的项。对于 <span class="math inline">\(d_i \le 0\)</span> 的项，应当先放 <span class="math inline">\(e_i\)</span> 较大的，让不等号右侧尽快增大，条件会更宽松；对于 <span class="math inline">\(d_i&gt;0\)</span> 的项，引入 <span class="math inline">\(D_i\)</span> 表示 <span class="math inline">\(d_i\)</span> 的前缀和，条件变成 <span class="math inline">\(D_i\le d_i+e_i\)</span>，其中 <span class="math inline">\(d_i+e_i\)</span> 可以看成天花板，我们要想不顶过天花板，策略应当是先放 <span class="math inline">\(d_i+e_i\)</span> 较小的。</p>
+<h2 id="h.-energy-distribution">H. Energy Distribution</h2>
+<p>先忽略 <span class="math inline">\(e_i\ge 0\)</span> 的条件，拉格朗日乘数法，<span class="math inline">\(\dfrac{\part L}{\part e_k}=0\Longrightarrow \sum\limits_{i\neq k} w_{ik}e_i=\lambda\)</span>，是定值。</p>
+<p>枚举子集 <span class="math inline">\(S\)</span>，钦定子集内的 <span class="math inline">\(i\)</span> 都满足 <span class="math inline">\(e_i &gt;0\)</span>，能列出 <span class="math inline">\(|S|-1\)</span> 个方程，再加上 <span class="math inline">\(\sum e_i=1\)</span>，就是 <span class="math inline">\(|S|\)</span> 个，未知数也是 <span class="math inline">\(|S|\)</span> 个，高斯消元，如果有负数解就舍去。答案对所有子集取 <span class="math inline">\(\max\)</span>。时间复杂度 <span class="math inline">\(O(2^nn^3)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
