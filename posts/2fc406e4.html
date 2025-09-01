@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c370581af70000acd68b3a0310452556.jpeg">
 <meta property="article:published_time" content="2025-08-29T01:08:41.000Z">
-<meta property="article:modified_time" content="2025-09-01T16:00:20.853Z">
+<meta property="article:modified_time" content="2025-09-01T16:07:40.997Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ICPC">
 <meta property="article:tag" content="QOJ">
@@ -470,7 +470,7 @@ V_{\text{init}}+\sum_{i=1}^{c} a_iv_i \equiv 0 \pmod{3} \ \ (a_i\in \{0,1,2\})
 </div>
 <h2 id="g.-guarding-plan">G. Guarding Plan</h2>
 <p>如果一个哨位已被监视，就可以删去。没被删的哨位构成一条随着 <span class="math inline">\(x\)</span> 递增，<span class="math inline">\(y\)</span> 递减的折线（红线），单调栈求出。我们再作出这些哨位的上凸壳（绿线），凸壳内的任意一点均能搞出一个哨位。</p>
-<p><img src="/image/academic/10976.png" style="zoom:40%;" /></p>
+<p><img src="/image/academic/10976.png" style="zoom:50%;" /></p>
 <p>现在，你可以选择在绿线上新建若干点，覆盖掉红线上的一些点，让总点数变少。每段绿线分别考虑，<span class="math inline">\(dp(i)=(a,b)\)</span> 表示这段绿线对应的红色折线上的前 <span class="math inline">\(i\)</span> 个点至少能分成 <span class="math inline">\(a\)</span> 段，且分成 <span class="math inline">\(a\)</span> 段的前提下至少添加 <span class="math inline">\(b\)</span> 个新点。</p>
 <ul>
 <li>当前点选择保留：<span class="math inline">\(dp(i)=(a,b)\to dp(i+1)=(a+1,b)\)</span>。</li>
