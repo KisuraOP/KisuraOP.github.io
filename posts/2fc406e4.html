@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c370581af70000acd68b3a0310452556.jpeg">
 <meta property="article:published_time" content="2025-08-29T01:08:41.000Z">
-<meta property="article:modified_time" content="2025-09-01T09:56:53.856Z">
+<meta property="article:modified_time" content="2025-09-01T15:56:10.705Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ICPC">
 <meta property="article:tag" content="QOJ">
@@ -328,7 +328,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2025年9月1日 下午
+                    本文最后更新于：2025年9月1日 晚上
                   
                 
               </p>
@@ -505,6 +505,9 @@ h[i]=w_i+h[\text{link}[i]]
 <h2 id="j.-permutation-pattern">J. Permutation Pattern</h2>
 <p>区间 dp，令 <span class="math inline">\(f[l][r][i][j]\)</span> 表示只考虑区间 <span class="math inline">\([l, r]\)</span>，选出的子序列最小值为 <span class="math inline">\(i\)</span>，最大值为 <span class="math inline">\(j\)</span> 的答案。对于一个区间，枚举最大值出现的位置 <span class="math inline">\(m\in [l,r]\)</span>，设 <span class="math inline">\(\{L\},\{R\}\)</span> 分别表示 <span class="math inline">\([l,m-1]\)</span> 和 <span class="math inline">\([m+1,r]\)</span> 选出的符合条件的子序列，那么子序列 <span class="math inline">\([\{L\},m,\{R\}]\)</span> 满足条件等价于 <span class="math inline">\(\max\limits_{x\in \{L\}} x&lt; \min\limits_{y\in\{R\}} y\)</span>。</p>
 <p>分 <code>() m ..</code>，<code>.. m ()</code> 和 <code>.. m ..</code> 转移，前两种表示最大值位于区间端点，第三种可以后缀和加速，总时间复杂度 <span class="math inline">\(O(n^4)\)</span>。</p>
+<h2 id="k.-stringology">K. Stringology</h2>
+<p><img src="/image/academic/2837.png" style="zoom:80%;" /></p>
+<p>如图。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
