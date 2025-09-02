@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c370581af70000acd68b3a0310452556.jpeg">
 <meta property="article:published_time" content="2025-08-29T01:08:41.000Z">
-<meta property="article:modified_time" content="2025-09-01T16:07:40.997Z">
+<meta property="article:modified_time" content="2025-09-02T01:17:30.861Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ICPC">
 <meta property="article:tag" content="QOJ">
@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7.2k 字
+          7.6k 字
         
       </span>
     
@@ -328,7 +328,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2025年9月2日 凌晨
+                    本文最后更新于：2025年9月2日 上午
                   
                 
               </p>
@@ -508,6 +508,16 @@ h[i]=w_i+h[\text{link}[i]]
 <h2 id="k.-stringology">K. Stringology</h2>
 <p>如下图。</p>
 <p><img src="/image/academic/28371.png" style="zoom:85%;" /></p>
+<h2 id="m.-3d-geometry">M. 3D Geometry</h2>
+<p>将四面体的直角顶点平移到原点，三个维度进行缩放，变成标准四面体（<span class="math inline">\(x,y,z\ge 0,\ x+y+z\le 1\)</span>），变换后的立方体只保留第一卦限的部分，最后计算出的体积交乘一个缩放系数就是答案。</p>
+<p>设 <span class="math inline">\(V(x,y,z)\)</span> 表示区域 <span class="math inline">\(\{(x&#39;,y&#39;,z&#39;)\mid x&#39;\ge x,\ y&#39;\ge y,\ z&#39;\ge z\}\)</span> 与四面体的体积交，那么总体积交可以拆分成 <span class="math display">\[
+\begin{align}
+&amp;+V(x_a,y_a,z_a)\\
+&amp;-(V(x_b,y_a,z_a)+V(x_a,y_b,z_a)+V(x_a,y_a,z_b))\\
+&amp;+(V(x_b,y_b,z_a)+V(x_b,y_a,z_b)+V(x_a,y_b,z_b))\\
+&amp;-V(x_b,y_b,z_b)
+\end{align}
+\]</span> 其中 <span class="math inline">\((x_a,y_a,z_a)\)</span> 和 <span class="math inline">\((x_b,y_b,z_b)\)</span> 为立方体的对角顶点，<span class="math inline">\(x/y/z_a&lt;x/y/z_b\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
