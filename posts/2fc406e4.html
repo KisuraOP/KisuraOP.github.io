@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c370581af70000acd68b3a0310452556.jpeg">
 <meta property="article:published_time" content="2025-08-29T01:08:41.000Z">
-<meta property="article:modified_time" content="2025-09-03T05:13:09.417Z">
+<meta property="article:modified_time" content="2025-09-03T12:03:06.968Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ICPC">
 <meta property="article:tag" content="QOJ">
@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8k 字
+          8.4k 字
         
       </span>
     
@@ -328,7 +328,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2025年9月3日 下午
+                    本文最后更新于：2025年9月3日 晚上
                   
                 
               </p>
@@ -522,6 +522,14 @@ h[i]=w_i+h[\text{link}[i]]
 <h2 id="c.-rddccd">C. RDDCCD</h2>
 <p>任取 <span class="math inline">\(x=a_{1,1}\)</span>，答案一定是 <span class="math inline">\(x\)</span> 或 <span class="math inline">\(\text{rev}(x)\)</span> 的质因数幂的组合。考虑怎么 check 某一个质因数幂 <span class="math inline">\(p\)</span>。</p>
 <p>对每一个矩阵中的 <span class="math inline">\(y\)</span>，如果 <span class="math inline">\(y\)</span> 和 <span class="math inline">\(\text{rev}(y)\)</span> 都不是 <span class="math inline">\(p\)</span> 的倍数，那 <span class="math inline">\(p\)</span> 肯定不合法；如果都是，翻不翻无所谓；如果恰有一个是，我们就给这个位置随机赋一个 <span class="math inline">\(v\)</span>，接着将 <span class="math inline">\(y\)</span> 所处的两条对角线异或上 <span class="math inline">\(v\)</span>。如此，每次更改一条对角线，我们就能快速计算当前相比初始状态被翻的格子对应 <span class="math inline">\(v\)</span> 的异或和 <span class="math inline">\(\text{cur}\)</span>。再令 <span class="math inline">\(\text{need}\)</span> 表示使 <span class="math inline">\(p\)</span> 合法应该翻的格子对应的 <span class="math inline">\(v\)</span> 的异或和，比较 <span class="math inline">\(\text{need}\)</span> 是否等于 <span class="math inline">\(\text{cur}\)</span> 即可。单次 check <span class="math inline">\(O(n^2+q)\)</span>。</p>
+<h2 id="m.-master-of-both-vii">M. Master of Both VII</h2>
+<p>问所有 <span class="math inline">\(i\in [3,n-1]\)</span> 的 <span class="math inline">\((1,i)\)</span>，记为 <span class="math inline">\(d_i\)</span>。如果 <span class="math inline">\(d_i=0\)</span>，直接计入答案。</p>
+<p>一条边 <span class="math inline">\((x,y)\)</span> 与 <span class="math inline">\((1,i)\)</span> 在非端点处相交的充要条件是 <span class="math inline">\(1&lt;x&lt;i&lt;y\le n\)</span>。考虑 <span class="math inline">\(d_i-d_{i-1}\)</span> 的意义，是 "以 <span class="math inline">\(i-1\)</span> 为起点的边数 <span class="math inline">\(-\)</span> 以 <span class="math inline">\(i\)</span> 为终点的边数"。又因为任何一个三角剖分中形如 <span class="math inline">\((i-1,y),\ y&gt;i\)</span> 的边和形如 <span class="math inline">\((x,i),\ x&lt;i-1\)</span> 的边不可能同时存在，所以上述差值中的两项必有一个为 <span class="math inline">\(0\)</span>。</p>
+<ul>
+<li>若 <span class="math inline">\(d_i-d_{i-1} &gt;0\)</span>，说明有 <span class="math inline">\(d_i-d_{i-1}\)</span> 条边以 <span class="math inline">\(i-1\)</span> 为起点。</li>
+<li>若 <span class="math inline">\(d_i-d_{i-1}&lt;0\)</span>，说明有 <span class="math inline">\(d_{i-1}-d_i\)</span> 条边以 <span class="math inline">\(i\)</span> 为终点。</li>
+</ul>
+<p>用一个栈存储还没配对的边的起点，遇到一个终点时就弹栈配对。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
