@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c370581af70000acd68b3a0310452556.jpeg">
 <meta property="article:published_time" content="2025-08-29T01:08:41.000Z">
-<meta property="article:modified_time" content="2025-09-03T12:03:06.968Z">
+<meta property="article:modified_time" content="2025-09-04T20:21:46.777Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ICPC">
 <meta property="article:tag" content="QOJ">
@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          8.4k 字
+          8.6k 字
         
       </span>
     
@@ -328,7 +328,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2025年9月3日 晚上
+                    本文最后更新于：2025年9月5日 凌晨
                   
                 
               </p>
@@ -530,6 +530,10 @@ h[i]=w_i+h[\text{link}[i]]
 <li>若 <span class="math inline">\(d_i-d_{i-1}&lt;0\)</span>，说明有 <span class="math inline">\(d_{i-1}-d_i\)</span> 条边以 <span class="math inline">\(i\)</span> 为终点。</li>
 </ul>
 <p>用一个栈存储还没配对的边的起点，遇到一个终点时就弹栈配对。</p>
+<h1 id="ucup3-24.-poland">【9.4】Ucup3-24. Poland</h1>
+<h2 id="l.-looping-rps">L. Looping RPS</h2>
+<p>将 <span class="math inline">\(s_i^{\infty}\)</span> 插入 trie，三个人有贡献当且仅当它们在同一个点的三个不同子树内。考虑枚举每个点作为 LCA 计算贡献，当然我们不用真的建出 trie，只用从根开始 dfs，维护当前路径是多少个不同串的前缀。</p>
+<p>实践证明，只要将所有 <span class="math inline">\(s_i\)</span> 保留最小整周期并去重，就能跑得很快，复杂度我也不会证。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
