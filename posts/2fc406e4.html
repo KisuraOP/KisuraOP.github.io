@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c370581af70000acd68b3a0310452556.jpeg">
 <meta property="article:published_time" content="2025-08-29T01:08:41.000Z">
-<meta property="article:modified_time" content="2025-09-06T04:57:13.860Z">
+<meta property="article:modified_time" content="2025-09-06T11:46:53.360Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ICPC">
 <meta property="article:tag" content="QOJ">
@@ -328,7 +328,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2025年9月6日 下午
+                    本文最后更新于：2025年9月6日 晚上
                   
                 
               </p>
@@ -546,8 +546,8 @@ h[i]=w_i+h[\text{link}[i]]
 <p>一个点集成为边界时，整张图被划分成三个部分，因为 Dijkstra 按最短路递增的顺序访问，边界上和边界外点的距离必然不小于和边界内点的距离。因此将边界看成一堵墙，从起点 bfs，若某个时刻没有点可遍历，且已遍历的点包含了一个题目给出的边界，这个边界就是合法的。</p>
 <p>现在题目给出多个边界，这些边界包含的内部的点必然是包含关系，访问顺序唯一。我们可以初始把所有边界都看成墙，每遍历完一个边界，就将这个边界拆掉并加进队列继续 bfs，以此类推（匹配边界可以直接 <code>std::set</code>）。注意一个点可能是多个边界的一部分，所以要按拓扑排序减入度的方法处理。考虑赋边权，设 <span class="math inline">\(x\)</span> 在我们得到的拓扑序中排第 <span class="math inline">\(h_x\)</span> 个，那么一条边赋 <span class="math inline">\(|h_x-h_y|\)</span> 是理想的，既能保证出队顺序，也能满足从起点出发最短路互不相同的限制。</p>
 <h2 id="l.-shiori">L. Shiori</h2>
-<p>操作一和三都是线段树标准操作。操作二分两步：先找到 mex，再区间加。我们主要看怎么找 mex。对于一次询问 <span class="math inline">\([l, r]\)</span>，只有完全被 <span class="math inline">\([l, r]\)</span> 包含的区间的最小值有用。我们先找到一个极小的不交区间集合 <span class="math inline">\(\{S\}\)</span>，区间并恰好是 <span class="math inline">\([l,r]\)</span>，事实上这就是线段树查询时访问的区间，递归一遍即可找出。接着将 <span class="math inline">\(\{S\}\)</span> 塞进优先队列，规则是区间最小值小的靠前。现在，我们尝试逐步找到 <span class="math inline">\(x=0,1,2,\ldots\)</span>，第一个找不到的就是 mex。</p>
-<p>首先，取出队列顶 <span class="math inline">\([u,v]\)</span>，如果对应的最小值 <span class="math inline">\(&gt;x\)</span>，就找到了；否则 <span class="math inline">\(x\leftarrow x+1\)</span>，并递归遍历 <span class="math inline">\([u,v]\)</span> 的所有子区间，将最小值 <span class="math inline">\(&gt;x\)</span> 的区间塞进优先队列。时间复杂度 <span class="math inline">\(O(n\log^2 n)\)</span>。</p>
+<p>操作一和三都是线段树标准操作。操作二分两步：先找到 mex，再区间加。我们主要看怎么找 mex。线段树维护区间最小值 <span class="math inline">\(mn\)</span>，对于一次询问，只有完全被 <span class="math inline">\([l, r]\)</span> 包含的区间的 <span class="math inline">\(mn\)</span> 有用。我们先找到一个极小的不交区间集合 <span class="math inline">\(\{S\}\)</span>，区间并恰好是 <span class="math inline">\([l,r]\)</span>，事实上这就是线段树查询时访问的区间，递归一遍即可找出。接着将 <span class="math inline">\(\{S\}\)</span> 塞进优先队列，规则是 <span class="math inline">\(mn\)</span> 小的靠前。现在，我们尝试逐步找到 <span class="math inline">\(x=0,1,2,\ldots\)</span>，第一个找不到的就是 mex。</p>
+<p>首先，取出优先队列顶的 <span class="math inline">\([u,v]\)</span>，如果对应的 <span class="math inline">\(mn&gt;x\)</span>，就找到了；否则 <span class="math inline">\(x\leftarrow x+1\)</span>，并递归遍历 <span class="math inline">\([u,v]\)</span> 的子树，将 <span class="math inline">\(mn&gt;x\)</span> 的次一级子区间塞进优先队列。单次操作，这样的子区间有 <span class="math inline">\(\log\)</span> 个，时间复杂度均摊 <span class="math inline">\(O(n\log^2 n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
