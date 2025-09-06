@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c370581af70000acd68b3a0310452556.jpeg">
 <meta property="article:published_time" content="2025-08-29T01:08:41.000Z">
-<meta property="article:modified_time" content="2025-09-05T05:24:52.913Z">
+<meta property="article:modified_time" content="2025-09-06T01:46:16.857Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ICPC">
 <meta property="article:tag" content="QOJ">
@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.2k 字
+          9.6k 字
         
       </span>
     
@@ -328,7 +328,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2025年9月5日 下午
+                    本文最后更新于：2025年9月6日 上午
                   
                 
               </p>
@@ -541,6 +541,10 @@ h[i]=w_i+h[\text{link}[i]]
 \sum_{i=1}^{m}\dfrac{a_i}{d_i}=K+\dfrac{1}{M}\ \longrightarrow\ \sum_{i=1}^{m}a_i\cdot \dfrac{M}{d_i}\equiv 1\pmod{M}
 \]</span> 这个式子可以拆成 <span class="math inline">\(m\)</span> 个 <span class="math inline">\(\bmod d_i\)</span> 的同余式，且 <span class="math inline">\(\gcd(M/d_i,d_i)=1\)</span>，存在逆元，因此直接能 exgcd 求出 <span class="math inline">\(a_i\)</span>。那么 <span class="math inline">\(K\)</span> 是多少？直接 double 加起来取整数部分。</p>
 <p>对于多组数据，离线，按 <span class="math inline">\(n\)</span> 从小到大回答询问，想办法更新贡献就行，有点复杂但总能改出来。时间复杂度 <span class="math inline">\(O(n\pi (n)+\pi(n)\log n)\)</span>。</p>
+<h1 id="ec-final-2024">【9.5】EC Final 2024</h1>
+<h2 id="k.-exploration-boundary">K. Exploration Boundary</h2>
+<p>一个点集成为边界时，整张图被划分成三个部分，因为 Dijsktra 按最短路递增的顺序访问，边界上和边界外点的距离必然不小于和边界内点的距离。因此将边界看成一堵墙，从起点 bfs，若某个时刻没有点可遍历，且已遍历的点包含了一个题目给出的边界，这个边界就是合法的。</p>
+<p>现在题目给出多个边界，这些边界包含的内部的点必然是包含关系，访问顺序唯一。我们可以初始把所有边界都看成墙，每遍历完一个边界，就将这个边界拆掉并加进队列继续 bfs，以此类推（匹配边界可以直接 <code>std::set</code>）。注意一个点可能是多个边界的一部分，所以要按拓扑排序减入度的方法处理。考虑赋边权，设 <span class="math inline">\(x\)</span> 在我们得到的拓扑序中排第 <span class="math inline">\(h_x\)</span> 个，那么一条边赋 <span class="math inline">\(|h_x-h_y|\)</span> 是理想的，既能保证出队顺序，也能满足从起点出发最短路互不相同的限制。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
