@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c370581af70000acd68b3a0310452556.jpeg">
 <meta property="article:published_time" content="2025-08-29T01:08:41.000Z">
-<meta property="article:modified_time" content="2025-09-10T14:48:08.799Z">
+<meta property="article:modified_time" content="2025-09-12T18:20:29.218Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ICPC">
 <meta property="article:tag" content="QOJ">
@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          11k 字
+          12k 字
         
       </span>
     
@@ -341,7 +341,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2025年9月10日 晚上
+                    本文最后更新于：2025年9月13日 凌晨
                   
                 
               </p>
@@ -586,6 +586,10 @@ h[i]=w_i+h[\text{link}[i]]
 <li><p><span class="math inline">\(u=v\)</span>。若 <span class="math inline">\(u\)</span> 是树，离线按加边顺序建出生成树，那么相当于减去 <span class="math inline">\(x\to y\)</span> 这一段树上路径的贡献，然后标记 <span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 的 LCA。若 <span class="math inline">\(u\)</span> 是环，则从第一次成环标记的 LCA（设为 <span class="math inline">\(p\)</span>） 开始，减去 <span class="math inline">\(p,x,y\)</span> 三点间路径的贡献，并更新 <span class="math inline">\(p\)</span> 为 <span class="math inline">\(p,x,y\)</span> 三点的 LCA。每次我们可以暴跳，只要打个标记，每个点至多遍历一次。</p></li>
 <li><p><span class="math inline">\(u\neq v\)</span>。若 <span class="math inline">\(u,v\)</span> 都是树，合并后维护新连通块的直径，从 <span class="math inline">\(u,v\)</span> 两条直径的四个点中选出；若 <span class="math inline">\(u,v\)</span> 一环一树，把树的中心的贡献加回来；若 <span class="math inline">\(u,v\)</span> 都是环，离线后依然变成减去一段路径的贡献。</p></li>
 </ul>
+<h1 id="icpc-kunming-regional">【9.12】2024 ICPC Kunming Regional</h1>
+<h2 id="i.-items">I. Items</h2>
+<p>生成函数列出来，相当于求 <span class="math inline">\([x^m]f(x)^n&gt;0\)</span>。令 <span class="math inline">\(B=\left\lfloor\frac{m}{n}\right\rfloor\)</span>，<span class="math inline">\(w_i\leftarrow w_i-B\)</span>，<span class="math inline">\(m\leftarrow m-nB\)</span>，这一步将 <span class="math inline">\(m\)</span> 的值域调整到了 <span class="math inline">\([0,n]\)</span>。但此时 <span class="math inline">\(w_i\in [-B,n-B]\)</span>，直接多项式快速幂行不通。</p>
+<p>一个相当强的观察：如果存在一个方案使得能取到 <span class="math inline">\(m\)</span>，那么就一定可以调整取物品的顺序，让背包的大小一直保持在 <span class="math inline">\([0,n]\)</span>。这意味着，多项式每乘一次，只截取 <span class="math inline">\(x^{-n}\sim x^n\)</span> 就足够。利用类似整数快速幂的方式倍增，<span class="math inline">\(O(n\log^2 n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
