@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c370581af70000acd68b3a0310452556.jpeg">
 <meta property="article:published_time" content="2025-08-29T01:08:41.000Z">
-<meta property="article:modified_time" content="2025-09-16T07:46:16.057Z">
+<meta property="article:modified_time" content="2025-09-17T06:23:35.163Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ICPC">
 <meta property="article:tag" content="QOJ">
@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          14k 字
+          15k 字
         
       </span>
     
@@ -341,7 +341,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2025年9月16日 下午
+                    本文最后更新于：2025年9月17日 下午
                   
                 
               </p>
@@ -623,6 +623,30 @@ y=d \times \left(\left\lfloor \frac{b-1}{d} \right\rfloor + 1\right)-b
 <li><span class="math inline">\(\large r_{y,i}=\max_{u\in [l_{y,i-1},r_{y,i-1}]}r_{u,i-1}\)</span>。</li>
 </ul>
 <p>利用 ST 表维护 <span class="math inline">\(l_{y,i}\)</span> 和 <span class="math inline">\(r_{y,i}\)</span>，查询时只需要对第一维进行倍增，时间复杂度 <span class="math inline">\(O(n\log^2 n+q\log n)\)</span>。</p>
+<h2 id="k.-最小生成树">K. 最小生成树</h2>
+<div class="note note-primary">
+            <p>一条边 <span class="math inline">\((x,y,w)\)</span> 在图上的至少一棵生成树中 <span class="math inline">\(\Longleftrightarrow\)</span> 只考虑边权 <span class="math inline">\(&lt;w\)</span> 的边时，<span class="math inline">\(x\)</span> 和 <span class="math inline">\(y\)</span> 在不同的连通分量。</p>
+          </div>
+<p>意味着，按边权从小到大加边，当添加一条边权为 <span class="math inline">\(w\)</span> 的边时，两个端点只能从不同的连通块中寻找。</p>
+<p>令 <span class="math inline">\(f_{k,n}\)</span> 表示边权 <span class="math inline">\(\in [1,k]\)</span>，点数为 <span class="math inline">\(n\)</span> 的连通图数量。<span class="math inline">\(g_{k,n}\)</span> 则表示不一定连通。一个很好的性质是如果令 <span class="math inline">\(F_k\)</span> 表示 <span class="math inline">\(f_{k}\)</span> 的 EGF，<span class="math inline">\(G_k\)</span> 表示 <span class="math inline">\(g_k\)</span> 的 EGF，那么 <span class="math inline">\(G_k=\text{exp}(F_k)\)</span>。求出 <span class="math inline">\(G_k\)</span> 后只需要一次多项式 <span class="math inline">\(\text{ln}\)</span> 就能求出 <span class="math inline">\(F_k\)</span>。</p>
+<p>设 <span class="math inline">\(1\)</span> 所在的连通块为 <span class="math inline">\(A\)</span>，其余点（不一定连通）为 <span class="math inline">\(B\)</span>。枚举 <span class="math inline">\(A\)</span> 的大小，列出式子： <span class="math display">\[
+\large g_{k,n} = \sum_{i=1}^{n} \underbrace{\binom{n-1}{i-1}}_{\text{选出 A 除了 1 之外的 i - 1 个点}} \cdot \underbrace{f_{k-1,i}}_{\text{ A要连通}} \cdot \underbrace{g_{k,n-i}}_{\text{B不一定连通}} \cdot \underbrace{2^{i(n-i)}}_{\text{连接 A, B 的边}}
+\]</span> 这和半在线卷积的式子很像，尝试往半在线卷积的标准形式进行修改。</p>
+<div class="note note-primary">
+            <p><span class="math display">\[i\cdot (n-i)=\binom{n}{2}-\binom{i}{2}-\binom{n-i}{2}\]</span></p>
+          </div>
+<p>代入，整理 <span class="math display">\[
+\large \underbrace{\frac{g_n}{2^{\binom{n}{2}}n!}}_{H_n}=\frac{1}{n}\sum \underbrace{\frac{g_{n-i}}{2^{\binom{n-i}{2}}(n-i)!}}_{H_{n-i}}\underbrace{\frac{f_i}{2^\binom{i}{2}(i-1)!}}_{I_{i}}
+\]</span></p>
+<p>也就是 <span class="math inline">\(nH_n=I_iH_{n-i}\)</span>，相比标准形式多了个 <span class="math inline">\(n\)</span>，联想到 <span class="math inline">\((x^n)&#39;=nx^{n-1}\)</span>，故取生成函数 <span class="math display">\[
+\sum_{n\ge 1}nH_n x^n=x\cdot\sum_{n\ge 1}nH_n x^{n-1}=\sum_{n\ge 1}\sum_{i=1}^{n}I_iH_{n-i} x^n
+\]</span> 即 <span class="math inline">\(xH&#39;(x)=I(x)H(x)\)</span>，进一步 <span class="math display">\[
+\begin{align}
+\frac{H&#39;(x)}{H(x)}&amp;=\frac{I(x)}{x}\\
+\int\frac{H&#39;(x)}{H(x)}&amp;=\ln H(x)=\int \frac{I(x)}{x}\\
+H(x)&amp;=\text{exp} \left(\int \frac{I(x)}{x}\right)
+\end{align}
+\]</span> 这样就跑通了整个 <span class="math inline">\(f_{k-1,n}\to g_{k,n}\to f_{k,n}\)</span> 的流程，重复 <span class="math inline">\(k\)</span> 次，时间复杂度 <span class="math inline">\(O(kn\log n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
