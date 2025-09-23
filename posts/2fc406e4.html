@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c370581af70000acd68b3a0310452556.jpeg">
 <meta property="article:published_time" content="2025-08-29T01:08:41.000Z">
-<meta property="article:modified_time" content="2025-09-19T16:44:54.293Z">
+<meta property="article:modified_time" content="2025-09-23T03:26:49.779Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ICPC">
 <meta property="article:tag" content="QOJ">
@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          17k 字
+          18k 字
         
       </span>
     
@@ -341,7 +341,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2025年9月20日 凌晨
+                    本文最后更新于：2025年9月23日 上午
                   
                 
               </p>
@@ -683,6 +683,16 @@ a[<span class="hljs-number">2</span>] = <span class="hljs-number">1</span>;
 cout &lt;&lt; a &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;
 cout &lt;&lt; b &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;</code></pre></div><p>第五行，输出的是 <code>11010</code> 而不是 <code>00101</code>。<code>a.flip()</code> 调用的时候直接改变了 <span class="math inline">\(a\)</span> 本身，而并非创建了一个副本。</p>
           </div>
+<h2 id="c.-many-many-cycles">C. Many Many Cycles</h2>
+<p><em>conclusion.</em> 任意求出一棵生成森林，只用考虑至多包含两条非树边的环。</p>
+<p>我们将仅含一条非树边的环称作基本环，先累计基本环答案，再 <span class="math inline">\(O(m^2)\)</span> 枚举两条非树边，设各自形成的两个基本环分别为 <span class="math inline">\(a,b\)</span>，容斥一下，新环长 <span class="math inline">\(|c|=|a\oplus b|=|a|+|b|-2|a\cap b|\)</span>，又 <span class="math inline">\(\gcd(|a|,|b|,|c|)=\gcd(|a|,|b|,2|a\cap b|)\)</span>，我们只用求 <span class="math inline">\(a,b\)</span> 在生成树上的交集长度，见<a target="_blank" rel="noopener" href="https://github.com/KisuraOP/XCPC-Templates/blob/main/templates/树论/PathUnion.cpp">树链求交</a>。</p>
+<p>同样的，图上任意一个环 <span class="math inline">\(p\)</span> 都能表示成多个基本环的异或。观察 <span class="math inline">\(p=a\oplus b\oplus c\)</span>，推一下有 <span class="math inline">\(|p|=|a|+|b|+|c|-2|b\cap c|-2|a\cap(b\oplus c)|\)</span>。最后一项能拆成 <span class="math inline">\((a\cap b)\oplus (a\cap c)\)</span>，即两个基本环交集的线性组合。进一步，任意 <span class="math inline">\(|p|\)</span> 都能用基本环和两个基本环的交集线性表出，得证。</p>
+<p>出于神秘的原因，使用随机的生成树相比使用 dfs 树会让程序效率大幅下降。</p>
+<h1 id="ccpc-online-2025">【9.20】CCPC Online 2025</h1>
+<p>找不到题解，剩下的题等题解出了再补。</p>
+<h2 id="c.-造桥与砍树">C. 造桥与砍树</h2>
+<p>令生成树点集为 <span class="math inline">\(S\)</span>，初始 <span class="math inline">\(S=\{1\}\)</span>，之后尝试不断扩大 <span class="math inline">\(S\)</span>。对一个点 <span class="math inline">\(u\)</span>，优先找 <span class="math inline">\((a_u+a_v)\bmod k\)</span> 最小的 <span class="math inline">\(v\)</span>。对 <span class="math inline">\(S\)</span> 里的每个点 <span class="math inline">\(u\)</span> 都维护一个 <span class="math inline">\(v\)</span>，放进优先队列中，每次取最小的加进 <span class="math inline">\(S\)</span>，并更新 <span class="math inline">\(v\)</span> 的候选值。本质上就是以 <span class="math inline">\((a_u+a_v)\bmod k\)</span> 作为权值跑了一遍 prim，并用 set 或其它数据结构加速这个过程。</p>
+<h1 id="xvi-open-cup.-moscow">【9.22】XVI Open Cup. Moscow</h1>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
