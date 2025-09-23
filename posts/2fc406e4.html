@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c370581af70000acd68b3a0310452556.jpeg">
 <meta property="article:published_time" content="2025-08-29T01:08:41.000Z">
-<meta property="article:modified_time" content="2025-09-23T03:26:49.779Z">
+<meta property="article:modified_time" content="2025-09-23T19:40:09.114Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ICPC">
 <meta property="article:tag" content="QOJ">
@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18k 字
+          19k 字
         
       </span>
     
@@ -341,7 +341,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2025年9月23日 上午
+                    本文最后更新于：2025年9月24日 凌晨
                   
                 
               </p>
@@ -668,7 +668,16 @@ H(x)&amp;=\text{exp} \left(\int \frac{I(x)}{x}\right)
 \{t_i^{(j)}-t_{i}^{(j-1)}+1\mid 1\le i\le m,\ 2\le j\le k_i\}
 \]</span> 扫描线，按 <span class="math inline">\(X\)</span> 从小到大维护贡献。CPU 部分，只需要 map 维护所有需要 load 的时刻；内存部分，当 <span class="math inline">\(X\)</span> 逐步增大的时候，有些区间的贡献从 <span class="math inline">\(X\)</span> 变为 <span class="math inline">\(t_i^{(j)}-t_i^{(j-1)}\)</span>，变了的部分直接累加，再维护仍是 <span class="math inline">\(X\)</span> 的区间的个数即可。</p>
 <h2 id="l.-forged-in-the-barrens">L. Forged in the Barrens</h2>
-<p>凸优化好题。但现在太晚了，等 CCPC 网络赛打完补一份上来。</p>
+<p>考虑朴素的 dp，令 <span class="math inline">\(f[i][k][s=0/1/2]\)</span> 表示考虑前 <span class="math inline">\(i\)</span> 个数，已经分成了完整的 <span class="math inline">\(k\)</span> 段，当前段什么都没选 <span class="math inline">\((s=0)\)</span>，只选了最小值 <span class="math inline">\((s=1)\)</span>，只选了最大值 <span class="math inline">\((s=2)\)</span> 的答案，枚举当前 <span class="math inline">\(a_i\)</span> 作为当前段的极值进行转移。</p>
+<p>注意到以 <span class="math inline">\(k\)</span> 为自变量，<span class="math inline">\(f[i][k]\)</span> 具有凸性，可以利用分治配合 <span class="math inline">\((\max,+)\)</span> 卷积进行合并。具体的，令 <span class="math inline">\(g[p][l=0/1/2][r=0/1/2][k]\)</span> 表示线段树上节点 <span class="math inline">\(p\)</span> 对应的区间，已经分成了完整的 <span class="math inline">\(k\)</span> 段，左端点/右端点作为新段非极值/最小值/最大值的答案，那么 <span class="math display">\[
+g[p][l][r][k]=\max\begin{cases}
+g[2 \cdot p][l][r][k]\\
+g[2\cdot p+1][l][r][k]\\
+\max\limits_{s_1,s_2\in[0,2]}\left(\max\limits_{k=i+j} (g[2\cdot p][s_1][0][i]+g[2\cdot p+1][0][s_2][j])\right)\\
+\max\limits_{s_1,s_2\in[0,2]}\left(\max\limits_{k=i+j+1} (g[2\cdot p][s_1][1][i]+g[2\cdot p+1][2][s_2][j])\right)\\
+\max\limits_{s_1,s_2\in[0,2]}\left(\max\limits_{k=i+j+1} (g[2\cdot p][s_1][2][i]+g[2\cdot p+1][1][s_2][j])\right)
+\end{cases}
+\]</span> 对于凸序列 <span class="math inline">\(a,b\)</span>，单次 <span class="math inline">\((\max,+)\)</span> 卷积的复杂度是 <span class="math inline">\(O(|a|+|b|)\)</span>，故总复杂度为 <span class="math inline">\(O(n\log^2 n)\)</span>。</p>
 <h1 id="ucup2-2.-spb">【9.18】Ucup2-2. SPb</h1>
 <h2 id="d.-bishops">D. Bishops</h2>
 <p>显然棋盘可以分成两部分，两部分答案可加，互不干扰。将主对角线看成左部点，副对角线看成右部点，构建二分图，我们需要求出一个最大匹配。注意到每个左部点 <span class="math inline">\(i\)</span> 向右部点的连边都是一段区间 <span class="math inline">\([L_i,R_i]\)</span>，考虑贪心：将三元组 <span class="math inline">\((i,L_i,R_i)\)</span> 按 <span class="math inline">\(R_i\)</span> 升序排序，每次二分出第一个 <span class="math inline">\(\ge L_i\)</span> 的未被匹配的右部点进行匹配。</p>
