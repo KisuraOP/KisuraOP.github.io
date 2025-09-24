@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c370581af70000acd68b3a0310452556.jpeg">
 <meta property="article:published_time" content="2025-08-29T01:08:41.000Z">
-<meta property="article:modified_time" content="2025-09-23T19:40:09.114Z">
+<meta property="article:modified_time" content="2025-09-24T12:33:00.607Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ICPC">
 <meta property="article:tag" content="QOJ">
@@ -341,7 +341,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2025年9月24日 凌晨
+                    本文最后更新于：2025年9月24日 晚上
                   
                 
               </p>
@@ -702,6 +702,11 @@ cout &lt;&lt; b &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;</code>
 <h2 id="c.-造桥与砍树">C. 造桥与砍树</h2>
 <p>令生成树点集为 <span class="math inline">\(S\)</span>，初始 <span class="math inline">\(S=\{1\}\)</span>，之后尝试不断扩大 <span class="math inline">\(S\)</span>。对一个点 <span class="math inline">\(u\)</span>，优先找 <span class="math inline">\((a_u+a_v)\bmod k\)</span> 最小的 <span class="math inline">\(v\)</span>。对 <span class="math inline">\(S\)</span> 里的每个点 <span class="math inline">\(u\)</span> 都维护一个 <span class="math inline">\(v\)</span>，放进优先队列中，每次取最小的加进 <span class="math inline">\(S\)</span>，并更新 <span class="math inline">\(v\)</span> 的候选值。本质上就是以 <span class="math inline">\((a_u+a_v)\bmod k\)</span> 作为权值跑了一遍 prim，并用 set 或其它数据结构加速这个过程。</p>
 <h1 id="xvi-open-cup.-moscow">【9.22】XVI Open Cup. Moscow</h1>
+<h2 id="e.-super-backpack">E. Super Backpack</h2>
+<p>题意可以转化为给定 <span class="math inline">\(n\)</span> 个长度不超过 <span class="math inline">\(5\)</span> 的序列，求它们的 <span class="math inline">\((\max,+)\)</span> 卷积。如果是凸序列，容易在 <span class="math inline">\(O(n\log n)\)</span> 内分治合并，可惜并不凸。</p>
+<p><em>conclusion.</em> 设最终答案序列为 <span class="math inline">\(d\)</span>，按下标<span class="math inline">\(\bmod 12\)</span> 分组，分出的 <span class="math inline">\(12\)</span> 个新子序列都是凸的。</p>
+<p><em>prove.</em> 即证 <span class="math inline">\(2\cdot d[i+12]\ge d[i]+d[i+24]\)</span> 对任意 <span class="math inline">\(i\)</span> 成立。假设我们有下标和分别为 <span class="math inline">\(i\)</span> 和 <span class="math inline">\(i+24\)</span> 的最优方案 <span class="math inline">\(S_k=\{c_1,c_2,\ldots, c_n\}\)</span> 和 <span class="math inline">\(S_{k+24}=\{c_1&#39;,c_2&#39;,\ldots,c_n&#39;\}\)</span>，其中 <span class="math inline">\(\sum (c_i&#39;-c_i)=24\)</span>。值域为 <span class="math inline">\([1,5]\)</span>，即 <span class="math inline">\((c_i&#39;-c_i)\in [-4,4]\)</span>。注意到（根本注意不到），任何一个由 <span class="math inline">\(\{-4, -3, \ldots, 3, 4\}\)</span> 中的整数构成的、总和为 <span class="math inline">\(24\)</span> 的多重集，都可以被划分成两个子集，每个子集的和均为 <span class="math inline">\(12\)</span>。因此，我们一定能构造出两个总价值之和为 <span class="math inline">\(d[i]+d[i+24]\)</span>，下标和均为 <span class="math inline">\(i+12\)</span> 的可行解（注意不一定最优解）。假设这两个子集的价值分别为 <span class="math inline">\(v_a,v_b\)</span>，因为最优解一定不小于任何一个可行解，有 <span class="math inline">\(d[i+12]\ge v_a\)</span> 和 <span class="math inline">\(d[i+12]\ge v_b\)</span>，两式相加，<span class="math inline">\(2\cdot d[i+12]\ge v_a+v_b=d[i]+d[i+24]\)</span>，得证。</p>
+<p>分治合并时，下标<span class="math inline">\(\bmod 12=k\)</span> 的组，答案是所有 <span class="math inline">\(k=i+j\)</span> 的组的 <span class="math inline">\((\max,+)\)</span> 卷积的 <span class="math inline">\(\max\)</span>。虽然两个上凸序列的 <span class="math inline">\(\max\)</span> 不一定上凸，但合并完一定是凸的。时间复杂度 <span class="math inline">\(O(12^2n\log n)\)</span>。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
