@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/c370581af70000acd68b3a0310452556.jpeg">
 <meta property="article:published_time" content="2025-08-29T01:08:41.000Z">
-<meta property="article:modified_time" content="2025-09-24T12:33:00.607Z">
+<meta property="article:modified_time" content="2025-09-26T16:12:08.712Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="ICPC">
 <meta property="article:tag" content="QOJ">
@@ -272,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          19k 字
+          20k 字
         
       </span>
     
@@ -341,7 +341,7 @@
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2025年9月24日 晚上
+                    本文最后更新于：2025年9月27日 凌晨
                   
                 
               </p>
@@ -706,7 +706,12 @@ cout &lt;&lt; b &lt;&lt; <span class="hljs-string">&quot;\n&quot;</span>;</code>
 <p>题意可以转化为给定 <span class="math inline">\(n\)</span> 个长度不超过 <span class="math inline">\(5\)</span> 的序列，求它们的 <span class="math inline">\((\max,+)\)</span> 卷积。如果是凸序列，容易在 <span class="math inline">\(O(n\log n)\)</span> 内分治合并，可惜并不凸。</p>
 <p><em>conclusion.</em> 设最终答案序列为 <span class="math inline">\(d\)</span>，按下标<span class="math inline">\(\bmod 12\)</span> 分组，分出的 <span class="math inline">\(12\)</span> 个新子序列都是凸的。</p>
 <p><em>prove.</em> 即证 <span class="math inline">\(2\cdot d[i+12]\ge d[i]+d[i+24]\)</span> 对任意 <span class="math inline">\(i\)</span> 成立。假设我们有下标和分别为 <span class="math inline">\(i\)</span> 和 <span class="math inline">\(i+24\)</span> 的最优方案 <span class="math inline">\(S_k=\{c_1,c_2,\ldots, c_n\}\)</span> 和 <span class="math inline">\(S_{k+24}=\{c_1&#39;,c_2&#39;,\ldots,c_n&#39;\}\)</span>，其中 <span class="math inline">\(\sum (c_i&#39;-c_i)=24\)</span>。值域为 <span class="math inline">\([1,5]\)</span>，即 <span class="math inline">\((c_i&#39;-c_i)\in [-4,4]\)</span>。注意到（根本注意不到），任何一个由 <span class="math inline">\(\{-4, -3, \ldots, 3, 4\}\)</span> 中的整数构成的、总和为 <span class="math inline">\(24\)</span> 的多重集，都可以被划分成两个子集，每个子集的和均为 <span class="math inline">\(12\)</span>。因此，我们一定能构造出两个总价值之和为 <span class="math inline">\(d[i]+d[i+24]\)</span>，下标和均为 <span class="math inline">\(i+12\)</span> 的可行解（注意不一定最优解）。假设这两个子集的价值分别为 <span class="math inline">\(v_a,v_b\)</span>，因为最优解一定不小于任何一个可行解，有 <span class="math inline">\(d[i+12]\ge v_a\)</span> 和 <span class="math inline">\(d[i+12]\ge v_b\)</span>，两式相加，<span class="math inline">\(2\cdot d[i+12]\ge v_a+v_b=d[i]+d[i+24]\)</span>，得证。</p>
-<p>分治合并时，下标<span class="math inline">\(\bmod 12=k\)</span> 的组，答案是所有 <span class="math inline">\(k=i+j\)</span> 的组的 <span class="math inline">\((\max,+)\)</span> 卷积的 <span class="math inline">\(\max\)</span>。虽然两个上凸序列的 <span class="math inline">\(\max\)</span> 不一定上凸，但合并完一定是凸的。时间复杂度 <span class="math inline">\(O(12^2n\log n)\)</span>。</p>
+<p>分治合并时，下标<span class="math inline">\(\bmod 12=k\)</span> 的组，答案是所有 <span class="math inline">\(k=i+j\)</span> 的组的 <span class="math inline">\((\max,+)\)</span> 卷积的 <span class="math inline">\(\max\)</span>。虽然两个上凸序列的 <span class="math inline">\(\max\)</span> 不一定上凸，但合并完一定是凸的。时间复杂度 <span class="math inline">\(O(12^2\cdot n\log n)\)</span>。</p>
+<h1 id="ec-final-2023">【9.23】EC Final 2023</h1>
+<h2 id="i.-balance">I. Balance</h2>
+<p>首先，同一边双内 <span class="math inline">\(a_i\)</span> 必须相同，否则一个环会贡献两倍极差。缩边双，得到一棵树，所有 <span class="math inline">\(a_i\)</span> 相同的连通块，也必定是从小到大像一条链一样排列。设 <span class="math inline">\(a_i\)</span> 有 <span class="math inline">\(k\)</span> 种取值，分别记为 <span class="math inline">\(c_1,c_2,\ldots,c_k\)</span>，我们要找一条路径，路径上按次序有 <span class="math inline">\(k-1\)</span> 条特殊边，第 <span class="math inline">\(i\)</span> 条边分隔了 <span class="math inline">\(c_i\)</span> 和 <span class="math inline">\(c_{i+1}\)</span>。</p>
+<p>显然，对于一条特殊边 <span class="math inline">\((u,v)\)</span>，其中一侧的连通块大小必定是 <span class="math inline">\(c_i\)</span> 的一个前缀。要注意，特殊边是有方向的，例如钦定边 <span class="math inline">\((u,v)\)</span> 表示 <span class="math inline">\(v\)</span> 所在连通块的大小，一条合法路径顺次经过的特殊边方向必须相同。一个巧妙的转化是：我们只用找同方向特殊边最多的路径，因为上界就是 <span class="math inline">\(k-1\)</span>。换根 dp 即可，时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h1 id="ec-final-2021">【9.25】EC Final 2021</h1>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
