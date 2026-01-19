@@ -1,0 +1,36 @@
+/* 设置背景图片 */
+body {
+  background: url(../image/other/all6.png);
+  background-attachment: fixed;
+  background-size: cover;  
+}
+
+/* 文章侧边栏颜色修改 */
+.tocbot-link {
+  color: #ffffff !important;
+}
+
+.tocbot-active-link {
+  font-weight: bold;
+  color: #EE1289 !important;
+}
+
+.toc-header {
+  color: #ffffff !important;
+}/*测试
+/*
+/*
+/*
+/*
+/*
+/*
+/*
+/*
+/*
+/*
+/*
+/*
+/*
+/*
+/*
+/*<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
