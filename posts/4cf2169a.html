@@ -1,0 +1,1098 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/image/bg/mugeng.ico">
+  <link rel="icon" href="/image/bg/mugeng.ico">
+  
+    <link rel="canonical" href="http://kisuraop.github.io/posts/4cf2169a.html"/>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本文使用的环境：全新 Ubuntu24.04 LTS。 Domjudge 版本：8.3.1。 本文主要参考了： Vingying | 关于搭建 domjudge 还有其他一些 ICPC Tool 之类的事 HeRaNO | 计算机 · DOMjudge Docker 配置 文中的所有流程经过了从头验证，十分感谢 vy 和 hrdg 的耐心指导QAQ。 1. 安装 DOMjudge">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【教程】使用 DOMjudge 从零搭建一场比赛">
+<meta property="og:url" content="http://kisuraop.github.io/posts/4cf2169a.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本文使用的环境：全新 Ubuntu24.04 LTS。 Domjudge 版本：8.3.1。 本文主要参考了： Vingying | 关于搭建 domjudge 还有其他一些 ICPC Tool 之类的事 HeRaNO | 计算机 · DOMjudge Docker 配置 文中的所有流程经过了从头验证，十分感谢 vy 和 hrdg 的耐心指导QAQ。 1. 安装 DOMjudge">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/503fc6d6b075e49bf015e7cbc5553685.jpeg">
+<meta property="article:published_time" content="2024-11-20T13:00:00.000Z">
+<meta property="article:modified_time" content="2024-11-20T13:00:00.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="DOMjudge">
+<meta property="article:tag" content="Note">
+<meta property="article:tag" content="XCPC">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/503fc6d6b075e49bf015e7cbc5553685.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>【教程】使用 DOMjudge 从零搭建一场比赛 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/bg_cover.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4277703_p4cthydttt.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kisuraop.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>KisuraOPのBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://moe.jitsu.top/img/?sort=pc') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">【教程】使用 DOMjudge 从零搭建一场比赛</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-20 21:00" pubdate>
+          2024年11月20日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【教程】使用 DOMjudge 从零搭建一场比赛</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>本文使用的环境：全新 Ubuntu24.04 LTS。</p>
+<p>Domjudge 版本：8.3.1。</p>
+<p>本文主要参考了：</p>
+<p><a
+target="_blank" rel="noopener" href="https://vingying.github.io/2024/09/04/domjudge-icpctool/">Vingying
+| 关于搭建 domjudge 还有其他一些 ICPC Tool 之类的事</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/258024151">HeRaNO | 计算机 ·
+DOMjudge Docker 配置</a></p>
+<p>文中的所有流程经过了从头验证，十分感谢 vy 和 hrdg 的耐心指导QAQ。</p>
+<h3 id="安装-domjudge-和相关依赖">1. 安装 DOMjudge 和相关依赖</h3>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt-get update
+<span class="hljs-built_in">sudo</span> apt-get upgrade</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install acl zip unzip mariadb-server nginx \
+        php-fpm php-gd php-cli php-intl php-mbstring php-mysql \
+        php-curl php-json php-xml php-zip composer ntp
+
+<span class="hljs-built_in">sudo</span> apt install make gcc g++ debootstrap libcgroup-dev lsof \
+        procps libcurl4-gnutls-dev libjsoncpp-dev libmagic-dev</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /opt/
+<span class="hljs-built_in">sudo</span> wget https://www.domjudge.org/releases/domjudge-8.3.1.tar.gz
+<span class="hljs-built_in">sudo</span> tar -zxvf domjudge-8.3.1.tar.gz</code></pre></div>
+<p>如果 <code>wget</code> 太慢可以点链接进去下再
+<code>sudo mv ./domjudge-8.3.1.tar.gz /opt/</code>。</p>
+<h3 id="编译-domjudge配置数据库和-web-服务器">2. 编译
+DOMjudge，配置数据库和 web 服务器</h3>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /opt/domjudge-8.3.1
+<span class="hljs-built_in">sudo</span> ./configure --prefix=/opt/domjudge --with-domjudge-user=root --with-baseurl=127.0.0.1</code></pre></div>
+<p>这一步如果警告缺少 <code>pkg-config</code> 就
+<code>sudo apt install pkg-config</code>。</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> make domserver</code></pre></div>
+<p>这一步会弹出一个询问，直接 <code>yes</code>。</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> make install-domserver
+<span class="hljs-built_in">cd</span> /opt/domjudge/domserver
+<span class="hljs-built_in">sudo</span> bin/dj_setup_database -s install
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">ln</span> -s /opt/domjudge/domserver/etc/nginx-conf /etc/nginx/sites-enabled/domjudge
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">ln</span> -s /opt/domjudge/domserver/etc/domjudge-fpm.conf /etc/php/8.3/fpm/pool.d/domjudge.conf
+<span class="hljs-built_in">sudo</span> service php8.3-fpm reload</code></pre></div>
+<p>最后两句 php 要换成对应的版本，我这里是 php8.3。</p>
+<p>最后一句如果警告说要
+<code>systemctl daemon-reload</code>，按它说的执行就行。</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /etc/nginx/sites-enabled
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> default
+<span class="hljs-built_in">sudo</span> service nginx reload
+<span class="hljs-built_in">cd</span> /opt/domjudge/domserver
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chown</span> www-data:www-data -R webapp/public/*</code></pre></div>
+<p>接着访问 <code>127.0.0.1/domjudge</code> 就有 web
+界面了（云服务器就换成公网地址）。</p>
+<p><a href="https://kisuraop.github.io/image/academic/d1.png"><img
+src="https://kisuraop.github.io/image/academic/d1.png" srcset="/img/loading.gif" lazyload /></a></p>
+<p>如果没按前两句把 <code>default</code> 删掉你就会收获 404
+的好结果。</p>
+<p>如果还没有 web 界面就看看服务器 80 端口有没有打开。</p>
+<p>接着在网页里 login，账号填 admin，密码通过以下命令获取：</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cat</span> /opt/domjudge/domserver/etc/initial_admin_password.secret</code></pre></div>
+<h3 id="配置-php-和-mysql">3. 配置 php 和 mysql</h3>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /etc/php/8.3/fpm/pool.d
+<span class="hljs-built_in">sudo</span> vim domjudge.conf</code></pre></div>
+<p>如果提示没有 vim，就 <code>sudo apt install vim</code>。</p>
+<p>打开配置文件后找到 <code>php_admin_value[memory_limit]</code>
+一栏，改成：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">php_admin_value[memory_limit] = 1024M</code></pre></div>
+<p>再找到 <code>php_admin_value[date.timezone]</code> 一栏，改成：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">php_admin_value[date.timezone] = Asia/Shanghai</code></pre></div>
+<p>保存退出。</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> service php8.3-fpm reload
+<span class="hljs-built_in">sudo</span> vim /etc/mysql/conf.d/mysql.cnf</code></pre></div>
+<p>你会看到一行 <code>[mysql]</code>，删掉。接着粘贴以下内容：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">[mysqld]
+max_connections = 1000
+max_allowed_packet = 512MB
+innodb_log_file_size = 2560MB</code></pre></div>
+<p>这只是示例，实际 <code>max_allowed_packet</code>
+要改成两倍于题目测试数据文件的大小；<code>innodb_log_file_size</code>
+要改成十倍于题目测试数据文件的大小。</p>
+<p>保存退出。</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> vim /etc/mysql/mariadb.conf.d/50-server.cnf</code></pre></div>
+<p>找到 <code>max_allowed_packet = 1G</code>，取消这一行的注释。</p>
+<p>保存退出。</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl restart mysql</code></pre></div>
+<p>如果一切正常，刷新 DOMjudge 的 web 页面，点进 config
+checker，你会看到：</p>
+<p><a href="https://kisuraop.github.io/image/academic/d2.png"><img
+src="https://kisuraop.github.io/image/academic/d2.png" srcset="/img/loading.gif" lazyload /></a></p>
+<p><a href="https://kisuraop.github.io/image/academic/d3.png"><img
+src="https://kisuraop.github.io/image/academic/d3.png" srcset="/img/loading.gif" lazyload /></a></p>
+<h3 id="配置-judgehost-docker">4. 配置 judgehost (docker)</h3>
+<p>首先要下载 docker，如果是云服务器，可以找到对应的文档。</p>
+<p>我则是查阅了一些博客和文章，以下命令可能有不妥之处。</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt-get update
+<span class="hljs-built_in">sudo</span> apt-get -y install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | <span class="hljs-built_in">sudo</span> apt-key add -
+<span class="hljs-built_in">sudo</span> add-apt-repository <span class="hljs-string">&quot;deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu <span class="hljs-subst">$(lsb_release -cs)</span> stable&quot;</span>
+<span class="hljs-built_in">sudo</span> apt-get update</code></pre></div>
+<p>这里可能会提示
+<code>密钥存储在过时的 trusted.gpg 密钥环中</code>，我的解决方法是：</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /etc/apt
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cp</span> trusted.gpg trusted.gpg.d
+<span class="hljs-built_in">sudo</span> apt-get update</code></pre></div>
+<p>然后就可以安装 docker 了。</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt-get install docker-ce
+<span class="hljs-built_in">cd</span> /etc/docker
+<span class="hljs-built_in">sudo</span> <span class="hljs-built_in">touch</span> daemon.json
+<span class="hljs-built_in">sudo</span> vim daemon.json</code></pre></div>
+<p>粘贴以下内容：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">&#123;
+    <span class="hljs-string">&quot;registry-mirrors&quot;</span>: [<span class="hljs-string">&quot;https://docker.1ms.run&quot;</span>]
+&#125;</code></pre></div>
+<p>其中国内镜像源是我从 <a
+target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2454486">Link</a>
+里面找的。</p>
+<p>保存退出。</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> service docker restart</code></pre></div>
+<p>接着设置 cgroups。</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> vim /etc/default/grub</code></pre></div>
+<p>找到 <code>GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"</code>
+一行（引号里可能初始是空），改成：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">GRUB_CMDLINE_LINUX_DEFAULT=<span class="hljs-string">&quot;quiet cgroup_enable=memory swapaccount=1 systemd.unified_cgroup_hierarchy=0&quot;</span></code></pre></div>
+<p>保存退出。</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> update-grub
+<span class="hljs-built_in">sudo</span> reboot</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> docker run -d -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost-new0 --hostname localhost --network=<span class="hljs-string">&quot;host&quot;</span> -e DAEMON_ID=0 -e CONTAINER_TIMEZONE=Asia/Shanghai -e JUDGEDAEMON_PASSWORD=&lt;domserver password&gt; -e DOMSERVER_BASEURL=http://localhost/domjudge/ domjudge/judgehost:8.3.1
+BASH</code></pre></div>
+<p>其中 <code>&lt;domserver password&gt;</code> 通过以下命令获取：</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cat</span> /opt/domjudge/domserver/etc/restapi.secret</code></pre></div>
+<p>如果一切正常，那么：</p>
+<p><a href="https://kisuraop.github.io/image/academic/d4.png"><img
+src="https://kisuraop.github.io/image/academic/d4.png" srcset="/img/loading.gif" lazyload /></a></p>
+<p><a href="https://kisuraop.github.io/image/academic/d5.png"><img
+src="https://kisuraop.github.io/image/academic/d5.png" srcset="/img/loading.gif" lazyload /></a></p>
+<p>如果起多个 judgehost，需要修改 <code>--name</code> 参数和
+<code>DAEMON_ID</code> 参数。后者是核编号，不能超过机子的核心数。</p>
+<p>例如起第 2 个 judgehost 的话，命令得是：</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> docker run -d -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost-new1 --hostname localhost --network=<span class="hljs-string">&quot;host&quot;</span> -e DAEMON_ID=1 -e CONTAINER_TIMEZONE=Asia/Shanghai -e JUDGEDAEMON_PASSWORD=&lt;domserver password&gt; -e DOMSERVER_BASEURL=http://localhost/domjudge/ domjudge/judgehost:8.3.1</code></pre></div>
+<p>起第 3 个的话，得是：</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> docker run -d -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost-new2 --hostname localhost --network=<span class="hljs-string">&quot;host&quot;</span> -e DAEMON_ID=2 -e CONTAINER_TIMEZONE=Asia/Shanghai -e JUDGEDAEMON_PASSWORD=&lt;domserver password&gt; -e DOMSERVER_BASEURL=http://localhost/domjudge/ domjudge/judgehost:8.3.1</code></pre></div>
+<h3 id="配置比赛">5. 配置比赛</h3>
+<p>从这里开始就看个人喜好了。</p>
+<p>以下配置均以 UESTC 第十五届趣味程序设计竞赛为例。</p>
+<p>Configuration settings <span class="math inline">\(\to\)</span>
+External systems <span class="math inline">\(\to\)</span> configuration
+data external。</p>
+<p>Configuration settings <span class="math inline">\(\to\)</span>
+Scoring <span class="math inline">\(\to\)</span> Results remap: 将
+<code>output-limit</code> 和 <code>no-output</code> 定向为
+<code>wrong-answer</code>。</p>
+<p>save 之后如果提示你 Recalculate caches now，就点进去，之后同理。</p>
+<p>Configuration settings <span class="math inline">\(\to\)</span>
+Judging <span class="math inline">\(\to\)</span> Enable parallel judging
+关闭。</p>
+<p>Configuration settings <span class="math inline">\(\to\)</span>
+Display <span class="math inline">\(\to\)</span> Show flags 关闭。</p>
+<p>Configuration settings <span class="math inline">\(\to\)</span>
+Display <span class="math inline">\(\to\)</span> Allow team submission
+download 开启。</p>
+<p>Configuration settings <span class="math inline">\(\to\)</span>
+Display <span class="math inline">\(\to\)</span> Show language versions
+开启。</p>
+<p>回到主页，进 Team Categories。</p>
+<p>把 visible 的三个组别的 external ID 改成
+<code>beginner</code>，<code>advanced</code> 和
+<code>observer</code>，代表零基础组，有基础组，和打星组。然后把这三个组的
+SortOrder 改成同一个数字（这样榜单上才不会割裂显示）。</p>
+<p>接着导入队伍，依据 <a
+target="_blank" rel="noopener" href="https://www.domjudge.org/docs/manual/8.3/import.html#importing-team-affiliations">Link</a>
+完成 accounts.yaml，teams.json 和 organizations.json。</p>
+<ul>
+<li>teams.json 中 display_name 虽然是
+[option]，但如果不写这一项会默认设成空串，很神秘，所以还是加上。</li>
+</ul>
+<p>以下是我用到的脚本：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># gen_accounts.py</span>
+<span class="hljs-keyword">import</span> random
+<span class="hljs-keyword">import</span> string
+
+<span class="hljs-comment"># 生成账号的数量</span>
+account_number = <span class="hljs-number">452</span>
+
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_team_data</span>():
+    data_list = []
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, account_number + <span class="hljs-number">1</span>):
+        team_id = <span class="hljs-string">f&quot;team<span class="hljs-subst">&#123;i:03d&#125;</span>&quot;</span>
+        <span class="hljs-built_in">id</span> = <span class="hljs-string">f&quot;account<span class="hljs-subst">&#123;i:03d&#125;</span>&quot;</span>
+        username = team_id
+        password = <span class="hljs-string">&#x27;&#x27;</span>.join(random.choices(string.ascii_letters + string.digits, k=<span class="hljs-number">10</span>))
+        data_list.append(<span class="hljs-string">f&quot;- id: <span class="hljs-subst">&#123;<span class="hljs-built_in">id</span>&#125;</span>\n  username: <span class="hljs-subst">&#123;username&#125;</span>\n  password: <span class="hljs-subst">&#123;password&#125;</span>\n  type: team\n  team_id: &#x27;<span class="hljs-subst">&#123;team_id&#125;</span>&#x27;\n\n&quot;</span>)
+    <span class="hljs-keyword">return</span> data_list
+
+
+team_data = generate_team_data()
+
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;accounts.yaml&#x27;</span>, <span class="hljs-string">&#x27;w&#x27;</span>) <span class="hljs-keyword">as</span> file:
+    file.writelines(team_data)</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># gen_organizations.py</span>
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> json
+
+<span class="hljs-comment"># 读取表格第 10 列的内容（学校名称）</span>
+df = pd.read_excel(<span class="hljs-string">&#x27;name.xlsx&#x27;</span>, usecols=[<span class="hljs-number">9</span>], skiprows=<span class="hljs-number">1</span>)
+
+<span class="hljs-comment"># 去重</span>
+universities = df.iloc[:, <span class="hljs-number">0</span>].dropna().unique()
+
+organizations = [&#123;<span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-built_in">str</span>(i + <span class="hljs-number">1</span>), <span class="hljs-string">&quot;name&quot;</span>: university, <span class="hljs-string">&quot;formal_name&quot;</span>: university, <span class="hljs-string">&quot;country&quot;</span>: <span class="hljs-string">&quot;CHN&quot;</span>&#125; <span class="hljs-keyword">for</span> i, university <span class="hljs-keyword">in</span> <span class="hljs-built_in">enumerate</span>(universities) <span class="hljs-keyword">if</span> university]
+
+<span class="hljs-comment"># 本校</span>
+organizations.append(&#123;<span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">&#x27;100&#x27;</span>, <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&#x27;电子科技大学&#x27;</span>, <span class="hljs-string">&quot;formal_name&quot;</span>: <span class="hljs-string">&#x27;电子科技大学&#x27;</span>, <span class="hljs-string">&quot;country&quot;</span>: <span class="hljs-string">&quot;CHN&quot;</span>&#125;)
+
+<span class="hljs-comment"># 没填学校名字的</span>
+organizations.append(&#123;<span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">&#x27;101&#x27;</span>, <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&#x27;未填写&#x27;</span>, <span class="hljs-string">&quot;formal_name&quot;</span>: <span class="hljs-string">&#x27;未填写&#x27;</span>, <span class="hljs-string">&quot;country&quot;</span>: <span class="hljs-string">&quot;CHN&quot;</span>&#125;)
+
+<span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&#x27;organizations.json&#x27;</span>, <span class="hljs-string">&#x27;w&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> f:
+    json.dump(organizations, f, ensure_ascii=<span class="hljs-literal">False</span>, indent=<span class="hljs-number">4</span>)
+PYTHON</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-comment"># gen_teams.py</span>
+<span class="hljs-keyword">import</span> json
+<span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">generate_data</span>():
+    excel_data = pd.read_excel(<span class="hljs-string">&quot;name.xlsx&quot;</span>, sheet_name=<span class="hljs-number">0</span>)
+    organizations = &#123;&#125;
+
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;organizations.json&quot;</span>, <span class="hljs-string">&quot;r&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> f:
+        organizations = json.load(f)
+
+    result = []
+    id_counter = <span class="hljs-number">1</span>
+
+    <span class="hljs-keyword">for</span> _, row <span class="hljs-keyword">in</span> excel_data.iterrows():
+        <span class="hljs-keyword">if</span> pd.isna(row[<span class="hljs-number">1</span>]):
+            <span class="hljs-keyword">break</span>
+
+        <span class="hljs-comment"># row[2]: 是否为本校选手</span>
+        <span class="hljs-comment"># row[5]: 是否正式参赛</span>
+        <span class="hljs-comment"># row[6]: 年级</span>
+        <span class="hljs-comment"># row[8]: 是否有信息竞赛基础</span>
+        <span class="hljs-comment"># row[9]: 学校（外校）</span>
+        <span class="hljs-keyword">if</span> row[<span class="hljs-number">2</span>] == <span class="hljs-string">&quot;否&quot;</span> <span class="hljs-keyword">or</span> row[<span class="hljs-number">5</span>] == <span class="hljs-string">&quot;否（不参与评奖）&quot;</span>:
+            X = <span class="hljs-string">&quot;observer&quot;</span>
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-keyword">if</span> row[<span class="hljs-number">6</span>] == <span class="hljs-string">&quot;大一&quot;</span> <span class="hljs-keyword">and</span> row[<span class="hljs-number">8</span>] == <span class="hljs-string">&quot;否&quot;</span>:
+                X = <span class="hljs-string">&quot;beginner&quot;</span>
+            <span class="hljs-keyword">else</span>:
+                X = <span class="hljs-string">&quot;advanced&quot;</span>
+
+        <span class="hljs-keyword">if</span> row[<span class="hljs-number">2</span>] == <span class="hljs-string">&quot;否&quot;</span>:
+            S = row[<span class="hljs-number">9</span>]
+            org_id = <span class="hljs-built_in">next</span>((org[<span class="hljs-string">&quot;id&quot;</span>] <span class="hljs-keyword">for</span> org <span class="hljs-keyword">in</span> organizations <span class="hljs-keyword">if</span> org[<span class="hljs-string">&quot;name&quot;</span>] == S), <span class="hljs-literal">None</span>)
+            <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> org_id:
+                org_id = <span class="hljs-number">101</span>
+                <span class="hljs-comment"># raise ValueError(f&quot;组织名称 &#x27;&#123;S&#125;&#x27; 未在 organizations.json 中找到！&quot;)</span>
+        <span class="hljs-keyword">else</span>:
+            org_id = <span class="hljs-number">100</span>
+
+        item = &#123;
+            <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-string">f&quot;team<span class="hljs-subst">&#123;id_counter:03d&#125;</span>&quot;</span>,
+            <span class="hljs-string">&quot;group_ids&quot;</span>: [<span class="hljs-built_in">str</span>(X)],
+            <span class="hljs-string">&quot;name&quot;</span>: row[<span class="hljs-number">1</span>],
+            <span class="hljs-string">&quot;display_name&quot;</span>: row[<span class="hljs-number">1</span>],
+            <span class="hljs-string">&quot;organization_id&quot;</span>: <span class="hljs-built_in">str</span>(org_id)
+        &#125;
+        result.append(item)
+
+        id_counter += <span class="hljs-number">1</span>
+
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(<span class="hljs-string">&quot;teams.json&quot;</span>, <span class="hljs-string">&quot;w&quot;</span>, encoding=<span class="hljs-string">&quot;utf-8&quot;</span>) <span class="hljs-keyword">as</span> outfile:
+        json.dump(result, outfile, ensure_ascii=<span class="hljs-literal">False</span>, indent=<span class="hljs-number">4</span>)
+
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:
+    generate_data()
+PYTHON</code></pre></div>
+<p>生成完毕后回到主页，点进 import / export，找到 Teams &amp; groups
+<span class="math inline">\(\to\)</span> Import JSON / YAML。</p>
+<p>将上述三个文件按 organizations.json，teams.json，accounts.yaml
+的顺序传上去（务必注意顺序，Type 也要随着改动）。</p>
+<p>不同大学的校徽可以在 <a
+target="_blank" rel="noopener" href="https://github.com/CSGrandeur/CCPCOJ/tree/master/ojweb/public/static/image/school_badge">Link</a>
+或 <a target="_blank" rel="noopener" href="https://www.urongda.com/logos">Link</a> 里下载，再到主页进
+Team Affiliations 里编辑上传。</p>
+<p>接着建立 Contests。回到主页点进 Contests，demo 删掉，Add new
+contest，External ID 随便填一个，剩下的选项都有注释，不再赘述。</p>
+<ul>
+<li>注意时间格式的 <code>timezone</code> 应该填
+<code>Asia/Shanghai</code> 而不是 <code>UTC+8</code>。</li>
+</ul>
+<p>可以利用 Problemset document 选项上传题面，在 Polygon 导出 Chinese
+题面 PDF 的方法： * 右边栏 Properties/File，找到
+statements.ftl，Edit。</p>
+<ul>
+<li>开头粘贴
+<code>\usepackage {CJK}</code>，<code>\begin{document}</code> 之后粘贴
+<code>\begin{CJK}{UTF8}{gbsn}</code>，结尾 <code>\end{document}</code>
+前粘贴 <code>\end {CJK}</code>。</li>
+</ul>
+<p>接着上传题目。需要借助 <a
+target="_blank" rel="noopener" href="https://github.com/cn-xcpc-tools/Polygon2DOMjudge/blob/master/README.cn.md">Link</a>。</p>
+<p>Polygon 点进 Contest，右边栏找到 Build full packages (+verify)，点
+(+verify)，之后点进每个题目的 Package 界面下载 Linux 版本的
+package。</p>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> apt install pipx
+pipx install p2d
+pipx ensurepath</code></pre></div>
+<p>关掉这个终端，重新开一个。</p>
+<p>对每一题执行以下命令：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">p2d --code A --color <span class="hljs-string">&quot;#FF0000&quot;</span> -o /path/to/domjudge-package.zip /path/to/polygon-package.zip</code></pre></div>
+<p>其中 code 是题目的 short name，color 是题目在 DOMjudge
+中的颜色，更多设置项可以点进链接里试。</p>
+<ul>
+<li><code>--external-id</code> 也建议设置成 ABCD。</li>
+</ul>
+<p>得到的 domjudge-package.zip 就可以在 Import and export <span
+class="math inline">\(\to\)</span> Problems 里上传了。</p>
+<p>补一个邮件收集脚本：</p>
+<div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd
+<span class="hljs-keyword">import</span> yaml
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">load_accounts_yaml</span>(<span class="hljs-params">file_path</span>):
+    <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(file_path, <span class="hljs-string">&#x27;r&#x27;</span>, encoding=<span class="hljs-string">&#x27;utf-8&#x27;</span>) <span class="hljs-keyword">as</span> file:
+        accounts = yaml.safe_load(file)
+    <span class="hljs-keyword">if</span> <span class="hljs-built_in">isinstance</span>(accounts, <span class="hljs-built_in">list</span>):
+        accounts_dict = &#123;item[<span class="hljs-string">&#x27;username&#x27;</span>]: item <span class="hljs-keyword">for</span> item <span class="hljs-keyword">in</span> accounts&#125;
+    <span class="hljs-keyword">else</span>:
+        accounts_dict = accounts
+    <span class="hljs-keyword">return</span> accounts_dict
+
+<span class="hljs-keyword">def</span> <span class="hljs-title function_">create_mail_xlsx</span>(<span class="hljs-params">name_file, accounts_yaml</span>):
+    df = pd.read_excel(name_file)
+    accounts = load_accounts_yaml(accounts_yaml)
+
+    data = []
+
+    <span class="hljs-keyword">for</span> i, row <span class="hljs-keyword">in</span> df.iterrows():
+        <span class="hljs-keyword">if</span> pd.isna(row[<span class="hljs-number">1</span>]):
+            <span class="hljs-keyword">break</span>
+
+        name = row[<span class="hljs-number">1</span>]
+        <span class="hljs-keyword">if</span> row[<span class="hljs-number">2</span>] == <span class="hljs-string">&#x27;是&#x27;</span>:
+            <span class="hljs-built_in">id</span> = <span class="hljs-built_in">int</span>(row[<span class="hljs-number">4</span>])
+            email = <span class="hljs-built_in">str</span>(<span class="hljs-built_in">id</span>) + <span class="hljs-string">&quot;@std.uestc.edu.cn&quot;</span>
+            email2 = <span class="hljs-string">&quot;&quot;</span>
+        <span class="hljs-keyword">else</span>:
+            email = <span class="hljs-built_in">str</span>(row[<span class="hljs-number">10</span>])
+            <span class="hljs-keyword">if</span> pd.isna(row[<span class="hljs-number">11</span>]):
+                email2 = <span class="hljs-string">&quot;&quot;</span>
+            <span class="hljs-keyword">else</span>:
+                email2 = <span class="hljs-built_in">str</span>(row[<span class="hljs-number">11</span>])
+        username = <span class="hljs-string">f&quot;team<span class="hljs-subst">&#123;i + <span class="hljs-number">1</span>:03d&#125;</span>&quot;</span>
+        password = accounts.get(username, &#123;&#125;).get(<span class="hljs-string">&#x27;password&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>)
+
+        <span class="hljs-keyword">if</span> row[<span class="hljs-number">2</span>] == <span class="hljs-string">&quot;否&quot;</span> <span class="hljs-keyword">or</span> row[<span class="hljs-number">5</span>] == <span class="hljs-string">&quot;否（不参与评奖）&quot;</span>:
+            user_type = <span class="hljs-string">&quot;打星组&quot;</span>
+        <span class="hljs-keyword">else</span>:
+            <span class="hljs-keyword">if</span> row[<span class="hljs-number">6</span>] == <span class="hljs-string">&quot;大一&quot;</span> <span class="hljs-keyword">and</span> row[<span class="hljs-number">8</span>] == <span class="hljs-string">&quot;否&quot;</span>:
+                user_type = <span class="hljs-string">&quot;初学组&quot;</span>
+            <span class="hljs-keyword">else</span>:
+                user_type = <span class="hljs-string">&quot;进阶组&quot;</span>
+
+        data.append([name, email, email2, username, password, user_type])
+
+    mail_df = pd.DataFrame(data, columns=[<span class="hljs-string">&quot;姓名&quot;</span>, <span class="hljs-string">&quot;邮箱1&quot;</span>, <span class="hljs-string">&quot;邮箱2&quot;</span>, <span class="hljs-string">&quot;username&quot;</span>, <span class="hljs-string">&quot;password&quot;</span>, <span class="hljs-string">&quot;组别&quot;</span>])
+    mail_df.to_excel(<span class="hljs-string">&#x27;mail.xlsx&#x27;</span>, index=<span class="hljs-literal">False</span>)
+
+<span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:
+    create_mail_xlsx(<span class="hljs-string">&#x27;name.xlsx&#x27;</span>, <span class="hljs-string">&#x27;accounts.yaml&#x27;</span>)</code></pre></div>
+<h3 id="比赛结束后">6. 比赛结束后</h3>
+<p>结束的时候马上点进 Contest 界面把 Allow submit 选项关掉。</p>
+<p>接着导出榜单和提交。</p>
+<p>榜单直接在浏览器界面右键打印，选择打印到
+PDF。如果预览出来是黑白的，就在更多设置里面找到 “背景图形” 打上勾。</p>
+<p>导出提交需要用到 <a
+target="_blank" rel="noopener" href="https://github.com/HeRaNO/ChickenRibs/blob/master/ICPCToy/DOMjudge/dj_download_submissions.py">Link</a>。命令如下：</p>
+<div class="code-wrapper"><pre><code class="hljs bash">py dj_download_submissions.py http://localhost/domjudge/ &lt;contest-external-id&gt;</code></pre></div>
+<p>其中 <code>&lt;contest-external-id&gt;</code> 是 contest 页面的
+external ID。</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Competitive-Programming/" class="category-chain-item">Competitive Programming</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Competitive-Programming/Note/" class="category-chain-item">Note</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/XCPC/" class="print-no-link">#XCPC</a>
+      
+        <a href="/tags/Note/" class="print-no-link">#Note</a>
+      
+        <a href="/tags/DOMjudge/" class="print-no-link">#DOMjudge</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【教程】使用 DOMjudge 从零搭建一场比赛</div>
+      <div>http://kisuraop.github.io/posts/4cf2169a.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/abc8fb81.html" title="【题解】寒假训练日记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【题解】寒假训练日记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/a57ce1e5.html" title="【游记】2024 CCPC 网络预选赛">
+                        <span class="hidden-mobile">【游记】2024 CCPC 网络预选赛</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://kisuraop.github.io" target="_blank" rel="nofollow noopener"><span>KisuraOP</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

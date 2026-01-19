@@ -1,0 +1,1407 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/image/bg/mugeng.ico">
+  <link rel="icon" href="/image/bg/mugeng.ico">
+  
+    <link rel="canonical" href="http://kisuraop.github.io/posts/52d312a5.html"/>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="唉。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【题解】四月训练日记">
+<meta property="og:url" content="http://kisuraop.github.io/posts/52d312a5.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="唉。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/2d45aaef232271aa986cac2d1fbd754a.jpeg">
+<meta property="article:published_time" content="2025-04-01T07:00:00.000Z">
+<meta property="article:modified_time" content="2025-04-01T07:00:00.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Atcoder">
+<meta property="article:tag" content="Codeforces">
+<meta property="article:tag" content="XCPC">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/2d45aaef232271aa986cac2d1fbd754a.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>【题解】四月训练日记 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/bg_cover.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4277703_p4cthydttt.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kisuraop.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>KisuraOPのBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://moe.jitsu.top/img/?sort=pc') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">【题解】四月训练日记</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-04-01 15:00" pubdate>
+          2025年4月1日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.6k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【题解】四月训练日记</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h2 id="cf1709e.-xor-tree"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1709/problem/E">CF1709E. XOR
+Tree</a></h2>
+<p>*2400 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1709/submission/313331153">Code</a></p>
+<p>注意到操作时改成的正整数没有大小限制，不妨改成 <span
+class="math inline">\(2^{k}\)</span>（<span
+class="math inline">\(k\)</span>
+充分大），这样经过该点的路径的权值绝对不可能为 <span
+class="math inline">\(0\)</span>。</p>
+<p>指定一个根节点（不妨为 <span
+class="math inline">\(1\)</span>），假定路径 <span
+class="math inline">\(x\leftrightarrow y\)</span> 是坏的（也就是异或和为
+<span class="math inline">\(0\)</span>），那么容易说明修改 <span
+class="math inline">\(z=\text{LCA}(x,y)\)</span> 是最优的。</p>
+<p>考虑这么一个过程：从根节点开始向下 dfs，回溯时判断当前节点 <span
+class="math inline">\(z\)</span> 是否能作为一条坏的路径的 <span
+class="math inline">\(\text{LCA}\)</span>。若能，答案 <span
+class="math inline">\(+1\)</span>；否则不做修改。</p>
+<p>问题转换为如何进行这个判定。设 <span
+class="math inline">\(f_x\)</span> 代表从根节点开始的前缀异或和，即路径
+<span class="math inline">\(1\leftrightarrow x\)</span>
+的权值。那么，路径 <span class="math inline">\(x\leftrightarrow
+y\)</span> 是坏的等价于 <span class="math inline">\(f_x\oplus f_y\oplus
+a_{\text{LCA}(x,y)}=0\)</span>。</p>
+<p>对每一个顶点 <span class="math inline">\(z\)</span> 维护一个
+<code>std::set</code>，存储以 <span class="math inline">\(z\)</span>
+为根的子树里的节点的 <span class="math inline">\(f\)</span>
+集合。这样当我们合并 <span class="math inline">\(z\)</span>
+的一个儿子（设为 <span
+class="math inline">\(p\)</span>）的信息时，只用遍历 <span
+class="math inline">\(z,p\)</span>
+中较小的一个集合，在另一个集合里查有没有符合要求的元素。</p>
+<p>若当前节点需要修改，就清空当前节点的
+<code>std::set</code>，否则合并儿子的信息。</p>
+<p>这是一个启发式合并的过程，时间复杂度 <span
+class="math inline">\(O(n\log^2 n)\)</span>。</p>
+<h2 id="cf1981d.-turtle-and-multiplication"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1981/problem/D">CF1981D. Turtle and
+Multiplication</a></h2>
+<p>*2400 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1981/submission/313367256">Code</a></p>
+<p>当所有 <span class="math inline">\(a_i\)</span> 都是质数时，<span
+class="math inline">\(a_i\cdot a_{i+1}\not=a_j\cdot a_{j+1}\)</span>
+的充要条件是无序对 <span class="math inline">\((a_i,a_{i+1})\)</span>
+和无序对 <span class="math inline">\((a_j,a_{j+1})\)</span> 不同。当
+<span class="math inline">\(a_i\)</span>
+不都是质数时，充要条件会退化成必要条件，更劣，故优先思考 <span
+class="math inline">\(a_i\)</span> 都是质数时是否能构造。</p>
+<p>将无序对 <span class="math inline">\((a_i,a_{i+1})\)</span>
+看作一条无向边，那么问题转换为找到一个最小的 <span
+class="math inline">\(m\)</span>，满足 <span
+class="math inline">\(m\)</span> 个点构成的完全图存在一条覆盖 <span
+class="math inline">\(n-1\)</span>
+条边（每条边至多被覆盖一次）的路径。</p>
+<p>当 <span class="math inline">\(m\)</span>
+为奇数时，图上所有顶点的度数都是偶数，存在一条长 <span
+class="math inline">\(\frac{m(m-1)}{2}+m\)</span> 的欧拉回路（<span
+class="math inline">\(+m\)</span> 是因为每个点都有自环，算一条边）。</p>
+<p>当 <span class="math inline">\(m\)</span>
+为偶数时，图上所有顶点的度数都是奇数。无向图存在欧拉路径的条件是有 <span
+class="math inline">\(0/2\)</span>
+个点是奇度点，其它为偶度点。考虑删边，只留下两个奇度点，一种留下最多边的方式是删
+<span
+class="math inline">\((2,3),(4,5),(6,7),\ldots,(m-2,m-1)\)</span>。剩余边数是
+<span
+class="math inline">\(\frac{m(m-1)}{2}+m-\frac{m}{2}+1\)</span>。</p>
+<p>二分出最小满足条件的 <span
+class="math inline">\(m\)</span>，构造出对应的 <span
+class="math inline">\(m\)</span> 个点的完全图（若 <span
+class="math inline">\(m\)</span>
+是偶数还要按上述规则删边），跑出一条欧拉路径。若路径上第 <span
+class="math inline">\(i\)</span> 个点是 <span
+class="math inline">\(x\)</span>，对应到序列上 <span
+class="math inline">\(a_i\)</span> 就是第 <span
+class="math inline">\(x\)</span> 小的质数。</p>
+<p>当 <span class="math inline">\(m=1500\)</span> 时，构造出的图有 <span
+class="math inline">\(1125001&gt;10^6\)</span> 条边，而第 <span
+class="math inline">\(1500\)</span> 小的质数是 <span
+class="math inline">\(12553&lt;3\cdot 10^5\)</span>，满足条件。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1981e.-turtle-and-intersected-segments"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1981/problem/E">CF1981E. Turtle and
+Intersected Segments</a></h2>
+<p>*2600 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1981/submission/313615140">Code</a></p>
+<p>对于三条两两相交的线段 <span
+class="math inline">\([l_1,r_1,a_1],[l_2,r_2,a_2],[l_3,r_3,a_3]\)</span>，设
+<span class="math inline">\(a_1\le a_2\le a_3\)</span>，那么可以仅保留边
+<span class="math inline">\(1\leftrightarrow 2,\ 2\leftrightarrow
+3\)</span>。（因为 <span
+class="math inline">\(|a_1-a_3|=|a_1-a_2|+|a_2-a_3|\)</span>，选第 <span
+class="math inline">\(3\)</span> 条边肯定不优） 不难发现对于每一条线段
+<span
+class="math inline">\([l_i,r_i,a_i]\)</span>，我们只用保留两条边：</p>
+<ol type="1">
+<li><p>与该线段相交的线段中，权值（设为 <span
+class="math inline">\(a_j\)</span>）最大且满足 <span
+class="math inline">\(a_j\le a_i\)</span> 的边。</p></li>
+<li><p>与该线段相交的线段中，权值（设为 <span
+class="math inline">\(a_j\)</span>）最小且满足 <span
+class="math inline">\(a_j\ge a_i\)</span> 的边。</p></li>
+</ol>
+<p>扫描线，维护一个
+<code>std::set</code>，扫描到一条线段的左端点时就把线段的权值加进去，扫描到右端点时就把对应的权值删掉。保留的边相当于线段在容器中的前驱和后继。</p>
+<p>最终处理出的侯选边有 <span class="math inline">\(O(n)\)</span>
+条，跑最小生成树即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="abc399e.-replace"><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/tasks/abc399_e">abc399e.
+Replace</a></h2>
+<p><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/submissions/64455710">Code</a></p>
+<p>连边 <span class="math inline">\(S_i\to T_i\)</span>。</p>
+<p>首先每个点至多有一条出边，否则 <code>-1</code>。<span
+class="math inline">\(26\)</span> 个点都有入度，也为
+<code>-1</code>。</p>
+<p>否则答案的下界是图上的边数（不含自环）。</p>
+<p>对于一个环，分两种情况： * 环上存在入度为 <span
+class="math inline">\(2\)</span> 的点。说明存在一条边 <span
+class="math inline">\(x\to y\)</span> 满足 <span
+class="math inline">\(y\)</span> 在环上而 <span
+class="math inline">\(x\)</span> 不在。设 <span
+class="math inline">\(y\)</span> 的另一条入边是 <span
+class="math inline">\(z\to y\)</span>，此时可以花 <span
+class="math inline">\(1\)</span> 的代价将 <span
+class="math inline">\(z\)</span> 改为 <span
+class="math inline">\(x\)</span>，破环成链，且不花费额外次数（即用 <span
+class="math inline">\(1\)</span> 次操作断了一条边，与预设
+“答案是图上的边数” 相符）。</p>
+<ul>
+<li>环上所有点入度为 <span
+class="math inline">\(1\)</span>。此时只能将环上任意一点 <span
+class="math inline">\(x\)</span>
+替换为图中的一个孤点，最后再改回来，花费了 <span
+class="math inline">\(1\)</span> 点额外次数。</li>
+</ul>
+<p>于是答案是图上的边数 <span class="math inline">\(+\)</span>
+第二类环的数量。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1139e.-maximize-mex"><a
+target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/1139/E">CF1139E.
+Maximize Mex</a></h2>
+<p>*2400 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1139/submission/314383443">Code</a></p>
+<p>考虑没有人离开社团的情况。此时二分答案，设二分的 <span
+class="math inline">\(\text{mex}\)</span> 是 <span
+class="math inline">\(mid\)</span>，那么只需要保留潜力值 <span
+class="math inline">\(&lt;mid\)</span> 的学生。</p>
+<p>建出一个二分图，左部图是 <span class="math inline">\(m\)</span>
+个社团，右部图对应 <span class="math inline">\(0\sim mid - 1\)</span> 这
+<span class="math inline">\(mid\)</span>
+个潜力值。对于一个学生，我们可以连出一条边，最终只要看最大匹配是否为
+<span class="math inline">\(mid\)</span>。</p>
+<p>若有学生离开了，相当于删掉一条边，这是不好处理的。但我们想到 Dinic
+可以动态加边，于是离线下来倒着做。</p>
+<p>但每加一条边就要重新二分枚举 <span
+class="math inline">\(\text{mex}\)</span> 就太低效了。注意到加边的时候
+<span class="math inline">\(\text{mex}\)</span>
+只增不减，换句话匹配数只增不减。我们可以从 <span
+class="math inline">\(1\)</span> 开始枚举 <span
+class="math inline">\(\text{mex}\)</span>，每次将 <span
+class="math inline">\(p[i]=\text{mex}-1\)</span>
+的学生加到图上，若匹配数恰好为 <span
+class="math inline">\(\text{mex}\)</span>，就 <span
+class="math inline">\(\text{mex}\leftarrow
+\text{mex}+1\)</span>，重复这个流程。</p>
+<p>此时，一个学生 <span class="math inline">\(i\)</span>
+加入社团，分两种情况处理： 1. 加入时枚举的 <span
+class="math inline">\(\text{mex}\ge p[i]\)</span>。直接加边即可。</p>
+<ol start="2" type="1">
+<li>加入时枚举的 <span
+class="math inline">\(\text{mex}&lt;p[i]\)</span>。将学生 <span
+class="math inline">\(i\)</span> 加进备选名单里，等 <span
+class="math inline">\(\text{mex}\)</span> 枚举到的时候再加边。</li>
+</ol>
+<p>时间复杂度 <span class="math inline">\(O(\text{MaxFlow}(m,
+n))\)</span>。</p>
+<h2 id="cf1746f.-kazaee"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1746/problem/F">CF1746F.
+Kazaee</a></h2>
+<p>*2800 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1746/submission/314411747">Code</a></p>
+<p>先将所有数（包括原有的 <span class="math inline">\(a_i\)</span>
+与每次修改后的 <span class="math inline">\(x\)</span>）进行离散化。</p>
+<p>一个暴力的做法是对每个数都维护一个树状数组，这样整道题能在 <span
+class="math inline">\(O(n^2+qn\log n)\)</span> 内解决。</p>
+<p>面临的困难无非只有一点：对于一个区间，时间复杂度不允许我们 check
+区间里每一个数的出现次数。</p>
+<p>一个关键点是，一段区间中，如果所有数字的出现次数都是 <span
+class="math inline">\(k\)</span> 的倍数，其出现次数之和也一定为 <span
+class="math inline">\(k\)</span> 的倍数，但这是必要不充分条件。</p>
+<p>随机化，在值域内随机选出 <span class="math inline">\(B\)</span>
+个子集，对于一个询问，逐一 check
+每一个子集，看每个子集里的数的出现次数之和是否为 <span
+class="math inline">\(k\)</span> 的倍数。</p>
+<p>而单点修改时，遍历这 <span class="math inline">\(B\)</span>
+个子集，若当前子集包含修改前/修改后的数，就相应在树状数组上修改。</p>
+<p>为了保证正确性，每个子集按照以下方式随机： * <span
+class="math inline">\(\forall i\in [1,W]\)</span>，<span
+class="math inline">\(i\)</span> 有 <span
+class="math inline">\(\dfrac{1}{2}\)</span> 的概率选进子集。其中 <span
+class="math inline">\(W\)</span> 为离散化后的值域。</p>
+<p>错误率分析：最坏情况下，判错当且仅当存在一对数 <span
+class="math inline">\(x,y\)</span>，满足 <span
+class="math inline">\(k\mid cnt_x+cnt_y\)</span> 且 <span
+class="math inline">\(k\not\mid cnt_x\)</span>，<span
+class="math inline">\(k\not\mid cnt_y\)</span>。四种情况：选 <span
+class="math inline">\(x\)</span> 没选 <span
+class="math inline">\(y\)</span>，选 <span
+class="math inline">\(y\)</span> 没选 <span
+class="math inline">\(x\)</span>，没选 <span
+class="math inline">\(x\)</span> 没选 <span
+class="math inline">\(y\)</span>，选 <span
+class="math inline">\(x\)</span> 选 <span
+class="math inline">\(y\)</span>，它们在概率上各占 <span
+class="math inline">\(\dfrac{1}{4}\)</span>，其中仅第三第四种会犯错，占
+<span class="math inline">\(\dfrac{1}{2}\)</span>。取 <span
+class="math inline">\(B=30\)</span>，错误率就是 <span
+class="math inline">\(\dfrac{1}{2^{30}}\)</span>，足够低了。</p>
+<p>时间复杂度 <span class="math inline">\(O(nB\log n+qB\log
+n)\)</span>。</p>
+<h2 id="abc401f.-add-one-edge-3"><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc401/tasks/abc401_f">abc401f. Add
+One Edge 3</a></h2>
+<p><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc401/submissions/64815017">Code</a></p>
+<p>记 <span class="math inline">\(G\)</span> 为树 <span
+class="math inline">\(1\)</span>，<span class="math inline">\(H\)</span>
+为树 <span class="math inline">\(2\)</span>。</p>
+<p>记 <span class="math inline">\(d_1,A_1,A_2\)</span> 为 <span
+class="math inline">\(G\)</span> 的直径及其两个端点，<span
+class="math inline">\(d_2,B_1,B_2\)</span> 为 <span
+class="math inline">\(H\)</span> 的直径及其两个端点。</p>
+<p>记 <span class="math inline">\(f_x/g_x\)</span> 为以 <span
+class="math inline">\(G/H\)</span> 中的点 <span
+class="math inline">\(x\)</span> 为端点的最长的路径的长度，显然有 <span
+class="math inline">\(f_x=\max(dis(A_1,x),dis(A_2,x))\)</span>，<span
+class="math inline">\(g_x=\max(dis(B_1,x),dis(B_2,x))\)</span>。</p>
+<p>对于一条连接了 <span class="math inline">\(G\)</span> 中点 <span
+class="math inline">\(i\)</span> 和 <span
+class="math inline">\(H\)</span> 中点 <span
+class="math inline">\(j\)</span> 的边，新图直径变为 <span
+class="math inline">\(\max(\max(d_1,d_2),f_i+g_j+1)\)</span>。</p>
+<p>将 <span class="math inline">\(f_x,g_x\)</span> 升序排序，枚举 <span
+class="math inline">\(f_i\)</span>，就能二分或双指针求出有多少个满足
+<span class="math inline">\(f_i+g_j+1&gt;\max(d_1,d_2)\)</span> 的 <span
+class="math inline">\(g_j\)</span>，贡献就是一段 <span
+class="math inline">\(g\)</span> 的后缀和。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf1749e.-cactus-wall"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1749/problem/E">CF1749E. Cactus
+Wall</a></h2>
+<p>*2400 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1749/submission/316076925">Code</a></p>
+<p>转化：相当于寻找一条 <code>#</code>
+构成的路径，这条路径从第一列开始，到最后一列结束，且每次只能走对角线的四个方向。</p>
+<p>先把图上所有可以放置 <code>#</code> 的位置找出来（包括原来就有的
+<code>#</code>），称作关键点。</p>
+<p>建图，源点 <span class="math inline">\(S\)</span>
+向第一列的关键点连边，每个关键点向四个对角线方向的关键点连边，最后一列的关键点向汇点
+<span class="math inline">\(T\)</span> 连边。</p>
+<p>一条边 <span class="math inline">\((u,v)\)</span> 的边权取决于 <span
+class="math inline">\(v\)</span>，若 <span
+class="math inline">\(v\)</span> 为汇点或原来就有 <code>#</code>
+的位置，边权就是 <span class="math inline">\(0\)</span>；否则边权是
+<span class="math inline">\(1\)</span>（代表需要在此处新放置一个
+<code>#</code>）。</p>
+<p>跑最短路即可，记一下路径方案也就有了。</p>
+<p>时间复杂度：<span class="math inline">\(O(nm\log nm)\)</span>。若使用
+01bfs 还可以省去 <span class="math inline">\(\log\)</span>。</p>
+<h2 id="cf2096e.-wonderful-teddy-bears"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2096/problem/E">CF2096E. Wonderful
+Teddy Bears</a></h2>
+<p>*2400 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2096/submission/316390064">Code</a></p>
+<p>将 <code>B</code> 看作 <span
+class="math inline">\(0\)</span>，<code>P</code> 看作 <span
+class="math inline">\(1\)</span>。</p>
+<p>对一个长为 <span class="math inline">\(3\)</span>
+的子串操作，分为以下四种情况。</p>
+<ol type="1">
+<li><p><span class="math inline">\(010\to 001\)</span>；</p></li>
+<li><p><span class="math inline">\(100\to 001\)</span>；</p></li>
+<li><p><span class="math inline">\(101\to 011\)</span>；</p></li>
+<li><p><span class="math inline">\(110\to 011\)</span>。</p></li>
+</ol>
+<p>我们将操作 <span class="math inline">\(1,3\)</span> 归为一类，称为
+<span class="math inline">\(A\)</span>；操作 <span
+class="math inline">\(2,4\)</span> 归为一类，称为 <span
+class="math inline">\(B\)</span>。</p>
+<p>之所以这么分，是因为观察到如下性质： * <span
+class="math inline">\(A\)</span> 类操作能将逆序对数 <span
+class="math inline">\(-1\)</span>，而 <span
+class="math inline">\(B\)</span> 类操作能将逆序对数 <span
+class="math inline">\(-2\)</span>。</p>
+<ul>
+<li><span class="math inline">\(A\)</span> 类操作能改变一个 <span
+class="math inline">\(0\)</span> 的下标奇偶性，而 <span
+class="math inline">\(B\)</span> 类操作不能。</li>
+</ul>
+<p>令 <span class="math inline">\(c_0,c_1\)</span> 分别表示序列中 <span
+class="math inline">\(0/1\)</span> 的个数，<span
+class="math inline">\(rev\)</span> 表示逆序对数，<span
+class="math inline">\(tot\)</span> 表示下标为偶数的 <span
+class="math inline">\(0\)</span> 的数量。</p>
+<p>想象一个排好序的的 <span class="math inline">\(01\)</span> 串：有
+<span
+class="math inline">\(\left\lfloor\frac{c_0}{2}\right\rfloor\)</span> 个
+<span class="math inline">\(0\)</span> 的下标为偶数（1-index）。</p>
+<p>那么可以先用 <span
+class="math inline">\(\left|tot-\left\lfloor\frac{c_0}{2}\right\rfloor\right|\)</span>
+次 <span class="math inline">\(A\)</span> 类操作调整奇偶性，再用 <span
+class="math inline">\(B\)</span> 类操作减少逆序对数。</p>
+<p>可以预见的是调整奇偶性后逆序对数一定是偶数，故最后不必再用 <span
+class="math inline">\(A\)</span> 类操作减少逆序对数。</p>
+<p>答案是 <span
+class="math inline">\(\left|tot-\left\lfloor\frac{c_0}{2}\right\rfloor\right|
++
+\dfrac{(rev-\left|tot-\left\lfloor\frac{c_0}{2}\right\rfloor\right|)}{2}=\dfrac{rev+\left|tot-\left\lfloor\frac{c_0}{2}\right\rfloor\right|}{2}\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1977d.-xorificator"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1977/problem/D">CF1977D.
+XORificator</a></h2>
+<p>*2300 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1977/submission/316507565">Code</a></p>
+<p>注意到当我们钦定某个点 <span class="math inline">\((x,y)\)</span>
+为那一列（即第 <span class="math inline">\(y\)</span> 列）唯一的 <span
+class="math inline">\(1\)</span>
+时，每一行是否需要翻转就被唯一确定了（或者说整个矩阵都被确定了）。</p>
+<p>考虑枚举每个点作为那一列唯一的 <span
+class="math inline">\(1\)</span>，问题转换为如何快速知道该状态下有多少列仅有一个
+<span class="math inline">\(1\)</span>。</p>
+<p>反向思考，钦定一个点作为那一列唯一的 <span
+class="math inline">\(1\)</span> 时，把此时的 XORificator
+记录下来（题解里用的 Zobrist hashing，implement
+非常精悍短小），答案就是出现次数最多的 XORificator 的出现次数。</p>
+<p>时间复杂度 <span class="math inline">\(O(nm\log nm)\)</span>。</p>
+<h2 id="cf1622d.-shuffle"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1622/problem/D">CF1622D.
+Shuffle</a></h2>
+<p>*2000 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1622/submission/316676899">Code</a></p>
+<p>要求本质不同看起来十分困难，但有个 trick
+是你枚举所有区间，然后钦定这个区间的左端点和右端点都一定发生了变化，这样计数不重不漏，考虑起来就轻松很多。</p>
+<p>先特判掉整个串的 <span class="math inline">\(1\)</span> 都不足 <span
+class="math inline">\(k\)</span> 个的情况。</p>
+<p>首先，枚举的区间需要满足 “区间内 <span
+class="math inline">\(1\)</span> 的个数 <span class="math inline">\(\le
+k\)</span>”，为什么是小于等于？因为我们实际操作的区间恰有 <span
+class="math inline">\(k\)</span> 个 <span
+class="math inline">\(1\)</span>，但相对原来发生变化的区间可以是一个子集。</p>
+<p>接着，区间两侧的数必须发生变化，非两侧的数任意排列，贡献就是一个组合数。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^2)\)</span>。</p>
+<h2 id="cf1622e.-math-test"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1622/problem/E">CF1622E. Math
+Test</a></h2>
+<p>*2200 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1622/submission/316688280">Code</a></p>
+<p>trick：拆绝对值。<span class="math inline">\(|x_i-r_i|\)</span>
+可以拆成 <span class="math inline">\(x_i-r_i\)</span> 和 <span
+class="math inline">\(r_i-x_i\)</span> 两种，时间复杂度允许我们 <span
+class="math inline">\(O(2^n)\)</span> 枚举每一种拆法。</p>
+<p>贪心，我们可以统计出每道题被多少个人解决了（如果那个人是 <span
+class="math inline">\(x_i-r_i\)</span>，<span
+class="math inline">\(r_i\)</span> 的贡献是负的，就当作 <span
+class="math inline">\(-1\)</span> 个人；反之 <span
+class="math inline">\(r_i-x_i\)</span> 就看作 <span
+class="math inline">\(+1\)</span> 个人），给被更多人解决的题赋值一个大的
+<span class="math inline">\(p_j\)</span>。</p>
+<p>因为绝对值被拆掉了，<span class="math inline">\(\{p\}\)</span>
+确定之后最终答案也确定了，取 <span class="math inline">\(\max\)</span>
+即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(nm2^n)\)</span>。</p>
+<h2 id="cf1354e.-graph-coloring"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1354/problem/E">CF1354E. Graph
+Coloring</a></h2>
+<p>*2100 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1354/submission/317219740">Code</a></p>
+<p>注意到 <span class="math inline">\(1,3\)</span> 作为一组，<span
+class="math inline">\(2\)</span>
+作为一组，组间连边组内不连边，构成二分图。</p>
+<p>故 <code>YES</code>
+的必要条件是给定的图的每一个连通分量均是二分图。</p>
+<p>接着考虑数量限制：我们只用关心 <span class="math inline">\(2\)</span>
+的数量能否得到满足，<span class="math inline">\(2\)</span> 满足了 <span
+class="math inline">\(1,3\)</span> 自然满足。</p>
+<p>设给定的图有 <span class="math inline">\(m\)</span> 个连通分量，第
+<span class="math inline">\(i\)</span> 个连通分量有 <span
+class="math inline">\(L_i\)</span> 个左部点，<span
+class="math inline">\(R_i\)</span> 个右部点。</p>
+<p>现在我们要对每个连通分量选出左部或者右部填 <span
+class="math inline">\(2\)</span>，另一部 <span
+class="math inline">\(1,3\)</span> 任意填。</p>
+<p>抽象出来相当于有 <span class="math inline">\(m\)</span>
+个集合，每个集合可以选 <span class="math inline">\(L_i\)</span> 或 <span
+class="math inline">\(R_i\)</span>
+中的恰好一个，判断是否存在一种选择方案使得选出的 <span
+class="math inline">\(m\)</span> 个数的总和是 <span
+class="math inline">\(n_2\)</span>。</p>
+<p>令 <span class="math inline">\(dp[i][j]\)</span> 表示前 <span
+class="math inline">\(i\)</span> 个集合选出的数是否能凑成 <span
+class="math inline">\(j\)</span>，还需另开一个数组记录方案。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^2)\)</span>。</p>
+<h2 id="cf1354f.-summoning-minions"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1354/problem/F">CF1354F. Summoning
+Minions</a></h2>
+<p>*2500 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1354/submission/317254824">Code1</a>
+<a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1354/submission/317268482">Code2</a></p>
+<p>对于一个将来需要销毁的仆从，将它升级没有意义，故选择召唤之后马上销毁。</p>
+<p>于是，最佳策略应该形如： 1. 从 <span class="math inline">\(n\)</span>
+个仆从中选择 <span class="math inline">\(k-1\)</span> 个召唤。</p>
+<ol start="2" type="1">
+<li><p>从剩下的 <span class="math inline">\(n-k+1\)</span> 仆从中选择
+<span class="math inline">\(n-k\)</span> 个召唤后立即销毁。</p></li>
+<li><p>召唤剩下的那 <span class="math inline">\(1\)</span>
+个仆从。</p></li>
+</ol>
+<p>在第一步中，假设仆从 <span class="math inline">\(i\)</span> 在第
+<span class="math inline">\(j\)</span> 个被召唤，则贡献是 <span
+class="math inline">\(a_i+b_i (j-1)\)</span>。</p>
+<p>在第二步中，仆从 <span class="math inline">\(i\)</span>
+被召唤的贡献固定为 <span class="math inline">\(b_i(k-1)\)</span>。</p>
+<p>在第三步中，仆从 <span class="math inline">\(i\)</span>
+被召唤的贡献为 <span
+class="math inline">\(a_i+b_i(k-1)\)</span>，可以和第一步的贡献合并。</p>
+<p>建立二分图，左部点代表仆从，右部点代表被召唤时的顺序，问题转化为一个满二分图的最大权匹配，跑最大费用最大流即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(T\cdot
+\text{MinCostMaxFlow}(n, n^2))\)</span>。</p>
+<p>另一种方法是注意到在第一步中，选定的 <span
+class="math inline">\(k\)</span> 个仆从（与第三步合并了，所以是 <span
+class="math inline">\(k\)</span> 个）一定按 <span
+class="math inline">\(b_i\)</span> 升序召唤。</p>
+<p>令 <span class="math inline">\(dp[i][j]\)</span> 表示前 <span
+class="math inline">\(i\)</span> 个仆从选出 <span
+class="math inline">\(j\)</span> 个放在第一步的最大答案。 <span
+class="math display">\[
+dp[i][j] = \max(dp[i-1][j]+b_i(k-1),dp[i-1][j-1]+a_i+b_i(j-1))
+\]</span></p>
+<p>回溯以记录方案。</p>
+<p>时间复杂度 <span class="math inline">\(O(Tnk)\)</span>。</p>
+<h2 id="cf555e.-case-of-computer-network"><a
+target="_blank" rel="noopener" href="https://codeforces.com/problemset/problem/555/E">CF555E. Case of
+Computer Network</a></h2>
+<p>*2800 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/555/submission/317567976">Code</a></p>
+<p>位于同一个边双连通分量中的点总是可以互相到达。（指总是存在一种可行的定向方案）
+边双缩点，对于一组 <span class="math inline">\((s_i, d_i)\)</span>，若
+<span class="math inline">\(s_i\)</span> 和 <span
+class="math inline">\(d_i\)</span> 在同一个边双内，则可以忽略。</p>
+<p>否则，<span class="math inline">\(s_i\to d_i\)</span>
+上的边的方向就被固定了。（此处的 <span
+class="math inline">\(s_i,d_i\)</span> 指的都是其所在边双的编号，下同）
+固定一个根，对每个点维护两个标记 <span class="math inline">\(up\)</span>
+和 <span class="math inline">\(down\)</span> 分别表示上下两个方向。</p>
+<p>对于一组询问，<span class="math inline">\(s_i\to
+\text{LCA}(s_i,d_i)\)</span> 上的点的 <span
+class="math inline">\(up\)</span> 标记 <span
+class="math inline">\(+1\)</span>，<span
+class="math inline">\(\text{LCA}(s_i,d_i)\to d_i\)</span> 上的点的 <span
+class="math inline">\(down\)</span> 标记 <span
+class="math inline">\(+1\)</span>，这个操作可以用树上差分简单实现。</p>
+<p>最后，若有一个点同时有非零的 <span class="math inline">\(up\)</span>
+和 <span class="math inline">\(down\)</span> 标记，就是
+<code>No</code>。</p>
+<p>此题有若干细节： * 图不连通，缩点后是一个森林，处理 LCA
+时要小心。</p>
+<ul>
+<li><p>若询问中的两个点不在一个连通分量内，直接就是
+<code>No</code>。</p></li>
+<li><p>有重边。若两个点之间有重边，则它们属于同一个边双。</p></li>
+</ul>
+<p>时间复杂度 <span class="math inline">\(O((n+q)\log n)\)</span>。</p>
+<h2 id="abc399f.-range-power-sum"><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/tasks/abc399_f">abc399f. Range
+Power Sum</a></h2>
+<p><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/submissions/65320388">Code</a></p>
+<p>令 <span class="math inline">\(s_i=\sum\limits_{j=1}^{i}
+s_j\)</span>，则： <span class="math display">\[
+\begin{align}
+\sum_{1\le l\le r\le N}\left(\sum_{l\le i\le r}a_i\right)^k
+&amp;= \sum_{l=1}^{n}\sum_{r=l}^{n}\left(s_r-s_{l-1}\right)^k \\
+&amp;=
+\sum_{l=1}^{n}\sum_{r=l}^{n}\sum_{i=0}^{k}(-1)^{k-i}\binom{k}{i}s_r^{i}s_{l-1}^{k-i}
+\\
+&amp;=
+\sum_{i=0}^{k}(-1)^{k-i}\binom{k}{i}\sum_{l=1}^{n}\sum_{r=l}^{n}s_r^{i}s_{l-1}^{k-i}
+\\
+&amp;=
+\sum_{i=0}^{k}(-1)^{k-i}\binom{k}{i}\sum_{r=1}^{n}\sum_{l=1}^{r}s_r^{i}s_{l-1}^{k-i}
+\\
+&amp;=
+\sum_{i=0}^{k}(-1)^{k-i}\binom{k}{i}\sum_{r=1}^{n}s_r^{i}\sum_{l=1}^{r}s_{l-1}^{k-i}
+\\
+\end{align}
+\]</span></p>
+<p>枚举 <span class="math inline">\(i,r\)</span>，而 <span
+class="math inline">\(\sum\limits_{l=1}^{r}s_{l-1}^{k-i}\)</span>
+可以预处理前缀和 <span class="math inline">\(O(1)\)</span> 求。</p>
+<p>时间复杂度 <span class="math inline">\(O(nk)\)</span>。</p>
+<h2 id="cf2104g.-modulo-3"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2104/problem/G">CF2104G. Modulo
+3</a></h2>
+<p>*2700 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2104/submission/317693007">Code</a></p>
+<p>每个点至多有一条出边，意味着这个图由若干环和链组成。并且，这种特殊的结构使得同一个环上的点的颜色一定相同，而链上的每个点都能取
+<span class="math inline">\(k\)</span> 种颜色中的任意一种。</p>
+<p>具体的，设图中环的数量为 <span class="math inline">\(c\)</span>，第
+<span class="math inline">\(i\)</span> 个环的长度为 <span
+class="math inline">\(l_i\)</span>，对于一个给定的 <span
+class="math inline">\(k\)</span>，答案是： <span class="math display">\[
+k^c\cdot
+k^{(n-\sum\limits_{i=1}^{c}l_i)}=k^{n+c-\sum\limits_{i=1}^{c}l_i}
+\]</span></p>
+<p>根据欧拉定理，对于任意互质的 <span
+class="math inline">\(a,p\)</span>，有 <span
+class="math inline">\(a^{\varphi(p)}\equiv
+1\pmod{p}\)</span>，进一步对于任意 <span
+class="math inline">\(x\)</span> 有 <span
+class="math inline">\(a^x\equiv a^{x\bmod \varphi(p)}\pmod
+{p}\)</span>。于是： <span class="math display">\[
+k^{n+c-\sum\limits_{i=1}^{c}l_i}\equiv
+k^{(n+c-\sum\limits_{i=1}^{c}l_i)\bmod 2}=k^{n\bmod 2+c\bmod
+2+\sum\limits_{i=1}^{c}l_i\bmod 2}\pmod{3}
+\]</span></p>
+<p>注：当 <span class="math inline">\(k\)</span> 和 <span
+class="math inline">\(3\)</span> 不互质时，<span
+class="math inline">\(k\)</span> 为 <span
+class="math inline">\(3\)</span> 的倍数，答案一定是 <span
+class="math inline">\(0\)</span>，可以特判掉。</p>
+<p>令 <span class="math inline">\(M = c\bmod
+2+\sum\limits_{i=1}^{c}l_i\bmod 2\)</span>，注意到奇环对 <span
+class="math inline">\(M\)</span> 是没有任何贡献的，于是 <span
+class="math inline">\(M\)</span> 等价于 “偶环个数 <span
+class="math inline">\(\bmod 2\)</span>”。</p>
+<p>有向图偶环是不好维护的，但这题中只要有偶环就一定连通（指存在一个点，环上的所有点都能从该点到达），故实际上我们可以当作无向图偶环来处理，用一个并查集维护。</p>
+<p>因为是动态图，所以还要套一个线段树分治。</p>
+<p>时间复杂度 <span class="math inline">\(O(q\log^2 q)\)</span>。</p>
+<h2 id="qoj7653.-balloon-darts"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/1402/problem/7653">qoj7653. Balloon
+Darts</a></h2>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1007001">Code</a></p>
+<p>枚举一条直线都会用掉 <span class="math inline">\(O(n^2)\)</span>
+的复杂度，启发我们并不需要枚举所有 <span
+class="math inline">\(n\)</span> 个点。</p>
+<p>依据抽屉原理，<span class="math inline">\(k\)</span> 条直线（这里
+<span class="math inline">\(k=3\)</span>）上任取 <span
+class="math inline">\(k+1\)</span> 个点，必然有两点满足确定的直线是
+<span class="math inline">\(k\)</span> 条中的一条。</p>
+<p>或者反证法，如果选出的 <span class="math inline">\(k+1\)</span>
+个点不存在两点组成目标直线中的一条，则这 <span
+class="math inline">\(k+1\)</span> 个点需要 <span
+class="math inline">\(k+1\)</span> 条直线才能消除。</p>
+<p>于是我们的做法是： * 对于当前 <span
+class="math inline">\(k\)</span>，从前 <span
+class="math inline">\(k+1\)</span>
+个点里选两点构成一条直线，遍历所有剩下的点，消除在这条直线上的点。</p>
+<ul>
+<li>将问题递归到 <span
+class="math inline">\(k-1\)</span>。边界条件是点数 <span
+class="math inline">\(\le 2k\)</span> 返回 <code>true</code>。</li>
+</ul>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1437e.-make-it-increasing"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1437/problem/E">CF1437E. Make It
+Increasing</a></h2>
+<p>*2200 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1437/submission/317756029">Code</a></p>
+<p>trick：令 <span class="math inline">\(a_i\leftarrow
+a_i-i\)</span>，则最长上升子序列 <span
+class="math inline">\(\to\)</span> 最长不下降子序列。</p>
+<p>令 <span class="math inline">\(a_0=-\infty,a_{n+1}=+\infty\)</span>
+并将 <span class="math inline">\(0\)</span> 和 <span
+class="math inline">\(n+1\)</span> 加进 <span
+class="math inline">\(\{b\}\)</span>
+中，则整个数列被划分为若干可以修改的段。</p>
+<p>每个段分开考虑，设当前段为 <span
+class="math inline">\([l,r]\)</span>，则需要修改的位置数量是 <span
+class="math inline">\((r-l+1)-cnt\)</span>，其中 <span
+class="math inline">\(cnt\)</span> 是 <span
+class="math inline">\([l,r]\)</span> 中值在 <span
+class="math inline">\([a_{l-1},a_{r+1}]\)</span>
+里的最长不下降子序列长度。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf1440d.-graph-subset-problem"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1440/problem/D">CF1440D. Graph
+Subset Problem</a></h2>
+<p>*2600 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1440/submission/317876586">Code</a></p>
+<p>将一个 <span class="math inline">\(k\)</span> 个点的 clique 称作
+<span class="math inline">\(k\)</span> -clique，满足题意的子集称作
+good-subset。</p>
+<p>注意到一个点如果度数 <span
+class="math inline">\(&lt;k-1\)</span>，那么它既不可能组成 <span
+class="math inline">\(k\)</span> -clique，也不可能组成
+good-subset，我们可以把这个点删掉。</p>
+<p>当一个点被删掉时，它的邻居的度数就会 <span
+class="math inline">\(-1\)</span>，进而可能出现新的度数 <span
+class="math inline">\(&lt;k-1\)</span>
+的点，所以我们是按照类似拓扑序的方式删点（当一个点度数 <span
+class="math inline">\(&lt;k-1\)</span> 时被加进队列）。</p>
+<p>最终，图上所有点的度数都至少是 <span
+class="math inline">\(k-1\)</span>（如果至少是 <span
+class="math inline">\(k\)</span>，那么所有点一定组成
+good-subset，直接输出）。此时，要满足 <span
+class="math inline">\(\frac{n(k-1)}{2}\le m\)</span>，剩余点数 <span
+class="math inline">\(n\)</span> 满足 <span class="math inline">\(n\le
+\frac{2m}{k-1}\)</span>。</p>
+<p>我们可以枚举每个度数为 <span class="math inline">\(k-1\)</span>
+的点作为 <span class="math inline">\(k\)</span> -clique
+的一部分，标记它和它的 <span class="math inline">\(k-1\)</span>
+个邻居，<span class="math inline">\(O(k^2\log k)\)</span> 验证这个 <span
+class="math inline">\(k\)</span> -clique 是否合法。（<span
+class="math inline">\(\log\)</span>
+是在邻接表中二分查找的复杂度，如果使用 <code>unordered_map</code>
+或其它哈希方法则可以省去） 最多验证 <span
+class="math inline">\(n\)</span> 个点，故复杂度 <span
+class="math inline">\(\le \frac{2m}{k-1}\cdot k^2\log k\approx O(mk\log
+k)\)</span>。又由 <span class="math inline">\(\frac{k(k-1)}{2}\le
+m\)</span>，故 <span class="math inline">\(k\le
+\sqrt{2m}\)</span>，也就是 <span class="math inline">\(O(m\sqrt{m}\log
+m)\)</span>，可以接受。</p>
+<p>若找到了一个 <span class="math inline">\(k\)</span>
+-clique，就可以退出。否则，将这个点删掉。最终如果没有删光，仍旧得到一个点度数至少为
+<span class="math inline">\(k\)</span> 的图，一定是 good-subset。</p>
+<p>注意到找 <span class="math inline">\(k\)</span> -clique
+的过程和一开始一样需要删点，删点后要跑拓扑，那么不如将一个点加进队列条件调整为度数
+<span
+class="math inline">\(&lt;k\)</span>，一遍拓扑一边验证当前点是否可能组成
+<span class="math inline">\(k\)</span> -clique。</p>
+<p>写代码之前务必想清楚实现的细节，本题容易枚举不当导致复杂度退化。</p>
+<p>时间复杂度 <span class="math inline">\(O(m\sqrt{m}\log
+m)\)</span>。</p>
+<h2 id="cf1440e.-greedy-shopping"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1440/problem/E">CF1440E. Greedy
+Shopping</a></h2>
+<p>*2600 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1440/submission/317776762">Code</a></p>
+<p>操作一不会破坏序列的单调性，<span
+class="math inline">\(\{a\}\)</span> 始终单调递减。</p>
+<p>对于操作 <code>1 x y</code>，我们可以二分出第一个 <span
+class="math inline">\(a_i&lt; y\)</span> 的下标 <span
+class="math inline">\(i\)</span>，转换为将区间 <span
+class="math inline">\([i,x]\)</span> 修改为 <span
+class="math inline">\(y\)</span>。</p>
+<p>对于操作 <code>2 x y</code>，一个直观的想法二分出 <span
+class="math inline">\(x\)</span> 右侧第一个满足 <span
+class="math inline">\(\sum\limits_{i=x}^{p} a_i&gt;y\)</span> 的 <span
+class="math inline">\(p\)</span>，然后贡献就是区间 <span
+class="math inline">\([x,p-1]\)</span>
+的长度。但注意到并不是只有这一段区间有贡献，实际可以是 <span
+class="math inline">\(x\)</span> 右侧的若干段区间。</p>
+<p>可以证明，区间个数至多是 <span class="math inline">\(O(\log
+y)\)</span> 级别的。我们用 <span class="math inline">\(1\)</span>
+表示选中的区间，<span class="math inline">\(0\)</span>
+表示未选中的区间，那么 <span class="math inline">\(x\)</span> 右侧形如
+<span class="math inline">\(101010\ldots\)</span>，左数第一个 <span
+class="math inline">\(0\)</span> 的 <span class="math inline">\(\sum
+a_i\)</span>（设为 <span class="math inline">\(A\)</span>）比左数第一个
+<span class="math inline">\(1\)</span> 的 <span
+class="math inline">\(\sum a_i\)</span>（设为 <span
+class="math inline">\(B\)</span>）要小，那么这一组 <span
+class="math inline">\(10\)</span> 存在就说明 <span
+class="math inline">\(y-A &lt; B &lt; A\to y&lt;2A\to
+A&gt;\frac{y}{2}\)</span>，即每次 <span class="math inline">\(y\)</span>
+都至少消费掉自身的一半，得证。</p>
+<p>回到证明之前，当找到 <span class="math inline">\(p\)</span>
+后，累加贡献，<span class="math inline">\(y\)</span> 减去区间 <span
+class="math inline">\([x,p - 1]\)</span> 的和，就可以继续在 <span
+class="math inline">\(p\)</span> 右侧二分出第一个 <span
+class="math inline">\(a_j\le y\)</span> 的 <span
+class="math inline">\(j\)</span>，再在 <span
+class="math inline">\(j\)</span> 右侧二分出第一个满足 <span
+class="math inline">\(\sum\limits_{i=j}^{p_2}a_i&gt; y\)</span> 的 <span
+class="math inline">\(p_2\)</span>，得到区间 <span
+class="math inline">\([j,p_2-1]\)</span>，以此类推…
+操作一用线段树区间赋值，操作二在线段树上二分，可以少一个 <span
+class="math inline">\(\log\)</span>，共二分 <span
+class="math inline">\(O(\log y)\)</span> 次。</p>
+<p>时间复杂度 <span class="math inline">\(O((n+q)\log n +q\log n\log
+w)\)</span>，<span class="math inline">\(w\)</span> 是值域。</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Competitive-Programming/" class="category-chain-item">Competitive Programming</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Competitive-Programming/Diary/" class="category-chain-item">Diary</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/XCPC/" class="print-no-link">#XCPC</a>
+      
+        <a href="/tags/Atcoder/" class="print-no-link">#Atcoder</a>
+      
+        <a href="/tags/Codeforces/" class="print-no-link">#Codeforces</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【题解】四月训练日记</div>
+      <div>http://kisuraop.github.io/posts/52d312a5.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年4月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/9a6e3ac7.html" title="【题解】五月训练日记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【题解】五月训练日记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/94193aa7.html" title="【题解】2025 UESTCPC 初赛">
+                        <span class="hidden-mobile">【题解】2025 UESTCPC 初赛</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://kisuraop.github.io" target="_blank" rel="nofollow noopener"><span>KisuraOP</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

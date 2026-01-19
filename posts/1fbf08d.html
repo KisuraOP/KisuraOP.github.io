@@ -1,0 +1,1416 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/image/bg/mugeng.ico">
+  <link rel="icon" href="/image/bg/mugeng.ico">
+  
+    <link rel="canonical" href="http://kisuraop.github.io/posts/1fbf08d.html"/>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="轮回。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【题解】2025 赛季 XCPC 金牌题鉴赏">
+<meta property="og:url" content="http://kisuraop.github.io/posts/1fbf08d.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="轮回。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/cd46967076349ac2e33f431168a9e21c.jpeg">
+<meta property="article:published_time" content="2025-11-19T19:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-19T19:00:00.000Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="XCPC">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/cd46967076349ac2e33f431168a9e21c.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>【题解】2025 赛季 XCPC 金牌题鉴赏 - Hexo</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/bg_cover.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4277703_p4cthydttt.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kisuraop.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>KisuraOPのBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://moe.jitsu.top/img/?sort=pc') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">【题解】2025 赛季 XCPC 金牌题鉴赏</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-20 03:00" pubdate>
+          2025年11月20日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.8k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【题解】2025 赛季 XCPC 金牌题鉴赏</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>这赛季又摄金失败了，写点题解来麻痹一下自己。</p>
+<p>我自身还是比较迷茫的，不知道明年是否还需投入今年以来这么多精力。</p>
+<p>很对不起队友，这赛季我没能有很亮眼的发挥。</p>
+<p>原本这里应该有很多内容，但被我鉴定为批话就删掉了。</p>
+<p>作为选手参与了 IC 西安，IC 武汉，CC
+哈尔滨三个赛站，就线下体验来说哈尔滨 &gt; 武汉 &gt; 西安。</p>
+<p>武汉的主要问题是食堂离赛场太远，校内没有任何供校外人员使用的交通工具，去一趟就走近半小时。西安的主要问题是学校周围都是荒地，酒店还没抢到校内，走路去赛场单程
+50min，不幸中的万幸是外卖还能送到酒店门口。哈尔滨体验十分好，如果不是去年
+nefu 闹的大瓜外加天寒地冻，应该会有很多强队来旅游罢。</p>
+<p>下面大部分是金牌题，也混有少部分在我看来较为困难的银牌题。如果屏幕前的你对其中某一题有更为深刻的想法，欢迎
+QQ 与我交流，我将不胜感激。</p>
+<h2 id="icpc-西安"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2562">ICPC
+西安</a></h2>
+<h3 id="m.-mystique-as-iris"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2562/problem/14693">M. Mystique as
+Iris</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1767293">Code</a></p>
+<p>结论题。若 <span class="math inline">\(\{a\}\)</span> 中存在值在
+<span class="math inline">\([2,n-1]\)</span> 中的元素，<span
+class="math inline">\(\{a\}\)</span> 必然是神秘的。</p>
+<p>证明使用归纳法，若存在 <span class="math inline">\(a_i\ge
+3\)</span>，则可以将 <span class="math inline">\(a_i\)</span>
+减一，序列长度减一。故只用证 <span class="math inline">\(n\ge 3\)</span>
+且序列中存在 <span class="math inline">\(a_i=2\)</span> 的情况。若 <span
+class="math inline">\(n=3\)</span>，显然是神秘的。对于 <span
+class="math inline">\(n&gt;3\)</span>，可以狗咬狗转化为 <span
+class="math inline">\(n=3\)</span> 或 <span
+class="math inline">\(n=4\)</span>（注意序列中始终保留一个 <span
+class="math inline">\(2\)</span>）。<span
+class="math inline">\(n=4\)</span>
+手玩一下发现也是必定神秘，就得证了。</p>
+<p>将 <span class="math inline">\(\ge n\)</span> 的元素看作 <span
+class="math inline">\(\infty\)</span>，现在只剩 “序列由 <span
+class="math inline">\(1\)</span> 和 <span
+class="math inline">\(\infty\)</span> 构成” 的情况。首先若 <span
+class="math inline">\(a_1=1\)</span> 或 <span
+class="math inline">\(a_n=1\)</span>，<span
+class="math inline">\(\{a\}\)</span>
+也必定神秘，因为可以另一侧狗咬狗只剩 <span
+class="math inline">\(\{1,x\}\)</span>。一种特殊情况是序列全为 <span
+class="math inline">\(1\)</span>，且 <span
+class="math inline">\(n\)</span> 为奇数，要特判掉。</p>
+<p>接着，如果序列中有连续两个 <span
+class="math inline">\(1\)</span>，可以在这两个 <span
+class="math inline">\(1\)</span>
+中间划一刀分成两个序列，两个序列要么头有 <span
+class="math inline">\(1\)</span> 要么尾有 <span
+class="math inline">\(1\)</span>，规约到上一段的情况，是神秘的。</p>
+<p>容斥，对不神秘的序列计数，问题转化为：对每个 <span
+class="math inline">\(-1\)</span>，填 <span
+class="math inline">\(1\)</span> 有一种情况，填 <span
+class="math inline">\(\infty\)</span> 有 <span
+class="math inline">\(\max(m-n+1,0)\)</span>
+种情况，问有多少个序列头尾为 <span class="math inline">\(\infty\)</span>
+且没有两个相邻的 <span class="math inline">\(1\)</span>。</p>
+<p>令 <span class="math inline">\(dp[i][0/1]\)</span> 表示填完前 <span
+class="math inline">\(i\)</span> 个数，最后一个数为 <span
+class="math inline">\(1/\infty\)</span> 的方案数，容易转移。时间复杂度
+<span class="math inline">\(O(n)\)</span>。</p>
+<h3 id="c.-catch-the-monster"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2562/problem/14683">C. Catch the
+Monster</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1769665">Code</a></p>
+<p>手玩一下发现，怪物能逃脱当且仅当出现一个 “一个点挂三条长为 <span
+class="math inline">\(2\)</span> 的链”
+的结构，并且这个结构是极小的。而不含该结构的图一定是毛毛虫（存在一条链，图上的点到链的距离都
+<span class="math inline">\(\le 1\)</span>）。</p>
+<p>令 <span class="math inline">\(f[x]=\sum\limits_{x\to
+y}[\text{deg}(y)\ge 2]\)</span>，一张图是毛毛虫的充要条件是 <span
+class="math inline">\(\forall x\)</span>，<span
+class="math inline">\(f[x]&lt; 3\)</span>。</p>
+<p>同时，对于固定的 <span
+class="math inline">\(r\)</span>，一定存在一个分界点 <span
+class="math inline">\(\text{mnL}[r]\)</span>，满足当 <span
+class="math inline">\(l\ge \text{mnL}[r]\)</span> 时，<span
+class="math inline">\([l, r]\)</span>
+的导出子图是毛毛虫；否则不是。于是，只用对每个 <span
+class="math inline">\(r\)</span> 求出 <span
+class="math inline">\(\text{mnL}[r]\)</span>，就能 <span
+class="math inline">\(O(1)\)</span> 回答询问。因为 <span
+class="math inline">\(\text{mnL}[i]\)</span> 单调增，尝试双指针。</p>
+<p>考虑朴素的插入/删除一个点的过程，以插入点 <span
+class="math inline">\(x\)</span> 为例。设当前双指针为 <span
+class="math inline">\(L,R\)</span>，遍历 <span
+class="math inline">\(x\)</span> 的每一个在 <span
+class="math inline">\([L,R]\)</span> 里的邻居 <span
+class="math inline">\(y\)</span>，将 <span
+class="math inline">\(\text{deg}(x)\)</span> 和 <span
+class="math inline">\(\text{deg}(y)\)</span> 自增，若 <span
+class="math inline">\(\text{deg}(x)/\text{deg}(y)\)</span> 自增后为
+<span class="math inline">\(2\)</span>，则将 <span
+class="math inline">\(x/y\)</span> 所有 <span
+class="math inline">\([L,R]\)</span> 内的邻居 <span
+class="math inline">\(z\)</span> 的 <span
+class="math inline">\(f[z]\)</span> 自增。容易遗漏的是：若 <span
+class="math inline">\(\text{deg}(y)\)</span> 自增后 <span
+class="math inline">\(&gt;2\)</span>，<span
+class="math inline">\(f[x]\)</span> 也要自增。</p>
+<p>由于每个点只会插入一次、删除一次，遍历 <span
+class="math inline">\(y\)</span> 的过程为均摊线性。整个双指针过程，每个
+<span class="math inline">\(x\)</span> 的 <span
+class="math inline">\(\text{deg}(x)\)</span> 先增后减最多两次会恰好
+<span class="math inline">\(\text{deg}(x)=2\)</span>，故遍历 <span
+class="math inline">\(z\)</span> 的过程也均摊线性。总时间复杂度 <span
+class="math inline">\(O(n+q)\)</span>。</p>
+<h3 id="k.-killing-bits"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2562/problem/14691">K. Killing
+Bits</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1770302">Code</a></p>
+<p>必要条件是 <span class="math inline">\(\forall i\)</span>，<span
+class="math inline">\(a_i\)</span> 是 <span
+class="math inline">\(b_i\)</span> 的超集，且存在一个 <span
+class="math inline">\(0\sim n-1\)</span> 的排列 <span
+class="math inline">\(p\)</span> 使得 <span
+class="math inline">\(\forall i\)</span>，<span
+class="math inline">\(p_i\)</span> 是 <span
+class="math inline">\(b_i\)</span> 的超集。</p>
+<p>并且这个条件是充分的，感性上可以通过一些交换论证来证明。其中第一个条件可以直接判断，至于第二个条件，一个
+naive 的想法是网络流，如果 <span class="math inline">\(x\)</span> 是
+<span class="math inline">\(y\)</span> 的超集，就连一条 <span
+class="math inline">\(x\to y\)</span>，容量为 <span
+class="math inline">\(1\)</span> 的边，最后看是否满流。</p>
+<p>一个明显的优化是对每个 <span
+class="math inline">\(x\)</span>，只连一条 <span
+class="math inline">\(x\to x\text{\\}\{2^i\}\)</span>，容量为 <span
+class="math inline">\(\infty\)</span> 的边。</p>
+<p>这样就能过了，时间复杂度并不会分析。</p>
+<h2 id="icpc-成都"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2567">ICPC
+成都</a></h2>
+<h3 id="m.-meeting-for-meals"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2567/problem/14718">M. Meeting for
+Meals</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1772173">Code</a></p>
+<p>先考虑在树上的情况，两个人分别在 <span
+class="math inline">\(i,j\)</span>，最大陪伴时间显然是 <span
+class="math inline">\(t_\text{meet}-\dfrac{\text{dis}(i,j)}{2}\)</span>，即在路径中点会合。放到图上也是类似的，我们从给定的
+<span class="math inline">\(k\)</span>
+个关键点出发跑多源最短路，并为每个点 <span
+class="math inline">\(i\)</span> 记录离它最近的关键点编号 <span
+class="math inline">\(c[i]\)</span>，这样对于一条边 <span
+class="math inline">\((u,v,w)\)</span>，如果 <span
+class="math inline">\(c[u]\neq
+c[v]\)</span>，那这条边上才有可能存在路径中点。</p>
+<p>设多源最短路跑出来的距离是 <span
+class="math inline">\(d[i]\)</span>，枚举边 <span
+class="math inline">\((u,v,w)\)</span> 为路径中点，答案就是 <span
+class="math inline">\(t_\text{meet}-\dfrac{d[u]+d[v]+w}{2}\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O((n+m)\log m)\)</span>。</p>
+<h3 id="i.-inside-triangle"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2567/problem/14714">I. Inside
+Triangle</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1774603">Code</a></p>
+<p>对大凸包上的每个点 <span
+class="math inline">\(i\)</span>，求出顺时针方向最远的点 <span
+class="math inline">\(p\)</span> 满足 <span
+class="math inline">\(\overrightarrow{ip}\)</span> 在小凸包左侧，设为
+<span class="math inline">\(l[i]\)</span>；以及逆时针方向最远的点 <span
+class="math inline">\(p\)</span> 满足 <span
+class="math inline">\(\overrightarrow{ip}\)</span> 在小凸包右侧，设为
+<span
+class="math inline">\(r[i]\)</span>。这一步可以用双指针线性求。</p>
+<p>设三角形逆时针按顺序编号 <span
+class="math inline">\(i,j,k\)</span>，那么 <span
+class="math inline">\(j\in [i+1,r[i]]\)</span>，<span
+class="math inline">\(k\in [l[i],i-1]\)</span> 且 <span
+class="math inline">\(k\in [j+1,r[j]]\)</span>。也就是说 <span
+class="math display">\[
+\text{ans}=\frac{1}{3}\sum_{i=0}^{n-1}\sum_{j=i+1}^{r[i]}\{k\mid
+\max(l[i],j+1)\le k\le r[j]\}
+\]</span> 至于优化，只用考虑 <span class="math inline">\(i\to
+i+1\)</span> 的过程，算一下答案变化量。具体的，设当前 <span
+class="math inline">\(j\)</span> 可选集合为 <span
+class="math inline">\(B=[B_l,B_r]\)</span>，<span
+class="math inline">\(k\)</span> 可选集合为 <span
+class="math inline">\(A=[A_l,A_r]\)</span>。当 <span
+class="math inline">\(B_r\)</span> 向前走一步，变化量是 <span
+class="math inline">\([B_r+1,r[B_r]]\)</span> 与 <span
+class="math inline">\(A\)</span> 的交集；当 <span
+class="math inline">\(A_r\)</span> 向前走一步，变化量是 <span
+class="math inline">\([l[A_r], A_r-1]\)</span> 与 <span
+class="math inline">\(B\)</span> 的交集。<span
+class="math inline">\(B_l,A_l\)</span>
+向前走一步同理，只不过变化量是负的。</p>
+<p>写代码的时候要十分小心。时间复杂度 <span
+class="math inline">\(O(n+m)\)</span>。</p>
+<h2 id="icpc-武汉"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2609">ICPC
+武汉</a></h2>
+<h3 id="b.-77g-network"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2609/problem/14720">B. 77G Network</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1778921">Code</a></p>
+<p>很裸的题。“线段树优化建图 + 2SAT” 几乎被出烂了，不再赘述。</p>
+<p>唯一的难点是，如何建线段树使得 “<span
+class="math inline">\(x\)</span> 的 <span
+class="math inline">\(k\)</span> 级儿子” 是一段连续的区间？</p>
+<p>bfs 序是很好的选择，那给定 <span
+class="math inline">\(x,k\)</span>，如何定位到对应的区间？记录同一深度下所有点的
+bfs 时间戳，那我们要找的就是深度 <span
+class="math inline">\(\text{dep}[x]+k\)</span> 下，dfs 序在 <span
+class="math inline">\([\text{dfn}[x],\text{dfn}[x]+\text{sz}[x]-1]\)</span>
+的点对应的区间，二分即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(n+m\log n)\)</span>。</p>
+<h3 id="a.-planting-trees"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2609/problem/14719">A. Planting
+Trees</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1779064">Code</a></p>
+<p>题目等价于求 <span class="math display">\[
+\sum_{i=0}^{n-1}[(f\cdot i+x)\bmod m&lt; (g\cdot i+y)\bmod m]
+\]</span> 然后题解就给出了一个神奇的公式（不清楚是否是 well-known 的
+trick） <span class="math display">\[
+[u &lt; v] = 1 + \left\lfloor \frac{v-u-1}{m} \right\rfloor\ \ (0\le
+u,v&lt;m)
+\]</span> 将该公式代入，用 <span class="math inline">\(x\bmod y=x-y\cdot
+\left\lfloor\dfrac{x}{y}\right\rfloor\)</span> 展开，得到 <span
+class="math display">\[
+\text{ans}=\sum_{i=0}^{n-1}1+\sum_{i=0}^{n-1}\left\lfloor\frac{(g-f)\cdot
+i+(y-x-1)}{m}\right\rfloor+\sum_{i=0}^{n-1}\left\lfloor\frac{f\cdot
+i+x}{m}\right\rfloor-\sum_{i=0}^{n-1}\left\lfloor\frac{g\cdot
+i+y}{m}\right\rfloor
+\]</span> 后三项为 floor_sum 结构，套个<a
+target="_blank" rel="noopener" href="https://github.com/KisuraOP/XCPC-Templates/blob/main/templates/数学/floor_sum.cpp">板子</a>就好。时间复杂度
+<span class="math inline">\(O(T\log m)\)</span>。</p>
+<h2 id="icpc-南京"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2581">ICPC
+南京</a></h2>
+<h3 id="h.-pen-pineapple-apple-pen"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2581/problem/14808">H. Pen Pineapple Apple
+Pen</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1784325">Code</a></p>
+<p>令 <span class="math inline">\(f[l][r]\)</span> 表示第一个子串以
+<span class="math inline">\(l\)</span> 结尾，第四个子串以 <span
+class="math inline">\(r\)</span> 开头的方案数，<span
+class="math inline">\(g[l][r]\)</span> 表示 <span
+class="math inline">\([l,r]\)</span>
+里存在第二个子串和第三个子串的方案数。 <span class="math display">\[
+\text{ans}=\sum_{i=1}^{n}\sum_{j=i+1}^{n}f[i-1][j+1]\cdot g[i][j]
+\]</span> 再令 <span class="math inline">\(h[l][r]\)</span>
+表示第三个子串以 <span class="math inline">\(r\)</span>
+结尾，且与第三个子串相同的第二个子串的后缀以 <span
+class="math inline">\(l\)</span> 开头的方案数。</p>
+<p><span class="math display">\[
+g[l][r]=\sum_{i=l}^{r}\sum_{j=i+1}^{r}(i-l)\cdot h[i][j]
+\]</span> 这个式子可以用前缀和优化，现在的任务是求出 <span
+class="math inline">\(f\)</span> 和 <span
+class="math inline">\(h\)</span>。</p>
+<p>枚举 <span class="math inline">\(r\)</span>，对 <span
+class="math inline">\(S[r,n]\)</span> 用 KMP 求出 <span
+class="math inline">\(\text{nxt}\)</span> 数组，再对 <span
+class="math inline">\(S[1,r-1]\)</span> 进行匹配。匹配到 <span
+class="math inline">\(i\)</span> 时，指针 <span
+class="math inline">\(p\)</span> 表示当前以 <span
+class="math inline">\(i\)</span> 结尾的后缀完全匹配了 <span
+class="math inline">\(S[r,p]\)</span>。至此，<span
+class="math inline">\(S[r,p]\)</span> 的 border 个数即为 <span
+class="math inline">\(f[i][r]\)</span>。</p>
+<p>至于 <span class="math inline">\(h[i][j]\)</span>，等价于 <span
+class="math inline">\([i,j]\)</span> 里长度不超过一半的 border
+个数。对于一个长为 <span class="math inline">\(L\)</span>
+的串来说，长度大于 <span class="math inline">\(\frac{L}{2}\)</span> 的
+border 呈等差数列，且公差为最小周期 <span
+class="math inline">\(L-\text{nxt}[L]\)</span>。由此我们枚举 <span
+class="math inline">\(l\)</span>，对 <span
+class="math inline">\(S[l,n]\)</span> 求出 <span
+class="math inline">\(\text{nxt}\)</span> 数组。再枚举 <span
+class="math inline">\(r\)</span>，利用等差数列的性质可以一步跳到 border
+小于长度一半的位置，也就求出了 <span
+class="math inline">\(h\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^2)\)</span>。</p>
+<h3 id="e.-cyan-white-tree"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2581/problem/14805">E. Cyan White
+Tree</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1799822">Code</a></p>
+<p>先处理 <span class="math inline">\(c\ge w\)</span> 的情况，<span
+class="math inline">\(c\le w\)</span>
+只用把每个点颜色取反再跑一遍就行。</p>
+<p>当 <span class="math inline">\(c\ge w\)</span> 时，路径价值是 <span
+class="math inline">\(3w-c\)</span>。令 <span
+class="math inline">\(a[x]\)</span> 表示路径 <span
+class="math inline">\(1\sim x\)</span> 的 <span
+class="math inline">\(c-w\)</span>，<span
+class="math inline">\(b[x]\)</span> 表示路径 <span
+class="math inline">\(1\sim x\)</span> 的 <span
+class="math inline">\(3w-c\)</span>。对每个点 <span
+class="math inline">\(x\)</span>，维护一个
+<code>set&lt;array&lt;int, 2&gt;&gt;</code>，里面每一个元素 <span
+class="math inline">\((a[u],b[u])\)</span> 表示当前从 <span
+class="math inline">\(x\)</span> 向下位于另一头的最优路径端点 <span
+class="math inline">\(u\)</span> 的集合。</p>
+<p>考虑自底向上 small-to-large 的过程。现在有两条链，<span
+class="math inline">\(x\leftrightarrow u\)</span> 和 <span
+class="math inline">\(x\leftrightarrow
+v\)</span>，合并为一条路径后价值为 <span
+class="math inline">\((b[u]-b[x])+(b[v]-b[x])+(b[x]-b[fa])=b[u]+b[v]-b[x]-b[fa]\quad(*)\)</span>。当然前提是合并后的路径满足
+<span class="math inline">\(c - w\ge 0\)</span>，也就是 <span
+class="math inline">\(a[u]+a[v]-a[x]-a[fa]\ge 0\quad(**)\)</span>。</p>
+<p>如果我们将这个 <code>set</code>
+维护成第一维递增，第二维递减（像单调栈一样），那么对于当前 large 集合
+<span class="math inline">\(A\)</span> 和 small 集合 <span
+class="math inline">\(B\)</span>，遍历 <span
+class="math inline">\(B\)</span> 中每一个元素 <span
+class="math inline">\((a[v],b[v])\)</span>，我们就能再 <span
+class="math inline">\(A\)</span> 中 lower_bound 第一个大于等于 <span
+class="math inline">\((a[x]+a[fa]-a[v],-\infty)\)</span> 的元素 <span
+class="math inline">\((a[u],b[u])\)</span>，此时在满足 <span
+class="math inline">\((*)\)</span> 的情况下做到了让 <span
+class="math inline">\(b[u]\)</span> 最大，也就是 <span
+class="math inline">\((**)\)</span> 最大。</p>
+<p>时间复杂度 <span
+class="math inline">\(O(n\log^2n)\)</span>，实际跑得飞快。</p>
+<h3 id="j.-trajan-algorithm"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2581/problem/14810">J. Trajan
+Algorithm</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1785811">Code</a></p>
+<p>小清新图论题。首先对于一个点 <span
+class="math inline">\(x\)</span>，一定有 <span
+class="math inline">\(\text{low}[x]\le
+\text{dfn}[x]\)</span>。所以假算法只会把 <span
+class="math inline">\(\text{low}[x]\)</span> 变小。</p>
+<p>接着对于一个点 <span class="math inline">\(x\)</span>，是割点当且仅当
+<span class="math inline">\(\text{low}[y]\ge
+\text{dfn}[x]\)</span>，假算法更难满足，所以割点只会被判漏。被判漏说明
+<span
+class="math inline">\(\text{low}[y]&lt;\text{dfn}[x]\)</span>，而错误的
+<span class="math inline">\(\text{low}[y]\)</span> 是从 <span
+class="math inline">\(\text{low}[x]\)</span> 传递过来的。说明满足条件的
+<span class="math inline">\(x\)</span> 满足 <span
+class="math inline">\(\text{low}[x]&lt;\text{dfn}[x]\)</span>，这说明
+<span class="math inline">\(x\)</span> 存在返祖边。</p>
+<p>于是，<span class="math inline">\(x\)</span>
+被判漏当且仅当有返祖边指向 <span
+class="math inline">\(x\)</span>，且也有从 <span
+class="math inline">\(x\)</span> 离开的返祖边。换句话说如果 <span
+class="math inline">\(x\)</span>
+至少在两个点双中，且这两个点双各有至少两条边连向 <span
+class="math inline">\(x\)</span>，且不存在 <span
+class="math inline">\(x\)</span> 属于一个点双 <span
+class="math inline">\(v\)</span> 但 <span
+class="math inline">\(v\)</span> 只有一条边连向 <span
+class="math inline">\(x\)</span>，那么 <span
+class="math inline">\(x\)</span> 就是一个答案。</p>
+<p>时间复杂度 <span class="math inline">\(O(n+m)\)</span>。</p>
+<h2 id="ccpc-哈尔滨"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2575">CCPC
+哈尔滨</a></h2>
+<h3 id="m.-连通的正三角形"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2575/problem/14826">M.
+连通的正三角形</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1798877">Code</a></p>
+<p>条件刻画题。不难发现题目等价于计数同时满足如下条件的三元组 <span
+class="math inline">\((i,j,k)\)</span> 的数量。</p>
+<ul>
+<li><span class="math inline">\(a_i=b_j=c_k\)</span></li>
+<li><span class="math inline">\(i+j\ge n,\ j+k\ge n,\ i+k\ge
+n\)</span></li>
+<li><span class="math inline">\(i+j+k\neq 2n\)</span></li>
+</ul>
+<p>记这三个条件分别为 <span
+class="math inline">\(A,B,C\)</span>。对于条件 <span
+class="math inline">\(A\)</span>，可以分为 <span
+class="math inline">\(a_i=b_j=c_k=0\)</span> 和 <span
+class="math inline">\(a_i=b_j=c_k=1\)</span>，两种情况互斥，答案可以相加。以下将
+<span class="math inline">\(A\)</span> 改写成 <span
+class="math inline">\(a_i=b_j=c_k=0\)</span> 为例。</p>
+<p>经过观察，满足 <span class="math inline">\(\lnot C\)</span>
+的三元组一定满足 <span
+class="math inline">\(B\)</span>。于是答案可以表示为 <span
+class="math inline">\(\text{cnt}(A\cap B)-\text{cnt}(A\cap \lnot
+C)\)</span>。对于 <span class="math inline">\(\text{cnt}(A\cap \lnot
+C)\)</span>，是一个经典的 ntt 问题，记数组 <span
+class="math inline">\(d_i=[b_i=0]\)</span>，<span
+class="math inline">\(e_i=[c_i=0]\)</span>，答案就是 <span
+class="math inline">\(\sum\limits_{a_i=0}\sum\limits_{j+k=2n-i}d_j\cdot
+e_k\)</span>。</p>
+<p>对于 <span class="math inline">\(\text{cnt}(A\cap
+B)\)</span>，可以使用后缀和线性算。枚举 <span
+class="math inline">\(i\)</span>，当 <span class="math inline">\(n-i\le
+j\le i\)</span> 时，<span
+class="math inline">\(\max(n-i,n-j)=n-j\)</span>，贡献是 <span
+class="math inline">\(c_{\ge n-j}\)</span>；当 <span
+class="math inline">\(j&gt;i\)</span> 时，<span
+class="math inline">\(\max(n-i,n-j)=n-i\)</span>，贡献是 <span
+class="math inline">\(c_{\ge n-i}\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h3 id="h.-匹配"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2575/problem/14821">H.
+匹配</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1797167">Code</a></p>
+<p>坏消息，题解完全不说人话。好消息，似乎是一道命题作文。</p>
+<p>前置：<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/article/l3dfir8x">IntoTheDusk
+- 鞅的停时定理 - 洛谷专栏</a>，<a
+target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/721900819">GhostLX - 鞅与停时定理 -
+知乎</a>。</p>
+<p>以下表述可能有不妥之处。</p>
+<p>设当前局面为 <span
+class="math inline">\(S=\{a_1,a_2,\ldots,a_n\}\)</span>，我们希望定义一个
+<span class="math inline">\(f(x)\)</span>，使得系统总势能 <span
+class="math inline">\(\Phi(S)=\sum\limits_{i=1}^{n}f(a_i)\)</span>
+满足：在每一步操作中，总势能期望减少 <span
+class="math inline">\(1\)</span>。也就是 <span class="math display">\[
+E[\Phi(S_{t+1})-\Phi(S_t) | S_t]=-1
+\]</span> 我们希望 <span class="math inline">\(n\)</span>
+个集合平均分配势能下降的任务，于是 <span class="math display">\[
+E[f(i&#39;)]-f(i)=-\frac{i}{2m}
+\]</span> 其中 <span class="math inline">\(E[f(i&#39;)]\)</span>
+是下一时刻势能的加权平均，即 <span class="math display">\[
+\left(\sum_{i&#39;}P(i\to i&#39;)f(i&#39;)\right)-f(i)=-\frac{i}{2m}
+\]</span> 已经明显看出高斯消元的形式了，现在的任务只剩下求 <span
+class="math inline">\(P(i\to i&#39;)\)</span>。</p>
+<p>每一轮操作，等价于：选定 <span class="math inline">\(2m\)</span>
+个元素中的 <span class="math inline">\(m\)</span> 个，删去没选中的 <span
+class="math inline">\(m\)</span> 个，再将选中的 <span
+class="math inline">\(m\)</span> 个原地复制一份。对于大小为 <span
+class="math inline">\(i\)</span> 的集合，假设有 <span
+class="math inline">\(j\)</span> 个元素被选中，那操作后集合大小变为
+<span class="math inline">\(2j\)</span>，因此 <span
+class="math display">\[
+P(i\to 2j)=\frac{\dbinom{i}{j}\dbinom{2m-i}{m-j}}{\dbinom{2m}{m}}
+\]</span> 高斯消元对 <span
+class="math inline">\(i=1,2,\ldots,2m-1\)</span> 求出 <span
+class="math inline">\(f(i)\)</span>，根据停时定理 <span
+class="math display">\[
+\text{ans}=E(t)=E(\Phi(S_0))-\Phi(S_t)=\sum_{i=1}^{n}f(a_i)-0
+\]</span> 需要注意 <span
+class="math inline">\(f(0)=f(2m)=0\)</span>。时间复杂度 <span
+class="math inline">\(O(m^3)\)</span>。</p>
+<h2 id="icpc-沈阳"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2641">ICPC
+沈阳</a></h2>
+<h3 id="f.-the-bond-beyond-time"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2641/problem/14945">F. The Bond Beyond
+Time</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1766636">Code</a></p>
+<p>若 <span class="math inline">\(x, y\)</span> 不是邻居，可以直接将与
+<span class="math inline">\(x\)</span> 相邻的边都指向 <span
+class="math inline">\(x\)</span>，与 <span
+class="math inline">\(y\)</span> 相邻的边都指向 <span
+class="math inline">\(y\)</span>。</p>
+<p>若 <span class="math inline">\(x,y\)</span> 是邻居，分两种情况：</p>
+<ul>
+<li><span class="math inline">\(x,y\)</span> 同处一个环中，此时 bfs
+找一个包含 <span class="math inline">\(x,y\)</span>
+的最小环，将所有非环点指向环，这样 <span
+class="math inline">\(x,y\)</span>
+只能一直绕圈圈。而不与环接触的边可以任意定向。</li>
+<li>否则，若图中有环，我们也可以找一个离 <span
+class="math inline">\(x,y\)</span>
+最近的环。先将环上的点标记，再从环出发多源 bfs，标记环到 <span
+class="math inline">\(x,y\)</span>
+最短路径上的点。此时将所有非标记点指向标记点，<span
+class="math inline">\(x,y\)</span> 沿着预定路径追逐到我们找的环中，亦是
+Yes。</li>
+</ul>
+<p>最后只剩下图中无环的情况，显然是 No。</p>
+<p>如何找离 <span class="math inline">\(x,y\)</span> 最近的环？从 <span
+class="math inline">\(x,y\)</span> 出发 bfs，设走到的第一条非割边是
+<span class="math inline">\((u, v)\)</span>，再次 bfs 找包含 <span
+class="math inline">\(u,v\)</span> 的最小环就行。时间复杂度依实现方式
+<span class="math inline">\(O(n^2)/O(n)\)</span>，码量略大。</p>
+<h3 id="d.-led-display-renovation"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2641/problem/14943">D. LED Display
+Renovation</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1777085">Code</a></p>
+<p>令 <span class="math inline">\(f[i][j][l=0/1]\)</span> 表示前 <span
+class="math inline">\(i\)</span> 个位置，翻新了 <span
+class="math inline">\(j\)</span> 个段，最多能表示的数字数量。其中 <span
+class="math inline">\(l=1\)</span> 代表允许前 <span
+class="math inline">\(i\)</span> 个位置全是空，<span
+class="math inline">\(l=0\)</span> 则是不允许。</p>
+<p>转移的时候 <span class="math inline">\(2^7\)</span> 枚举当前位置的
+<span class="math inline">\(7\)</span> 个段是否翻新。对于每个状态 <span
+class="math inline">\(t\)</span>，算出当前状态下（即对应翻新后）能展示的数字个数
+<span
+class="math inline">\(\text{cnt}\)</span>，以及能作为最高位展示的数字个数
+<span class="math inline">\(\text{high}\)</span>。转移就是 <span
+class="math display">\[
+f[i+1][j+\text{popc}(t)][nl]\ \longleftarrow \ f[i][j][l]\cdot
+\text{cnt}+(l&gt;0)\cdot \text{high}
+\]</span> 其中 <span class="math inline">\(nl=1\)</span> 当且仅当 <span
+class="math inline">\(l=1\)</span> 且当前位置的所有常亮段均被翻新。</p>
+<p>同样定义 <span class="math inline">\(g[i][j][l]\)</span> 用于 <span
+class="math inline">\(f\)</span>
+取到最大值时的方案数。要注意对于当前位置一个数字都显示不了，但能显示空的情况，新的
+<span class="math inline">\(g\)</span> 值应该为 “前 <span
+class="math inline">\(i\)</span> 个位置，翻新了 <span
+class="math inline">\(j\)</span> 个段且前 <span
+class="math inline">\(i\)</span> 个位置均为空” 的方案数。我们将其记作
+<span
+class="math inline">\(h[i][j][l]\)</span>，这样又能愉快的转移了！</p>
+<p>时间复杂度 <span class="math inline">\(O(nk\cdot 2^7\cdot
+10)\)</span>。</p>
+<h2 id="ccpc-济南"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2693?v=1">CCPC
+济南</a></h2>
+<p>真的好难，兄弟。真的好难…</p>
+<h3 id="a.-cipher"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2693/problem/15032?v=1">A. Cipher</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1902158">Code</a></p>
+<p>以下做法来自伟大的 lyc。</p>
+<p>当 <span class="math inline">\(a\)</span> 为偶数时，令 <span
+class="math inline">\(a=2\cdot c\)</span>，则 <span
+class="math inline">\(2^x\cdot c^x\equiv b\pmod{2^{64}}\)</span>，当
+<span class="math inline">\(x\ge 64\)</span> 时左侧模 <span
+class="math inline">\(2^{64}\)</span> 恒等为 <span
+class="math inline">\(0\)</span>，于是只用依次尝试 <span
+class="math inline">\(x\in [0,64)\)</span>。而当 <span
+class="math inline">\(a\)</span> 为奇数时，<span
+class="math inline">\(a\)</span> 的幂也一定是奇数，接下来我们只用讨论
+<span class="math inline">\(a,b\)</span> 均为奇数的情况。</p>
+<p><em>Conclution.</em> 在模 <span class="math inline">\(2^k\)</span>
+乘法群中，任何元素的阶都是 <span class="math inline">\(2\)</span>
+的幂。</p>
+<p><em>Prove.</em> 由群论中拉格朗日定理的推论，有限群 <span
+class="math inline">\(G\)</span> 中每个元素的阶都整除群 <span
+class="math inline">\(G\)</span> 的阶。因此对于任意 <span
+class="math inline">\(a\in (\mathbb{Z}/2^k)\)</span>，其阶 <span
+class="math inline">\(d\)</span> 一定有 <span
+class="math inline">\(d\mid \varphi(2^k)\)</span>，也就是 <span
+class="math inline">\(d\mid 2^{k-1}\)</span>。此时 <span
+class="math inline">\(d\)</span> 一定是 <span
+class="math inline">\(2\)</span> 的幂。</p>
+<p><em>Conclution.</em> 令 <span class="math inline">\(x\)</span> 为模
+<span class="math inline">\(2^k\)</span> 下 <span
+class="math inline">\(a\)</span> 的阶，<span
+class="math inline">\(y\)</span> 为模 <span
+class="math inline">\(2^{k+1}\)</span> 下 <span
+class="math inline">\(a\)</span> 的阶，那么 <span
+class="math inline">\(y\)</span> 只可能是 <span
+class="math inline">\(x\)</span> 或 <span
+class="math inline">\(2x\)</span>。</p>
+<p><em>Prove.</em> 由 <span class="math inline">\(a^y\equiv
+1\pmod{2^{k+1}}\)</span>，则一定有 <span class="math inline">\(a^y\equiv
+1\pmod {2^k}\)</span>，又 <span class="math inline">\(x\)</span>
+是最小的满足 <span class="math inline">\(a^x\equiv 1\pmod{2^k}\)</span>
+的正整数，于是 <span class="math inline">\(x\mid y\)</span>。令 <span
+class="math inline">\(a^x=1+2^kt\)</span>，那么 <span
+class="math display">\[
+a^{2x}=(1+2^kt)^2=1+2^{k+1}t+2^{2k}t^2
+\]</span> 当 <span class="math inline">\(k\ge 1\)</span> 时，<span
+class="math inline">\(2k\ge k+1\)</span>，因此 <span
+class="math inline">\(2^{2k}t^2\)</span> 能被 <span
+class="math inline">\(2^{k+1}\)</span> 整除，故 <span
+class="math inline">\(a^{2x}\equiv 1\pmod{2^{k+1}}\)</span>。</p>
+<p>因此 <span class="math inline">\(y\mid 2x\)</span>，结合 <span
+class="math inline">\(x\mid y\)</span>，可得 <span
+class="math inline">\(y=x\)</span> 或 <span
+class="math inline">\(y=2x\)</span>。</p>
+<p>考虑 <span class="math inline">\(a^{x_k}\equiv b\pmod
+{2^k}\)</span>，其中 <span class="math inline">\(k=1,2,3,\ldots\)</span>
+一直递增到 <span class="math inline">\(64\)</span>，该过程中 <span
+class="math inline">\(x_k\)</span> 一定是 <span
+class="math inline">\(x_{k-1}\)</span> 或 <span
+class="math inline">\(2\cdot x_{k-1}\)</span>，分别尝试即可。若到某个
+<span class="math inline">\(k\)</span>
+时两种情况都不能满足，那对于更大的 <span
+class="math inline">\(k\)</span> 也必然不能满足，直接无解。时间复杂度
+<span class="math inline">\(O(T\cdot 64)\)</span>。</p>
+<h3 id="e.-tree-and-subgraph-problem"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2693/problem/15036">E. Tree and Subgraph
+Problem</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1908163">Code</a></p>
+<p><span class="math inline">\(\text{sub}(S)\)</span> 和 <span
+class="math inline">\(\text{sub}(T)\)</span> 不交，等价于存在一条连接
+<span class="math inline">\(\text{sub}(S)\)</span> 和 <span
+class="math inline">\(\text{sub}(T)\)</span>
+的最短路径，该路径上的内部点（不包括端点）和边均不属于二者。把贡献摊到点和边上，由该路径上
+“边数 = 点数 + 1” 的巧妙性质，答案可以写成 <span class="math display">\[
+\text{ans} = \sum_{e\in E}g_e-\sum_{v\in V} f_v
+\]</span> 其中 <span class="math inline">\(g_e\)</span> 表示删除边 <span
+class="math inline">\(e\)</span> 后，两个连通块中分别选 <span
+class="math inline">\(S,T\)</span> 的方案数；<span
+class="math inline">\(f_v\)</span> 表示删除点 <span
+class="math inline">\(v\)</span> 后，在不同连通块中分别选 <span
+class="math inline">\(S,T\)</span> 的方案数。</p>
+<p>令 <span class="math inline">\(\text{in}_{x}\)</span> 和 <span
+class="math inline">\(\text{out}_{x}\)</span> 分别表示以 <span
+class="math inline">\(x\)</span>
+为根的子树内/子树外，选一个颜色相同的非空点集的方案数之和。于是 <span
+class="math inline">\(g_{(x, y)} = 2\cdot \text{in}_{y} \cdot
+\text{out}_{y}\)</span>，乘 <span class="math inline">\(2\)</span>
+是因为计有序对。至于 <span class="math inline">\(f_v\)</span>，设删去
+<span class="math inline">\(v\)</span> 后分成的若干连通块的 <span
+class="math inline">\(\text{in}\)</span> 值分别为 <span
+class="math inline">\(p_1,p_2,\ldots,p_m\)</span>，那么 <span
+class="math display">\[
+f_v=\sum_{i\neq j}p_ip_j=\left(\sum_{i}p_i\right)^2-\sum_{i}p_i^2
+\]</span> 问题转化为了对每个 <span class="math inline">\(x\)</span> 求出
+<span class="math inline">\(\text{in}_x\)</span> 和 <span
+class="math inline">\(\text{out}_x\)</span>。利用 dsu_on_tree
+维护当前子树内各颜色 <span class="math inline">\(c\)</span> 出现的次数
+<span class="math inline">\(\text{cnt}_c\)</span>，于是 <span
+class="math display">\[
+\text{in}_x = \sum_{c}(2^{\text{cnt}_c}-1)\qquad
+\text{out}_x=\sum_{c}(2^{\text{all}_c-\text{cnt}_c}-1)
+\]</span> 其中 <span class="math inline">\(\text{all}_c\)</span> 为颜色
+<span class="math inline">\(c\)</span> 在整棵树中的出现次数。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="icpc-上海">ICPC 上海</h2>
+<p>还没 VP。</p>
+<h2 id="ccpc-郑州"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2661">CCPC
+郑州</a></h2>
+<h3 id="i.-dumb-problem-ii"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2661/problem/15309">I. Dumb Problem
+II</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1796740">Code</a></p>
+<p>对于某个特定的前缀最大值集合 <span
+class="math inline">\(S=\{g(p)\}\)</span>，设它在一个排列中出现的概率是
+<span class="math inline">\(P(S)\)</span>。</p>
+<p>在 <span class="math inline">\(k\)</span> 个随机排列中，<span
+class="math inline">\(P(S \textbf{ 至少出现一次})=1-P(S \textbf{
+从未出现})=1-(1-P(S))^k\)</span>。</p>
+<p>列出答案式子，用二项式定理展开 <span class="math display">\[
+\begin{align}
+\text{ans}&amp;=\sum_S\left[1-(1-P(S))^k\right]\\
+&amp;=\sum_S\left[1-\sum_{j=0}^{k}\binom{k}{j}(-1)^jP(S)^j\right]\\
+&amp;=\sum_{j=1}^{k}\binom{k}{j}(-1)^{j-1}\sum_{S}P(S)
+^j\end{align}
+\]</span> 我们的任务是对所有 <span class="math inline">\(1\le i\le
+k\)</span> 求出 <span
+class="math inline">\(g_i=\sum\limits_SP(S)^i\)</span>。从式子来看，<span
+class="math inline">\(g_i\)</span> 就是这 <span
+class="math inline">\(i\)</span> 个排列前缀最大值集合都相同的概率。</p>
+<p>不同数字是否成为前缀最大值，是完全独立的事件。考虑从大到小依次插入
+<span class="math inline">\(n,n-1,\ldots,1\)</span>
+构成排列的过程，一个数字 <span class="math inline">\(x\)</span> 有 <span
+class="math inline">\(1\)</span>
+种方案成为前缀最大值（插到最前面），以及 <span
+class="math inline">\(n-x\)</span>
+种方案不成为。根据乘法分配律，所有可能的集合 <span
+class="math inline">\(S\)</span> 的方案数之和，等于每个数字 <span
+class="math inline">\(x\)</span> 所有可能贡献之和的乘积。 <span
+class="math display">\[
+g_i=\frac{\prod\limits_{x=1}^{n}(1^i+(n-x)^i)}{(n!)^i}=\frac{\prod\limits_{j=0}^{n-1}(1+j^i)}{(n!)^i}
+\]</span> 时间复杂度 <span class="math inline">\(O(nk)\)</span>。</p>
+<h3 id="d.-diameter-of-a-tree"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2661/problem/15304">D. Diameter of a
+Tree</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1795646">Code</a></p>
+<p>先任意找一条直径，端点设为 <span
+class="math inline">\(L,R\)</span>。对于一个点 <span
+class="math inline">\(i\)</span>，若 <span
+class="math inline">\(\max(\text{dis}(i,L),\text{dis}(i,R))=\text{dis}(L,R)\)</span>，那么
+<span class="math inline">\(i\)</span>
+就是某一条直径的端点，这样的点我们称为关键点。</p>
+<p>设共有 <span class="math inline">\(t\)</span> 个关键点，显然标号
+<span class="math inline">\(1\sim t\)</span>，并考虑从标号为 <span
+class="math inline">\(t\)</span> 的关键点开始向直径中点标号 <span
+class="math inline">\(t+1,t+2,\ldots\)</span>。因为所有直径的中点（或者说中边，如果直径长度为奇数）都是相同的，所以我们没必要真的一路标过来。也就是说，如果直径长度为
+<span class="math inline">\(L\)</span>，答案的前缀一定是 <span
+class="math inline">\(t,t+1,t+1,\ldots,t+\lceil\frac{L}{2}\rceil\)</span>。</p>
+<p>设直径中点为 <span
+class="math inline">\(x_0\)</span>（若两个中点，推荐在两个中点之间建一个虚点作为中点），中点的标号为
+<span class="math inline">\(t_x\)</span>，后半段直径为 <span
+class="math inline">\(x_0\to x_1\to x_2\to \ldots\)</span>，那么 <span
+class="math inline">\(x_i\ (i\ge 1)\)</span> 的标号应该是 <span
+class="math inline">\(t_x+\text{deg}(x_0)+\text{deg}(x_1)+\ldots+\text{deg}(x_{i-1})\)</span>。其中
+<span class="math inline">\(\text{deg}(x)\)</span> 表示在以 <span
+class="math inline">\(x_0\)</span> 为根的情况下，满足 <span
+class="math inline">\(x\to y\)</span> 且 <span
+class="math inline">\(y\)</span>
+子树中存在关键点的出边数量。由此可见选择一个 <span
+class="math inline">\(\{\text{deg}(x_1),\text{deg}(x_2),\ldots\}\)</span>
+字典序最小的 <span class="math inline">\(\{x_i\}\)</span>
+链是最优的。方法是从 <span class="math inline">\(x_0\)</span> 开始逐层
+bfs。</p>
+<p>注意直径末尾（也就是答案最后一项）需要特殊判。当只有一个中点时 <span
+class="math inline">\(\text{deg}(x_0)\)</span>
+也要排除来时的出边。时间复杂度 <span class="math inline">\(O(n\log
+n)\)</span>，细节略多。</p>
+<h3 id="k.-parentheses-and-swapping"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2661/problem/15311">K. Parentheses and
+Swapping</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1907296">Code</a></p>
+<p>题面很绕，等价于对 <span class="math inline">\(\{b\}\)</span>
+中每一对匹配的 <span class="math inline">\((i,j)\)</span>，交换 <span
+class="math inline">\(a[i]\)</span> 和 <span
+class="math inline">\(a[j]\)</span>，要让 <span
+class="math inline">\(\{a\}\)</span> 字典序最小。</p>
+<p>在合法括号序列中，匹配的两个位置 <span
+class="math inline">\((i,j)\)</span> 间的元素数量必须是偶数，因此 <span
+class="math inline">\(i\)</span> 和 <span
+class="math inline">\(j\)</span> 的奇偶性必然不同。</p>
+<p>从左往右考虑每个位置 <span class="math inline">\(i\)</span>，逐个判断
+<span class="math inline">\(b[i]\)</span> 填 <code>(</code> 还是
+<code>)</code>。我们用一个栈维护 <span class="math inline">\(i\)</span>
+之前已经确定的 <code>(</code>，设当前栈顶为 <span
+class="math inline">\(u\)</span>，接着断言 <span
+class="math inline">\(b[i]\)</span> 填 <code>)</code>，也就是和 <span
+class="math inline">\(b[u]\)</span> 匹配，当且仅当：</p>
+<ul>
+<li><span class="math inline">\(a[i]\)</span> 是到 <span
+class="math inline">\(u\)</span> 时 <span
+class="math inline">\(a[u+1\sim n]\)</span> 中未被匹配的最小值。要不然选
+<span class="math inline">\(i\)</span> 后面更小的交换到 <span
+class="math inline">\(u\)</span> 肯定更优。</li>
+<li>在此基础上，若存在 <span class="math inline">\(j&gt;i\)</span> 满足
+<span class="math inline">\(a[j]=a[i]\)</span>，则需满足 <span
+class="math inline">\(a[u]\le t\)</span>，其中 <span
+class="math inline">\(t\)</span> 是 <span
+class="math inline">\(i\)</span> 未来能匹配上的最优值。若不满足，说明
+<span class="math inline">\(a[u]\)</span> 较大，交换到 <span
+class="math inline">\(i\)</span> 的位置肯定更劣。</li>
+</ul>
+<p>用两个 ST 表分别维护奇数下标和偶数下标的 “元素+下标” 二元组。对于每个
+<span class="math inline">\(i\)</span>，我们先找到它未来能匹配到最优
+<span class="math inline">\(j\)</span>
+的二元组，这样上面两个条件都是好判断的。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="icpc-香港">ICPC 香港</h2>
+<p>Wait for ucup end.</p>
+<h2 id="ccpc-重庆">CCPC 重庆</h2>
+<p>Wait for ucup end.</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Competitive-Programming/" class="category-chain-item">Competitive Programming</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Competitive-Programming/XCPC/" class="category-chain-item">XCPC</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/XCPC/" class="print-no-link">#XCPC</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【题解】2025 赛季 XCPC 金牌题鉴赏</div>
+      <div>http://kisuraop.github.io/posts/1fbf08d.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/2fc406e4.html" title="【题解】龟速更新的加训日记">
+                        <span class="hidden-mobile">【题解】龟速更新的加训日记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://kisuraop.github.io" target="_blank" rel="nofollow noopener"><span>KisuraOP</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
