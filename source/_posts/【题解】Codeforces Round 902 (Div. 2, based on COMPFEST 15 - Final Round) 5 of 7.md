@@ -504,7 +504,8 @@ $1\le a_i\le n \le 2\times 10^5$。
 
 例如，有排列 `4 3 6 5 7 8 1 2` ，连边后如下图。
 
-![2](https://kisuraop.github.io/image/academic/2.png)
+<img src="https://kisuraop.github.io/image/academic/2.png" alt="2" style="zoom: 67%;" />
+
 下标集合 `1,2,5,6` 或 `1,3,5,8` 或 `3,4,7,8` 等均符合题意。
 
 为什么间隔染色正确？因为对于一条有向边，总是一个索引指向对应的值。
@@ -514,6 +515,7 @@ $1\le a_i\le n \le 2\times 10^5$。
 那么剩下的 $\frac{n}{2}$ 的 “值的点集” 就必然与 “索引点集” 相同。
 
 好，但现在 $a$ 并不是排列，但这也说明有一些数不会在 $a$ 中出现：
+
 * 若点 $i$ 被选入索引点集，则存在一个没被选的点 $j$ 满足 $a_j=i$。
 
 * 若对点 $i$ 有 $\exists\mkern-10mu/ \text{ }j$ 使得 $a_j=i$，那这个点一定属于值的点集。

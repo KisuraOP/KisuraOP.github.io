@@ -49,6 +49,7 @@ tensor([ 0,  1,  2,  3,  4,  5,  6,  7,  8,  9, 10, 11])
 `out` ：输出张量。
 
 `layout` ：布局方式，一般有以下两种：
+
 * `torch.strided` ：密集布局，张量元素按一定步幅排列在内存中，相邻元素间地址差距连续，但元素不一定连续存储。
 
 * `torch.sparse_coo` ：稀疏布局。只存储非零元素的索引和值，节省内存。访问 [Link](https://runebook.dev/zh/docs/pytorch/sparse#sparse-docs) 获取更多信息。
@@ -364,9 +365,11 @@ tensor([[False,  True, False, False],
 利用广播机制使得不同形状的张量执行按元素操作，`tensor` 会自动扩充维度。
 
 两个“可广播的” `tensor` 满足以下条件：
+
 * 每个 `tensor` 至少一个维度。
 
 * 从末尾遍历 `tensor` 所有维度时，出现以下情况：
+
   * 维度相等。
 
   * 维度不等 && 其中一个维度为 $1$。

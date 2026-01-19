@@ -461,6 +461,7 @@ PYTHON
 * 注意时间格式的 `timezone` 应该填 `Asia/Shanghai` 而不是 `UTC+8`。
 
 可以利用 Problemset document 选项上传题面，在 Polygon 导出 Chinese 题面 PDF 的方法：
+
 * 右边栏 Properties/File，找到 statements.ftl，Edit。
 
 * 开头粘贴 `\usepackage {CJK}`，`\begin{document}` 之后粘贴 `\begin{CJK}{UTF8}{gbsn}`，结尾 `\end{document}` 前粘贴 `\end {CJK}`。
