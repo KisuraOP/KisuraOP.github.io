@@ -313,7 +313,7 @@
 <div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>torch.arange(<span class="hljs-number">12</span>)</code></pre></div>
 <div class="code-wrapper"><pre><code class="hljs python">tensor([ <span class="hljs-number">0</span>,  <span class="hljs-number">1</span>,  <span class="hljs-number">2</span>,  <span class="hljs-number">3</span>,  <span class="hljs-number">4</span>,  <span class="hljs-number">5</span>,  <span class="hljs-number">6</span>,  <span class="hljs-number">7</span>,  <span class="hljs-number">8</span>,  <span class="hljs-number">9</span>, <span class="hljs-number">10</span>, <span class="hljs-number">11</span>])</code></pre></div>
 <div class="note note-info">
-            <p>参数列表：<code>torch.arange(start=0, end, step=1, \*, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False) → Tensor</code></p><p><code>start</code> <code>end</code> <code>step</code>：起始值，结束值和步长。</p><p><code>dtype</code> ：指定数据类型。</p><p><code>out</code> ：输出张量。</p><p><code>layout</code> ：布局方式，一般有以下两种： *<code>torch.strided</code>：密集布局，张量元素按一定步幅排列在内存中，相邻元素间地址差距连续，但元素不一定连续存储。</p><ul><li><code>torch.sparse_coo</code>：稀疏布局。只存储非零元素的索引和值，节省内存。访问 <atarget="_blank" rel="noopener" href="https://runebook.dev/zh/docs/pytorch/sparse#sparse-docs">Link</a>获取更多信息。</li></ul><p><code>device</code> ：设备。例如可选 <code>cpu</code> 或<code>cuda</code> 。</p><p><code>requires_grad</code> ：是否为张量启用梯度计算。</p>
+            <p>参数列表：<code>torch.arange(start=0, end, step=1, \*, out=None, dtype=None, layout=torch.strided, device=None, requires_grad=False) → Tensor</code></p><p><code>start</code> <code>end</code> <code>step</code>：起始值，结束值和步长。</p><p><code>dtype</code> ：指定数据类型。</p><p><code>out</code> ：输出张量。</p><p><code>layout</code> ：布局方式，一般有以下两种：</p><ul><li><p><code>torch.strided</code>：密集布局，张量元素按一定步幅排列在内存中，相邻元素间地址差距连续，但元素不一定连续存储。</p></li><li><p><code>torch.sparse_coo</code>：稀疏布局。只存储非零元素的索引和值，节省内存。访问 <atarget="_blank" rel="noopener" href="https://runebook.dev/zh/docs/pytorch/sparse#sparse-docs">Link</a>获取更多信息。</p></li></ul><p><code>device</code> ：设备。例如可选 <code>cpu</code> 或<code>cuda</code> 。</p><p><code>requires_grad</code> ：是否为张量启用梯度计算。</p>
           </div>
 <p>用 <code>torch.reshape()</code> 改变张量形状：</p>
 <div class="code-wrapper"><pre><code class="hljs python"><span class="hljs-meta">&gt;&gt;&gt; </span>x = torch.arange(<span class="hljs-number">12</span>).reshape((<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>))
@@ -422,10 +422,10 @@ class="math inline">\(e^x\)</span></p>
         [<span class="hljs-literal">False</span>, <span class="hljs-literal">False</span>, <span class="hljs-literal">False</span>, <span class="hljs-literal">False</span>]])</code></pre></div>
 <p>利用广播机制使得不同形状的张量执行按元素操作，<code>tensor</code>
 会自动扩充维度。</p>
-<p>两个“可广播的” <code>tensor</code> 满足以下条件： * 每个
-<code>tensor</code> 至少一个维度。</p>
+<p>两个“可广播的” <code>tensor</code> 满足以下条件：</p>
 <ul>
-<li>从末尾遍历 <code>tensor</code> 所有维度时，出现以下情况：
+<li><p>每个 <code>tensor</code> 至少一个维度。</p></li>
+<li><p>从末尾遍历 <code>tensor</code> 所有维度时，出现以下情况：</p>
 <ul>
 <li><p>维度相等。</p></li>
 <li><p>维度不等 &amp;&amp; 其中一个维度为 <span

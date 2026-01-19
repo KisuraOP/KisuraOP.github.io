@@ -351,7 +351,7 @@
 <h2 id="b.-字符串的展开">B. 字符串的展开</h2>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1098">Problem</a></p>
 <div class="note note-success">
-            <p>按照题意模拟即可。</p><p>注意一些特判： * 开头字符也可能为 ’ <spanclass="math inline">\(-\)</span> ’。</p><ul><li>可能有连续的 ‘ <span class="math inline">\(-\)</span> ’。</li></ul>
+            <p>按照题意模拟即可。</p><p>注意一些特判：</p><ul><li><p>开头字符也可能为 ’ <span class="math inline">\(-\)</span>’。</p></li><li><p>可能有连续的 ‘ <span class="math inline">\(-\)</span>’。</p></li></ul>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -434,7 +434,7 @@ stack&lt;<span class="hljs-type">char</span>&gt; q;
 <h2 id="c.-矩阵取数游戏">C. 矩阵取数游戏</h2>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1005">Problem</a></p>
 <div class="note note-info">
-            <p>题意：在 <span class="math inline">\(n\times m\)</span>的非负矩阵中取数，需要满足以下条件： * 每次从每一行取走一个元素，共<span class="math inline">\(n\)</span> 个。经过 <spanclass="math inline">\(m\)</span> 次后取完矩阵内所有元素。</p><ul><li><p>每次只能在一行的行首或行尾取数。</p></li><li><p>每行取数的得分 = 被取走的元素 <span class="math inline">\(\times2^i\)</span>，其中 <span class="math inline">\(i\)</span> 表示第 <spanclass="math inline">\(i\)</span>次取数。最后的总得分为各行得分之和。</p></li></ul><p>求最大总得分。</p><p><span class="math inline">\(1\le n,m\le 80\)</span>，<spanclass="math inline">\(0\le a_{ij}\le1000\)</span>。</p>
+            <p>题意：在 <span class="math inline">\(n\times m\)</span>的非负矩阵中取数，需要满足以下条件：</p><ul><li><p>每次从每一行取走一个元素，共 <spanclass="math inline">\(n\)</span> 个。经过 <spanclass="math inline">\(m\)</span> 次后取完矩阵内所有元素。</p></li><li><p>每次只能在一行的行首或行尾取数。</p></li><li><p>每行取数的得分 = 被取走的元素 <span class="math inline">\(\times2^i\)</span>，其中 <span class="math inline">\(i\)</span> 表示第 <spanclass="math inline">\(i\)</span>次取数。最后的总得分为各行得分之和。</p></li></ul><p>求最大总得分。</p><p><span class="math inline">\(1\le n,m\le 80\)</span>，<spanclass="math inline">\(0\le a_{ij}\le1000\)</span>。</p>
           </div>
 <div class="note note-success">
             <p>不妨先观察样例：</p><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-number">2</span> <span class="hljs-number">3</span>

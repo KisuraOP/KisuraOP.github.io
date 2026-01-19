@@ -338,11 +338,11 @@ class="math inline">\(y\)</span> 的过程，边 <span
 class="math inline">\((x,y)\)</span>
 两侧子树较小的那一侧在变大，能容纳更多颜色，一定不劣。</p>
 <p>至此，以重心为根，所有颜色都被分到了不同子树，两个颜色相同的点之间的简单路径长度可以改写为两个点到重心的距离之和。因此，总答案可以改写为所有点到重心的距离和。</p>
-<p>接着，考虑删掉哪个点。我们拥有以下两个观察： *
-删叶子比删其它点优。因为删非叶子会让其子树内的点的深度都 <span
-class="math inline">\(-1\)</span>，不划算。</p>
+<p>接着，考虑删掉哪个点。我们拥有以下两个观察：</p>
 <ul>
-<li>其次，在所有叶子中，删深度最小的。这是上一段的直接推论。</li>
+<li><p>删叶子比删其它点优。因为删非叶子会让其子树内的点的深度都 <span
+class="math inline">\(-1\)</span>，不划算。</p></li>
+<li><p>其次，在所有叶子中，删深度最小的。这是上一段的直接推论。</p></li>
 </ul>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="cf1450c1c2.-errich-tac-toe"><a
@@ -358,12 +358,12 @@ class="math inline">\(\lfloor\frac{k}{3}\rfloor\)</span>，可以有意识的将
 class="math inline">\(k\)</span>。这样根据抽屉原理，一定有一类操作的数量
 <span class="math inline">\(\le \lfloor\frac{k}{3}\rfloor\)</span>。</p>
 <p>对于 C1，令 <span class="math inline">\(t_{i,j}=(i+j)\bmod
-3\)</span>，那么网格被划分成了三类。定义三种操作如下： * <span
-class="math inline">\(\forall \ t_{i,j}=0\)</span> 的 <span
+3\)</span>，那么网格被划分成了三类。定义三种操作如下：</p>
+<ul>
+<li><p><span class="math inline">\(\forall \ t_{i,j}=0\)</span> 的 <span
 class="math inline">\((i,j)\)</span>，若 <span
 class="math inline">\(s_{i,j}= X\)</span>，改为 <span
-class="math inline">\(O\)</span>。</p>
-<ul>
+class="math inline">\(O\)</span>。</p></li>
 <li><p><span class="math inline">\(\forall \ t_{i,j}=1\)</span> 的 <span
 class="math inline">\((i,j)\)</span>，若 <span
 class="math inline">\(s_{i,j}= X\)</span>，改为 <span
@@ -379,14 +379,15 @@ class="math inline">\(O\)</span>。</p></li>
 class="math inline">\(k\)</span>，根据抽屉原理，一定有一种操作满足操作数
 <span class="math inline">\(\le \lfloor\frac{k}{3}\rfloor\)</span>。</p>
 <p>对于 C2，同样令 <span class="math inline">\(t_{i,j}=(i+j)\bmod
-3\)</span>，但三种操作变化如下： * <span class="math inline">\(\forall \
-t_{i,j}=0\)</span> 的 <span class="math inline">\((i,j)\)</span>，若
-<span class="math inline">\(s_{i,j}= X\)</span>，改为 <span
+3\)</span>，但三种操作变化如下：</p>
+<ul>
+<li><p><span class="math inline">\(\forall \ t_{i,j}=0\)</span> 的 <span
+class="math inline">\((i,j)\)</span>，若 <span
+class="math inline">\(s_{i,j}= X\)</span>，改为 <span
 class="math inline">\(O\)</span>；<span class="math inline">\(\forall \
 t_{i,j}=1\)</span> 的 <span class="math inline">\((i,j)\)</span>，若
 <span class="math inline">\(s_{i,j}= O\)</span>，改为 <span
-class="math inline">\(X\)</span>。</p>
-<ul>
+class="math inline">\(X\)</span>。</p></li>
 <li><p><span class="math inline">\(\forall \ t_{i,j}=1\)</span> 的 <span
 class="math inline">\((i,j)\)</span>，若 <span
 class="math inline">\(s_{i,j}= X\)</span>，改为 <span
@@ -437,10 +438,10 @@ class="math inline">\((u,v)\)</span>，不妨令 <span
 class="math inline">\(a_v=a_u+1\)</span>，则同样可以转化为：<span
 class="math inline">\(a_u-a_v\le -1\)</span> 且 <span
 class="math inline">\(a_v-a_u\le 1\)</span>。</p>
-<p>现在可以开始跑差分约束了，但还面临两个问题： *
-Q1：如何保证跑出来的可行解极差最大？</p>
+<p>现在可以开始跑差分约束了，但还面临两个问题：</p>
 <ul>
-<li>Q2：选出哪一个点作为起点（零势点）？</li>
+<li><p>Q1：如何保证跑出来的可行解极差最大？</p></li>
+<li><p>Q2：选出哪一个点作为起点（零势点）？</p></li>
 </ul>
 <p>A1：差分约束跑出来的可行解就是每个变量在其约束条件下的最大值。你也可以想象选定零势点后，最大值不可能超过从起点出发到某一点的最短路。</p>
 <p>A2：我们选取每一个点都作为零势点跑 spfa，并钦定 <span
@@ -464,10 +465,11 @@ class="math inline">\(k\)</span>
 <p>首先，你得会怎么用并查集判断二分图，不懂的可以做一下 <a
 target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1525">P1525</a> 以及 <a
 target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P5787">P5787</a>。</p>
-<p>这里总结一下，分如下几步： * 初始化一个大小为 <span
-class="math inline">\(2n\)</span> 的并查集。</p>
+<p>这里总结一下，分如下几步：</p>
 <ul>
-<li>遍历每条边 <span class="math inline">\((x,y)\)</span>：
+<li><p>初始化一个大小为 <span class="math inline">\(2n\)</span>
+的并查集。</p></li>
+<li><p>遍历每条边 <span class="math inline">\((x,y)\)</span>：</p>
 <ul>
 <li><p>若 <span
 class="math inline">\(\text{dsu.same}(x,y)\)</span>，则不是二分图。</p></li>
@@ -478,7 +480,7 @@ class="math inline">\(\text{dsu.merge}(y,x+n)\)</span>。</p></li>
 <span
 class="math inline">\(\text{dsu.same}(y,y+n)\)</span>，则不是二分图。</p></li>
 </ul></li>
-<li>否则是二分图。</li>
+<li><p>否则是二分图。</p></li>
 </ul>
 <p>回到该题，我们可以把图中的所有边分为两类，第一类是连接相同颜色的边，第二类是连接不同颜色的边。</p>
 <p>我们先把第一类边都连起来，对所有 <span
@@ -523,12 +525,13 @@ class="math inline">\(i\)</span>，试图确定左右端点，没用上的位置
 <p>现在，对于一个 <span class="math inline">\(i\)</span>，我们从 <span
 class="math inline">\(S\)</span> 中取出最小的数作为 <span
 class="math inline">\(l\)</span>，最大的数作为 <span
-class="math inline">\(r\)</span>。有两种选择： * <span
-class="math inline">\([l,r]\)</span> 作为一个新的线段。</p>
+class="math inline">\(r\)</span>。有两种选择：</p>
 <ul>
-<li><span class="math inline">\(l\)</span> 替代已有线段中最大的 <span
+<li><p><span class="math inline">\([l,r]\)</span>
+作为一个新的线段。</p></li>
+<li><p><span class="math inline">\(l\)</span> 替代已有线段中最大的 <span
 class="math inline">\(l\)</span>，<span class="math inline">\(r\)</span>
-替代已有线段中最小的 <span class="math inline">\(r\)</span>。</li>
+替代已有线段中最小的 <span class="math inline">\(r\)</span>。</p></li>
 </ul>
 <p>二选一怎么选？注意到已有线段中最大的 <span
 class="math inline">\(l\)</span> 一定小于已有线段中最小的 <span
@@ -702,9 +705,9 @@ class="math inline">\(O(n\log n)\)</span>。</p>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/977db6c9.html" title="【题解】2025 四川省赛">
+                      <a href="/posts/c80723a0.html" title="【题解】2025 蓝桥杯国赛 CA">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">【题解】2025 四川省赛</span>
+                        <span class="hidden-mobile">【题解】2025 蓝桥杯国赛 CA</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

@@ -340,12 +340,12 @@ class="math inline">\(O(nB+qB)\)</span> 的。</p>
 class="math inline">\(\{a\}\)</span> 中的下标记作 <span
 class="math inline">\(i\)</span>，在 <span
 class="math inline">\(\{b\}\)</span> 中的下标记作 <span
-class="math inline">\(j\)</span>。可以看成如下二维数点问题： *
-二维平面上有若干个点，每个点的坐标是 <span
-class="math inline">\((i,j)\)</span>，有一个权值 <span
-class="math inline">\(f(d)\)</span>。</p>
+class="math inline">\(j\)</span>。可以看成如下二维数点问题：</p>
 <ul>
-<li>有若干询问，每个询问形如：在一个矩形区域内所有点的权值和。</li>
+<li><p>二维平面上有若干个点，每个点的坐标是 <span
+class="math inline">\((i,j)\)</span>，有一个权值 <span
+class="math inline">\(f(d)\)</span>。</p></li>
+<li><p>有若干询问，每个询问形如：在一个矩形区域内所有点的权值和。</p></li>
 </ul>
 <p>利用分块进行二维数点，这部分是 <span
 class="math inline">\(O(\dfrac{n^2}{B^2}+q\sqrt{n})\)</span> 的。</p>
@@ -498,9 +498,10 @@ class="math inline">\(k\)</span> 且满足 <span
 class="math inline">\((*)\)</span> 的路径数量。</p>
 <p>于是答案即为 <span class="math inline">\(X_k[1][n]\)</span>。</p>
 <p>同样定义以下几个 <span class="math inline">\(N\times N\)</span>
-的矩阵： * <span class="math inline">\(A\)</span>：图 <span
-class="math inline">\(G\)</span> 的邻接矩阵。</p>
+的矩阵：</p>
 <ul>
+<li><p><span class="math inline">\(A\)</span>：图 <span
+class="math inline">\(G\)</span> 的邻接矩阵。</p></li>
 <li><p><span class="math inline">\(D\)</span>：图 <span
 class="math inline">\(G\)</span>
 的度数矩阵。（对角矩阵，对角线上的元素为对应顶点的度数）</p></li>
@@ -563,11 +564,12 @@ B}x,\sum\limits_{x\in C}x\right) &lt; \dfrac{S}{2}\)</span>。</p>
 <p>在以下叙述中，默认 <span class="math inline">\(x_1\le x_2 \le
 \ldots\le x_n\)</span> 且 <span class="math inline">\(n_a\le n_b\le
 n_c\)</span>。</p>
-<p>下面是一些必要条件 * 最大的元素不能太大：<span
-class="math inline">\(x_n+\sum\limits_{i=1}^{n_a-1}x_i&lt;\dfrac{S}{2}\)</span>。</p>
+<p>下面是一些必要条件</p>
 <ul>
-<li>最大的组要装得下最小的几个元素：<span
-class="math inline">\(\sum\limits_{i=1}^{n_c}x_i&lt;\dfrac{S}{2}\)</span>。</li>
+<li><p>最大的元素不能太大：<span
+class="math inline">\(x_n+\sum\limits_{i=1}^{n_a-1}x_i&lt;\dfrac{S}{2}\)</span>。</p></li>
+<li><p>最大的组要装得下最小的几个元素：<span
+class="math inline">\(\sum\limits_{i=1}^{n_c}x_i&lt;\dfrac{S}{2}\)</span>。</p></li>
 </ul>
 <p>可以证明这个条件是充分的。但我们选择证明一个比上述条件更强的引理。</p>
 <p><em>Lemma.</em> 如果我们按 <span
@@ -585,13 +587,15 @@ class="math inline">\(S_b\)</span>，<span
 class="math inline">\(S_c\)</span>
 表示三个集合已经装进的数的和，则剩下的这 <span
 class="math inline">\(n&#39;\)</span>
-个数能合法塞进三个集合的<strong>充要</strong> 条件是： * <span
-class="math inline">\(\exists g\in \{a,b,c\}\)</span>，<span
-class="math inline">\(S_g+x_{n&#39;}+\sum\limits_{i=1}^{n_g&#39;-1}x_i&lt;\dfrac{S}{2}\)</span>。</p>
+个数能合法塞进三个集合的<strong>充要</strong>条件是：</p>
 <ul>
-<li><span class="math inline">\(\forall g\in \{a,b,c\}\)</span>，<span
+<li><p><span class="math inline">\(\exists g\in
+\{a,b,c\}\)</span>，<span
+class="math inline">\(S_g+x_{n&#39;}+\sum\limits_{i=1}^{n_g&#39;-1}x_i&lt;\dfrac{S}{2}\)</span>。</p></li>
+<li><p><span class="math inline">\(\forall g\in
+\{a,b,c\}\)</span>，<span
 class="math inline">\(S_g+\sum\limits_{i=1}^{n_g&#39;} &lt;
-\dfrac{S}{2}\)</span>。</li>
+\dfrac{S}{2}\)</span>。</p></li>
 </ul>
 <p><em>Prove.</em> 必要性显然，这里证充分性。我们不妨令集合 <span
 class="math inline">\(A\)</span> 满足第一个条件，那么 <span
@@ -885,11 +889,12 @@ target="_blank" rel="noopener" href="https://qoj.ac/contest/1596/problem/8542">Q
 的段进行操作，摊到每一个元素上的代价是 <span
 class="math inline">\(1\)</span>。</p>
 <p>那么，题目等同于让我们在 <span class="math inline">\(\{y\}\)</span>
-上进行若干单点 <span class="math inline">\(+1\)</span> 操作，使得 *
-<span class="math inline">\(\{y\}\)</span> 是 “合法序列”。</p>
+上进行若干单点 <span class="math inline">\(+1\)</span> 操作，使得</p>
 <ul>
-<li><span class="math inline">\(\sum\limits_{i=1}^{n} y_i\)</span>
-最小。</li>
+<li><p><span class="math inline">\(\{y\}\)</span> 是
+“合法序列”。</p></li>
+<li><p><span class="math inline">\(\sum\limits_{i=1}^{n} y_i\)</span>
+最小。</p></li>
 </ul>
 <p>在此基础上，答案就是 <span
 class="math inline">\(\sum\limits_{i=1}^{n}y_i\)</span>。</p>
@@ -905,18 +910,23 @@ class="math inline">\(x_i&lt;x_{i+1}\)</span>，那么至少要对 <span
 class="math inline">\([i+1,n]\)</span> 进行 <span
 class="math inline">\(x_{i+1}-x_i\)</span> 次后缀减。</p>
 <p>一步一步来，首先，对 <span class="math inline">\(\{x\}\)</span>
-进行如下操作： * 从头扫一遍，如果 <span class="math inline">\(\exists
+进行如下操作：</p>
+<ul>
+<li>从头扫一遍，如果 <span class="math inline">\(\exists
 i\)</span>，<span class="math inline">\(x_{i}&gt;x_{i+1}\)</span>，就对
 <span class="math inline">\([1,i]\)</span> 进行 <span
 class="math inline">\(x_i-x_{i+1}\)</span> 次前缀减。<span
-class="math inline">\((\alpha)\)</span>。</p>
+class="math inline">\((\alpha)\)</span>。</li>
+</ul>
 <p>操作后，<span class="math inline">\(\{x\}\)</span>
-会变成一个非递减序列。继续 * 从头扫一遍，如果 <span
-class="math inline">\(\exists i\)</span>，<span
-class="math inline">\(x_i&lt;x_{i+1}\)</span>，就对 <span
-class="math inline">\([i+1,n]\)</span> 进行 <span
+会变成一个非递减序列。继续</p>
+<ul>
+<li>从头扫一遍，如果 <span class="math inline">\(\exists
+i\)</span>，<span class="math inline">\(x_i&lt;x_{i+1}\)</span>，就对
+<span class="math inline">\([i+1,n]\)</span> 进行 <span
 class="math inline">\(x_{i+1}-x_i\)</span> 次后缀减。<span
-class="math inline">\((\beta)\)</span>。</p>
+class="math inline">\((\beta)\)</span>。</li>
+</ul>
 <p>此时，<span class="math inline">\(\{x\}\)</span>
 所有元素将变得相同。</p>
 <p>显然，若此时 <span class="math inline">\(\{x\}\)</span>
@@ -978,13 +988,13 @@ class="math inline">\(-2\)</span>，而我们耗费了 “坑的宽度”
 target="_blank" rel="noopener" href="https://qoj.ac/contest/1305/problem/6845">QOJ6845. Tax</a></h2>
 <p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1138626">Code</a></p>
 <p><em>conclusion.</em> 爆搜是可行的，前提是忽略不在最短路上的边。</p>
-<p>做法： * 从起点跑一遍 bfs，记录到第 <span
-class="math inline">\(i\)</span> 个点的最短路径 <span
-class="math inline">\(d_i\)</span>。</p>
+<p>做法：</p>
 <ul>
-<li>从起点开始 dfs，遍历到一条边时如果 <span
+<li><p>从起点跑一遍 bfs，记录到第 <span class="math inline">\(i\)</span>
+个点的最短路径 <span class="math inline">\(d_i\)</span>。</p></li>
+<li><p>从起点开始 dfs，遍历到一条边时如果 <span
 class="math inline">\(d_y\neq d_x+1\)</span>
-就跳过，直到遍历完所有可能的路径，代价取最小值。</li>
+就跳过，直到遍历完所有可能的路径，代价取最小值。</p></li>
 </ul>
 <p><em>prove.</em> 按 <span class="math inline">\(d_i\)</span>
 构建分层图。从上至下第 <span class="math inline">\(j\)</span> 层包含所有

@@ -762,7 +762,7 @@ C。</p>
 <hr />
 <h3 id="c.-种树">C. 种树</h3>
 <div class="note note-success">
-            <p>将已经种了树的点称为黑点，否则白点。</p><p>两种<strong>错误</strong>的贪心举例： * 两个黑点间夹 <spanclass="math inline">\(k\)</span> 个白点，<spanclass="math inline">\(k\)</span> 为偶数时用 <spanclass="math inline">\(\dfrac{k}{2}\)</span> 次操作填满。</p><ul><li>以两个或以上相连的黑点为界，每个连通块贡献为 <spanclass="math inline">\(\left\lceil\dfrac{白点个数}{2}\right\rceil\)</span>。</li></ul><p>反例对应如下。</p><p><a href="https://kisuraop.github.io/image/academic/CCPC1.png"><imgsrc="https://kisuraop.github.io/image/academic/CCPC1.png" srcset="/img/loading.gif" lazyload /></a></p><p><strong>正确</strong>的贪心：任选一黑点为根dfs，自下而上贪心，每次填两个。对于一个黑点：</p><ul><li><p>若当前子树中白点数为偶数，填满。</p></li><li><p>否则考虑是否能把多余的一个涂色操作摊给当前黑点的父亲。</p></li></ul><p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+            <p>将已经种了树的点称为黑点，否则白点。</p><p>两种<strong>错误</strong>的贪心举例：</p><ul><li><p>两个黑点间夹 <span class="math inline">\(k\)</span> 个白点，<spanclass="math inline">\(k\)</span> 为偶数时用 <spanclass="math inline">\(\dfrac{k}{2}\)</span> 次操作填满。</p></li><li><p>以两个或以上相连的黑点为界，每个连通块贡献为 <spanclass="math inline">\(\left\lceil\dfrac{白点个数}{2}\right\rceil\)</span>。</p></li></ul><p>反例对应如下。</p><p><img src="https://kisuraop.github.io/image/academic/CCPC1.png" srcset="/img/loading.gif" lazyload style="zoom:33%;" /></p><p><strong>正确</strong>的贪心：任选一黑点为根dfs，自下而上贪心，每次填两个。对于一个黑点：</p><ul><li><p>若当前子树中白点数为偶数，填满。</p></li><li><p>否则考虑是否能把多余的一个涂色操作摊给当前黑点的父亲。</p></li></ul><p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -845,7 +845,7 @@ C。</p>
 <hr />
 <h3 id="g.-疯狂星期六">G. 疯狂星期六</h3>
 <div class="note note-success">
-            <p>yyq 需要尽可能花多的钱，而他花的最多的钱数是可以处理出来的，即 <spanclass="math inline">\(X=\min(\sum \text{能摊到 yyq上的菜钱}+T_1,a_1)\)</span>。</p><p>令 <span class="math inline">\(mx_i\)</span> 为第 <spanclass="math inline">\(i\)</span> 个人能花在菜上的最多钱数，首先 <spanclass="math inline">\(mx_1=X-T_1\)</span>，那么 <spanclass="math inline">\(mx_i=\min(a_i,mx_1-1)\)</span>。</p><p>接着只需 check 是否存在一种满足上述条件的方案。</p><p>转化为网络流问题： * 源点向每个菜连容量为菜钱的边。</p><ul><li><p>每个菜向付它钱的两个人连容量为菜钱的边。</p></li><li><p>每个人向汇点连容量为 <span class="math inline">\(mx_i\)</span>的边。</p></li></ul><p>check 成功当且仅当最大流 <span class="math inline">\(=\)</span>总菜钱。</p><p>时间复杂度 <span class="math inline">\(O(n\sqrt{m})\)</span>。</p>
+            <p>yyq 需要尽可能花多的钱，而他花的最多的钱数是可以处理出来的，即 <spanclass="math inline">\(X=\min(\sum \text{能摊到 yyq上的菜钱}+T_1,a_1)\)</span>。</p><p>令 <span class="math inline">\(mx_i\)</span> 为第 <spanclass="math inline">\(i\)</span> 个人能花在菜上的最多钱数，首先 <spanclass="math inline">\(mx_1=X-T_1\)</span>，那么 <spanclass="math inline">\(mx_i=\min(a_i,mx_1-1)\)</span>。</p><p>接着只需 check 是否存在一种满足上述条件的方案。</p><p>转化为网络流问题：</p><ul><li><p>源点向每个菜连容量为菜钱的边。</p></li><li><p>每个菜向付它钱的两个人连容量为菜钱的边。</p></li><li><p>每个人向汇点连容量为 <span class="math inline">\(mx_i\)</span>的边。</p></li></ul><p>check 成功当且仅当最大流 <span class="math inline">\(=\)</span>总菜钱。</p><p>时间复杂度 <span class="math inline">\(O(n\sqrt{m})\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>

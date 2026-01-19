@@ -424,10 +424,11 @@ target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc399/submissi
 class="math inline">\(26\)</span> 个点都有入度，也为
 <code>-1</code>。</p>
 <p>否则答案的下界是图上的边数（不含自环）。</p>
-<p>对于一个环，分两种情况： * 环上存在入度为 <span
-class="math inline">\(2\)</span> 的点。说明存在一条边 <span
-class="math inline">\(x\to y\)</span> 满足 <span
-class="math inline">\(y\)</span> 在环上而 <span
+<p>对于一个环，分两种情况：</p>
+<ul>
+<li><p>环上存在入度为 <span class="math inline">\(2\)</span>
+的点。说明存在一条边 <span class="math inline">\(x\to y\)</span> 满足
+<span class="math inline">\(y\)</span> 在环上而 <span
 class="math inline">\(x\)</span> 不在。设 <span
 class="math inline">\(y\)</span> 的另一条入边是 <span
 class="math inline">\(z\to y\)</span>，此时可以花 <span
@@ -435,13 +436,12 @@ class="math inline">\(1\)</span> 的代价将 <span
 class="math inline">\(z\)</span> 改为 <span
 class="math inline">\(x\)</span>，破环成链，且不花费额外次数（即用 <span
 class="math inline">\(1\)</span> 次操作断了一条边，与预设
-“答案是图上的边数” 相符）。</p>
-<ul>
-<li>环上所有点入度为 <span
+“答案是图上的边数” 相符）。</p></li>
+<li><p>环上所有点入度为 <span
 class="math inline">\(1\)</span>。此时只能将环上任意一点 <span
 class="math inline">\(x\)</span>
 替换为图中的一个孤点，最后再改回来，花费了 <span
-class="math inline">\(1\)</span> 点额外次数。</li>
+class="math inline">\(1\)</span> 点额外次数。</p></li>
 </ul>
 <p>于是答案是图上的边数 <span class="math inline">\(+\)</span>
 第二类环的数量。</p>
@@ -504,11 +504,13 @@ class="math inline">\(k\)</span> 的倍数，但这是必要不充分条件。</
 class="math inline">\(k\)</span> 的倍数。</p>
 <p>而单点修改时，遍历这 <span class="math inline">\(B\)</span>
 个子集，若当前子集包含修改前/修改后的数，就相应在树状数组上修改。</p>
-<p>为了保证正确性，每个子集按照以下方式随机： * <span
-class="math inline">\(\forall i\in [1,W]\)</span>，<span
+<p>为了保证正确性，每个子集按照以下方式随机：</p>
+<ul>
+<li><span class="math inline">\(\forall i\in [1,W]\)</span>，<span
 class="math inline">\(i\)</span> 有 <span
 class="math inline">\(\dfrac{1}{2}\)</span> 的概率选进子集。其中 <span
-class="math inline">\(W\)</span> 为离散化后的值域。</p>
+class="math inline">\(W\)</span> 为离散化后的值域。</li>
+</ul>
 <p>错误率分析：最坏情况下，判错当且仅当存在一对数 <span
 class="math inline">\(x,y\)</span>，满足 <span
 class="math inline">\(k\mid cnt_x+cnt_y\)</span> 且 <span
@@ -597,15 +599,15 @@ class="math inline">\(1\)</span>。</p>
 <span class="math inline">\(A\)</span>；操作 <span
 class="math inline">\(2,4\)</span> 归为一类，称为 <span
 class="math inline">\(B\)</span>。</p>
-<p>之所以这么分，是因为观察到如下性质： * <span
-class="math inline">\(A\)</span> 类操作能将逆序对数 <span
+<p>之所以这么分，是因为观察到如下性质：</p>
+<ul>
+<li><p><span class="math inline">\(A\)</span> 类操作能将逆序对数 <span
 class="math inline">\(-1\)</span>，而 <span
 class="math inline">\(B\)</span> 类操作能将逆序对数 <span
-class="math inline">\(-2\)</span>。</p>
-<ul>
-<li><span class="math inline">\(A\)</span> 类操作能改变一个 <span
+class="math inline">\(-2\)</span>。</p></li>
+<li><p><span class="math inline">\(A\)</span> 类操作能改变一个 <span
 class="math inline">\(0\)</span> 的下标奇偶性，而 <span
-class="math inline">\(B\)</span> 类操作不能。</li>
+class="math inline">\(B\)</span> 类操作不能。</p></li>
 </ul>
 <p>令 <span class="math inline">\(c_0,c_1\)</span> 分别表示序列中 <span
 class="math inline">\(0/1\)</span> 的个数，<span
@@ -773,9 +775,9 @@ class="math inline">\(+1\)</span>，这个操作可以用树上差分简单实�
 <p>最后，若有一个点同时有非零的 <span class="math inline">\(up\)</span>
 和 <span class="math inline">\(down\)</span> 标记，就是
 <code>No</code>。</p>
-<p>此题有若干细节： * 图不连通，缩点后是一个森林，处理 LCA
-时要小心。</p>
+<p>此题有若干细节：</p>
 <ul>
+<li><p>图不连通，缩点后是一个森林，处理 LCA 时要小心。</p></li>
 <li><p>若询问中的两个点不在一个连通分量内，直接就是
 <code>No</code>。</p></li>
 <li><p>有重边。若两个点之间有重边，则它们属于同一个边双。</p></li>
@@ -862,14 +864,14 @@ class="math inline">\(k+1\)</span> 个点，必然有两点满足确定的直线
 个点不存在两点组成目标直线中的一条，则这 <span
 class="math inline">\(k+1\)</span> 个点需要 <span
 class="math inline">\(k+1\)</span> 条直线才能消除。</p>
-<p>于是我们的做法是： * 对于当前 <span
-class="math inline">\(k\)</span>，从前 <span
-class="math inline">\(k+1\)</span>
-个点里选两点构成一条直线，遍历所有剩下的点，消除在这条直线上的点。</p>
+<p>于是我们的做法是：</p>
 <ul>
-<li>将问题递归到 <span
+<li><p>对于当前 <span class="math inline">\(k\)</span>，从前 <span
+class="math inline">\(k+1\)</span>
+个点里选两点构成一条直线，遍历所有剩下的点，消除在这条直线上的点。</p></li>
+<li><p>将问题递归到 <span
 class="math inline">\(k-1\)</span>。边界条件是点数 <span
-class="math inline">\(\le 2k\)</span> 返回 <code>true</code>。</li>
+class="math inline">\(\le 2k\)</span> 返回 <code>true</code>。</p></li>
 </ul>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <h2 id="cf1437e.-make-it-increasing"><a

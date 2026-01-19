@@ -311,8 +311,9 @@
 <p>其中 A 题是经出题人提醒做出来的，D 偷看了 Tag，H 和 L
 则完全不会，等有出题人题解了我再补上来。代码都写的很唐，也不一定是最优解，不要笑话我QAQ。</p>
 <hr />
-<p>主观难度分布（H、L 未做出）： * 签到：F，G，J，N。</p>
+<p>主观难度分布（H、L 未做出）：</p>
 <ul>
+<li><p>签到：F，G，J，N。</p></li>
 <li><p>Easy：B，C，I，O，P。</p></li>
 <li><p>Easy_Mid：K，M。</p></li>
 <li><p>Mid：D，E，Q。</p></li>
@@ -476,12 +477,13 @@ class="math inline">\(K_6\)</span>。在此基础上，容易说明这样的构�
 <p>接着，我们要将这些边划分成两个集合，每个集合不含三元环，且其中一个集合能塞得下给定的长度为
 <span class="math inline">\(k\)</span> 的无环链。</p>
 <p>再度发扬人类智慧，给上述 <span class="math inline">\(5\)</span>
-个点集编号 <span class="math inline">\(0\sim 4\)</span>，进行如下构造：
-* “黑化边”：点集 <span class="math inline">\(i\)</span> 中的所有点向点集
-<span class="math inline">\((i+1)\bmod 5\)</span>
-中的所有点连出的边。</p>
+个点集编号 <span class="math inline">\(0\sim
+4\)</span>，进行如下构造：</p>
 <ul>
-<li>“白化边”：剩下的所有边。</li>
+<li><p>“黑化边”：点集 <span class="math inline">\(i\)</span>
+中的所有点向点集 <span class="math inline">\((i+1)\bmod 5\)</span>
+中的所有点连出的边。</p></li>
+<li><p>“白化边”：剩下的所有边。</p></li>
 </ul>
 <p>因为一个三元环肯定有一条边的两个端点不来自相邻的点集，故 “黑化边”
 不含三元环。</p>
