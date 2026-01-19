@@ -21,27 +21,28 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="01背包&#x2F;完全背包&#x2F;多重背包&#x2F;混合背包&#x2F;二维费用背包&#x2F;分组背包&#x2F;树形背包&#x2F;背包最优方案总数&#x2F;输出方案">
+    <meta name="description" content="再不训就要被优化了QAQ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【笔记】背包问题">
+<meta property="og:title" content="【题解】三月训练日记">
 <meta property="og:url" content="http://kisuraop.github.io/posts/5dc05f53.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="01背包&#x2F;完全背包&#x2F;多重背包&#x2F;混合背包&#x2F;二维费用背包&#x2F;分组背包&#x2F;树形背包&#x2F;背包最优方案总数&#x2F;输出方案">
+<meta property="og:description" content="再不训就要被优化了QAQ">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/63f0a0d6cd2e7e08e28be36cfabc3718.jpeg">
-<meta property="article:published_time" content="2021-11-14T19:00:00.000Z">
-<meta property="article:modified_time" content="2021-11-14T19:00:00.000Z">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/2f7892fb5023eb06e44f2853f3cb7b90.jpeg">
+<meta property="article:published_time" content="2025-02-22T19:21:04.000Z">
+<meta property="article:modified_time" content="2025-02-22T19:21:04.000Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="Note">
-<meta property="article:tag" content="OI">
+<meta property="article:tag" content="Atcoder">
+<meta property="article:tag" content="Codeforces">
+<meta property="article:tag" content="XCPC">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/63f0a0d6cd2e7e08e28be36cfabc3718.jpeg">
+<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/2f7892fb5023eb06e44f2853f3cb7b90.jpeg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>【笔记】背包问题 - Hexo</title>
+  <title>【题解】三月训练日记 - Hexo</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -212,7 +213,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle">【笔记】背包问题</span>
+            <span id="subtitle">【题解】三月训练日记</span>
           
         </div>
 
@@ -223,8 +224,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-11-15 03:00" pubdate>
-          2021年11月15日 凌晨
+        <time datetime="2025-02-23 03:21" pubdate>
+          2025年2月23日 凌晨
         </time>
       </span>
     
@@ -235,7 +236,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.4k 字
+          13k 字
         
       </span>
     
@@ -300,220 +301,1749 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">【笔记】背包问题</h1>
+            <h1 id="seo-header">【题解】三月训练日记</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="背包">1. <span class="math inline">\(01\)</span> 背包</h1>
-<div class="note note-info">
-            <p>Q：有 <span class="math inline">\(N\)</span> 件物品和一个容量为 <spanclass="math inline">\(V\)</span> 的背包。第 <spanclass="math inline">\(i\)</span> 件物品的体积是 <spanclass="math inline">\(v_i\)</span>，价值是 <spanclass="math inline">\(w_i\)</span>。求解将哪些物品装入背包可使价值总和最大。</p>
-          </div>
-<div class="note note-success">
-            <p>规定：<span class="math inline">\(f_{i,j}\)</span> 表示前 <spanclass="math inline">\(i\)</span> 件物品放入容量为 <spanclass="math inline">\(j\)</span> 的背包可以获得的最大价值，所以</p><p><span class="math display">\[\large{f_{i,j}=\max_{i\in [1,N],j\in[v_i,V]}(f_{i-1,j},f_{i-1,j-v_i}+w_i)}\]</span></p><p>在此基础上，还可以降维打击，考虑将 <spanclass="math inline">\(f\)</span> 第一维去掉，此时 <spanclass="math inline">\(f_j=\max(f_j,f_{j-v_i}+w_i)\)</span>，但此时我们需要将内层循环<span class="math inline">\(j\)</span> 逆序循环。</p><p>代码：</p><div class="code-wrapper"><pre><code class="hljs cpp">For i=<span class="hljs-number">1.</span>.N
-	For j=V..v[i]
-		f[j]=max&#123;f[j],f[j-v[i]]+w[i]&#125;;
-result: f[V]</code></pre></div>
-          </div>
-<div class="note note-warning">
-            <p><strong>为什么逆序 ？</strong></p><p>对比上面的递推式，<span class="math inline">\(f_j\)</span> 为第 <spanclass="math inline">\(i\)</span> 时刻的 <spanclass="math inline">\(f_j\)</span>，<spanclass="math inline">\(f_{j-v_i}\)</span> 为第 <spanclass="math inline">\(i-1\)</span> 时刻的 <spanclass="math inline">\(f_{j-v_i}\)</span>。</p><p>当外层循环执行到 <spanclass="math inline">\(i\)</span>，内层循环还没开始执行时，<spanclass="math inline">\(f_{j-v_i}\)</span> 为 <spanclass="math inline">\(i-1\)</span> 时刻的。</p><p>我们要保留这个 <span class="math inline">\(i-1\)</span> 时刻的 <spanclass="math inline">\(f_{j-v_i}\)</span>，就要 <spanclass="math inline">\(i-1\)</span> 时刻的 <spanclass="math inline">\(f_j\)</span> 在 <spanclass="math inline">\(f_{j-v_i}\)</span> 更新前率先更新为 <spanclass="math inline">\(i\)</span> 时刻的 <spanclass="math inline">\(f_j\)</span>，即在 <spanclass="math inline">\(j-v_i\)</span> 前更新 <spanclass="math inline">\(j\)</span>，所以逆序循环。</p>
-          </div>
-<h1 id="完全背包">2. 完全背包</h1>
-<div class="note note-info">
-            <p>Q：在 01 背包的基础上规定每个物品可用无限次，求最大价值。</p>
-          </div>
-<div class="note note-success">
-            <p>一个朴素的方法是用多一重循环 <span class="math inline">\(k\)</span>记录每个物品所用的数量，状态转移： <span class="math display">\[\large{f_{i,j}=\max_{k\times v_i\in [0,j]}(f_{i-1,j},f_{i-1,j-k\timesv_i}+k\times w_i)}\]</span></p><p>不过时间复杂度较大，于是就诞生了一个巧妙的方法：把完全背包转化为 01背包求解。</p><p>首先我们要知道，任何一个数都可以通过 2 的幂次方数表示，如 <spanclass="math inline">\(11=2^3+2^1+2^0\)</span>，并且每一个幂次方数都能够仅出现一次。</p><p>然后我们发现，一个体积为 <span class="math inline">\(V\)</span>的背包中最多能装下 <span class="math inline">\(\left \lfloor \dfrac{V}{v_i}\right \rfloor\)</span> 个体积为 <spanclass="math inline">\(v_i\)</span>的物品。每一种物品数量是有限的，这意味着我们可以把每一种物品拆分。</p><p>具体的说，可以把第 <span class="math inline">\(i\)</span>种物品拆成体积为 <span class="math inline">\(v_i\times2^k\)</span>，价值为 <span class="math inline">\(w_i\times 2^k\)</span>的若干件物品，其中 <span class="math inline">\(v_i\times 2^k\leq V,k\inZ\)</span>。</p><p>如此时间复杂度降为 <span class="math inline">\(O(N\times \sum log\dfrac {V}{v_i})\)</span>。</p><p>但我们还是不想扩大时间复杂度，所以仍然有一个 <spanclass="math inline">\(O(NV)\)</span> 的解决方法：将 01背包中的内层循环由逆序再改回正序。</p><p>代码：</p><div class="code-wrapper"><pre><code class="hljs cpp">For i=<span class="hljs-number">1.</span>.N
-	For j=v[i]..V
-		f[j]=<span class="hljs-built_in">max</span>(f[j],f[j-v[i]]+w[i]);
-result: f[V]</code></pre></div>
-          </div>
-<div class="note note-warning">
-            <p><strong>为什么正序可以满足题意 ？</strong></p><p>反过来想 01 背包为什么要逆序？因为 <spanclass="math inline">\(i\)</span> 时刻的 <spanclass="math inline">\(f_j\)</span> 需要 <spanclass="math inline">\(i-1\)</span> 时刻的 <spanclass="math inline">\(f_{j-v_i}\)</span> 更新，所以在第 <spanclass="math inline">\(i\)</span> 时刻时 <spanclass="math inline">\(f_j\)</span> 要率先被遍历到。</p><p>换句话说，这是为了保证递推唯一，即每件物品只选一次。</p><p>而完全背包恰好相反，或许确实需要那个可能选入第 <spanclass="math inline">\(i\)</span> 件物品的结果，即第 <spanclass="math inline">\(i\)</span> 时刻的 <spanclass="math inline">\(f_{j-v_i}\)</span>，因此采用顺序循环便是最简单的解决方式。</p>
-          </div>
-<h1 id="多重背包">3. 多重背包</h1>
-<div class="note note-info">
-            <p>Q：在 01 背包的基础上规定第 <span class="math inline">\(i\)</span>件物品最多有 <span class="math inline">\(s_i\)</span>件，求最大价值。</p>
-          </div>
-<div class="note note-success">
-            <p>很容易想到把 <span class="math inline">\(s_i\)</span>件物品全部拆分，转化为 01背包问题，但如果每种物品限定数量很多，时间复杂度就过大。</p><p>于是我们想到了上面完全背包用2的幂次方数拆分的二进制拆分法，但要稍加改动：</p><p>假设 <span class="math inline">\(s=13\)</span>，在 <spanclass="math inline">\(0\sim13\)</span> 中选一个数，例如 <spanclass="math inline">\(11\)</span>，我们需要拆分出 <spanclass="math inline">\(2^0,2^1,2^2,2^3\)</span>，然后选出 <spanclass="math inline">\(2^0,2^1,2^3\)</span> 来组成。</p><p>但程序可以组出 <spanclass="math inline">\(2^0+2^1+2^2+2^3=15\)</span> 这样大于 <spanclass="math inline">\(s=13\)</span> 的数，不符合限制。</p><p>所以正确的做法是：保证拆分出的 <span class="math inline">\(2\)</span>的幂次方数之和始终不大于 <spanclass="math inline">\(s\)</span>，余下部分通过相减来补齐。</p><p><span class="math inline">\(e.g.\text{ } 13\)</span> 可以拆分出 <spanclass="math inline">\(2^0,2^1,2^2\)</span> 和 <spanclass="math inline">\(13-2^0-2^1-2^2=6\)</span>，即 <spanclass="math inline">\(1,2,4,6\)</span>。</p><p>代码：（vector Q 存储拆分出物品的体积和价值）</p><div class="code-wrapper"><pre><code class="hljs cpp">For i=<span class="hljs-number">1.</span>.N
-&#123;
-	k=<span class="hljs-number">1</span>;
-	While k&lt;=s[i] <span class="hljs-keyword">do</span>
-	&#123;
-		s[i]-=k;
-		Q.<span class="hljs-built_in">pushback</span>(&#123;v[i]*k,w[i]*k&#125;);
-		k&lt;&lt;=<span class="hljs-number">1</span>; <span class="hljs-comment">//指数+1</span>
-	&#125;
-	<span class="hljs-built_in">If</span>(s&gt;<span class="hljs-number">0</span>) Q.<span class="hljs-built_in">pushback</span>(&#123;v[i]*s,w[i]*s&#125;);
-&#125;
-For <span class="hljs-keyword">auto</span> Q
-	For j=V..Q.v
-		f[j]=<span class="hljs-built_in">max</span>(f[j],f[j-Q.v]+Q.w);
-result: f[V]</code></pre></div>
-          </div>
-<div class="note note-danger">
-            <p><strong>单调队列优化 <span class="math inline">\(O(NV)\)</span></strong></p><p>试写出多重背包的朴素转移： <span class="math display">\[\large{f_{i,j}=\max(f_{i-1,j},f_{i-1,j-k\times v_i}+k\times w_i)}\]</span></p><p>其中 <span class="math inline">\(k\in[ 1,min(\left \lfloor \dfrac{V}{v_i} \right \rfloor,s_i) ]\)</span>，仿照 01 背包的想法，考虑 <spanclass="math inline">\(f_{i,j}\)</span> 对其它状态的影响：</p><p>我们发现如果往体积为 <span class="math inline">\(j-(k+1)\timesv_i\)</span> 的背包中填充体积为 <span class="math inline">\(v_i\)</span>的物品，体积变化为 <span class="math inline">\(j-k\timesv_i\)</span>。</p><p>归纳来看，<span class="math inline">\(f_{i,j}\)</span> 会影响 <spanclass="math inline">\(f_{i,j+k\times v_i}\)</span>（<spanclass="math inline">\(j+k\times v_i \leq V\)</span>。</p><p>那么，<span class="math inline">\(j+k\times v_i\)</span>能联想到什么？是等差数列，并且公差就是 <spanclass="math inline">\(v_i\)</span>，举个例子：</p><p><imgsrc="https://cdn.luogu.com.cn/upload/image_hosting/rgd8liiq.png" srcset="/img/loading.gif" lazyload /></p><p>图中每一种颜色构成的数列均为公差为 <spanclass="math inline">\(v_i=4\)</span>的等差数列，意味着同一种颜色的格子对 <spanclass="math inline">\(v_i\)</span> 取模得到的余数相同。</p><p>即通项公式为 $j=kv_i+取模得到的余数$，所以我们可以通过取模得到的余数分出 <spanclass="math inline">\(0,1,2,..,v_i-1\)</span> 共 <spanclass="math inline">\(v_i\)</span> 组， 令公差为 <spanclass="math inline">\(d=v_i\)</span>，全选状态下物品个数 <spanclass="math inline">\(a=\left \lfloor \dfrac {j}{v_i} \right\rfloor\)</span>，余数 <span class="math inline">\(b=j \%v_i\)</span>，所以写成 <span class="math inline">\(j=a\timesd+b\)</span>，带回得： <span class="math display">\[\normalsize{j-k\times d=a\times d+b-k\times d=(a-k)\times d+b}\]</span></p><p>回想转移方程中 <span class="math inline">\(f_{i,j-k\timesv_i}+k\times w_i\)</span> 代表选择 <spanclass="math inline">\(k\)</span> 件第 <spanclass="math inline">\(i\)</span> 种物品，全选是 <spanclass="math inline">\(a\)</span>，所以不选择 <spanclass="math inline">\(a-k\)</span> 件物品。</p><p>如果令 <span class="math inline">\(a-k=k&#39;\)</span>，则状态变成：<span class="math display">\[\large{f_{i,j}=\max(f_{i-1,k&#39;\times d+b}+a\times w_i-k&#39;\timesw_i )}\]</span></p><p>其中 <span class="math inline">\(a\times w_i\)</span> 为常量，将其从<span class="math inline">\(\max\)</span> 中移出。则： <spanclass="math display">\[\large{f_{i,j}=\max(f_{i-1,k&#39;\times d+b}-k&#39;\times w_i )+a\timesw_i}\]</span></p><p>如果把 <span class="math inline">\(f_{i,j}\)</span> 之前所有的 <spanclass="math inline">\(f_{i-1,k&#39;d+b}-k&#39;w_i\)</span>放入一个队列，答案转化为求这个最长为 <spanclass="math inline">\(\min(\left \lfloor \dfrac {V}{v_i} \right\rfloor,s_i)+1\)</span> 的队列的最大值 + <spanclass="math inline">\(a\times w_i\)</span>。</p><p>所以考虑单调队列优化。</p><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;bits/stdc++.h&gt;</span></span>
-<span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;
-<span class="hljs-meta">#<span class="hljs-keyword">define</span> inf 0x3f3f3f3f</span>
-<span class="hljs-type">const</span> <span class="hljs-type">int</span> N=<span class="hljs-number">1000010</span>;
-<span class="hljs-keyword">struct</span> <span class="hljs-title class_">Mylist</span> &#123;
-	<span class="hljs-type">int</span> val,pos;
-&#125;que[N];
-<span class="hljs-type">int</span> n,V,head,tail,f[N],c[N],w[N],num[N];
-<span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span>&#123;
-	<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d&quot;</span>,&amp;n,&amp;V);
-	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=<span class="hljs-number">1</span>;i&lt;=n;i++) &#123;
-		<span class="hljs-built_in">scanf</span>(<span class="hljs-string">&quot;%d%d%d&quot;</span>,&amp;w[i],&amp;c[i],&amp;num[i]); <span class="hljs-comment">//c[i]代表体积，w[i]代表价值，num[i]代表数量 </span>
-		<span class="hljs-keyword">if</span>(V/c[i]&lt;num[i]) &#123;
-			num[i]=V/c[i];
-		&#125;
-		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> mo=<span class="hljs-number">0</span>;mo&lt;c[i];mo++) &#123;
-			head=tail=<span class="hljs-number">0</span>;
-			<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k=<span class="hljs-number">0</span>;k&lt;=(V-mo)/c[i];k++) &#123;
-				<span class="hljs-type">int</span> x=k;
-				<span class="hljs-type">int</span> y=f[k*c[i]+mo]-k*w[i];
-				<span class="hljs-keyword">while</span>(head&lt;tail &amp;&amp; que[head].pos&lt;k-num[i]) head++;
-				<span class="hljs-keyword">while</span>(head&lt;tail &amp;&amp; que[tail<span class="hljs-number">-1</span>].val&lt;=y)tail--;
-				que[tail].pos=x;
-				que[tail].val=y;
-				tail++; 
-				f[k*c[i]+mo]=que[head].val+k*w[i];
-			&#125;
-		&#125;
-	&#125;
-	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d\n&quot;</span>,f[V]);
-	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
-&#125;</code></pre></div>
-          </div>
-<h1 id="混合背包">4.混合背包</h1>
-<div class="note note-info">
-            <p>Q：有些物品只能放一次，有些物品可以放无限次，有些物品可以放 <spanclass="math inline">\(s_i\)</span> 次，求最大价值。</p>
-          </div>
-<div class="note note-success">
-            <p>其实就是上面三中背包合在一起。</p><p>把可以放 <span class="math inline">\(s_i\)</span>次的二进制拆分，当作 01 背包，和只能放一次的倒序循环处理。</p><p>然后把可以放无限次的正序循环处理就行了。</p>
-          </div>
-<h1 id="二维费用背包">5.二维费用背包</h1>
-<div class="note note-info">
-            <p>Q：在 01 背包基础上，每件物品都有一个重量 <spanclass="math inline">\(m_i\)</span>，要求所选物品还要满足总重量不超过背包核载<span class="math inline">\(M\)</span>，求最大价值。</p>
-          </div>
-<div class="note note-success">
-            <p>其实感觉就像两个 01背包，一个限制体积，一个限制重量，事实上也差不多（多定义一维）。<spanclass="math inline">\(f_{i,j}\)</span> 表示背包体积为 <spanclass="math inline">\(i\)</span>，重量为 <spanclass="math inline">\(j\)</span> 时的最大价值。相同地： <spanclass="math display">\[\large{f_{j,k}=max(f_{j,k},f_{j-v_i,k-m_i}+w_i)}\]</span></p><p>所以内层两个循环都是逆序循环。</p><p>代码：</p><div class="code-wrapper"><pre><code class="hljs cpp">For i=<span class="hljs-number">1.</span>.N
-	For j=V..v[i]
-		For k=M..m[i]
-			f[j][k]=<span class="hljs-built_in">max</span>(f[j][k],f[j-v[i]][k-m[i]]+w[i]);
-result: f[V][M]</code></pre></div>
-          </div>
-<h1 id="分组背包">6.分组背包</h1>
-<div class="note note-info">
-            <p>Q：有 <span class="math inline">\(N\)</span> 组物品和容量为 <spanclass="math inline">\(V\)</span>的背包，每一组内最多只能选一个物品，求最大价值。</p>
-          </div>
-<div class="note note-success">
-            <p>和多重背包问题很像，多重背包是考虑选多少个物品，分组背包是考虑每一组选哪个物品。</p><p>对每一组的 <span class="math inline">\(n\)</span> 个物品有 <spanclass="math inline">\(n+1\)</span>种方案，即不选，选第一个，选第二个…以此类推。多一重循环枚举即可。</p><p>代码：</p><div class="code-wrapper"><pre><code class="hljs cpp">For i=<span class="hljs-number">1.</span>.N
-&#123;
-	read n;
-	For j=<span class="hljs-number">1.</span>.n 
-		read v[j],w[j];
-	For j=V.<span class="hljs-number">.0</span>
-		For k=<span class="hljs-number">0.</span>.n
-			<span class="hljs-keyword">if</span>(j&gt;=v[k]) f[j]=<span class="hljs-built_in">max</span>(f[j],f[j-v[k]]+w[k]);
-&#125;
-result: f[V];</code></pre></div>
-          </div>
-<h1 id="树形依赖背包">7.树形依赖背包</h1>
-<div class="note note-info">
-            <p>Q：有 <span class="math inline">\(N\)</span> 件物品和容量为 <spanclass="math inline">\(V\)</span>的背包。物品间形成依赖关系，且依赖关系组成一棵树。如果选择一个物品，则必须选择它的父节点。其中每个物品有体积 <span class="math inline">\(v_i\)</span>，价值 <spanclass="math inline">\(w_i\)</span>，和所依赖的父节点编号 <spanclass="math inline">\(p_i\)</span>，求最大价值。</p>
-          </div>
-<div class="note note-success">
-            <p>对于一棵树，如何去表示状态？普通的背包用 <spanclass="math inline">\(f_i\)</span> 表示体积为 <spanclass="math inline">\(i\)</span>时的最大价值，但放到一棵树中，为了定位到我们需要选的一个子树，还需要记录根节点。</p><p>定义 <span class="math inline">\(f_{i,j}\)</span> 表示以 <spanclass="math inline">\(i\)</span> 为根节点并包含 <spanclass="math inline">\(i\)</span> 的一棵子树，当体积为 <spanclass="math inline">\(j\)</span> 时的最大价值。试着写出状态转移： <spanclass="math display">\[\large{f_{x,j}=\max(f_{x,j},f_{x,j-k}+f_{son,k})_{(x为当前节点，son为儿子节点)}}\]</span></p><p>整个过程是递归到叶子节点再自下向上的。</p><p>代码：</p><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>
-<span class="hljs-function"></span>&#123;
-    f[x][<span class="hljs-number">1</span>]=a[x];
-    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=head[x];i;i=nxt[i])
-    &#123;
-        <span class="hljs-type">int</span> y=ver[i];
-        <span class="hljs-built_in">dfs</span>(y);
-        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=m<span class="hljs-number">+1</span>;j&gt;=<span class="hljs-number">1</span>;--j)
-            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k=<span class="hljs-number">1</span>;k&lt;j;++k)
-                f[x][j]=<span class="hljs-built_in">max</span>(f[x][j],f[x][j-k]+f[y][k]);
-    &#125;
-&#125;</code></pre></div><p>看上去很不错，但还可以上下界优化，优化之后被严格证明为 <spanclass="math inline">\(O(NV)\)</span>。</p><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> x)</span></span>
-<span class="hljs-function"></span>&#123;
-    siz[x]=<span class="hljs-number">1</span>;
-    f[x][<span class="hljs-number">1</span>]=a[x];
-    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=head[x];i;i=nxt[i])
-    &#123;
-        <span class="hljs-type">int</span> y=ver[i];
-        <span class="hljs-built_in">dfs</span>(y);
-        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> j=<span class="hljs-built_in">min</span>(m<span class="hljs-number">+1</span>,siz[x]+siz[y]);j&gt;=<span class="hljs-number">1</span>;--j)
-            <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k=<span class="hljs-built_in">max</span>(<span class="hljs-number">1</span>,j-siz[x]);k&lt;=<span class="hljs-built_in">min</span>(siz[y],j);++k)
-                f[x][j]=<span class="hljs-built_in">max</span>(f[x][j],f[x][j-k]+f[y][k]);
-        siz[x]+=siz[y];
-    &#125;
-&#125;</code></pre></div><p>相比自下向上的dp，可以转变思路：对于一个节点，分为选和不选。假定选这个节点，往下递归，最后和不选的进行比较。</p><p>代码：</p><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">dp</span><span class="hljs-params">(<span class="hljs-type">int</span> x,<span class="hljs-type">int</span> m,<span class="hljs-type">int</span> fa)</span></span>
-<span class="hljs-function"></span>&#123;<span class="hljs-comment">//当前节点编号，背包剩余体积，父节点编号 </span>
-	<span class="hljs-keyword">if</span>(m&lt;=<span class="hljs-number">0</span>)<span class="hljs-keyword">return</span>;
-	<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> i=head[x];i;i=next[i])
-	&#123;
-		<span class="hljs-type">int</span> y=ver[i];
-		<span class="hljs-keyword">if</span>(y==fa)<span class="hljs-keyword">continue</span>;
-		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k=<span class="hljs-number">0</span>;k&lt;=m;++k)
-        	f[y][k]=f[x][k]+v[y];<span class="hljs-comment">//选 </span>
-		<span class="hljs-built_in">dp</span>(y,m-p[y],x);<span class="hljs-comment">//由上至下 </span>
-		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> k=p[y];k&lt;=m;++k)
-            f[x][k]=<span class="hljs-built_in">max</span>(f[x][k],f[y][k-p[y]]);<span class="hljs-comment">//和不选的比较，留取最大值 </span>
-	&#125;
-&#125;</code></pre></div><p>复杂度为 <span class="math inline">\(O(NV)\)</span>。</p>
-          </div>
-<h1 id="泛化物品背包">8.泛化物品背包</h1>
-<h1 id="背包最优方案总数">9-1.背包最优方案总数</h1>
-<div class="note note-success">
-            <p>一个可行的方案是：用 <span class="math inline">\(g_i\)</span>表示背包容量为 <span class="math inline">\(i\)</span>时的方案数，然后常规背包得出最优解，遍历 <spanclass="math inline">\(f_i\)</span>，若和最优解相同，答案就加上 <spanclass="math inline">\(g_i\)</span>。</p><p>那么如何预处理出 <spanclass="math inline">\(g_i\)</span>？只要确定状态转移时来自哪一种决策即可。</p><p>代码：</p><div class="code-wrapper"><pre><code class="hljs cpp">g[<span class="hljs-number">0</span>]=<span class="hljs-number">1</span>;f[<span class="hljs-number">1.</span>.V]=-INF;<span class="hljs-comment">//当背包容量为0时只有“不选”这1种方案</span>
-For i=<span class="hljs-number">1.</span>.N
-	For j=V..v[i]
-	&#123;
-		<span class="hljs-type">int</span> tmp_f,tmp_g;
-		tmp_f=<span class="hljs-built_in">max</span>(f[j],f[j-v[i]]+w[i]);
-		tmp_f==f[j] ? tmp+=g[j] : tmp+=g[j-v[i]] ;<span class="hljs-comment">//判断来自哪一种决策，注意方案数不需要加w[i];</span>
-		f[j]=tmp_f;
-		g[j]=tmp_g;
-	&#125;
-<span class="hljs-type">int</span> maxw=<span class="hljs-number">0</span>,ans=<span class="hljs-number">0</span>;
-For i=<span class="hljs-number">0.</span>.V  maxw=<span class="hljs-built_in">max</span>(maxw,f[i]);
-For i=<span class="hljs-number">0.</span>.V
-	<span class="hljs-keyword">if</span>(maxw==f[i])ans+=g[i];
-result: ans</code></pre></div>
-          </div>
-<div class="note note-warning">
-            <p><strong>为什么 <span class="math inline">\(f_{1..V}\)</span>要预处理成极小值？为什么最优解不是 <spanclass="math inline">\(f[m]\)</span> 了 ？</strong></p><p>因为要统计 <span class="math inline">\(g_i\)</span>，这里的 <spanclass="math inline">\(f_i\)</span> 的意义并不是背包容量为 <spanclass="math inline">\(i\)</span> 时的最大价值，而是背包容量恰好为 <spanclass="math inline">\(i\)</span> 时的最大价值，因此最优解并不是 <spanclass="math inline">\(f[m]\)</span>。</p><p>为了达成恰好为 <span class="math inline">\(i\)</span> 的目的，<spanclass="math inline">\(f_{1..V}\)</span> 应赋值为极小值，原因见下文。</p>
-          </div>
-<h1 id="背包具体方案">9-2.背包具体方案</h1>
-<div class="note note-success">
-            <p>和求方案总数一样，需要确定状态转移时来自哪一种决策，在此用 <spanclass="math inline">\(g_{i,j}\)</span> 记录。</p><p>由于 <span class="math inline">\(f_{i,j}=f_{i-1,j}\)</span>表示不选第 <span class="math inline">\(i\)</span> 件物品，令 <spanclass="math inline">\(g_{i,j}=0\)</span>。反之，若 <spanclass="math inline">\(f_{i,j}=f_{i-1,j-v_i}+w_i\)</span>，则令 <spanclass="math inline">\(g_{i,j}=1\)</span>。</p><p>最后从后往前用 <span class="math inline">\(g_{i,j}\)</span>来判断是否选择了该物品即可。</p><p>不过既然需要记录物品和容量，<span class="math inline">\(g\)</span>数组只能是二维，但 <span class="math inline">\(f\)</span>数组仍可保留一维。</p><p>代码：</p><div class="code-wrapper"><pre><code class="hljs cpp">For i=<span class="hljs-number">1.</span>.N
-	For j=V..v[i]
-	&#123;
-		f[j]=<span class="hljs-built_in">max</span>(f[j],f[j-v[i]]+w[i]);
-		<span class="hljs-keyword">if</span>(f[j]==f[j-v[i]]+w[i])g[i][j]=<span class="hljs-number">1</span>;
-	&#125;
-<span class="hljs-type">int</span> i=N,lf=V;
-<span class="hljs-keyword">while</span>(i&gt;<span class="hljs-number">0</span>)
-&#123;
-	<span class="hljs-keyword">if</span>(g[i][lf])
-		<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%d &quot;</span>,i),lf-=v[i];
-	i--;
-&#125;
-CPP</code></pre></div><p>注：此时输出的物品选择方案是降序的。</p>
-          </div>
-<h1 id="背包k优解">9-3.背包k优解</h1>
-<h1 id="背包状态与初始化">10.背包状态与初始化</h1>
-<div class="note note-success">
-            <p>背包恰好装满：<span class="math inline">\(f[0]=0\)</span>，<spanclass="math inline">\(f[1\sim V]=-inf\)</span>。</p><p>背包不要求恰好装满：<span class="math inline">\(f[0\simV]=0\)</span>。</p>
-          </div>
-<div class="note note-warning">
-            <p><strong>为什么 ？</strong></p><p>初始化的 <span class="math inline">\(f\)</span>数组实际就是在没有任何物品可以放入背包时的合法状态，或者说初始化 <spanclass="math inline">\(f[i]=0\)</span> 代表最后还剩 <spanclass="math inline">\(i\)</span> 的体积是合法的。</p>
-          </div>
-<div class="note note-primary">
-            <p>参考链接：</p><p>https://www.cnblogs.com/jbelial/articles/2116074.html<code>《dd大牛的背包九讲》</code></p><p>https://www.bilibili.com/video/BV1qt411Z7nE<code>闫学灿'背包九讲专题'</code></p><p>https://www.luogu.com.cn/blog/RPdreamer/bei-bao-wen-ti<code>洛谷日报#61 背包问题</code></p><p>https://oi-wiki.org/dp/knapsack/ <code>OIwiki 背包dp</code></p>
-          </div>
+                <p>说是三月份，但实际上是从 2025.02.24 开始的，紧接着寒假。</p>
+<p>表扬 <a
+target="_blank" rel="noopener" href="https://cftracker.netlify.app/contests">CFTracker</a>，让我知道我去年原来有这么多题遗漏了没有补。</p>
+<p>开学给自己定的节奏是每场 CF 必打，此外一周 vp 至少三场，补 *2500
+以下，如果闲着就到 CFTracker 里解决历史遗留问题，周末晚上的 abc/arc
+非急事不错过。</p>
+<p>愿我获得算法之神的庇佑。</p>
+<h2 id="abc394e.-palindromic-shortest-path"><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/tasks/abc394_e">abc394e.
+Palindromic Shortest Path</a></h2>
+<p><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/submissions/63139453">Code</a></p>
+<p>把从 <span class="math inline">\(S\)</span> 到 <span
+class="math inline">\(T\)</span> 的路径看成一个状态 <span
+class="math inline">\((S,T)\)</span>。初始只有两种状态是合法的：</p>
+<ul>
+<li><span class="math inline">\(\forall i\in [1,n]\)</span>，<span
+class="math inline">\((i,i)\)</span>。</li>
+<li><span class="math inline">\(\forall i\in[1,n],j\in[1,n],s[i][j]\neq
+\text{“}-\text{”}\)</span>，<span
+class="math inline">\((i,j)\)</span>。</li>
+</ul>
+<p>以这些状态为起点进行 bfs。对于当前状态 <span
+class="math inline">\((x,y)\)</span>，二维枚举 <span
+class="math inline">\(i,j\)</span>，若 <span
+class="math inline">\(s[i][x]=s[y][j]\)</span>，说明可拓展，将状态 <span
+class="math inline">\((i,j)\)</span> 压入队列中。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^3)\)</span>。</p>
+<h2 id="abc394f.-alkane"><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/tasks/abc394_f">abc394f.
+Alkane</a></h2>
+<p><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/submissions/63140699">Code</a></p>
+<p>令 <span class="math inline">\(dp[x]\)</span> 代表 <span
+class="math inline">\(x\)</span> 贡献了三个儿子的答案。</p>
+<p>转移自然是 <span class="math inline">\(dp[x]\)</span>
+取它儿子里面最大的三个 <span class="math inline">\(dp[y]\)</span>
+求和。</p>
+<p>对于当前节点 <span
+class="math inline">\(x\)</span>，有这么几种情况：</p>
+<ul>
+<li><span class="math inline">\(x\)</span> 的度数 <span
+class="math inline">\(\ge 1\)</span>，遍历所有儿子，取度数 <span
+class="math inline">\(\ge 4\)</span> 的儿子的 <span
+class="math inline">\(dp[y]\)</span> 加上 <span
+class="math inline">\(x\)</span> 自身一个计入答案。</li>
+<li><span class="math inline">\(x\)</span> 的度数 <span
+class="math inline">\(\ge 4\)</span>，且有 <span
+class="math inline">\(\ge 4\)</span> 个儿子，取最大的四个 <span
+class="math inline">\(dp[y]\)</span> 的和加上 <span
+class="math inline">\(x\)</span> 自身一个计入答案。</li>
+<li><span class="math inline">\(x\)</span> 的度数 <span
+class="math inline">\(\ge 4\)</span>，且有 <span
+class="math inline">\(\ge 3\)</span> 个儿子，则计算出 <span
+class="math inline">\(dp[x]\)</span> 传递上去。</li>
+<li>除此之外 <span class="math inline">\(x\)</span>
+只能作为一个叶子贡献给父亲。</li>
+</ul>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1004e.-sonya-and-ice-cream"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1004/problem/E">CF1004E. Sonya and
+Ice Cream</a></h2>
+<p>*2400 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1004/submission/307667954">Code</a></p>
+<p>将 <span class="math inline">\(A,B\)</span> 两点间的距离简记为 <span
+class="math inline">\(d_{AB}\)</span>。</p>
+<p>结论：最佳的路径一定被直径包含。</p>
+<ul>
+<li>首先，一个经典的结论是：对于树上任意一点，离它最远的点一定是直径的两个端点之一。对于直径外一点
+<span class="math inline">\(x\)</span>，设离 <span
+class="math inline">\(x\)</span> 最近的直径上的点是点 <span
+class="math inline">\(y\)</span>，当 <span
+class="math inline">\(x\)</span> 向 <span
+class="math inline">\(y\)</span> 靠近时，离 <span
+class="math inline">\(x\)</span>
+最远的点仍然是直径的两个端点，但最远距离减小，故取 <span
+class="math inline">\(y\)</span> 优于 <span
+class="math inline">\(x\)</span>。于是，我们选的第一个点肯定是在直径上。</li>
+<li>设我们选的第一个点是 <span
+class="math inline">\(A\)</span>，接下来证明 <span
+class="math inline">\(A\)</span> 沿着直径扩展最佳。如下图，<span
+class="math inline">\(L,R\)</span> 是直径的两个端点，<span
+class="math inline">\(E,G\)</span> 分别是 <span
+class="math inline">\(D,F\)</span> 向下延伸出去最远的点。若从 <span
+class="math inline">\(A\)</span> 出发沿直径选了 <span
+class="math inline">\(B\)</span>，答案是 <span
+class="math inline">\(\max(d_{LA},d_{AE},d_{BG},d_{BR})\)</span>；若沿子树方向选了
+<span class="math inline">\(D\)</span>，答案是 <span
+class="math inline">\(\max(d_{LA},d_{DE},d_{AR},d_{AG})\)</span>。依据直径的性质有
+<span class="math inline">\(d_{BG} &lt; d_{BR}\)</span>，<span
+class="math inline">\(d_{AG}&lt;d_{AR}\)</span>，<span
+class="math inline">\(d_{AE} &lt; d_{LA}\)</span>，<span
+class="math inline">\(d_{DE} &lt; d_{LA}\)</span>，此时相当于比较 <span
+class="math inline">\(\max(d_{LA},d_{BR})\)</span> 与 <span
+class="math inline">\(\max(d_{LA},d_{AR})\)</span>，又 <span
+class="math inline">\(d_{AR} &gt; d_{BR}\)</span>，故选 <span
+class="math inline">\(B\)</span> 相比选 <span
+class="math inline">\(D\)</span> 更优。将 <span
+class="math inline">\(A,B\)</span> 看成一个整体，同理可证明选 <span
+class="math inline">\(C\)</span> 比选 <span
+class="math inline">\(F\)</span>
+要更优，以此类推……因此路径肯定是沿着直径方向一直扩展。</li>
+</ul>
+<p><img src="/image/academic/CF1004.png" srcset="/img/loading.gif" lazyload style="zoom:50%;" /></p>
+<p>当 <span class="math inline">\(k\)</span>
+大于等于直径长度时，就选完整个直径。否则在直径上搞一个长为 <span
+class="math inline">\(k\)</span>
+的滑动窗口，窗口两侧延伸出去的最长距离可以预处理前缀后缀和计算，窗口内部子树的答案等同于区间最值。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log
+n)\)</span>，若用单调队列求极值就是 <span
+class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1969e.-unique-array"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1969/problem/E">CF1969E. Unique
+Array</a></h2>
+<p>*2400 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1969/submission/307896648">Code</a></p>
+<p>对于一个数 <span class="math inline">\(a_i\)</span>，设 <span
+class="math inline">\(a_i\)</span> 上一个出现的位置是 <span
+class="math inline">\(\text{lst}_{a_i}\)</span>，下一个出现的位置是
+<span class="math inline">\(\text{nxt}_{a_i}\)</span>，那么 <span
+class="math inline">\(a_i\)</span> 在区间 <span
+class="math inline">\([l,r]\)</span> 中唯一的充要条件是 <span
+class="math inline">\(l\in(\text{lst}_{a_i},i]\)</span> 且 <span
+class="math inline">\(r\in [i,\text{nxt}_{a_i})\)</span>。</p>
+<p>考虑从左到右枚举线段的右端点 <span
+class="math inline">\(r\)</span>，判断是否有不合法的左端点。</p>
+<p>令 <span class="math inline">\(\text{llst}_{a_i}\)</span> 是 <span
+class="math inline">\(a_i\)</span>
+的上一个的上一个的出现位置。当右端点移动到 <span
+class="math inline">\(i\)</span> 时，<span
+class="math inline">\((\text{llst}_{a_i},\text{lst}_{a_i}]\)</span>
+这一段不能再作为合法的左端点了，我们将这个区间 <span
+class="math inline">\(-1\)</span>。而 <span class="math inline">\(l\in
+(\text{lst}_{a_i},i]\)</span> 是新增的合法左端点，我们将这个区间 <span
+class="math inline">\(+1\)</span>。</p>
+<p>如此一来，对于当前右端点 <span class="math inline">\(i\)</span>，以
+<span class="math inline">\(l\in[1,i]\)</span> 为左端点的区间全部 unique
+就等价于区间 <span class="math inline">\([1,i]\)</span> 的最小值 <span
+class="math inline">\(&gt;0\)</span>。若不满足条件，我们就把 <span
+class="math inline">\(a_i\)</span>
+替换掉，并且贪心的想肯定是替换成一个序列里从没出现过的数。替换后，左端点就能存在于
+<span class="math inline">\([1,i]\)</span> 中的任何位置，于是我们将区间
+<span class="math inline">\([1,i]+1\)</span>，同时把答案 <span
+class="math inline">\(+1\)</span>。</p>
+<p>整个过程仅涉及区间加、区间极值，使用线段树维护。时间复杂度 <span
+class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf2064f.-we-be-summing"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2064/problem/F">CF2064F. We Be
+Summing</a></h2>
+<p>*2600 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2064/submission/307985033">Code</a></p>
+<p>注意到随着 <span class="math inline">\(i\)</span> 增加，<span
+class="math inline">\(\min(b_1,\ldots,b_i)\)</span> 递减，<span
+class="math inline">\(\max(b_{i+1},\ldots,b_m)\)</span>
+也递减。这两项加起来要是定值，说明对于任意 epic 的序列，满足相加等于
+<span class="math inline">\(k\)</span> 的 <span
+class="math inline">\(\min(b_1,\ldots,b_i)\)</span> 唯一，<span
+class="math inline">\(\max(b_{i+1},\ldots,b_m)\)</span>
+也唯一。我们把前缀 <span class="math inline">\(\min\)</span>
+这一项的值记为 <span class="math inline">\(x\)</span>，后缀 <span
+class="math inline">\(\max\)</span> 这一项自然是 <span
+class="math inline">\(k-x\)</span>。对于满足该要求的序列，称之为 <span
+class="math inline">\(x\)</span>-epic 序列，并将 <span
+class="math inline">\(\min(b_1,\ldots,b_i)=x\)</span> 的 <span
+class="math inline">\(i\)</span>
+称为分割点。不难发现分割点一定构成一段连续的区间。</p>
+<p>记 <span class="math inline">\(lmn_i\)</span> 为 <span
+class="math inline">\(i\)</span> 左侧第一个 <span
+class="math inline">\(\le a_i\)</span> 的位置，<span
+class="math inline">\(lmx_i\)</span> 为 <span
+class="math inline">\(i\)</span> 左侧第一个 <span
+class="math inline">\(&gt;a_i\)</span> 的位置，<span
+class="math inline">\(rmx_i\)</span> 为 <span
+class="math inline">\(i\)</span> 右侧第一个 <span
+class="math inline">\(\ge a_i\)</span> 的位置，<span
+class="math inline">\(rmn_i\)</span> 为右侧第一个 <span
+class="math inline">\(&lt; a_i\)</span> 的位置。</p>
+<p>依据第一段的分析，我们枚举 <span
+class="math inline">\(x\)</span>，对每个 <span
+class="math inline">\(x\)</span> 统计有多少 <span
+class="math inline">\(x\)</span>-epic 的子数组。对于当前 <span
+class="math inline">\(a_i=x\)</span>，若要 <span
+class="math inline">\(a_i\)</span>
+成为前缀最小值（为了计数不重复，这里指第一个前缀最小值），左端点可以是
+<span class="math inline">\((lmn_i+1,i]\)</span>
+中的任意一个。再枚举满足 <span class="math inline">\(j &gt;i\)</span> 且
+<span class="math inline">\(a_j=k-x\)</span> 的 <span
+class="math inline">\(j\)</span>，若要 <span
+class="math inline">\(a_j\)</span>
+成为后缀最大值（同理这里指最后一个后缀最大值），右端点可以是 <span
+class="math inline">\([j,rmx_i)\)</span>。</p>
+<p>不难发现，<span class="math inline">\(a_i,a_j\)</span>
+要分别作为最小前缀和最大后缀贡献答案，当且仅当区间 <span
+class="math inline">\((lmn_i,rmn_i)\)</span> 和 <span
+class="math inline">\((lmx_j,rmx_j)\)</span> 相交，此时 <span
+class="math inline">\([lmx_j,rmn_i]\)</span>
+内的任意一点均为分割点。若满足此条件，包含 <span
+class="math inline">\([i,j]\)</span> 的任一子数组均 <span
+class="math inline">\(a_i\)</span>-epic，贡献是 <span
+class="math inline">\((rmx_j-j)\times(i-lmn_i)\)</span>。</p>
+<p>可以使用树状数组或线段树快速统计贡献。时间复杂度 <span
+class="math inline">\(O(n\log n)\)</span>。</p>
+<h2
+id="cf2072g.-ive-been-flipping-numbers-for-300-years-and-calculated-the-sum"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2072/problem/G">CF2072G. I’ve Been
+Flipping Numbers for 300 Years and Calculated the Sum</a></h2>
+<p>*2200 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2072/submission/308019731">Code</a></p>
+<p>阈值分治。</p>
+<ul>
+<li><p>当 <span class="math inline">\(p \le \sqrt{n}\)</span>
+时，暴力计算 <span
+class="math inline">\(\text{rev}(n,p)\)</span>。时间复杂度 <span
+class="math inline">\(O(\sqrt{n})\)</span>。</p></li>
+<li><p>当 <span class="math inline">\(p&gt;n\)</span> 时，<span
+class="math inline">\(\text{rev}(n,p)=n\)</span>。时间复杂度 <span
+class="math inline">\(O(1)\)</span>。</p></li>
+</ul>
+<p>只用考虑 <span class="math inline">\(\sqrt{n}&lt;p\le n\)</span>
+时如何快速计算。</p>
+<p>注意到 <span class="math inline">\(n\)</span> 在 <span
+class="math inline">\(p\)</span>
+进制下最多只有两位，翻转后式子写出来是： <span class="math display">\[
+\begin{align}
+&amp;\quad\ (n\bmod p)\cdot p+\left\lfloor\frac{n}{p}\right\rfloor\\
+&amp;=(n-\left\lfloor\frac{n}{p}\right\rfloor \cdot p)\cdot
+p+\left\lfloor\frac{n}{p}\right\rfloor\\
+&amp;=-\left\lfloor\frac{n}{p}\right\rfloor\cdot
+p^2+np+\left\lfloor\frac{n}{p}\right\rfloor
+\end{align}
+\]</span> 数论分块枚举 <span
+class="math inline">\(\left\lfloor\dfrac{n}{p}\right\rfloor\)</span>
+的值，一段区间内 <span class="math inline">\(p^2\)</span> 的和以及 <span
+class="math inline">\(p\)</span> 的和可以用公式快速计算。</p>
+<p>时间复杂度 <span class="math inline">\(O(t\sqrt{n})\)</span>，<span
+class="math inline">\(t\)</span> 是数据组数。</p>
+<h2 id="cf1839d.-ball-sorting"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1839/problem/D">CF1839D. Ball
+Sorting</a></h2>
+<p>*2100 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1839/submission/308219457">Code</a></p>
+<p>考虑这么一种操作策略：选择原序列的任意一个上升子序列，称这个子序列里的元素为选定点。我们钦定选定点都不动，那么所需要
+<span class="math inline">\(0\)</span>
+的最小个数就是极长非选定点连续段的个数。</p>
+<p>容易发现枚举所有的上升子序列可以涵盖所有可能的最优策略。</p>
+<p>另一个观察是对于非选定点，可以只通过 <span
+class="math inline">\(1\)</span> 次移动就能移动到正确的位置上。</p>
+<p>令 <span class="math inline">\(dp[i][j]\)</span> 表示若 <span
+class="math inline">\(i\)</span> 是一个选定点，<span
+class="math inline">\([1,i]\)</span> 中有至多 <span
+class="math inline">\(j\)</span> 个极长非选定点连续段，将 <span
+class="math inline">\([1,i]\)</span> 排好序的最小代价。</p>
+<p>枚举上升子序列的上一个元素（即上一个选定点），做出以下转移： <span
+class="math display">\[
+dp[i][j]=\min
+\begin{cases}
+dp[i][j - 1]\\
+dp[i-1][j] &amp;,\text{if }c[i-1]&lt;c[i]\\
+dp[k][j-1]+(i-k-1)&amp;,\forall k\in[0,i-1),c[k]&lt;c[i]
+\end{cases}
+\]</span></p>
+<ul>
+<li><p>初态：<span
+class="math inline">\(dp[i][0]=\begin{cases}0&amp;,\text{if
+}\{c\}\textbf{ 在 }[1,i] \textbf{ 单调增}\\
+\text{inf}&amp;,\text{otherwise}\end{cases}\)</span></p></li>
+<li><p>答案：<span class="math inline">\(\min\begin{cases}dp[n][k]\\
+dp[i][k-1]+(n-i)&amp;,\forall i\in[1,n)\end{cases}\)</span></p></li>
+</ul>
+<p>时间复杂度 <span class="math inline">\(O(n^3)\)</span>。</p>
+<h2 id="cf1839e.-decreasing-game"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1839/problem/E">CF1839E. Decreasing
+Game</a></h2>
+<p>*2400 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1839/submission/308401912">Code</a></p>
+<p>结论：后手必胜当且仅当 <span class="math inline">\(\{a\}\)</span>
+能被划分为元素和相等的两部分。</p>
+<ul>
+<li><p>充分性：设划分成的两部分为 <span
+class="math inline">\(A,B\)</span>，后手必胜的策略如下。若先手选择了
+<span class="math inline">\(A\)</span> 中的元素，后手就选择 <span
+class="math inline">\(B\)</span> 中的元素；否则后手选择 <span
+class="math inline">\(A\)</span> 中的元素。如此操作后 <span
+class="math inline">\(A,B\)</span> 两部分的元素和都减少了 <span
+class="math inline">\(d\)</span>，因此任何时刻 <span
+class="math inline">\(A,B\)</span>
+两部分元素和相等。于是若先手还能继续游戏（即选择了一个 <span
+class="math inline">\(a_i&gt;0\)</span> 的 <span
+class="math inline">\(i\)</span>），后手也一定能从另一部分里找到一个
+<span class="math inline">\(j\neq i\)</span> 使得 <span
+class="math inline">\(a_j&gt;0\)</span>。</p></li>
+<li><p>必要性：若初始 <span class="math inline">\(\{a\}\)</span>
+不能划分为元素和相等的两部分，则能够证明后续每一轮操作后 <span
+class="math inline">\(\{a\}\)</span>
+仍旧不能划分为元素和相等的两部分。</p>
+<ul>
+<li>设某一轮中两人选择了 <span
+class="math inline">\(a_i,a_j\)</span>，不妨令 <span
+class="math inline">\(a_i\le a_j\)</span>。假设操作前 <span
+class="math inline">\(\{a\}\)</span>
+不能被划分为了总和相等的两部分而操作结束后可以，令操作结束后 <span
+class="math inline">\(a_j-a_i\)</span> 所在的那部分其它数的和为 <span
+class="math inline">\(s_1\)</span>，另一部分总和为 <span
+class="math inline">\(s_2\)</span>，则 <span
+class="math inline">\(s_1+(a_j-a_i)=s_2\)</span>。移项得 <span
+class="math inline">\(s_1+a_j=s_2+a_i\)</span>，矛盾。</li>
+</ul>
+<p>于是，先手无论怎么抉择最后的局面都一定是只剩一个非零数或两个不同的非零数，必胜。</p></li>
+</ul>
+<p>最后的问题是如何找出这个划分，这等价于找一个和为 <span
+class="math inline">\(\dfrac{\sum a_i}{2}\)</span>
+的子序列，是一个经典的背包问题。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^3)\)</span>。</p>
+<h2 id="abc394g.-dense-buildings"><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/tasks/abc394_g">abc394g. Dense
+Buildings</a></h2>
+<p><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc394/submissions/63238482">Code</a></p>
+<p>对于一组询问 <span
+class="math inline">\((x_1,y_1,z_1,x_2,y_2,z_2)\)</span>，如果我们找到一条路径连通
+<span class="math inline">\((x_1,y_1)\)</span> 与 <span
+class="math inline">\((x_2,y_2)\)</span> 且路径上最低的楼房高 <span
+class="math inline">\(h\)</span>。那么：</p>
+<ul>
+<li>若 <span class="math inline">\(h&lt;
+\min(z_1,z_2)\)</span>，则垂直方向上我们要 <span
+class="math inline">\(z_1\to h\)</span> 再 <span
+class="math inline">\(h\to z_2\)</span>，写成式子是 <span
+class="math inline">\(z_1+z_2-2h\)</span>。</li>
+<li>若 <span class="math inline">\(h \ge \min(z_1,z_2)\)</span>，答案是
+<span class="math inline">\(|z_1-z_2|\)</span>。</li>
+</ul>
+<p>为了让答案最小，我们肯定是找最大的 <span
+class="math inline">\(h\)</span>。</p>
+<p>对于相邻的楼房，连边，边权是较低的楼房的高度。</p>
+<p>问题转化为有若干组询问，每次询问两个点，需要找出两点间的一条简单路径，让路径上所有边的边权最小值最大（最大瓶颈路）。</p>
+<p>这是个经典的问题（NOIP 货车运输），做法是 kruskal
+重构树或者在最大生成树上倍增。</p>
+<h2 id="cf1982d.-beauty-of-the-mountains"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1982/problem/D">CF1982D. Beauty of
+the mountains</a></h2>
+<p>*1700 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1982/submission/308516339">Code</a></p>
+<p>把有雪的格子称为 <span class="math inline">\(0\)</span>
+格子，没雪的格子称为 <span class="math inline">\(1\)</span> 格子。</p>
+<p>先计算出初始 <span class="math inline">\(1\)</span> 格子的高度和与
+<span class="math inline">\(0\)</span> 格子的高度和的差值，记作 <span
+class="math inline">\(s\)</span>。</p>
+<p>对于每一个 <span class="math inline">\(k\times k\)</span>
+的矩形，我们可以用二维前缀和快速计算出对这个矩形整体 <span
+class="math inline">\(+1\)</span> 对 “<span
+class="math inline">\(1\)</span> 格子的高度和与 <span
+class="math inline">\(0\)</span> 格子的高度和的差值”
+的贡献，把这个贡献记作 <span class="math inline">\(c_i\)</span>。</p>
+<p>问题转化为给定序列 <span
+class="math inline">\(\{c\}\)</span>，求以下不定方程是否有解。 <span
+class="math display">\[
+c_1x_1+c_2x_2+\ldots+c_mx_m=s
+\]</span> 根据裴蜀定理，有解当且仅当 <span
+class="math inline">\(\gcd(c_1,c_2,\ldots,c_m)\mid s\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(nm\log k)\)</span>。</p>
+<h2 id="cf1848c.-vika-and-price-tags"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1848/problem/C">CF1848C. Vika and
+Price Tags</a></h2>
+<p>*1800 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1848/submission/308637343">Code</a></p>
+<p><span class="math inline">\(\tiny{不是哥们，我怎么又卡 \text{ div2C
+}了，呜哇呜哇呜}\)</span></p>
+<p>考虑单独一组 <span class="math inline">\((a_i,b_i)\)</span>，设终态是
+<span class="math inline">\((0,x)\)</span>，那么有循环： <span
+class="math display">\[
+(0,x)\to (x,x)\to (x,0)\to(0,x)
+\]</span> 因此设当前 <span class="math inline">\((a_i,b_i)\)</span>
+最少需要 <span class="math inline">\(d_i\)</span> 次操作达成 <span
+class="math inline">\(a_i=0\)</span>，那么 <code>Yes</code> 当且仅当
+<span class="math inline">\(\forall i,j\in [1,n]\)</span>，<span
+class="math inline">\(d_i\equiv d_j\pmod {3}\)</span>。</p>
+<p>接下来的任务是对每一组 <span class="math inline">\((a,b)\)</span>
+求出相应的 <span class="math inline">\(d\)</span>。</p>
+<p>考虑辗转相除的过程，当 <span class="math inline">\(a&lt;b\)</span>
+时，令 <span class="math inline">\(b=ka+p\)</span>， <span
+class="math inline">\(p\in[0,a)\)</span>，状态变化如下：</p>
+<p><span class="math display">\[
+(a,ka+p)\to(ka+p, (k-1)a+p)\to((k-1)a+p,a)\to(a,(k-2)a+p)
+\]</span></p>
+<p>发现在三轮操作后，<span class="math inline">\(k\)</span> 减少了 <span
+class="math inline">\(2\)</span>。又因为我们只关心 <span
+class="math inline">\(d\bmod 3\)</span> 后的结果，于是 <span
+class="math inline">\((a,ka+p)\)</span> 和 <span
+class="math inline">\((a,(k-2)a+p)\)</span>
+是等价的。进一步，奇偶性相同的 <span class="math inline">\(k\)</span>
+都可以看作等价。我们仅取 <span class="math inline">\(k=0/1\)</span>
+讨论即可。</p>
+<ul>
+<li><span class="math inline">\(k=1\)</span> 时，有 <span
+class="math inline">\((a,a+p)\to(a+p,p)\to(p,a)\)</span>。</li>
+<li><span class="math inline">\(k=0\)</span> 时，就是 <span
+class="math inline">\((a,p)\)</span>。</li>
+</ul>
+<p>故以下递归成立： <span class="math display">\[
+d(a,ka+p)\to \begin{cases}2+d(p,a)&amp;,k \textbf{ 为奇数}\\ d(a,p)
+&amp;, k\textbf{ 为偶数}\end{cases}
+\]</span> 当 <span class="math inline">\(a\ge b\)</span> 时，同理取
+<span class="math inline">\(a=kb+p\)</span>，<span
+class="math inline">\(p\in[0,b)\)</span>，则：</p>
+<p><span class="math display">\[
+(kb+p,b)\to (b, (k-1)b+p)\to ((k-1)b+p, (k-2)b+p)\to ((k-2)b+p,b)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(k=1\)</span> 时，有 <span
+class="math inline">\((b+p,b)\to(b,p)\)</span>。</li>
+<li><span class="math inline">\(k=0\)</span> 时，就是 <span
+class="math inline">\((p,b)\)</span>。</li>
+</ul>
+<p>故以下递归成立： <span class="math display">\[
+d(kb+p,b)\to \begin{cases}1+d(b,p)&amp;,k \textbf{ 为奇数}\\ d(p,b)
+&amp;, k\textbf{ 为偶数}\end{cases}
+\]</span> 边界情况：<span class="math inline">\(d(0,*)=0\)</span>，<span
+class="math inline">\(d(*,0)=1\)</span>。</p>
+<p>递归层数同辗转相除。时间复杂度 <span class="math inline">\(O(n\log
+w)\)</span>，<span class="math inline">\(w\)</span> 为值域。</p>
+<h2 id="cf1848d.-vika-and-bonuses"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1848/problem/D">CF1848D. Vika and
+Bonuses</a></h2>
+<p>*2200 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1848/submission/308650958">Code</a></p>
+<p>按 <span class="math inline">\(t=s\bmod 10\)</span> 分类讨论。</p>
+<ul>
+<li>若 <span class="math inline">\(t=0\)</span>，操作二没有作用，答案是
+<span class="math inline">\(sk\)</span>。</li>
+<li>若 <span
+class="math inline">\(t=5\)</span>，最多进行一次操作二，答案是 <span
+class="math inline">\(\max(sk,(s+5)(k-1))\)</span>。</li>
+<li>若 <span class="math inline">\(t=2,4,6,8\)</span>，注意到末尾有循环
+<span class="math inline">\(2\to4\to 8\to6\to2\)</span>。每一轮循环
+<span class="math inline">\(s\)</span> 增加 <span
+class="math inline">\(20\)</span>，枚举循环完整进行的次数 <span
+class="math inline">\(x\)</span>，贡献为 <span
+class="math inline">\((s+20x)(k-4x)\)</span>，这是一个二次函数，可以
+<span class="math inline">\(O(1)\)</span> 求最大值。于是我们枚举最终
+<span class="math inline">\(s\)</span> 末尾是 <span
+class="math inline">\(2,4,6,8\)</span> 的情况，对每种情况分别求答案再取
+<span class="math inline">\(\max\)</span>。</li>
+<li>若 <span
+class="math inline">\(t=1,3,7,9\)</span>，执行一次操作后就和上一种情况等同了。</li>
+</ul>
+<p>时间复杂度 <span class="math inline">\(O(1)\)</span>。</p>
+<h2 id="cf1848f.-vika-and-wiki"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1848/problem/F">CF1848F. Vika and
+Wiki</a></h2>
+<p>*2400 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1848/submission/308661424">Code</a></p>
+<p>令 <span class="math inline">\(f_{i,j}\)</span> 表示进行 <span
+class="math inline">\(i\)</span> 次操作后 <span
+class="math inline">\(a_j\)</span> 的值。</p>
+<p><span class="math display">\[
+\begin{align}
+&amp;f_0=\{a\} \\
+&amp;f_{1,i}=f_{0,i}\oplus f_{0,i+1}\\
+&amp;f_{2,i}=f_{1,i}\oplus f_{1,i+1}=(f_{0,i}\oplus
+f_{0,i+1})\oplus(f_{0,i+1}\oplus f_{0,i+2})=f_{0,i}\oplus f_{0,i+2}\\
+&amp;f_{3,i}=f_{2,i}\oplus f_{2,i+1}=(f_{0,i}\oplus f_{0,i+2})\oplus
+(f_{0,i+1}\oplus f_{0,i+3})\\
+&amp;f_{4,i}=f_{3,i}\oplus f_{3,i+1}=(f_{0,i}\oplus f_{0,i+1}\oplus
+f_{0,i+2}\oplus f_{0,i+3})\oplus (f_{0,i+1}\oplus f_{0,i+2}\oplus
+f_{0,i+3}\oplus f_{0,i+4})=f_{0,i}\oplus f_{0,i+4}\\
+\end{align}
+\]</span></p>
+<p>非常 amazing 啊经过大力找规律，得到的结论是进行 <span
+class="math inline">\(2^k,k\in N^+\)</span> 次操作后，<span
+class="math inline">\(f_{2^k,i}=f_{0,i}\oplus f_{0,(i+2^k)\bmod
+n}\)</span>。</p>
+<p>题目又保证 <span class="math inline">\(n\)</span> 是 <span
+class="math inline">\(2\)</span> 的幂，故 <span
+class="math inline">\(n\)</span> 次操作后 <span
+class="math inline">\(\{a\}\)</span> 一定全 <span
+class="math inline">\(0\)</span>，没有无解的情况。</p>
+<p>接着，又观察到若 <span class="math inline">\(\{a\}\)</span> 已经全
+<span class="math inline">\(0\)</span>，再操作肯定也是全 <span
+class="math inline">\(0\)</span>，换句话说答案可以二分。</p>
+<p>设二分出的答案是 <span class="math inline">\(x\)</span>，预处理对于
+<span class="math inline">\(k\in[0,\log n]\)</span>，操作 <span
+class="math inline">\(2^k\)</span> 次后的数组，枚举 <span
+class="math inline">\(x\)</span> 的每一位大力操作即可。</p>
+<p>更聪明的做法是倍增，令 <span
+class="math inline">\(i=\frac{n}{2},\frac{n}{4},\frac{n}{8},\ldots\)</span>
+，对每个 <span class="math inline">\(i\)</span> 先令 <span
+class="math inline">\(\{b\}=\{a\}\)</span>，在 <span
+class="math inline">\(\{b\}\)</span> 上操作 <span
+class="math inline">\(i\)</span> 次，若操作后 <span
+class="math inline">\(\{b\}\)</span> 不全为 <span
+class="math inline">\(0\)</span>，说明答案比 <span
+class="math inline">\(i\)</span> 大，此时将答案累加上 <span
+class="math inline">\(i\)</span> 并把 <span
+class="math inline">\(\{b\}\)</span> 赋值给 <span
+class="math inline">\(\{a\}\)</span>。</p>
+<p>时间复杂度前者 <span class="math inline">\(O(n\log^2
+n)\)</span>，后者 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf2070e.-game-with-binary-string"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2070/problem/E">CF2070E. Game with
+Binary String</a></h2>
+<p>*2200 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2070/submission/308694558">Code</a></p>
+<p>后手为了让 <span class="math inline">\(0\)</span>
+尽可能少，一定是拿取相邻的一个 <span class="math inline">\(1\)</span>
+和一个 <span
+class="math inline">\(0\)</span>。又因为序列是循环的，故若序列中存在至少一个
+<span class="math inline">\(1\)</span> 和一个 <span
+class="math inline">\(0\)</span>，就肯定有相邻的 <span
+class="math inline">\(10\)</span> 或者 <span
+class="math inline">\(01\)</span>。</p>
+<p>我们将这个游戏做一个转化：先手不必拿取相邻的两个 <span
+class="math inline">\(0\)</span>，而是序列中的任意两个 <span
+class="math inline">\(0\)</span>；同时后手也不必拿取相邻的 <span
+class="math inline">\(1\)</span> 和 <span
+class="math inline">\(0\)</span>，而是序列中的任何一个 <span
+class="math inline">\(1\)</span> 以及任何一个 <span
+class="math inline">\(0\)</span>（若没有 <span
+class="math inline">\(0\)</span> 就是任意两个 <span
+class="math inline">\(1\)</span>）。</p>
+<p>此时，在一个完整回合中，总计三个 <span
+class="math inline">\(0\)</span> 和一个 <span
+class="math inline">\(1\)</span> 被取走，我们不难想到按序列长度<span
+class="math inline">\(\bmod 4\)</span> 进行分类。记我们研究的序列长为
+<span class="math inline">\(m\)</span>，用 <span
+class="math inline">\(c_{0/1}\)</span> 代表序列中 <span
+class="math inline">\(0/1\)</span> 的数量，手玩后得到如下结论。</p>
+<ul>
+<li>若 <span class="math inline">\(m\bmod
+4=0\)</span>，先手赢得游戏当且仅当 <span class="math inline">\(c_0\ge
+3c_1+1\)</span>。</li>
+<li>若 <span class="math inline">\(m\bmod
+4=1\)</span>，先手赢得游戏当且仅当 <span class="math inline">\(c_0\ge
+3c_1+2\)</span>。</li>
+<li>若 <span class="math inline">\(m\bmod
+4=2\)</span>，先手赢得游戏当且仅当 <span class="math inline">\(c_0\ge
+3c_1+2\)</span>。</li>
+<li>若 <span class="math inline">\(m\bmod
+4=3\)</span>，先手赢得游戏当且仅当 <span class="math inline">\(c_0\ge
+3c_1-1\)</span>。</li>
+</ul>
+<p>其中 <span class="math inline">\(c_0\ge 3c_1+k_i\)</span> 这个 <span
+class="math inline">\(k_i\)</span>
+并不唯一，如果你推出来其它的数值，也是对的。</p>
+<p>接下来，可以断言：这个必胜条件对于原游戏仍然成立。</p>
+<p>这看起来很违反直觉，因为后手虽然在原游戏中仍然能找到 <span
+class="math inline">\(0,1\)</span> 相邻，但先手不一定能找到两个相邻的
+<span class="math inline">\(0\)</span>。</p>
+<p>我们将这个 Claim
+做一个等价转化：如果原问题（移除相邻字符）与转化后的游戏（移除任意位置字符）的胜负结果一致，那么当原问题中先手无法操作时，转化后的游戏中先手也一定会输。</p>
+<p>而先手无法操作时，序列一定形如 <span
+class="math inline">\(0101\cdots0101\)</span>，即 <span
+class="math inline">\(c_1\ge
+c_0\)</span>，这个条件和上述四个先手必胜条件都相悖，因此先手必败。证毕。</p>
+<p>原问题转化为求满足上述四个条件之一的子串有多少个。我们将序列中的
+<span class="math inline">\(1\)</span> 看作 <span
+class="math inline">\(-3\)</span>，<span
+class="math inline">\(0\)</span> 看作 <span
+class="math inline">\(1\)</span> 求前缀和，条件 <span
+class="math inline">\(c_0\ge 3c_1+k_i\)</span> 便等价于区间和 <span
+class="math inline">\(\ge k_i\)</span>。</p>
+<p>对<span class="math inline">\(\bmod 4\)</span>
+相同的下标维护一个树状数组，每次到这四个树状数组里统计贡献。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf1895c.-torn-lucky-ticket"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1895/problem/C">CF1895C. Torn Lucky
+Ticket</a></h2>
+<p>*1400 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1895/submission/308826631">Code</a></p>
+<p>上手直接蟒就容易写成一坨的题。（至少我是这样QAQ</p>
+<p>这里给出一种优雅的解法。以下默认 0-index。</p>
+<p>把数字看成字符串，记 <span class="math inline">\(f(i,j)\)</span>
+代表第 <span class="math inline">\(i\)</span> 位到第 <span
+class="math inline">\(j\)</span> 位之间数位的和。</p>
+<p>遍历每个串，设当前串长为 <span
+class="math inline">\(m\)</span>，<span class="math inline">\(\forall
+i\in[0,m)\)</span>，将二元组 <span
+class="math inline">\(\{f(0,i)-f(i+1,m-1),(i+1)-(m-i-1)\}\)</span>
+记录进一个 <code>std::map</code> 中。</p>
+<p>枚举每个串作为拼接左侧，能与它拼起来构成 pair 的字符串数等价于二元组
+<span class="math inline">\(\{f(0,m-1),m\}\)</span> 和 <span
+class="math inline">\(\{-f(0,m-1),-m\}\)</span> 的数目和。</p>
+<p>容易发现一个字符串既能做左侧合法拼接又能做右侧合法拼接的情况被规避掉了，计数不重不漏。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf1895d.-xor-construction"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1895/problem/D">CF1895D. XOR
+Construction</a></h2>
+<p>*1900 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1895/submission/308831646">Code</a></p>
+<p>设 <span class="math inline">\(s_i=a_1\oplus a_2\oplus \cdots \oplus
+a_i\)</span>。</p>
+<p>则 <span class="math inline">\(\forall i&gt;1\)</span>，<span
+class="math inline">\(b_i=b_{i-1}\oplus a_{i-1}=b_{i-2}\oplus
+a_{i-2}\oplus a_{i-1}=\cdots=b_1\oplus s_{i-1}\)</span>。</p>
+<p>要让 <span class="math inline">\(b_i&lt;n\)</span>，就是让 <span
+class="math inline">\(\max\limits_{i\in[1,n]}(b_1\oplus
+s_{i-1})&lt;n\)</span>。</p>
+<p>枚举 <span class="math inline">\(b_1\)</span>，用 trie
+找到这个异或最大值，看它是否 <span
+class="math inline">\(&lt;n\)</span>。</p>
+<p>因为单次判断是 <span class="math inline">\(\log\)</span> 级别的，从
+<span class="math inline">\(0\)</span> 到 <span
+class="math inline">\(n-1\)</span> 暴力枚举就好。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log w)\)</span>，<span
+class="math inline">\(w\)</span> 是值域。</p>
+<h2 id="cf1894d.-neutral-tonality"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1894/problem/D">CF1894D. Neutral
+Tonality</a></h2>
+<p>*1700 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1894/submission/308865251">Code</a></p>
+<p>依据 Dilworth 定理，<span class="math inline">\(\{b\}\)</span>
+一定是排成降序最优，此时插进 <span class="math inline">\(\{a\}\)</span>
+中最多让 LIS 长度 <span class="math inline">\(+1\)</span>。</p>
+<p>我们只需尝试构造一种插入方式使得 LIS 长度尽可能不变。</p>
+<p>贪心地想，对于当前 <span
+class="math inline">\(a_i\)</span>，可以将最小值 <span
+class="math inline">\(\ge a_i\)</span> 的一段下降序列插入到 <span
+class="math inline">\(a_i\)</span> 的前面，此时 LIS
+长度一定不会增加。</p>
+<p>维护一个双指针即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf1894e.-freedom-of-choice"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1894/problem/E">CF1894E. Freedom of
+Choice</a></h2>
+<p>*2000 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1894/submission/308868532">Code</a></p>
+<p>设 <span class="math inline">\(L=\sum\limits_{i=1}^{m}
+l_i\)</span>，<span class="math inline">\(R =\sum\limits_{i=1}^{m}
+r_i\)</span>，<span
+class="math inline">\(N=\sum\limits_{i=1}^{m}n_i\)</span>。</p>
+<p>断言：当 <span class="math inline">\(R-L+1&gt;N\)</span> 时，答案为
+<span class="math inline">\(0\)</span>。</p>
+<ul>
+<li>根据 anti-beauty 的定义，一个 <span
+class="math inline">\(|X|\)</span> 对应一个 <span
+class="math inline">\(a_i\)</span>，而 <span
+class="math inline">\(a_i\)</span> 一共有 <span
+class="math inline">\(N\le 10^5\)</span> 种取值。当 <span
+class="math inline">\(|X|\)</span> 有 <span
+class="math inline">\(R-L+1&gt;N\)</span>
+种取值时，由抽屉原理，一定存在一个 <span
+class="math inline">\(|X|\)</span> 没有 <span
+class="math inline">\(a_i\)</span> 与之对应，此时答案为 <span
+class="math inline">\(0\)</span>。</li>
+</ul>
+<p>否则我们可以 <span class="math inline">\(O(N)\)</span> 枚举 <span
+class="math inline">\(|X|\in [L,R]\)</span>，对于每一个
+multiset，策略一定是 “若能不拿 <span class="math inline">\(|X|\)</span>
+就不拿”。</p>
+<p>具体地，初始化计数器 <span
+class="math inline">\(cnt=0\)</span>。对于当前 multiset，除了 <span
+class="math inline">\(|X|\)</span> 之外所有 <span
+class="math inline">\(a_i\)</span> 的 <span
+class="math inline">\(c_i\)</span> 之和为 <span
+class="math inline">\(s\)</span>，若 <span
+class="math inline">\(s&lt;l_i\)</span>，则有 <span
+class="math inline">\(l_i-s\)</span> 个 <span
+class="math inline">\(|X|\)</span> 是必须要拿的，令 <span
+class="math inline">\(cnt\leftarrow cnt+l_i-s\)</span> 且 <span
+class="math inline">\(s\leftarrow l_i\)</span>；否则 <span
+class="math inline">\(s=\min(s,r_i)\)</span>。将每个 multiset 的 <span
+class="math inline">\(s\)</span> 求和，设为 <span
+class="math inline">\(S\)</span>。</p>
+<p>若 <span class="math inline">\(S\ge
+|X|\)</span>，说明我们只需支付必要的 <span
+class="math inline">\(cnt\)</span> 个 <span
+class="math inline">\(|X|\)</span> 就能满足要求，当前 <span
+class="math inline">\(|X|\)</span> 的答案就是 <span
+class="math inline">\(cnt\)</span>；否则，我们还需在 <span
+class="math inline">\(cnt\)</span> 的基础上支付额外的 <span
+class="math inline">\(|X|-S\)</span>。</p>
+<p>当然，我们不能对每个 <span class="math inline">\(|X|\in[L,R]\)</span>
+都枚举所有 <span class="math inline">\(m\)</span> 个
+multisets。我们用一个 <code>std::map&lt;int, set&lt;int&gt;&gt;</code>
+预处理出 <span class="math inline">\(|X|\)</span> 存在于哪些 multiset
+中。此外还需要记录在每个 multiset 中 <span
+class="math inline">\(|X|\)</span> 的 <span
+class="math inline">\(c_i\)</span> 是多少。</p>
+<p>时间复杂度 <span class="math inline">\(O(N\log N)\)</span>。</p>
+<h2 id="cf2028d.-alices-adventures-in-cards"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2028/problem/D">CF2028D. Alice’s
+Adventures in Cards</a></h2>
+<p>*2000 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2028/submission/308902705">Code</a></p>
+<p>Alice 能从第 <span class="math inline">\(i\)</span> 列移动到第 <span
+class="math inline">\(j\ (j&gt;i)\)</span> 列当且仅当 <span
+class="math inline">\(\exists k\in\{0,1,2\}\)</span>，<span
+class="math inline">\(a[k][j]&lt;a[k][i]\)</span>。</p>
+<p>考虑从后向前枚举 <span class="math inline">\(i\)</span>，维护 <span
+class="math inline">\(dp[i]\)</span> 表示 Alice 能否从第 <span
+class="math inline">\(i\)</span> 列经过一系列移动到达第 <span
+class="math inline">\(n\)</span> 列。</p>
+<p>为方便转移，令 <span class="math inline">\(\text{minp}[k]\)</span>
+代表第 <span class="math inline">\(k\)</span> 行的当前后缀中 <span
+class="math inline">\(dp=1\)</span> 且值最小的元素的下标，那么 <span
+class="math inline">\(dp[i]=1\)</span> 当且仅当 <span
+class="math inline">\(\exists k\in \{0,1,2\}\)</span>，<span
+class="math inline">\(a[k][\text{minp}[k]]&lt;a[k][i]\)</span>。</p>
+<p>同时若 <span class="math inline">\(dp[i]=1\)</span>，就 check
+一下每一行的 <span class="math inline">\(\text{minp}\)</span>
+能不能更新。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf2028e.-alices-adventures-in-the-rabbit-hole"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2028/problem/E">CF2028E. Alice’s
+Adventures in the Rabbit Hole</a></h2>
+<p>*2300 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2028/submission/308910581">Code</a></p>
+<p>令 <span class="math inline">\(f_x\)</span> 表示点 <span
+class="math inline">\(x\)</span> 的答案，由题 <span
+class="math inline">\(f_{1}=1\)</span>，<span
+class="math inline">\(f_{leaf}=0\)</span>。</p>
+<p>每次轮到 Alice
+操作肯定是向根节点走，轮到皇后操作肯定是前往距当前节点最近的叶子。</p>
+<p>设当前研究的点为 <span class="math inline">\(x\)</span>，点 <span
+class="math inline">\(y\)</span> 是 <span
+class="math inline">\(x\)</span> 的儿子且在 <span
+class="math inline">\(x\)</span> 的所有儿子中离叶子最近，则： <span
+class="math display">\[
+f_x=\frac{1}{2}(f_{fa}+f_y)
+\]</span> 尝试待定系数，设 <span
+class="math inline">\(f_x=k_xf_{fa}+b_x\)</span>，代入。</p>
+<p><span class="math display">\[
+\begin{align}
+f_x={\color{Red}k_x}f_{fa}+\color{Green}{b_x}&amp;=\frac{1}{2}(f_{fa}+f_y)\\
+&amp;=\dfrac{1}{2}(f_{fa}+k_yf_x+b_y)\\
+&amp;=\frac{1}{2}(f_{fa}+k_y(k_xf_{fa}+b_x)+b_y)\\
+&amp;=\frac{1}{2}((k_xk_y+1)f_{fa}+k_yb_x+b_y)\\
+&amp;={\color{Red}\frac{1}{2}(k_xk_y+1)}f_{fa}+{\color{Green}\frac{1}{2}(k_yb_x+b_y)}
+\end{align}
+\]</span></p>
+<p>标红的两项对应相等，标绿的两项对应相等，解得： <span
+class="math display">\[
+k_x=\frac{1}{2-k_y}\qquad b_x=\frac{b_y}{2-k_y}
+\]</span> 又因叶子节点有 <span
+class="math inline">\(k_{leaf}=b_{leaf}=0\)</span>，根据 <span
+class="math inline">\(b_x\)</span> 递推式易知对于任意节点 <span
+class="math inline">\(b_x\)</span> 均为 <span
+class="math inline">\(0\)</span>。</p>
+<p>用一遍 dfs 至下而上求出每个节点的 <span
+class="math inline">\(k_x\)</span>，再 dfs 一遍即可求出 <span
+class="math inline">\(f_x\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1820e.-the-fox-and-the-complete-tree-traversal"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1820/problem/E">CF1820E. The Fox
+and the Complete Tree Traversal</a></h2>
+<p>*2400 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1820/submission/309151081">Code</a></p>
+<p>萌萌性质题。手玩之后做出如下 Claim。</p>
+<ul>
+<li>能找到一个符合要求的回路当且仅当整棵树是一个毛毛虫（由一条主链和长度不超过
+<span class="math inline">\(1\)</span>
+的支链组成的结构）。而整棵树是毛毛虫时，直径显然可以充当主链。</li>
+</ul>
+<p>换句话说，<code>Yes</code>
+当且仅当这棵树由直径和接在直径上的若干单点组成。</p>
+<p>令 <span class="math inline">\(dp[x]\)</span> 代表 <span
+class="math inline">\(x\)</span> 的子树中以 <span
+class="math inline">\(x\)</span>
+为毛毛虫的头的最大毛毛虫大小。转移是朴素的，最后只需判断这棵树的最大毛毛虫大小是否等于
+<span class="math inline">\(n\)</span>。如果你不熟悉可以看一下 <span
+class="math inline">\(\to\)</span> <a
+target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P3174">Link</a>。</p>
+<p>最后是构造方案。如下图构造即可（<span
+class="math inline">\(x,y\)</span>
+是直径端点），其实就是看这个点在直径序列上下标的奇偶性。</p>
+<p><img src="/image/academic/CF1820E.png" srcset="/img/loading.gif" lazyload /></p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1982e.-number-of-k-good-subarrays"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1982/problem/E">CF1982E. Number of
+k-good subarrays</a></h2>
+<p>*2300 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1982/submission/309161811">Code</a></p>
+<p>设 <span class="math inline">\(f(x,y)\)</span> 代表 <span
+class="math inline">\(n=x,k=y\)</span> 时的答案，考虑分治： <span
+class="math display">\[
+f(n,k)\to f(m,k),f(n-m,k-1)
+\]</span> 其中 <span
+class="math inline">\(m=\text{bit}\underline{}\text{floor}(n)\)</span>。后一部分相当于把最
+<span class="math inline">\(n\)</span> 最高位的 <span
+class="math inline">\(1\)</span> 拿掉，所以是 <span
+class="math inline">\(k-1\)</span>。</p>
+<p>分治的时候对当前 <span class="math inline">\((n,k)\)</span>
+返回一个三元组 <span
+class="math inline">\((l,r,ans)\)</span>，分别代表最大的 <span
+class="math inline">\(l\)</span> 满足 <span
+class="math inline">\([0,l)\)</span> 是 k-good 的，最小的 <span
+class="math inline">\(r\)</span> 满足 <span
+class="math inline">\([n-r,n)\)</span> 是 k-good
+的，以及当前状态的答案。</p>
+<p>合并的时候类似线段树维护前后缀，分情况讨论即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(t\log^2
+n)\)</span>，其中一个 <span class="math inline">\(\log\)</span> 来自
+<code>std::map</code> 的记忆化。</p>
+<h2 id="cf1797e.-li-hua-and-array"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1797/problem/E">CF1797E. Li Hua and
+Array</a></h2>
+<p>*2300 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1797/submission/309307708">Code</a></p>
+<p>将值域内的所有 <span class="math inline">\(x\)</span> 与 <span
+class="math inline">\(\varphi(x)\)</span> 连边（<span
+class="math inline">\(\varphi(x)\)</span> 是 <span
+class="math inline">\(x\)</span> 的父亲），构成一棵深度为 <span
+class="math inline">\(O(\log w)\)</span> 的树，根是 <span
+class="math inline">\(1\)</span>。</p>
+<p>操作 <span class="math inline">\(1\)</span>
+相当于让一段区间内的点同时跳向父亲，操作 <span
+class="math inline">\(2\)</span>
+相当于求一段区间内的点的深度和，以及一段区间内所有点的 LCA 的深度。</p>
+<p>对于操作 <span class="math inline">\(1\)</span>，因为树高是 <span
+class="math inline">\(\log\)</span> 级别，所以可以暴跳。若一个点跳到了
+<span
+class="math inline">\(1\)</span>，它后面就不再跳了，故用双向链表维护非
+<span class="math inline">\(1\)</span> 的节点。这样所有的操作 <span
+class="math inline">\(1\)</span> 复杂度之和不超过 <span
+class="math inline">\(O(n\log w)\)</span>。</p>
+<p>对于操作 <span
+class="math inline">\(2\)</span>，因为我们采取暴跳，所以深度和是好维护的，每跳一步就用线段树对深度进行单点修改。最多修改
+<span class="math inline">\(O(n\log w)\)</span> 次，故复杂度为 <span
+class="math inline">\(O(n\log n\log w)\)</span>。</p>
+<p>最后一个问题就是如何快速求若干点的 LCA，有结论：</p>
+<ul>
+<li>一堆点的 LCA 等同于 “dfs 序最小点” 和 “dfs 序最大点” 的 LCA。</li>
+</ul>
+<p>还是用线段树维护一段区间里最小 dfn 和最大 dfn，这样就是单 <span
+class="math inline">\(\log\)</span> 的。</p>
+<p>编码时要注意并不需要倍增求 LCA，暴跳求 LCA
+就行了，因为空间限制不允许你倍增。</p>
+<p>时间复杂度 <span class="math inline">\(O(w+n\log n\log w+m\log
+n)\)</span>，<span class="math inline">\(w\)</span> 是值域。</p>
+<h2 id="cf1974g.-money-buys-less-happiness-now"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1974/problem/G">CF1974G. Money Buys
+Less Happiness Now</a></h2>
+<p>*2000 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1974/submission/309608229">Code</a></p>
+<p>非常经典的反悔贪心。契机是每次换取的幸福值是一样的，你只关心得到了多少，而不关心来自哪次交易。</p>
+<p>用一个大根堆存储已经进行完交易的 <span
+class="math inline">\(c_i\)</span>，每次没钱时就把堆顶弹出来。</p>
+<p>时间复杂度 <span class="math inline">\(O(m\log m)\)</span>。</p>
+<h2 id="cf1797f.-li-hua-and-path"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1797/problem/F">CF1797F. Li Hua and
+Path</a></h2>
+<p>*3000 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1797/submission/309616026">Code</a></p>
+<p>这篇题解将会用到 Kruskal 点权多叉重构树。推荐前往 <a
+target="_blank" rel="noopener" href="https://www.cnblogs.com/alex-wei/p/Tree_Tree_Tree_Tree_Tree_Tree_Tree_Tree_Tree_Tree_Tree_Tree_Tree_Tree_Tree.html">Link</a>
+了解，如果你未曾接触过。</p>
+<p>我们将树上的一对 pair <span class="math inline">\((u,v)\)</span>
+分成三类，<span class="math inline">\(A\)</span> 类满足 <span
+class="math inline">\(u\)</span> 是 <span class="math inline">\(u\to
+v\)</span> 上的最小点，<span class="math inline">\(B\)</span> 类满足
+<span class="math inline">\(v\)</span> 是 <span
+class="math inline">\(u\to v\)</span> 上的最大点，<span
+class="math inline">\(C\)</span> 类则同时满足 <span
+class="math inline">\(u\)</span> 是最小点且 <span
+class="math inline">\(v\)</span> 是最大点。简单容斥，答案是 <span
+class="math inline">\(|A|+|B|-2|C|\)</span>。</p>
+<p>先考虑 <span class="math inline">\(A\)</span> 类路径的个数怎么求。求
+<span class="math inline">\(A\)</span> 类本质上是对每一个点 <span
+class="math inline">\(i\)</span>，找从 <span
+class="math inline">\(i\)</span> 出发只经过编号大于等于 <span
+class="math inline">\(i\)</span>
+的点能到达的点集大小。我们按点权从大到小的顺序建出原树的 Kruskal
+点权多叉重构树（后文称为 <span class="math inline">\(A\)</span>
+树），此时这棵树满足小根堆的性质，对于其上任意一点 <span
+class="math inline">\(x\)</span>，从 <span
+class="math inline">\(x\)</span> 出发能到达的点全在 <span
+class="math inline">\(x\)</span> 的子树中。因此 <span
+class="math inline">\(|A|=\sum\limits_{i=1}^{n}(sz_i-1)\)</span>。<span
+class="math inline">\(sz_i\)</span> 代表重构树上点 <span
+class="math inline">\(i\)</span> 的子树大小。</p>
+<p>同理 <span class="math inline">\(B\)</span>
+类路径就是按点权从小到大建树（称为 <span
+class="math inline">\(B\)</span> 树），这棵树满足大根堆的性质。</p>
+<p>接着考虑 <span class="math inline">\(C\)</span> 类路径。一个 pair
+<span class="math inline">\((u,v)\)</span> 满足 <span
+class="math inline">\(C\)</span> 类当且仅当 <span
+class="math inline">\(u\)</span> 在 <span
+class="math inline">\(A\)</span> 树上是 <span
+class="math inline">\(v\)</span> 的祖先，且 <span
+class="math inline">\(u\)</span> 在 <span
+class="math inline">\(B\)</span> 树上是 <span
+class="math inline">\(v\)</span>
+的子孙。容易将这个问题转化为子树加，利用树状数组维护。</p>
+<p>最后考虑那 <span class="math inline">\(m\)</span>
+次操作。注意到我们加的点的编号递增，这能引申出一系列良好的性质。</p>
+<p>设新加的点编号为 <span class="math inline">\(x\)</span>，则 <span
+class="math inline">\(x\)</span> 在 <span
+class="math inline">\(A\)</span> 树上一定是叶子，在 <span
+class="math inline">\(B\)</span> 树上一定是根。进一步，<span
+class="math inline">\(x\)</span> 对 <span
+class="math inline">\(A\)</span> 类的贡献就是它的深度（对每个祖先贡献
+<span class="math inline">\(1\)</span> 的子树大小），对 <span
+class="math inline">\(B\)</span> 类的贡献就是加进去的时候整个 <span
+class="math inline">\(B\)</span> 树的大小（即 <span
+class="math inline">\(x-1\)</span>）。对于 <span
+class="math inline">\(C\)</span> 类，因为 <span
+class="math inline">\(x\)</span> 编号最大，只能作为 pair 的第二维，<span
+class="math inline">\((u,x)\)</span> 是 <span
+class="math inline">\(C\)</span> 类当且仅当 <span
+class="math inline">\(u\)</span> 在 <span
+class="math inline">\(A\)</span> 树上是 <span
+class="math inline">\(x\)</span> 的祖先，且在 <span
+class="math inline">\(B\)</span> 树上是 <span
+class="math inline">\(x\)</span> 的子孙。换句话说 <span
+class="math inline">\(C\)</span> 类贡献与 <span
+class="math inline">\(A\)</span> 类相同，是 <span
+class="math inline">\(x\)</span> 的深度。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="abc396g.-flip-row-or-col"><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc396/tasks/abc396_g">abc396g. Flip
+Row or Col</a></h2>
+<p><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc396/submissions/63615012">Code</a></p>
+<p>对于一行来说，如果这一行有 <span class="math inline">\(c\)</span> 个
+<span class="math inline">\(1\)</span>，我们肯定是调整至 <span
+class="math inline">\(\min(c,W-c)\)</span> 个 <span
+class="math inline">\(1\)</span>。</p>
+<p>记 <span class="math inline">\(B_i\)</span> 代表第 <span
+class="math inline">\(i\)</span>
+行对应的十进制数，枚举每一列是否翻转，答案是： <span
+class="math display">\[
+\min_{X=0}^{2^W-1}\sum_{i=0}^{H-1}\min(\text{popcount}(B_i\oplus
+X),W-\text{popcount}(B_i\oplus X))
+\]</span>
+对于枚举的每一种列状态，时间复杂度不允许我们再枚举每一行，我们考虑对把
+<span class="math inline">\(\text{popcount}(B_i\oplus X)\)</span> 相同的
+<span class="math inline">\(i\)</span> 一起统计。</p>
+<p>令 <span class="math inline">\(dp[X][c]\)</span> 代表满足 <span
+class="math inline">\(\text{popcount}(B_i\oplus X)=c\)</span> 的 <span
+class="math inline">\(i\)</span> 的数量，枚举 <span
+class="math inline">\(X,c\)</span> 以及 <span
+class="math inline">\(j\in[0,W)\to\)</span> 从状态 <span
+class="math inline">\(X\oplus 2^j\)</span> 转移过来。</p>
+<p>答案是 <span
+class="math inline">\(\min\limits_{X=0}^{2^W-1}\sum\limits_{c=0}^{W}dp[X][c]\cdot\min(c,W-c)\)</span>。时间复杂度
+<span class="math inline">\(O(W^22^W)\)</span>。</p>
+<h2 id="cf2029e.-common-generator"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2029/problem/E">CF2029E. Common
+Generator</a></h2>
+<p>*2100 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2029/submission/309724863">Code</a></p>
+<p><strong>Claim 1.</strong> <span class="math inline">\(2\)</span>
+能生成所有的合数。</p>
+<ul>
+<li>首先，<span class="math inline">\(2\)</span>
+的倍数显然可以合成。否则假设当前合数为 <span
+class="math inline">\(x\)</span>，<span class="math inline">\(x\)</span>
+一定可以表示成 <span class="math inline">\(x=pq\)</span>，其中 <span
+class="math inline">\(p\)</span> 是 <span
+class="math inline">\(x\)</span> 的最小质因数且 <span
+class="math inline">\(p\ge 3,q&gt;1\)</span>。又 <span
+class="math inline">\(pq\)</span> 可以由 <span
+class="math inline">\((p-1)q\)</span> 合成，而 <span
+class="math inline">\(p-1\)</span> 是偶数，偶数可以由 <span
+class="math inline">\(2\)</span> 生成，故 <span
+class="math inline">\(x=pq\)</span> 可以由 <span
+class="math inline">\(2\)</span> 生成。</li>
+</ul>
+<p><strong>Claim 2. </strong> 质数只能由它自己生成。（显然，不证了）</p>
+<p>至此我们扫一遍 <span
+class="math inline">\(\{a\}\)</span>，若没有质数，答案是 <span
+class="math inline">\(2\)</span>；若有不同的质数，无解。</p>
+<p>否则设唯一质数为 <span class="math inline">\(p\)</span>，我们只用考虑
+<span class="math inline">\(p\)</span> 能否生成 <span
+class="math inline">\(\{a\}\)</span> 中剩下的所有数。</p>
+<p><strong>Claim 3. </strong> <span class="math inline">\(p\)</span>
+能生成偶数 <span class="math inline">\(x\)</span> 当且仅当 <span
+class="math inline">\(x\ge 2p\)</span>。</p>
+<ul>
+<li>因为 <span class="math inline">\(p\)</span> 第一步只能变成 <span
+class="math inline">\(2p\)</span>，<span
+class="math inline">\(2p\)</span> 又是偶数。之后一直 <span
+class="math inline">\(+2\)</span> 得到所有 <span
+class="math inline">\(\ge 2p\)</span> 的偶数。</li>
+</ul>
+<p><strong>Claim4. </strong> <span class="math inline">\(p\)</span>
+能生成奇合数 <span class="math inline">\(x\)</span> 当且仅当 <span
+class="math inline">\(x-\text{minp}_x\ge 2p\)</span>，其中 <span
+class="math inline">\(\text{minp}_x\)</span> 是 <span
+class="math inline">\(x\)</span> 的最小质因数。</p>
+<ul>
+<li><span class="math inline">\(x-\text{minp}_x\)</span> 是最大的 <span
+class="math inline">\(&lt; x\)</span> 的偶数。若 <span
+class="math inline">\(x-\text{minp}_x &lt; 2p\)</span>，即最大的能生成
+<span class="math inline">\(x\)</span> 的偶数都无法生成，自然无解。</li>
+</ul>
+<p>素数和最小质因数都能线性筛，这样每组数据就是线性的。</p>
+<p>时间复杂度 <span class="math inline">\(O(w+n)\)</span>，<span
+class="math inline">\(w\)</span> 是值域。</p>
+<h2 id="arc194c.-cost-to-flip"><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc194/tasks/arc194_c">arc194c. Cost
+to Flip</a></h2>
+<p><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc194/submissions/63650748">Code</a></p>
+<p>用二元组 <span class="math inline">\((x,y)\)</span> 代表状态 <span
+class="math inline">\(A_i=x,B_i=y\)</span>。首先 <span
+class="math inline">\((0,1)\)</span> 和 <span class="math inline">\((1,
+0)\)</span> 是无可避免的，<span class="math inline">\((0,0)\)</span>
+不用动，<span class="math inline">\((1,1)\)</span>
+既可以选择不动也可以选择 <span class="math inline">\(1\to 0\)</span> 再
+<span class="math inline">\(0\to 1\)</span>。</p>
+<p>依据贪心原则，满足状态 <span class="math inline">\((1, 0)\)</span>
+的列肯定是按 <span class="math inline">\(c_i\)</span>
+从大到小进行操作，满足状态 <span class="math inline">\((0,1)\)</span>
+的列肯定是按 <span class="math inline">\(c_i\)</span>
+从小到大进行操作。此外，对于状态 <span class="math inline">\((1,
+1)\)</span>，也一定存在一个阈值 <span
+class="math inline">\(W\)</span>，使得 <span
+class="math inline">\(C_i\le W\)</span> 的列选择不动，<span
+class="math inline">\(C_i&gt;W\)</span> 的列选择 <span
+class="math inline">\(1\to 0\)</span> 再 <span
+class="math inline">\(0\to 1\)</span>。</p>
+<p>我们考虑从小到大枚举这个阈值，列出式子并观察增量有何变化。</p>
+<p>所有 <span class="math inline">\((1,1)\)</span> 选择不动时，有：
+<span class="math display">\[
+ans=\sum_{p=1}^{X}(p-1)C_{ip}+\sum_{p=1}^{Y}pC_{jp}+(X+Y)\sum_{p=1}^{Z}C_{kp}
+\]</span> 其中 <span class="math inline">\(C_{i1}\ge C_{i2}\ge C_{i3}\ge
+\ldots\ge C_{iX}\)</span> 代表满足状态 <span
+class="math inline">\((1,0)\)</span> 的 <span
+class="math inline">\(C\)</span>，<span class="math inline">\(C_{j1}\ge
+C_{j2}\ge C_{j3}\ge \ldots\ge C_{jY}\)</span> 代表满足状态 <span
+class="math inline">\((0, 1)\)</span> 的 <span
+class="math inline">\(C\)</span>，<span
+class="math inline">\(C_{k1},C_{k2},\ldots,C_{kZ}\)</span>
+则代表满足状态 <span class="math inline">\((1, 1)\)</span> 的 <span
+class="math inline">\(C\)</span>。</p>
+<p>选中一个状态 <span class="math inline">\((1,1)\)</span>
+进行操作时，设对应的 <span class="math inline">\(C\)</span> 为 <span
+class="math inline">\(C_x\)</span>，最后一项会变成 <span
+class="math inline">\((X+Y+2)\left(\sum C_{kp}-C_x\right)\)</span>。</p>
+<p>对于前面两项，拿第一项举例。操作前： <span class="math display">\[
+0\cdot C_{i1}+1\cdot C_{i2}+2\cdot C_{i3}+3\cdot C_{i4}+ 4\cdot
+C_{i5}+5\cdot C_{i6}
+\]</span> 将 <span class="math inline">\(C_x\)</span> 插入后： <span
+class="math display">\[
+0\cdot C_{i1}+1\cdot C_{i2}+2\cdot C_{i3}+{\color{Green}3\cdot
+C_{x}}+{\color{Red}4}\cdot C_{i4}+ {\color{Red}5}\cdot
+C_{i5}+{\color{Red}6}\cdot C_{i6}
+\]</span> 插入的位置可以二分出来，增量则是一段后缀。</p>
+<p>但这并不意味着需要动态维护后缀和，因为我们插入的 <span
+class="math inline">\(C_x\)</span> 递减，每次插入的位置一定在之前的
+<span class="math inline">\(C_x\)</span> 之后。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="arc194d.-reverse-brackets"><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc194/tasks/arc194_d">arc194d.
+Reverse Brackets</a></h2>
+<p><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/arc194/submissions/63655541">Code</a></p>
+<p>建出括号树（包括虚根），一次操作相当于选定一个点 <span
+class="math inline">\(x\)</span>（设 <span
+class="math inline">\(x\)</span> 的儿子按原序列顺序依次是 <span
+class="math inline">\(y_1,y_2,y_3,\ldots\)</span>），接着选定一个区间
+<span class="math inline">\([l,r]\)</span>，将 <span
+class="math inline">\(y_l,y_{l+1},\ldots,y_r\)</span>
+连带它们的子树翻转。</p>
+<p>不难发现如此操作能任意排列一个点的儿子。</p>
+<p>接着就是数树的形态了。我们把同构的两棵子树用相同的数字表示，对于一个点来说，将以它所有儿子为根的子树代表的数字排成序列，方案数相当于重排这个序列能得到的本质不同的序列数量。</p>
+<p>使用树哈希容易做到 <span class="math inline">\(O(n\log n)\)</span> 或
+<span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf2071f.-towering-arrays"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2071/problem/F">CF2071F. Towering
+Arrays</a></h2>
+<p>*2700 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2071/submission/310224979">Code</a></p>
+<p>题外话：时限 6s，拼尽全力卡常喜提
+5999ms。上面代码放的是没有刻意卡常的版本，clone 下来跑了 7s。</p>
+<p>二分答案，设二分出的答案是 <span
+class="math inline">\(p\)</span>，我们就要找到最长的 <span
+class="math inline">\(p-towering\)</span> 序列的长度 <span
+class="math inline">\(m\)</span>，判断是否 <span
+class="math inline">\(n-m\le k\)</span>。</p>
+<p>考虑遍历序列上的每一个位置 <span
+class="math inline">\(i\)</span>，check <span
+class="math inline">\(a_i\)</span> 是否能作为 <span
+class="math inline">\(p-towering\)</span> 序列的最高点。此时 <span
+class="math inline">\(a_i\)</span>
+两侧延伸出去的长度独立，我们可以只考虑一边，然后把序列 reverse
+做另一边。</p>
+<p>现在的问题是对于每一个 <span class="math inline">\(i\)</span>，求序列
+<span class="math inline">\(a_1\sim a_i\)</span> 中以 <span
+class="math inline">\(a_i\)</span> 结尾的最长的子序列 <span
+class="math inline">\(\{s\}\)</span>，满足 <span
+class="math inline">\(s\)</span> 最后一个元素 <span
+class="math inline">\(\ge p\)</span>，倒数第二个元素 <span
+class="math inline">\(\ge p-1\)</span>，倒数第三个元素 <span
+class="math inline">\(\ge p-2\)</span>，<span
+class="math inline">\(\ldots\)</span></p>
+<p>结论：若 <span class="math inline">\(a_{i}\ge
+p\)</span>，对于任意满足 <span class="math inline">\(j&lt;i\)</span> 且
+<span class="math inline">\(a_j\ge p\)</span> 的 <span
+class="math inline">\(j\)</span>，序列 <span
+class="math inline">\(a_1\sim a_i\)</span> 构造出的 <span
+class="math inline">\(\{s\}\)</span> 一定完全包含序列 <span
+class="math inline">\(a_1\sim a_{j}\)</span> 构造出的 <span
+class="math inline">\(\{s\}\)</span> 中的元素。换句话说随着 <span
+class="math inline">\(i\)</span> 增加，我们一定只是在 <span
+class="math inline">\(\{s\}\)</span> 的末尾添加元素。</p>
+<ul>
+<li>当我们把 <span class="math inline">\(a_i\)</span> 加进 <span
+class="math inline">\(\{s\}\)</span> 后，<span
+class="math inline">\(\{s\}\)</span> 中倒数第 <span
+class="math inline">\(i\)</span> 个元素要求 <span
+class="math inline">\(\ge p-i+1\)</span>，而在原来的 <span
+class="math inline">\(\{s\}\)</span> 中倒数第 <span
+class="math inline">\(i-1\)</span> 个元素满足 <span
+class="math inline">\(\ge p-i+2\)</span>。故得证。</li>
+</ul>
+<p>一个使用线段树维护 <span class="math inline">\(\{s\}\)</span>
+最长长度的流程是：</p>
+<ol type="1">
+<li>按顺序扫描序列，对于当前 <span
+class="math inline">\(i\)</span>，给线段树上第 <span
+class="math inline">\(i\)</span> 个位置赋值 <span
+class="math inline">\(p-a_i\)</span>。</li>
+<li>找到 <span class="math inline">\(1\sim i\)</span> 中最后一个值 <span
+class="math inline">\(\le0\)</span> 的位置，设下标为 <span
+class="math inline">\(t\)</span>。将 <span
+class="math inline">\(a_t\)</span> 加进 <span
+class="math inline">\(\{s\}\)</span> 中，并给线段树上 <span
+class="math inline">\(1\sim t\)</span> 这段前缀 <span
+class="math inline">\(-1\)</span>。（多一个元素自然前面的元素限制 <span
+class="math inline">\(-1\)</span>）</li>
+<li>将位置 <span class="math inline">\(t\)</span> 设为 <span
+class="math inline">\(+\infty\)</span>。（保证已经选中的之后不再选中）</li>
+<li>重复步骤 <span class="math inline">\(2,3\)</span> 直到找不到值 <span
+class="math inline">\(\le 0\)</span> 的位置。此时 <span
+class="math inline">\(\{s\}\)</span> 中元素个数即为当前 <span
+class="math inline">\(i\)</span> 的答案。</li>
+</ol>
+<p>时间复杂度 <span class="math inline">\(O(n\log n\log
+w)\)</span>，<span class="math inline">\(w\)</span> 是值域。</p>
+<h2 id="cf2074g.-game-with-triangles-season-2"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2074/problem/G">CF2074G. Game With
+Triangles: Season 2</a></h2>
+<p>*2100 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2074/submission/310276404">Code</a></p>
+<p>区间 dp。拆环成链，记 <span class="math inline">\(dp[L][R]\)</span>
+为区间 <span class="math inline">\([L,R]\)</span> 的答案。</p>
+<p>从小到大枚举长度，对于当前 <span
+class="math inline">\([L,R]\)</span>，枚举 <span
+class="math inline">\(k\in[L+1,R-1]\)</span> 让 <span
+class="math inline">\(L,k,R\)</span> 成为三角形的三个顶点。 <span
+class="math display">\[
+dp[L][R]=\max_{k\in(L,R)}(dp[L+1][k-1]+dp[k+1][R-1]+a_L\cdot a_k\cdot
+a_R)
+\]</span> 别忘了还有区间 dp 的定义式： <span class="math display">\[
+dp[L][R]=\max_{k\in[L,R)}(dp[L][k]+dp[k+1][R])
+\]</span> 时间复杂度 <span class="math inline">\(O(n^3)\)</span>。</p>
+<h2 id="cf1994d.-funny-game"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1994/problem/D">CF1994D. Funny
+Game</a></h2>
+<p>*1900 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1994/submission/310362959">Code</a></p>
+<p>我们只关心连哪些边，而不关心连边的顺序。</p>
+<p>按 <span class="math inline">\(x\)</span>
+从大到小考虑，我们每次将选出的两个点用并查集连起来，这样每次操作后连通块个数
+<span class="math inline">\(-1\)</span>。</p>
+<p>第一次操作，要找到两个点 <span class="math inline">\(u,v\)</span>
+满足 <span class="math inline">\(|a_u-a_v|=n-1\)</span>，换个写法就是
+<span class="math inline">\(a_u\equiv a_v\pmod{n-1}\)</span>。此时图上有
+<span class="math inline">\(n\)</span>
+个连通块，从每个连通块里任选一个点，就是 <span
+class="math inline">\(n\)</span> 个点。根据鸽笼原理，这 <span
+class="math inline">\(n\)</span> 个点里一定存在一对 <span
+class="math inline">\(u,v\)</span> 满足 <span
+class="math inline">\(a_u\equiv a_v\pmod{n-1}\)</span>。</p>
+<p>第二次操作，要找到两个点 <span class="math inline">\(u,v\)</span>
+满足 <span class="math inline">\(a_u\equiv
+a_v\pmod{n-2}\)</span>。此时图上有 <span
+class="math inline">\(n-1\)</span>
+个连通块，从每个连通块里任选一个点，就是 <span
+class="math inline">\(n-1\)</span> 个点。根据鸽笼原理，这 <span
+class="math inline">\(n-1\)</span> 个点里也一定存在一对 <span
+class="math inline">\(u,v\)</span> 满足 <span
+class="math inline">\(a_u\equiv a_v\pmod{n-2}\)</span>。</p>
+<p>第三次操作，<span class="math inline">\(\ldots\)</span></p>
+<p>综上，本题一定有解，按照上述流程构造一个即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(n^2)\)</span>。</p>
+<h2 id="cf1994f.-stardew-valley"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1994/problem/F">CF1994F. Stardew
+Valley</a></h2>
+<p>*2500 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1994/submission/310403549">Code</a></p>
+<p>把有 NPC 的边称为 <span class="math inline">\(1\)</span> 边，否则称为
+<span class="math inline">\(0\)</span> 边。</p>
+<p>我们要找到一条经过每条 <span class="math inline">\(1\)</span>
+边恰好一次的回路。可以将该问题转化为选择一些 <span
+class="math inline">\(0\)</span>
+边删掉，使得图中所有点的度均为偶数，这样我们只用跑一遍欧拉回路就行。</p>
+<p>当我们删除一条边时，如果两个端点原来都是奇度点，那么图中奇度点个数
+<span
+class="math inline">\(-2\)</span>；如果两个端点原来度数一奇一偶，那么图中奇度点个数不变。</p>
+<p>于是，建出一个只有 <span class="math inline">\(0\)</span>
+边的图，<code>YES</code>
+的充要条件就是对于图中每个连通分量，奇度点个数均为偶数。</p>
+<p>一个较好的实现是：对每个连通分量 dfs，在 dfs
+生成树上至下而上贪心地删边，若删到根后根是奇度点，就是
+<code>NO</code>。这样删哪条边也顺便记录了。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf2049f.-mex-or-mania"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2049/problem/F">CF2049F. MEX OR
+Mania</a></h2>
+<p>*2700 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2049/submission/310513955">Code</a></p>
+<p>由 <span class="math inline">\(\text{mex} \le \text{max}+1\le
+\text{or}+1\)</span>，题目条件成立当且仅当这两个不等号同时取等。</p>
+<p><span class="math inline">\(\text{mex}=\max +1\)</span>
+当且仅当序列包含了 <span class="math inline">\(0\sim \max\)</span>
+中的所有数，<span class="math inline">\(\text{or}=\max\)</span>
+当且仅当序列中的数在二进制下是 <span class="math inline">\(\max\)</span>
+的子集。同时取等意味着这个序列包含了 <span class="math inline">\(0\sim
+2^k-1\)</span> 中的所有数，<span class="math inline">\(k\in
+N\)</span>。</p>
+<p>我们不妨枚举每个 <span
+class="math inline">\(k\)</span>，判断是否存在一段区间包含了 <span
+class="math inline">\(0\sim 2^k-1\)</span> 中的所有数，且不包含 <span
+class="math inline">\(\ge 2^k\)</span> 的数。</p>
+<p>在不考虑修改的情况下，我们可以把 <span
+class="math inline">\(&lt;2^k\)</span> 的数用并查集连在一起，然后用一个
+<code>unordered_map</code>
+维护这个连通块不同的数的个数。若不同的数的个数恰好是 <span
+class="math inline">\(2^k\)</span>，就说明这个连通块是符合条件的。</p>
+<p>接下来我们面临 <span class="math inline">\(q\)</span>
+次单点加，当区间里的一个数超出了 <span
+class="math inline">\(2^k-1\)</span>，这个区间就会分成两个子区间，这是不好处理的。</p>
+<p>于是考虑离线，倒着操作序列，变成单点减。我们依旧是对每个 <span
+class="math inline">\(k\)</span> 维护一个并查集，将 <span
+class="math inline">\(&lt; 2^k\)</span>
+的数连在一起，这样每次只用考虑是否可以将被操作的位置的两端合并成一个大区间。若可以，就启发式合并，将小的那一段区间
+<code>unordered_map</code> 记录的信息合并到大的那一段区间来。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log^2 n)\)</span>。</p>
+<h2 id="cf2078g.-another-folding-strip"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2078/problem/G">CF2078G. Another
+Folding Strip</a></h2>
+<p>*2700 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2078/submission/310973326">Code</a></p>
+<p>两个格子通过折叠能一上一下挨着当且仅当这两个格子的下标之差为奇数。</p>
+<p>换句话说，一次操作相当于选择一组下标序列 <span
+class="math inline">\(i_1,i_2,i_3,\ldots\)</span>，其中 <span
+class="math inline">\(\forall k &gt; 0\)</span>，<span
+class="math inline">\(i_{k}\)</span> 与 <span
+class="math inline">\(i_{k+1}\)</span> 奇偶性不同，然后使这些位置上的值
+<span class="math inline">\(+1\)</span>。</p>
+<p>倒着考虑，每次让一组下标序列对应位置上的值 <span
+class="math inline">\(-1\)</span>，问将 <span
+class="math inline">\(\{a\}\)</span> 变成全 <span
+class="math inline">\(0\)</span> 序列的最小操作次数。</p>
+<p>对序列进行黑白染色：<span class="math inline">\(\forall
+i\in[1,n]\)</span>，令 <span
+class="math inline">\(b_i=(-1)^ia_i\)</span>。</p>
+<p>令一次操作后的 <span class="math inline">\(\{b\}\)</span> 为 <span
+class="math inline">\(\{b&#39;\}\)</span>，一个很强的性质是对于 <span
+class="math inline">\(1\sim n\)</span> 上任意一个区间 <span
+class="math inline">\([l,r]\)</span>，有 <span
+class="math inline">\(\left|\sum\limits_{i=l}^{r}b&#39;_i-\sum\limits_{i=l}^{r}b_i\right|
+\le 1\)</span>。</p>
+<p>这意味着若 <span class="math inline">\(\{b\}\)</span> 上存在一个和为
+<span class="math inline">\(k\)</span> 的子段，那么这个子段至少要进行
+<span class="math inline">\(|k|\)</span> 次操作才能变为全 <span
+class="math inline">\(0\)</span>。</p>
+<p>故 <span class="math inline">\(f(a_1a_2\ldots a_n)\)</span> 的下界是
+<span class="math inline">\(\max\limits_{1\le l\le r\le
+n}\left|\sum\limits_{i=l}^{r}b_i\right|\)</span>。事实上能够证明该下界可达，具体见官方题解。（毕竟下标序列的选择条件是相当宽松的，退一步写一个
+<span class="math inline">\(O(n^2)\)</span>
+检验样例也很容易，这里就不证了）</p>
+<p>令 <span
+class="math inline">\(pre_i=\sum\limits_{j=1}^{i}b_j\)</span>，式子变成
+<span class="math inline">\(\max\limits_{1\le l\le r\le
+n}\left|pre_r-pre_{l-1}\right|\)</span>，即 <span
+class="math inline">\(\{pre\}\)</span> 的极差。</p>
+<p>原问题转化为求 <span class="math inline">\(\{b\}\)</span>
+所有连续子序列的极差之和。枚举一个数作为极大值/极小值占领的区间，单调栈或线段树均可做。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span> 或 <span
+class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf2082f.-mst-in-modulo-graph"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2082/problem/F">CF2082F. MST in
+Modulo Graph</a></h2>
+<p>*2600 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2082/submission/311029035">Code</a></p>
+<p>对每一个 <span class="math inline">\(p_i\)</span>，枚举 <span
+class="math inline">\(k=p_i,2p_i,3p_i,\ldots\)</span>，再二分出第一个
+<span class="math inline">\(\ge k\)</span> 的 <span
+class="math inline">\(p_j\)</span>。将这对 <span
+class="math inline">\((i,j)\)</span> 放进候选表里。</p>
+<p>此时对于 <span class="math inline">\(p_i\)</span> 来说，<span
+class="math inline">\(p_j\bmod p_i\)</span> 最小的 <span
+class="math inline">\(p_j\)</span> 一定在候选表中。</p>
+<p>最终我们会有 <span class="math inline">\(O(n\log n)\)</span>
+条候选边（调和级数效应）。用这些边跑最小生成树即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log^2 n)\)</span>。</p>
+<h2 id="cf2075d.-equalization"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2075/problem/D">CF2075D.
+Equalization</a></h2>
+<p>*2000 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2075/submission/311292632">Code</a></p>
+<p>每次操作相当于将二进制下的 <span class="math inline">\(x\)</span> 或
+<span class="math inline">\(y\)</span> 右移一定位数。</p>
+<p>假若我们确定了最优答案中 <span class="math inline">\(x\)</span>
+右移了 <span class="math inline">\(k_1\)</span> 位，<span
+class="math inline">\(y\)</span> 右移了 <span
+class="math inline">\(k_2\)</span> 位，该如何计算最小操作次数？</p>
+<p>将一次花费 <span class="math inline">\(2^k\)</span>
+的操作看作一个物品，这个物品的体积是 <span
+class="math inline">\(k\)</span>，价值是 <span
+class="math inline">\(2^k\)</span>，且每个物品至多被选一次。</p>
+<p>也就是说这是一个 <span class="math inline">\(01\)</span>
+背包问题，而且是两个背包，容量分别为 <span
+class="math inline">\(k_1\)</span> 与 <span
+class="math inline">\(k_2\)</span>。</p>
+<p>令 <span class="math inline">\(dp[i][j]\)</span> 为两个背包分别塞了
+<span class="math inline">\(i\)</span> 体积和 <span
+class="math inline">\(j\)</span> 体积东西时的选取物品的最小价值。</p>
+<ul>
+<li>初态：<span
+class="math inline">\(dp[i][j]=\begin{cases}0&amp;,i=0\cap j=0\\ \infty
+&amp;,\text{otherwise}\end{cases}\)</span></li>
+<li>转移：<span class="math inline">\(dp[i][j]=\min\limits_{1\le k\le
+60}\begin{cases}dp[i-k][j]+2^k &amp;,k\le i\\ dp[i][j-k]+2^k &amp;,k\le
+j\end{cases}\)</span></li>
+<li>答案：<span class="math inline">\(dp[k_1][k_2]\)</span>。</li>
+</ul>
+<p>但事实上 <span class="math inline">\(k_1\)</span> 和 <span
+class="math inline">\(k_2\)</span> 并不能贪心地确定。</p>
+<p>正确的做法是枚举所有 “<span class="math inline">\(x\)</span> 右移
+<span class="math inline">\(k_1\)</span> 位 <span
+class="math inline">\(=\)</span> <span class="math inline">\(y\)</span>
+右移 <span class="math inline">\(k_2\)</span> 位” 的 <span
+class="math inline">\(k_1\)</span> 与 <span
+class="math inline">\(k_2\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(\log^3w)-O(\log^2
+w)\)</span>，<span class="math inline">\(w\)</span> 为值域。</p>
+<h2 id="cf1808d.-petya-petya-petr-and-palindromes"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1808/problem/D">CF1808D. Petya,
+Petya, Petr, and Palindromes</a></h2>
+<p>*2100 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1808/submission/311347398">Code</a></p>
+<p>正难则反，用总和减去相等数对造成的贡献得到答案。</p>
+<p>所有长为 <span class="math inline">\(k\)</span> 的子串的
+palindromicity 之和为 <span
+class="math inline">\(\lfloor\frac{k}{2}\rfloor(n-k+1)\)</span>。</p>
+<p>考虑满足 <span class="math inline">\(a_i=a_j\)</span> 的一对 <span
+class="math inline">\((i,j)(i&lt;j)\)</span>，这对 <span
+class="math inline">\((i,j)\)</span> 能造成 <span
+class="math inline">\(1\)</span> 的贡献当且仅当：</p>
+<ul>
+<li><p><span class="math inline">\(i\bmod 2=j\bmod 2\)</span>；</p></li>
+<li><p><span class="math inline">\(j-i+1\le k\)</span>；</p></li>
+<li><p><span class="math inline">\(i-\frac{k-(j-i+1)}{2}\ge
+1\)</span>；</p></li>
+<li><p><span class="math inline">\(j+\frac{k-(j-i+1)}{2}\le
+n\)</span>。</p></li>
+</ul>
+<p>解得 <span class="math inline">\(j\in
+[\max(i+1,k+1-i),\min(n,i+k-1,2n-k-i+1)]\)</span>。</p>
+<p>将 <span class="math inline">\(\{a\}\)</span>
+按照下标奇偶分成两个数组。对每个数组 <span
+class="math inline">\(\{b\}\)</span>，枚举 <span
+class="math inline">\(i\)</span>，二分出上述区间里有多少个 <span
+class="math inline">\(j\)</span> 满足 <span
+class="math inline">\(b_i=b_j\)</span>，计入贡献。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf1808e1e2.-minibuses-on-venus"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1808/problem/E1">CF1808E1/E2.
+Minibuses on Venus</a></h2>
+<p>*2200 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1808/submission/311374162">Code</a>（E1）</p>
+<p>*2500 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1808/submission/311387002">Code</a>（E2）</p>
+<p>将 <span class="math inline">\(n\)</span> 个数位看成一个长为 <span
+class="math inline">\(n\)</span> 的数列 <span
+class="math inline">\(\{a\}\)</span>，每个元素的取值是 <span
+class="math inline">\([0,k)\)</span>。</p>
+<p>一个数列满足条件当且仅当 <span class="math inline">\(\exists
+i\in[1,n]\)</span>，<span class="math inline">\(a_i\equiv
+a_1+a_2+\ldots+a_{i-1}+a_{i+1}+\ldots a_n\pmod{k}\)</span>。</p>
+<p>令 <span
+class="math inline">\(S=\sum\limits_{i=1}^{n}a_i\)</span>，则改写为
+<span class="math inline">\(a_i\equiv S-a_i\pmod {k}\)</span>，也就是
+<span class="math inline">\(2a_i\equiv S\pmod {k}\)</span>。</p>
+<p>容斥，用总方案数 <span class="math inline">\(k^n\)</span> 减去 <span
+class="math inline">\(\forall i\in[1,n]\)</span>，<span
+class="math inline">\(2a_i\not\equiv S\pmod {k}\)</span> 的 <span
+class="math inline">\(\{a\}\)</span> 的数量。</p>
+<p>当我们每次往 <span class="math inline">\(\{a\}\)</span>
+里添一个数时，<span class="math inline">\(S\)</span> 会动态变化。但<span
+class="math inline">\(\bmod k\)</span> 下 <span
+class="math inline">\(S\)</span> 只有 <span
+class="math inline">\(k\)</span> 种取值，所以我们可以枚举 <span
+class="math inline">\(S\)</span>。</p>
+<p>对于一个固定的 <span
+class="math inline">\(S\)</span>，满足条件的序列数量可以用动态规划求解。</p>
+<p>令 <span class="math inline">\(dp_{i,j}\)</span> 表示已经填了前 <span
+class="math inline">\(i\)</span> 个数，这 <span
+class="math inline">\(i\)</span> 个数和为 <span
+class="math inline">\(j\)</span> 的方案数。</p>
+<ul>
+<li><p>初态：<span class="math inline">\(dp_{0,0}=1\)</span>；</p></li>
+<li><p>转移：<span class="math inline">\(\forall x\in [0,k),\forall
+j\in[0,k),2x\not\equiv S\pmod {k}\)</span>，<span
+class="math inline">\(dp_{i,(j+x)\bmod
+k}=dp_{i,(j+x)\bmod{k}}+dp_{i-1,j}\)</span>；</p></li>
+<li><p>答案：<span class="math inline">\(dp_{n,S}\)</span>。</p></li>
+</ul>
+<p>时间复杂度 <span class="math inline">\(O(nk^3)\)</span>，可以通过
+E1。</p>
+<p>这个转移看起来就很矩阵，于是令矩阵 <span
+class="math inline">\(A_{i,(i+j)\bmod k}=[2j\not\equiv
+S\pmod{k}]\)</span>，则： <span class="math display">\[
+[dp_{i,0},dp_{i,1},\cdots,dp_{i,k-1}]\times A=[dp_{i+1,0},dp_{i+1,
+1},\cdots,dp_{i+1,k-1}]
+\]</span></p>
+<ul>
+<li>初态：<span
+class="math inline">\(dp_0=[1,0,0,\cdots,0]\)</span>；</li>
+<li>答案：<span class="math inline">\(dp_{0}\times A^{n}\)</span> 的第
+<span class="math inline">\(S\)</span> 项。</li>
+</ul>
+<p>矩阵快速幂是 <span class="math inline">\(O(k^3\log
+n)\)</span>，加上枚举 <span class="math inline">\(S\)</span>，就是 <span
+class="math inline">\(O(k^4\log n)\)</span> ，并不能通过 E2。<a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1808/submission/311376877">Code</a></p>
+<p>但注意到 <span class="math inline">\(A\)</span>
+是一个循环矩阵（每一行都是上一行的循环右移），这意味着我们可以把 <span
+class="math inline">\(dp_{i,0}\sim dp_{i,k-1}\)</span>
+看成多项式的系数，用循环卷积去优化它。</p>
+<p>具体地，定义多项式 <span class="math inline">\(f_i(x) = dp_{i,0}\cdot
+x^0+dp_{i,1}\cdot x^1+\cdots+dp_{i,k-1}\cdot x^{k-1}\)</span>。</p>
+<p>转移多项式 <span class="math inline">\(G(x)\)</span> 取 <span
+class="math inline">\(A\)</span> 的第一行，也就是 <span
+class="math inline">\([x^i]G(x)=[2i\not\equiv S\pmod{k}]\)</span>。</p>
+<p>答案即 <span class="math inline">\([x^S](f_0\times
+G^n(x))\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(k^3\log n)\)</span>，如果会
+FFT 能做到 <span class="math inline">\(O(k^2\log
+n)\)</span>。能吗？反正我不会QAQ。</p>
+<h2 id="abc397g.-maximize-distance"><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc397/tasks/abc397_g">abc397g.
+Maximize Distance</a></h2>
+<p><a
+target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc397/submissions/63932043">Code</a></p>
+<p>二分答案，设二分出的答案是 <span
+class="math inline">\(d\)</span>，那么需要判定让 <span
+class="math inline">\(1\to n\)</span> 的最短路为 <span
+class="math inline">\(d\)</span> 的最小操作次数是否 <span
+class="math inline">\(\le K\)</span>。</p>
+<p>当 <span class="math inline">\(d=1\)</span>
+时，问题等价于选定一个最小边集，使得任何一条从 <span
+class="math inline">\(1\to n\)</span>
+的路径都无可避免地经过这个边集中的边。换句话说，边集中的边将原图分割成了两部分，即最小割。</p>
+<p>当 <span class="math inline">\(d&gt;1\)</span>
+时，我们能通过建模将问题转化为一个分层图的最小割。</p>
+<p><img src="/image/academic/AT1.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>上图是 <span class="math inline">\(d=1\)</span>
+的情况，标注出的数字代表流量。考虑同样的图，但 <span
+class="math inline">\(d=3\)</span>：</p>
+<p><img src="/image/academic/AT3.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>这只是一个分层图的框架，当我们需要让 <span class="math inline">\(1\to
+n\)</span> 的最短路为 <span class="math inline">\(3\)</span>
+时，会出现一些问题。</p>
+<p><img src="/image/academic/AT6.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>左图是我们期望的：分层图的每一层都选定了一些边，且每一层选定的边都组成了原图的一个最小割。把它们割掉，原图不连通，这样一个
+<span class="math inline">\(d\)</span> 层的分层图的最小割就是让 <span
+class="math inline">\(1\to n\)</span> 的最短路为 <span
+class="math inline">\(d\)</span>
+的最小操作次数。但能这么做的前提是每一层选定的边集互不相同，右图中我们只选定了三条边就能让图不连通，显然不合法。</p>
+<p><img src="/image/academic/final.jpg" srcset="/img/loading.gif" lazyload /></p>
+<p>解决方案是对于每一条存在于原图中的边 <span
+class="math inline">\((u,v)\)</span>，<span
+class="math inline">\(\forall i\in[1,d)\)</span>，从第 <span
+class="math inline">\(i\)</span> 层的 <span
+class="math inline">\(u\)</span> 向第 <span
+class="math inline">\(i+1\)</span> 层的 <span
+class="math inline">\(v\)</span>
+连边。这样选中不同层的同一条边就没有了意义。</p>
+<p>时间复杂度 <span
+class="math inline">\(O(\text{maxflow}(n^2,mn+n^2)\log n)\)</span>。</p>
+<h2 id="cf2035e.-monster"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2035/problem/E">CF2035E.
+Monster</a></h2>
+<p>*2300 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2035/submission/311492543">Code</a></p>
+<p>假设我们总共使用了 <span class="math inline">\(a\)</span> 次操作
+<span class="math inline">\(1\)</span>，<span
+class="math inline">\(b\)</span> 次操作 <span
+class="math inline">\(2\)</span>。</p>
+<p>贪心地想，最优策略一定是 “提升 <span class="math inline">\(k\)</span>
+次攻击力，打一次”，“提升 <span class="math inline">\(k\)</span>
+次攻击力，打一次”，<span class="math inline">\(\ldots\)</span>，如此反复
+<span
+class="math inline">\(c=\min(\left\lfloor\frac{a}{k}\right\rfloor,b)\)</span>
+次，再将剩下的 <span class="math inline">\(a\bmod k\)</span>
+次攻击力提升用完，打 <span class="math inline">\(b-c\)</span>
+次怪物。</p>
+<p>等差数列求和，造成的总伤害 <span
+class="math inline">\(\text{damage}(a,b)=\frac{c(c+1)}{2}k+a(b-c)\)</span>，总代价
+<span class="math inline">\(\text{cost}(a,b)=ax+by\)</span>。</p>
+<p>发现当 <span class="math inline">\(a\)</span> 固定时，<span
+class="math inline">\(\text{damage}(a,b)\)</span> 随着 <span
+class="math inline">\(b\)</span> 增加单调不降；当 <span
+class="math inline">\(b\)</span> 固定时，<span
+class="math inline">\(\text{damage}(a,b)\)</span> 随着 <span
+class="math inline">\(a\)</span> 增加单调不降。</p>
+<p>于是可以枚举 <span class="math inline">\(a\)</span>，二分出使得 <span
+class="math inline">\(\text{damage}(a,b)\ge z\)</span> 的最小 <span
+class="math inline">\(b\)</span>；或者枚举 <span
+class="math inline">\(b\)</span>，二分出使得 <span
+class="math inline">\(\text{damage}(a,b)\ge z\)</span> 的最小 <span
+class="math inline">\(a\)</span>。</p>
+<p>但 <span class="math inline">\(a,b\)</span>
+太大不能枚举，根据你对算法竞赛的了解这时候肯定从哪里推导出一个神秘的不等式然后把
+<span class="math inline">\(a\)</span> 或 <span
+class="math inline">\(b\)</span>
+的上界缩小。恭喜你猜对了。（实际上你可以根据时限和数据组数试一个刚好不会超时的上界）</p>
+<p>证明：<span class="math inline">\(\min(a,b)\le
+\sqrt{2z}\)</span>。</p>
+<ul>
+<li>当 <span class="math inline">\(k=1\)</span>
+时，攻击间隔最短，最低效。此时 <span
+class="math inline">\(c=\min(\left\lfloor\frac{a}{k}\right\rfloor)=\min(a,b)\)</span>，而当你提升一次攻击力就打一次的时候，最后一次操作不是攻击肯定没有意义，所以
+<span class="math inline">\(a\le b\)</span>，故 <span
+class="math inline">\(c=a\)</span>。</li>
+<li>此时 <span class="math inline">\(\text{damage}(a,b)\ge
+\frac{a(a+1)}{2}+a(b-a)=\frac{a(2b-a+1)}{2}\ge
+\frac{a(2b-b+1)}{2}&gt;\frac{ab}{2}\)</span>。</li>
+<li>当 <span class="math inline">\(\text{damage}(a,b)\)</span> 取到
+<span class="math inline">\(z\)</span> 时，有 <span
+class="math inline">\(z&gt;\frac{ab}{2}\)</span>，即 <span
+class="math inline">\(ab&lt;2z\)</span>，<span
+class="math inline">\(\min(a,b)\le \sqrt{2z}\)</span>，得证。</li>
+</ul>
+<p>时间复杂度 <span class="math inline">\(O(\sqrt{z}\log
+z)\)</span>。</p>
+<h2 id="cf2085c.-serval-and-the-formula"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2085/problem/C">CF2085C. Serval and
+The Formula</a></h2>
+<p>*1600 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2085/submission/312151000">Code</a></p>
+<p><span class="math inline">\((x + k)+(y+k)=(x+k)\oplus(y+k)\)</span>
+等价于 <span class="math inline">\((x+k)\&amp; (y+k)=0\)</span>。</p>
+<p>注意到 <span class="math inline">\(2^p\)</span> 和任何 <span
+class="math inline">\(&lt;2^p\)</span> 的数按位与的结果都是 <span
+class="math inline">\(0\)</span>。</p>
+<p>故考虑把 <span class="math inline">\(x+k\)</span> 和 <span
+class="math inline">\(y+k\)</span> 中较大的那个构造成 <span
+class="math inline">\(2^p\)</span> 的形式。</p>
+<p>若 <span class="math inline">\(x=y\)</span>，无解；否则不妨取 <span
+class="math inline">\(p=59\)</span>，答案是 <span
+class="math inline">\(2^{59}-\max(x,y)\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(1)\)</span>。</p>
+<h2 id="cf2085d.-serval-and-kaitenzushi-buffet"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2085/problem/D">CF2085D. Serval and
+Kaitenzushi Buffet</a></h2>
+<p>*2000 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2085/submission/312157113">Code</a></p>
+<p>你选的第 <span class="math inline">\(i\)</span> 个数的下标 <span
+class="math inline">\(p_i\)</span> 一定满足 <span
+class="math inline">\(p_i\le n-i(k+1)+1\)</span>。</p>
+<p>按顺序遍历，每到一个这样的节点就从前缀里选一个还没被选的最大的数计入答案。</p>
+<p>优先队列或线段树均可，时间复杂度 <span class="math inline">\(O(n\log
+n)\)</span>。</p>
+<h2 id="cf2085e.-serval-and-modulo"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2085/problem/E">CF2085E. Serval and
+Modulo</a></h2>
+<p>*2200 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2085/submission/312161892">Code</a></p>
+<p>最为关键的观察：<span class="math inline">\(\sum a-\sum b\)</span> 是
+<span class="math inline">\(k\)</span> 的倍数。（因为 <span
+class="math inline">\(\forall i\in[1,n]\)</span>， <span
+class="math inline">\(b_i\)</span> 都由 <span
+class="math inline">\(a_i\)</span> 减去若干个 <span
+class="math inline">\(k\)</span> 得到）</p>
+<p>枚举 <span class="math inline">\(\sum a-\sum b\)</span>
+的所有因数暴力 check，复杂度是可以接受的。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\cdot \sigma(\sum
+a_i)+\sqrt{\sum a_i})\)</span>。</p>
+<h2 id="cf2090d.-simple-permutation"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2090/problem/D">CF2090D. Simple
+Permutation</a></h2>
+<p>*1700 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/2090/submission/312039158">Code</a></p>
+<p><span class="math inline">\(1\sim n\)</span> 内的素数都没有 <span
+class="math inline">\(\left\lfloor\frac{n}{3}\right\rfloor-1\)</span>
+这么多，所以一个素数肯定被用了不只一次。</p>
+<p>考虑形如 <span
+class="math inline">\(p,p-1,p+1,p-2,p+2,\cdots\)</span>
+的结构，此时前缀和出现了 <span
+class="math inline">\(p,3p,5p,\cdots\)</span>，它们除以 <span
+class="math inline">\(i\)</span> 恰好都是 <span
+class="math inline">\(p\)</span>。</p>
+<p>为了让这个结构尽可能长，取 <span class="math inline">\(p\)</span>
+为最靠近 <span class="math inline">\(\frac{n}{2}\)</span>
+的素数即可。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1654e.-arithmetic-operations"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1654/problem/E">CF1654E. Arithmetic
+Operations</a></h2>
+<p>*2300 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1654/submission/312269153">Code</a></p>
+<p>考虑求出最多不需要修改的位置个数 <span
+class="math inline">\(cnt\)</span>，答案就是 <span
+class="math inline">\(n-cnt\)</span>。</p>
+<p>设 <span class="math inline">\(\forall i\in [1,n]\)</span>，<span
+class="math inline">\(b_i=a_i-i\cdot d\)</span>。当公差 <span
+class="math inline">\(d\)</span> 确定时，<span
+class="math inline">\(\{b\}\)</span> 中众数的出现次数就是对应的 <span
+class="math inline">\(cnt\)</span>。</p>
+<p>阈值分治，设 <span class="math inline">\(B\)</span> 为阈值。当 <span
+class="math inline">\(-B \le d \le   B\)</span> 时，直接枚举 <span
+class="math inline">\(d\)</span>，扫一遍求众数，这部分是 <span
+class="math inline">\(O(nB)\)</span>。</p>
+<p>当 <span class="math inline">\(d&lt; -B\)</span> 或 <span
+class="math inline">\(d&gt;B\)</span> 时，若存在两个位置 <span
+class="math inline">\(i,j\)</span> 不会被修改，那么 <span
+class="math inline">\(|i-j|\le \frac{W}{B}\)</span>。</p>
+<p>枚举左端点 <span class="math inline">\(i\)</span>，右端点扫描 <span
+class="math inline">\([i+1,i+\frac{W}{B}]\)</span>，若 <span
+class="math inline">\(j-i\mid a_j-a_i\)</span>，那么 <span
+class="math inline">\(\dfrac{a_j-a_i}{j-i}\)</span>
+就是一个可能的公差。</p>
+<p>把所有可能的公差都 <span class="math inline">\(O(n)\)</span> check
+一遍，是不能够接受的。</p>
+<p>合理的做法是用一个桶对当前左端点 <span
+class="math inline">\(i\)</span> 统计公差 <span
+class="math inline">\(\dfrac{a_j-a_i}{j-i}\)</span>
+的众数的出现次数，设为 <span class="math inline">\(tot\)</span>，那么
+<span class="math inline">\(cnt=tot+1\)</span>。</p>
+<p>时间复杂度 <span
+class="math inline">\(O(n(B+\frac{W}{B}))\)</span>，显然 <span
+class="math inline">\(B\)</span> 取 <span
+class="math inline">\(\sqrt{W}\)</span> 最优。</p>
+<h2 id="cf1809f.-traveling-in-berland"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1809/problem/F">CF1809F. Traveling
+in Berland</a></h2>
+<p>*2500 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1809/submission/312731463">Code</a></p>
+<p><span class="math inline">\(b_i=1\)</span>
+的点是特殊的，因为总是可以假定我们在到达一个 <span
+class="math inline">\(b_i=1\)</span> 的点时油量恰好为 <span
+class="math inline">\(0\)</span>。（否则不如把剩余的油换到这个加油站来加）</p>
+<p>定义 <span class="math inline">\(c(i,j)\)</span> 代表从点 <span
+class="math inline">\(i\)</span> 行驶到点 <span
+class="math inline">\(j\)</span> 的最小代价，满足 <span
+class="math inline">\(b_i=1/2\)</span> 但 <span
+class="math inline">\(b_j=1\)</span>，且 <span
+class="math inline">\(b_{i+1}\sim b_{j-1}=2\)</span>。（换句话说 <span
+class="math inline">\(b_j\)</span> 是 <span class="math inline">\(i\to
+j\)</span> 方向上最近的油价为 <span class="math inline">\(1\)</span>
+的点）</p>
+<p>令 <span class="math inline">\(d=dis(i,j)\)</span>，则： <span
+class="math display">\[
+c(i,j)=\begin{cases}
+2d&amp;,b_i=2\\
+d&amp;,b_i=1\cap d\le k\\
+2d-k&amp;,b_i=1\cap d&gt;k
+\end{cases}
+\]</span> 这意味着从一个 <span class="math inline">\(b_i=1/2\)</span>
+的点到下一个 <span class="math inline">\(b_i=1\)</span>
+的点的代价是可以快速计算的。</p>
+<p>破环成链。令 <span class="math inline">\(\text{nxt}[i][j]\)</span>
+代表点 <span class="math inline">\(i\)</span> 的下 <span
+class="math inline">\(2^j\)</span> 个油价为 <span
+class="math inline">\(1\)</span> 点的编号，<span
+class="math inline">\(f[i][j]\)</span> 代表点 <span
+class="math inline">\(i\)</span> 到下 <span
+class="math inline">\(2^j\)</span> 个油价为 <span
+class="math inline">\(1\)</span> 的点的代价，倍增。</p>
+<p>最后还要加上 “终点背后最近的 <span
+class="math inline">\(b_i=1\)</span> 的点到终点的距离”。</p>
+<p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
+<h2 id="cf1700c.-helping-the-nature"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1700/problem/C">CF1700C. Helping
+the Nature</a></h2>
+<p>*1700 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1700/submission/312820855">Code</a></p>
+<p>设差分数组 <span
+class="math inline">\(b_i=a_i-a_{i-1}\)</span>。三种操作分别对应：</p>
+<ol type="1">
+<li><span class="math inline">\(b_1\leftarrow b_1-1\)</span> ，<span
+class="math inline">\(b_{i+1}\leftarrow b_{i+1}+1\)</span> 。</li>
+<li><span class="math inline">\(b_{i}\leftarrow b_i-1\)</span>。</li>
+<li><span class="math inline">\(b_1\leftarrow b_1+1\)</span>。</li>
+</ol>
+<p>题目转化为求最小的操作次数使得 <span class="math inline">\(\forall
+i\in [1,n]\)</span>，<span class="math inline">\(b_i=0\)</span>。</p>
+<p>先考虑将 <span class="math inline">\(b_2\sim b_n\)</span> 变成 <span
+class="math inline">\(0\)</span>。涉及到 <span
+class="math inline">\(b_i,i\in [2,n]\)</span>
+的操作只有前两条，操作一能让一个 <span
+class="math inline">\(b_i\)</span> 加一，操作二能让一个 <span
+class="math inline">\(b_i\)</span> 减一。于是这部分的代价是 <span
+class="math inline">\(\sum\limits_{i=2}^{n}b_i\)</span>。</p>
+<p>再考虑将 <span class="math inline">\(b_1\)</span> 变成 <span
+class="math inline">\(0\)</span>。注意到操作二 <span
+class="math inline">\(i\)</span> 取 <span
+class="math inline">\(1\)</span> 时就是 “<span
+class="math inline">\(b_1\leftarrow
+b_1-1\)</span>”，配合操作三，这部分的代价就是 <span
+class="math inline">\(|b_1|\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h2 id="cf1981c.-turtle-and-an-incomplete-sequence"><a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1981/problem/C">CF1981C. Turtle and
+an Incomplete Sequence</a></h2>
+<p>*1800 <a
+target="_blank" rel="noopener" href="https://codeforces.com/contest/1981/submission/313255211">Code</a></p>
+<p>特判：初态不满足要求或全是 <span
+class="math inline">\(-1\)</span>。</p>
+<p>设左数/右数第一个不为 <span class="math inline">\(-1\)</span>
+的位置分别为 <span class="math inline">\(i,j\)</span>，则 <span
+class="math inline">\(a_1\sim a_i\)</span> 和 <span
+class="math inline">\(a_j\sim a_n\)</span> 是好填的，反复 <span
+class="math inline">\(\times 2,\div 2\)</span> 即可。</p>
+<p>接下来问题转化为：给定长为 <span class="math inline">\(m\)</span>
+的数组 <span class="math inline">\(\{b\}\)</span>，其中 <span
+class="math inline">\(b_1 \neq -1\)</span>，<span
+class="math inline">\(b_m\neq -1\)</span>，<span
+class="math inline">\(\forall i\in(1,m)\)</span>，<span
+class="math inline">\(b_i=-1\)</span>，求一个合法的填数。</p>
+<p>不难发现固定了 <span class="math inline">\(b_i\)</span>，那么 <span
+class="math inline">\(b_{i+1}\)</span> 只有 <span
+class="math inline">\(\div 2\)</span> 下取整，<span
+class="math inline">\(\times2\)</span> 和 <span
+class="math inline">\(\times 2+1\)</span>
+三种选择，这相当于在标号满二叉树上向父亲/左儿子/右儿子走一步。于是问题变成了在满二叉树上找一条从
+<span class="math inline">\(b_1\)</span> 到 <span
+class="math inline">\(b_m\)</span> 且长 <span
+class="math inline">\(m-1\)</span> 的路径。</p>
+<p>求出 <span class="math inline">\(b_1\)</span> 和 <span
+class="math inline">\(b_m\)</span> 在满二叉树上的 LCA，计算出 <span
+class="math inline">\(b_1,b_m\)</span> 之间的简单路径长度 <span
+class="math inline">\(len\)</span>（这里 <span
+class="math inline">\(len\)</span> 是路径上除了 <span
+class="math inline">\(b_1,b_m\)</span> 外点的数目）。那么若 <span
+class="math inline">\((m-2)&lt;len\)</span> 或 <span
+class="math inline">\(m-2 \not\equiv len\pmod{2}\)</span>，就无解。</p>
+<p>否则构造方式就是从两边分别跳父亲，中间的一段反复 <span
+class="math inline">\(\times 2,\div 2\)</span> 补齐。</p>
+<p>求 LCA 可以暴跳，时间复杂度 <span class="math inline">\(O(n\log
+w)\)</span>，<span class="math inline">\(w\)</span> 是值域。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
@@ -537,7 +2067,7 @@ CPP</code></pre></div><p>注：此时输出的物品选择方案是降序的。
   
     <span>></span>
     
-  <a href="/categories/Competitive-Programming/Note/" class="category-chain-item">Note</a>
+  <a href="/categories/Competitive-Programming/Diary/" class="category-chain-item">Diary</a>
   
   
 
@@ -554,9 +2084,11 @@ CPP</code></pre></div><p>注：此时输出的物品选择方案是降序的。
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Note/" class="print-no-link">#Note</a>
+        <a href="/tags/XCPC/" class="print-no-link">#XCPC</a>
       
-        <a href="/tags/OI/" class="print-no-link">#OI</a>
+        <a href="/tags/Atcoder/" class="print-no-link">#Atcoder</a>
+      
+        <a href="/tags/Codeforces/" class="print-no-link">#Codeforces</a>
       
     </div>
   
@@ -568,7 +2100,7 @@ CPP</code></pre></div><p>注：此时输出的物品选择方案是降序的。
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>【笔记】背包问题</div>
+      <div>【题解】三月训练日记</div>
       <div>http://kisuraop.github.io/posts/5dc05f53.html</div>
     </div>
     <div class="license-meta">
@@ -581,7 +2113,7 @@ CPP</code></pre></div><p>注：此时输出的物品选择方案是降序的。
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2021年11月15日</div>
+          <div>2025年2月23日</div>
         </div>
       
       
@@ -625,9 +2157,9 @@ CPP</code></pre></div><p>注：此时输出的物品选择方案是降序的。
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/97008555.html" title="【随笔】有关一道数列高考题求和表达式的思考">
+                      <a href="/posts/94193aa7.html" title="【题解】2025 UESTCPC 初赛">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">【随笔】有关一道数列高考题求和表达式的思考</span>
+                        <span class="hidden-mobile">【题解】2025 UESTCPC 初赛</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -635,8 +2167,8 @@ CPP</code></pre></div><p>注：此时输出的物品选择方案是降序的。
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/79e649ee.html" title="【题解】AtCoder Regular Contest 124 (4 of 6)">
-                        <span class="hidden-mobile">【题解】AtCoder Regular Contest 124 (4 of 6)</span>
+                      <a href="/posts/1e7fc2bd.html" title="【题解】2025 UESTC 寒假集训">
+                        <span class="hidden-mobile">【题解】2025 UESTC 寒假集训</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
