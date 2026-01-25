@@ -26,7 +26,6 @@ shanghai 补题。
 
 修板子：
 
-- 加个 pollard-rho 分解质因数。
 - 加个 FWT。
 - [区间线性基](https://github.com/KisuraOP/XCPC-Templates/blob/main/templates/05-数学/线性基/Basis_Range_Count.cpp)，可以用 [CF1100F](https://www.luogu.com.cn/problem/CF1100F) 优化到 2log。
 
