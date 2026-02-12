@@ -356,8 +356,8 @@ DOMjudge，配置数据库和 web 服务器</h3>
 <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">ln</span> -s /opt/domjudge/domserver/etc/domjudge-fpm.conf /etc/php/8.3/fpm/pool.d/domjudge.conf
 <span class="hljs-built_in">sudo</span> service php8.3-fpm reload</code></pre></div>
 <p>最后两句 php 要换成对应的版本，我这里是 php8.3。</p>
-<p>最后一句如果警告说要
-<code>systemctl daemon-reload</code>，按它说的执行就行。</p>
+<p>最后一句如果警告
+<code>systemctl daemon-reload</code>，按它说的执行即可。</p>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">cd</span> /etc/nginx/sites-enabled
 <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">rm</span> default
 <span class="hljs-built_in">sudo</span> service nginx reload
@@ -365,8 +365,7 @@ DOMjudge，配置数据库和 web 服务器</h3>
 <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chown</span> www-data:www-data -R webapp/public/*</code></pre></div>
 <p>接着访问 <code>127.0.0.1/domjudge</code> 就有 web
 界面了（云服务器就换成公网地址）。</p>
-<p><a href="https://kisuraop.github.io/image/academic/d1.png"><img
-src="https://kisuraop.github.io/image/academic/d1.png" srcset="/img/loading.gif" lazyload /></a></p>
+<p><img src="https://kisuraop.github.io/image/academic/d1.png" srcset="/img/loading.gif" lazyload  /></p>
 <p>如果没按前两句把 <code>default</code> 删掉你就会收获 404
 的好结果。</p>
 <p>如果还没有 web 界面就看看服务器 80 端口有没有打开。</p>
@@ -399,10 +398,8 @@ innodb_log_file_size = 2560MB</code></pre></div>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl restart mysql</code></pre></div>
 <p>如果一切正常，刷新 DOMjudge 的 web 页面，点进 config
 checker，你会看到：</p>
-<p><a href="https://kisuraop.github.io/image/academic/d2.png"><img
-src="https://kisuraop.github.io/image/academic/d2.png" srcset="/img/loading.gif" lazyload /></a></p>
-<p><a href="https://kisuraop.github.io/image/academic/d3.png"><img
-src="https://kisuraop.github.io/image/academic/d3.png" srcset="/img/loading.gif" lazyload /></a></p>
+<p><img src="https://kisuraop.github.io/image/academic/d2.png" srcset="/img/loading.gif" lazyload style="zoom: 33%;" /></p>
+<p><img src="https://kisuraop.github.io/image/academic/d3.png" srcset="/img/loading.gif" lazyload style="zoom:33%;" /></p>
 <h3 id="配置-judgehost-docker">4. 配置 judgehost (docker)</h3>
 <p>首先要下载 docker，如果是云服务器，可以找到对应的文档。</p>
 <p>我则是查阅了一些博客和文章，以下命令可能有不妥之处。</p>
@@ -438,15 +435,12 @@ target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article
 <p>保存退出。</p>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> update-grub
 <span class="hljs-built_in">sudo</span> reboot</code></pre></div>
-<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> docker run -d -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost-new0 --hostname localhost --network=<span class="hljs-string">&quot;host&quot;</span> -e DAEMON_ID=0 -e CONTAINER_TIMEZONE=Asia/Shanghai -e JUDGEDAEMON_PASSWORD=&lt;domserver password&gt; -e DOMSERVER_BASEURL=http://localhost/domjudge/ domjudge/judgehost:8.3.1
-BASH</code></pre></div>
+<div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> docker run -d -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost-new0 --hostname localhost --network=<span class="hljs-string">&quot;host&quot;</span> -e DAEMON_ID=0 -e CONTAINER_TIMEZONE=Asia/Shanghai -e JUDGEDAEMON_PASSWORD=&lt;domserver password&gt; -e DOMSERVER_BASEURL=http://localhost/domjudge/ domjudge/judgehost:8.3.1</code></pre></div>
 <p>其中 <code>&lt;domserver password&gt;</code> 通过以下命令获取：</p>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cat</span> /opt/domjudge/domserver/etc/restapi.secret</code></pre></div>
 <p>如果一切正常，那么：</p>
-<p><a href="https://kisuraop.github.io/image/academic/d4.png"><img
-src="https://kisuraop.github.io/image/academic/d4.png" srcset="/img/loading.gif" lazyload /></a></p>
-<p><a href="https://kisuraop.github.io/image/academic/d5.png"><img
-src="https://kisuraop.github.io/image/academic/d5.png" srcset="/img/loading.gif" lazyload /></a></p>
+<p><img src="https://kisuraop.github.io/image/academic/d4.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img src="https://kisuraop.github.io/image/academic/d5.png" srcset="/img/loading.gif" lazyload /></p>
 <p>如果起多个 judgehost，需要修改 <code>--name</code> 参数和
 <code>DAEMON_ID</code> 参数。后者是核编号，不能超过机子的核心数。</p>
 <p>例如起第 2 个 judgehost 的话，命令得是：</p>
@@ -733,9 +727,9 @@ external ID。</p>
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/XCPC/" class="print-no-link">#XCPC</a>
-      
         <a href="/tags/Note/" class="print-no-link">#Note</a>
+      
+        <a href="/tags/XCPC/" class="print-no-link">#XCPC</a>
       
         <a href="/tags/DOMjudge/" class="print-no-link">#DOMjudge</a>
       
