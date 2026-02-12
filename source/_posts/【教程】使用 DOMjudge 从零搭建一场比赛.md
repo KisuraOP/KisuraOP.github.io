@@ -88,7 +88,7 @@ sudo service php8.3-fpm reload
 
 最后两句 php 要换成对应的版本，我这里是 php8.3。
 
-最后一句如果警告说要 `systemctl daemon-reload`，按它说的执行就行。
+最后一句如果警告 `systemctl daemon-reload`，按它说的执行即可。
 
 
 ```bash
@@ -102,7 +102,7 @@ sudo chown www-data:www-data -R webapp/public/*
 
 接着访问 `127.0.0.1/domjudge` 就有 web 界面了（云服务器就换成公网地址）。
 
-[![](https://kisuraop.github.io/image/academic/d1.png)](https://kisuraop.github.io/image/academic/d1.png)
+<img src="https://kisuraop.github.io/image/academic/d1.png"  />
 
 如果没按前两句把 `default` 删掉你就会收获 404 的好结果。
 
@@ -183,9 +183,9 @@ sudo systemctl restart mysql
 
 如果一切正常，刷新 DOMjudge 的 web 页面，点进 config checker，你会看到：
 
-[![](https://kisuraop.github.io/image/academic/d2.png)](https://kisuraop.github.io/image/academic/d2.png)
+<img src="https://kisuraop.github.io/image/academic/d2.png" style="zoom: 33%;" />
 
-[![](https://kisuraop.github.io/image/academic/d3.png)](https://kisuraop.github.io/image/academic/d3.png)
+<img src="https://kisuraop.github.io/image/academic/d3.png" style="zoom:33%;" />
 
 ### 4. 配置 judgehost (docker)
 
@@ -271,7 +271,6 @@ sudo reboot
 
 ```bash
 sudo docker run -d -it --privileged -v /sys/fs/cgroup:/sys/fs/cgroup --name judgehost-new0 --hostname localhost --network="host" -e DAEMON_ID=0 -e CONTAINER_TIMEZONE=Asia/Shanghai -e JUDGEDAEMON_PASSWORD=<domserver password> -e DOMSERVER_BASEURL=http://localhost/domjudge/ domjudge/judgehost:8.3.1
-BASH
 ```
 
 
@@ -284,9 +283,9 @@ sudo cat /opt/domjudge/domserver/etc/restapi.secret
 
 如果一切正常，那么：
 
-[![](https://kisuraop.github.io/image/academic/d4.png)](https://kisuraop.github.io/image/academic/d4.png)
+![](https://kisuraop.github.io/image/academic/d4.png)
 
-[![](https://kisuraop.github.io/image/academic/d5.png)](https://kisuraop.github.io/image/academic/d5.png)
+![](https://kisuraop.github.io/image/academic/d5.png)
 
 如果起多个 judgehost，需要修改 `--name` 参数和 `DAEMON_ID` 参数。后者是核编号，不能超过机子的核心数。
 
