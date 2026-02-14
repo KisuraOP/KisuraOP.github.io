@@ -246,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          5.8k 字
+          6.1k 字
         
       </span>
     
@@ -325,8 +325,7 @@
 <p>武汉的主要问题是食堂离赛场太远，校内没有任何供校外人员使用的交通工具，去一趟就走近半小时。西安的主要问题是学校周围都是荒地，酒店还没抢到校内，走路去赛场单程
 50min，不幸中的万幸是外卖还能送到酒店门口。哈尔滨体验十分好，如果不是去年
 nefu 闹的大瓜外加天寒地冻，应该会有很多强队来旅游罢。</p>
-<p>下面大部分是金牌题，也混有少部分在我看来较为困难的银牌题。如果屏幕前的你对其中某一题有更为深刻的想法，欢迎
-QQ 与我交流，我将不胜感激。</p>
+<p>下面大部分是金牌题，也混有少部分在我看来较为困难的银牌题。</p>
 <h2 id="icpc-西安"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2562">ICPC
 西安</a></h2>
 <h3 id="m.-mystique-as-iris"><a
@@ -906,8 +905,19 @@ class="math display">\[
 \]</span> 其中 <span class="math inline">\(\text{all}_c\)</span> 为颜色
 <span class="math inline">\(c\)</span> 在整棵树中的出现次数。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
-<h2 id="icpc-上海">ICPC 上海</h2>
-<p>还没 VP。</p>
+<h2 id="icpc-上海"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2908">ICPC
+上海</a></h2>
+<h3 id="b.-hamu"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2908/problem/15315">B.
+Hamu</a></h3>
+<h3 id="i.-round-screws"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2908/problem/15322">I. Round
+screws</a></h3>
+<h3 id="e.-flowers-land-3"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2908/problem/15318">E. Flower’s land
+3</a></h3>
+<h3 id="k.-no-more-regrets"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/2908/problem/15324">K. No more
+regrets</a></h3>
 <h2 id="ccpc-郑州"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2661">CCPC
 郑州</a></h2>
 <h3 id="i.-dumb-problem-ii"><a
@@ -1017,10 +1027,74 @@ class="math inline">\(i\)</span> 的位置肯定更劣。</li>
 <span class="math inline">\(j\)</span>
 的二元组，这样上面两个条件都是好判断的。</p>
 <p>时间复杂度 <span class="math inline">\(O(n\log n)\)</span>。</p>
-<h2 id="icpc-香港">ICPC 香港</h2>
-<p>Wait for ucup end.</p>
+<h2 id="icpc-香港"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/3169">ICPC
+香港</a></h2>
+<h3 id="i.-dfs-order"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/3169/problem/15440">I. DFS Order</a></h3>
+<h3 id="f.-find-the-circuit"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/3169/problem/15437">F. Find the
+Circuit</a></h3>
+<h3 id="c.-stonebag"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/3169/problem/15434">C. Stonebag</a></h3>
 <h2 id="ccpc-重庆">CCPC 重庆</h2>
 <p>Wait for ucup end.</p>
+<h2 id="ec-final"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/3295">EC
+Final</a></h2>
+<h3 id="d.-strategic-stones"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/3295/problem/16331">D. Strategic
+Stones</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/2032191">Code</a></p>
+<p>先分离出若干极长的仅包含 <code>?</code> 和 <code>0</code>
+的段，最终答案是这些段的答案取 <span
+class="math inline">\(\max\)</span>，以下只研究单个段。</p>
+<p>令 <span class="math inline">\(\{a\}\)</span> 表示 <code>0</code>
+段的长度集合。例如 <code>00?000??0?</code> 对应 <span
+class="math inline">\(\{a\}=\{2,3,0,1,0\}\)</span>。</p>
+<ul>
+<li>填 <code>0</code> 等价于选一个 <span
+class="math inline">\(i\)</span>，用 <span class="math inline">\(a_{i -
+1} + a_{i} + 1\)</span> 替换 <span class="math inline">\(a_{i - 1},
+a_{i}\)</span>。</li>
+</ul>
+<p>等 Alice 合并完 <span class="math inline">\(a_{i-1}\)</span> 和 <span
+class="math inline">\(a_i\)</span> 后，站在 Bob 的角度，要么切断 <span
+class="math inline">\((a_{i-2}, a_{i-1})\)</span>，要么切断 <span
+class="math inline">\((a_{i},
+a_{i+1})\)</span>。如果切在其它地方，只会更劣。</p>
+<p>切断 <span class="math inline">\((a_{i-2},
+a_{i-1})\)</span>，相当于保留了 <span class="math inline">\(i-1\)</span>
+开头的后缀；切断 <span class="math inline">\((a_{i}, a_{i +
+1})\)</span>，相当于保留了 <span class="math inline">\(i\)</span>
+结尾的前缀。</p>
+<p>令 <span class="math inline">\(pre[i]\)</span> 表示 “Alice 合并了
+<span class="math inline">\(a_{i-1}\)</span> 和 <span
+class="math inline">\(a_{i}\)</span> 后，轮到 Bob 的回合，如果 Bob
+保留了以 <span class="math inline">\(i\)</span> 结尾的前缀”，前缀 <span
+class="math inline">\(1\sim i\)</span> 的答案。同理能定义 <span
+class="math inline">\(suf[i]\)</span>。</p>
+<p>以 <span class="math inline">\(pre[i]\)</span> 为例，现在序列是 <span
+class="math inline">\(a_1,a_2,\ldots,a_{i-2},a_{i-1}+a_i+1\)</span>，转移分以下几种情况：</p>
+<ul>
+<li>先手合并最后两项得到 <span
+class="math inline">\(a_{i-2}+a_{i-1}+a_i+2\)</span>，后手切断 <span
+class="math inline">\((a_{i-3},a_{i-2})\)</span>，结束。</li>
+<li>先手合并 <span class="math inline">\(a_{i-3}\)</span> 和 <span
+class="math inline">\(a_{i-2}\)</span>。如果后手切断 <span
+class="math inline">\((a_{i-2},a_{i-1})\)</span>，变成子问题，答案是
+<span class="math inline">\(pre[i-2]\)</span>；如果后手切断 <span
+class="math inline">\((a_{i-4},a_{i-3})\)</span>，先手就把 <span
+class="math inline">\(a_{i-3}\sim a_i\)</span> 整段合并了，结束。</li>
+</ul>
+<p>综上 <span
+class="math inline">\(pre[i]=\max\begin{cases}a_{i-1}+a_{i}+1\\a_{i-2}+a_{i-1}+a_i+2\\
+\min(pre[i-2],\ a_{i-3}+a_{i-2}+a_{i-1}+a_i+3)\end{cases}\)</span></p>
+<p>最后答案是 <span
+class="math inline">\(\max\limits_{i=2}^{\text{len}(a)}(a_{i-1} + a_i +
+1,\min(pre[i],suf[i-1]))\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+<h3 id="e.-efficient-express"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/3295/problem/16332">E. Efficient
+Express</a></h3>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
