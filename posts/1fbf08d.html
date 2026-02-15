@@ -246,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.1k 字
+          6.7k 字
         
       </span>
     
@@ -909,9 +909,79 @@ class="math display">\[
 上海</a></h2>
 <h3 id="b.-hamu"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/2908/problem/15315">B.
 Hamu</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1953675">Code</a></p>
+<p><span class="math inline">\(\{a\}\)</span> 只有奇偶性有用，以下默认
+<span class="math inline">\(\{a\}\)</span> 取值为 <span
+class="math inline">\(0/1\)</span>。</p>
+<p>首先，如果有多个连通块，非 <span class="math inline">\(s\)</span>
+所在连通块的点 <span class="math inline">\(a_i\)</span> 必须为 <span
+class="math inline">\(0\)</span>，否则无解。只看 <span
+class="math inline">\(s\)</span> 所在的连通块，令 <span
+class="math inline">\(w=\sum a_i\)</span>。先看 <span
+class="math inline">\(w\)</span> 是偶数的情况，可以先找出一个生成树，从
+<span class="math inline">\(s\)</span> 开始 dfs，从 <span
+class="math inline">\(x\)</span> 回溯到 <span
+class="math inline">\(fa[x]\)</span> 时：</p>
+<ul>
+<li>若 <span class="math inline">\(a_x=1\)</span>，走 <span
+class="math inline">\(fa[x]\to x\to fa[x]\)</span>。</li>
+</ul>
+<p>因为生成树是一个二分图，因此一定有解。此时极限情况为 <span
+class="math inline">\(4n\)</span> 步，满足要求。</p>
+<p>若 <span class="math inline">\(w\)</span>
+是奇数，且图是一个二分图，无解；否则至少存在一个奇环（可以在二分图染色时找出）。从
+<span class="math inline">\(s\)</span>
+出发，走到奇环上，围绕奇环走一圈，再执行 <span
+class="math inline">\(w\)</span> 是偶数时的策略，步数正好 <span
+class="math inline">\(5n\)</span>。</p>
+<p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <h3 id="i.-round-screws"><a
 target="_blank" rel="noopener" href="https://qoj.ac/contest/2908/problem/15322">I. Round
 screws</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/2037405">Code</a></p>
+<p>有点 magic 的题，从没见过这种 trick。</p>
+<p>不妨令 <span
+class="math inline">\(a_0=a_{n+1}=0\)</span>，价值的式子就会变成 <span
+class="math inline">\(V_a=\sum\limits_{i=0}^{n}(a_i\oplus
+a_{i+1})\)</span>。</p>
+<p>如果要操作 <span class="math inline">\(a_i\)</span>，那修改成 <span
+class="math inline">\(a_i\)</span> 的前面一个数肯定不劣，就此有一个
+<span class="math inline">\(O(n^2)\)</span> 的 dp。 <span
+class="math display">\[
+dp[i]=\min_{j\in[0,i-1]}\left(dp[j]+(i-j-1)\cdot C+(a_i\oplus
+a_j)\right)
+\]</span> 其中 <span class="math inline">\(dp[i]\)</span> 表示考虑前
+<span class="math inline">\(i\)</span> 个数，且钦定 <span
+class="math inline">\(a_i\)</span> 不修改的最小总代价。答案即为 <span
+class="math inline">\(dp[n+1]\)</span>。</p>
+<p>改写一下式子 <span class="math display">\[
+dp[i]=i\cdot C+\min\limits_{j\in [0,i-1]}\{\underbrace{(dp[j]-(j+1)\cdot
+C)}_{\textbf{记作 } W_j} +(a_j\oplus a_i)\}
+\]</span> 注意到值域 <span
+class="math inline">\(V&lt;2^{19}\)</span>，我们将这 <span
+class="math inline">\(18\)</span> 个二进制位分成高 <span
+class="math inline">\(9\)</span> 位和低 <span
+class="math inline">\(9\)</span> 位，用 <span
+class="math inline">\(H(x)\)</span> 和 <span
+class="math inline">\(L(x)\)</span> 表示。</p>
+<p>于是我们目标是找一个 <span class="math inline">\(j\)</span> 让 <span
+class="math inline">\(W_j+(H(a_j)\oplus H(a_i))\cdot 2^9+(L(a_j)\oplus
+L(a_i))\)</span> 最小。</p>
+<p>令 <span class="math inline">\(g[h][l]\)</span>
+表示在我们遍历过的，满足 <span class="math inline">\(H(a_j)=h\)</span>
+的那些 <span class="math inline">\(j\)</span> 中，<span
+class="math inline">\(W_j+(L(a_j)\oplus l)\)</span>
+的最小值。于是转移就分成了如下两步。第一步算 <span
+class="math inline">\(dp[i]\)</span>，枚举高位，低位查表；第二步算 <span
+class="math inline">\(g[h][l]\)</span>，高位固定为 <span
+class="math inline">\(H(a_i)\)</span>，更新所有低位。每一步都是 <span
+class="math inline">\(O(2^9)\)</span>。 <span class="math display">\[
+dp[i]=i\cdot C+\min\limits_{0\le k&lt;512}\{(k\oplus H(a_i))\cdot
+2^9+g[k][L(a_i)]\}
+\]</span> <span class="math display">\[
+g[H(a_i)][x]=\min(g[H(a_i)][x],\ W_i+(L(a_i)\oplus x))
+\]</span></p>
+<p>时间复杂度 <span class="math inline">\(O(n\cdot 2^9)\)</span>。</p>
 <h3 id="e.-flowers-land-3"><a
 target="_blank" rel="noopener" href="https://qoj.ac/contest/2908/problem/15318">E. Flower’s land
 3</a></h3>
