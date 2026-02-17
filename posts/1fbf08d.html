@@ -246,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.7k 字
+          7.4k 字
         
       </span>
     
@@ -985,6 +985,37 @@ g[H(a_i)][x]=\min(g[H(a_i)][x],\ W_i+(L(a_i)\oplus x))
 <h3 id="e.-flowers-land-3"><a
 target="_blank" rel="noopener" href="https://qoj.ac/contest/2908/problem/15318">E. Flower’s land
 3</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/2037715">Code</a></p>
+<p>答案是 <span
+class="math inline">\(\prod\limits_{i=2}^{n}\sum\limits_{j=1}^{i-1}[d(s_i,s_j)\le
+k]\)</span>，其中 <span class="math inline">\(d(s,t)\)</span> 表示 <span
+class="math inline">\(s\)</span> 和 <span
+class="math inline">\(t\)</span> 的汉明距离。</p>
+<p>暴力判断是 <span class="math inline">\(O(n^2m)\)</span>，就算套个
+bitset 除一个 <span
+class="math inline">\(w\)</span>，再随机化一下也过不了。</p>
+<p>考虑一个过程：对每个 <span class="math inline">\(i\)</span> 求出一个
+<span class="math inline">\(j &lt; i\)</span> 的 <span
+class="math inline">\(j\)</span>，满足 <span
+class="math inline">\(d(s_i,s_j)\le k\)</span>，把 <span
+class="math inline">\(j\)</span> 作为 <span
+class="math inline">\(i\)</span> 的父亲，最后建成一棵树。假设现在进行到
+<span class="math inline">\(i\)</span>，已经把 <span
+class="math inline">\(1\sim i-1\)</span>
+连成了一棵树，我们从根开始遍历这棵树，走到一个点 <span
+class="math inline">\(x\)</span> 能很快维护 <span
+class="math inline">\(s_x\)</span> 和 <span
+class="math inline">\(s_i\)</span> 不同的位。如果 <span
+class="math inline">\(d(s_x,s_i)\le k\)</span>
+计数器就加一，这样单次遍历是 <span class="math inline">\(O(nk)\)</span>
+的。</p>
+<p>我们增量维护这棵树，从小到大枚举 <span
+class="math inline">\(i\)</span>，上述遍历树的过程也是寻找父亲的过程，选择任意一个合法的父亲连向
+<span class="math inline">\(i\)</span> 即可。总时间复杂度 <span
+class="math inline">\(O(nm+n^2k)\)</span>，需要卡常。</p>
+<p>另外吐槽一下 qoj 的测试数据里一个 <span
+class="math inline">\(k=1\)</span>
+的点都没有。不清楚是不是赛场原始数据，是的话那造题造的很粗糙了。</p>
 <h3 id="k.-no-more-regrets"><a
 target="_blank" rel="noopener" href="https://qoj.ac/contest/2908/problem/15324">K. No more
 regrets</a></h3>
@@ -1101,11 +1132,74 @@ class="math inline">\(i\)</span> 的位置肯定更劣。</li>
 香港</a></h2>
 <h3 id="i.-dfs-order"><a
 target="_blank" rel="noopener" href="https://qoj.ac/contest/3169/problem/15440">I. DFS Order</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/2040995">Code</a></p>
+<p>对于树上任意一点 <span class="math inline">\(x\)</span>
+及其子树内的点构成的集合 <span
+class="math inline">\(S_x\)</span>，在所有的 <span
+class="math inline">\(m\)</span>
+个排列中，都必须是一段连续的区间，且这段区间的左端点是 <span
+class="math inline">\(x\)</span>。这个条件是充要的。</p>
+<p>我们不妨以第一个排列 <span class="math inline">\(p_1\)</span>
+为基准，预处理出 <span class="math inline">\(ok[l][r]=0/1\)</span> 表示
+<span class="math inline">\(p_1[l,r]\)</span> 这段节点集合，在所有 <span
+class="math inline">\(m\)</span> 个排列中是否都能构成合法的子树。</p>
+<p>区间 dp，定义 <span class="math inline">\(f[l][r]\)</span> 表示将
+<span class="math inline">\(p_1[l,r]\)</span> 这段区间构建成一棵以 <span
+class="math inline">\(p_1[l]\)</span> 为根的合法子树的方案数。<span
+class="math inline">\(g[l][r]\)</span>
+则表示构建成若干连续子树组成的森林的方案数。 <span
+class="math display">\[
+f[l][r]=\begin{cases}
+g[l+1][r] &amp;,ok[l][r]=1 \\
+0 &amp;, ok[l][r]=0
+\end{cases}
+\]</span></p>
+<p><span class="math display">\[
+g[l][r]=\sum_{k=l}^{r}f[l][k]\cdot g[k+1][r]
+\]</span></p>
+<p>特殊地，<span class="math inline">\(g[r+1][r]=1\)</span>。时间复杂度
+<span class="math inline">\(O(n^2m+n^3)\)</span>。</p>
 <h3 id="f.-find-the-circuit"><a
 target="_blank" rel="noopener" href="https://qoj.ac/contest/3169/problem/15437">F. Find the
 Circuit</a></h3>
-<h3 id="c.-stonebag"><a
-target="_blank" rel="noopener" href="https://qoj.ac/contest/3169/problem/15434">C. Stonebag</a></h3>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/submission/1990321">Code</a></p>
+<p>从环上的点开始多源 bfs，得到 <span
+class="math inline">\(d[x]\)</span> 表示 <span
+class="math inline">\(x\)</span> 到环的距离。对于一条边 <span
+class="math inline">\((u,v)\)</span>：</p>
+<ul>
+<li>若为环边，按题给顺序定向。</li>
+<li>若为弦，记 <span class="math inline">\(u=p_x, \ v=p_y\)</span>，若
+<span class="math inline">\(x&lt;y\)</span>，定向 <span
+class="math inline">\(u\to v\)</span>；否则定向 <span
+class="math inline">\(v\to u\)</span>。</li>
+<li>否则，若 <span class="math inline">\(d[u]&gt;d[v]\)</span>，定向
+<span class="math inline">\(u\to v\)</span>；若 <span
+class="math inline">\(d[v] &gt; d[u]\)</span>，定向 <span
+class="math inline">\(v\to u\)</span>；若 <span
+class="math inline">\(d[u]=d[v]\)</span>，定向 <span
+class="math inline">\(\min(u,v)\to \max(u,v)\)</span>。</li>
+</ul>
+<p>规则三确保了 second run
+中能拓扑排序消去所有环外的边，剩下环边和若干弦。</p>
+<p>接着考虑如下流程：</p>
+<ul>
+<li>从图中找到一个入度为 <span class="math inline">\(1\)</span> 的点
+<span class="math inline">\(u\)</span>，设指向 <span
+class="math inline">\(u\)</span> 的点为 <span
+class="math inline">\(x\)</span>。</li>
+<li>此时 <span class="math inline">\(x\to u\)</span>
+一定是环边，我们删去除 <span class="math inline">\(x\to u\)</span> 外
+<span class="math inline">\(x\)</span> 的所有出边。</li>
+</ul>
+<p>动态维护入度为 <span class="math inline">\(1\)</span>
+的点集，反复操作即可消去所有弦。规则二保证了若有弦，一定存在满足要求的
+<span class="math inline">\(u\)</span>。时间复杂度依实现方式 <span
+class="math inline">\(O(n\log n)\)</span> 或 <span
+class="math inline">\(O(n)\)</span>。</p>
+<h3 id="g.-watering-system"><a
+target="_blank" rel="noopener" href="https://qoj.ac/contest/3169/problem/15438">G. Watering
+System</a></h3>
 <h2 id="ccpc-重庆">CCPC 重庆</h2>
 <p>Wait for ucup end.</p>
 <h2 id="ec-final"><a target="_blank" rel="noopener" href="https://qoj.ac/contest/3295">EC
