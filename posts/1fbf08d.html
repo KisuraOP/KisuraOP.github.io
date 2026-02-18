@@ -1217,19 +1217,18 @@ class="math inline">\(\{a\}=\{2,3,0,1,0\}\)</span>。</p>
 <ul>
 <li>填 <code>0</code> 等价于选一个 <span
 class="math inline">\(i\)</span>，用 <span class="math inline">\(a_{i -
-1} + a_{i} + 1\)</span> 替换 <span class="math inline">\(a_{i - 1},
+1} + a_{i} + 1\)</span> 替换 <span class="math inline">\(a_{i - 1},\
 a_{i}\)</span>。</li>
 </ul>
 <p>等 Alice 合并完 <span class="math inline">\(a_{i-1}\)</span> 和 <span
 class="math inline">\(a_i\)</span> 后，站在 Bob 的角度，要么切断 <span
 class="math inline">\((a_{i-2}, a_{i-1})\)</span>，要么切断 <span
 class="math inline">\((a_{i},
-a_{i+1})\)</span>。如果切在其它地方，只会更劣。</p>
-<p>切断 <span class="math inline">\((a_{i-2},
-a_{i-1})\)</span>，相当于保留了 <span class="math inline">\(i-1\)</span>
-开头的后缀；切断 <span class="math inline">\((a_{i}, a_{i +
-1})\)</span>，相当于保留了 <span class="math inline">\(i\)</span>
-结尾的前缀。</p>
+a_{i+1})\)</span>。如果切在其它地方，只会更劣。切断 <span
+class="math inline">\((a_{i-2}, a_{i-1})\)</span>，相当于保留了以 <span
+class="math inline">\(i-1\)</span> 开头的后缀；切断 <span
+class="math inline">\((a_{i}, a_{i + 1})\)</span>，相当于保留了以 <span
+class="math inline">\(i\)</span> 结尾的前缀。</p>
 <p>令 <span class="math inline">\(pre[i]\)</span> 表示 “Alice 合并了
 <span class="math inline">\(a_{i-1}\)</span> 和 <span
 class="math inline">\(a_{i}\)</span> 后，轮到 Bob 的回合，如果 Bob
@@ -1237,15 +1236,16 @@ class="math inline">\(a_{i}\)</span> 后，轮到 Bob 的回合，如果 Bob
 class="math inline">\(1\sim i\)</span> 的答案。同理能定义 <span
 class="math inline">\(suf[i]\)</span>。</p>
 <p>以 <span class="math inline">\(pre[i]\)</span> 为例，现在序列是 <span
-class="math inline">\(a_1,a_2,\ldots,a_{i-2},a_{i-1}+a_i+1\)</span>，转移分以下几种情况：</p>
+class="math inline">\(a_1,\ a_2,\ \ldots,\ a_{i-2},\
+a_{i-1}+a_i+1\)</span>，转移分以下几种情况：</p>
 <ul>
-<li>先手合并最后两项得到 <span
-class="math inline">\(a_{i-2}+a_{i-1}+a_i+2\)</span>，后手切断 <span
+<li>Alice 合并最后两项得到 <span
+class="math inline">\(a_{i-2}+a_{i-1}+a_i+2\)</span>，Bob 切断 <span
 class="math inline">\((a_{i-3},a_{i-2})\)</span>，结束。</li>
-<li>先手合并 <span class="math inline">\(a_{i-3}\)</span> 和 <span
-class="math inline">\(a_{i-2}\)</span>。如果后手切断 <span
+<li>Alice 合并 <span class="math inline">\(a_{i-3}\)</span> 和 <span
+class="math inline">\(a_{i-2}\)</span>。如果 Bob 切断 <span
 class="math inline">\((a_{i-2},a_{i-1})\)</span>，变成子问题，答案是
-<span class="math inline">\(pre[i-2]\)</span>；如果后手切断 <span
+<span class="math inline">\(pre[i-2]\)</span>；如果 Bob 切断 <span
 class="math inline">\((a_{i-4},a_{i-3})\)</span>，先手就把 <span
 class="math inline">\(a_{i-3}\sim a_i\)</span> 整段合并了，结束。</li>
 </ul>
@@ -1254,7 +1254,7 @@ class="math inline">\(pre[i]=\max\begin{cases}a_{i-1}+a_{i}+1\\a_{i-2}+a_{i-1}+a
 \min(pre[i-2],\ a_{i-3}+a_{i-2}+a_{i-1}+a_i+3)\end{cases}\)</span></p>
 <p>最后答案是 <span
 class="math inline">\(\max\limits_{i=2}^{\text{len}(a)}(a_{i-1} + a_i +
-1,\min(pre[i],suf[i-1]))\)</span>。</p>
+1,\min(pre[i],\ suf[i-1]))\)</span>。</p>
 <p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
 <h3 id="e.-efficient-express"><a
 target="_blank" rel="noopener" href="https://qoj.ac/contest/3295/problem/16332">E. Efficient
