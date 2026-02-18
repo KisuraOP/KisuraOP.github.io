@@ -25,7 +25,7 @@ $$
 \begin{align} \large\text{『 }\normalsize\text{你没有那个实力,别再欺骗自己了} \mid \text{把自己卷死总比输了好}\large\text{ 』} \end{align}
 $$
 
-![](https://kisuraop.github.io/image/bg/infoBG1.png)
+![](https://kisuraop.github.io/image/bg/infoBG7.jpg)
 
 $$
 \begin{align}
@@ -52,6 +52,8 @@ $$
 \qquad&\qquad\qquad\qquad\qquad\qquad\qquad\qquad——\small{\text{ himehina}}\normalsize《默剧》
 \end{align}
 $$
+
+![](https://kisuraop.github.io/image/bg/infoBG6.png)
 
 $$
 \begin{align}
