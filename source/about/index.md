@@ -77,6 +77,6 @@ $$
 \begin{align}
 &\text{如果，神明真的存在的话，希望能让我赶快好起来。}\\
 &\text{但如果不行的话，那么让我赶快死掉吧。}\\
-&\qquad\qquad\qquad\qquad\qquad\qquad——\normalsize《\small\text{narcissu 2}\normalsize》
+&\qquad\qquad\qquad\qquad\qquad\qquad——\normalsize《\small\text{narcissu\  2}\normalsize》
 \end{align}
 $$
