@@ -14,7 +14,9 @@ layout: about
 <center>社交属性为空集</center>
 
 <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, rgba(100, 149, 237, 0), rgba(100, 149, 237, 0.75), rgba(100, 149, 237, 0));">
+
 ![](https://kisuraop.github.io/image/bg/infoBG4.png)
+
 $$
 \begin{align} \begin{pmatrix} &\text{ }\text{ } \text{2023年,我已觉得足够。} \\ &\text{纵使风狂雨骤,也不害怕无路可走。} \\ &\text{愿绚烂的星火之间有不曾悔恨的理由,}\text{ }\text{ }\text{ } \\ &\text{ }\text{ }\text{愿沉溺在深水之中也能有心灵的悸动。} \text{ }\text{ }\text{ }\end{pmatrix} \end{align}
 $$
@@ -72,11 +74,13 @@ $$
 &\qquad\qquad\qquad\qquad\qquad——\normalsize《\small\text{来自深渊：烈日的黄金乡}\normalsize》
 \end{align}
 $$
+
 ![](https://kisuraop.github.io/image/bg/infoBG5.png)
+
 $$
 \begin{align}
 &\text{如果，神明真的存在的话，希望能让我赶快好起来。}\\
 &\text{但如果不行的话，那么让我赶快死掉吧。}\\
-&\qquad\qquad\qquad\qquad\qquad\qquad——\normalsize《\small\text{narcissu\  2}\normalsize》
+&\qquad\qquad\qquad\qquad\qquad\qquad——\normalsize《\small\text{narcissu } \text{2}\normalsize》
 \end{align}
 $$
