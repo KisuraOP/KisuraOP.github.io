@@ -18,7 +18,7 @@ math: true
 
 {% note info %}
 
-shanghai 补题。
+上海 K，香港 G。
 
 {% endnote %}
 
@@ -26,14 +26,8 @@ shanghai 补题。
 
 修板子：
 
-- 加个 FWT。
+- 添加：FWT，点分树，LCT。
 - [区间线性基](https://github.com/KisuraOP/XCPC-Templates/blob/main/templates/05-数学/线性基/Basis_Range_Count.cpp)，可以用 [CF1100F](https://www.luogu.com.cn/problem/CF1100F) 优化到 2log。
-
-{% endnote %}
-
-{% note info %}
-
-学习一下 [Product Matrix](https://qoj.ac/contest/1804/problem/9448)。
 
 {% endnote %}
 
@@ -46,7 +40,7 @@ shanghai 补题。
 Problems：
 
 - [Candy Ads](https://qoj.ac/problem/8315)，kosaraju。
-- [Airport Construction](https://qoj.ac/problem/2767)，几何
+- [Product Matrix](https://qoj.ac/contest/1804/problem/9448)，ICZT。
 
 Algo：
 
