@@ -1,0 +1,1380 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/image/bg/mugeng.ico">
+  <link rel="icon" href="/image/bg/mugeng.ico">
+  
+    <link rel="canonical" href="http://kisuraop.github.io/posts/46d133fb.html"/>
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="KisuraOP">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="这篇笔记可以说从今年年初就开始动笔，然后烂尾了几次又断断续续写，然后还经历了几次完全看不懂之前写的内容的情况（雾 上班上多了感觉脑子都不灵光了。 这篇笔记几乎没什么前置知识，如果有可能就是二维前缀和吧。 高维前缀和 &amp; 高维差分 考虑朴素的不使用容斥的二维前缀和，可以写成 for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;     for (int j">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【笔记】集合幂级数">
+<meta property="og:url" content="http://kisuraop.github.io/posts/46d133fb.html">
+<meta property="og:site_name" content="KisuraOPのBlog">
+<meta property="og:description" content="这篇笔记可以说从今年年初就开始动笔，然后烂尾了几次又断断续续写，然后还经历了几次完全看不懂之前写的内容的情况（雾 上班上多了感觉脑子都不灵光了。 这篇笔记几乎没什么前置知识，如果有可能就是二维前缀和吧。 高维前缀和 &amp; 高维差分 考虑朴素的不使用容斥的二维前缀和，可以写成 for (int i &#x3D; 1; i &lt;&#x3D; n; i++) &#123;     for (int j">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/e34f764e2d41fb5f506db4a009fbb91f.jpeg">
+<meta property="article:published_time" content="2026-06-06T13:04:48.000Z">
+<meta property="article:modified_time" content="2026-06-06T13:55:46.494Z">
+<meta property="article:author" content="KisuraOP">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Note">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://pic.rmb.bdstatic.com/bjh/e34f764e2d41fb5f506db4a009fbb91f.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>【笔记】集合幂级数 - KisuraOPのBlog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="/css/bg_cover.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4277703_p4cthydttt.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"kisuraop.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>KisuraOPのBlog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/gugugu/" target="_self">
+                <i class="iconfont icon-plan"></i>
+                <span>咕咕咕</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('https://moe.jitsu.top/img/?sort=pc') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle">【笔记】集合幂级数</span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2026-06-06 21:04" pubdate>
+          2026年6月6日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.4k 字
+        
+      </span>
+    
+
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="padding-left: 2rem; margin-right: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【笔记】集合幂级数</h1>
+            
+              <p id="updated-time" class="note note-info" style="">
+                
+                  
+                    本文最后更新于 2026年6月6日 晚上
+                  
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <p>这篇笔记可以说从今年年初就开始动笔，然后烂尾了几次又断断续续写，然后还经历了几次完全看不懂之前写的内容的情况（雾</p>
+<p>上班上多了感觉脑子都不灵光了。</p>
+<p>这篇笔记几乎没什么前置知识，如果有可能就是二维前缀和吧。</p>
+<h3 id="高维前缀和-高维差分">高维前缀和 &amp; 高维差分</h3>
+<p>考虑朴素的不使用容斥的二维前缀和，可以写成</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;
+        a[i][j] += a[i - <span class="hljs-number">1</span>][j];
+    &#125;
+&#125;
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;
+        a[i][j] += a[i][j - <span class="hljs-number">1</span>];
+    &#125;
+&#125;</code></pre></div>
+<p>进一步，下面是三维前缀和</p>
+<div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = <span class="hljs-number">1</span>; k &lt;= n; k++) &#123; 
+            a[i][j][k] += a[i - <span class="hljs-number">1</span>][j][k];
+        &#125;
+    &#125;
+&#125;
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = <span class="hljs-number">1</span>; k &lt;= n; k++) &#123;
+            a[i][j][k] += a[i][j - <span class="hljs-number">1</span>][k];
+        &#125;
+    &#125;
+&#125;
+<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> k = <span class="hljs-number">1</span>; k &lt;= n; k++) &#123;
+            a[i][j][k] += a[i][j][k - <span class="hljs-number">1</span>];
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+<p>假如按这种方式写 <span class="math inline">\(m\)</span>
+维前缀和，那就有 <span class="math inline">\(m\)</span>
+个循环体，每个循环体 <span class="math inline">\(m\)</span>
+层循环，复杂度 <span class="math inline">\(O(m\cdot n^m)\)</span> 。</p>
+<p>这就是高维前缀和了，只不过，一般我们遇到的是 “每一维长度均为 <span
+class="math inline">\(2\)</span>” 的情况，在上述例子中也就是 <span
+class="math inline">\(n=2\)</span>。此时，可以状态压缩写成下面这样，二进制下每一位都代表一个维度。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; m; j++) &#123; <span class="hljs-comment">// 遍历每一维</span>
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; (<span class="hljs-number">1</span> &lt;&lt; m); i++) &#123;
+        <span class="hljs-keyword">if</span> (i &gt;&gt; j &amp; <span class="hljs-number">1</span>) &#123;
+            a[i] += a[i ^ (<span class="hljs-number">1</span> &lt;&lt; j)];
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+<p>接下来，考虑高维前缀和后 <span class="math inline">\(\{a\}\)</span>
+的意义。以下将高维前缀和后的 <span class="math inline">\(\{a\}\)</span>
+称作 <span class="math inline">\(\{f\}\)</span>。</p>
+<ul>
+<li>一维前缀和中，<span class="math inline">\(f[x]=\sum_{i\le x}
+a[i]\)</span>。</li>
+<li>二维前缀和中，<span class="math inline">\(f[x][y]=\sum_{i\le x,j\le
+y}a[i][j]\)</span>。</li>
+</ul>
+<p>因此，<span class="math inline">\(m\)</span> 维前缀和后，<span
+class="math inline">\(f[x]\)</span>（这里 <span
+class="math inline">\(x\)</span> 是 <span
+class="math inline">\(m\)</span> 位二进制数）就表示满足 <span
+class="math inline">\(\forall i\in [0,m)\)</span>，<span
+class="math inline">\(y_i\le x_i\)</span>（<span
+class="math inline">\(y\)</span> 二进制下第 <span
+class="math inline">\(i\)</span> 位 $$ <span
+class="math inline">\(x\)</span> 二进制下第 <span
+class="math inline">\(i\)</span> 位）的所有 <span
+class="math inline">\(a[y]\)</span> 的和，即 <span
+class="math display">\[
+f[S]=\sum_{T\subseteq S}a[T]
+\]</span> 既然高维前缀和能通过 <span class="math inline">\(a\)</span> 算
+<span class="math inline">\(f\)</span>，那有办法能通过 <span
+class="math inline">\(f\)</span> 算 <span
+class="math inline">\(a\)</span> 吗？</p>
+<p>有的，与之相对的就是高维差分。这就好比一维前缀和是 <span
+class="math inline">\(f[i]=f[i-1]+a[i]\)</span>，想反过来算出 <span
+class="math inline">\(a\)</span> 就是 <span
+class="math inline">\(a[i]=f[i]-f[i-1]\)</span>。</p>
+<p>代码写出来只用改一个正负号。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; m; j++) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; (<span class="hljs-number">1</span> &lt;&lt; m); i++) &#123;
+        <span class="hljs-keyword">if</span> (i &gt;&gt; j &amp; <span class="hljs-number">1</span>) &#123;
+            a[i] -= a[i ^ (<span class="hljs-number">1</span> &lt;&lt; j)];
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+<p>这段代码实际上隐含了容斥原理。手玩一下 <span
+class="math inline">\(m=2\)</span> 就会发现，所有的
+<code>a[i] -= a[i ^ (1 &lt;&lt; j)]</code> 合并在一起形如 <span
+class="math inline">\(a[11] = f[11] - f[10] -f[01] +
+f[00]\)</span>，每个元素的正负号在反复相减中变化。</p>
+<p>所以高维差分的式子写出来就是容斥的样子。 <span
+class="math display">\[
+a[S]=\sum_{T\subseteq S}(-1)^{|S|-|T|}f[T]
+\]</span> 上述从 <span class="math inline">\(\{a\}\)</span> 到 <span
+class="math inline">\(\{f\}\)</span> 的操作也被称为 “子集和” 或
+“快速莫比乌斯变换” 或 “Zeta 变换”，从 <span
+class="math inline">\(\{f\}\)</span> 到 <span
+class="math inline">\(\{a\}\)</span> 的过程也被称作 “子集反演” 或
+“快速莫比乌斯反演”。</p>
+<h3 id="超集和-超集差分">超集和 &amp; 超集差分</h3>
+<p>和子集和类似，定义超集和是 <span class="math display">\[
+f[S]=\sum_{S\subseteq T}a[T]
+\]</span> 即所有包含 <span class="math inline">\(S\)</span> 的状态 <span
+class="math inline">\(T\)</span> 的 <span
+class="math inline">\(a[T]\)</span> 之和。</p>
+<p>对比子集和，代码上唯一的区别在于：当我们在处理第 <span
+class="math inline">\(j\)</span> 维时，要把 “坐标为 <span
+class="math inline">\(1\)</span>” 的值加到 “坐标为 <span
+class="math inline">\(0\)</span>” 的位置上。也就是</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; m; j++) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; (<span class="hljs-number">1</span> &lt;&lt; m); i++) &#123;
+        <span class="hljs-keyword">if</span> (!(i &gt;&gt; j &amp; <span class="hljs-number">1</span>)) &#123;
+            a[i] += a[i ^ (<span class="hljs-number">1</span> &lt;&lt; j)];
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+<p>同理如果想要通过 <span class="math inline">\(f\)</span> 还原 <span
+class="math inline">\(a\)</span>，就是</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">if</span> (!(i &gt;&gt; j &amp; <span class="hljs-number">1</span>)) &#123;
+    a[i] -= a[i ^ (<span class="hljs-number">1</span> &lt;&lt; j)];
+&#125;</code></pre></div>
+<h3 id="or-卷积">OR 卷积</h3>
+<p>定义子集和变换 <span class="math inline">\(\hat
+f=\text{FMT}(f)\)</span>，为 <span class="math display">\[
+\hat f_i=\sum\limits_{j\subseteq i}f_j
+\]</span></p>
+<p>其逆变换为 <span class="math display">\[
+f_i=\text{IFMT}(\hat f)_i=\sum\limits_{j\subseteq i}(-1)^{|i|-|j|}\hat
+f_j
+\]</span> 也就是子集反演。</p>
+<p>所谓 OR 卷积，就是 <span class="math display">\[
+h_k=\sum_{i|j=k}f_i\cdot g_j
+\]</span> 要做 <span class="math inline">\(f\)</span> 和 <span
+class="math inline">\(g\)</span> 的 OR 卷积，我们只要把 <span
+class="math inline">\(f\)</span> 和 <span
+class="math inline">\(g\)</span> 分别做 <span
+class="math inline">\(\text{FMT}\)</span>，点乘起来，再做一遍 <span
+class="math inline">\(\text{IFMT}\)</span> 即可。 <span
+class="math display">\[
+h=\text{IFMT}(\text{FMT}(f)\cdot \text{FMT}(g))
+\]</span> 这个不难理解，因为 <span class="math display">\[
+\sum_{i \subseteq S}\sum_{j \subseteq S} f_i g_j
+= \sum_{i|j \subseteq S} f_i g_j
+= \sum_{k\subseteq S}\sum_{i|j=k} f_i g_j
+= \sum_{k\subseteq S}h_k
+\]</span> 所以变换后点乘得到的是 <span class="math inline">\(h\)</span>
+的子集和，再做 IFMT 就能得到 OR 卷积。</p>
+<p>代码在下方 AND 卷积一同给出。</p>
+<h3 id="and-卷积">AND 卷积</h3>
+<p>同样的，注意到 <span class="math display">\[
+\sum_{S \subseteq i}\sum_{S \subseteq j} f_i g_j
+= \sum_{S \subseteq (i\&amp; j)} f_i g_j
+= \sum_{S\subseteq k}\sum_{i\&amp;j=k} f_i g_j
+= \sum_{S\subseteq k}h_k
+\]</span> 所以变换后点乘得到的是 <span class="math inline">\(h\)</span>
+的超集和。换句话说，点乘后的数组在状态 <span
+class="math inline">\(S\)</span> 上存的是 <span
+class="math inline">\(\sum_{S\subseteq k}h_k\)</span>，也就是 <span
+class="math inline">\(h\)</span>
+的超集和。因此我们把子集变换改成超集变换就行。</p>
+<p>定义 <span class="math inline">\(\text{FMT}_{\text{sup}}\)</span> 和
+<span class="math inline">\(\text{IFMT}_{\text{sup}}\)</span>
+分别表示超集和以及超集反演，那么 <span class="math display">\[
+h=\text{IFMT}_{\text{sup}}(\text{FMT}_{\text{sup}}(f)\cdot
+\text{FMT}_{\text{sup}}(g))
+\]</span></p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// op = 0 表示做 OR 卷积, op = 1 表示做 AND 卷积</span>
+<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">conv</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; a, vector&lt;<span class="hljs-type">int</span>&gt; b, <span class="hljs-type">int</span> op)</span> </span>&#123;
+    <span class="hljs-keyword">auto</span> fmt = [&amp;] (vector&lt;<span class="hljs-type">int</span>&gt; &amp;c, <span class="hljs-type">int</span> inv) &#123;
+        <span class="hljs-type">int</span> N = c.<span class="hljs-built_in">size</span>();
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt; N; j &lt;&lt;= <span class="hljs-number">1</span>) &#123;
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i++) &#123;
+                <span class="hljs-keyword">if</span> ((op == <span class="hljs-number">0</span> &amp;&amp; i &amp; j) || (op == <span class="hljs-number">1</span> &amp;&amp; !(i &amp; j))) &#123;
+                    <span class="hljs-keyword">if</span> (inv) &#123;
+                        c[i] = (c[i] - c[i ^ j] + mod) % mod;
+                    &#125; <span class="hljs-keyword">else</span> &#123;
+                        c[i] = (c[i] + c[i ^ j]) % mod;
+                    &#125;
+                &#125;
+            &#125;
+        &#125;
+    &#125;;
+    <span class="hljs-built_in">fmt</span>(a, <span class="hljs-number">0</span>);
+    <span class="hljs-built_in">fmt</span>(b, <span class="hljs-number">0</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; a.<span class="hljs-built_in">size</span>(); i++) &#123;
+        a[i] = a[i] * b[i] % mod;
+    &#125;
+    <span class="hljs-built_in">fmt</span>(a, <span class="hljs-number">1</span>);
+    <span class="hljs-keyword">return</span> a;
+&#125;</code></pre></div>
+<h3 id="分治写法">分治写法</h3>
+<p>除了上面基于高维前缀和的迭代写法，分治写法也比较常见。</p>
+<p>以 OR 卷积为例，设当前数组 <span class="math inline">\(\{a\}\)</span>
+长度为 <span
+class="math inline">\(2^n\)</span>，我们可以平分成两半：</p>
+<ul>
+<li><span class="math inline">\(a_0\)</span>：前一半元素，下标最高位为
+<span class="math inline">\(0\)</span>。</li>
+<li><span class="math inline">\(a_1\)</span>：后一半元素，下标最高位为
+<span class="math inline">\(1\)</span>。</li>
+</ul>
+<p>左半部分的状态最高位为 <span
+class="math inline">\(0\)</span>，它的子集仍在左半部分；右半部分的状态最高位为
+<span
+class="math inline">\(1\)</span>，它的子集分成两类：不含最高位的子集在左半部分，含最高位的子集在右半部分。
+<span class="math display">\[
+\text{FMT}(a)=\text{merge}(\text{FMT}(a_0),\text{FMT}(a_0)+\text{FMT}(a_1))
+\]</span> 其中 <span class="math inline">\(\text{merge}\)</span>
+表示数组首尾相连。于是我们只用把右半部分加上左半部分就行。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">FMT_OR</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;f)</span> </span>&#123;
+    <span class="hljs-type">int</span> N = f.<span class="hljs-built_in">size</span>();
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> o = <span class="hljs-number">2</span>, k = <span class="hljs-number">1</span>; o &lt;= N; o &lt;&lt;= <span class="hljs-number">1</span>, k &lt;&lt;= <span class="hljs-number">1</span>) &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i += o) &#123;
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; k; j++) &#123;
+                f[i + j + k] = (f[i + j + k] + f[i + j]) % mod;
+            &#125;
+        &#125;
+    &#125;
+&#125;</code></pre></div>
+<p>IFMT 同理，改成 <code>f[i + j + k] -= f[i + j];</code>
+即可。写在一起就是</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">conv_OR</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;f, <span class="hljs-type">int</span> v)</span> </span>&#123;
+    <span class="hljs-type">int</span> N = f.<span class="hljs-built_in">size</span>();
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> o = <span class="hljs-number">2</span>, k = <span class="hljs-number">1</span>; o &lt;= N; o &lt;&lt;= <span class="hljs-number">1</span>, k &lt;&lt;= <span class="hljs-number">1</span>) &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i += o) &#123;
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; k; j++) &#123;
+                f[i + j + k] = (f[i + j + k] + f[i + j] * v + mod) % mod;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">conv_OR</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; f, vector&lt;<span class="hljs-type">int</span>&gt; g)</span> </span>&#123;
+    <span class="hljs-built_in">conv_OR</span>(f, <span class="hljs-number">1</span>);
+    <span class="hljs-built_in">conv_OR</span>(g, <span class="hljs-number">1</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; f.<span class="hljs-built_in">size</span>(); i++) &#123;
+        f[i] = f[i] * g[i] % mod;
+    &#125;
+    <span class="hljs-built_in">conv_OR</span>(f, <span class="hljs-number">-1</span>);
+    <span class="hljs-keyword">return</span> f;
+&#125;</code></pre></div>
+<p>AND 卷积同理，子集变超集，也就是把 <code>f[i + j + k]</code> 和
+<code>f[i + j]</code> 换个位置。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">conv_AND</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;f, <span class="hljs-type">int</span> v)</span> </span>&#123;
+    <span class="hljs-type">int</span> N = f.<span class="hljs-built_in">size</span>();
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> o = <span class="hljs-number">2</span>, k = <span class="hljs-number">1</span>; o &lt;= N; o &lt;&lt;= <span class="hljs-number">1</span>, k &lt;&lt;= <span class="hljs-number">1</span>) &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i += o) &#123;
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; k; j++) &#123;
+                f[i + j] = (f[i + j] + f[i + j + k] * v + mod) % mod;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">conv_AND</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; f, vector&lt;<span class="hljs-type">int</span>&gt; g)</span> </span>&#123;
+    <span class="hljs-built_in">conv_AND</span>(f, <span class="hljs-number">1</span>);
+    <span class="hljs-built_in">conv_AND</span>(g, <span class="hljs-number">1</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; f.<span class="hljs-built_in">size</span>(); i++) &#123;
+        f[i] = f[i] * g[i] % mod;
+    &#125;
+    <span class="hljs-built_in">conv_AND</span>(f, <span class="hljs-number">-1</span>);
+    <span class="hljs-keyword">return</span> f;
+&#125;</code></pre></div>
+<h3 id="快速沃尔什变换-xor-卷积">快速沃尔什变换 &amp; XOR 卷积</h3>
+<p>快速沃尔什变换（FWT），通常指基于 Hadamard
+矩阵的变换，这个之后再提。</p>
+<p>总之最常见的用法是 XOR 卷积，即求 <span class="math display">\[
+h_k=\sum_{i\oplus j=k}f_i\cdot g_j
+\]</span> 基于和 FMT 类似的思想，我们想要构造变换 <span
+class="math inline">\(\text{FWT}(f)\)</span> 使得 <span
+class="math display">\[
+h=\text{IFWT}(\text{FWT}(f)\cdot \text{FWT}(g))
+\]</span></p>
+<p>还是考虑分治。设当前数组长度为 <span
+class="math inline">\(2^n\)</span>，把最高位为 <span
+class="math inline">\(0\)</span> 和最高位为 <span
+class="math inline">\(1\)</span> 的部分分开，记作 <span
+class="math inline">\(f_0,f_1\)</span>。</p>
+<p>记结果的两半为 <span class="math inline">\(h_0,h_1\)</span>。如果
+<span class="math inline">\(k\)</span> 的最高位为 <span
+class="math inline">\(0\)</span>，那么 <span
+class="math inline">\(i,j\)</span> 的最高位相同；如果 <span
+class="math inline">\(k\)</span> 的最高位为 <span
+class="math inline">\(1\)</span>，那么 <span
+class="math inline">\(i,j\)</span> 的最高位不同。</p>
+<p>固定除最高位外的低位部分为 <span class="math inline">\(t\)</span>，有
+<span class="math display">\[
+h_0[t]=\sum_{i\oplus j=t}f_0[i]g_0[j]+\sum_{i\oplus j=t}f_1[i]g_1[j]
+\]</span> <span class="math display">\[
+h_1[t]=\sum_{i\oplus j=t}f_0[i]g_1[j]+\sum_{i\oplus j=t}f_1[i]g_0[j]
+\]</span></p>
+<p>仔细观察这两个式子，如果我们把 <span
+class="math inline">\(f_0\)</span> 和 <span
+class="math inline">\(f_1\)</span> 先变成 <span
+class="math inline">\(f_0+f_1\)</span>，把 <span
+class="math inline">\(g_0\)</span> 和 <span
+class="math inline">\(g_1\)</span> 先变成 <span
+class="math inline">\(g_0+g_1\)</span>，那么它们低一维 XOR
+卷积的结果就是 <span
+class="math inline">\(h_0+h_1\)</span>；同理，把两边分别变成 <span
+class="math inline">\(f_0-f_1\)</span> 和 <span
+class="math inline">\(g_0-g_1\)</span>，低一维 XOR 卷积的结果就是 <span
+class="math inline">\(h_0-h_1\)</span>。</p>
+<p>综上，可以定义一层 FWT 变换为 <span class="math display">\[
+(x,y)\rightarrow (x+y,x-y)
+\]</span> 反变换则为 <span class="math display">\[
+(x,y)\rightarrow \left(\frac{x+y}{2},\frac{x-y}{2}\right)
+\]</span></p>
+<p>代码如下。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">FWT_XOR</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;f, <span class="hljs-type">int</span> inv)</span> </span>&#123;
+    <span class="hljs-type">int</span> N = f.<span class="hljs-built_in">size</span>();
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> o = <span class="hljs-number">2</span>, k = <span class="hljs-number">1</span>; o &lt;= N; o &lt;&lt;= <span class="hljs-number">1</span>, k &lt;&lt;= <span class="hljs-number">1</span>) &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i += o) &#123;
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j &lt; k; j++) &#123;
+                <span class="hljs-type">int</span> x = f[i + j], y = f[i + j + k];
+                f[i + j] = (x + y) % mod;
+                f[i + j + k] = (x - y + mod) % mod;
+                <span class="hljs-keyword">if</span> (inv) &#123;
+                    f[i + j] = f[i + j] * inv2 % mod;
+                    f[i + j + k] = f[i + j + k] * inv2 % mod;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">conv_XOR</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; f, vector&lt;<span class="hljs-type">int</span>&gt; g)</span> </span>&#123;
+    <span class="hljs-built_in">FWT_XOR</span>(f, <span class="hljs-number">0</span>);
+    <span class="hljs-built_in">FWT_XOR</span>(g, <span class="hljs-number">0</span>);
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; f.<span class="hljs-built_in">size</span>(); i++) &#123;
+        f[i] = f[i] * g[i] % mod;
+    &#125;
+    <span class="hljs-built_in">FWT_XOR</span>(f, <span class="hljs-number">1</span>);
+    <span class="hljs-keyword">return</span> f;
+&#125;</code></pre></div>
+<p>如果不想每一层都除以 <span
+class="math inline">\(2\)</span>，也可以最后统一乘上 <span
+class="math inline">\(2^{-m}\)</span>。</p>
+<p>从另一个角度看，FWT 实际上是在用下面这个容斥函数做变换： <span
+class="math display">\[
+\hat f[S]=\sum_T(-1)^{|S\cap T|}f[T]
+\]</span> 它满足 <span class="math display">\[
+(-1)^{|S\cap A|}(-1)^{|S\cap B|}=(-1)^{|S\cap (A\oplus B)|}
+\]</span> 所以 XOR 卷积在变换后就变成了点乘。</p>
+<p>至此，OR / AND / XOR 三类按位卷积都可以写成 “变换、点乘、反变换”
+的形式。</p>
+<p>接下来考虑另一种集合上的乘法。前面的 OR 卷积要求 <span
+class="math inline">\(i|j=S\)</span>，允许 <span
+class="math inline">\(i\)</span> 和 <span
+class="math inline">\(j\)</span> 有交；但很多问题里，我们希望把一个集合
+<span class="math inline">\(S\)</span> 拆成两个不相交的部分 <span
+class="math inline">\(T\)</span> 和 <span
+class="math inline">\(S\setminus T\)</span>，分别从 <span
+class="math inline">\(f\)</span> 和 <span
+class="math inline">\(g\)</span> 中取贡献。为了刻画这种 “不交合并”
+的乘法，可以引入集合幂级数。</p>
+<h3 id="集合幂级数">集合幂级数</h3>
+<p>给全集中的每个元素 <span class="math inline">\(i\)</span>
+对应一个变量 <span class="math inline">\(x_i\)</span>。对于集合 <span
+class="math inline">\(S\)</span>，记 <span class="math display">\[
+x^S=\prod_{i\in S}x_i
+\]</span> 也就是说，集合 <span class="math inline">\(S\)</span>
+对应的单项式就是把 <span class="math inline">\(S\)</span>
+中所有元素对应的变量乘起来。因此集合幂级数可以写成 <span
+class="math display">\[
+f=\sum_S f[S]x^S
+\]</span> 其中乘法规定为 <span class="math display">\[
+x^A x^B=\begin{cases}
+x^{A\cup B} &amp; A\cap B=\varnothing\\
+0 &amp; A\cap B\ne \varnothing
+\end{cases}
+\]</span> 由乘法定义可知，一旦两个单项式包含相同变量，乘积就是 <span
+class="math inline">\(0\)</span>。特别地，<span
+class="math inline">\(x_i^2=0\)</span>。因此每个非零单项式中每个变量最多出现一次，所有级数都是有限的，最高次数不超过全集的元素个数
+<span class="math inline">\(n\)</span>。</p>
+<h3 id="子集卷积">子集卷积</h3>
+<p>由上面的乘法定义，两个集合幂级数 <span
+class="math inline">\(f,g\)</span> 的乘积 <span
+class="math inline">\(h=fg\)</span> 满足 <span class="math display">\[
+h[S]=\sum_{T\subseteq S}f[T]g[S\setminus T]
+\]</span> 这也叫子集卷积。</p>
+<p>注意它和 OR 卷积很像，但并不一样。OR 卷积枚举的是 <span
+class="math inline">\(i|j=S\)</span>，允许 <span
+class="math inline">\(i\)</span> 和 <span
+class="math inline">\(j\)</span>
+有交；而子集卷积要求两边不交，且并起来正好是 <span
+class="math inline">\(S\)</span>。</p>
+<p>一个朴素写法是枚举子集，复杂度 <span
+class="math inline">\(O(3^n)\)</span>。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">conv_subset_slow</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; f, vector&lt;<span class="hljs-type">int</span>&gt; g)</span> </span>&#123;
+    <span class="hljs-type">int</span> N = f.<span class="hljs-built_in">size</span>();
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">h</span><span class="hljs-params">(N)</span></span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> s = <span class="hljs-number">0</span>; s &lt; N; s++) &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> t = s; ; t = (t - <span class="hljs-number">1</span>) &amp; s) &#123;
+            h[s] = (h[s] + f[t] * g[s ^ t]) % mod;
+            <span class="hljs-keyword">if</span> (t == <span class="hljs-number">0</span>) <span class="hljs-keyword">break</span>;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">return</span> h;
+&#125;</code></pre></div>
+<p>想优化它，需要额外记录集合大小。令 <span class="math display">\[
+F_i[S]=\begin{cases}
+f[S] &amp; |S|=i\\
+0 &amp; |S|\ne i
+\end{cases}
+\]</span> 对每个 <span class="math inline">\(i\)</span>
+分别做子集和。这样变换后，固定一个 <span
+class="math inline">\(S\)</span>，所有 <span
+class="math inline">\(T\subseteq S\)</span> 都被加进来了。</p>
+<p>如果 <span class="math inline">\(T\)</span> 和 <span
+class="math inline">\(S\setminus T\)</span> 不交，那么大小满足 <span
+class="math display">\[
+|T|+|S\setminus T|=|S|
+\]</span> 所以我们可以在大小这一维上做普通卷积。</p>
+<p>具体地：</p>
+<ol type="1">
+<li>按照 popcount 分层得到 <span
+class="math inline">\(F_i,G_i\)</span>。</li>
+<li>对每一层做 FMT。</li>
+<li>对每个集合 <span class="math inline">\(S\)</span>，计算 <span
+class="math display">\[
+H_k[S]=\sum_{i=0}^k F_i[S]G_{k-i}[S]
+\]</span></li>
+<li>对每一层做 IFMT。</li>
+<li>答案是 <span class="math inline">\(H_{|S|}[S]\)</span>。</li>
+</ol>
+<p>代码如下，复杂度 <span class="math inline">\(O(n^2
+2^n)\)</span>。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">FMT</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;a, <span class="hljs-type">int</span> inv)</span> </span>&#123;
+    <span class="hljs-type">int</span> N = a.<span class="hljs-built_in">size</span>();
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">1</span>; j &lt; N; j &lt;&lt;= <span class="hljs-number">1</span>) &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i++) &#123;
+            <span class="hljs-keyword">if</span> (i &amp; j) &#123;
+                <span class="hljs-keyword">if</span> (inv) &#123;
+                    a[i] = (a[i] - a[i ^ j] + mod) % mod;
+                &#125; <span class="hljs-keyword">else</span> &#123;
+                    a[i] = (a[i] + a[i ^ j]) % mod;
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+&#125;
+
+<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">conv_subset</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; f, vector&lt;<span class="hljs-type">int</span>&gt; g)</span> </span>&#123;
+    <span class="hljs-type">int</span> N = f.<span class="hljs-built_in">size</span>(); <span class="hljs-comment">// N 是 2 的幂</span>
+    <span class="hljs-type">int</span> n = __builtin_ctz(N);
+    <span class="hljs-function">vector <span class="hljs-title">F</span><span class="hljs-params">(n + <span class="hljs-number">1</span>, vector&lt;<span class="hljs-type">int</span>&gt;(N))</span></span>;
+    <span class="hljs-function">vector <span class="hljs-title">G</span><span class="hljs-params">(n + <span class="hljs-number">1</span>, vector&lt;<span class="hljs-type">int</span>&gt;(N))</span></span>;
+    <span class="hljs-function">vector <span class="hljs-title">H</span><span class="hljs-params">(n + <span class="hljs-number">1</span>, vector&lt;<span class="hljs-type">int</span>&gt;(N))</span></span>;
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> s = <span class="hljs-number">0</span>; s &lt; N; s++) &#123;
+        <span class="hljs-type">int</span> c = __builtin_popcountll(s);
+        F[c][s] = f[s];
+        G[c][s] = g[s];
+    &#125;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= n; i++) &#123;
+        <span class="hljs-built_in">FMT</span>(F[i], <span class="hljs-number">0</span>);
+        <span class="hljs-built_in">FMT</span>(G[i], <span class="hljs-number">0</span>);
+    &#125;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> s = <span class="hljs-number">0</span>; s &lt; N; s++) &#123;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= n; i++) &#123;
+            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; i + j &lt;= n; j++) &#123;
+                H[i + j][s] = (H[i + j][s] + F[i][s] * G[j][s]) % mod;
+            &#125;
+        &#125;
+    &#125;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt;= n; i++) &#123;
+        <span class="hljs-built_in">FMT</span>(H[i], <span class="hljs-number">1</span>);
+    &#125;
+
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">h</span><span class="hljs-params">(N)</span></span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> s = <span class="hljs-number">0</span>; s &lt; N; s++) &#123;
+        h[s] = H[__builtin_popcountll(s)][s];
+    &#125;
+    <span class="hljs-keyword">return</span> h;
+&#125;</code></pre></div>
+<p>为什么这样能去掉 “不交” 的限制？</p>
+<p>FMT 后的 <span class="math inline">\(F_i[S]\)</span> 表示 <span
+class="math inline">\(S\)</span> 的所有大小为 <span
+class="math inline">\(i\)</span> 的子集 <span
+class="math inline">\(T\)</span> 的 <span
+class="math inline">\(f[T]\)</span> 之和。因此点乘得到的 <span
+class="math inline">\(H&#39;_k[S]\)</span> 会统计所有 <span
+class="math inline">\(A,B\subseteq S\)</span> 且 <span
+class="math inline">\(|A|+|B|=k\)</span> 的贡献。</p>
+<p>这些贡献可以按 <span class="math inline">\(A\cup B\)</span>
+分组，所以 <span class="math inline">\(H&#39;_k[S]\)</span>
+实际上是某个数组 <span class="math inline">\(H_k\)</span> 的子集和：
+<span class="math display">\[
+H&#39;_k[S]=\sum_{U\subseteq S}H_k[U]
+\]</span> 其中 <span class="math inline">\(H_k[U]\)</span> 表示所有满足
+<span class="math inline">\(A\cup B=U\)</span> 且 <span
+class="math inline">\(|A|+|B|=k\)</span> 的贡献。因此对 <span
+class="math inline">\(H&#39;_k\)</span> 做 IFMT 后，<span
+class="math inline">\(H_k[S]\)</span> 只保留 <span
+class="math inline">\(A\cup B=S\)</span> 的贡献。</p>
+<p>此时再取 <span class="math inline">\(k=|S|\)</span>，由于 <span
+class="math inline">\(|A|+|B|=|A\cup B|\)</span> 当且仅当 <span
+class="math inline">\(A\cap B=\varnothing\)</span>，所以 <span
+class="math inline">\(H_{|S|}[S]\)</span> 正好是子集卷积的答案。</p>
+<h4 id="逆元">逆元</h4>
+<p>若 <span class="math inline">\(f[\varnothing]\ne 0\)</span>，则 <span
+class="math inline">\(f\)</span> 有乘法逆元 <span
+class="math inline">\(g=f^{-1}\)</span>，满足 <span
+class="math display">\[
+f g=1
+\]</span> 其中 <span class="math inline">\(1\)</span> 表示 <span
+class="math inline">\(a[\varnothing]=1\)</span>，其余位置为 <span
+class="math inline">\(0\)</span>。</p>
+<p>对非空集合 <span class="math inline">\(S\)</span>，有 <span
+class="math display">\[
+\sum_{T\subseteq S}f[T]g[S\setminus T]=0
+\]</span> 把 <span class="math inline">\(T=\varnothing\)</span>
+的项单独拿出来，就得到 <span class="math display">\[
+g[S]=-\frac{1}{f[\varnothing]}\sum_{\varnothing\ne T\subseteq
+S}f[T]g[S\setminus T]
+\]</span></p>
+<p>朴素递推复杂度也是 <span class="math inline">\(O(3^n)\)</span>。</p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// f[0] != 0</span>
+<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">inv_set</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; f)</span> </span>&#123;
+    <span class="hljs-type">int</span> N = f.<span class="hljs-built_in">size</span>();
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">g</span><span class="hljs-params">(N)</span></span>;
+    <span class="hljs-type">int</span> inv_f0 = <span class="hljs-built_in">qpow</span>(f[<span class="hljs-number">0</span>], mod - <span class="hljs-number">2</span>);
+    g[<span class="hljs-number">0</span>] = inv_f0;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> s = <span class="hljs-number">1</span>; s &lt; N; s++) &#123;
+        <span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> t = s; t; t = (t - <span class="hljs-number">1</span>) &amp; s) &#123;
+            sum = (sum + f[t] * g[s ^ t]) % mod;
+        &#125;
+        g[s] = (mod - sum) * inv_f0 % mod;
+    &#125;
+    <span class="hljs-keyword">return</span> g;
+&#125;</code></pre></div>
+<h4 id="exp">exp</h4>
+<p>在普通的形式幂级数中，<span class="math inline">\(\text{exp}\)</span>
+的定义直接源于微积分里的泰勒展开 <span class="math display">\[
+e^x=\sum_{k=0}^{\infty} \frac{x^k}{k!}
+\]</span> 我们如果将自变量 <span class="math inline">\(x\)</span>
+替换为集合幂级数 <span
+class="math inline">\(f\)</span>，就得到了集合幂级数 <span
+class="math inline">\(\text{exp}\)</span> 的定义 <span
+class="math display">\[
+\exp(f)=\sum_{k\ge 0}\frac{f^k}{k!}
+\]</span> 注意这里必须要求 <span
+class="math inline">\(f[\varnothing]=0\)</span>。</p>
+<p>由于集合幂级数最高只有 <span class="math inline">\(n\)</span>
+次，所以这个和实际上到 <span class="math inline">\(n\)</span>
+就结束了。</p>
+<p>设 <span
+class="math inline">\(g=\exp(f)\)</span>。为了方便推导，我们定义一个类似求导的
+<span class="math inline">\(&#39;\)</span> 操作，表示
+“每一项乘上它自己包含的元素个数（集合大小）”：若 <span
+class="math display">\[
+F=\sum_S F[S]x^S
+\]</span> 则 <span class="math display">\[
+F&#39;=\sum_S |S|F[S]x^S
+\]</span> 类比链式求导法则，有 <span
+class="math inline">\(g&#39;=f&#39;g\)</span>，据此可以得到递推式 <span
+class="math display">\[
+|S|g[S]=\sum_{\varnothing\ne T\subseteq S}|T|f[T]g[S\setminus T]
+\]</span> 所以 <span class="math display">\[
+g[S]=\frac{1}{|S|}\sum_{\varnothing\ne T\subseteq S}|T|f[T]g[S\setminus
+T]
+\]</span></p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// f[0] == 0</span>
+<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">exp_set</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; f)</span> </span>&#123;
+    <span class="hljs-type">int</span> N = f.<span class="hljs-built_in">size</span>();
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">g</span><span class="hljs-params">(N)</span></span>;
+    g[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> s = <span class="hljs-number">1</span>; s &lt; N; s++) &#123;
+        <span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> t = s; t; t = (t - <span class="hljs-number">1</span>) &amp; s) &#123;
+            sum = (sum + __builtin_popcountll(t) * f[t] % mod * g[s ^ t]) % mod;
+        &#125;
+        g[s] = sum * <span class="hljs-built_in">qpow</span>(__builtin_popcountll(s), mod - <span class="hljs-number">2</span>) % mod;
+    &#125;
+    <span class="hljs-keyword">return</span> g;
+&#125;</code></pre></div>
+<h4 id="ln">ln</h4>
+<p>同样地，微积分中 <span class="math inline">\(\ln(1+x)\)</span> 在
+<span class="math inline">\(x=0\)</span> 处的泰勒展开为 <span
+class="math display">\[
+\ln(1+x)=\sum_{k\ge 1}\frac{(-1)^{k-1}x^k}{k}
+\]</span> 令 <span
+class="math inline">\(1+x=f\)</span>，带入上式就得到了集合幂级数 <span
+class="math inline">\(\ln(f)\)</span> 的定义 <span
+class="math display">\[
+\ln(f)=\sum_{k\ge 1}\frac{(-1)^{k-1}(f-1)^k}{k}
+\]</span></p>
+<p>同样这里要求 <span
+class="math inline">\(f[\varnothing]=1\)</span>。</p>
+<p>设 <span class="math inline">\(g=\ln(f)\)</span>。沿用上面对 <span
+class="math inline">\(&#39;\)</span> 的定义，两边求导得到 <span
+class="math inline">\(g&#39;=\frac{f&#39;}{f}\)</span>，即 <span
+class="math display">\[
+f&#39;=g&#39;f
+\]</span> 展开提取系数 <span class="math display">\[
+|S|f[S]=\sum_{\varnothing\ne T\subseteq S}|T|g[T]f[S\setminus T]
+\]</span> 我们要算的是 <span class="math inline">\(g[S]\)</span>，所以把
+<span class="math inline">\(T=S\)</span> 的项单独拿出来 <span
+class="math display">\[
+|S|f[S]=|S|g[S]f[\varnothing] + \sum_{\varnothing\ne T\subsetneq
+S}|T|g[T]f[S\setminus T]
+\]</span></p>
+<p>因为前提条件是 <span
+class="math inline">\(f[\varnothing]=1\)</span>，所以再整理一下，得到
+<span class="math display">\[
+g[S]=f[S]-\frac{1}{|S|}\sum_{\varnothing\ne T\subsetneq
+S}|T|g[T]f[S\setminus T]
+\]</span></p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// f[0] == 1</span>
+<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">ln_set</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; f)</span> </span>&#123;
+    <span class="hljs-type">int</span> N = f.<span class="hljs-built_in">size</span>();
+    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">g</span><span class="hljs-params">(N)</span></span>;
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> s = <span class="hljs-number">1</span>; s &lt; N; s++) &#123;
+        <span class="hljs-type">int</span> sum = <span class="hljs-number">0</span>;
+        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> t = (s - <span class="hljs-number">1</span>) &amp; s; t; t = (t - <span class="hljs-number">1</span>) &amp; s) &#123;
+            sum = (sum + __builtin_popcountll(t) * g[t] % mod * f[s ^ t]) % mod;
+        &#125;
+        <span class="hljs-type">int</span> c = __builtin_popcountll(s);
+        g[s] = (f[s] - sum * <span class="hljs-built_in">qpow</span>(c, mod - <span class="hljs-number">2</span>)) % mod;
+        <span class="hljs-keyword">if</span> (g[s] &lt; <span class="hljs-number">0</span>) g[s] += mod;
+    &#125;
+    <span class="hljs-keyword">return</span> g;
+&#125;</code></pre></div>
+<h4 id="pow">pow</h4>
+<p>有了 <span class="math inline">\(\exp\)</span> 和 <span
+class="math inline">\(\ln\)</span>，算集合幂级数的幂 <span
+class="math inline">\(f^k\)</span>，就很简单了。 <span
+class="math display">\[
+f^k=\exp(k\ln f)
+\]</span></p>
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-comment">// f[0] == 1</span>
+<span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">pow_set</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; f, <span class="hljs-type">int</span> k)</span> </span>&#123;
+    f = <span class="hljs-built_in">ln_set</span>(f);
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; f.<span class="hljs-built_in">size</span>(); i++) &#123;
+        f[i] = f[i] * k % mod;
+    &#125;
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">exp_set</span>(f);
+&#125;</code></pre></div>
+<p>注：上面给出的集合幂级数 exp, ln 和 pow 的代码，都是 <span
+class="math inline">\(O(3^n)\)</span>。</p>
+<p>但实际上，利用子集卷积的思想，都能优化到 <span
+class="math inline">\(O(n^2 2^n)\)</span>。</p>
+<p>但我脑子已经不够用了，就这样吧.jpg</p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Competitive-Programming/" class="category-chain-item">Competitive Programming</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/Competitive-Programming/Note/" class="category-chain-item">Note</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Note/" class="print-no-link">#Note</a>
+      
+        <a href="/tags/Algorithm/" class="print-no-link">#Algorithm</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【笔记】集合幂级数</div>
+      <div>http://kisuraop.github.io/posts/46d133fb.html</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>KisuraOP</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2026年6月6日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="NC - 非商业性使用">
+                    <i class="iconfont icon-cc-nc"></i>
+                  </span>
+                </a>
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="SA - 相同方式共享">
+                    <i class="iconfont icon-cc-sa"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/1fbf08d.html" title="【题解】2025 赛季 XCPC 金牌题鉴赏">
+                        <span class="hidden-mobile">【题解】2025 赛季 XCPC 金牌题鉴赏</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://kisuraop.github.io" target="_blank" rel="nofollow noopener"><span>KisuraOP</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  
+      <script>
+        if (!window.MathJax) {
+          window.MathJax = {
+            tex    : {
+              inlineMath: { '[+]': [['$', '$']] }
+            },
+            loader : {
+              load: ['ui/lazy']
+            },
+            options: {
+              renderActions: {
+                insertedScript: [200, () => {
+                  document.querySelectorAll('mjx-container').forEach(node => {
+                    let target = node.parentNode;
+                    if (target.nodeName.toLowerCase() === 'li') {
+                      target.parentNode.classList.add('has-jax');
+                    }
+                  });
+                }, '', false]
+              }
+            }
+          };
+        } else {
+          MathJax.startup.document.state(0);
+          MathJax.texReset();
+          MathJax.typeset();
+          MathJax.typesetPromise();
+        }
+
+        Fluid.events.registerRefreshCallback(function() {
+          if ('MathJax' in window && MathJax.startup.document && typeof MathJax.startup.document.state === 'function') {
+            MathJax.startup.document.state(0);
+            MathJax.texReset();
+            MathJax.typeset();
+            MathJax.typesetPromise();
+          }
+        });
+      </script>
+    
+
+  <script  src="https://lib.baomitu.com/mathjax/3.2.2/es5/tex-mml-chtml.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
