@@ -30,7 +30,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic.rmb.bdstatic.com/bjh/e34f764e2d41fb5f506db4a009fbb91f.jpeg">
 <meta property="article:published_time" content="2026-06-06T13:04:48.000Z">
-<meta property="article:modified_time" content="2026-06-06T17:30:23.211Z">
+<meta property="article:modified_time" content="2026-06-06T17:34:23.036Z">
 <meta property="article:author" content="KisuraOP">
 <meta property="article:tag" content="Algorithm">
 <meta property="article:tag" content="Note">
@@ -636,7 +636,7 @@ class="math inline">\(h_0-h_1\)</span>。</p>
 (x,y)\rightarrow \left(\frac{x+y}{2},\frac{x-y}{2}\right)
 \]</span></p>
 <p>代码如下。</p>
-<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">FWT_XOR</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;f, <span class="hljs-type">bool</span> inv)</span> </span>&#123;
+<div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">FWT_XOR</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;f, <span class="hljs-type">int</span> v)</span> </span>&#123;
 	<span class="hljs-type">int</span> N = f.<span class="hljs-built_in">size</span>();
 	<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> o = <span class="hljs-number">2</span>, k = <span class="hljs-number">1</span>; o &lt;= N; o &lt;&lt;= <span class="hljs-number">1</span>, k &lt;&lt;= <span class="hljs-number">1</span>) &#123;
 		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; N; i += o) &#123;
@@ -647,7 +647,7 @@ class="math inline">\(h_0-h_1\)</span>。</p>
 			&#125;
 		&#125;
 	&#125;
-	<span class="hljs-keyword">if</span> (inv) &#123;
+	<span class="hljs-keyword">if</span> (v) &#123;
 		<span class="hljs-type">int</span> invN = <span class="hljs-built_in">qpow</span>(N, mod - <span class="hljs-number">2</span>);
 		<span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> &amp;x : f) &#123;
 			x = x * invN % mod;
