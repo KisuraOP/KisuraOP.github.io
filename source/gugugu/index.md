@@ -18,12 +18,6 @@ math: true
 
 {% note info %}
 
-上海 K，香港 G。
-
-{% endnote %}
-
-{% note info %}
-
 修板子：
 
 - 添加：FWT，点分树，LCT。
@@ -41,6 +35,7 @@ Problems：
 
 - [Candy Ads](https://qoj.ac/problem/8315)，kosaraju。
 - [Product Matrix](https://qoj.ac/contest/1804/problem/9448)，ICZT。
+- 25 上海 K，25 香港 G。
 
 Algo：
 
