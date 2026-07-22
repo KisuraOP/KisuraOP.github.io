@@ -1,14 +1,14 @@
 ---
-title: "【游记】2026 UESTC 暑假集训（div.1）"
+title: 【游记】2026 UESTC 暑假集训（div.1）
 sticky: 100
 math: true
-index_img: "https://pic.rmb.bdstatic.com/bjh/fa7f73f61f1ab129f4949fc508ac033f.jpeg"
+index_img: 'https://pic.rmb.bdstatic.com/bjh/fa7f73f61f1ab129f4949fc508ac033f.jpeg'
 tags:
   - UESTC
 categories:
   - Competitive Programming
   - Other
-abbrlink: 80517353
+abbrlink: 513abcc7
 date: 2026-07-22 20:00:00
 updated: 2026-07-22 20:00:00
 ---
