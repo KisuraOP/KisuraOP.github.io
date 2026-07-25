@@ -395,7 +395,7 @@ class="math inline">\(x\)</span>
 <h1 id="amppz-2021">7.25 (AMPPZ 2021)</h1>
 <p><a target="_blank" rel="noopener" href="https://qoj.ac/contest/969">Problems</a></p>
 <p>波兰场。数据范围都很大，时间限制也很大。</p>
-<p>C 本来不会的，但被 lzh 秒了。大概就是奇数列的 <span
+<p>C 本来不会的，但 lzh 看一眼就会了。大概就是奇数列的 <span
 class="math inline">\((x, y)\)</span> 和偶数列的 <span
 class="math inline">\((y,x)\)</span> 等价，就变成了给定数列 <span
 class="math inline">\(a,b\)</span>，问几次交换能让 <span
@@ -403,9 +403,9 @@ class="math inline">\(a=b\)</span>，求逆序对即可。</p>
 <p>D 是个纯纯模拟题。</p>
 <p>A 题队友写了个 <span class="math inline">\(O(nk\log w)\)</span>
 然后加了些神秘剪枝卡过去了。</p>
-<p>题解里给了一种巧妙的做法：先找出 <span
-class="math inline">\(k\)</span> 个分属不同集合的点，具体的，先钦定
-<span class="math inline">\(p_1=1\)</span>，然后找到离 <span
+<p>题解做法比较巧妙：先找出 <span class="math inline">\(k\)</span>
+个分属不同集合的点，具体的，先钦定 <span
+class="math inline">\(p_1=1\)</span>，然后找到离 <span
 class="math inline">\(p_1\)</span> 最远的点 <span
 class="math inline">\(p_2\)</span>，这两个点肯定在不同的集合，再找到离
 <span class="math inline">\(p_1\)</span> 和 <span
@@ -416,15 +416,18 @@ class="math inline">\(n-k\)</span>
 个点只用看离哪个点更近就属于哪个集合。暴力是 <span
 class="math inline">\(O(nk^2)\)</span>，可以优化到 <span
 class="math inline">\(O(nk)\)</span>。</p>
-<p>I
-题容易想到按从高位到低位建字典树，但建树之后的讨论比较让人头大，一开始
+<p>I 题容易想到从高位到低位建字典树，但建树之后的讨论让人头大。一开始
 wbc
-写，但写到一半发现不会写了，后面我又改了好几版写法才写对。本来想的是如果
+写，但写到一半发现不会写了。后面我来写，对着样例改了好久才写对。一开始想的是如果
 <span class="math inline">\(k\)</span> 当前位是 <span
-class="math inline">\(0\)</span>，就所有子树朝同一个方向走，到后面我才发现只用关心两个子树的状态。</p>
+class="math inline">\(0\)</span>，就所有子树朝同一个方向走，到后面才意识到只用关心两个子树的状态。</p>
 <p>题解里还提到了一种转化成最大独立集的做法，有时间看看。</p>
 <p>K 题解里写的比较省略，思路就是分段函数复合，然后放线段树上。</p>
 <p><img src="/image/summer2026/image-20260725215221714.png" srcset="/img/loading.gif" lazyload /></p>
+<hr />
+<p>晚上困成狗了，吃完饭回来直接躺 234
+床上睡了两个多小时。这床真是一如既往的舒服。</p>
+<p>不知道是不是因为头顶的灯坏了的原因，打不起精神。后天得想办法报修才行。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
