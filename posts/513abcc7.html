@@ -246,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          2k 字
         
       </span>
     
@@ -438,6 +438,36 @@ class="math inline">\(0\)</span>，就所有子树朝同一个方向走，到后
 class="math inline">\(n=2^k\)</span> 且 <span
 class="math inline">\(x\)</span> 是奇数的情况，比较遗憾。</p>
 <p>回头补一下 D 和 F。</p>
+<h1 id="神秘比赛">7.27 (神秘比赛)</h1>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/contest/3934">Problems</a></p>
+<p>从比赛名称看不出是什么比赛，查了一下貌似是 CCPC 省赛？</p>
+<p>CGH 是纯签。</p>
+<p>E 是按位去询问，印象中第二次见，因为普通二分如果问到 <span
+class="math inline">\(0\)</span> 就没办法判断 <span
+class="math inline">\(1\)</span> 在哪一边。</p>
+<p>A 和 L 我看了都不太会啊，不过好在也不是我开，队友秒了。</p>
+<p>B 是个比较 implement 的题。对于一组询问 <span
+class="math inline">\((x,y)\)</span>，可以枚举 <span
+class="math inline">\(x,y\)</span> 路径上的点 <span
+class="math inline">\(p\)</span>，其中 <span
+class="math inline">\(u\)</span> 选取 <span
+class="math inline">\(p\)</span>
+向子树内延伸出的最大距离。因为这个延伸不能选取 <span
+class="math inline">\(x\)</span> 方向和 <span
+class="math inline">\(y\)</span>
+方向的，所以要对每个点求它延伸出去的第一长，第二长和第三长的路径。然后再用倍增/树剖优化这个过程。</p>
+<p>I 题 wbc
+很快就想到了，但漏了一种情况，后面改了一下枚举顺序就过了。</p>
+<p>K 最开始是 lzh 写，但 wa23（赛后发现是精度挂了），一直看不出就写 J
+去了，然后 wbc 写，又一直 wa2，两个人都很红温。赛后发现 extra test
+还是错的。（赛中并非因为 extra test）</p>
+<p>我是感觉它要求精度 1e-9 有一点抽象，印象中没见过这么严格的。</p>
+<p>F 我一开始没什么想法，我去想线段树分治去了，漏看了 kruskal
+重构树，是后来 wbc 提醒我的。那做法就呼之欲出了，线段树离线维护后缀 min,
+max dfn，然后重构树上 LCA 的点权就是答案。</p>
+<p>J 后来也被 lzh 开出来了，太神了。</p>
+<p>D 貌似是用多项式表示后进行部分分式分解 +
+多点求值，比较困难，有这时间貌似可以先去补一下昨天的 CF。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
