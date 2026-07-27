@@ -466,7 +466,9 @@ class="math inline">\(y\)</span>
 重构树，是后来 wbc 提醒我的。那做法就呼之欲出了，线段树离线维护后缀 min,
 max dfn，然后重构树上 LCA 的点权就是答案。</p>
 <p>J 后来也被 lzh 开出来了，太神了。</p>
-<p>D 貌似是用多项式表示后进行部分分式分解 +
+<p>D 貌似是先用多项式表示，答案是 <span
+class="math inline">\(Ans=[x^k]\left(\sum\limits_{i=1}^{c}f_i x^i \cdot
+\prod_{t=c}^{n-1}(x+t)\right)\)</span>，需要部分分式分解 +
 多点求值，比较困难，有这时间貌似可以先去补一下昨天的 CF。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
