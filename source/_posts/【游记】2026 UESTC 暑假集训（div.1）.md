@@ -169,7 +169,7 @@ F 我一开始没什么想法，我去想线段树分治去了，漏看了 krusk
 
 J 后来也被 lzh 开出来了，太神了。
 
-D 先将答案用多项式表示，转化成求 $Ans=[x^k]\left(\sum\limits_{i=1}^{c}f_i x^i \cdot \prod_{t=c}^{n-1}(x+t)\right)$，问了下 gemini，需要部分分式分解 + 多点求值。https://share.gemini.google/9qOCrXgko17x
+D 先将答案用多项式表示，转化成求 $\large Ans=[x^k]\left(\sum\limits_{i=1}^{c}f_i x^i \cdot \prod\limits _{t=c}^{n-1}(x+t)\right)$，问了下 gemini，需要部分分式分解 + 多点求值。https://share.gemini.google/9qOCrXgko17x
 
 有点困难啊，有这时间貌似可以先去补一下昨天的 CF。
 
