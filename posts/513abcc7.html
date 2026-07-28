@@ -246,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.2k 字
+          2.4k 字
         
       </span>
     
@@ -471,6 +471,8 @@ _{t=c}^{n-1}(x+t)\right)\)</span>，问了下 gemini，需要部分分式分解 
 多点求值。https://share.gemini.google/9qOCrXgko17x</p>
 <p>有点困难啊，有这时间貌似可以先去补一下昨天的 CF。</p>
 <h1 id="杭电多校-3">7.28 (杭电多校 3)</h1>
+<p><a
+target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/contest/problems?cid=1231">Problems</a></p>
 <p>两个小时之后开始坐牢场。</p>
 <p>后面的题我都不太能对的上脑电波。</p>
 <p>J 我纸上画了下，发现是 <span
@@ -483,11 +485,18 @@ class="math inline">\(w^l+l-1\)</span>，一看样例过了，交上去 AC
 <span class="hljs-attribute">7</span> -&gt; <span class="hljs-number">14</span>
 <span class="hljs-attribute">5</span> -&gt; <span class="hljs-number">10</span>
 <span class="hljs-attribute">3</span> -&gt; <span class="hljs-number">6</span></code></pre></div>
-<p>于是倒着枚举，取奇数，如果和已有的冲突就改成它的倍数，复杂度不会分析，但跑的飞快。</p>
-<p>B 是个神秘题，两个队友又红温了。大概是按 <span
-class="math inline">\(x_i\)</span> 排序，一个后缀赌球队输。</p>
+<p>于是倒着枚举，取奇数，如果和已有的冲突就改成它的倍数（比如枚举到
+7，发现已经有 21 了，就改成 14），这样就能 AC
+了。复杂度不会分析，但跑的飞快。</p>
+<p>I
+我看了没有很对的思路，贡献了两发罚时就扔给队友了。看了题解发现是将二元组连边，就能转化成边定向问题。</p>
+<p>B 是个神秘题，队友双双红温。大概是按 <span
+class="math inline">\(x_i\)</span>
+排序，选一个后缀的球队赌它输。赛后发现这道题占了七页题解，吓晕了，队友会了就是我会了。</p>
 <p>K 思路错了，没想到补集的角度。不过想到了可能也没那么轻松。</p>
 <p><img src="/image/summer2026/image-20260728215319157.png" srcset="/img/loading.gif" lazyload /></p>
+<p>G 貌似一堆人 KD-Tree 或者暴力卡过去了。但是已经太晚了明天再看吧
+UwU</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
