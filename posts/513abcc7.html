@@ -246,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.4k 字
+          2.8k 字
         
       </span>
     
@@ -497,6 +497,50 @@ class="math inline">\(x_i\)</span>
 <p><img src="/image/summer2026/image-20260728215319157.png" srcset="/img/loading.gif" lazyload /></p>
 <p>G 貌似一堆人 KD-Tree 或者暴力卡过去了。但是已经太晚了明天再看吧
 UwU</p>
+<h1 id="牛客多校-4">7.29 (牛客多校 4)</h1>
+<p><a
+target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/133879#question">Problems</a></p>
+<p>完全不会签到了，I 写了快半个小时才签上。</p>
+<p>B 我一直想的 <span
+class="math inline">\(x_2=1\)</span>，先是发现是二次剩余，于是去找 <span
+class="math inline">\(k\)</span> 使得 <span
+class="math inline">\(kp+1\)</span> 是奇素数，枚举 <span
+class="math inline">\(k\)</span> 再用 miller-rabin 判，最后发现 T
+飞了。赛后看了题解才恍然大悟。</p>
+<p>K
+我那年的暑假集训见过类似的。两个点在原树上相邻，在点分树上肯定是祖先关系。因此令
+<span class="math inline">\(dp[x][i]\)</span> 表示考虑 <span
+class="math inline">\(x\)</span> 的子树形成的点分树，<span
+class="math inline">\(x\)</span> 位于深度 <span
+class="math inline">\(i\)</span> 的方案数，然后 <span
+class="math inline">\(x\)</span> 的每个儿子 <span
+class="math inline">\(y\)</span> 的 <span
+class="math inline">\(dp[y][j]\)</span> 可以选出 <span
+class="math inline">\(k\ (k\le j)\)</span> 个元素插进 <span
+class="math inline">\(x\)</span> 的祖先，因为是和原先 <span
+class="math inline">\(x\)</span> 的 <span
+class="math inline">\(i\)</span> 个祖先互插，所以贡献是 <span
+class="math inline">\(\binom{i+k-1}{k}\)</span>。把转移写成卷积的形式然后做树上背包就行了。</p>
+<p>E 是一个很幽默的题，因为很显然 <span
+class="math inline">\(i,j\)</span>
+相邻最优，那你每次询问用新的边权更新一下 <span
+class="math inline">\(m\)</span> 条边的 <span
+class="math inline">\(\text{dis}\)</span> 就做完了。歪榜惨案。</p>
+<p>J 没想到是区间 dp。题解的做法感觉有点复杂了，这里推荐一下 starsilk
+的做法，https://ac.nowcoder.com/acm/contest/view-submission?submissionId=84269427。</p>
+<ul>
+<li><span class="math inline">\(\text{dp1}[l][r][u]\)</span>
+表示当前栈节点为 <span class="math inline">\(u\)</span>，按顺序访问
+<span class="math inline">\(x_l,\cdots,x_r\)</span>
+时所需的最小操作次数。</li>
+<li><span class="math inline">\(\text{dp2}[l][r][u]\)</span>
+表示在满足最小操作次数的前提下，过程中栈大小的最小增量。</li>
+</ul>
+<p>状态转移的时候先保证 <span class="math inline">\(\text{dp1}\)</span>
+最小，<span class="math inline">\(\text{dp1}\)</span> 相同再保证 <span
+class="math inline">\(\text{dp2}\)</span> 最小。</p>
+<p><img src="/image/summer2026/image-20260729193113738.png" srcset="/img/loading.gif" lazyload /></p>
+<p>虽然也是分题解里的两种情况转移，但会好写不少。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
