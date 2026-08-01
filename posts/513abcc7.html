@@ -577,7 +577,8 @@ class="math inline">\(\max a_{i,j}\)</span>
 <p>E
 我在草稿纸上列举了一下，发现如果唯一分解后指数的无序集合相同，答案就是相同的。但没想到的是，只要指数的和
 <span class="math inline">\(\Omega(n)\)</span> 相同，答案就相同。因为
-$(n)_{2} n$，所以能暴力处理出每个 <span
+<span class="math inline">\(\Omega(n)\le \left\lfloor \log_{2}
+n\right\rfloor\)</span>，所以能暴力处理出每个 <span
 class="math inline">\(\Omega(n)\)</span> 的答案。而给定一个 <span
 class="math inline">\(n\)</span>，它的 <span
 class="math inline">\(\Omega(n)\)</span> 也能线性筛预处理出来。</p>
@@ -589,7 +590,7 @@ class="math inline">\(\Omega(n)\)</span> 也能线性筛预处理出来。</p>
 [0,n)\)</span> 的双射，而不用关注每一组 <span
 class="math inline">\((P_i,Q_i)\)</span> 的顺序。将 <span
 class="math inline">\((P_i,Q_i)\)</span>
-按是否需要被进位，和是否有进位，能分成四个等价类。按如下顺序排布即可（第一行是被进位，第二行是进位，左边是高位，右边是低位）</p>
+按是否需要被进位，是否有进位，能分成四个等价类。按如下顺序排布即可（第一行是被进位，第二行是进位，左边是高位，右边是低位）</p>
 <div class="code-wrapper"><pre><code class="hljs apache"><span class="hljs-attribute">101</span>..<span class="hljs-number">1010111</span>..<span class="hljs-number">11000</span>..<span class="hljs-number">00</span>
 <span class="hljs-attribute">010</span>..<span class="hljs-number">0101011</span>..<span class="hljs-number">11100</span>..<span class="hljs-number">00</span></code></pre></div>
 <p>问题转换成是否能寻找到这个双射，并安排 <span
