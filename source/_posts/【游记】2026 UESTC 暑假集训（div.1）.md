@@ -363,7 +363,7 @@ G 我感觉是个比较简单的题，但赛后才发现竟然没用上每个点
 
 首先 $a(n)=\sum\limits_{i=1}^{n}\gcd(i,n)=\sum\limits_{d\mid n}d\sum\limits_{i=1}^{n}[\gcd(i,n)=d]=\sum\limits_{d\mid n}d\cdot \varphi(n/d)$，然后
 
-![](/image/ummer2026/image-20260806205704285.png)
+![](/image/summer2026/image-20260806205704285.png)
 
 I 的话我没仔细看，赛后发现直接递归就是对的。
 
