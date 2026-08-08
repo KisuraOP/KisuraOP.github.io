@@ -246,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.1k 字
+          4.7k 字
         
       </span>
     
@@ -626,15 +626,65 @@ class="math inline">\(Q_i\)</span>，再去找具体是哪些位需要被进位�
 <h1 id="杭电多校-5-验题">8.3 (杭电多校 5 验题)</h1>
 <p>写在前面：被 i 题硬控了。和 lzh
 讨论了下，得到一个超级难写的做法，写着写着不会写了，就去给 div2
-拉题了。选了几道我觉得很 edu /
-很有趣的图论题。虽然总体偏难，但我觉得如果有人补了那绝对是赚到了。</p>
+拉题了。选了几道我觉得很 edu / 很有趣的图论题。</p>
 <p>感觉我们学校出的多校比前面的场都要 hard。</p>
 <p><img src="/image/summer2026/image-20260805204722772.png" srcset="/img/loading.gif" lazyload /></p>
 <p>看了下 D 和 I，都不会做。要不退役吧.jpg</p>
-<p>D lzh 倒是会了，不过一直 wa，后面拍了一下，发现是所有 <span
-class="math inline">\(n\)</span>
-次探索都没超过离开的阈值的情况，少算了花掉的 <span
-class="math inline">\(nc\)</span> 个金币。</p>
+<h1 id="沈阳邀请赛">8.4 (2026 沈阳邀请赛)</h1>
+<p>晚上忙着给 div2 拉题。之后再补。</p>
+<h1 id="牛客多校-6">8.5 (牛客多校 6)</h1>
+<p>写在前面：被 I 题创飞了。这个题真的能过 200 多个队吗？</p>
+<p><a
+target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/133881#question">Problems</a></p>
+<p>这把开局有点炸裂。D 题一眼拆点，但我 exgcd 忘了怎么写了，导致 100min
+的时候才过。</p>
+<p>另一边队友一直在卡 F，说是 <span class="math inline">\(O(26\cdot
+2^{26})\)</span> 但是大常数 T 飞了。</p>
+<p>G 我感觉是个比较简单的题，但赛后才发现竟然没用上每个点度数不超过
+<span class="math inline">\(3\)</span>
+的条件。想着想着忘条件了但结果全对.jpg</p>
+<p>到了中期基本上是 A 和 I 双线都不会啊，就去看 J 了。</p>
+<p>后面队友把 A 过了，但 I 还是没什么思路。赛后发现是个神秘且抽象的数位
+dp。</p>
+<h1 id="杭电多校-6">8.6 (杭电多校 6)</h1>
+<p>写在前面：疑似 math 场，被一些奇奇怪怪的题干飞了。</p>
+<p>一个很 fun 的事情是出题人 spj 没配好，导致 spj 的题输出空就能直接
+AC。不过 hdu 也是一个很变态的 oj 就是了，只能说两边都有责任。</p>
+<p><a
+target="_blank" rel="noopener" href="https://acm.hdu.edu.cn/contest/problems?cid=1234">Problems</a></p>
+<p>印象比较深是 G 题，赛时推导整整写满了两页 A4 纸，题解里开篇就考虑
+<span class="math inline">\(g(n)=f(n)-f(n-1)\)</span>，转换成求 <span
+class="math inline">\(\sum g(n)\)</span>。复杂程度明显减少一个量级。</p>
+<p><img src="/image/summer2026/image-20260806203655241.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img src="/image/summer2026/image-20260806203729933.png" srcset="/img/loading.gif" lazyload /></p>
+<p>值得注意的是 <span class="math inline">\(a(n)\)</span>
+除了一般的枚举倍数算贡献的做法，还可以线性筛出来。</p>
+<p>首先 <span
+class="math inline">\(a(n)=\sum\limits_{i=1}^{n}\gcd(i,n)=\sum\limits_{d\mid
+n}d\sum\limits_{i=1}^{n}[\gcd(i,n)=d]=\sum\limits_{d\mid n}d\cdot
+\varphi(n/d)\)</span>，然后</p>
+<p><img src="/image/ummer2026/image-20260806205704285.png" srcset="/img/loading.gif" lazyload /></p>
+<p>I 的话我没仔细看，赛后发现直接递归就是对的。</p>
+<p><img src="/image/summer2026/image-20260806213144112.png" srcset="/img/loading.gif" lazyload /></p>
+<p>A 队友写了个 dp 搞过去了，赛后发现正解是 2-sat。</p>
+<h1 id="牛客多校-7">8.7 (牛客多校 7)</h1>
+<p><a target="_blank" rel="noopener" href="https://ac.nowcoder.com/acm/contest/133882">Problems</a></p>
+<p>突然就起飞了。开局很顺利，中期三线做题竟然都做出来了，还都是 0
+dirt，两个半小时的时候直接排到第 5 名。最终幻想了。</p>
+<p>但是两个半小时之后就没题过了。D
+疑似线性代数，打了个表但用处不大。不过 E 和 J 队友都有想法，最后 J
+代码写出来了，过不了样例结果发现题意假了。</p>
+<p>赛后拼尽全力 + 拷打 gpt 一小时，没能看懂 D 的题解。</p>
+<p>I 题其实没题解说的这么麻烦。对于一个点 <span
+class="math inline">\(x\)</span>，到其中一个子树 <span
+class="math inline">\(y_1\)</span> 里访问到第一个叶子 <span
+class="math inline">\(l\)</span>，之后再遍历其它子树 <span
+class="math inline">\(y_2,y_3,\ldots\)</span> 的时候 LCA 就是 <span
+class="math inline">\(x\)</span>。然后又因为深度相同取最早访问的，所以
+<span class="math inline">\(x\)</span> 子树里其它叶子写下的整数就是
+<span class="math inline">\(l\)</span>。dfs
+向下，回溯的时候记录当前子树访问的第一个叶子的编号，存到一个 vector
+里，check 一下就行。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
