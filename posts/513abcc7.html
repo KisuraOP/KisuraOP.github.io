@@ -246,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          4.9k 字
+          5.4k 字
         
       </span>
     
@@ -696,6 +696,52 @@ class="math inline">\(x\)</span>。然后又因为深度相同取最早访问的
 <span class="math inline">\(l\)</span>。dfs
 向下，回溯的时候记录当前子树访问的第一个叶子的编号，存到一个 vector
 里，check 一下就行。</p>
+<h1 id="ptz-summer-2019-day3">8.8 (Ptz Summer 2019 Day3)</h1>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/contest/818">Problems</a></p>
+<p>我去面试 div2 了，下午四点半左右才面完，队友两个人打的。</p>
+<h1 id="ucup-4-22.-kyoto">8.10 (Ucup 4-22. Kyoto)</h1>
+<p><a target="_blank" rel="noopener" href="https://qoj.ac/contest/3575">Problems</a></p>
+<p>看到是日本人出的场就知道要牢底坐穿了。</p>
+<p>开局跟榜看的 O，半小时没签上到，就给队友做了。关键点是注意到 <span
+class="math inline">\(x,y,x\oplus y\)</span>
+自然满足非退化三角形的情况，然后做一个容斥。</p>
+<p>然后趁队友苦战 G 的时候，我把 D 给签了。因为队友 dp
+水平肯定远超我，所以我直接看 F 去了。抓耳挠腮一个小时后终于发现可以写成
+<span class="math inline">\(\frac{i}{g}\cdot
+\frac{j}{g}=A+\frac{B}{g}\)</span> 的形式，只要枚举 <span
+class="math inline">\(B\)</span> 的因数 <span
+class="math inline">\(g\)</span>，再暴力枚举 <span
+class="math inline">\(A+\frac{B}{g}\)</span>
+的因数，复杂度就是对的。用一个 map
+作为并查集，并一下就行。比较坑的地方是并的时候有可能超过 <span
+class="math inline">\(10^{16}\)</span>，这部分是不算数的。</p>
+<p>后面队友看别的题去了，我才发现 G 只要算出 <span
+class="math inline">\(k=0\sim n-1\)</span>
+时候的答案就能插值了，因为转移是一个前缀和，答案肯定是 <span
+class="math inline">\(n-1\)</span> 次的多项式。</p>
+<p>后面 lzh 把 J 过了，我就和 wbc 看
+I。沟槽的日本人能不能出点阳间的构造，N
+题也是。不过赛后上帝视角来看也都不难就是了。</p>
+<p>E 题赛后发现是个很简单的转化。注意力匮乏了。</p>
+<p><img src="/image/summer2026/image-20260810215623275.png" srcset="/img/loading.gif" lazyload /></p>
+<p>这里解释一下 “连通图乘上任意图” 的含义。设连通图的 EGF 是 <span
+class="math inline">\(A(x)\)</span>，任意图的 EGF 是 <span
+class="math inline">\(B(x)\)</span>，根据 EGF 的组合意义，<span
+class="math inline">\(A(x)B(x)\)</span> 其实就是从 <span
+class="math inline">\(n\)</span> 个顶点里选出 <span
+class="math inline">\(k\)</span> 个顶点构造成一个连通块，然后其余 <span
+class="math inline">\(n-k\)</span>
+构造成任意图。考虑某个特定的已经构造好的大小为 <span
+class="math inline">\(n\)</span> 的图 <span
+class="math inline">\(G\)</span>，假设 <span
+class="math inline">\(G\)</span> 由 <span
+class="math inline">\(m\)</span> 个连通块构成。那在上述 <span
+class="math inline">\(A(x)B(x)\)</span>
+的枚举过程中，每个连通块都会被归到 <span
+class="math inline">\(A(x)\)</span> 一次，即恰好有 <span
+class="math inline">\(m\)</span> 种方式来选择这一个 “特殊的连通块”，因此
+<span class="math inline">\([x^n]A(x)B(x)\)</span> 的意义就是所有 <span
+class="math inline">\(n\)</span> 个点的图的连通块数量之和。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
