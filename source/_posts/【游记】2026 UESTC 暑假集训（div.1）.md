@@ -446,7 +446,7 @@ x_u&=k_{u}^{\text{old}}\cdot x_{p}+b_{u}^{\text{old}}\\
 x_p&=k_p\cdot x_r+b_p
 \end{align}
 $$
-于是 $x_u=(k_u^{\text{old}}k_p)x_r+(k_u^{\text{old}}b_p)+b_u^{\text{old}}$，所以写成下面这样
+于是 $x_u=(k_u^{\text{old}}k_p)x_r+(k_u^{\text{old}}b_p+b_u^{\text{old}})$，所以写成下面这样
 
 ```c++
 auto find = [&] (auto self, int u) -> int {
