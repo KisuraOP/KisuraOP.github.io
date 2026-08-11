@@ -10,7 +10,7 @@ categories:
   - Other
 abbrlink: 513abcc7
 date: 2026-07-22 20:00:00
-updated: 2026-08-10 21:00:00
+updated: 2026-08-11 21:00:00
 ---
 
 属于 UESTC-无尽相拥 的最后一个赛季。
@@ -430,3 +430,41 @@ E 题赛后发现是个很简单的转化。注意力匮乏了。
 H 题是一个没有听说过的引理，乍一看还挺震撼的，距离矩阵的行列式居然和树的形态无关。
 
 ![](/image/summer2026/image-20260811010638765.png)
+
+# 8.11 (杭电多校 7)
+
+[Problems](https://acm.hdu.edu.cn/contest/problems?cid=1235)
+
+天崩开局之对着签到题 H 狂 wa 三发，拉队友来看发现少判了一个 corner case。
+
+之后去看 K，其实早就知道怎么做了，但上一次推路径压缩的转移方程已经是两年前了，摆弄了好久才推出来。
+
+其实很简单，考虑当前 $u$ 连通块的老根 $p$ 和新根 $r$，那么有
+$$
+\begin{align}
+x_u&=k_{u}^{\text{old}}\cdot x_{p}+b_{u}^{\text{old}}\\
+x_p&=k_p\cdot x_r+b_p
+\end{align}
+$$
+于是 $x_u=(k_u^{\text{old}}k_p)x_r+(k_u^{\text{old}}b_p)+b_u^{\text{old}}$，所以写成下面这样
+
+```c++
+auto find = [&] (auto self, int u) -> int {
+	if (u == f[u]) {
+		return u;
+	}
+	int p = f[u];
+	int r = self(self, p);
+	b[u] += k[u] * b[p];
+	k[u] *= k[p];
+	return f[u] = r;
+};
+```
+
+后面帮队友看 A，但队友转化错题意了，给了我个假的，我还用 ntt 推出来了。
+
+最后四十分钟，我看了 C 还以为是大模拟，就 pass 继续去想 A 了。赛后才发现是一个搜索，码量还不大。
+
+J 是一个结论题/猜猜题，马后炮来说不难猜到，但也只是马后炮了。
+
+![](/image/summer2026/image-20260811220227947.png)
