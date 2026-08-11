@@ -760,7 +760,7 @@ x_u&amp;=k_{u}^{\text{old}}\cdot x_{p}+b_{u}^{\text{old}}\\
 x_p&amp;=k_p\cdot x_r+b_p
 \end{align}
 \]</span> 于是 <span
-class="math inline">\(x_u=(k_u^{\text{old}}k_p)x_r+(k_u^{\text{old}}b_p)+b_u^{\text{old}}\)</span>，所以写成下面这样</p>
+class="math inline">\(x_u=(k_u^{\text{old}}k_p)x_r+(k_u^{\text{old}}b_p+b_u^{\text{old}})\)</span>，所以写成下面这样</p>
 <div class="code-wrapper"><pre><code class="hljs c++"><span class="hljs-keyword">auto</span> find = [&amp;] (<span class="hljs-keyword">auto</span> self, <span class="hljs-type">int</span> u) -&gt; <span class="hljs-type">int</span> &#123;
 	<span class="hljs-keyword">if</span> (u == f[u]) &#123;
 		<span class="hljs-keyword">return</span> u;
