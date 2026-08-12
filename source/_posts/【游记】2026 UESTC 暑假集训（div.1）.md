@@ -10,7 +10,7 @@ categories:
   - Other
 abbrlink: 513abcc7
 date: 2026-07-22 20:00:00
-updated: 2026-08-11 21:00:00
+updated: 2026-08-12 21:00:00
 ---
 
 属于 UESTC-无尽相拥 的最后一个赛季。
@@ -468,3 +468,27 @@ auto find = [&] (auto self, int u) -> int {
 J 是一个结论题/猜猜题，马后炮来说不难猜到，但也只是马后炮了。
 
 ![](/image/summer2026/image-20260811220227947.png)
+
+# 8.12 (牛客多校 8)
+
+[Problems](https://ac.nowcoder.com/acm/contest/133883#question)
+
+有猪写了三个小时 F，写到后面已经汗流浃背了，幸亏写出来了。
+
+前两个小时题甚至都读错了，我读成把简单路径上的所有边连带端点一起删掉了，写完才发现样例过不了。只能说还好改起来难度不是很大，后面大部分时间都在对拍。
+
+翻提交记录翻到一个队写的特别短，简单看一眼是 Link Cut Tree，仔细看就看不懂了，有时间再研究。https://ac.nowcoder.com/acm/contest/view-submission?submissionId=84456193
+
+出狱了之后还听 lzh 的思路 rush 出了 K，是一个只要想到用费用流就不难想的题。
+
+要是出狱晚了说不定就完蛋了.jpg
+
+其实本来没想这么复杂，但写着写着越想越不对劲，然后打了一堆补丁，到最后纯手写的部分都有 400+ 行。
+
+晚上看了一下 J，感觉是纯纯科技题。
+
+![](/image/summer2026/image-20260812214502705.png)
+
+![](/image/summer2026/image-20260812214529157.png)
+
+这个 de Bruijn 序列貌似已经是近一年第三次遇到了 UwU。
