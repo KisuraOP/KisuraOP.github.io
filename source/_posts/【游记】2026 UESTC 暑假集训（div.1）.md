@@ -10,7 +10,7 @@ categories:
   - Other
 abbrlink: 513abcc7
 date: 2026-07-22 20:00:00
-updated: 2026-08-13 21:00:00
+updated: 2026-08-14 21:00:00
 ---
 
 属于 UESTC-无尽相拥 的最后一个赛季。
@@ -497,6 +497,8 @@ J 是一个结论题/猜猜题，马后炮来说不难猜到，但也只是马�
 
 写在前面：从别的地方搬 12 道题 + 指挥 AI 写题解/写 std，我来我也能日赚 1w .jpg
 
+[Problems](https://acm.hdu.edu.cn/contest/problems?cid=1236)
+
 被 G 题卡常浪费了 > 1h，cin 换快读 4000ms TLE -> 800ms AC，牛敌。
 
 好久没用 fread 了，忘记本地输入到 stdin 要手动 ctrl + Z 了，赛时疑惑了好久。
@@ -508,3 +510,9 @@ J 是一个结论题/猜猜题，马后炮来说不难猜到，但也只是马�
 晚上补了下 F，赛时搞了个假做法还过样例了，最后还是拍了下才发现有一个逻辑漏洞，假完了。
 
 ![](/image/summer2026/image-20260813221206512.png)
+
+# 8.14 (牛客多校 9)
+
+先鸽着。昨晚发生了一些意外导致一整晚都没睡好觉，晚上根本提不起精神。
+
+[Problems](https://ac.nowcoder.com/acm/contest/133884#question)
