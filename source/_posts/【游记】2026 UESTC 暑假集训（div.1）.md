@@ -10,7 +10,7 @@ categories:
   - Other
 abbrlink: 513abcc7
 date: 2026-07-22 20:00:00
-updated: 2026-08-15 21:00:00
+updated: 2026-08-20 21:00:00
 ---
 
 属于 UESTC-无尽相拥 的最后一个赛季。
@@ -535,3 +535,50 @@ H 是一个很有趣的题。先将 $(a_i,b_i)$ 按 $a_i$ 升序排，注意到�
 
 ![](/image/summer2026/image-20260815213152410.png)
 
+# 8.17 (神秘比赛)
+
+[Problems](https://qoj.ac/contest/997)
+
+队友两个人都卡 E 了。幸亏我没看，要不然就是三个人都卡 E 了。
+
+# 8.18 (杭电多校 9)
+
+[Problems](https://acm.hdu.edu.cn/contest/problems?cid=1237)
+
+我有点事没来，队友两个人打的。
+
+# 8.19 (牛客多校 10)
+
+[Problems](https://ac.nowcoder.com/acm/contest/133885)
+
+打的比较舒服的一场。
+
+# 8.20 (杭电多校 10) 
+
+[Problems](https://acm.hdu.edu.cn/contest/problems?cid=1238)
+
+终于脱离杭电的苦海了。相比牛客来说杭电真路边吧。
+
+开局开的 L，贡献了两发罚时意识到并不是签到，遂换题。实际上是论文题来的。
+
+![](/image/summer2026/image-20260820203744772.png)
+
+卡常卡爆了，典型的中学生思维。时限连 std 的两倍都开不到，能不能禁止中学生出题。
+
+C 是二分答案然后跑最大流，问就是跑不满。如果保留增广 $2^k$ 后的图些许能做到理论更优的复杂度。
+
+E 是全局最小割的板子，凑数来的。
+
+D 题这里，$J_2(w)=\sum\limits_{d\mid w}d^2\mu(\frac{w}{d})$。
+
+![](/image/summer2026/image-20260820205953270.png)
+
+但我觉得题解其实做麻烦了。因为如果设 $f(d)$ 满足 $x^2=\sum\limits_{d\mid x}f(d)$，可以莫比乌斯反演一步到位。
+$$
+F(n)=\sum_{d\mid n}f(d)\quad\longrightarrow \quad f(n)=\sum_{d\mid n}\mu(d)F\left(\frac{n}{d}\right)
+$$
+B 题赛时队友直接给了一个式子，我照着推的。和题解做法不太一样，我整理了一下。
+
+![](/image/summer2026/image-20260820211318980.png)
+
+![](/image/summer2026/image-20260820211352273.png)
