@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: http://kisuraop.github.io
+url: https://kisuraop.github.io
 permalink: posts/:abbrlink.html
 permalink_defaults:
 pretty_urls:
@@ -114,3 +114,6 @@ pandoc:
     - "--from=markdown+tex_math_dollars"
     - "--to=html5"
     - "--mathjax"
+
+sitemap:
+  path: sitemap.xml
