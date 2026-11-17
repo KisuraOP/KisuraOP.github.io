@@ -417,7 +417,14 @@
   </url>
   
   <url>
-    <loc>https://kisuraop.com/tags/UESTC-EndlessEmbrace/</loc>
+    <loc>https://kisuraop.com/tags/UESTC/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kisuraop.com/tags/Python/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -438,14 +445,7 @@
   </url>
   
   <url>
-    <loc>https://kisuraop.com/tags/UESTC/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kisuraop.com/tags/OI/</loc>
+    <loc>https://kisuraop.com/tags/UESTC-EndlessEmbrace/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -466,14 +466,7 @@
   </url>
   
   <url>
-    <loc>https://kisuraop.com/tags/Python/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kisuraop.com/tags/600/</loc>
+    <loc>https://kisuraop.com/tags/OI/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -481,6 +474,13 @@
   
   <url>
     <loc>https://kisuraop.com/tags/SCCPC/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kisuraop.com/tags/600/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -524,20 +524,6 @@
   </url>
   
   <url>
-    <loc>https://kisuraop.com/categories/Competitive-Programming/Note/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kisuraop.com/categories/Competitive-Programming/CCPC/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://kisuraop.com/categories/Competitive-Programming/Other/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -545,7 +531,14 @@
   </url>
   
   <url>
-    <loc>https://kisuraop.com/categories/Competitive-Programming/XCPC/</loc>
+    <loc>https://kisuraop.com/categories/Competitive-Programming/Note/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kisuraop.com/categories/Programming-Language/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -559,21 +552,21 @@
   </url>
   
   <url>
+    <loc>https://kisuraop.com/categories/Competitive-Programming/CCPC/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kisuraop.com/categories/Competitive-Programming/XCPC/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://kisuraop.com/categories/Sundry/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kisuraop.com/categories/Machine-Learning/pytorch/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kisuraop.com/categories/Programming-Language/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -588,6 +581,13 @@
   
   <url>
     <loc>https://kisuraop.com/categories/Programming-Language/Python/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kisuraop.com/categories/Machine-Learning/pytorch/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
