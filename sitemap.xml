@@ -417,13 +417,6 @@
   </url>
   
   <url>
-    <loc>https://kisuraop.com/tags/UESTC-EndlessEmbrace/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://kisuraop.com/tags/UESTC/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -431,7 +424,21 @@
   </url>
   
   <url>
+    <loc>https://kisuraop.com/tags/UESTC-EndlessEmbrace/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://kisuraop.com/tags/Algorithm/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kisuraop.com/tags/Python/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -452,7 +459,7 @@
   </url>
   
   <url>
-    <loc>https://kisuraop.com/tags/Python/</loc>
+    <loc>https://kisuraop.com/tags/Math/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -466,7 +473,7 @@
   </url>
   
   <url>
-    <loc>https://kisuraop.com/tags/Math/</loc>
+    <loc>https://kisuraop.com/tags/SCCPC/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -474,13 +481,6 @@
   
   <url>
     <loc>https://kisuraop.com/tags/600/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kisuraop.com/tags/SCCPC/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -524,13 +524,6 @@
   </url>
   
   <url>
-    <loc>https://kisuraop.com/categories/Competitive-Programming/XCPC/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://kisuraop.com/categories/Competitive-Programming/Other/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -538,14 +531,14 @@
   </url>
   
   <url>
-    <loc>https://kisuraop.com/categories/Competitive-Programming/Note/</loc>
+    <loc>https://kisuraop.com/categories/Competitive-Programming/XCPC/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://kisuraop.com/categories/Machine-Learning/</loc>
+    <loc>https://kisuraop.com/categories/Competitive-Programming/Note/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -566,6 +559,13 @@
   </url>
   
   <url>
+    <loc>https://kisuraop.com/categories/Machine-Learning/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://kisuraop.com/categories/Sundry/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -580,7 +580,7 @@
   </url>
   
   <url>
-    <loc>https://kisuraop.com/categories/Machine-Learning/pytorch/</loc>
+    <loc>https://kisuraop.com/categories/Competitive-Programming/Atcoder/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -594,7 +594,7 @@
   </url>
   
   <url>
-    <loc>https://kisuraop.com/categories/Competitive-Programming/Atcoder/</loc>
+    <loc>https://kisuraop.com/categories/Machine-Learning/pytorch/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
