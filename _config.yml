@@ -122,6 +122,7 @@ pandoc:
     - "--from=markdown+tex_math_dollars"
     - "--to=html5"
     - "--mathjax"
+    - "--eol=lf"
 
 sitemap:
   path: sitemap.xml
