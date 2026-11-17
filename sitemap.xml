@@ -424,7 +424,7 @@
   </url>
   
   <url>
-    <loc>https://kisuraop.github.io/tags/UESTC/</loc>
+    <loc>https://kisuraop.github.io/tags/Python/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -432,6 +432,20 @@
   
   <url>
     <loc>https://kisuraop.github.io/tags/Algorithm/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kisuraop.github.io/tags/UESTC/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kisuraop.github.io/tags/OI/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -452,21 +466,7 @@
   </url>
   
   <url>
-    <loc>https://kisuraop.github.io/tags/OI/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://kisuraop.github.io/tags/Math/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kisuraop.github.io/tags/Python/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -524,7 +524,7 @@
   </url>
   
   <url>
-    <loc>https://kisuraop.github.io/categories/Competitive-Programming/CCPC/</loc>
+    <loc>https://kisuraop.github.io/categories/Competitive-Programming/XCPC/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -538,6 +538,13 @@
   </url>
   
   <url>
+    <loc>https://kisuraop.github.io/categories/Programming-Language/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://kisuraop.github.io/categories/Competitive-Programming/Note/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
@@ -545,7 +552,7 @@
   </url>
   
   <url>
-    <loc>https://kisuraop.github.io/categories/Competitive-Programming/XCPC/</loc>
+    <loc>https://kisuraop.github.io/categories/Competitive-Programming/CCPC/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -560,20 +567,6 @@
   
   <url>
     <loc>https://kisuraop.github.io/categories/Sundry/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kisuraop.github.io/categories/Programming-Language/</loc>
-    <lastmod>2026-11-17</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://kisuraop.github.io/categories/Machine-Learning/pytorch/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -609,6 +602,13 @@
   
   <url>
     <loc>https://kisuraop.github.io/categories/Competitive-Programming/Luogu/</loc>
+    <lastmod>2026-11-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://kisuraop.github.io/categories/Machine-Learning/pytorch/</loc>
     <lastmod>2026-11-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
