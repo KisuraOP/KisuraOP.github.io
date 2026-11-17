@@ -322,13 +322,13 @@
                 <h2 id="a.-涂色游戏">A. 涂色游戏</h2>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P9117">Problem</a></p>
 <div class="note note-info">
-            <p>题意：<span class="math inline">\(n\times m\)</span> 的网格，<spanclass="math inline">\(q\)</span>次询问，每次涂一行或一列，新颜色会覆盖旧颜色，输出最终形态。</p><p><span class="math inline">\(1\le \sum nm\)</span>，<spanclass="math inline">\(\sum q\le 10^6\)</span>。</p>
+            <p>题意：<span class="math inline">\(n\times m\)</span> 的网格，<spanclass="math inline">\(q\)</span>次询问，每次涂一行或一列，新颜色会覆盖旧颜色，输出最终形态。</p><p><span class="math inline">\(1\le \sum nm\)</span>，<spanclass="math inline">\(\sum q\le 10^6\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>考虑倒序执行这 <span class="math inline">\(q\)</span> 个操作。</p><p>对每一行和每一列用 <code>std::unordered_map</code>存当前还有哪一些方格未被涂色。</p><p>因为反着执行涂色时旧颜色一定不会被覆盖，故对于一个操作遍历该行/列对应的容器，未涂色的涂色，再将该方格编号从容器中删掉即可。</p><p>时间复杂度 <span class="math inline">\(O(mn)\)</span>。</p>
+            <p>考虑倒序执行这 <span class="math inline">\(q\)</span> 个操作。</p><p>对每一行和每一列用 <code>std::unordered_map</code>存当前还有哪一些方格未被涂色。</p><p>因为反着执行涂色时旧颜色一定不会被覆盖，故对于一个操作遍历该行/列对应的容器，未涂色的涂色，再将该方格编号从容器中删掉即可。</p><p>时间复杂度 <span class="math inline">\(O(mn)\)</span>。</p>
           </div>
 <div class="note note-warning">
-            <p><code>std::unordered_map</code> 插值和删值的均摊时间复杂度是 <spanclass="math inline">\(O(1)\)</span> 的。</p>
+            <p><code>std::unordered_map</code> 插值和删值的均摊时间复杂度是 <spanclass="math inline">\(O(1)\)</span> 的。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -423,13 +423,13 @@
 <h2 id="b.-幂次">B. 幂次</h2>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P9118">Problem</a></p>
 <div class="note note-info">
-            <p>题意：给定正整数 <span class="math inline">\(n,k\)</span>，求 <spanclass="math inline">\(1\sim n\)</span> 中有多少正整数 <spanclass="math inline">\(x\)</span> 可以表示为 <spanclass="math inline">\(x=a^b\)</span> 的形式，其中 <spanclass="math inline">\(a,b\in \mathbb N^+\)</span> 且 <spanclass="math inline">\(b\ge k\)</span>。</p><p><span class="math inline">\(1\le n \le 10^{18}\)</span>，<spanclass="math inline">\(1\le k \le 100\)</span>。</p>
+            <p>题意：给定正整数 <span class="math inline">\(n,k\)</span>，求 <spanclass="math inline">\(1\sim n\)</span> 中有多少正整数 <spanclass="math inline">\(x\)</span> 可以表示为 <spanclass="math inline">\(x=a^b\)</span> 的形式，其中 <spanclass="math inline">\(a,b\in \mathbb N^+\)</span> 且 <spanclass="math inline">\(b\ge k\)</span>。</p><p><span class="math inline">\(1\le n \le 10^{18}\)</span>，<spanclass="math inline">\(1\le k \le 100\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>按照 <span class="math inline">\(k\)</span> 范围分治。</p><p>首先，当 <span class="math inline">\(k=1\)</span> 时，<spanclass="math inline">\(ans=n\)</span>。因为所有 <spanclass="math inline">\(x\)</span> 都能表示为 <spanclass="math inline">\(x^1\)</span>。</p><p>其次，当 <span class="math inline">\(k\ge 3\)</span>时，可以暴力枚举底数 <span class="math inline">\(a\)</span>，因为 <spanclass="math inline">\((10^6)^3=10^{18}\)</span>，底数十分有限。</p><p>最后，<span class="math inline">\(k=2\)</span> 时，一个结论是小于等于<span class="math inline">\(x\)</span> 的完全平方数有 <spanclass="math inline">\(sqrt(x)\)</span> 个，但其中有一些和指数大于 <spanclass="math inline">\(2\)</span> 时的计算结果重复，考虑容斥。在统计<span class="math inline">\(k\ge 3\)</span>的过程中顺便记录哪些计入答案的数属于完全平方数，令 <spanclass="math inline">\(k\ge 3\)</span> 时的答案为 <spanclass="math inline">\(cnt\)</span>，有 <spanclass="math inline">\(num\)</span> 个完全平方数，则 <spanclass="math inline">\(ans=cnt+sqrt(x)-num\)</span>。</p><p>容易爆 <code>long long</code> ，可以开 <code>__int128</code> 。</p>
+            <p>按照 <span class="math inline">\(k\)</span> 范围分治。</p><p>首先，当 <span class="math inline">\(k=1\)</span> 时，<spanclass="math inline">\(ans=n\)</span>。因为所有 <spanclass="math inline">\(x\)</span> 都能表示为 <spanclass="math inline">\(x^1\)</span>。</p><p>其次，当 <span class="math inline">\(k\ge 3\)</span>时，可以暴力枚举底数 <span class="math inline">\(a\)</span>，因为 <spanclass="math inline">\((10^6)^3=10^{18}\)</span>，底数十分有限。</p><p>最后，<span class="math inline">\(k=2\)</span> 时，一个结论是小于等于<span class="math inline">\(x\)</span> 的完全平方数有 <spanclass="math inline">\(sqrt(x)\)</span> 个，但其中有一些和指数大于 <spanclass="math inline">\(2\)</span> 时的计算结果重复，考虑容斥。在统计<span class="math inline">\(k\ge 3\)</span>的过程中顺便记录哪些计入答案的数属于完全平方数，令 <spanclass="math inline">\(k\ge 3\)</span> 时的答案为 <spanclass="math inline">\(cnt\)</span>，有 <spanclass="math inline">\(num\)</span> 个完全平方数，则 <spanclass="math inline">\(ans=cnt+sqrt(x)-num\)</span>。</p><p>容易爆 <code>long long</code> ，可以开 <code>__int128</code> 。</p>
           </div>
 <div class="note note-warning">
-            <p>小心精度问题，用 <code>std::sqrtl()</code> 而不是<code>std::sqrt()</code> 。</p>
+            <p>小心精度问题，用 <code>std::sqrtl()</code> 而不是<code>std::sqrt()</code> 。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -513,10 +513,10 @@ map&lt;<span class="hljs-type">int</span>,<span class="hljs-type">bool</span>&gt
 <h2 id="c.-圣诞树">C. 圣诞树</h2>
 <p><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P9119">Problem</a></p>
 <div class="note note-info">
-            <p>题意：给定二维坐标系上 <span class="math inline">\(n\)</span>个点构成的凸多边形，求从 <span class="math inline">\(y\)</span>轴最高点出发的一条最短路径，要求经过 <spanclass="math inline">\(n\)</span>个点且每个点仅能经过一次，依次输出编号。</p><p><span class="math inline">\(3\le n\le 1000\)</span>，<spanclass="math inline">\(|x_i|,|y_i|\le 10^7\)</span>。</p>
+            <p>题意：给定二维坐标系上 <span class="math inline">\(n\)</span>个点构成的凸多边形，求从 <span class="math inline">\(y\)</span>轴最高点出发的一条最短路径，要求经过 <spanclass="math inline">\(n\)</span>个点且每个点仅能经过一次，依次输出编号。</p><p><span class="math inline">\(3\le n\le 1000\)</span>，<spanclass="math inline">\(|x_i|,|y_i|\le 10^7\)</span>。</p>
           </div>
 <div class="note note-success">
-            <p>正解是区间 dp，不是很会。</p><p>只会 <span class="math inline">\(3\len\le18\)</span>，不过加上两个特殊性质一共能拿到 80pts。</p><p>套路题，最短哈密顿路径，考虑状压dp。</p><p>令起点为 <span class="math inline">\(s\)</span>，则 <spanclass="math inline">\(dp[i][j]\)</span> 代表从 <spanclass="math inline">\(s\)</span> 到 <spanclass="math inline">\(j\)</span>，且经过 <spanclass="math inline">\(i\)</span> 的二进制为 <spanclass="math inline">\(1\)</span> 的位数对应编号的点的最短路径长度。</p><p>则 <spanclass="math inline">\(dp[i][j]=\mathop\min\limits_{k\in[1,n]}(dp[i\oplus2^j][k]+dis[k][j])\)</span>。</p><p>答案为 <spanclass="math inline">\(\min\limits_{i\in[1,n]}(dp[2^n-1][i])\)</span>。</p><p>接下来考虑如何记录路径。</p><p>令 <span class="math inline">\(pre[mask][j]=k\)</span> 表示状态为<span class="math inline">\(mask\)</span>，当前点 <spanclass="math inline">\(j\)</span> 从点 <spanclass="math inline">\(k\)</span> 转移过来最优。</p><p>状态转移时 <span class="math inline">\(pre\)</span> 与 <spanclass="math inline">\(dp\)</span> 同步。</p><p>统计答案时，<span class="math inline">\(mask\)</span> 对应为 <spanclass="math inline">\(1\)</span> 的位异或变成 <spanclass="math inline">\(0\)</span>，即可回溯到上一状态。</p>
+            <p>正解是区间 dp，不是很会。</p><p>只会 <span class="math inline">\(3\len\le18\)</span>，不过加上两个特殊性质一共能拿到 80pts。</p><p>套路题，最短哈密顿路径，考虑状压dp。</p><p>令起点为 <span class="math inline">\(s\)</span>，则 <spanclass="math inline">\(dp[i][j]\)</span> 代表从 <spanclass="math inline">\(s\)</span> 到 <spanclass="math inline">\(j\)</span>，且经过 <spanclass="math inline">\(i\)</span> 的二进制为 <spanclass="math inline">\(1\)</span> 的位数对应编号的点的最短路径长度。</p><p>则 <spanclass="math inline">\(dp[i][j]=\mathop\min\limits_{k\in[1,n]}(dp[i\oplus2^j][k]+dis[k][j])\)</span>。</p><p>答案为 <spanclass="math inline">\(\min\limits_{i\in[1,n]}(dp[2^n-1][i])\)</span>。</p><p>接下来考虑如何记录路径。</p><p>令 <span class="math inline">\(pre[mask][j]=k\)</span> 表示状态为<span class="math inline">\(mask\)</span>，当前点 <spanclass="math inline">\(j\)</span> 从点 <spanclass="math inline">\(k\)</span> 转移过来最优。</p><p>状态转移时 <span class="math inline">\(pre\)</span> 与 <spanclass="math inline">\(dp\)</span> 同步。</p><p>统计答案时，<span class="math inline">\(mask\)</span> 对应为 <spanclass="math inline">\(1\)</span> 的位异或变成 <spanclass="math inline">\(0\)</span>，即可回溯到上一状态。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>

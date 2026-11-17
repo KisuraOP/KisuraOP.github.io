@@ -881,9 +881,9 @@ w_2(P_i)\ge w_2(P_j)
 <p>离散化后，按其中一维排序，树状数组统计另一维贡献即可。</p>
 <p>时间复杂度 <span class="math inline">\(O(kn\log n)\)</span>。</p>
 <div class="note note-warning">
-            <p>浮点类型数组的去重：</p><div class="code-wrapper"><pre><code class="hljs cpp">b.<span class="hljs-built_in">erase</span>(<span class="hljs-built_in">unique</span>(b.<span class="hljs-built_in">begin</span>(), b.<span class="hljs-built_in">end</span>(), [&amp;] (<span class="hljs-type">double</span> X, <span class="hljs-type">double</span> Y) &#123;
+            <p>浮点类型数组的去重：</p><div class="code-wrapper"><pre><code class="hljs cpp">b.<span class="hljs-built_in">erase</span>(<span class="hljs-built_in">unique</span>(b.<span class="hljs-built_in">begin</span>(), b.<span class="hljs-built_in">end</span>(), [&amp;] (<span class="hljs-type">double</span> X, <span class="hljs-type">double</span> Y) &#123;
 	<span class="hljs-keyword">return</span> <span class="hljs-built_in">fabs</span>(X - Y) &lt; eps;
-&#125;), b.<span class="hljs-built_in">end</span>());</code></pre></div><p>浮点类型数组的 <code>std::lower_bound</code>：</p><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
+&#125;), b.<span class="hljs-built_in">end</span>());</code></pre></div><p>浮点类型数组的 <code>std::lower_bound</code>：</p><div class="code-wrapper"><pre><code class="hljs cpp"><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;
 	c[i] = <span class="hljs-built_in">lower_bound</span>(b.<span class="hljs-built_in">begin</span>(), b.<span class="hljs-built_in">end</span>(), w[i], [&amp;] (<span class="hljs-type">double</span> X, <span class="hljs-type">double</span> Y) &#123;
 		<span class="hljs-keyword">return</span> X &lt; Y - eps;
 	&#125;) - b.<span class="hljs-built_in">begin</span>() + <span class="hljs-number">1</span>;
