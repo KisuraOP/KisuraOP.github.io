@@ -10,8 +10,9 @@
     python indexnow.py URL [URL...]   # 提交你手动指定的 URL
     python indexnow.py --all --dry-run   # 只打印要提交什么，不真的发请求
 
-流程：先 hexo g / hexo d 部署，确认 key 文件已上线（脚本会自动检查），再运行本脚本。
-之后每次发新文章，deploy.py 跑完再执行一次 `python indexnow.py --changed` 即可。
+流程：先 hexo g / hexo d 部署，确认 key 文件已上线（脚本会自动检查，并重试等待 Pages 发布），再运行本脚本。
+deploy.py 已经自动调用 `--changed`，日常发布一条 `python deploy.py` 就够了；
+第一次（key 文件还没上线过）发布时，建议等 Pages 发布完后手动再跑一次 `python indexnow.py --posts`。
 """
 
 import argparse
@@ -19,6 +20,7 @@ import json
 import re
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -92,15 +94,22 @@ def changed_urls(since: str) -> list[str]:
     return urls
 
 
-def key_is_live() -> bool:
-    try:
-        req = urllib.request.Request(KEY_LOCATION, headers={"User-Agent": "indexnow-check/1.0"})
-        with urllib.request.urlopen(req, timeout=20) as r:
-            body = r.read().decode("utf-8", "replace").strip()
-            return r.status == 200 and body == KEY
-    except Exception as e:  # noqa: BLE001
-        print(f"  ! 访问 key 文件失败: {e}")
-        return False
+def key_is_live(retries: int = 4, delay: int = 15) -> bool:
+    """检查 key 文件是否已上线；刚部署完 Pages 可能要等几十秒，所以会重试几次。"""
+    for attempt in range(1, retries + 1):
+        try:
+            req = urllib.request.Request(KEY_LOCATION, headers={"User-Agent": "indexnow-check/1.0"})
+            with urllib.request.urlopen(req, timeout=20) as r:
+                body = r.read().decode("utf-8", "replace").strip()
+                if r.status == 200 and body == KEY:
+                    return True
+                print(f"  ! key 文件内容不匹配（第 {attempt} 次）：{body[:80]!r}")
+        except Exception as e:  # noqa: BLE001
+            print(f"  ! 访问 key 文件失败（第 {attempt} 次）：{e}")
+        if attempt < retries:
+            print(f"  ... GitHub Pages 可能还没发布完，{delay}s 后重试")
+            time.sleep(delay)
+    return False
 
 
 def submit(urls: list[str]) -> None:

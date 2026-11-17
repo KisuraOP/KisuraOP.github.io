@@ -1,4 +1,5 @@
 import os
+import sys
 
 def run(cmd):
     print(f"Executing: {cmd}")
@@ -14,4 +15,6 @@ if __name__ == "__main__":
     run("git add .")
     run('git commit -m "update blog"')
     run("git push origin hexo-source")
-    print("All done! 博客已更新并备份。")
+    # 4. 通知搜索引擎（IndexNow）抓取本次改动的文章
+    run(f'"{sys.executable}" indexnow.py --changed')
+    print("All done! 博客已更新、备份并通知搜索引擎。")
