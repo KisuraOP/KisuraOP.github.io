@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/image/bg/mugeng.ico">
   <link rel="icon" href="/image/bg/mugeng.ico">
   
-    <link rel="canonical" href="https://kisuraop.github.io/posts/4cf2169a.html"/>
+    <link rel="canonical" href="https://kisuraop.com/posts/4cf2169a.html"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -24,7 +24,7 @@
     <meta name="description" content="本文使用的环境：全新 Ubuntu24.04 LTS。 Domjudge 版本：8.3.1。 本文主要参考了： Vingying | 关于搭建 domjudge 还有其他一些 ICPC Tool 之类的事 HeRaNO | 计算机 · DOMjudge Docker 配置 文中的所有流程经过了从头验证，十分感谢 vy 和 hrdg 的耐心指导QAQ。 1. 安装 DOMjudge">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【教程】使用 DOMjudge 从零搭建一场比赛">
-<meta property="og:url" content="https://kisuraop.github.io/posts/4cf2169a.html">
+<meta property="og:url" content="https://kisuraop.com/posts/4cf2169a.html">
 <meta property="og:site_name" content="KisuraOPのBlog">
 <meta property="og:description" content="本文使用的环境：全新 Ubuntu24.04 LTS。 Domjudge 版本：8.3.1。 本文主要参考了： Vingying | 关于搭建 domjudge 还有其他一些 ICPC Tool 之类的事 HeRaNO | 计算机 · DOMjudge Docker 配置 文中的所有流程经过了从头验证，十分感谢 vy 和 hrdg 的耐心指导QAQ。 1. 安装 DOMjudge">
 <meta property="og:locale" content="zh_CN">
@@ -88,7 +88,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"kisuraop.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"kisuraop.com","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -368,7 +368,7 @@ DOMjudge，配置数据库和 web 服务器</h3>
 <span class="hljs-built_in">sudo</span> <span class="hljs-built_in">chown</span> www-data:www-data -R webapp/public/*</code></pre></div>
 <p>接着访问 <code>127.0.0.1/domjudge</code> 就有 web
 界面了（云服务器就换成公网地址）。</p>
-<p><img src="https://kisuraop.github.io/image/academic/d1.png" srcset="/img/loading.gif" lazyload  /></p>
+<p><img src="/image/academic/d1.png" srcset="/img/loading.gif" lazyload  /></p>
 <p>如果没按前两句把 <code>default</code> 删掉你就会收获 404
 的好结果。</p>
 <p>如果还没有 web 界面就看看服务器 80 端口有没有打开。</p>
@@ -401,8 +401,8 @@ innodb_log_file_size = 2560MB</code></pre></div>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> systemctl restart mysql</code></pre></div>
 <p>如果一切正常，刷新 DOMjudge 的 web 页面，点进 config
 checker，你会看到：</p>
-<p><img src="https://kisuraop.github.io/image/academic/d2.png" srcset="/img/loading.gif" lazyload style="zoom: 33%;" /></p>
-<p><img src="https://kisuraop.github.io/image/academic/d3.png" srcset="/img/loading.gif" lazyload style="zoom:33%;" /></p>
+<p><img src="/image/academic/d2.png" srcset="/img/loading.gif" lazyload style="zoom: 33%;" /></p>
+<p><img src="/image/academic/d3.png" srcset="/img/loading.gif" lazyload style="zoom:33%;" /></p>
 <h3 id="配置-judgehost-docker">4. 配置 judgehost (docker)</h3>
 <p>首先要下载 docker，如果是云服务器，可以找到对应的文档。</p>
 <p>我则是查阅了一些博客和文章，以下命令可能有不妥之处。</p>
@@ -442,8 +442,8 @@ target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article
 <p>其中 <code>&lt;domserver password&gt;</code> 通过以下命令获取：</p>
 <div class="code-wrapper"><pre><code class="hljs bash"><span class="hljs-built_in">sudo</span> <span class="hljs-built_in">cat</span> /opt/domjudge/domserver/etc/restapi.secret</code></pre></div>
 <p>如果一切正常，那么：</p>
-<p><img src="https://kisuraop.github.io/image/academic/d4.png" srcset="/img/loading.gif" lazyload /></p>
-<p><img src="https://kisuraop.github.io/image/academic/d5.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img src="/image/academic/d4.png" srcset="/img/loading.gif" lazyload /></p>
+<p><img src="/image/academic/d5.png" srcset="/img/loading.gif" lazyload /></p>
 <p>如果起多个 judgehost，需要修改 <code>--name</code> 参数和
 <code>DAEMON_ID</code> 参数。后者是核编号，不能超过机子的核心数。</p>
 <p>例如起第 2 个 judgehost 的话，命令得是：</p>
@@ -747,7 +747,7 @@ external ID。</p>
   <div class="license-box my-3">
     <div class="license-title">
       <div>【教程】使用 DOMjudge 从零搭建一场比赛</div>
-      <div>https://kisuraop.github.io/posts/4cf2169a.html</div>
+      <div>https://kisuraop.com/posts/4cf2169a.html</div>
     </div>
     <div class="license-meta">
       
@@ -910,7 +910,7 @@ external ID。</p>
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://kisuraop.github.io" target="_blank" rel="nofollow noopener"><span>KisuraOP</span></a> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://kisuraop.com" target="_blank" rel="nofollow noopener"><span>KisuraOP</span></a> 
     </div>
   
   

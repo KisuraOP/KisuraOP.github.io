@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/image/bg/mugeng.ico">
   <link rel="icon" href="/image/bg/mugeng.ico">
   
-    <link rel="canonical" href="https://kisuraop.github.io/posts/a57ce1e5.html"/>
+    <link rel="canonical" href="https://kisuraop.com/posts/a57ce1e5.html"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -24,7 +24,7 @@
     <meta name="description" content="UESTC_EndlessEmbrace 第一场正式的比赛。 快到九点才起床，本来昨晚和同样晕车的 kkaaxxrrdxing4c 商量好了一起做地铁去，但起床一刷消息发现被鸽了，只好重新买上了九点半的车票，赶忙跑去东门把模板印了。 很困，昨晚临时补了一些板子，两点才睡。车上很颠，没睡着，意料之中。 12点整，PTA 准时开崩。以前只是有所耳闻，这下身临其境了。 队友和我上去打了点板子，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【游记】2024 CCPC 网络预选赛">
-<meta property="og:url" content="https://kisuraop.github.io/posts/a57ce1e5.html">
+<meta property="og:url" content="https://kisuraop.com/posts/a57ce1e5.html">
 <meta property="og:site_name" content="KisuraOPのBlog">
 <meta property="og:description" content="UESTC_EndlessEmbrace 第一场正式的比赛。 快到九点才起床，本来昨晚和同样晕车的 kkaaxxrrdxing4c 商量好了一起做地铁去，但起床一刷消息发现被鸽了，只好重新买上了九点半的车票，赶忙跑去东门把模板印了。 很困，昨晚临时补了一些板子，两点才睡。车上很颠，没睡着，意料之中。 12点整，PTA 准时开崩。以前只是有所耳闻，这下身临其境了。 队友和我上去打了点板子，">
 <meta property="og:locale" content="zh_CN">
@@ -86,7 +86,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"kisuraop.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"kisuraop.com","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -777,7 +777,7 @@ C。</p>
 <hr />
 <h3 id="c.-种树">C. 种树</h3>
 <div class="note note-success">
-            <p>将已经种了树的点称为黑点，否则白点。</p><p>两种<strong>错误</strong>的贪心举例：</p><ul><li><p>两个黑点间夹 <span class="math inline">\(k\)</span> 个白点，<spanclass="math inline">\(k\)</span> 为偶数时用 <spanclass="math inline">\(\dfrac{k}{2}\)</span> 次操作填满。</p></li><li><p>以两个或以上相连的黑点为界，每个连通块贡献为 <spanclass="math inline">\(\left\lceil\dfrac{白点个数}{2}\right\rceil\)</span>。</p></li></ul><p>反例对应如下。</p><p><img src="https://kisuraop.github.io/image/academic/CCPC1.png" srcset="/img/loading.gif" lazyload style="zoom:33%;" /></p><p><strong>正确</strong>的贪心：任选一黑点为根dfs，自下而上贪心，每次填两个。对于一个黑点：</p><ul><li><p>若当前子树中白点数为偶数，填满。</p></li><li><p>否则考虑是否能把多余的一个涂色操作摊给当前黑点的父亲。</p></li></ul><p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
+            <p>将已经种了树的点称为黑点，否则白点。</p><p>两种<strong>错误</strong>的贪心举例：</p><ul><li><p>两个黑点间夹 <span class="math inline">\(k\)</span> 个白点，<spanclass="math inline">\(k\)</span> 为偶数时用 <spanclass="math inline">\(\dfrac{k}{2}\)</span> 次操作填满。</p></li><li><p>以两个或以上相连的黑点为界，每个连通块贡献为 <spanclass="math inline">\(\left\lceil\dfrac{白点个数}{2}\right\rceil\)</span>。</p></li></ul><p>反例对应如下。</p><p><img src="/image/academic/CCPC1.png" srcset="/img/loading.gif" lazyload style="zoom:33%;" /></p><p><strong>正确</strong>的贪心：任选一黑点为根dfs，自下而上贪心，每次填两个。对于一个黑点：</p><ul><li><p>若当前子树中白点数为偶数，填满。</p></li><li><p>否则考虑是否能把多余的一个涂色操作摊给当前黑点的父亲。</p></li></ul><p>时间复杂度 <span class="math inline">\(O(n)\)</span>。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -1192,7 +1192,7 @@ C。</p>
   <div class="license-box my-3">
     <div class="license-title">
       <div>【游记】2024 CCPC 网络预选赛</div>
-      <div>https://kisuraop.github.io/posts/a57ce1e5.html</div>
+      <div>https://kisuraop.com/posts/a57ce1e5.html</div>
     </div>
     <div class="license-meta">
       
@@ -1355,7 +1355,7 @@ C。</p>
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://kisuraop.github.io" target="_blank" rel="nofollow noopener"><span>KisuraOP</span></a> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://kisuraop.com" target="_blank" rel="nofollow noopener"><span>KisuraOP</span></a> 
     </div>
   
   

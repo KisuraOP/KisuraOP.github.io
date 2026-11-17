@@ -11,7 +11,7 @@
   <link rel="apple-touch-icon" sizes="76x76" href="/image/bg/mugeng.ico">
   <link rel="icon" href="/image/bg/mugeng.ico">
   
-    <link rel="canonical" href="https://kisuraop.github.io/posts/81df370c.html"/>
+    <link rel="canonical" href="https://kisuraop.com/posts/81df370c.html"/>
   
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
@@ -24,7 +24,7 @@
     <meta name="description" content="获益匪浅。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【题解】AtCoder Beginner Contest 222 D~G">
-<meta property="og:url" content="https://kisuraop.github.io/posts/81df370c.html">
+<meta property="og:url" content="https://kisuraop.com/posts/81df370c.html">
 <meta property="og:site_name" content="KisuraOPのBlog">
 <meta property="og:description" content="获益匪浅。">
 <meta property="og:locale" content="zh_CN">
@@ -87,7 +87,7 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"kisuraop.github.io","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+    var CONFIG = {"hostname":"kisuraop.com","root":"/","version":"1.9.8","typing":{"enable":false,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"left","headingSelector":"h1,h2,h3","collapseDepth":1},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
@@ -657,7 +657,7 @@ target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc222/tasks/ab
     </div>
 </div>
 <div class="note note-success">
-            <p>方法二：（换根dp）</p><p>第一次 <span class="math inline">\(\text{dfs}\)</span>，<spanclass="math inline">\(dp_{i,0/1}\)</span> 代表 <spanclass="math inline">\(i\)</span> 的子树内答案的最大值/次大值。那么有：<span class="math display">\[dp_{x}=\max_{y\in son[x]}(dp_{x},dp_{y}+w,a_y+w)\]</span></p><p>第二次 <spanclass="math inline">\(\text{dfs}\)</span>，可以画图分析： <imgsrc="https://kisuraop.github.io/image/academic/3.png" srcset="/img/loading.gif" lazyload /></p><p>向下 <span class="math inline">\(\text{dfs}\)</span>时子树内的贡献没有改变，我们只需要分析另一边（绿色部分）多出了哪些贡献。</p><p>假设我们刚刚走过了边 <span class="math inline">\(fa\toy\)</span>，分为两种情况： 1. （橙字）<spanclass="math inline">\(dp_{fa,0}\)</span> 从非 <spanclass="math inline">\(y\)</span> 子树内转移而来，那么： <spanclass="math display">\[dp_y=\max(dp_y,dp_{fa,0}+w)\]</span></p><ol start="2" type="1"><li>（蓝字）<span class="math inline">\(dp_{fa,0}\)</span> 从 <spanclass="math inline">\(y\)</span>的子树内转移而来，非子树部分的最大值实际就是 <spanclass="math inline">\(fa\)</span> 节点对应的次大值，那么： <spanclass="math display">\[dp_y=\max(dp_y,dp_{fa,1}+w)\]</span></li></ol><p>最后更新答案。</p>
+            <p>方法二：（换根dp）</p><p>第一次 <span class="math inline">\(\text{dfs}\)</span>，<spanclass="math inline">\(dp_{i,0/1}\)</span> 代表 <spanclass="math inline">\(i\)</span> 的子树内答案的最大值/次大值。那么有：<span class="math display">\[dp_{x}=\max_{y\in son[x]}(dp_{x},dp_{y}+w,a_y+w)\]</span></p><p>第二次 <spanclass="math inline">\(\text{dfs}\)</span>，可以画图分析： <imgsrc="/image/academic/3.png" srcset="/img/loading.gif" lazyload /></p><p>向下 <span class="math inline">\(\text{dfs}\)</span>时子树内的贡献没有改变，我们只需要分析另一边（绿色部分）多出了哪些贡献。</p><p>假设我们刚刚走过了边 <span class="math inline">\(fa\toy\)</span>，分为两种情况： 1. （橙字）<spanclass="math inline">\(dp_{fa,0}\)</span> 从非 <spanclass="math inline">\(y\)</span> 子树内转移而来，那么： <spanclass="math display">\[dp_y=\max(dp_y,dp_{fa,0}+w)\]</span></p><ol start="2" type="1"><li>（蓝字）<span class="math inline">\(dp_{fa,0}\)</span> 从 <spanclass="math inline">\(y\)</span>的子树内转移而来，非子树部分的最大值实际就是 <spanclass="math inline">\(fa\)</span> 节点对应的次大值，那么： <spanclass="math display">\[dp_y=\max(dp_y,dp_{fa,1}+w)\]</span></li></ol><p>最后更新答案。</p>
           </div>
 <div class='spoiler collapsed'>
     <div class='spoiler-title'>
@@ -914,7 +914,7 @@ target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc222/tasks/ab
   <div class="license-box my-3">
     <div class="license-title">
       <div>【题解】AtCoder Beginner Contest 222 D~G</div>
-      <div>https://kisuraop.github.io/posts/81df370c.html</div>
+      <div>https://kisuraop.com/posts/81df370c.html</div>
     </div>
     <div class="license-meta">
       
@@ -1077,7 +1077,7 @@ target="_blank" rel="noopener" href="https://atcoder.jp/contests/abc222/tasks/ab
     <div class="footer-inner">
   
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://kisuraop.github.io" target="_blank" rel="nofollow noopener"><span>KisuraOP</span></a> 
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <i class="iconfont icon-love"></i> <a href="https://kisuraop.com" target="_blank" rel="nofollow noopener"><span>KisuraOP</span></a> 
     </div>
   
   
