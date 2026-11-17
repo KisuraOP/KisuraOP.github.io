@@ -894,7 +894,7 @@ signed main() {
 
 但这样连的边还是太多了，需要采用前后缀优化建图。
 
-<img src="https://kisuraop.github.io/image/academic/5.png" alt="1" style="zoom: 33%;" />
+<img src="/image/academic/5.png" alt="1" style="zoom: 33%;" />
 
 如图连边即可。第一次见到，很智慧。
 
@@ -3991,17 +3991,17 @@ $1 \le n \le 5000$，$1 \le m \le 100$。
 
 * 若 $d \le \left\lfloor\dfrac{n}{2}\right\rfloor$，如下图。最长段（蓝色）可以错开，剩下的连续段长度都不超过 $d$，因此可以用其它段（红色）补足空隙，此时上下两个数组就没有重合的地方了。
 
-![1](https://kisuraop.github.io/image/academic/11.png)
+![1](/image/academic/11.png)
 
 * 考虑右移 $\dfrac{n}{2}$，如下图。最长段显然不会重合，其它段用不同颜色进行了标明，意在说明若在空隙的地方（即 $l_2$ 右端）$\{a\}$，$\{b\}$ 有重合，那么其他段的长度至少要从 $l_1$ 右端开始直到 $l_2$ 右端，长度 $> \dfrac{n}{2}$，与假设相悖。
 
-![1](https://kisuraop.github.io/image/academic/12.png)
+![1](/image/academic/12.png)
 * 若 $d > \dfrac{n}{2}$，如下图。最长段（蓝色）已经不可避免地相交，剩下段（红色）不可能再重叠，因此最大匹配的下标数量为 $n-d$。
 
-![1](https://kisuraop.github.io/image/academic/13.png)
+![1](/image/academic/13.png)
 * 考虑右移 $\dfrac{n}{2}$，如下图。因为右移之后蓝色段 $(>\dfrac{n}{2})+\dfrac{n}{2}\to (>n)$ 必然超出右边界，因此剩下的区域仍然要么被 $\{a\}$ 的蓝色段覆盖，要么被 $\{b\}$ 的蓝色段覆盖，取到最大匹配。
 
-![1](https://kisuraop.github.io/image/academic/14.png)
+![1](/image/academic/14.png)
 
 {% endnote %}
 
@@ -4067,7 +4067,7 @@ $1 \le n \le 10^5$，$1 \le m\le \min(\frac{n(n-1)}{2}, 10^5)$。
 
 现在考虑求 $c$。以下面的 $K_4$ 完全图（图A）为例：
 
-![1](https://kisuraop.github.io/image/academic/21.png)
+![1](/image/academic/21.png)
 
 其中红色虚边为 $0$ 边，绿色实边为 $1$ 边。我们按照编号顺序依次遍历 $1\sim n$，关注连通块的变化。
 
@@ -4077,7 +4077,7 @@ $1 \le n \le 10^5$，$1 \le m\le \min(\frac{n(n-1)}{2}, 10^5)$。
 
 现在加进来节点 $3$，发现存在 $1$ 边 $(1,3)$ 和 $(2,3)$。我们不妨用一个标记数组 `cnt` 标记一下，即对于 $1$ 边 $x\to y(y < x)$ 有 `cnt[dsu.find(y)]++`。接着我们遍历先前的连通块，判断是否有连通块 $x$ 的大小 `dsu.size(x)` 比 `cnt[x]` 大。因为两个点之间不是 $1$ 边就是 $0$ 边，如果 `dsu.size(x)` 更大，说明向这个连通块连的边有 $0$ 边，进一步说明全 $0$ 连通块的个数没有增加，如下图（图B）。
 
-![1](https://kisuraop.github.io/image/academic/22.png)
+![1](/image/academic/22.png)
 
 该图满足 `dsu.size(1) = 2 > cnt[1] = 1`。此时节点 $3$ 的加入不影响全 $0$ 连通块个数，直接用并查集并起来。
 
@@ -4085,7 +4085,7 @@ $1 \le n \le 10^5$，$1 \le m\le \min(\frac{n(n-1)}{2}, 10^5)$。
 
 现在会了怎么判断全 $0$ 连通块个数增加，那会不会减少呢？
 
-![1](https://kisuraop.github.io/image/academic/23.png)
+![1](/image/academic/23.png)
 
 这是添加节点 $5$ 之后的另一个例子，不难看出此时全 $0$ 连通块数量发生了 $2\to 1$ 的变化。
 
@@ -5847,7 +5847,7 @@ $1\le T \le 10^4$，$1 \le r \le 10^3$。
 
 弓形 $\overset{\frown}{A_{1s}A_{5t}}$ 也等价于 $S_{\text{扇形}OA_{1s}A_{5t}} - S_{\Delta OA_{1s}A_{5t}}$。
 
-<img src="https://kisuraop.github.io/image/academic/31.png" alt="1" style="zoom:33%;" />
+<img src="/image/academic/31.png" alt="1" style="zoom:33%;" />
 
 时间复杂度 $O(T)$。
 
@@ -5855,7 +5855,7 @@ $1\le T \le 10^4$，$1 \le r \le 10^3$。
 
 如下图（可爱的 xing4c 画出来的！），当出现优弧时，阴影部分的面积应该被加上而不是减去。
 
-<img src="https://kisuraop.github.io/image/academic/32.png" alt="xing4c" style="zoom: 25%;" />
+<img src="/image/academic/32.png" alt="xing4c" style="zoom: 25%;" />
 
 {% endnote %}
 

@@ -150,11 +150,11 @@ $2\le n \le 2\cdot 10^5$，$1\le a_i,b_i \le 10^9$。
 
 可能的情况如下（不完全）：
 
-![](https://kisuraop.github.io/image/academic/CF910_1.png)
+![](/image/academic/CF910_1.png)
 
-![](https://kisuraop.github.io/image/academic/CF910_2.png)
+![](/image/academic/CF910_2.png)
 
-![](https://kisuraop.github.io/image/academic/CF910_3.png)
+![](/image/academic/CF910_3.png)
 
 会发现只有第一组线段的长度得以扩张，且扩张值为原先线段间空白长度的两倍。
 

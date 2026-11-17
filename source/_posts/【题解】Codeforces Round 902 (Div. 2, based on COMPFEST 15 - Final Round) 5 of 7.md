@@ -504,7 +504,7 @@ $1\le a_i\le n \le 2\times 10^5$。
 
 例如，有排列 `4 3 6 5 7 8 1 2` ，连边后如下图。
 
-<img src="https://kisuraop.github.io/image/academic/2.png" alt="2" style="zoom: 67%;" />
+<img src="/image/academic/2.png" alt="2" style="zoom: 67%;" />
 
 下标集合 `1,2,5,6` 或 `1,3,5,8` 或 `3,4,7,8` 等均符合题意。
 

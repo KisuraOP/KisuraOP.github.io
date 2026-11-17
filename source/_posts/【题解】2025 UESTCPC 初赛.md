@@ -49,11 +49,11 @@ updated: 2025-03-29 21:00:00
 
 补题链接：[Cdoj](https://cdoj.site/d/lutece/p?q=category%3ALutece%2C%E6%A0%A1%E8%B5%9B%2C%E5%88%9D%E8%B5%9B%2C2025)。
 
-题面：[Statement](https://kisuraop.github.io/oth/2025UESTCPC/statement.pdf)。
+题面：[Statement](/oth/2025UESTCPC/statement.pdf)。
 
-出题人题解：[Solution](https://kisuraop.github.io/oth/2025UESTCPC/solution.pdf)。
+出题人题解：[Solution](/oth/2025UESTCPC/solution.pdf)。
 
-查重前榜单：[Scoreboard](https://kisuraop.github.io/oth/2025UESTCPC/scoreboard.mhtml)。
+查重前榜单：[Scoreboard](/oth/2025UESTCPC/scoreboard.mhtml)。
 
 * * *
 （upd on 赛后）来点 Statistics。
@@ -152,7 +152,7 @@ Fun Fact：在 pool 里 M 的难度是 *1300，有点幽默。
 
 时间复杂度 $O(n^2)$。
 
-[![](https://kisuraop.github.io/image/academic/UESTCPC1.png)](https://kisuraop.github.io/image/academic/UESTCPC1.png)
+[![](/image/academic/UESTCPC1.png)](/image/academic/UESTCPC1.png)
 
 上图是 $n=7$ 的图例，$5$ 个集合的大小分别为 $2, 2, 1, 1, 1$。
 
@@ -1235,7 +1235,7 @@ signed main() {
 
 想好怎么枚举是重要的。
 
-[![](https://kisuraop.github.io/image/academic/UESTCPC2.png)](https://kisuraop.github.io/image/academic/UESTCPC2.png)
+[![](/image/academic/UESTCPC2.png)](/image/academic/UESTCPC2.png)
 
 我的做法是枚举三度点 $i$，遍历 $i$ 的邻接点，让每个邻居都尝试作为 $O$，这样 $A,B$ 就是另外两个邻居。
 

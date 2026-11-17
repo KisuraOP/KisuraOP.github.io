@@ -422,7 +422,7 @@ dp_{x}=\max_{y\in son[x]}(dp_{x},dp_{y}+w,a_y+w)
 $$
 
 第二次 $\text{dfs}$，可以画图分析：
-![](https://kisuraop.github.io/image/academic/3.png)
+![](/image/academic/3.png)
 
 向下 $\text{dfs}$ 时子树内的贡献没有改变，我们只需要分析另一边（绿色部分）多出了哪些贡献。
 

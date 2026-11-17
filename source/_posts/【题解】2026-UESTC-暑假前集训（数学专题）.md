@@ -226,7 +226,7 @@ $$
 $$
 \sum_{t=0}^{\left\lfloor\frac{N-R}{M}\right\rfloor}[(Mt+R)\bmod 2^{i+1}\ge 2^i]
 $$
-被[2025武汉区域赛A](https://kisuraop.github.io/posts/1fbf08d.html#a.-planting-trees)折磨过的一定能想到 $[u\ge v]=1+\left\lfloor\dfrac{u-v}{m}\right\rfloor\ (0\le u,v<m)$，再把 $\bmod$ 展开，化简得到
+被[2025武汉区域赛A](/posts/1fbf08d.html#a.-planting-trees)折磨过的一定能想到 $[u\ge v]=1+\left\lfloor\dfrac{u-v}{m}\right\rfloor\ (0\le u,v<m)$，再把 $\bmod$ 展开，化简得到
 $$
 \sum_{t=0}^{\left\lfloor\frac{N-R}{M}\right\rfloor}\left\lfloor\dfrac{Mt+R}{2^{i+1}}+\frac{1}{2}\right\rfloor-\left\lfloor\dfrac{Mt+R}{2^{i+1}}\right\rfloor
 $$

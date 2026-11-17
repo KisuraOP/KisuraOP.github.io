@@ -15,7 +15,7 @@ layout: about
 
 <hr style="border: 0; height: 1px; background-image: linear-gradient(to right, rgba(100, 149, 237, 0), rgba(100, 149, 237, 0.75), rgba(100, 149, 237, 0));">
 
-![](https://kisuraop.github.io/image/bg/infoBG4.png)
+![](/image/bg/infoBG4.png)
 
 $$
 \begin{align} \begin{pmatrix} &\text{ }\text{ } \text{2023年,我已觉得足够。} \\ &\text{纵使风狂雨骤,也不害怕无路可走。} \\ &\text{愿绚烂的星火之间有不曾悔恨的理由,}\text{ }\text{ }\text{ } \\ &\text{ }\text{ }\text{愿沉溺在深水之中也能有心灵的悸动。} \text{ }\text{ }\text{ }\end{pmatrix} \end{align}
@@ -25,7 +25,7 @@ $$
 \begin{align} \large\text{『 }\normalsize\text{你没有那个实力,别再欺骗自己了} \mid \text{把自己卷死总比输了好}\large\text{ 』} \end{align}
 $$
 
-![](https://kisuraop.github.io/image/bg/infoBG7.jpg)
+![](/image/bg/infoBG7.jpg)
 
 $$
 \begin{align}
@@ -53,7 +53,7 @@ $$
 \end{align}
 $$
 
-![](https://kisuraop.github.io/image/bg/infoBG6.png)
+![](/image/bg/infoBG6.png)
 
 $$
 \begin{align}
@@ -67,7 +67,7 @@ $$
 \end{align}
 $$
 
-![](https://kisuraop.github.io/image/bg/infoBG3.png)
+![](/image/bg/infoBG3.png)
 
 $$
 \begin{align}
@@ -77,7 +77,7 @@ $$
 \end{align}
 $$
 
-![](https://kisuraop.github.io/image/bg/infoBG5.png)
+![](/image/bg/infoBG5.png)
 
 $$
 \begin{align}

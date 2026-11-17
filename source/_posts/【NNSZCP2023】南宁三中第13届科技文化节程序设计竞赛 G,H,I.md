@@ -16,9 +16,9 @@ updated: 2023-12-14 09:00:00
 ---
 
 
-[![](https://kisuraop.github.io/image/nnsz/1.jpg)](https://kisuraop.github.io/image/nnsz/1.jpg)
+[![](/image/nnsz/1.jpg)](/image/nnsz/1.jpg)
 
-[![](https://kisuraop.github.io/image/nnsz/2.jpg)](https://kisuraop.github.io/image/nnsz/2.jpg)
+[![](/image/nnsz/2.jpg)](/image/nnsz/2.jpg)
 
 ## 闲话
 
@@ -207,7 +207,7 @@ $1\le n\le 2\cdot 10^5$。
 
 换根 $\text{dp}$。先计算一个根 $x$ 的结果（即 $x$ 最后才删的方案数）$dp_x$，再转移，答案就是 $\sum dp_x$。
 
-第一遍 $\text{dfs}$，对于当前子树和其它子树的状态合并（即一段操作序列插到另一端操作序列中），其实就是一个多重集的排列：具体的，两段长分别为 $n,m$ 的序列相互插（元素互不相同），相当于 $n$ 个无区别球放入 $m$ 个有区别盒子且允许空盒，即能形成 $C_{m+n-1}^{n}$ 种序列（[参考this](https://kisuraop.github.io/posts/f9da5f78.html#j.-ihis-homework)）。
+第一遍 $\text{dfs}$，对于当前子树和其它子树的状态合并（即一段操作序列插到另一端操作序列中），其实就是一个多重集的排列：具体的，两段长分别为 $n,m$ 的序列相互插（元素互不相同），相当于 $n$ 个无区别球放入 $m$ 个有区别盒子且允许空盒，即能形成 $C_{m+n-1}^{n}$ 种序列（[参考this](/posts/f9da5f78.html#j.-ihis-homework)）。
 
 用 $sz_x$ 表示 $x$ 的子树大小，那么对于 $x$ 的一个儿子 $y$，这里 $n,m$ 就分别是 $sz_{y}$ 和 $sz_{x}-sz_y$，状态转移可以写成：
 $$
